@@ -1720,3 +1720,4 @@ Self-review resolutions included in this specification:
 5. **No Last-Write-Wins ambiguity:** optimistic concurrency and semantic conflict handling are authoritative.
 6. **No auto-upgrade ambiguity:** Project-pinned Rule/Schema versions remain authoritative until approved `MIG-*` promotion.
 7. **No secret-storage exception:** actual secrets remain forbidden in every export profile, including FULL.
+
