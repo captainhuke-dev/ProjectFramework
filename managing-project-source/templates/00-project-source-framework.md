@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.1.3"
+project_source_framework_version: "1.1.4"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -126,7 +126,7 @@ Conditional documents สร้างเฉพาะเมื่อ applicable; 
 
 Canonical bootstrap mockup อยู่ที่ `templates/project-source-mockup/`. ใช้เพื่อดู mapping เลข `00–17` และ starter filenames เท่านั้น; normative authority ยังคงเป็น Framework + Core Governance + document skeletons. Mockup มี template ของ `06–08` เพื่อ discoverability แต่ไม่ได้บังคับให้สร้าง active files. `18–19` ยัง RESERVED และ `20–99` สร้างเมื่อมี use case เท่านั้น.
 
-Platform Project bootstrap launchers อยู่ที่ `CHATGPT-PROJECT-INSTRUCTIONS.md` และ `CLAUDE-PROJECT-INSTRUCTIONS.md` ใน Framework distribution. ไฟล์เหล่านี้ใช้ชี้ Agent ไปยัง canonical bootstrap source หรือ local pinned Project Source เท่านั้น และห้ามทำหน้าที่แทน/override/weakening `FRAMEWORK-001` เมื่อ Project Source ถูก initialize แล้ว.
+Framework distribution ใช้ `FRAMEWORK-RELEASE.yaml` เป็น release descriptor และใช้ `CHATGPT-PROJECT-INSTRUCTIONS.md` / `CLAUDE-PROJECT-INSTRUCTIONS.md` เป็น platform launchers. Distribution artifacts เหล่านี้อยู่นอก Project Source semantic namespace; ใช้ชี้ Agent ไปยัง immutable bootstrap source หรือ local pinned Project Source เท่านั้น และห้ามทำหน้าที่แทน/override/weakening `FRAMEWORK-001`.
 
 ## 4. Naming and Revision
 
@@ -158,11 +158,35 @@ Canonical implementation files ที่ ecosystem บังคับชื่�
 
 จากนั้น `01-Project Source Index` route ไปเอกสารที่เกี่ยวข้องกับ task
 
-สำหรับ GREENFIELD bootstrap ให้ resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md` ก่อน instantiate files; สร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
+สำหรับ GREENFIELD bootstrap ให้เริ่มจาก canonical repository discovery entrypoint, อ่าน `FRAMEWORK-RELEASE.yaml`, resolve `stable_release_tag`, และปกติอ่าน Framework bootstrap source จาก immutable tagged ref ก่อน resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md`. หลัง Preview + explicit user approval จึงสร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
 
-ถ้าเริ่มจาก ChatGPT Project หรือ Claude Project ให้ใช้ platform instruction artifact ที่ตรงกับ platform เป็น launcher เพื่อแยกกรณี NEW Project ออกจาก initialized Project. NEW Project bootstrap จาก canonical repository `main`; initialized Project ต้องใช้ local pinned Project Source เป็น authority และห้าม auto-upgrade จาก upstream. ถ้า required upstream/local source เข้าถึงไม่ได้ ให้หยุด governance mutation ที่ได้รับผลกระทบและรายงาน limitation แทนการ reconstruct จาก memory.
+ถ้าเริ่มจาก ChatGPT Project หรือ Claude Project ให้ใช้ platform instruction artifact ที่ตรงกับ platform เป็น launcher เพื่อแยกกรณี NEW Project ออกจาก initialized Project. Initialized Project ต้องใช้ local pinned Project Source เป็น authority และห้าม auto-upgrade จาก upstream.
+
+หาก immutable tag/source resolve ไม่ได้ ให้หยุด governance mutation ที่ได้รับผลกระทบและรายงาน limitation. การ bootstrap จาก mutable `main` ทำได้เฉพาะเมื่อ User Explicit Approval และต้องเก็บ degraded provenance / `VERIFICATION_REQUIRED` แทนการอ้าง immutable provenance ที่ไม่ได้ตรวจจริง.
 
 ห้ามใช้ Handoff, memory, README เก่า หรือไฟล์ “ล่าสุด” แทน bootstrap นี้โดยปริยาย
+
+### 5.1 Framework Source Provenance
+
+Project Source ต้องเก็บ provenance ที่สังเกตได้จริงจาก bootstrap/migration source:
+
+```yaml
+framework_source_provenance:
+  repository: "captainhuke-dev/ProjectFramework"
+  release_tag: "<RESOLVED_RELEASE_TAG>"
+  resolved_commit_sha: "<40_HEX_SHA>"
+  framework_version: "1.1.4"
+  schema_version: "1.0.0"
+  captured_at: "<ISO8601_WITH_TIMEZONE>"
+```
+
+กฎ:
+
+- ค่าใน block นี้เป็น **observed provenance** จาก Git ref ที่ใช้จริง ห้ามเดา ห้าม predict และห้าม fabricate
+- NEW Project ปกติต้อง resolve `v1.1.4` จาก `FRAMEWORK-RELEASE.yaml` แล้วบันทึก commit SHA ที่ tag นั้น resolve จริง
+- หาก immutable resolution ใช้ไม่ได้และ user อนุมัติ mutable bootstrap ให้บันทึกสถานะ degraded provenance อย่างชัดเจนแทน fake tag/SHA
+- Existing Project ห้าม backfill SHA ย้อนหลังถ้า revision เดิมไม่ได้สังเกต provenance นั้นจริง
+- `14-Project Source Manifest` ต้อง preserve provenance ชุดเดียวกับ active `00`; mismatch ถือเป็น integrity drift
 
 ## 6. Truth and Uncertainty
 
@@ -301,6 +325,8 @@ Generated registry ห้ามถือ manual edit เป็น authoritative
 
 `14` = Current Reconstructable Snapshot inventory + hashes รวม active/current Detail Documents ที่จำเป็นต่อการตีความ referenced current Stable IDs; snapshot ห้ามพึ่ง omitted archive เพื่อ resolve Current Truth
 
+`14` ต้อง preserve Framework Source Provenance ชุดเดียวกับ active `00`. ห้าม invent missing provenance เพื่อให้ Manifest ดู complete; mismatch ระหว่าง `00` กับ `14` เป็น integrity drift ที่ต้องหาสาเหตุก่อนแก้.
+
 Manifest mismatch ต้องหาสาเหตุก่อน regenerate
 
 ## 14. Evidence and Secrets
@@ -335,7 +361,7 @@ Acceptance ต้อง fresh-check `00 → 01 → 03 → 09`, actor/authority �
 GREENFIELD BROWNFIELD IMPORT
 ```
 
-- GREENFIELD → preview → user approval → create
+- GREENFIELD → immutable release resolution → preview → user approval → create → record observed provenance
 - BROWNFIELD → preserve-first; ห้าม move/rename/delete legacy source อัตโนมัติ
 - IMPORT → quarantine ที่ `import-staging/` ก่อน promotion
 
@@ -344,6 +370,8 @@ GREENFIELD BROWNFIELD IMPORT
 Project pin Framework/Schema version. ห้าม auto-upgrade
 
 Framework upgrade/normalization/import upgrade ใช้ `MIG-*` + assessment + approval + validation + promotion
+
+Migration ไป Framework `1.1.4+` ต้อง record provenance จาก approved migration source ref ที่ resolve จริง และห้าม fabricate historical provenance สำหรับ revision เก่าที่ไม่เคย capture ค่าเหล่านั้น.
 
 Legacy compatibility: หากพบ `00-Project Source Rule` รุ่นเดิม ให้ถือเป็น legacy predecessor ของ slot `00`; ห้ามลบทิ้งตรง ๆ. สร้าง `00-Project Source Framework` candidate, ทำ governed promotion, แล้ว archive predecessor หลัง Framework ใหม่ Active สำเร็จ.
 

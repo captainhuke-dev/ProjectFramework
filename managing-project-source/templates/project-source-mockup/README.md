@@ -1,6 +1,6 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.1.3 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.1.4 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, the active `00-Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup mismatch is release-blocking drift.
 
@@ -47,19 +47,24 @@ Reserved anchors remain: `20 General Research`, `30 Business Flow`, `40 Technica
 
 ```text
 1. If running inside a platform Project, start from the canonical ChatGPT/Claude Project instruction artifact
-2. Read repository README.md
-3. Read SKILL.md + latest amendment + Core Governance
-4. Read 00 template + core-document-skeletons.md
-5. Read this mockup mapping
-6. Preview proposed Project Source → obtain explicit user approval
-7. Create active 00 first
-8. Create mandatory 01–05 and 09–17
-9. Evaluate 06–08; create active files only when applicable
-10. Keep 18–19 reserved
-11. Add 20–99 only for real project-specific needs
-12. Build/verify Index + Manifest + readiness
-13. Pin Framework/Schema locally; do not auto-upgrade from upstream later
+2. Read repository README.md on the discovery branch
+3. Read ../../FRAMEWORK-RELEASE.yaml
+4. Resolve stable_release_tag and use the immutable tagged source for normal bootstrap
+5. Read SKILL.md + latest amendment + Core Governance from the resolved source
+6. Read 00 template + core-document-skeletons.md
+7. Read this mockup mapping
+8. Preview proposed Project Source → obtain explicit user approval
+9. Create active 00 first
+10. Create mandatory 01–05 and 09–17
+11. Evaluate 06–08; create active files only when applicable
+12. Keep 18–19 reserved
+13. Add 20–99 only for real project-specific needs
+14. Record observed release tag + resolved commit SHA in active 00 and Manifest provenance metadata
+15. Build/verify Index + Manifest + readiness
+16. Pin Framework/Schema locally; do not auto-upgrade from upstream later
 ```
+
+If the immutable release tag/source cannot be resolved, do not pretend mutable `main` is immutable. Report the limitation; mutable-source bootstrap requires explicit user approval and must keep provenance `VERIFICATION_REQUIRED` / visibly degraded until verified.
 
 ## Template vs Active Filename
 

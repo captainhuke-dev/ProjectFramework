@@ -4,6 +4,8 @@ Use these skeletons only after creating the active `00-Project Source Framework`
 
 For a concrete slot/file starter view, read `project-source-mockup/README.md`. The mockup and these skeletons must remain aligned; Core Governance is authoritative on conflicts. Conditional `06–08` templates are discoverability aids and do not require empty active documents.
 
+Framework `1.1.4` provenance is recorded in the active `00` body and mirrored as continuation metadata in `14-Project Source Manifest`; do not invent missing release tag/SHA values merely to make the Manifest look complete.
+
 ## Common YAML Header Pattern
 
 ```yaml
@@ -24,7 +26,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.3"
+project_source_framework_version: "1.1.4"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -244,6 +246,21 @@ Never store actual secrets as evidence.
 Current Reconstructable Snapshot inventory.
 
 Track active documents, continuation-relevant formal drafts, registered evidence, pinned schema/validation assets, required generated assets, and every active/current canonical Detail Document required to interpret referenced current Stable IDs. The Current Reconstructable Snapshot must resolve current authoritative semantics without requiring archived revisions.
+
+Required continuation metadata also includes **Framework Source Provenance**:
+
+```text
+Framework Source Provenance
+- Repository
+- Release Tag / Mutable Ref State
+- Resolved Commit SHA when observed
+- Framework Version
+- Schema Version
+- Captured At
+- Provenance Verification State
+```
+
+The Manifest must preserve the same observed provenance as active `00-Project Source Framework`. If `00` lacks verified immutable provenance, `14` must preserve that degraded/unknown state rather than inventing values. A mismatch between `00` and `14` is integrity drift.
 
 Manifest does not recursively hash its own raw bytes.
 
