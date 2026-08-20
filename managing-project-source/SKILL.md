@@ -1,22 +1,23 @@
 ---
 name: managing-project-source
-description: Use when creating, adopting, importing, updating, reviewing, handing off, or exporting a Project Source; when a project needs consistent governance, naming, source-of-truth handling, continuation context, or cross-agent documentation.
+description: Use when creating, adopting, importing, updating, reviewing, handing off, or exporting a Project Source; when a project needs consistent governance, naming, source-of-truth handling, continuation context, project-management control, or technical/install documentation.
 ---
 
 # Managing Project Source
 
 ## Overview
 
-Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, and exact next action** explicit without inventing facts.
+Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-ProjectFramework is **conceptual governance/planning first**. Integrity requirements are semantic contracts. **Do not expand documentation/governance/integrity work into validator, CLI, CI, migration engine, background automation, or enforcement software unless the user explicitly requests a separate implementation scope.**
+ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
 ## Required References
 
 Before creating or materially changing Project Source, read:
 
-- `FRAMEWORK-RELEASE.yaml` for the current distribution identity and bootstrap policy
-- `references/framework-governance-amendment-260820-1024.md`
+- `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
+- `references/framework-governance-amendment-260820-1142.md`
+- `references/framework-governance-amendment-260820-1024.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-0821.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-0735.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-0707.md` (historical approved amendment)
@@ -24,166 +25,226 @@ Before creating or materially changing Project Source, read:
 - `references/framework-governance-amendment-260814-0808.md` (historical approved amendment)
 - `references/core-governance-rules.md`
 - `templates/00-project-source-framework.md`
-- `templates/core-document-skeletons.md` for new Project Source
-- `templates/project-source-mockup/README.md` to resolve semantic-slot/document mapping and starter filenames
+- `templates/core-document-skeletons.md`
+- `templates/project-source-mockup/README.md`
 
-Use historical design/spec files only for rationale/edge cases. The latest Framework amendment wins on conflicts.
+Historical spec/design files are rationale only. Latest Framework amendment wins on conflict.
 
 ## Platform Project Bootstrap Entrypoints
 
-The distribution provides two official platform launcher artifacts:
+Official platform launchers:
 
-- `CHATGPT-PROJECT-INSTRUCTIONS.md` — paste into ChatGPT Project settings → Instructions.
-- `CLAUDE-PROJECT-INSTRUCTIONS.md` — paste into Claude Project → Set project instructions.
+- `CHATGPT-PROJECT-INSTRUCTIONS.md`
+- `CLAUDE-PROJECT-INSTRUCTIONS.md`
 
-Both files MUST contain the same byte-identical shared governance contract between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END`. Platform-specific wrapper text may identify the placement surface, but bootstrap semantics, local authority, migration behavior, optional provenance behavior, and scope boundaries must not diverge.
+Their text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` MUST remain byte-identical. Platform wrappers may differ only in placement instructions. Launchers are bootstrap/continuation helpers, never a competing governance root.
 
-These platform instructions are **bootstrap/continuation launchers only**. If a valid local Project Source with active `FRAMEWORK-001` already exists, the locally pinned Project Source is authoritative. Platform instructions MUST NOT replace, weaken, bypass, or override the active local Framework.
+If active local `FRAMEWORK-001` exists, local pinned Project Source is authoritative. NEW Project bootstrap begins from canonical repository `main`. Exact Git tag/SHA and branch protection are optional assurance, not normal-use prerequisites.
 
-For a NEW Project, canonical upstream bootstrap begins from repository `main`. Exact Git tag/SHA provenance is optional assurance; absence of that assurance does not block normal Framework bootstrap.
+## Framework 1.2.0 Namespace and Routing
 
-## Concept-First Intent
+Mandatory core remains `00–05` and `09–17`; `06–08` remain conditional; `18–19` remain reserved.
 
-ProjectFramework defines:
-
-- Project governance concepts;
-- semantic namespace `00–99`;
-- source-of-truth and uncertainty rules;
-- actor/authority/risk semantics;
-- bootstrap and initial creation gates;
-- Current Truth / archive independence;
-- handoff, migration, export, readiness, and retention semantics;
-- integrity contracts, pressure scenarios, mockups, and reference examples.
-
-It does **not** automatically implement enforcement software. A statement such as “Framework versions must agree” means the distribution must semantically satisfy that requirement; it does not implicitly authorize writing a Python validator or GitHub Actions workflow.
-
-Executable tooling is a separate project/scope requiring explicit user request.
-
-## Operational Use vs Optional Assurance
-
-Treat these as independent dimensions:
+Framework `1.2.0` standardizes:
 
 ```text
-OPERATIONALLY_USABLE
-REPRODUCIBLY_RELEASED
-REPOSITORY_HARDENED
+40 Technical Design               CONDITIONAL
+60 Deployment Plan                CONDITIONAL
+90 General / Special Governance Extension anchor
+91 Project Management Control     CONDITIONAL / STANDARD IN 1.2.0+
+92–99 Project-specific / Governance Extension
 ```
 
-- `OPERATIONALLY_USABLE` — the Framework can correctly bootstrap/govern a Project from the canonical source.
-- `REPRODUCIBLY_RELEASED` — optional assurance that an immutable source identity (for example a tag + commit) was preserved.
-- `REPOSITORY_HARDENED` — optional assurance such as branch protection/rulesets.
-
-Missing optional release/repository assurance MUST NOT by itself block Project Source creation or make an otherwise usable Framework unusable unless Project-Specific Rules explicitly require it.
-
-## Optional Source Provenance
-
-`FRAMEWORK-RELEASE.yaml` is Framework distribution metadata, not a Project Source semantic slot and not Root Governance.
-
-For NEW Project bootstrap:
+When active, route:
 
 ```text
-read canonical main
-→ README
-→ FRAMEWORK-RELEASE.yaml
-→ SKILL + latest amendment + Core Governance
-→ Framework template + skeletons + mockup
-→ Preview → explicit user approval → write
-→ pin Framework/Schema locally
-→ optionally record exact Git provenance when actually observed
+40 → Tech Stack / components / source structure / config / runtime / Source-Docker technical blueprint
+60 → installation / startup-shutdown / verification / diagnostics / upgrade-rollback / backup-restore / cleanup
+91 → RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*
 ```
 
-If tag/SHA provenance is actually observed, record it accurately in active `00` and corresponding `14-Manifest` continuation metadata when material. If exact provenance is unavailable, do not fabricate it and do not stop otherwise valid bootstrap solely because that optional assurance is missing. Use `UNKNOWN`, `UNVERIFIED`, or equivalent when provenance state must be represented.
+Do not create conditional documents merely to make the Project tree look complete.
 
-Existing Projects MUST NOT retroactively backfill an unobserved historical SHA merely to look complete.
+## Canonical Project-Management Homes
 
-## Root Framework Invariant
-
-`00-Project Source Framework` (`FRAMEWORK-001`) is the **non-removable Root Governance** of every Project Source. It MUST remain active in semantic slot `00`. Missing Framework means `INVALID + NOT_OPERATIONALLY_READY`.
-
-Every Project artifact created after it is governed by and inherits from the Framework. Project Source artifacts inherit directly; implementation code/config/runtime artifacts inherit governance through linked Requirements, Decisions, Authority, and Project identity. Markdown descendants declare:
-
-```yaml
-inherits_from:
-  - "FRAMEWORK-001"
+```text
+RISK-* → 91 Project Management Control
+ASM-*  → 91 Project Management Control
+MS-*   → 91 Project Management Control
+OUT-*  → 91 Project Management Control
+DEP-*  → 91 Project Management Control
+CR-*   → 91 Project Management Control
+GATE-* → 91 Project Management Control
 ```
 
-Non-Markdown artifacts inherit through their canonical Registry/Manifest entry.
+Existing canonical homes remain unchanged for `DEC-*`, `REQ-*`, `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `CHG-*`, actors, authority, evidence, actions, migrations, and secret references.
 
-Descendants may **extend or specialize** but MUST NOT remove, bypass, demote, replace, weaken, or contradict Framework invariants. To change a Root invariant, revise the Framework itself with explicit user approval, preserve `FRAMEWORK-001`, and archive the superseded revision.
+Key distinctions:
+
+```text
+RISK-* future uncertainty ≠ ISS-* materialized/current problem
+ACT DONE ≠ MS REACHED ≠ OUT ACHIEVED
+DEP AVAILABLE ≠ DEP SATISFIED
+CR-* proposed/material change control ≠ CHG-* applied/observed history
+Responsibility ≠ Authority
+```
+
+Risk materialization preserves the Risk and links an Issue. Accepted material Risk records applicable decision/authority and review trigger.
+
+## Project Health and Review Cadence
+
+`03 Current State` may summarize applicable dimensions:
+
+```text
+Scope
+Progress / Schedule
+Risk
+Quality / Validation
+Dependencies
+Authority
+Knowledge
+Readiness
+Technical / Deployment when applicable
+```
+
+Use `GREEN / AMBER / RED / UNKNOWN`, each with Reason, supporting Stable IDs/evidence, Owner, Last Reviewed, Next Review/Trigger. Omit non-applicable optional dimensions rather than marking them GREEN. Do not invent an opaque automatic aggregate score.
+
+Review Cadence modes:
+
+```text
+TIME_BASED
+EVENT_BASED
+```
+
+Cadence may cover Current State, Risk, Assumption, Milestone/Outcome, Decision Revalidation, Technical Design, Deployment Readiness, and Handoff Refresh. Framework semantics do not create a scheduler/reminder runtime.
+
+## Decision Revalidation
+
+`DEC-*` remains canonical in `04`. When material, record:
+
+```text
+Validity Basis
+Review Trigger
+Review By
+Last Revalidated
+Revalidation Status
+Revalidation Evidence
+```
+
+Use `NOT_DUE / REVIEW_DUE / REVALIDATED / SUPERSEDED`. Revalidate when the stated basis changes, including invalidated assumptions, changed dependencies/requirements/Tech Stack/deployment mode, approved material Change Request, external change, review date, or contradicting runtime evidence.
+
+## Responsibility and Authority
+
+`11 Actor Registry` may contain scope-keyed `Responsible / Accountable / Consulted / Informed` mapping. It grants no authorization. Actual permission remains in `12 Authorization Registry` through `AUTH-* / DEL-*` plus risk/approval rules.
+
+## Knowledge Debt
+
+Material stale/missing operational knowledge remains canonical in `08 Open Issues`:
+
+```text
+ISS-* with issue_type: KNOWLEDGE_DEBT
+```
+
+Runtime success does not erase Knowledge Debt. If material it may degrade Knowledge/Readiness and makes `08` applicable if no active `08` exists.
+
+## Technical Blueprint Boundary
+
+### `40 Technical Design`
+
+Use when deeper technical detail is needed beyond `06 Architecture`. Document material Tech Stack entries with Technology, Role/Responsibility, Version/Supported Range, Required/Optional state, reason/Decision reference, component usage, operational dependency, lifecycle/support constraint, replacement boundary, and epistemic/verification state.
+
+May also document component interfaces, source-area responsibilities, Configuration Contract, Runtime Requirements, deployment-mode architecture, and parity/variance.
+
+### `60 Deployment Plan`
+
+Use when install/deployment/operation is in scope. Deployment support vocabulary:
+
+```text
+SOURCE_ONLY
+DOCKER_ONLY
+SOURCE_AND_DOCKER
+NOT_APPLICABLE
+```
+
+For `SOURCE_AND_DOCKER`, preserve one declared application/configuration/data/security/persistence contract. Intentional differences are explicit Deployment Mode Variance; unexpected mismatch is `DRIFT-*`.
+
+`60` may document prerequisites, Source installation, Docker installation, configuration/secret refs, data initialization, start/stop, health verification, logs, upgrade, rollback, backup/restore, cleanup, troubleshooting. A real Project may include concrete commands/paths only when verified as actual Project truth.
+
+**Planning is not implementation authorization:** a request to define Tech Stack, installation, Docker topology, ports/volumes, or verification does not authorize creation of source code, Dockerfile, Compose/Kubernetes/Helm, package manifests, install scripts, CI, or automation.
 
 ## Materialized Current State Invariant
 
-Active canonical registries are **materialized current projections, not delta chains**. Every active/current Stable ID referenced by the current Project Source MUST resolve from the **Current Reconstructable Snapshot** to a current authoritative record. Archive may explain historical rationale or evolution, but it MUST NOT be required to determine Current Truth.
+Every referenced current Stable ID must resolve from Current Reconstructable Snapshot to current authoritative semantics without archive traversal. Archive is Historical Truth only. Delta-only shorthand cannot substitute for current payload.
 
-For current authoritative payload, shorthand such as `retain previous status`, `unchanged from rNNN`, or `see archived revision` is insufficient when the actual semantics exist only in archive. The active canonical record must contain enough current semantic payload to identify what is true now, or it must link to an active/current canonical Detail Document that contains that payload. Any such required Detail Document is part of the Current Reconstructable Snapshot and must travel with a `CURRENT` export when needed to interpret the Stable ID.
+This applies equally to current `DEC-*`, `REQ-*`, and `RISK/ASM/MS/OUT/DEP/CR/GATE` records. Active `40`, `60`, `91` required to interpret current truth belong in `14 Manifest` and `CURRENT` export.
 
-This applies directly to `DEC-*` in `04-Decision Log` and `REQ-*` in `05-Requirements`, and generally to current-state-bearing canonical object homes.
+## Migration Safety
 
-## Concept-First Integrity Contract
+Existing Projects never auto-upgrade.
 
-At minimum, current Framework distribution integrity means:
+For Framework `1.2.0` migration:
 
-1. current Framework/Schema declarations agree across current distribution artifacts;
-2. semantic slots `00–17` retain their governed meanings;
-3. `06–08` remain conditional;
-4. `18–19` remain reserved;
-5. ChatGPT/Claude shared governance semantics remain equivalent;
-6. referenced current Stable IDs resolve without archive traversal;
-7. existing Projects never silently auto-upgrade;
-8. platform launchers never outrank or override active local `FRAMEWORK-001`;
-9. missing facts, authority, source, or provenance are never fabricated.
+- if Brownfield slot `91` is already occupied, open `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` when applicable;
+- never automatically convert old prose into new management Stable IDs; promotion requires sufficient current semantics, status, ownership, and evidence/epistemic state;
+- preserve local Project-specific rules unless explicitly resolved otherwise.
 
-A human or Agent may review these contracts directly from Framework sources. Do not infer an executable enforcement requirement from them.
+## Golden Reference
+
+`examples/golden-reference-software-project/Project-Source/` is a synthetic composition example. It illustrates `00–17 + 40 + 60 + 91`, management objects, Health/Review Cadence, Tech Stack, `SOURCE_AND_DOCKER`, installation/operations blueprints, migration safety, and handoff.
+
+It is **illustrative, not normative**. Core Governance/templates win on conflict. It contains no actual application code, Dockerfile/Compose, install scripts, CI, binary/runtime artifact, or real secret.
 
 ## Workflow
 
-1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT`. For a platform Project, first use the matching canonical platform instruction artifact to determine whether a valid local Project Source already exists.
-2. For `GREENFIELD`, read canonical repository `main` in the governed bootstrap order. Exact Git provenance may be captured when observed but is not required for normal bootstrap.
-3. Resolve explicit `FAST`/`GRILL`; otherwise use `ADAPTIVE`.
-4. Confirm active `FRAMEWORK-001`; if missing in an existing Project Source, stop affected work and propose governed repair.
-5. Existing Project: bootstrap `00 → 01 → 03`, then follow `01` routing. Do not silently replace the local pin with upstream `main`.
-6. Inspect accessible project sources before asking; do not ask for facts you can verify.
-7. Classify important claims by Truth Domain, Epistemic Status, and Freshness. Use `DRIFT-*` / `CONFLICT-*`; never silently reconcile.
-8. Initial creation or major structural migration requires Preview → explicit user approval → write.
-9. Follow Core Governance for naming, revisions, archive, canonical object homes, authority, handoff, evidence, and exports.
-10. For new-project bootstrap, map semantic slots from `templates/project-source-mockup/README.md`: instantiate mandatory `00–05` and `09–17`, evaluate conditional `06–08`, keep `18–19` reserved, and create `20–99` only when applicable.
-11. Pin imported Framework/Schema locally after bootstrap. Existing Projects never auto-upgrade; an explicitly requested upgrade uses `MIG-*`.
-12. If exact Git provenance is observed and material, record it consistently in `00` and `14`; otherwise preserve an explicit unknown/unverified state if needed and never invent a value.
-13. Before readiness or `CURRENT` export claims, verify every referenced current Stable ID resolves within the Current Reconstructable Snapshot without archive traversal.
+1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT` and detect whether valid local Project Source already exists.
+2. NEW Project: read canonical `main` in governed order: README → descriptor → SKILL → latest amendment → Core Governance → Framework template → skeletons → mockup.
+3. Resolve explicit `FAST/GRILL`; otherwise `ADAPTIVE`.
+4. Confirm active `FRAMEWORK-001`; if missing in an existing Project, stop affected work and propose governed repair.
+5. Existing Project: read `00 → 01 → 03`, follow `01` routing, preserve local pin.
+6. Inspect accessible sources before asking; do not ask for facts that can be verified.
+7. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
+8. Initial creation/major structural migration requires Preview → explicit user approval → write.
+9. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
+10. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
+11. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval.
+12. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
+13. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
 14. Never store actual secrets; use `SECRET-*` metadata references only.
-15. Preserve history on substantive updates and finish with human + machine completion summary, readiness, and exact next action.
+15. Preserve history and finish with completion/readiness/exact-next-action summary.
 
 ## Quick Reference
 
 | Situation | Required behavior |
 |---|---|
-| ChatGPT Project bootstrap | Use `CHATGPT-PROJECT-INSTRUCTIONS.md`; NEW project bootstraps from canonical `main`, initialized project uses local pin |
-| Claude Project bootstrap | Use `CLAUDE-PROJECT-INSTRUCTIONS.md`; NEW project bootstraps from canonical `main`, initialized project uses local pin |
-| New project | Preview → approval → Framework first → mandatory descendants; conditional only when applicable |
-| Exact Git provenance unavailable | Continue normal bootstrap if canonical source is accessible; do not fabricate tag/SHA; record unknown/unverified only when material |
-| Existing project | Preserve-first discovery; local pinned Project Source is authoritative |
-| Framework upgrade | Never automatic; assess/execute through `MIG-*` with approval |
-| Integrity requirement | Treat as governance semantics; do not build validator/CI/CLI unless explicitly requested separately |
-| Import | Quarantine/stage before promotion |
-| Missing fact/source | `UNKNOWN` / `ASSUMED` / `STALE` / `VERIFICATION_REQUIRED`; never fabricate |
-| Truth mismatch | `DRIFT-*` |
-| Semantic concurrent edit | `CONFLICT-*`; no last-write-wins |
-| Current Stable-ID resolution | Resolve inside current snapshot; archive must not be required |
-| Handoff | Authority does not transfer |
-| R2/R3 mutation | Fresh authority + required postflight/evidence |
+| New Project | canonical main → Preview → approval → mandatory core; conditionals only when applicable |
+| Project-management control | use `91`; canonical `RISK/ASM/MS/OUT/DEP/CR/GATE` |
+| Technical design | use `40` when deeper than `06`; document blueprint, do not silently code |
+| Install/deployment | use `60`; support Source/Docker model and resulting-state verification |
+| Source + Docker | shared contract + explicit variance; unexpected mismatch = DRIFT |
+| Project Health | dimensional `GREEN/AMBER/RED/UNKNOWN` in `03`, evidence-backed |
+| Decision changed basis | mark/review revalidation in `04` |
+| Responsibility | mapping in `11`; permission still comes from `12` |
+| Knowledge Debt | `ISS-* issue_type: KNOWLEDGE_DEBT` in `08` |
+| Existing custom slot 91 | `MIG-*`; never overwrite; approved relocation first |
+| Old free text | never auto-promote into new Stable IDs |
+| Exact Git provenance unavailable | normal bootstrap continues if canonical source accessible; never fabricate |
+| Handoff | authority does not transfer |
+| R2/R3 mutation | fresh authority + required postflight/evidence |
 
 ## Red Flags
 
-- Removing/bypassing/demoting/weakening `FRAMEWORK-001`
-- Creating governed descendants without Framework inheritance
-- Treating Git tag/SHA or branch protection as a prerequisite for normal Framework usability without an explicit stricter Project-Specific Rule
-- Claiming exact provenance that was not actually observed
-- Turning an Integrity Contract into Python/CLI/CI/automation/enforcement software without an explicit separate implementation request
-- Platform instruction drift: ChatGPT/Claude shared contracts differ, one platform auto-upgrades, or platform instructions are treated as authority over an active local Framework
-- Reconstructing Framework rules, semantic slots, authority, or project facts from memory when required canonical source is inaccessible
-- Mockup/namespace drift: guessing semantic slots, pre-creating empty conditional documents, materializing reserved slots, or following a stale mockup over Core Governance
-- Archive-dependent Current Truth: a current Stable ID requires archived revision content to determine current semantics
-- Writing before the initial approval gate
-- Treating newest file, role, handoff, or memory as authority/truth by default
-- Guessing missing facts or copying secrets
-- Claiming completion without risk-appropriate verification
+- removing/bypassing/demoting `FRAMEWORK-001`;
+- creating empty conditional `06–08`, `40`, `60`, `91` merely for completeness;
+- materializing reserved `18–19`;
+- storing `RISK/ASM/MS/OUT/DEP/CR/GATE` as authoritative current truth outside `91`;
+- treating Action completion as Milestone/Outcome success;
+- treating responsibility as authority;
+- hiding material Knowledge Debt because runtime works;
+- overwriting a Brownfield custom slot `91`;
+- auto-promoting old prose into Stable IDs;
+- Source/Docker divergence without declared variance or DRIFT;
+- turning Tech Stack/install/Docker planning into unrequested source code/Dockerfile/Compose/scripts/CI/automation;
+- reconstructing inaccessible Framework/project facts from memory;
+- archive-dependent Current Truth;
+- guessing facts/secrets/provenance;
+- claiming completion without risk-appropriate verification.

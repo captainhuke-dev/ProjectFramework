@@ -13,8 +13,8 @@ updated_at: "<ISO8601_WITH_TIMEZONE>"
 created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
-freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+freshness_class: "CHANGEABLE"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,42 +22,24 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 09 — Handoff
 
-## Handoff From / To
-<FROM> → <TO>
-
-## Previous Handoff
-<REF_OR_NONE>
-
-## Trigger
-<CONTENT>
-
-## Current Phase / State
-<CONTENT>
-
-## Completed Work
-<CONTENT>
-
-## Pending Work
-<CONTENT>
-
-## Formal Drafts / WIP
-<REFS_OR_NONE>
-
-## Active Objects
-<ACT / ISS / DRIFT / CONFLICT REFS>
-
-## Required Read Order
-<REFS>
-
-## Authority References
-<AUTH / DEL REFS>
-
-```yaml
+```text
+Handoff From / To
+Previous Handoff
+Trigger
+Current Phase / State
+Completed Work
+Pending Work
+Formal Drafts / WIP
+Active ACT / ISS / DRIFT / CONFLICT
+Active RISK / ASM / DEP / MS / OUT / CR / GATE when applicable
+Technical / Deployment warnings
+Source/Docker known variance
+Knowledge Debt affecting continuation
+Required Read Order
+Authority References
 authority_transfer: false
+Freshness Warnings
+Exact Next Action
 ```
 
-## Freshness Warnings
-<CONTENT_OR_NONE>
-
-## Exact Next Action
-<EXECUTABLE_NEXT_ACTION>
+Lifecycle: `DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED`.

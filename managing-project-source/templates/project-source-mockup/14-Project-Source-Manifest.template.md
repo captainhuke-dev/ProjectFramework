@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -24,37 +24,27 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Current Reconstructable Snapshot inventory.
 
-## Active Documents
-<PATHS_HASHES_REVISIONS>
-
-## Continuation-Relevant Formal Drafts
-<ENTRIES_OR_NONE>
-
-## Registered Evidence
-<EVD_REFS>
-
-## Pinned Schema / Validation Assets
-<ENTRIES>
-
-## Required Generated Assets
-<ENTRIES_OR_NONE>
-
-## Required Active Detail Documents
-<DETAIL_DOCS_REQUIRED_TO_INTERPRET_CURRENT_STABLE_IDS>
+```text
+Active Documents
+Continuation-Relevant Formal Drafts
+Registered Evidence
+Pinned Schema / Validation Assets
+Required Generated Assets
+Required Active Detail Documents
+Active 40 / 60 / 91 when required to interpret current truth
+```
 
 ## Framework Source Provenance — When Tracked
 
 ```text
-Repository: <MATCH_ACTIVE_00>
-Source Ref: <MATCH_ACTIVE_00>
-Optional Release Tag when observed: <MATCH_ACTIVE_00_OR_NONE>
-Optional Resolved Commit SHA when observed: <MATCH_ACTIVE_00_OR_UNKNOWN>
-Framework Version: 1.1.5
+Repository
+Source Ref
+Optional Release Tag when observed
+Optional Resolved Commit SHA when observed
+Framework Version: 1.2.0
 Schema Version: 1.0.0
-Captured At: <MATCH_ACTIVE_00_OR_NONE>
-Provenance Status: <VERIFIED | PARTIAL | UNVERIFIED>
+Captured At
+Provenance Status: VERIFIED / PARTIAL / UNVERIFIED
 ```
 
-When provenance is tracked, the Manifest preserves the state actually recorded in active `00-Project Source Framework`. It MUST NOT invent missing tag/SHA values to appear complete. A mismatch between tracked values in `00` and `14` is integrity drift requiring root-cause resolution. Missing optional exact Git provenance is not by itself an integrity/readiness defect.
-
-The snapshot must resolve current authoritative semantics without archived revisions. The Manifest does not recursively hash its own raw bytes.
+Never invent missing exact provenance. Manifest does not recursively hash its own raw bytes.

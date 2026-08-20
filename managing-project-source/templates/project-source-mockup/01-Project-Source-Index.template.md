@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,23 +22,19 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 01 — Project Source Index
 
-## Project Identity
-<VERIFIED_OR_EXPLICIT_STATE>
+Front Door + derived Active Document Registry + task routing.
 
-## Bootstrap Read Order
-`00 → 01 → 03`
+## Routing
 
-## Active Document Registry (DERIVED)
-<DERIVED_REGISTRY>
+```text
+00 Framework / governance root
+03 current state / health / next action
+04 DEC-* / Decision Revalidation
+05 REQ-*
+08 ISS-* / DRIFT-* / CONFLICT-* / KNOWLEDGE_DEBT
+40 Tech Stack / technical / source / config / runtime blueprint when active
+60 installation / deployment / operations blueprint when active
+91 RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-* when active
+```
 
-## Task Routing
-<ROUTES>
-
-## Active Warnings / Drift / Conflict
-<REFS_OR_NONE>
-
-## Current Handoff
-<HANDOFF_REF>
-
-## Current Manifest
-<MANIFEST_REF>
+The derived registry is not manually authoritative.

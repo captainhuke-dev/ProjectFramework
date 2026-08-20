@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -23,13 +23,11 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 00 — Project Source Framework
 
-> **Root Governance / Non-Removable Framework:** เอกสารนี้คือกฎสูงสุดภายใน Project Source และเป็น Root Governance ของ Project นี้ ทุก AI/Agent ต้องอ่าน `00 → 01 → 03` ก่อนเริ่มงาน และทุก Project Source artifact ที่สร้างหลังจากนี้ถือว่า inherit จาก `FRAMEWORK-001`. ห้ามลบ, bypass, demote, replace ด้วย child rule, หรือทำให้ Framework นี้ไม่มี Active revision. การแก้ Framework ทำได้เฉพาะเมื่อมี User Explicit Approval และต้องใช้ revision/supersede/archive flow.
+> **Root Governance / Non-Removable Framework:** เอกสารนี้คือกฎสูงสุดภายใน Project Source และเป็น Root Governance ของ Project นี้ ทุก AI/Agent ต้องอ่าน `00 → 01 → 03` ก่อนเริ่มงาน ทุก Project Source artifact ที่สร้างหลังจากนี้ inherit จาก `FRAMEWORK-001`. ห้ามลบ, bypass, demote, replace ด้วย child rule หรือปล่อยให้ Framework ไม่มี Active revision. การแก้ Framework ต้องมี User Explicit Approval และใช้ revision/supersede/archive flow.
 
 ## 1. Framework Authority, Inheritance, and Precedence
 
 ### 1.1 Root Invariant
-
-`00-Project Source Framework` ต้องมีในทุก Project และใช้ Stable Identity:
 
 ```yaml
 framework_document_id: "FRAMEWORK-001"
@@ -43,42 +41,36 @@ Project Source ที่ไม่มี Active `FRAMEWORK-001` ถือว่�
 INVALID + NOT_OPERATIONALLY_READY
 ```
 
-ห้าม descendant artifact/rule ทำสิ่งต่อไปนี้:
+ห้าม descendant artifact/rule:
 
 - ลบหรือย้าย Framework ออกจาก semantic slot `00`
 - bypass bootstrap ที่เริ่มจาก `00`
-- demote Framework ให้มีอำนาจต่ำกว่า child rule
+- demote Framework ต่ำกว่า child rule
 - replace Framework ด้วย Project-Specific Rule, Handoff, Task, Prompt หรือ Agent instruction
 - weaken/contradict Framework invariant ผ่าน child override
 
 ### 1.2 Inheritance Contract
 
-Governed Markdown ที่สร้างหลัง Framework ต้องประกาศ:
+Governed Markdown descendants declare:
 
 ```yaml
 inherits_from:
   - "FRAMEWORK-001"
 ```
 
-Non-Markdown Project Source artifacts inherit ผ่าน canonical registry/Manifest entry ที่อ้าง `FRAMEWORK-001`.
+Non-Markdown Project Source artifacts inherit ผ่าน canonical Registry/Manifest entry. Implementation artifacts เช่น source code/config/runtime ไม่จำเป็นต้องฝัง YAML inheritance แต่ยังอยู่ใต้ Framework ผ่าน Project identity + related `REQ-*` / `DEC-*` / `AUTH-*` / `ACT-*` และ governance workflow.
 
-Implementation artifacts เช่น source code, config, deployment/runtime changes ไม่จำเป็นต้องฝัง YAML inheritance หรือเปลี่ยน canonical filename แต่ยังอยู่ใต้ Framework ผ่าน Project identity + related `REQ-*` / `DEC-*` / `AUTH-*` / `ACT-*` และ workflow ที่ Framework กำหนด.
-
-ดังนั้น “inherit” ครอบคลุมทั้ง Project: child governance/documentation inherit โดยตรง และ implementation/external mutation inherit governance ผ่าน traceability/authority chain.
-
-Inheritance หมายความว่า child สามารถ **extend / specialize / add constraints** ได้ แต่ห้ามลดทอน Root Framework. หากต้องเปลี่ยน Root invariant ต้องแก้ `00-Project Source Framework` โดยตรงด้วย User Approval, รักษา `FRAMEWORK-001`, เพิ่ม revision และ archive revision เดิม.
+Descendants may extend/specialize/add constraints แต่ห้ามลดทอน Root Framework. หากต้องเปลี่ยน Root invariant ต้องแก้ `FRAMEWORK-001` โดยตรงผ่าน User Approval และ preserve history.
 
 ### 1.3 Authority Order
 
 ```text
-0. User Explicit Instruction / Approval (external authority to revise governance)
-1. 00-Project Source Framework (root governance inside Project Source)
+0. User Explicit Instruction / Approval
+1. 00 Project Source Framework
 2. Framework-compliant Project-Specific Rules
 3. Canonical Project Source documents / Decisions / Requirements
 4. Task / Handoff / Prompt / Agent Instruction
 ```
-
-User Explicit Instruction สามารถอนุมัติการแก้ Framework ได้ แต่ child artifact ไม่สามารถอ้างคำสั่งเก่า/คลุมเครือเพื่อ bypass Framework เอง.
 
 ## 2. Project Identity
 
@@ -88,9 +80,9 @@ project_id: "<PROJECT_ID>"       # stable human-readable ID
 project_name: "<PROJECT_NAME>"   # mutable display name
 ```
 
-Rename ห้ามเปลี่ยน `project_uuid`. Merge/Split ต้องบันทึก lineage แบบ event-based และห้ามทำ provenance หาย
+Rename ห้ามเปลี่ยน `project_uuid`. Merge/Split ต้อง preserve lineage แบบ reconstructable.
 
-## 3. Project Source Location
+## 3. Project Source Location and Semantic Namespace
 
 Project Source อยู่ที่:
 
@@ -122,55 +114,65 @@ Core documents:
 18–19                           RESERVED
 ```
 
-Conditional documents สร้างเฉพาะเมื่อ applicable; ห้ามสร้างไฟล์ว่างเพื่อให้ดูครบ
+Framework `1.2.0` standardizes extended documents:
 
-Canonical bootstrap mockup อยู่ที่ `templates/project-source-mockup/`. ใช้เพื่อดู mapping เลข `00–17` และ starter filenames เท่านั้น; normative authority ยังคงเป็น Framework + Core Governance + document skeletons. Mockup มี template ของ `06–08` เพื่อ discoverability แต่ไม่ได้บังคับให้สร้าง active files. `18–19` ยัง RESERVED และ `20–99` สร้างเมื่อมี use case เท่านั้น.
+```text
+40 Technical Design               CONDITIONAL
+60 Deployment Plan                CONDITIONAL
+90 General / Special Governance Extension anchor
+91 Project Management Control     CONDITIONAL / STANDARD IN 1.2.0+
+92–99 Project-specific / Governance Extension
+```
 
-Framework distribution ใช้ `FRAMEWORK-RELEASE.yaml` เป็น distribution descriptor และใช้ `CHATGPT-PROJECT-INSTRUCTIONS.md` / `CLAUDE-PROJECT-INSTRUCTIONS.md` เป็น platform launchers. Distribution artifacts เหล่านี้อยู่นอก Project Source semantic namespace. NEW Project bootstrap จาก canonical repository `main`; initialized Project ใช้ local pinned Project Source เป็น authority. Git tag/SHA/branch protection เป็น optional assurance ไม่ใช่ governance root และไม่ใช่ prerequisite ของ normal bootstrap.
+Conditional documents สร้างเฉพาะเมื่อ applicable; ห้ามสร้างไฟล์ว่างเพื่อให้ดูครบ. `18–19` ห้าม materialize เป็น default/active starter.
+
+Framework distribution artifacts `FRAMEWORK-RELEASE.yaml`, ChatGPT Project Instructions, และ Claude Project Instructions อยู่นอก Project Source semantic namespace. NEW Project bootstrap จาก canonical repository `main`; initialized Project ใช้ local pinned Project Source เป็น authority. Git tag/SHA/branch protection เป็น optional assurance ไม่ใช่ prerequisite ของ normal bootstrap.
 
 ## 4. Naming and Revision
 
-Project Source artifacts ใช้ timestamp ท้าย basename:
+Project Source artifacts ใช้ suffix:
 
 ```text
 -YYMMDD-HHMM
 ```
 
-Document revision ใช้ `r001`, `r002`, ... และห้าม reuse
-
-ตัวอย่าง:
-
-```text
-00-Project Source Framework-r001-<YYMMDD-HHMM>.md
-05-Requirements-r004-<YYMMDD-HHMM>.md
-22-RSCH-004-Model-Benchmark-r002-<YYMMDD-HHMM>.md
-```
-
-Canonical implementation files ที่ ecosystem บังคับชื่อ เช่น `README.md`, `main.py`, `docker-compose.yml`, `SKILL.md` คงชื่อ canonical
+Document revisions ใช้ monotonic `r001`, `r002`, ... และห้าม reuse. Canonical implementation filenames ที่ ecosystem บังคับชื่อคงชื่อ canonical.
 
 ## 5. Bootstrap and Routing
 
-ทุก session/task ต้องอ่านขั้นต่ำ:
+ทุก session/task อ่านขั้นต่ำ:
 
 ```text
 00 → 01 → 03
 ```
 
-จากนั้น `01-Project Source Index` route ไปเอกสารที่เกี่ยวข้องกับ task
+จากนั้น `01` route ไปเอกสารที่เกี่ยวข้อง.
 
-สำหรับ GREENFIELD bootstrap ให้เริ่มจาก canonical repository `main`, อ่าน `README.md → FRAMEWORK-RELEASE.yaml → SKILL.md → latest amendment → Core Governance → Framework template → skeletons → mockup`, แล้ว resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md`. หลัง Preview + explicit user approval จึงสร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
+GREENFIELD bootstrap:
 
-ถ้าเริ่มจาก ChatGPT Project หรือ Claude Project ให้ใช้ platform instruction artifact ที่ตรงกับ platform เป็น launcher เพื่อแยกกรณี NEW Project ออกจาก initialized Project. Initialized Project ต้องใช้ local pinned Project Source เป็น authority และห้าม auto-upgrade จาก upstream.
+```text
+canonical main
+→ README
+→ FRAMEWORK-RELEASE.yaml
+→ SKILL
+→ latest amendment
+→ Core Governance
+→ 00 template
+→ core skeletons
+→ mockup
+→ Preview
+→ explicit user approval
+→ create active 00 first
+→ mandatory 01–05 + 09–17
+→ evaluate conditional 06–08 / 40 / 60 / 91
+→ pin Framework/Schema locally
+```
 
-หาก canonical Framework source เข้าถึงไม่ได้ ให้หยุด governance mutation ที่ได้รับผลกระทบและรายงาน limitation แทนการ reconstruct จาก memory. แต่การไม่มี immutable tag, exact commit SHA, หรือ branch protection **ไม่ใช่เหตุให้ block bootstrap** ถ้า canonical Framework source ยังเข้าถึงและตรวจได้.
-
-ห้ามใช้ Handoff, memory, README เก่า หรือไฟล์ “ล่าสุด” แทน bootstrap นี้โดยปริยาย
+หาก canonical Framework source เข้าถึงไม่ได้ ให้หยุด affected governance mutation และรายงาน limitation; ห้าม reconstruct จาก memory. การไม่มี immutable tag, exact SHA หรือ branch protection ไม่ใช่เหตุให้ block bootstrap ถ้า canonical source ยังเข้าถึงได้.
 
 ### 5.1 Framework Source Provenance — Optional Assurance
 
-Exact Git provenance เป็น enhanced assurance ไม่ใช่ prerequisite ของ normal Framework use.
-
-เมื่อ provenance ถูกสังเกตได้จริงและมีประโยชน์ อาจบันทึก:
+Exact Git provenance เป็น enhanced assurance ไม่ใช่ prerequisite ของ normal Framework use. หาก track ให้บันทึกเฉพาะ observed values:
 
 ```yaml
 framework_source_provenance:
@@ -178,36 +180,34 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.1.5"
+  framework_version: "1.2.0"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
 ```
 
-กฎ:
+ห้าม predict/fabricate/backfill exact tag/SHA. หาก exact provenance ไม่มี ให้ใช้ `UNKNOWN / UNVERIFIED` เมื่อจำเป็นต้อง represent state. Absence ของ optional exact provenance เพียงอย่างเดียวไม่ทำให้ Project `NOT_OPERATIONALLY_READY`.
 
-- ค่า exact tag/SHA ต้องเป็น **observed provenance** เท่านั้น ห้ามเดา predict fabricate หรือ backfill ย้อนหลัง
-- NEW Project สามารถ bootstrap จาก canonical `main` ได้แม้ไม่มี tag/SHA ที่ verify แล้ว
-- ถ้า exact provenance ไม่ available ให้ใช้ `UNKNOWN` / `UNVERIFIED` เมื่อจำเป็นต้อง represent state; ห้ามสร้างค่าปลอมเพื่อให้ record ดู complete
-- `14-Project Source Manifest` ต้อง preserve provenance state เดียวกับ active `00` เมื่อ provenance ถูก track; mismatch ของค่าที่ track อยู่ถือเป็น integrity drift
-- absence ของ optional exact provenance เพียงอย่างเดียวไม่ทำให้ Project Source `NOT_OPERATIONALLY_READY`
+### 5.2 Concept-First Technical / Tooling Boundary
 
-### 5.2 Concept-First Tooling Boundary
+ProjectFramework เป็น **conceptual governance/planning framework first**. Tech Stack, installation, Docker, integrity หรือ automation concepts อธิบาย roles/contracts/interfaces/verification ได้ แต่ไม่ถือเป็น implicit authorization ให้สร้าง implementation artifacts.
 
-ProjectFramework เป็น **conceptual governance/planning framework first**. Integrity Contract คือ semantic requirement ที่ Human/Agent ตรวจจาก Framework sources ได้ เช่น version consistency, slot mapping, conditional/reserved semantics, platform equivalence, archive independence และ no-auto-upgrade.
-
-ห้ามตีความ Integrity Contract ว่าเป็น implicit authorization ให้สร้าง:
+ห้ามสร้างโดยอัตโนมัติ:
 
 ```text
-validator
-CLI
-GitHub Actions / CI
+application source code
+Dockerfile
+Compose / Kubernetes / Helm runtime files
+install scripts
+validator / CLI
+GitHub Actions / CI/CD
 migration engine
+scheduler / reminder runtime
 background automation
-enforcement software
+dashboard / runtime enforcement
 ```
 
-Executable tooling เป็น separate implementation scope และต้องมี User Explicit Request โดยตรง.
+A real Project อาจมี artifacts เหล่านี้อยู่แล้ว และ Project Source สามารถ document/reference/govern/verify ได้. การสร้างหรือแก้ implementation จริงต้องเป็น separate explicit scope.
 
 ## 6. Truth and Uncertainty
 
@@ -229,13 +229,7 @@ Freshness:
 IMMUTABLE STABLE CHANGEABLE VOLATILE
 ```
 
-กฎ:
-
-- ห้ามยกระดับ `ASSUMED/INFERRED` เป็น `VERIFIED` โดยไม่มีหลักฐาน
-- `VOLATILE` ต้อง fresh-check เมื่อมีผลต่อ decision/mutation
-- Truth Domain ขัดกัน → `DRIFT-*`
-- Concurrent/competing semantic state → `CONFLICT-*`
-- ห้าม silent reconciliation หรือ last-write-wins สำหรับ semantic conflict
+ห้ามยกระดับ `ASSUMED/INFERRED` เป็น `VERIFIED` โดยไม่มี evidence; `VOLATILE` ต้อง fresh-check เมื่อมีผลต่อ decision/mutation. Truth mismatch ใช้ `DRIFT-*`; competing semantic state ใช้ `CONFLICT-*` และห้าม last-write-wins.
 
 ## 7. Canonical Object Homes
 
@@ -254,46 +248,169 @@ EVD-*       → 13
 ACT-*       → 15
 MIG-*       → 16
 SECRET-*    → 17
+RISK-*      → 91
+ASM-*       → 91
+MS-*        → 91
+OUT-*       → 91
+DEP-*       → 91
+CR-*        → 91
+GATE-*      → 91
 ```
 
-หนึ่ง object มี authoritative home เดียว เอกสารอื่น reference Stable ID เท่านั้น
+หนึ่ง object type มี authoritative home เดียว. เอกสารอื่น reference Stable ID เท่านั้น.
 
 ### 7.1 Materialized Current State and Stable-ID Resolution
 
-Active canonical registry ต้องเป็น **materialized current projection, not delta chain**. ทุก Stable ID ที่เป็น current/active และถูก reference จาก Active Project Source ต้อง resolve ได้ภายใน **Current Reconstructable Snapshot** ไปยัง current authoritative record โดยไม่ต้องเปิด archived revision.
+Active canonical registries เป็น **materialized current projections, not delta chains**. ทุก referenced current Stable ID ต้อง resolve ภายใน Current Reconstructable Snapshot โดยไม่เปิด archive. Record ต้องมี current semantic payload หรือ link ไป active/current canonical Detail Document ที่เก็บ payload นั้น. Archive เป็น Historical Truth/rationale/evolution เท่านั้น.
 
-Current authoritative record ต้องมี semantic payload เพียงพอที่จะตอบว่า “ตอนนี้จริงอะไร” หรือ link ไปยัง active/current canonical Detail Document ที่เก็บ payload นั้น. ถ้า Detail Document จำเป็นต่อการตีความ Stable ID เอกสารนั้นต้องอยู่ใน Current Reconstructable Snapshot และต้องรวมใน `CURRENT` export เมื่อ export Stable ID ดังกล่าว.
+Delta-only shorthand เช่น `retain previous status`, `unchanged from rNNN`, `see archived revision` ใช้แทน current authoritative payload ไม่ได้เมื่อ semantics จริงอยู่เฉพาะ archive.
 
-ข้อความแบบ `retain previous status`, `unchanged from rNNN`, `see archived revision` หรือ delta-only shorthand อื่น ห้ามใช้แทน current authoritative payload ถ้า semantic content จริงอยู่เฉพาะใน archive. Archive ใช้สำหรับ Historical Truth/rationale/evolution เท่านั้น ไม่ใช่ dependency ของ Current Truth.
+กฎนี้ใช้กับ `DEC-*`, `REQ-*`, และ `RISK/ASM/MS/OUT/DEP/CR/GATE` ใน `91` เท่ากัน. Failure = integrity/readiness defect ของ affected scope.
 
-กรณีที่ต้องตรวจชัดเจน:
+## 8. Project Management Control — `91`
 
-- `DEC-*` ใน `04` ต้อง materialize current Decision/Status semantics หรือ link ไป active/current canonical Detail Document
-- `REQ-*` ใน `05` ต้อง materialize current Requirement/Status/Acceptance semantics หรือ link ไป active/current canonical Detail Document
+`91 Project Management Control` เป็น STANDARD CONDITIONAL ใน Framework `1.2.0+`. สร้างเมื่อมี management-control object ที่ materially applicable อย่างน้อยหนึ่งรายการ.
 
-Referential validation: ทุก Stable ID ที่ถูก reference จาก Active/Current snapshot **MUST** resolve ไป current authoritative record ภายใน Current Reconstructable Snapshot โดยไม่ต้องใช้ archived revision. ถ้า resolve current truth ไม่ได้ affected scope = integrity/readiness defect และ `NOT_OPERATIONALLY_READY`.
+### 8.1 Risk
 
-## 8. Current State and History
+`RISK-*` = uncertain future event/condition. `ISS-*` = problem ที่ materialized/current แล้ว.
 
-`03-Current State` = pure snapshot ของ “ตอนนี้”
+```text
+IDENTIFIED OPEN MITIGATING MONITORING ACCEPTED MATERIALIZED CLOSED SUPERSEDED
+```
 
-`10-Change Log` = logical append-only history
+Risk materialization ต้อง preserve `RISK-*` และ link `ISS-*`; ห้าม delete/rewrite Risk เป็น Issue. `ACCEPTED` exposure ต้องมี relevant decision/authority + review trigger เมื่อ material.
 
-ห้ามยัด timeline ย้อนหลังลง `03` จนแยก current state ไม่ออก
+Minimum semantics: Risk Statement, Probability, Impact, Trigger/Early Warning, Mitigation, Contingency, Owner, Review Trigger/Review By, Status, related IDs/evidence, Materialized Issue when applicable.
 
-## 9. Actor and Authority
+### 8.2 Assumption
 
-`ACTOR-*` = stable actor identity
+`ASM-*` = proposition ที่ยังพึ่งพาอยู่แต่ evidence ยังไม่พอเป็น established truth.
 
-`INST-*` = session/execution instance
+```text
+UNVERIFIED → VALIDATED / INVALIDATED / SUPERSEDED
+```
 
-Role ไม่เท่ากับ Authority
+INVALIDATED ต้อง impact-assess และอาจ trigger `DRIFT-*`, `CR-*`, replanning, Decision revalidation, Requirement revision, Risk/Issue update.
 
-Standing Authorization ใช้ `AUTH-*` และต้องมี scope + expiry/termination. Authority ห้าม transfer ผ่าน Handoff, prompt, memory, role, branch, หรือ agent instruction
+### 8.3 Action vs Milestone vs Outcome
 
-Delegation ใช้ `DEL-*` และห้ามกว้างกว่า parent authority
+```text
+ACT-* = work/action
+MS-*  = significant checkpoint/state
+OUT-* = intended result/benefit/effect
 
-## 10. Risk and Approval
+ACT DONE ≠ MS REACHED ≠ OUT ACHIEVED
+```
+
+### 8.4 Dependency
+
+`DEP-*` รองรับ `PERSON / TEAM / APPROVAL / DECISION / VENDOR / SYSTEM / API / DATA / CONTRACT / PROJECT / INFRASTRUCTURE / OTHER`.
+
+`AVAILABLE` = source/resource obtainable; `SATISFIED` = governed dependency requirement fulfilled.
+
+### 8.5 Change Request vs Change Log
+
+```text
+CR-*  = proposed/material change + impact assessment + decision path
+CHG-* = historical record of applied/observed change
+```
+
+CR impact assessment พิจารณา Scope, REQ, DEC, Architecture, Tech Stack, Source Structure, Configuration, Deployment Modes, Data/Migration, Security/Authority, MS/OUT, RISK, DEP, effort/schedule, operations/handoff เมื่อ applicable. CR approval ไม่ grant unrelated implementation authority.
+
+### 8.6 Review Gate
+
+`GATE-*` = governed checkpoint.
+
+```text
+PLANNED → READY_FOR_REVIEW → PASSED / FAILED / WAIVED
+```
+
+Minimum semantics: Purpose, Affected Scope, Entry/Pass Criteria, Required Evidence, related IDs, Review Owner, Required Authority, Status, Findings, Exceptions/Waiver, Next Action, Reviewed At. `WAIVED` ต้องมี rationale + authority/decision reference.
+
+## 9. Project Health and Review Cadence
+
+Project Health อยู่ใน `03 Current State` เป็น **derived assessment**, ไม่ใช่ replacement ของ canonical objects.
+
+Dimensions:
+
+```text
+Scope
+Progress / Schedule
+Risk
+Quality / Validation
+Dependencies
+Authority
+Knowledge
+Readiness
+Technical / Deployment when applicable
+```
+
+States:
+
+```text
+GREEN AMBER RED UNKNOWN
+```
+
+Optional dimension ที่ not applicable ให้ omit ไม่ใช่ mark GREEN. แต่ละ dimension record/resolve:
+
+```text
+State
+Reason
+Supporting Stable IDs / Evidence
+Owner
+Last Reviewed
+Next Review / Trigger when applicable
+```
+
+Framework ไม่ define opaque automatic aggregate score.
+
+Review Cadence:
+
+```text
+TIME_BASED
+EVENT_BASED
+```
+
+ใช้กับ Current State, Risk, Assumption, Milestone/Outcome, Decision Revalidation, Technical Design, Deployment Readiness, Handoff Refresh ได้. Framework กำหนด semantics เท่านั้น ไม่สร้าง scheduler/reminder runtime.
+
+## 10. Decision Revalidation
+
+`DEC-*` ยัง canonical ใน `04`. เพิ่ม current fields:
+
+```text
+Validity Basis
+Review Trigger
+Review By
+Last Revalidated
+Revalidation Status
+Revalidation Evidence
+```
+
+Statuses:
+
+```text
+NOT_DUE REVIEW_DUE REVALIDATED SUPERSEDED
+```
+
+Triggers อาจเป็น invalidated `ASM-*`, materially changed `DEP-*`, Requirement/Tech Stack/deployment-mode change, material approved `CR-*`, external regulation/vendor change, review date, หรือ runtime evidence contradicting Decision basis.
+
+## 11. Responsibility and Authority
+
+`11 Actor Registry` สามารถเก็บ scope-keyed Responsibility Mapping:
+
+```text
+Responsible
+Accountable
+Consulted
+Informed
+```
+
+**Responsibility ≠ Authority.** Role/RACI ไม่ grant permission สำหรับ R2/R3 mutation, approval, deployment, production access หรือ external action. Actual authority อยู่ใน `12` ผ่าน `AUTH-* / DEL-*`.
+
+Authority ห้าม transfer ผ่าน Handoff, prompt, memory, role, responsibility mapping, branch หรือ agent instruction.
+
+## 12. Risk and Approval
 
 ```text
 R0 READ_ONLY
@@ -304,22 +421,22 @@ R3 EXTERNAL_OR_IRREVERSIBLE
 
 Default:
 
-- R0 → ไม่ต้อง approval
-- R1 → ทำได้ใน approved scope
+- R0 → no approval
+- R1 → allowed inside approved scope
 - R2 → explicit approval หรือ valid Standing Authorization
-- R3 → explicit approval สำหรับ action นั้นโดยตรง
+- R3 → explicit approval for that action by default
 
-Project-Specific Rules เพิ่มความเข้มได้
+Project-Specific Rules ทำให้ stricter ได้. Before R2/R3 mutation, fresh-read authority.
 
-## 11. Preflight and Postflight
+## 13. Preflight and Postflight
 
-READ PREFLIGHT: identity, `00`, `01`, `03`, scope, truth, freshness, blockers
+READ PREFLIGHT: identity, `00`, `01`, `03`, scope, truth, freshness, blockers.
 
-MUTATION PREFLIGHT เพิ่ม: actor/instance, authority, target, allowed/forbidden effects, risk, approval, relevant REQ/DEC, base/hash, reversibility, evidence
+MUTATION PREFLIGHT เพิ่ม actor/instance, authority, target, allowed/forbidden effects, risk, approval, relevant REQ/DEC, management controls when relevant, base/hash, reversibility, evidence.
 
-Postflight ต้องตรวจ resulting state ตาม risk. `exit code 0` ไม่เท่ากับ verified completion
+Postflight ต้อง verify resulting state ตาม risk; execution success อย่างเดียวไม่ prove completion.
 
-## 12. Draft, Promotion, Archive
+## 14. Draft, Promotion, Archive
 
 ```text
 Scratch            → outside Project-Source/
@@ -334,69 +451,178 @@ Promotion:
 candidate → validate → base/hash check → promote → supersede old → archive old → sync Index/Change Log/Manifest → postflight
 ```
 
-ห้าม Active revision ซ้ำ semantic identity เดียวกัน
+Archive เป็น Historical Truth; current resolution ห้ามพึ่ง archive. ห้าม Active revision ซ้ำ semantic identity เดียวกัน.
 
-Archive ใช้ taxonomy + `YYYY/MM` และเป็น Historical Truth เท่านั้น; ห้ามทำให้ current Stable-ID resolution ต้องพึ่ง archive
+## 15. Index and Manifest
 
-## 13. Index and Manifest
+`01` = Front Door + derived Active registry + human/agent routing.
 
-`01` = Front Door + derived Active registry + human routing
+เมื่อ active:
 
-Generated registry ห้ามถือ manual edit เป็น authoritative
+```text
+40 → Tech Stack / technical / source / config / runtime blueprint
+60 → installation / deployment / operations
+91 → RISK / ASM / MS / OUT / DEP / CR / GATE
+```
 
-`14` = Current Reconstructable Snapshot inventory + hashes รวม active/current Detail Documents ที่จำเป็นต่อการตีความ referenced current Stable IDs; snapshot ห้ามพึ่ง omitted archive เพื่อ resolve Current Truth
+`14` = Current Reconstructable Snapshot inventory. ถ้า `40`, `60`, `91` active/current และจำเป็นต่อ current truth ต้องรวมใน Manifest/CURRENT export.
 
-ถ้า Framework Source Provenance ถูก track อยู่ `14` ต้อง preserve state เดียวกับ active `00`. ห้าม invent missing provenance เพื่อให้ Manifest ดู complete; mismatch ของ observed/tracked values เป็น integrity drift ที่ต้องหาสาเหตุก่อนแก้. การไม่มี optional exact Git provenance ไม่ใช่ Manifest defect โดยตัวมันเอง.
+ถ้า Framework Source Provenance ถูก track, `14` preserve observed state เดียวกับ active `00`; ห้าม invent missing provenance. Manifest mismatch ต้อง root-cause ก่อน regenerate.
 
-Manifest mismatch ต้องหาสาเหตุก่อน regenerate
+## 16. Evidence, Knowledge Debt, and Secrets
 
-## 14. Evidence and Secrets
+Important evidence ใช้ `EVD-*`; raw artifacts อยู่ `evidence/<category>/`.
 
-Important evidence ใช้ `EVD-*`; raw artifacts อยู่ `evidence/<category>/`
+Material stale/missing knowledge ใช้:
 
-**ห้ามเก็บ actual secret** ใน Project Source / Evidence / Manifest / Export
+```text
+ISS-* in 08
+issue_type: KNOWLEDGE_DEBT
+```
 
-`SECRET-*` เก็บ metadata/reference เท่านั้น และต้องมี:
+ถ้าไม่มี active `08`, material Knowledge Debt ทำให้ `08` applicable. Runtime success ไม่ได้ลบ Knowledge Debt โดยอัตโนมัติ; Health/Readiness อาจ downgrade เมื่อ material.
+
+**ห้ามเก็บ actual secret** ใน Project Source / Evidence / Manifest / Export. `SECRET-*` เก็บ external-reference metadata เท่านั้น:
 
 ```yaml
 secret_value_present: false
 ```
 
-## 15. Handoff
+## 17. Handoff
 
-`09-Handoff` = Current Continuation Contract
-
-Lifecycle:
+`09-Handoff` = Current Continuation Contract.
 
 ```text
 DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED
 ```
 
-Handoff ต้องมี current/pending work, active objects, required read order, freshness warnings, authority references, `authority_transfer: false`, และ exact next action
+Handoff ต้องมี current/pending work, active objects, required read order, freshness warnings, authority refs, `authority_transfer: false`, exact next action.
 
-Acceptance ต้อง fresh-check `00 → 01 → 03 → 09`, actor/authority และ volatile state ที่เกี่ยวข้อง
+เมื่อ applicable ให้ surface active/high `RISK-*`, invalid/unverified `ASM-*`, blocking `DEP-*`, next/recent `MS-*`, Outcomes awaiting measurement, open/approved `CR-*`, upcoming/failed `GATE-*`, Technical/Deployment warnings, Source/Docker variance, Knowledge Debt.
 
-## 16. Adoption Mode
+## 18. Technical Design — `40`
+
+`06 Architecture` = major architecture view. `40 Technical Design` = deeper implementation-facing blueprint; deepen/reference `06`, ห้าม fork authoritative payload ซ้ำ.
+
+Tech Stack entry เมื่อ material:
+
+```text
+Technology
+Role / Responsibility
+Version or Supported Range
+Required / Optional
+Why Used / Decision Reference
+Used By Component(s)
+Operational Dependency
+Lifecycle / Support Constraint when material
+Replacement Boundary when material
+Epistemic / Verification State
+```
+
+`40` อาจเก็บ Component Responsibility, Inputs/Outputs, Interfaces, Dependencies, Data/Storage interaction, Security/Authority Boundary, Runtime Boundary, Source Structure Blueprint, Configuration Contract, Runtime Requirements.
+
+Configuration Contract แยก semantic meaning ออกจาก packaging mode:
+
+```text
+Application Settings
+Environment-specific Settings
+External Service Endpoints
+Persistence Settings
+Feature / Capability Settings when material
+Secret References
+```
+
+## 19. Deployment Plan — `60`
+
+Deployment support state:
+
+```text
+SOURCE_ONLY
+DOCKER_ONLY
+SOURCE_AND_DOCKER
+NOT_APPLICABLE
+```
+
+### 19.1 Source/Docker Parity
+
+`SOURCE_AND_DOCKER` ต้อง share one declared contract for:
+
+```text
+core application semantics
+configuration meaning
+required external dependencies
+data compatibility
+security assumptions
+supported capability set
+persistence semantics
+upgrade compatibility
+```
+
+Intentional difference ใช้ Deployment Mode Variance: Affected Capability, Source Behavior, Docker Behavior, Reason, Impact, Related IDs, Owner, Acceptance/Resolution State. Unexpected mismatch → `DRIFT-*`.
+
+### 19.2 Installation / Operations Contract
+
+`60` ตอบว่า resulting system ติดตั้ง/configure/start/stop/verify/diagnose/upgrade/rollback/backup/restore/cleanup/troubleshoot อย่างไรใน supported modes.
+
+เมื่อ applicable ต้อง cover:
+
+```text
+Prerequisites
+Supported OS / Platform / Architecture
+Source or Artifact Acquisition
+Required Runtime / Container Runtime
+External Services
+Required Permissions
+Configuration Inputs
+Secret Requirements / SECRET-* references
+Data / Storage Initialization
+Installation / Initialization Procedure
+Start / Stop Procedure
+Verification / Health Check
+Logs / Diagnostics
+Upgrade
+Rollback
+Backup / Restore
+Uninstall / Cleanup
+Troubleshooting
+Known Limitations / Deployment Mode Variance
+```
+
+Install/start command success ไม่เท่ากับ operational readiness. Verification พิจารณา service availability, dependency reachability, storage initialization/persistence, configuration loaded, secrets resolved without exposure, health/runtime signal, core flow usability, running version identity, Source/Docker parity ตาม applicability.
+
+## 20. Adoption Mode and Migration
 
 ```text
 GREENFIELD BROWNFIELD IMPORT
 ```
 
-- GREENFIELD → canonical `main` bootstrap → preview → user approval → create → pin Framework/Schema → optionally record exact provenance when observed
+- GREENFIELD → canonical main bootstrap → Preview → approval → create mandatory core → evaluate conditional docs → pin Framework/Schema
 - BROWNFIELD → preserve-first; ห้าม move/rename/delete legacy source อัตโนมัติ
-- IMPORT → quarantine ที่ `import-staging/` ก่อน promotion
+- IMPORT → quarantine `import-staging/` ก่อน promotion
 
-## 17. Migration and Version Pinning
+Project pin Framework/Schema version. ห้าม auto-upgrade. Upgrade ใช้ `MIG-*` + assessment + approval + validation + promotion.
 
-Project pin Framework/Schema version. ห้าม auto-upgrade
+### 20.1 Brownfield Slot `91` Collision
 
-Framework upgrade/normalization/import upgrade ใช้ `MIG-*` + assessment + approval + validation + promotion
+Pre-1.2.0 Project อาจใช้ `91` เป็น custom extension อยู่แล้ว. ห้าม overwrite.
 
-Migration ไป Framework `1.1.5+` อาจ record exact provenance จาก approved migration source ref เมื่อสังเกตได้จริง แต่ exact tag/SHA ไม่ใช่ prerequisite ของ migration และห้าม fabricate historical provenance สำหรับ revision เก่าที่ไม่เคย capture ค่าเหล่านั้น.
+```text
+detect occupied 91
+→ MIG-* compatibility assessment
+→ preserve identity/history/references
+→ propose suitable free 92–99 or other semantically correct slot
+→ explicit approval
+→ governed migration
+→ then standard 91 activation if applicable
+```
 
-Legacy compatibility: หากพบ `00-Project Source Rule` รุ่นเดิม ให้ถือเป็น legacy predecessor ของ slot `00`; ห้ามลบทิ้งตรง ๆ. สร้าง `00-Project Source Framework` candidate, ทำ governed promotion, แล้ว archive predecessor หลัง Framework ใหม่ Active สำเร็จ.
+### 20.2 No Automatic Free-Text Promotion
 
-## 18. Export
+Old prose mentioning risk/assumption/date/dependency/scope/outcome/gate ห้าม auto-create Stable IDs. Promote เป็น `RISK/ASM/MS/OUT/DEP/CR/GATE` ได้เมื่อ current semantics, status, ownership และ epistemic/evidence state เพียงพอเท่านั้น. ถ้าไม่พอ ให้ preserve uncertainty แทน fabricate identity.
+
+Legacy `00-Project Source Rule` migration ยังใช้ preserve-first governed promotion เช่นเดิม.
+
+## 21. Export
 
 Profiles:
 
@@ -404,82 +630,45 @@ Profiles:
 CURRENT AUDIT FULL
 ```
 
-ชื่อ ZIP:
+`CURRENT` ต้อง include current canonical records และ active/current Detail Documents รวม `40/60/91` เมื่อจำเป็นต่อ current truth โดยไม่พึ่ง archive. Actual secrets ห้ามอยู่ในทุก export profile.
 
-```text
-<Project-ID>-Project-Source-<PROFILE>-YYMMDD-HHMM.zip
-```
+## 22. Retention and Readiness
 
-Actual secrets ห้ามอยู่ในทุก export profile
-
-`CURRENT` ต้อง include current canonical records และ active/current Detail Documents ที่จำเป็นต่อการตีความ exported current Stable IDs และต้อง resolve current truth ได้โดยไม่ต้องเปิด archive
-
-## 19. Retention
-
-Preserve revisions, Decisions, Requirements, Change Log และ Identity lineage indefinitely โดย default
-
-Purge ต้อง authorized, ไม่มี Active Object อ้างถึง, audit ได้ และไม่ทำลาย reconstructability
-
-## 20. Readiness
-
-Project Source สามารถเป็น:
-
-```text
-VALID + NOT_OPERATIONALLY_READY
-```
-
-เมื่อ uncertainty ถูก model ชัดเจน
+Preserve revisions, Decisions, Requirements, Change Log, management-control history, Identity lineage indefinitely by default. Purge ต้อง authorized, ไม่มี active refs, audit ได้ และไม่ทำลาย reconstructability.
 
 `OPERATIONALLY_READY` หมายถึง Agent ใหม่ตอบได้โดยไม่เดา:
 
-1. What is true now, including resolution of referenced current Stable IDs without archive traversal?
+1. What is true now?
 2. What is allowed now?
 3. What must happen next?
 
-Optional repository/release assurance เช่น immutable tag, exact Git SHA หรือ branch protection ไม่เปลี่ยน readiness โดยอัตโนมัติ เว้นแต่ Project-Specific Rule กำหนดให้เป็น requirement.
+Optional Git/repository assurance ไม่เปลี่ยน readiness โดยอัตโนมัติ เว้นแต่ Project-Specific Rule กำหนด.
 
-## 21. Initial Creation / Structural Migration Gate
+## 23. Initial Creation / Structural Migration Gate
 
-ก่อนสร้าง Project Source ครั้งแรกหรือ structural migration ครั้งใหญ่ ต้อง Preview อย่างน้อย:
+ก่อน first creation หรือ major structural migration ต้อง Preview อย่างน้อย Adoption Mode, Identity, files/directories, conditional files, known Decisions/Assumptions, Unknowns, expected readiness/risk, migration impact. ต้อง User Approval ก่อน write.
 
-- Adoption Mode
-- Project Identity
-- Files/directories to create
-- Conditional files
-- Known Decisions
-- Known Assumptions
-- Unknowns
-- Expected Readiness
-- Expected Risk
-- Migration impact
+## 24. Completion Reporting
 
-ต้องได้รับ User Approval ก่อน write
-
-## 22. Completion Reporting
-
-หลัง Create / Migrate / Import / Major Update / Handoff / Export ต้องรายงาน Human + Machine summary
-
-Completion state:
+หลัง Create / Migrate / Import / Major Update / Handoff / Export ต้องรายงาน Human + Machine summary.
 
 ```text
 COMPLETE PARTIAL BLOCKED FAILED
 ```
 
-ต้องแยก Execution ออกจาก Verification และ State Confirmation
+ต้องแยก Execution, Verification, State Confirmation. ห้าม claim DONE/DEPLOYED/MIGRATED/VALID โดยไม่มี risk-appropriate verification.
 
 ---
 
 # Project-Specific Rules
 
-> ส่วนนี้เป็น child governance ที่ inherit จาก `FRAMEWORK-001`. ใช้เพิ่ม constraint เฉพาะ Project ได้ แต่ห้ามลดทอน/ขัด Root Framework. หากต้องเปลี่ยน Root invariant ต้องแก้ Framework โดยตรงผ่าน User Approval.
+> Child governance นี้ inherit จาก `FRAMEWORK-001`. ใช้เพิ่ม Project-specific constraint ได้ แต่ห้าม weaken/contradict Root Framework.
 
 ## PSR-001 — <TITLE>
 
 - **Status:** `<ACTIVE / SUPERSEDED>`
-- **Rule:** <PROJECT-SPECIFIC_RULE>
+- **Rule:** <PROJECT-SPECIFIC RULE>
 - **Reason:** <WHY>
 - **Approved By:** <USER / AUTHORIZED DECISION OWNER>
 - **Approved At:** <ISO8601>
 - **Related:** <DEC-### / REQ-### / AUTH-### / etc.>
-
-<!-- เพิ่ม PSR-* ตามความจำเป็น ห้ามเพิ่ม rule ใหม่โดยไม่มี user approval และห้ามใช้ PSR เพื่อ override/weakening FRAMEWORK-001 -->

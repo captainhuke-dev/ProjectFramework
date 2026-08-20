@@ -1,8 +1,8 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.1.5 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
-> **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, the active `00-Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup mismatch is release-blocking drift.
+> **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 ## Core Slot Map
 
@@ -27,6 +27,16 @@ This directory is the concrete starter representation of the Project Source sema
 | `16` | Migration Registry | **MANDATORY** | `16-Migration-Registry.template.md` |
 | `17` | Secret Reference Registry | **MANDATORY** | `17-Secret-Reference-Registry.template.md` |
 
+## Standard Extended Starters
+
+| Slot | Document | Applicability | Distribution starter |
+|---|---|---|---|
+| `40` | Technical Design | **CONDITIONAL** | `40-Technical-Design.template.md` |
+| `60` | Deployment Plan | **CONDITIONAL** | `60-Deployment-Plan.template.md` |
+| `91` | Project Management Control | **CONDITIONAL / STANDARD IN 1.2.0+** | `91-Project-Management-Control.template.md` |
+
+`91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`.
+
 ## Reserved and Extended Taxonomy
 
 | Range | Meaning | Bootstrap behavior |
@@ -34,19 +44,19 @@ This directory is the concrete starter representation of the Project Source sema
 | `18–19` | RESERVED | **DO NOT CREATE** default/active files |
 | `20–29` | Research / Discovery | Create only when needed |
 | `30–39` | Business / Process / UX Design | Create only when needed |
-| `40–49` | Architecture / Technical / Integration | Create only when needed |
+| `40–49` | Architecture / Technical / Integration | `40` standardized conditional; others when needed |
 | `50–59` | Testing / QA / Validation | Create only when needed |
-| `60–69` | Deployment / Operations / Infrastructure | Create only when needed |
+| `60–69` | Deployment / Operations / Infrastructure | `60` standardized conditional; others when needed |
 | `70–79` | Data / Migration / Analytics | Create only when needed |
 | `80–89` | Audit / Review / Assessment / Reports | Create only when needed |
-| `90–99` | Project-specific / Governance Extension | Create only when needed |
-
-Reserved anchors remain: `20 General Research`, `30 Business Flow`, `40 Technical Design`, `50 Test Strategy`, `60 Deployment Plan`, `70 Data Model`, `80 Review Report`, `90 Special Governance Extension`.
+| `90` | General / Special Governance Extension anchor | Create only when needed |
+| `91` | Project Management Control | Standard conditional in `1.2.0+` |
+| `92–99` | Project-specific / Governance Extension | Create only when needed |
 
 ## GREENFIELD Bootstrap Recipe
 
 ```text
-1. If running inside a platform Project, start from the canonical ChatGPT/Claude Project instruction artifact
+1. Start from canonical ChatGPT/Claude Project instruction artifact when applicable
 2. Read repository README.md on canonical main
 3. Read ../../FRAMEWORK-RELEASE.yaml
 4. Read SKILL.md + latest amendment + Core Governance
@@ -55,32 +65,38 @@ Reserved anchors remain: `20 General Research`, `30 Business Flow`, `40 Technica
 7. Preview proposed Project Source → obtain explicit user approval
 8. Create active 00 first
 9. Create mandatory 01–05 and 09–17
-10. Evaluate 06–08; create active files only when applicable
+10. Evaluate 06–08, 40, 60, 91; create only when applicable
 11. Keep 18–19 reserved
-12. Add 20–99 only for real project-specific needs
+12. Use 92–99 only for real Project-specific/governance-extension needs
 13. Build/verify Index + Manifest + readiness
-14. Pin Framework/Schema locally; do not auto-upgrade from upstream later
-15. Optionally record exact Git tag/SHA provenance only when it is actually observed and material
+14. Pin Framework/Schema locally; do not auto-upgrade later
+15. Optionally record exact Git provenance only when actually observed/material
 ```
 
-Exact Git provenance and repository hardening are optional assurance. Their absence does not block normal Framework bootstrap when canonical source is accessible. Never invent tag/SHA values merely to make records look complete.
+## Framework 1.2.0 Management and Technical Routing
 
-## Concept-First Integrity
+```text
+03 → Project Health + Review Cadence
+04 → Decision Revalidation
+08 → KNOWLEDGE_DEBT through ISS-*
+11 → Responsibility Mapping; Responsibility ≠ Authority
+40 → Tech Stack / source / config / runtime / Source-Docker technical blueprint
+60 → Source/Docker installation / verification / operations
+91 → Risk / Assumption / Milestone / Outcome / Dependency / Change Request / Gate
+```
 
-This mockup participates in the Framework Integrity Contract: slot mapping, applicability, version pins, and reserved ranges must remain aligned with Core Governance. This is a semantic requirement. It does not imply that a software validator or CI workflow must exist unless explicitly requested as a separate implementation scope.
+`SOURCE_AND_DOCKER` uses one declared application/configuration/data/security/persistence contract. Intentional variance is explicit; unexpected mismatch is DRIFT.
+
+## Concept-First Boundary
+
+Tech Stack/install/Docker planning does not authorize source code, Dockerfile/Compose, scripts, CI, or automation. Concrete commands belong only to a real Project when verified as Project truth.
 
 ## Template vs Active Filename
 
-The files in this directory intentionally end in `.template.md`. **Do not copy those names verbatim into an active Project Source.** Governed active documents use revision + timestamp naming, for example:
+Do not copy `.template.md` names verbatim into active Project Source. Active governed files use revision + timestamp naming, e.g. `40-Technical Design-r001-YYMMDD-HHMM.md`.
 
-```text
-00-Project Source Framework-r001-YYMMDD-HHMM.md
-01-Project Source Index-r001-YYMMDD-HHMM.md
-05-Requirements-r001-YYMMDD-HHMM.md
-```
+Template placeholders are not Project facts. Replace them only with verified/user-confirmed values or explicit uncertainty.
 
-The template files contain placeholders, not project facts. Replace placeholders only with verified/user-confirmed values or explicit epistemic states such as `UNKNOWN`, `ASSUMED`, `STALE`, or `VERIFICATION_REQUIRED`.
+## Brownfield Slot 91 Safety
 
-## Conditional Does Not Mean Pre-create
-
-`06 Architecture`, `07 Implementation Plan`, and `08 Open Issues` have starter templates so agents can discover the expected structure **if/when applicable**. Their presence here MUST NOT be interpreted as permission to create empty active documents merely to make a project tree look complete.
+A pre-1.2.0 Project may already use slot `91`. Never overwrite it. Use `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` if applicable. Old prose is not automatically promoted into new management Stable IDs.

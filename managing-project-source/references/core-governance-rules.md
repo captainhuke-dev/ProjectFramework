@@ -19,17 +19,17 @@ Root inheritance and authority:
 4. Task / Handoff / Prompt / Agent Instruction
 ```
 
-`FRAMEWORK-001` MUST exist in every Project, MUST remain in semantic slot `00`, and MUST NOT be removed, bypassed, demoted, or replaced by descendant governance. All Project artifacts created after it are governed by and inherit from the Framework. Project Source artifacts inherit directly; implementation/external mutations inherit governance through Project identity, Requirements, Decisions, Actions, Authority, and the Framework workflows. Descendants may extend/specialize/add constraints, but cannot weaken or contradict Framework invariants.
+`FRAMEWORK-001` MUST exist in every Project, MUST remain in semantic slot `00`, and MUST NOT be removed, bypassed, demoted, or replaced by descendant governance. All Project artifacts created after it are governed by and inherit from the Framework. Project Source artifacts inherit directly; implementation/external mutations inherit governance through Project identity, Requirements, Decisions, Actions, Authority, and Framework workflows. Descendants may extend/specialize/add constraints, but cannot weaken or contradict Framework invariants.
 
 Governed Markdown descendants declare `inherits_from: ["FRAMEWORK-001"]`; non-Markdown artifacts inherit through their canonical Registry/Manifest metadata. Missing active Framework makes Project Source `INVALID + NOT_OPERATIONALLY_READY`.
 
 Legacy rename migration: if a Brownfield Project still has `00-Project Source Rule`, treat it as the legacy predecessor of slot `00`. Do not delete it in place. Create a Framework candidate, promote it through governed revision/migration, then archive the predecessor only after active `FRAMEWORK-001` is established.
 
-Agents may propose Framework changes but must not modify `00-Project Source Framework` without explicit user approval. Framework revision preserves stable identity `FRAMEWORK-001`, supersedes/archive the old revision, and never deletes the root. Each project pins its approved Framework version; upgrades require a governed migration.
+Agents may propose Framework changes but must not modify `00-Project Source Framework` without explicit user approval. Framework revision preserves stable identity `FRAMEWORK-001`, supersedes/archive the old revision, and never deletes the root. Each Project pins its approved Framework version; upgrades require governed migration.
 
-## 2. Standard Location and Core Files
+## 2. Standard Location and Semantic Namespace
 
-All projects use:
+All Projects use:
 
 ```text
 <Project-Root>/Project-Source/
@@ -74,9 +74,19 @@ Extended taxonomy:
 90–99 Project-specific / Governance Extension
 ```
 
-Reserved anchors: `20 General Research`, `30 Business Flow`, `40 Technical Design`, `50 Test Strategy`, `60 Deployment Plan`, `70 Data Model`, `80 Review Report`, `90 Special Governance Extension`.
+Framework `1.2.0` standardizes these extended anchors:
 
-Framework distribution bootstrap artifacts exist **outside** the Project Source semantic namespace:
+```text
+40 Technical Design               CONDITIONAL
+60 Deployment Plan                CONDITIONAL
+90 General / Special Governance Extension anchor
+91 Project Management Control     CONDITIONAL / STANDARD IN 1.2.0+
+92–99 Project-specific / Governance Extension unless governed otherwise later
+```
+
+`40`, `60`, and `91` do not join the mandatory `00–17` bootstrap set. They are materialized only when applicable.
+
+Framework distribution artifacts exist outside the Project Source semantic namespace:
 
 ```text
 managing-project-source/FRAMEWORK-RELEASE.yaml
@@ -84,15 +94,15 @@ managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md
 managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
 ```
 
-`FRAMEWORK-RELEASE.yaml` is machine-readable distribution metadata. It declares Framework/Schema identity, canonical repository/branch, entrypoint paths, latest amendment, bootstrap policy, and optional assurance policy. It is not a Project Source semantic document, semantic slot, or Root Governance.
-
-The platform instruction files are launcher instructions, not Project Source documents and not semantic slots. Their shared governance contract MUST remain byte-identical. They route a NEW project to canonical upstream bootstrap or an initialized project to its local pinned Project Source, but MUST NOT replace, weaken, bypass, or override active `FRAMEWORK-001`.
+`FRAMEWORK-RELEASE.yaml` is distribution metadata, not Root Governance or a semantic slot. Platform instruction files are bootstrap/continuation launchers. Their shared governance contract MUST remain byte-identical and MUST NOT replace, weaken, bypass, or override active local `FRAMEWORK-001`.
 
 ### 2.1 Concept-First Framework Boundary
 
-ProjectFramework is a **conceptual Project governance and planning framework first**. It defines governance semantics, namespace, integrity expectations, bootstrap, authority, migration, handoff, readiness, pressure scenarios, mockups, and examples.
+ProjectFramework is a **conceptual Project governance and planning framework first**. It defines governance semantics, namespace, technical/installation blueprints, management controls, integrity expectations, bootstrap, authority, migration, handoff, readiness, pressure scenarios, mockups, and examples.
 
-An Integrity Contract is a semantic requirement. It does not implicitly authorize or require executable enforcement software. Unless the user explicitly requests a separate implementation scope, do not create a validator, CLI, CI/GitHub Actions workflow, migration engine, background automation, runtime daemon, or similar enforcement system merely because a rule can be checked mechanically.
+A technical or integrity requirement does not implicitly authorize executable implementation. Unless the user explicitly requests a separate implementation scope, do not create application code, Dockerfile, Compose/Kubernetes/Helm runtime artifacts, installer scripts, validator, CLI, CI/CD, migration engine, scheduler, background automation, dashboard, or runtime enforcement merely because a rule can be checked or implemented mechanically.
+
+A real Project's current Project Source may document concrete verified commands, paths, ports, configuration keys, or operating procedures when those are actual Project truth. ProjectFramework itself does not invent executable commands for nonexistent software.
 
 ## 3. Naming and Revision
 
@@ -102,27 +112,21 @@ Governed Project Source documents, Handoff, evidence/schema artifacts, exports, 
 -YYMMDD-HHMM
 ```
 
-Use project/user local timezone unless Project-Specific Rule says otherwise.
+Use Project/user local timezone unless Project-Specific Rules say otherwise. Document revisions use monotonic `r001`, `r002`, ... and never reuse a revision number.
 
-Document revisions use `r001`, `r002`, ... `r999`, `r1000`, ...; numbers are monotonic and never reused.
-
-Core example:
+Examples:
 
 ```text
 05-Requirements-r007-260813-2237.md
-```
-
-Extended example:
-
-```text
-22-RSCH-004-GPU-Benchmark-r003-260813-2237.md
+40-Technical Design-r002-260820-1145.md
+91-Project Management Control-r003-260820-1145.md
 ```
 
 Canonical implementation filenames such as `README.md`, `main.py`, `docker-compose.yml`, and `SKILL.md` remain canonical when their ecosystem requires it.
 
 ## 4. Identity
 
-Every project has:
+Every Project has:
 
 - `project_uuid` — immutable authoritative identity.
 - `project_id` — stable human-readable identity.
@@ -132,12 +136,12 @@ Rename does not change `project_uuid`.
 
 Merge semantics:
 
-- **Absorption:** primary project keeps UUID; absorbed project retains its UUID historically and becomes `ABSORBED`.
+- **Absorption:** primary Project keeps UUID; absorbed Project retains its UUID historically and becomes `ABSORBED`.
 - **True Merge:** create a new UUID; predecessors remain in lineage.
 
 Split semantics:
 
-- **Carve-out:** original keeps UUID; carved-out project gets a new UUID.
+- **Carve-out:** original keeps UUID; carved-out Project gets a new UUID.
 - **True Split:** original lifecycle ends; descendants get new UUIDs.
 
 Identity changes are event-based and reconstructable.
@@ -148,16 +152,9 @@ Identity changes are event-based and reconstructable.
 
 Project state has two axes:
 
-Lifecycle:
-
 ```text
-DRAFT ACTIVE COMPLETED CANCELLED ARCHIVED ABSORBED MERGED SPLIT
-```
-
-Execution:
-
-```text
-READY IN_PROGRESS WAITING BLOCKED IDLE
+Lifecycle: DRAFT ACTIVE COMPLETED CANCELLED ARCHIVED ABSORBED MERGED SPLIT
+Execution: READY IN_PROGRESS WAITING BLOCKED IDLE
 ```
 
 Do not collapse them into one status.
@@ -179,25 +176,93 @@ EVD-*       → 13-Evidence Registry
 ACT-*       → 15-Action Registry
 MIG-*       → 16-Migration Registry
 SECRET-*    → 17-Secret Reference Registry
+RISK-*      → 91-Project Management Control
+ASM-*       → 91-Project Management Control
+MS-*        → 91-Project Management Control
+OUT-*       → 91-Project Management Control
+DEP-*       → 91-Project Management Control
+CR-*        → 91-Project Management Control
+GATE-*      → 91-Project Management Control
 ```
 
-One object type has one authoritative home. Other documents reference Stable IDs; they do not duplicate authoritative state. Detail documents may exist for large objects, but canonical status/identity stays in the registry.
+One object type has one authoritative home. Other documents reference Stable IDs; they do not duplicate authoritative state. Detail documents may exist for large objects, but canonical status/identity stays in the canonical home.
 
 ### 6.1 Materialized Current State and Stable-ID Resolution
 
-Active canonical object homes are **materialized current projections, not delta chains**. For every Stable ID that is active/current and referenced from the Active/Current Project Source:
+Active canonical object homes are **materialized current projections, not delta chains**. For every Stable ID that is active/current and referenced from Active/Current Project Source:
 
-- the current authoritative record MUST resolve within the **Current Reconstructable Snapshot**;
-- the record MUST contain sufficient current semantic payload to determine what is true now, or link to an active/current canonical Detail Document containing that payload;
-- archived revisions MAY provide historical rationale/evolution, but MUST NOT be required to resolve Current Truth;
-- `retain previous status`, `unchanged from rNNN`, `see archived revision`, or equivalent delta-only shorthand MUST NOT substitute for the authoritative current payload;
-- any active Detail Document required to interpret a current Stable ID is part of the Current Reconstructable Snapshot and must be included in `CURRENT` export scope when that Stable ID is exported.
+- current authoritative record MUST resolve within the **Current Reconstructable Snapshot**;
+- record MUST contain sufficient current semantic payload to determine what is true now, or link to an active/current canonical Detail Document containing that payload;
+- archived revisions MAY explain historical rationale/evolution, but MUST NOT be required to resolve Current Truth;
+- `retain previous status`, `unchanged from rNNN`, `see archived revision`, or equivalent delta-only shorthand MUST NOT substitute for authoritative current payload;
+- any active Detail Document required to interpret a current Stable ID is part of Current Reconstructable Snapshot and must be included in `CURRENT` export scope when needed.
 
-This applies generally to current-state-bearing canonical homes. In particular, an active `DEC-*` in `04-Decision Log` must materialize its current Decision/Status semantics (or link to an active/current canonical Detail Document), and an active `REQ-*` in `05-Requirements` must materialize its current Requirement/Status/Acceptance semantics (or link likewise).
-
-**Referential validation rule:** Every Stable ID referenced from the Active/Current snapshot MUST resolve to a current authoritative record within the Current Reconstructable Snapshot without requiring an archived revision. Failure is a Project Source integrity/readiness defect. If an actor cannot determine the affected current truth from the current snapshot, that affected scope is `NOT_OPERATIONALLY_READY`.
+This applies to `DEC-*`, `REQ-*`, and Framework `1.2.0` management-control objects in `91` equally. Failure to resolve a referenced current Stable ID without archive traversal is an integrity/readiness defect for the affected scope.
 
 Stable IDs and revision numbers are never recycled.
+
+### 6.2 Risk, Assumption, Milestone, Outcome, Dependency, Change, Gate
+
+#### Risk vs Issue
+
+`RISK-*` is a material uncertain future event/condition. `ISS-*` is a materialized/current problem. Risk materialization preserves `RISK-*` and links the resulting `ISS-*`; do not delete or rewrite the Risk into an Issue.
+
+Risk statuses may include:
+
+```text
+IDENTIFIED OPEN MITIGATING MONITORING ACCEPTED MATERIALIZED CLOSED SUPERSEDED
+```
+
+`ACCEPTED` means remaining exposure is intentionally accepted. Material acceptance records the relevant decision/authority and review trigger where continued monitoring is needed.
+
+Minimum Risk semantics include Risk Statement, Probability, Impact, Trigger/Early Warning, Mitigation, Contingency, Owner, Review Trigger/Review By, Status, related Stable IDs/evidence, and Materialized Issue when applicable.
+
+#### Assumption
+
+`ASM-*` is a proposition currently relied upon without sufficient verification to treat it as established truth.
+
+```text
+UNVERIFIED → VALIDATED / INVALIDATED / SUPERSEDED
+```
+
+Invalidation triggers impact assessment. Depending on affected truth, this may require `DRIFT-*`, `CR-*`, re-planning, Decision revalidation, Requirement revision, Risk update, or Issue creation. A validated assumption becomes verified truth only when an appropriate authoritative source/evidence supports promotion.
+
+#### Action vs Milestone vs Outcome
+
+```text
+ACT-* = work/action
+MS-*  = significant checkpoint/state
+OUT-* = intended result/benefit/effect
+
+ACT DONE ≠ MS REACHED ≠ OUT ACHIEVED
+```
+
+Milestone and Outcome must be evaluated independently against their own criteria/evidence.
+
+#### Dependency
+
+`DEP-*` may represent `PERSON / TEAM / APPROVAL / DECISION / VENDOR / SYSTEM / API / DATA / CONTRACT / PROJECT / INFRASTRUCTURE / OTHER`.
+
+`AVAILABLE` means the dependency is currently obtainable; `SATISFIED` means the governed dependency requirement has been fulfilled. A dependency failure may trigger a Risk, Issue, Change Request, or Health degradation based on impact.
+
+#### Change Request vs Change Log
+
+```text
+CR-*  = proposed/material change + impact assessment + decision path
+CHG-* = historical record of applied/observed change
+```
+
+A Change Request considers affected scope, Requirements, Decisions, Architecture, Tech Stack, source structure, configuration, installation/deployment modes, data/migration, security/authority, Milestones/Outcomes, Risks, Dependencies, schedule/effort, operations, and handoff when applicable. Approval authorizes only the governed scope; it does not grant unrelated implementation authority.
+
+#### Review / Phase Gate
+
+`GATE-*` is a governed checkpoint with Purpose, Affected Scope, Entry Criteria, Pass Criteria, Required Evidence, Review Owner, Required Authority, Status, Findings, Exceptions/Waiver, Next Action, and Reviewed At.
+
+```text
+PLANNED → READY_FOR_REVIEW → PASSED / FAILED / WAIVED
+```
+
+`WAIVED` requires explicit rationale plus applicable authority/decision reference. A Gate blocks only its governed scope unless a stricter Project-Specific Rule states otherwise.
 
 ## 7. Metadata
 
@@ -218,13 +283,13 @@ created_by: "ACTOR-001"
 created_by_instance: "INST-..."
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "CHANGEABLE"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
 ```
 
-Binary/non-Markdown artifacts do not need embedded YAML; control them via registries, paths, hashes, and manifest metadata.
+Binary/non-Markdown artifacts do not need embedded YAML; govern them via registries, paths, hashes, and Manifest metadata.
 
 ProjectFramework uses agent/manual semantic validation by default. Do not invent runtime validator software unless explicitly requested as a separate implementation scope.
 
@@ -265,17 +330,15 @@ Never promote `ASSUMED` or `INFERRED` to `VERIFIED` without evidence/authoritati
 
 ## 9. DRIFT and CONFLICT
 
-Use `DRIFT-*` when Truth Domains that should align do not align. Record expected truth, observed truth, evidence, impact, affected scope, resolution owner, and mutation block. Drift blocks the affected scope, not the entire project by default.
+Use `DRIFT-*` when Truth Domains that should align do not align. Record expected truth, observed truth, evidence, impact, affected scope, resolution owner, and mutation block. Drift blocks the affected scope, not the entire Project by default.
 
 Use `CONFLICT-*` for competing document/semantic states, including concurrent revisions. Never use last-write-wins for semantic changes.
 
-Formal candidates record `base_revision` and `base_document_hash`. If the active base changed, promotion stops and a conflict is opened.
+Formal candidates record `base_revision` and `base_document_hash`. If active base changed, promotion stops and a conflict is opened. Agents may auto-resolve only non-semantic differences such as formatting, whitespace, deterministic sorting, or a typo that cannot alter meaning.
 
-Agents may auto-resolve only non-semantic differences such as formatting, whitespace, deterministic sorting, or a typo that cannot alter meaning. Semantic conflicts go to the user or authorized decision owner.
+For `SOURCE_AND_DOCKER`, unexpected feature/configuration/data/security/persistence divergence from the declared parity contract is `DRIFT-*`. Intentional difference is represented as Deployment Mode Variance instead.
 
 ## 10. Draft, Promotion, and Archive
-
-Filesystem roles:
 
 ```text
 Scratch                 → outside Project-Source/
@@ -290,19 +353,26 @@ Promotion is controlled:
 candidate → validate → base/hash check → promote new active → mark old superseded → archive old → update Index/Change Log/Manifest → postflight
 ```
 
-Archive structure preserves taxonomy plus `YYYY/MM`. Archive is **Historical Truth**, not a runtime dependency for Current Truth; archive traversal must never be required to resolve a current authoritative Stable ID.
+Archive is Historical Truth, not a runtime dependency for Current Truth. Never leave two active revisions for the same semantic document identity.
 
-Never leave two active revisions for the same semantic document identity.
-
-## 11. Actor, Authority, and Delegation
+## 11. Actor, Responsibility, Authority, and Delegation
 
 `ACTOR-*` is stable actor identity; `INST-*` is session/execution instance. Role does not grant authority.
 
-Standing `AUTH-*` must state WHO, WHAT, WHERE, risk ceiling, start, termination/expiry, and grantor. Broad indefinite authority is invalid by default.
+`11 Actor Registry` may contain scope-keyed responsibility mappings using:
 
-Authority is non-transferable through prompt, task, handoff, memory, role, branch, or agent-to-agent instruction.
+```text
+Responsible
+Accountable
+Consulted
+Informed
+```
 
-Delegation requires `DEL-*` and may never exceed parent scope, risk, actions, or duration. Invalid/revoked parent authority invalidates descendants immediately.
+Each mapping identifies a governed scope such as a Stable ID, semantic document, workstream, or explicitly named Project scope.
+
+**Responsibility ≠ Authority.** Being Responsible or Accountable does not itself grant approval, R2/R3 mutation, deployment, production access, or external-action permission.
+
+Standing `AUTH-*` in `12 Authorization Registry` states WHO, WHAT, WHERE, risk ceiling, start, termination/expiry, and grantor. Broad indefinite authority is invalid by default. Delegation uses `DEL-*` and may never exceed parent scope/risk/actions/duration. Authority is non-transferable through prompt, task, handoff, memory, role, responsibility mapping, branch, or agent-to-agent instruction.
 
 ## 12. Risk and Approval
 
@@ -320,36 +390,45 @@ Default approval:
 - R2: explicit approval or valid Standing Authorization.
 - R3: explicit approval for that specific action by default.
 
-Project-Specific Rules may be stricter.
-
-Before R2/R3 mutation, fresh-read authority.
+Project-Specific Rules may be stricter. Before R2/R3 mutation, fresh-read authority.
 
 ## 13. Preflight and Postflight
 
 READ PREFLIGHT checks identity, `00`, `01`, `03`, task scope, Truth Domain, freshness, and active blockers.
 
-MUTATION PREFLIGHT additionally checks actor/instance, authority, target, allowed paths, forbidden effects, risk, approval, relevant REQ/DEC, active blocks, base/hash, downstream impact, reversibility, and evidence requirements.
+MUTATION PREFLIGHT additionally checks actor/instance, authority, target, allowed paths, forbidden effects, risk, approval, relevant REQ/DEC, management controls when relevant, base/hash, downstream impact, reversibility, and evidence requirements.
 
 Postflight is risk-tiered. Execution alone does not prove completion. R3 requires verification of resulting external/runtime state, not merely exit code 0.
 
-## 14. Evidence and Secrets
+## 14. Evidence, Knowledge Debt, and Secrets
 
 `EVD-*` is required for important evidence such as DRIFT, R2/R3 shared-state verification, runtime/external state, and material source conflicts. Raw evidence belongs under `evidence/<category>/` and is referenced by path/hash.
 
-Never place actual secrets in Project Source, evidence, manifest, or exports. `SECRET-*` stores only metadata/reference to an external secret store, with `secret_value_present: false`.
+Material stale/missing operational knowledge is represented in `08 Open Issues` as:
 
-## 15. Index and Manifest
+```text
+ISS-* with issue_type: KNOWLEDGE_DEBT
+```
 
-`01-Project Source Index` is the Front Door. It contains:
+If no active `08` exists, creation of material Knowledge Debt makes `08` applicable. Knowledge debt may degrade Knowledge or Readiness health even if runtime currently succeeds.
 
-- a machine-derived active document registry, and
-- human/agent routing guidance.
+Never place actual secrets in Project Source, evidence, Manifest, or exports. `SECRET-*` stores only metadata/reference to an external secret store, with `secret_value_present: false`.
 
-The generated registry is not manually authoritative.
+## 15. Index, Manifest, and Conditional Extended Documents
 
-`14-Manifest` covers the Current Reconstructable Snapshot: active docs, continuation-relevant formal drafts, registered evidence, schema/validation snapshots, necessary generated assets, and every active/current Detail Document required to interpret a referenced current Stable ID. It does not include the entire archive by default, and the snapshot MUST NOT depend on omitted archived revisions to determine Current Truth.
+`01-Project Source Index` is the Front Door. It contains a derived active document registry plus human/agent routing guidance. The generated registry is not manually authoritative.
 
-When Framework Source Provenance is tracked, `14` preserves the same observed state as active `00`. Missing optional exact Git provenance is not by itself a Manifest defect; fabricated provenance is prohibited. A mismatch between tracked observed values requires root-cause classification.
+When active, route:
+
+```text
+40 → Tech Stack / technical design / source/config/runtime blueprint
+60 → installation / deployment / operations blueprint
+91 → RISK / ASM / MS / OUT / DEP / CR / GATE
+```
+
+`14-Manifest` covers the Current Reconstructable Snapshot: active docs, continuation-relevant formal drafts, registered evidence, validation assets, necessary generated assets, and every active/current Detail Document required to interpret referenced current Stable IDs. If active `40`, `60`, or `91` is required to interpret current truth, it belongs in the Manifest and `CURRENT` export scope.
+
+When Framework Source Provenance is tracked, `14` preserves the same observed state as active `00`. Missing optional exact Git provenance is not itself a Manifest defect; fabricated provenance is prohibited.
 
 Manifest integrity mismatch requires root-cause classification; do not blindly regenerate to hide unexpected change.
 
@@ -357,43 +436,78 @@ Manifest integrity mismatch requires root-cause classification; do not blindly r
 
 `09-Handoff` is the current continuation contract, not merely a chat summary.
 
-Lifecycle:
-
 ```text
 DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED
 ```
 
 It records from/to, previous handoff, trigger, current phase/state, completed work, pending work, formal drafts/WIP, active objects, read order, freshness warnings, authority references, `authority_transfer: false`, and exact next action.
 
+When applicable, surface continuation-critical `RISK-*`, invalid/unverified `ASM-*`, blocking `DEP-*`, upcoming/recent `MS-*`, Outcomes awaiting measurement, open/approved `CR-*`, upcoming/failed `GATE-*`, Technical/Deployment health warnings, Source/Docker variance, and Knowledge Debt.
+
 Before `ACCEPTED`, recipient reads `00 → 01 → 03 → 09`, checks actor/authority, relevant active objects, volatile state, and current handoff revision.
 
-Refresh handoff when user requests it or continuation state materially changes.
-
-## 17. Adoption Modes
+## 17. Adoption Modes and Bootstrap
 
 ### GREENFIELD
 
-If the environment is a ChatGPT Project or Claude Project, begin with the matching canonical platform Project instruction artifact. If no valid local Project Source exists, bootstrap from canonical repository `main` using `README.md → FRAMEWORK-RELEASE.yaml → SKILL.md → latest amendment → Core Governance → Framework template → skeletons → mockup`, then continue: Discover → identity → adaptive interview → preview → user approval → create governance layer → validate → readiness → completion report.
+If environment is a ChatGPT Project or Claude Project, begin with the matching canonical platform Project instruction artifact. If no valid local Project Source exists, bootstrap from canonical repository `main` using:
 
-Exact Git tag/SHA provenance is optional assurance. If observed, record it accurately; if unavailable, do not fabricate it and do not block otherwise valid bootstrap solely for that reason. If canonical Framework source itself is inaccessible, stop the affected governance mutation instead of reconstructing Framework rules from memory.
+```text
+README.md
+→ FRAMEWORK-RELEASE.yaml
+→ SKILL.md
+→ latest amendment
+→ Core Governance
+→ Framework template
+→ skeletons
+→ mockup
+```
+
+Then Discover → identity → adaptive interview → Preview → user approval → create governance layer → validate → readiness → completion report.
+
+Create mandatory `00–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, and `91` by applicability. Keep `18–19` reserved. Do not create empty conditional files merely to look complete.
+
+Exact Git tag/SHA provenance is optional assurance. If observed, record accurately; if unavailable, do not fabricate it and do not block otherwise valid bootstrap solely for that reason. If canonical Framework source itself is inaccessible, stop affected governance mutation instead of reconstructing Framework rules from memory.
 
 ### BROWNFIELD
 
-Preserve first. Inventory and classify legacy sources by Truth Domain, Epistemic Status, Freshness, and evidence. Do not move/rename/delete legacy sources automatically. Build a governance layer and normalize only approved scope.
+Preserve first. Inventory and classify legacy sources by Truth Domain, Epistemic Status, Freshness, and evidence. Do not move/rename/delete legacy sources automatically. Build governance layer and normalize only approved scope.
 
 ### IMPORT
 
-Place imported Project Source in `import-staging/` first. Assess identity, versions, compatibility, manifest, hashes, mandatory docs, lineage, IDs, secret leakage, references, and active-revision ambiguity. Results: `COMPATIBLE`, `UPGRADE_REQUIRED`, `CONFLICTED`, `INVALID`.
+Place imported Project Source in `import-staging/` first. Assess identity, versions, compatibility, Manifest, hashes, mandatory docs, lineage, IDs, secret leakage, references, and active-revision ambiguity. Results: `COMPATIBLE`, `UPGRADE_REQUIRED`, `CONFLICTED`, `INVALID`.
 
 ## 18. Migration and Versioning
 
-Each Project pins Framework/Schema version and compatibility range. Never auto-upgrade old projects.
+Each Project pins Framework/Schema version and compatibility range. Never auto-upgrade old Projects.
 
 Managed migration uses `MIG-*` and covers source, target, compatibility assessment, affected documents/objects, steps, rollback, approval, validation, and evidence. Project-Specific Rules are preserved unless explicitly resolved otherwise.
 
-### 18.1 Framework Operational Use and Optional Release Assurance
+### 18.1 Framework 1.2.0 Slot-91 Migration Safety
 
-`FRAMEWORK-RELEASE.yaml` is distribution metadata, not a Project Source semantic slot.
+Framework releases before `1.2.0` allowed `90–99` as Project-specific/Governance Extension space. A Brownfield Project may already use slot `91` for a custom document.
+
+Migration MUST NOT overwrite it. Required flow:
+
+```text
+detect occupied 91
+→ open MIG-* compatibility assessment
+→ preserve custom document identity/history/references
+→ propose suitable free 92–99 or other semantically correct location
+→ obtain explicit approval
+→ migrate/promote/archive through governed flow
+→ only then activate standard 91 if applicable
+```
+
+Existing Projects that do not migrate remain unaffected.
+
+### 18.2 No Automatic Free-Text Promotion
+
+Existing prose mentioning risks, assumptions, dates, dependencies, scope changes, outcomes, or gates MUST NOT be automatically reinterpreted as new `RISK-*`, `ASM-*`, `MS-*`, `OUT-*`, `DEP-*`, `CR-*`, or `GATE-*` identities.
+
+Promotion requires enough current semantics, status, ownership, and epistemic/evidence state to avoid fabrication. If identity/current truth cannot be established, preserve prose as historical/current context with explicit uncertainty rather than inventing a Stable ID.
+
+### 18.3 Framework Operational Use and Optional Release Assurance
 
 Treat Framework state as independent dimensions:
 
@@ -403,11 +517,7 @@ REPRODUCIBLY_RELEASED
 REPOSITORY_HARDENED
 ```
 
-- `OPERATIONALLY_USABLE` asks whether the canonical Framework can correctly bootstrap and govern a Project.
-- `REPRODUCIBLY_RELEASED` is optional assurance that an immutable Git identity such as tag/commit was preserved.
-- `REPOSITORY_HARDENED` is optional assurance about repository controls such as branch protection/rulesets.
-
-A Framework MAY be operationally usable while exact Git provenance is `UNKNOWN`/`UNVERIFIED` or repository hardening is not configured. These optional assurance states MUST NOT become blockers unless a Project-Specific Rule explicitly requires them.
+A Framework MAY be operationally usable while exact Git provenance is `UNKNOWN/UNVERIFIED` or repository hardening is absent. These optional assurance states MUST NOT become blockers unless Project-Specific Rules explicitly require them.
 
 When exact source provenance is actually observed, a Project may record:
 
@@ -417,39 +527,192 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.1.5"
+  framework_version: "1.2.0"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
 ```
 
-Rules:
+Exact tag/SHA values come only from actual observation; never predict, fabricate, or retroactively backfill them.
 
-- exact tag/SHA values come only from what was actually observed; never predict, fabricate, or retroactively backfill them;
-- canonical `main` is a valid normal bootstrap source for NEW Projects;
-- absence of an immutable tag or resolved SHA does not by itself block bootstrap, migration, readiness, or normal Framework use;
-- a newer upstream release never auto-upgrades an existing Project; migration remains governed by `MIG-*`.
+## 19. Project Health and Review Cadence
 
-### 18.2 Framework Integrity Contract
+Project Health is a **derived current assessment** in `03 Current State`, not a replacement for canonical records.
+
+Standard dimensions:
+
+```text
+Scope
+Progress / Schedule
+Risk
+Quality / Validation
+Dependencies
+Authority
+Knowledge
+Readiness
+Technical / Deployment when applicable
+```
+
+States:
+
+```text
+GREEN AMBER RED UNKNOWN
+```
+
+Omit a non-applicable optional dimension rather than marking it `GREEN`. Each applicable dimension records/resolves:
+
+```text
+State
+Reason
+Supporting Stable IDs / Evidence
+Owner
+Last Reviewed
+Next Review / Trigger when applicable
+```
+
+Framework defines no opaque automatic weighted health score. A Project-specific aggregate label may exist only if derivation/limitations are explicit and it does not replace dimensional view.
+
+Review Cadence supports:
+
+```text
+TIME_BASED
+EVENT_BASED
+```
+
+It may govern Current State Review, Risk Review, Assumption Review, Milestone/Outcome Review, Decision Revalidation, Technical Design Review, Deployment Readiness Review, and Handoff Refresh. ProjectFramework defines semantics only and does not create a scheduler/reminder runtime.
+
+## 20. Decision Revalidation
+
+`DEC-*` remains canonical in `04 Decision Log`. Current Decisions may record:
+
+```text
+Validity Basis
+Review Trigger
+Review By
+Last Revalidated
+Revalidation Status
+Revalidation Evidence
+```
+
+Recommended statuses:
+
+```text
+NOT_DUE REVIEW_DUE REVALIDATED SUPERSEDED
+```
+
+Typical triggers include invalidated `ASM-*`, materially changed `DEP-*`, Requirement change, Tech Stack change, deployment-mode change, material approved `CR-*`, regulation/vendor-contract change, review date, or runtime evidence contradicting Decision basis.
+
+A previously approved Decision is not assumed valid forever when its stated basis no longer holds.
+
+## 21. Technical Design and Deployment Blueprint
+
+### 21.1 `06 Architecture` vs `40 Technical Design`
+
+`06 Architecture` remains the conditional major architecture view: major systems/components/interfaces, boundaries, data flow, constraints, and key architecture Decisions.
+
+`40 Technical Design` is the deeper implementation-facing **blueprint** when meaningful software/technical detail exists. It deepens/references `06`; it must not fork the same authoritative payload.
+
+A material Tech Stack entry records:
+
+```text
+Technology
+Role / Responsibility
+Version or Supported Range
+Required / Optional
+Why Used / Decision Reference
+Used By Component(s)
+Operational Dependency
+Lifecycle / Support Constraint when material
+Replacement Boundary when material
+Epistemic / Verification State
+```
+
+`40` may also document Component Responsibility, Inputs/Outputs, Interfaces, Dependencies, Data/Storage interaction, Security/Authority boundaries, Runtime boundaries, source-structure responsibilities, Configuration Contract, and Runtime Requirements.
+
+Configuration semantics are independent from packaging mode and may include Application Settings, Environment-specific Settings, External Service Endpoints, Persistence Settings, Feature/Capability Settings, and Secret References. Actual secret values remain forbidden.
+
+### 21.2 Deployment Support Model
+
+A software Project declares one of:
+
+```text
+SOURCE_ONLY
+DOCKER_ONLY
+SOURCE_AND_DOCKER
+NOT_APPLICABLE
+```
+
+For `SOURCE_AND_DOCKER`, Source and Docker share one declared contract for:
+
+```text
+core application semantics
+configuration meaning
+required external dependencies
+data compatibility
+security assumptions
+supported capability set
+persistence semantics
+upgrade compatibility
+```
+
+Packaging/runtime mechanics may differ. Intentional differences use **Deployment Mode Variance** with Affected Capability, Source Behavior, Docker Behavior, Reason, Impact, related Stable IDs, Owner, and Acceptance/Resolution State. Unexpected mismatch is `DRIFT-*`.
+
+### 21.3 `07 Implementation Plan` vs `60 Deployment Plan`
+
+`07 Implementation Plan` answers what work/actions are planned, sequence, dependencies, risks, verification, and rollback/reversibility.
+
+`60 Deployment Plan` answers how the resulting system is installed, configured, started, stopped, verified, diagnosed, upgraded, rolled back, backed up/restored, cleaned up, and troubleshot in each supported deployment mode.
+
+When applicable, `60` addresses:
+
+```text
+Prerequisites
+Supported OS / Platform / Architecture
+Source or Artifact Acquisition
+Required Runtime / Container Runtime
+External Services
+Required Permissions
+Configuration Inputs
+Secret Requirements / SECRET-* references
+Data / Storage Initialization
+Installation / Initialization Procedure
+Start / Stop Procedure
+Verification / Health Check
+Logs / Diagnostics
+Upgrade
+Rollback
+Backup / Restore
+Uninstall / Cleanup
+Troubleshooting
+Known Limitations / Deployment Mode Variance
+```
+
+Installation is not operationally ready merely because an install/start command returns success. Verification may include service availability, dependency reachability, storage initialization/persistence, configuration loading, secret resolution without exposure, health/runtime signal, core flow usability, running version identity, and Source/Docker parity when applicable.
+
+## 22. Framework Integrity Contract
 
 Current Framework distribution integrity means at minimum:
 
 - current Framework/Schema declarations are internally consistent;
-- semantic slots `00–17` retain their governed meanings;
+- `00–17` meanings remain intact;
 - `06–08` remain conditional;
 - `18–19` remain reserved;
-- ChatGPT and Claude shared governance semantics remain equivalent;
+- `40`, `60`, and `91` remain conditional/applicability-driven;
+- `91` is standard Project Management Control in `1.2.0+` and `92–99` remain extension space unless governed otherwise;
+- canonical object homes remain consistent across Framework, Core Governance, skeletons, mockup, platform launchers, and examples;
+- ChatGPT and Claude shared governance contracts remain byte-identical;
 - current Stable IDs resolve without archive dependency;
 - existing Projects do not silently auto-upgrade;
-- platform launchers do not override active local Root Governance;
-- missing facts, authority, source, or provenance are never fabricated.
+- actual secrets remain forbidden;
+- technical planning does not silently expand into implementation artifacts;
+- missing facts, authority, source, provenance, or management-object identity are never fabricated.
 
-These are semantic requirements and may be reviewed manually or by an Agent. They do not require executable enforcement tooling to exist.
+These are semantic requirements and may be reviewed manually or by an Agent. They do not require executable enforcement tooling.
 
-## 19. Export Profiles
+## 23. Export Profiles
 
 ```text
-CURRENT — active continuation snapshot; includes every current canonical record and active/current Detail Document required to interpret exported current Stable IDs, without archive dependency
+CURRENT — active continuation snapshot; includes current canonical records and required active/current Detail Documents without archive dependency
 AUDIT   — current + relevant history/evidence
 FULL    — complete Project-Source including archive, excluding actual secrets
 ```
@@ -460,17 +723,17 @@ Package name:
 <Project-ID>-Project-Source-<PROFILE>-YYMMDD-HHMM.zip
 ```
 
-Validate structure, references, semantic state, index/manifest, secret policy, active truth uniqueness, profile completeness, and archive-independent current Stable-ID resolution before standard export. A `CURRENT` export is incomplete if omitted archive content is required to determine current semantics.
+If active `40`, `60`, or `91` is needed to interpret current truth, it belongs in `CURRENT`. A `CURRENT` export is incomplete if omitted archive content is required to determine current semantics.
 
-## 20. Retention and Readiness
+## 24. Retention and Readiness
 
-Preserve Project Source revisions, Decisions, Requirements, Change Log, and Identity lineage indefinitely by default. Evidence follows Project-Specific retention. Purge requires authorization, no active references, auditability, and retained reconstructability.
+Preserve Project Source revisions, Decisions, Requirements, Change Log, management-control history, and Identity lineage indefinitely by default. Evidence follows Project-Specific retention. Purge requires authorization, no active references, auditability, and retained reconstructability.
 
 A Project Source may be `VALID + NOT_OPERATIONALLY_READY` when uncertainty is explicit. It is `OPERATIONALLY_READY` only when a new actor can determine current truth, current authority, active blockers, and exact next action without guessing.
 
-Optional immutable-tag/SHA provenance or repository branch protection does not change Project Source readiness automatically unless a Project-Specific Rule makes it a requirement.
+Optional immutable-tag/SHA provenance or repository protection does not change readiness automatically unless Project-Specific Rules make it a requirement.
 
-## 21. Interview Policy
+## 25. Interview Policy
 
 Modes:
 
@@ -479,8 +742,6 @@ FAST GRILL ADAPTIVE
 ```
 
 Default = `ADAPTIVE`.
-
-Decision rule:
 
 ```text
 Can verify?              → VERIFY
@@ -491,30 +752,15 @@ Authority required?      → RESOLVE / ASK
 Dangerous ambiguity?     → BLOCK AFFECTED SCOPE
 ```
 
-Do not ask for information available from accessible project sources. Do not fabricate information to reduce questions.
+Do not ask for information available from accessible Project sources. Do not fabricate information to reduce questions.
 
-## 22. Initial Creation Gate
+## 26. Initial Creation / Structural Migration Gate
 
-Before first creation or major structural migration, show a preview containing at least:
+Before first creation or major structural migration, show a preview containing at least Adoption Mode, Project Identity, files/directories to create, conditional files, known Decisions, known Assumptions, Unknowns, expected readiness, expected risk, and migration impact. Obtain explicit user approval before writing.
 
-- Adoption Mode
-- Project Identity
-- files/directories to create
-- Conditional files
-- known Decisions
-- known Assumptions
-- Unknowns
-- expected readiness
-- expected risk
-- migration impact
+## 27. Completion Report
 
-Obtain explicit user approval before writing.
-
-## 23. Completion Report
-
-After Create, Migrate, Import, Major Update, Handoff, or Export, report both human-readable and machine-readable results.
-
-Include at least project identity, operation, adoption mode, versions, validation/readiness, created/revised/archived docs, active ACT/ISS/DRIFT/CONFLICT, authority state, unknown/stale/verification-required items, export artifact if any, and exact next action.
+After Create, Migrate, Import, Major Update, Handoff, or Export, report human-readable and machine-readable results. Include Project identity, operation, adoption mode, versions, validation/readiness, created/revised/archived docs, active ACT/ISS/DRIFT/CONFLICT and relevant management controls, authority state, unknown/stale/verification-required items, export artifact if any, and exact next action.
 
 Canonical completion states:
 

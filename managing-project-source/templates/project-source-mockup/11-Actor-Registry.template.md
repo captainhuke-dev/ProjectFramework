@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,17 +22,18 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 11 — Actor Registry
 
-Canonical home of `ACTOR-*` and `INST-*`.
+Canonical home of `ACTOR-*` and `INST-*`. Role is descriptive only; authority is in `12`.
 
-## ACTOR-<NNN> — <DISPLAY_NAME>
-- **Actor Type:** <TYPE>
-- **Platform:** <PLATFORM>
-- **Role:** <DESCRIPTIVE_ROLE_ONLY>
-- **Status:** <STATUS>
+## Responsibility Mapping
 
-## INST-<NNN> — <INSTANCE>
-- **Actor:** <ACTOR_REF>
-- **Instance / Session:** <IDENTIFIER>
-- **Status:** <STATUS>
+Key each row by governed scope:
 
-Role is descriptive only; authority is governed by slot `12`.
+```text
+Scope
+Responsible
+Accountable
+Consulted
+Informed
+```
+
+**Responsibility ≠ Authority.** Mapping does not grant approval/mutation permission.
