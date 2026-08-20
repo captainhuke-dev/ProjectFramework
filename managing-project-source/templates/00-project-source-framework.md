@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.1.4"
+project_source_framework_version: "1.1.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -126,7 +126,7 @@ Conditional documents สร้างเฉพาะเมื่อ applicable; 
 
 Canonical bootstrap mockup อยู่ที่ `templates/project-source-mockup/`. ใช้เพื่อดู mapping เลข `00–17` และ starter filenames เท่านั้น; normative authority ยังคงเป็น Framework + Core Governance + document skeletons. Mockup มี template ของ `06–08` เพื่อ discoverability แต่ไม่ได้บังคับให้สร้าง active files. `18–19` ยัง RESERVED และ `20–99` สร้างเมื่อมี use case เท่านั้น.
 
-Framework distribution ใช้ `FRAMEWORK-RELEASE.yaml` เป็น release descriptor และใช้ `CHATGPT-PROJECT-INSTRUCTIONS.md` / `CLAUDE-PROJECT-INSTRUCTIONS.md` เป็น platform launchers. Distribution artifacts เหล่านี้อยู่นอก Project Source semantic namespace; ใช้ชี้ Agent ไปยัง immutable bootstrap source หรือ local pinned Project Source เท่านั้น และห้ามทำหน้าที่แทน/override/weakening `FRAMEWORK-001`.
+Framework distribution ใช้ `FRAMEWORK-RELEASE.yaml` เป็น distribution descriptor และใช้ `CHATGPT-PROJECT-INSTRUCTIONS.md` / `CLAUDE-PROJECT-INSTRUCTIONS.md` เป็น platform launchers. Distribution artifacts เหล่านี้อยู่นอก Project Source semantic namespace. NEW Project bootstrap จาก canonical repository `main`; initialized Project ใช้ local pinned Project Source เป็น authority. Git tag/SHA/branch protection เป็น optional assurance ไม่ใช่ governance root และไม่ใช่ prerequisite ของ normal bootstrap.
 
 ## 4. Naming and Revision
 
@@ -158,35 +158,56 @@ Canonical implementation files ที่ ecosystem บังคับชื่�
 
 จากนั้น `01-Project Source Index` route ไปเอกสารที่เกี่ยวข้องกับ task
 
-สำหรับ GREENFIELD bootstrap ให้เริ่มจาก canonical repository discovery entrypoint, อ่าน `FRAMEWORK-RELEASE.yaml`, resolve `stable_release_tag`, และปกติอ่าน Framework bootstrap source จาก immutable tagged ref ก่อน resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md`. หลัง Preview + explicit user approval จึงสร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
+สำหรับ GREENFIELD bootstrap ให้เริ่มจาก canonical repository `main`, อ่าน `README.md → FRAMEWORK-RELEASE.yaml → SKILL.md → latest amendment → Core Governance → Framework template → skeletons → mockup`, แล้ว resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md`. หลัง Preview + explicit user approval จึงสร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
 
 ถ้าเริ่มจาก ChatGPT Project หรือ Claude Project ให้ใช้ platform instruction artifact ที่ตรงกับ platform เป็น launcher เพื่อแยกกรณี NEW Project ออกจาก initialized Project. Initialized Project ต้องใช้ local pinned Project Source เป็น authority และห้าม auto-upgrade จาก upstream.
 
-หาก immutable tag/source resolve ไม่ได้ ให้หยุด governance mutation ที่ได้รับผลกระทบและรายงาน limitation. การ bootstrap จาก mutable `main` ทำได้เฉพาะเมื่อ User Explicit Approval และต้องเก็บ degraded provenance / `VERIFICATION_REQUIRED` แทนการอ้าง immutable provenance ที่ไม่ได้ตรวจจริง.
+หาก canonical Framework source เข้าถึงไม่ได้ ให้หยุด governance mutation ที่ได้รับผลกระทบและรายงาน limitation แทนการ reconstruct จาก memory. แต่การไม่มี immutable tag, exact commit SHA, หรือ branch protection **ไม่ใช่เหตุให้ block bootstrap** ถ้า canonical Framework source ยังเข้าถึงและตรวจได้.
 
 ห้ามใช้ Handoff, memory, README เก่า หรือไฟล์ “ล่าสุด” แทน bootstrap นี้โดยปริยาย
 
-### 5.1 Framework Source Provenance
+### 5.1 Framework Source Provenance — Optional Assurance
 
-Project Source ต้องเก็บ provenance ที่สังเกตได้จริงจาก bootstrap/migration source:
+Exact Git provenance เป็น enhanced assurance ไม่ใช่ prerequisite ของ normal Framework use.
+
+เมื่อ provenance ถูกสังเกตได้จริงและมีประโยชน์ อาจบันทึก:
 
 ```yaml
 framework_source_provenance:
   repository: "captainhuke-dev/ProjectFramework"
-  release_tag: "<RESOLVED_RELEASE_TAG>"
-  resolved_commit_sha: "<40_HEX_SHA>"
-  framework_version: "1.1.4"
+  source_ref: "<OBSERVED_REF_OR_MAIN>"
+  release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
+  resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
+  framework_version: "1.1.5"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
+  provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
 ```
 
 กฎ:
 
-- ค่าใน block นี้เป็น **observed provenance** จาก Git ref ที่ใช้จริง ห้ามเดา ห้าม predict และห้าม fabricate
-- NEW Project ปกติต้อง resolve `v1.1.4` จาก `FRAMEWORK-RELEASE.yaml` แล้วบันทึก commit SHA ที่ tag นั้น resolve จริง
-- หาก immutable resolution ใช้ไม่ได้และ user อนุมัติ mutable bootstrap ให้บันทึกสถานะ degraded provenance อย่างชัดเจนแทน fake tag/SHA
-- Existing Project ห้าม backfill SHA ย้อนหลังถ้า revision เดิมไม่ได้สังเกต provenance นั้นจริง
-- `14-Project Source Manifest` ต้อง preserve provenance ชุดเดียวกับ active `00`; mismatch ถือเป็น integrity drift
+- ค่า exact tag/SHA ต้องเป็น **observed provenance** เท่านั้น ห้ามเดา predict fabricate หรือ backfill ย้อนหลัง
+- NEW Project สามารถ bootstrap จาก canonical `main` ได้แม้ไม่มี tag/SHA ที่ verify แล้ว
+- ถ้า exact provenance ไม่ available ให้ใช้ `UNKNOWN` / `UNVERIFIED` เมื่อจำเป็นต้อง represent state; ห้ามสร้างค่าปลอมเพื่อให้ record ดู complete
+- `14-Project Source Manifest` ต้อง preserve provenance state เดียวกับ active `00` เมื่อ provenance ถูก track; mismatch ของค่าที่ track อยู่ถือเป็น integrity drift
+- absence ของ optional exact provenance เพียงอย่างเดียวไม่ทำให้ Project Source `NOT_OPERATIONALLY_READY`
+
+### 5.2 Concept-First Tooling Boundary
+
+ProjectFramework เป็น **conceptual governance/planning framework first**. Integrity Contract คือ semantic requirement ที่ Human/Agent ตรวจจาก Framework sources ได้ เช่น version consistency, slot mapping, conditional/reserved semantics, platform equivalence, archive independence และ no-auto-upgrade.
+
+ห้ามตีความ Integrity Contract ว่าเป็น implicit authorization ให้สร้าง:
+
+```text
+validator
+CLI
+GitHub Actions / CI
+migration engine
+background automation
+enforcement software
+```
+
+Executable tooling เป็น separate implementation scope และต้องมี User Explicit Request โดยตรง.
 
 ## 6. Truth and Uncertainty
 
@@ -325,7 +346,7 @@ Generated registry ห้ามถือ manual edit เป็น authoritative
 
 `14` = Current Reconstructable Snapshot inventory + hashes รวม active/current Detail Documents ที่จำเป็นต่อการตีความ referenced current Stable IDs; snapshot ห้ามพึ่ง omitted archive เพื่อ resolve Current Truth
 
-`14` ต้อง preserve Framework Source Provenance ชุดเดียวกับ active `00`. ห้าม invent missing provenance เพื่อให้ Manifest ดู complete; mismatch ระหว่าง `00` กับ `14` เป็น integrity drift ที่ต้องหาสาเหตุก่อนแก้.
+ถ้า Framework Source Provenance ถูก track อยู่ `14` ต้อง preserve state เดียวกับ active `00`. ห้าม invent missing provenance เพื่อให้ Manifest ดู complete; mismatch ของ observed/tracked values เป็น integrity drift ที่ต้องหาสาเหตุก่อนแก้. การไม่มี optional exact Git provenance ไม่ใช่ Manifest defect โดยตัวมันเอง.
 
 Manifest mismatch ต้องหาสาเหตุก่อน regenerate
 
@@ -361,7 +382,7 @@ Acceptance ต้อง fresh-check `00 → 01 → 03 → 09`, actor/authority �
 GREENFIELD BROWNFIELD IMPORT
 ```
 
-- GREENFIELD → immutable release resolution → preview → user approval → create → record observed provenance
+- GREENFIELD → canonical `main` bootstrap → preview → user approval → create → pin Framework/Schema → optionally record exact provenance when observed
 - BROWNFIELD → preserve-first; ห้าม move/rename/delete legacy source อัตโนมัติ
 - IMPORT → quarantine ที่ `import-staging/` ก่อน promotion
 
@@ -371,7 +392,7 @@ Project pin Framework/Schema version. ห้าม auto-upgrade
 
 Framework upgrade/normalization/import upgrade ใช้ `MIG-*` + assessment + approval + validation + promotion
 
-Migration ไป Framework `1.1.4+` ต้อง record provenance จาก approved migration source ref ที่ resolve จริง และห้าม fabricate historical provenance สำหรับ revision เก่าที่ไม่เคย capture ค่าเหล่านั้น.
+Migration ไป Framework `1.1.5+` อาจ record exact provenance จาก approved migration source ref เมื่อสังเกตได้จริง แต่ exact tag/SHA ไม่ใช่ prerequisite ของ migration และห้าม fabricate historical provenance สำหรับ revision เก่าที่ไม่เคย capture ค่าเหล่านั้น.
 
 Legacy compatibility: หากพบ `00-Project Source Rule` รุ่นเดิม ให้ถือเป็น legacy predecessor ของ slot `00`; ห้ามลบทิ้งตรง ๆ. สร้าง `00-Project Source Framework` candidate, ทำ governed promotion, แล้ว archive predecessor หลัง Framework ใหม่ Active สำเร็จ.
 
@@ -415,6 +436,8 @@ VALID + NOT_OPERATIONALLY_READY
 2. What is allowed now?
 3. What must happen next?
 
+Optional repository/release assurance เช่น immutable tag, exact Git SHA หรือ branch protection ไม่เปลี่ยน readiness โดยอัตโนมัติ เว้นแต่ Project-Specific Rule กำหนดให้เป็น requirement.
+
 ## 21. Initial Creation / Structural Migration Gate
 
 ก่อนสร้าง Project Source ครั้งแรกหรือ structural migration ครั้งใหญ่ ต้อง Preview อย่างน้อย:
@@ -453,7 +476,7 @@ COMPLETE PARTIAL BLOCKED FAILED
 ## PSR-001 — <TITLE>
 
 - **Status:** `<ACTIVE / SUPERSEDED>`
-- **Rule:** <PROJECT-SPECIFIC RULE>
+- **Rule:** <PROJECT-SPECIFIC_RULE>
 - **Reason:** <WHY>
 - **Approved By:** <USER / AUTHORIZED DECISION OWNER>
 - **Approved At:** <ISO8601>
