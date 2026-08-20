@@ -1,5 +1,5 @@
 release_format_version: 2
-framework_version: "1.1.5"
+framework_version: "1.2.0"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
@@ -10,7 +10,7 @@ entrypoints:
   claude_project: "CLAUDE-PROJECT-INSTRUCTIONS.md"
   skill: "SKILL.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260820-1024.md"
+latest_framework_amendment: "references/framework-governance-amendment-260820-1142.md"
 core_governance: "references/core-governance-rules.md"
 framework_template: "templates/00-project-source-framework.md"
 core_skeletons: "templates/core-document-skeletons.md"
