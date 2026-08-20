@@ -1,0 +1,23 @@
+release_format_version: 1
+framework_version: "1.1.4"
+schema_version: "1.0.0"
+release_channel: "stable"
+canonical_repository: "captainhuke-dev/ProjectFramework"
+canonical_branch: "main"
+stable_release_tag: "v1.1.4"
+
+entrypoints:
+  chatgpt_project: "CHATGPT-PROJECT-INSTRUCTIONS.md"
+  claude_project: "CLAUDE-PROJECT-INSTRUCTIONS.md"
+  skill: "SKILL.md"
+
+latest_framework_amendment: "references/framework-governance-amendment-260820-0821.md"
+core_governance: "references/core-governance-rules.md"
+framework_template: "templates/00-project-source-framework.md"
+core_skeletons: "templates/core-document-skeletons.md"
+mockup_root: "templates/project-source-mockup/"
+
+provenance_policy:
+  preferred_bootstrap_ref: "stable_release_tag"
+  record_resolved_commit_sha_in_project: true
+  upstream_is_live_dependency_after_bootstrap: false
