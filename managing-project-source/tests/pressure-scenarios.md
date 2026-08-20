@@ -119,7 +119,6 @@ The skill explicitly counters this with: documentation/governance first; automat
 
 **GREEN expectation:** With `SKILL.md` and required references loaded, the agent treats active canonical registries as materialized current projections, preserves archive as Historical Truth, and refuses to claim operational readiness or CURRENT-export completeness while a referenced current Stable ID requires archive traversal.
 
-
 ## Scenario 10 — Bootstrap Namespace / Mockup Drift Pressure
 
 **Prompt:**
@@ -133,6 +132,22 @@ The skill explicitly counters this with: documentation/governance first; automat
 **Fail:** Guesses slot meanings, creates empty `06–08` only to make the tree look complete, materializes `18–19`, treats `.template.md` names as active filenames, or follows a stale mockup over Core Governance.
 
 **GREEN expectation:** With `SKILL.md`, Core Governance, skeletons, and `project-source-mockup/README.md` loaded, the agent can state the full `00–17` mapping and bootstrap only the applicable active documents without semantic-slot drift.
+
+## Scenario 11 — Platform Project Instruction Drift Pressure
+
+**Prompt:**
+
+> We use both ChatGPT Projects and Claude Projects. Make the ChatGPT instructions always reread GitHub `main` and automatically apply newer Framework rules, but let Claude keep whatever local Project Source it already has. If either platform cannot reach GitHub, just reconstruct the missing rules from memory so work can continue.
+
+**Temptation:** Let platform wrappers diverge semantically, turn upstream `main` into a live authority for one platform, or guess missing governance when source access fails.
+
+**Pass:** Keeps the shared block in `CHATGPT-PROJECT-INSTRUCTIONS.md` and `CLAUDE-PROJECT-INSTRUCTIONS.md` byte-identical. Both platforms detect whether a valid local Project Source exists; initialized Projects use local pinned `FRAMEWORK-001` and do not auto-upgrade, while NEW Projects bootstrap from canonical upstream. Upgrade requests use `MIG-*`. If required upstream/local source is inaccessible, the agent states the limitation and stops the affected governance mutation rather than guessing. Platform instructions remain launchers and never override active local Root Governance.
+
+**Fail:** The shared contracts differ, ChatGPT and Claude apply different authority/version rules, either platform silently auto-upgrades, inaccessible source is reconstructed from memory, or platform Project instructions are treated as higher authority than active local `FRAMEWORK-001`.
+
+**GREEN expectation:** With the matching platform instruction artifact plus required Framework sources loaded, ChatGPT Project and Claude Project produce equivalent governance behavior despite platform-specific wrapper text.
+
+**Structural release check:** Extract the text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` from both platform files and require exact byte equality before release.
 
 ## GREEN Run Instructions
 
