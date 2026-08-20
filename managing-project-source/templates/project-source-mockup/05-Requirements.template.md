@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -24,15 +24,13 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `REQ-*`.
 
-## Current Requirements
-
-### REQ-<NNN> — <TITLE>
+## REQ-<NNN> — <TITLE>
 - **Status:** <STATUS>
-- **Requirement:** <MATERIALIZED_CURRENT_REQUIREMENT>
+- **Requirement:** <CURRENT_REQUIREMENT>
 - **Acceptance / Verification Criteria:** <CRITERIA>
-- **Priority / Scope:** <WHEN_RELEVANT>
+- **Priority / Scope:** <VALUE>
 - **Epistemic Status:** <STATUS>
-- **Related:** <DEC / ACT / EVD REFS>
+- **Related:** <DEC / ACT / RISK / ASM / DEP / MS / OUT / CR / GATE / EVD>
 - **Supersedes / Superseded By:** <REFS_OR_NONE>
 
-Current semantics must be materialized here or linked to an active/current canonical Detail Document; archive-dependent shorthand is not authoritative current payload.
+Current semantics must resolve without archive traversal.

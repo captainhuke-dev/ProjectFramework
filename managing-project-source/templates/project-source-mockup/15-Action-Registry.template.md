@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -24,10 +24,9 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `ACT-*`.
 
-## ACT-<NNN> — <TITLE>
-- **Status:** <TODO | IN_PROGRESS | DONE | BLOCKED | CANCELLED>
-- **Owner:** <ACTOR_REF>
-- **Scope:** <CONTENT>
-- **Related REQ / DEC / ISS:** <REFS>
-- **Exact Next Step:** <EXECUTABLE_ACTION>
-- **Verification / Completion Evidence:** <EVD_REF_OR_CRITERIA>
+```text
+TODO → IN_PROGRESS → DONE
+side states: BLOCKED / CANCELLED
+```
+
+Each Action has an exact next step. `ACT DONE ≠ MS REACHED ≠ OUT ACHIEVED`.

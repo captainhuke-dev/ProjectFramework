@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -24,14 +24,6 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `MIG-*`.
 
-## MIG-<NNN> — <TITLE>
-- **Status:** <STATUS>
-- **Source Version / Structure:** <SOURCE>
-- **Target Version / Structure:** <TARGET>
-- **Compatibility Assessment:** <CONTENT>
-- **Affected Documents / Objects:** <REFS>
-- **Steps:** <CONTENT>
-- **Reversibility / Rollback:** <CONTENT>
-- **Approval:** <AUTHORITY / USER_APPROVAL>
-- **Validation:** <CONTENT>
-- **Evidence:** <EVD_REFS>
+Record source/target, compatibility, affected documents/objects, steps, rollback, approval, validation/evidence, lifecycle.
+
+Framework `1.2.0` migration explicitly checks pre-existing slot `91` collision and forbids automatic promotion of old free-text into new management Stable IDs.

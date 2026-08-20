@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,13 +22,15 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 10 — Change Log
 
-Canonical home of logical append-only `CHG-*` history.
+Canonical logical append-only home of `CHG-*` history.
 
-## CHG-<NNN> — <TITLE>
-- **Timestamp:** <ISO8601>
-- **Actor / Instance:** <ACTOR / INST REFS>
-- **Object / Document:** <REF>
-- **Previous State:** <CONTENT>
-- **New State:** <CONTENT>
-- **Reason / Trigger:** <CONTENT>
-- **Related User Instruction / DEC / EVD:** <REFS>
+```text
+CHG-ID
+Timestamp
+Actor / Instance
+Object / Document
+Previous State
+New State
+Reason / Trigger
+Related User Instruction / DEC / CR / EVD
+```

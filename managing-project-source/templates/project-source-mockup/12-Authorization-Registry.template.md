@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,20 +22,4 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 12 — Authorization Registry
 
-Canonical home of `AUTH-*` and `DEL-*`.
-
-## AUTH-<NNN> — <TITLE>
-- **Grantor:** <ACTOR_REF>
-- **Grantee:** <ACTOR_REF>
-- **Allowed Actions:** <ACTIONS>
-- **Scope / Paths:** <SCOPE>
-- **Forbidden Actions / Effects:** <CONTENT>
-- **Risk Ceiling:** <R0_R1_R2_R3>
-- **Start:** <ISO8601>
-- **Expiry / Termination:** <CONTENT>
-- **Status:** <STATUS>
-
-## DEL-<NNN> — <TITLE>
-- **Parent Authorization:** <AUTH_REF>
-- **Delegated Scope:** <MUST_NOT_EXCEED_PARENT>
-- **Status:** <STATUS>
+Canonical home of `AUTH-*` and `DEL-*`. Record grantor, grantee, allowed/forbidden actions, scope, risk ceiling, start, expiry/termination, status. Delegation never exceeds parent authority.

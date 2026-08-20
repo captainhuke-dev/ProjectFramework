@@ -13,8 +13,8 @@ updated_at: "<ISO8601_WITH_TIMEZONE>"
 created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
-freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+freshness_class: "CHANGEABLE"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,40 +22,41 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 03 — Current State
 
-> Pure snapshot of now; no historical timeline.
+Pure snapshot of now. No historical timeline.
 
-## Lifecycle State
-<STATE>
+## Current State
 
-## Execution State
-<STATE>
+```text
+Lifecycle State: <STATE>
+Execution State: <STATE>
+Current Phase: <PHASE>
+Current Scope: <SCOPE>
+Current Owner / Actor: <ACTOR_REF>
+Active ACT / ISS / DRIFT / CONFLICT: <REFS>
+Active RISK / ASM / DEP / MS / OUT / CR / GATE: <REFS_OR_NONE>
+Current Blockers: <BLOCKERS>
+Exact Next Action: <NEXT_ACTION>
+Last Verified: <ISO8601>
+```
 
-## Current Phase
-<CONTENT>
+## Project Health
 
-## Current Scope
-<CONTENT>
+Use applicable dimensions with `GREEN / AMBER / RED / UNKNOWN`; omit non-applicable optional dimensions.
 
-## Current Owner / Actor
-<ACTOR_REF>
+```text
+Scope
+Progress / Schedule
+Risk
+Quality / Validation
+Dependencies
+Authority
+Knowledge
+Readiness
+Technical / Deployment when applicable
+```
 
-## Current Source of Truth References
-<REFS>
+Each dimension records State, Reason, Supporting Stable IDs/Evidence, Owner, Last Reviewed, Next Review/Trigger.
 
-## Active Actions
-<ACT_REFS_OR_NONE>
+## Review Cadence
 
-## Active Issues / Drift / Conflict
-<REFS_OR_NONE>
-
-## Current Blockers
-<CONTENT_OR_NONE>
-
-## Freshness Warnings
-<CONTENT_OR_NONE>
-
-## Exact Next Action
-<EXECUTABLE_NEXT_ACTION>
-
-## Last Verified
-<TIMESTAMP_AND_EVIDENCE>
+Use `TIME_BASED` and/or `EVENT_BASED`; this does not create a scheduler.

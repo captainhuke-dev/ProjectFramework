@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.5"
+project_source_framework_version: "1.2.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,31 +22,23 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 07 — Implementation Plan
 
-> **CONDITIONAL:** Create an active document only when implementation work exists.
+> **CONDITIONAL:** Create only when implementation work exists.
 
-## Goal
-<CONTENT>
+```text
+Goal
+Approved Scope
+Prerequisites
+Task / Action Mapping (ACT)
+Milestones (MS)
+Dependencies (DEP)
+Risks (RISK)
+Change Requests (CR)
+Review Gates (GATE)
+Implementation Sequence
+Risk Classification
+Verification Strategy
+Rollback / Reversibility
+Completion Criteria
+```
 
-## Approved Scope
-<CONTENT>
-
-## Prerequisites
-<CONTENT>
-
-## Task / Action Mapping
-<ACT_REFS>
-
-## Implementation Sequence
-<CONTENT>
-
-## Risk Classification
-<R0_R1_R2_R3>
-
-## Verification Strategy
-<CONTENT>
-
-## Rollback / Reversibility
-<CONTENT>
-
-## Completion Criteria
-<CONTENT>
+A technical plan is not implicit authorization to create code/Docker/CI artifacts outside approved scope.
