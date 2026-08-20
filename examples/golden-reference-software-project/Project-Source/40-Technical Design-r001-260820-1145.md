@@ -150,7 +150,9 @@ No image, Dockerfile, Compose file, network, volume, or container is actually cr
 | Upgrade compatibility | Must preserve declared data/application contract | Must preserve same contract | Procedure may differ |
 | Backup / Restore | External PostgreSQL operational responsibility | Docker database-volume/service operational responsibility | Procedure/mechanics differ |
 
-## Deployment Mode Variance — VAR-DEPLOY-001
+## Deployment Mode Variance — Database Placement and Persistence Mechanics
+
+> **Local descriptive sub-record:** This heading is not a new Framework Stable-ID object type. Canonical management-object types remain those defined by Framework `1.2.0`.
 
 - **Affected Capability:** Database placement and persistence/backup mechanics.
 - **Source Behavior:** PostgreSQL is an external service managed outside the application source runtime.
