@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.1.1"
+project_source_framework_version: "1.1.2"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -124,6 +124,8 @@ Core documents:
 
 Conditional documents สร้างเฉพาะเมื่อ applicable; ห้ามสร้างไฟล์ว่างเพื่อให้ดูครบ
 
+Canonical bootstrap mockup อยู่ที่ `templates/project-source-mockup/`. ใช้เพื่อดู mapping เลข `00–17` และ starter filenames เท่านั้น; normative authority ยังคงเป็น Framework + Core Governance + document skeletons. Mockup มี template ของ `06–08` เพื่อ discoverability แต่ไม่ได้บังคับให้สร้าง active files. `18–19` ยัง RESERVED และ `20–99` สร้างเมื่อมี use case เท่านั้น.
+
 ## 4. Naming and Revision
 
 Project Source artifacts ใช้ timestamp ท้าย basename:
@@ -153,6 +155,8 @@ Canonical implementation files ที่ ecosystem บังคับชื่�
 ```
 
 จากนั้น `01-Project Source Index` route ไปเอกสารที่เกี่ยวข้องกับ task
+
+สำหรับ GREENFIELD bootstrap ให้ resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md` ก่อน instantiate files; สร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
 
 ห้ามใช้ Handoff, memory, README เก่า หรือไฟล์ “ล่าสุด” แทน bootstrap นี้โดยปริยาย
 

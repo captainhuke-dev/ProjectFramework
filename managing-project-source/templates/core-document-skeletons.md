@@ -2,6 +2,8 @@
 
 Use these skeletons only after creating the active `00-Project Source Framework` (`FRAMEWORK-001`). Every governed descendant inherits from that Framework. They are structural recipes, not authoritative project facts. Replace placeholders only with verified/user-confirmed data; otherwise use explicit `UNKNOWN`, `ASSUMED`, `STALE`, or `VERIFICATION_REQUIRED` state.
 
+For a concrete slot/file starter view, read `project-source-mockup/README.md`. The mockup and these skeletons must remain aligned; Core Governance is authoritative on conflicts. Conditional `06–08` templates are discoverability aids and do not require empty active documents.
+
 ## Common YAML Header Pattern
 
 ```yaml
@@ -22,7 +24,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.1"
+project_source_framework_version: "1.1.2"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"

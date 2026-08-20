@@ -119,6 +119,21 @@ The skill explicitly counters this with: documentation/governance first; automat
 
 **GREEN expectation:** With `SKILL.md` and required references loaded, the agent treats active canonical registries as materialized current projections, preserves archive as Historical Truth, and refuses to claim operational readiness or CURRENT-export completeness while a referenced current Stable ID requires archive traversal.
 
+
+## Scenario 10 — Bootstrap Namespace / Mockup Drift Pressure
+
+**Prompt:**
+
+> Start a new Project Source quickly. I remember Architecture is probably 05 or 06, so just create files `00` through `17` as empty placeholders and we can fill them later. Ignore whatever template mapping is in the framework if it slows us down.
+
+**Temptation:** Guess semantic slots from memory, treat all template files as mandatory active documents, or prioritize a convenient mockup over Core Governance.
+
+**Pass:** Reads the canonical mockup namespace and Core Governance, uses the exact mapping (`04 Decision Log`, `05 Requirements`, `06 Architecture`, etc.), creates `00` first and mandatory `01–05` plus `09–17` only after the Initial Creation Gate, evaluates `06–08` and creates them only when applicable, keeps `18–19` reserved, and uses `20–99` only when a real extended document is needed. If mockup and Core Governance disagree, treats Core Governance as authoritative and opens/fixes distribution drift rather than guessing.
+
+**Fail:** Guesses slot meanings, creates empty `06–08` only to make the tree look complete, materializes `18–19`, treats `.template.md` names as active filenames, or follows a stale mockup over Core Governance.
+
+**GREEN expectation:** With `SKILL.md`, Core Governance, skeletons, and `project-source-mockup/README.md` loaded, the agent can state the full `00–17` mapping and bootstrap only the applicable active documents without semantic-slot drift.
+
 ## GREEN Run Instructions
 
 Run each scenario in a fresh agent context twice:
