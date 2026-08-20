@@ -4,7 +4,7 @@ Use these skeletons only after creating the active `00-Project Source Framework`
 
 For a concrete slot/file starter view, read `project-source-mockup/README.md`. The mockup and these skeletons must remain aligned; Core Governance is authoritative on conflicts. Conditional `06–08` templates are discoverability aids and do not require empty active documents.
 
-Framework `1.1.4` provenance is recorded in the active `00` body and mirrored as continuation metadata in `14-Project Source Manifest`; do not invent missing release tag/SHA values merely to make the Manifest look complete.
+Framework `1.1.5` treats exact Git provenance as optional assurance. If provenance is tracked, active `00` and `14-Project Source Manifest` must agree on the values actually observed. Do not invent tag/SHA values merely to make the Manifest look complete; absence of optional exact provenance is not by itself a readiness defect.
 
 ## Common YAML Header Pattern
 
@@ -26,7 +26,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.4"
+project_source_framework_version: "1.1.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -158,7 +158,7 @@ Rollback/Reversibility
 Completion Criteria
 ```
 
-Do not silently turn this into software tooling work when the user requested documentation only.
+Do not silently turn this into software tooling work when the user requested documentation/governance only.
 
 ## 08 — Open Issues [CONDITIONAL]
 
@@ -247,20 +247,21 @@ Current Reconstructable Snapshot inventory.
 
 Track active documents, continuation-relevant formal drafts, registered evidence, pinned schema/validation assets, required generated assets, and every active/current canonical Detail Document required to interpret referenced current Stable IDs. The Current Reconstructable Snapshot must resolve current authoritative semantics without requiring archived revisions.
 
-Required continuation metadata also includes **Framework Source Provenance**:
+When source provenance is tracked, continuation metadata may include **Framework Source Provenance**:
 
 ```text
 Framework Source Provenance
 - Repository
-- Release Tag / Mutable Ref State
-- Resolved Commit SHA when observed
+- Source Ref
+- Optional Release Tag when observed
+- Optional Resolved Commit SHA when observed
 - Framework Version
 - Schema Version
 - Captured At
-- Provenance Verification State
+- Provenance Status: VERIFIED / PARTIAL / UNVERIFIED
 ```
 
-The Manifest must preserve the same observed provenance as active `00-Project Source Framework`. If `00` lacks verified immutable provenance, `14` must preserve that degraded/unknown state rather than inventing values. A mismatch between `00` and `14` is integrity drift.
+The Manifest must preserve the same observed provenance state as active `00-Project Source Framework` when those values are tracked. If exact Git provenance is not observed, `14` must not invent it. Missing optional tag/SHA assurance is not by itself an integrity/readiness defect.
 
 Manifest does not recursively hash its own raw bytes.
 
