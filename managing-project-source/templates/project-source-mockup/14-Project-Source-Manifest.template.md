@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.1.3"
+project_source_framework_version: "1.1.4"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -41,5 +41,19 @@ Current Reconstructable Snapshot inventory.
 
 ## Required Active Detail Documents
 <DETAIL_DOCS_REQUIRED_TO_INTERPRET_CURRENT_STABLE_IDS>
+
+## Framework Source Provenance
+
+```text
+Repository: <MATCH_ACTIVE_00>
+Release Tag / Mutable Ref State: <MATCH_ACTIVE_00>
+Resolved Commit SHA when observed: <MATCH_ACTIVE_00_OR_VERIFICATION_REQUIRED>
+Framework Version: 1.1.4
+Schema Version: 1.0.0
+Captured At: <MATCH_ACTIVE_00>
+Provenance Verification State: <VERIFIED | VERIFICATION_REQUIRED | UNKNOWN>
+```
+
+The Manifest preserves the provenance actually recorded in active `00-Project Source Framework`. It MUST NOT invent missing tag/SHA values to appear complete. A mismatch between `00` and `14` is integrity drift requiring root-cause resolution.
 
 The snapshot must resolve current authoritative semantics without archived revisions. The Manifest does not recursively hash its own raw bytes.
