@@ -15,11 +15,13 @@ Maintain a consistent `Project-Source/` governance layer. Make **current truth, 
 
 Before creating or materially changing Project Source, read:
 
-- `references/framework-governance-amendment-260820-0646.md`
+- `references/framework-governance-amendment-260820-0707.md`
+- `references/framework-governance-amendment-260820-0646.md` (historical approved amendment)
 - `references/framework-governance-amendment-260814-0808.md` (historical approved amendment)
 - `references/core-governance-rules.md`
 - `templates/00-project-source-framework.md`
 - `templates/core-document-skeletons.md` for new Project Source
+- `templates/project-source-mockup/README.md` to resolve semantic-slot/document mapping and starter filenames
 
 Use the historical design spec only for rationale/edge cases; the Framework amendment wins on conflicts.
 
@@ -48,7 +50,7 @@ The observed ambiguity applies directly to `DEC-*` in `04-Decision Log` and `REQ
 
 ## Workflow
 
-1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT`.
+1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT`. For `GREENFIELD`, read the canonical bootstrap mockup before generating Project Source files.
 2. Resolve explicit `FAST`/`GRILL`; otherwise use `ADAPTIVE`.
 3. Confirm active `FRAMEWORK-001`; if missing, stop affected work and propose governed repair.
 4. Existing Project: bootstrap `00 → 01 → 03`, then follow `01` routing.
@@ -56,15 +58,16 @@ The observed ambiguity applies directly to `DEC-*` in `04-Decision Log` and `REQ
 6. Classify important claims by Truth Domain, Epistemic Status, and Freshness. Use `DRIFT-*` / `CONFLICT-*`; never silently reconcile.
 7. Initial creation or major structural migration requires Preview → explicit user approval → write.
 8. Follow Core Governance for naming, revisions, archive, canonical object homes, authority, handoff, evidence, and exports.
-9. Before readiness or `CURRENT` export claims, verify every referenced current Stable ID resolves within the Current Reconstructable Snapshot without archive traversal.
-10. Never store actual secrets; use `SECRET-*` metadata references only.
-11. Preserve history on substantive updates and finish with human + machine completion summary, readiness, and exact next action.
+9. For new-project bootstrap, map semantic slots from `templates/project-source-mockup/README.md`: instantiate mandatory `00–05` and `09–17`, evaluate conditional `06–08`, keep `18–19` reserved, and create `20–99` only when applicable.
+10. Before readiness or `CURRENT` export claims, verify every referenced current Stable ID resolves within the Current Reconstructable Snapshot without archive traversal.
+11. Never store actual secrets; use `SECRET-*` metadata references only.
+12. Preserve history on substantive updates and finish with human + machine completion summary, readiness, and exact next action.
 
 ## Quick Reference
 
 | Situation | Required behavior |
 |---|---|
-| New project | Preview → approval → Framework first → descendants |
+| New project | Preview → approval → read mockup namespace → Framework first → mandatory descendants; conditional only when applicable |
 | Existing project | Preserve-first discovery |
 | Import | Quarantine/stage before promotion |
 | Missing fact | `UNKNOWN` / `ASSUMED` / `STALE`; never fabricate |
@@ -78,6 +81,7 @@ The observed ambiguity applies directly to `DEC-*` in `04-Decision Log` and `REQ
 
 - Removing/bypassing/demoting/weakening `FRAMEWORK-001`
 - Creating governed descendants without Framework inheritance
+- Mockup/namespace drift: guessing semantic slots, pre-creating empty conditional documents, materializing reserved slots, or following a stale mockup over Core Governance
 - Archive-dependent Current Truth: a current Stable ID requires archived revision content to determine current semantics
 - Turning documentation scope into software engineering without explicit request
 - Writing before the initial approval gate
