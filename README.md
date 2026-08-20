@@ -1,16 +1,37 @@
 # ProjectFramework
 
-`captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch is the mutable discovery/release branch; reproducible NEW-project bootstrap resolves the stable release reference declared by `managing-project-source/FRAMEWORK-RELEASE.yaml`.
+`captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
 ## Current Release
 
-- Project Source Framework: **1.1.4**
+- Project Source Framework: **1.1.5**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
-- Declared stable release tag: `v1.1.4`
 
-The descriptor declares the release tag expected by this distribution. **Do not infer that the Git tag exists merely because it is declared in the file.** Release completion requires the tag to be created after merge and verified to resolve to the exact Framework `1.1.4` release commit.
+## Framework Intent
+
+ProjectFramework is a **conceptual Project governance and planning framework**. It defines how a Project should represent current truth, authority, requirements, decisions, evidence, handoff, migration, semantic slots, readiness, and continuation context across agents.
+
+It is intentionally **documentation/governance first**. Integrity rules are semantic contracts that a human or Agent can evaluate from the Framework sources. They do not imply that this repository must contain a validator, CLI, GitHub Actions workflow, migration engine, background automation, or other enforcement software.
+
+Executable enforcement tooling is a separate implementation scope and is added only when explicitly requested.
+
+## Operational Use vs Optional Release Assurance
+
+Framework usability and repository/release assurance are separate dimensions:
+
+```text
+OPERATIONALLY_USABLE
+REPRODUCIBLY_RELEASED
+REPOSITORY_HARDENED
+```
+
+- **OPERATIONALLY_USABLE** — the Framework can correctly bootstrap and govern a Project.
+- **REPRODUCIBLY_RELEASED** — optional assurance that an immutable source identity such as a Git tag/commit was preserved.
+- **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
+
+A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps may be reported, but they are **not prerequisites for normal bootstrap** unless a Project-Specific Rule explicitly requires them.
 
 ## Platform Project Instructions
 
@@ -19,70 +40,58 @@ For a platform Project, use the matching canonical bootstrap instruction artifac
 - **ChatGPT Projects:** copy `managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md` into **Project settings → Instructions**.
 - **Claude Projects:** copy `managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md` into **Set project instructions**.
 
-The two platform files contain the same shared governance contract. Their platform instructions are **bootstrap/continuation launchers, not a competing governance root**. For a NEW project they route the agent through the release descriptor and immutable bootstrap ref. After a valid local `Project-Source/` is initialized, the locally pinned Project Source becomes authoritative for that project and upstream is not a live replacement.
+The two platform files contain the same shared governance contract. They are **bootstrap/continuation launchers, not competing governance roots**. After a valid local `Project-Source/` is initialized, the locally pinned Project Source becomes authoritative for that Project.
 
-## Reproducible New-Project Bootstrap
+## New-Project Bootstrap Read Order
 
 For every NEW Project Source:
 
 1. Start from the matching platform Project instruction artifact when using ChatGPT Projects or Claude Projects.
-2. Read this `README.md` from the canonical repository discovery branch.
+2. Read this `README.md` from canonical repository `main`.
 3. Read `managing-project-source/FRAMEWORK-RELEASE.yaml`.
-4. Resolve `stable_release_tag` from the descriptor and verify the tagged source declares the expected Framework/Schema version.
-5. Read the bootstrap source at that immutable tagged ref in this order:
-   - `managing-project-source/SKILL.md`
-   - latest Framework governance amendment
-   - `managing-project-source/references/core-governance-rules.md`
-   - `managing-project-source/templates/00-project-source-framework.md`
-   - `managing-project-source/templates/core-document-skeletons.md`
-   - `managing-project-source/templates/project-source-mockup/README.md`
-6. Preview the proposed Project Source and obtain explicit user approval before writing.
-7. Create active `00-Project Source Framework` first, then mandatory `01–05` and `09–17`; evaluate conditional `06–08`; do not materialize reserved `18–19`.
-8. Record the **actually resolved release tag and commit SHA** in local `framework_source_provenance` and corresponding Manifest continuation metadata.
+4. Read `managing-project-source/SKILL.md`.
+5. Read the latest Framework governance amendment and `managing-project-source/references/core-governance-rules.md`.
+6. Read `managing-project-source/templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, and `templates/project-source-mockup/README.md`.
+7. Preview the proposed Project Source and obtain explicit user approval before writing.
+8. Create active `00-Project Source Framework` first, then mandatory `01–05` and `09–17`; evaluate conditional `06–08`; do not materialize reserved `18–19`.
 9. Pin the imported Framework/Schema locally. The repository is not a live dependency after bootstrap.
-
-### If the stable tag cannot be resolved
-
-Mutable `main` is **not** equivalent to immutable release provenance. If the declared stable release tag or tagged source cannot be resolved:
-
-- state the access/resolution limitation explicitly;
-- do not fabricate an immutable tag or SHA;
-- mutable-`main` bootstrap requires explicit user approval;
-- record degraded provenance such as `VERIFICATION_REQUIRED` / mutable-source warning until independently verified.
+10. If exact Git tag/SHA provenance is actually observed and useful, record it. If it is unavailable, do not invent it and do not block otherwise valid bootstrap solely for that reason.
 
 ## Existing Projects
 
-Existing projects **do not auto-upgrade** when this repository changes. Their project-local approved Framework/Schema pins remain authoritative. Do not retroactively invent a historical release SHA for an older Project that did not observe one. Upgrade to a newer Framework uses the governed `MIG-*` assessment, explicit approval, validation, promotion, supersede/archive, and postflight process defined by the Project Source Framework.
+Existing projects **do not auto-upgrade** when this repository changes. Their project-local approved Framework/Schema pins remain authoritative. Upgrade to a newer Framework uses the governed `MIG-*` assessment, explicit approval, validation, promotion, supersede/archive, and postflight process defined by the Project Source Framework.
 
-## Framework 1.1.4 Release Provenance
+## Concept-First Integrity Contract
 
-`FRAMEWORK-RELEASE.yaml` is distribution metadata, not a Project Source semantic document. It declares the canonical repository, release channel, stable tag, entrypoints, latest amendment, and provenance policy. It intentionally does **not** embed the SHA of its own containing release commit; exact commit provenance is recorded by a consuming Project after resolving the Git ref it actually used.
+At minimum, Framework integrity means:
 
-Canonical provenance identity is:
+- current Framework/Schema declarations agree across current distribution artifacts;
+- semantic slots `00–17` retain their governed meanings;
+- `06–08` remain **CONDITIONAL**;
+- `18–19` remain **RESERVED**;
+- ChatGPT and Claude shared governance semantics remain equivalent;
+- active/current Stable IDs resolve without archive dependency;
+- existing Projects never silently auto-upgrade;
+- platform launchers never override active local `FRAMEWORK-001`;
+- missing facts, authority, source, or provenance are never fabricated.
 
-```text
-Framework semantic version
-+ stable release tag
-+ resolved Git commit SHA observed by the consuming Project
-```
+These requirements may be reviewed manually or by an Agent. **The existence of an Integrity Contract is not authorization to build enforcement software.**
 
-## Framework 1.1.3 Platform Bootstrap Instructions
+## Optional Source Provenance
 
-`CHATGPT-PROJECT-INSTRUCTIONS.md` and `CLAUDE-PROJECT-INSTRUCTIONS.md` are official distribution entrypoints for platform Projects. They share a byte-identical governance core between explicit shared-contract markers so platform wrappers cannot silently diverge on bootstrap, local authority, migration, or scope rules.
+`FRAMEWORK-RELEASE.yaml` identifies the canonical repository and bootstrap branch. Exact Git provenance is enhanced assurance, not a bootstrap prerequisite.
 
-If required upstream/local Project Source content cannot be accessed, the platform instruction contract requires the agent to state the limitation and stop the affected governance mutation rather than reconstruct Framework rules or project facts from memory.
+When exact provenance is actually observed, a Project may record values such as source ref/tag and resolved commit SHA. When it is not observed, use an explicit state such as `UNKNOWN` / `UNVERIFIED` if provenance tracking is material. Never fabricate or retroactively backfill an unobserved Git identity merely to make records look complete.
 
-## Framework 1.1.2 Bootstrap Mockup
+## Bootstrap Mockup
 
 `templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It shows which semantic slot maps to which document, supplies `.template.md` starter files for slots `00–17`, and documents the extended `20–99` taxonomy.
 
-The mockup is **executable documentation, not normative authority**. `references/core-governance-rules.md` remains authoritative if a mismatch ever appears. The presence of a conditional template does not mean an active project must create that document: `06 Architecture`, `07 Implementation Plan`, and `08 Open Issues` are instantiated only when applicable. Slots `18–19` remain reserved and have no active-document templates.
+The mockup is **executable documentation, not normative authority**. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active project must create that document: `06 Architecture`, `07 Implementation Plan`, and `08 Open Issues` are instantiated only when applicable. Slots `18–19` remain reserved and have no active-document templates.
 
-## Framework 1.1.1 Integrity Clarification
+## Current-Truth Integrity
 
 Active canonical registries are materialized current projections, not delta chains. Current Stable IDs must resolve from the Current Reconstructable Snapshot without requiring archived revisions. Archive remains Historical Truth; it must not become a dependency for determining Current Truth.
-
-Framework `1.1.4` still does not add the Phase-B Framework integrity validator, GitHub Actions enforcement, Golden Reference Project, or fresh-agent certification claim. Those remain separate later phases.
 
 ## Repository Layout
 
@@ -106,3 +115,7 @@ ProjectFramework/
 ```
 
 Use `managing-project-source/` as the reusable framework package. Files under `docs/superpowers/` document development of this repository and are not automatically copied into each Project Source.
+
+## Supersession Note
+
+Framework `1.1.5` supersedes any interpretation of `1.1.4` that made Git tags, exact commit provenance, branch protection, executable validators, or CI enforcement prerequisites for normal Framework usability. Those mechanisms remain optional assurance or separate explicitly requested implementation scope.

@@ -1,23 +1,29 @@
-release_format_version: 1
-framework_version: "1.1.4"
+release_format_version: 2
+framework_version: "1.1.5"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
 canonical_branch: "main"
-stable_release_tag: "v1.1.4"
 
 entrypoints:
   chatgpt_project: "CHATGPT-PROJECT-INSTRUCTIONS.md"
   claude_project: "CLAUDE-PROJECT-INSTRUCTIONS.md"
   skill: "SKILL.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260820-0821.md"
+latest_framework_amendment: "references/framework-governance-amendment-260820-1024.md"
 core_governance: "references/core-governance-rules.md"
 framework_template: "templates/00-project-source-framework.md"
 core_skeletons: "templates/core-document-skeletons.md"
 mockup_root: "templates/project-source-mockup/"
 
-provenance_policy:
-  preferred_bootstrap_ref: "stable_release_tag"
-  record_resolved_commit_sha_in_project: true
-  upstream_is_live_dependency_after_bootstrap: false
+bootstrap_policy:
+  canonical_bootstrap_ref: "main"
+  local_project_source_authoritative_after_bootstrap: true
+  exact_git_provenance_required_for_operational_use: false
+
+assurance_policy:
+  immutable_tag: "OPTIONAL"
+  tag_convention: "v{framework_version}"
+  resolved_commit_sha: "OPTIONAL_WHEN_OBSERVED"
+  branch_protection: "OPTIONAL_REPOSITORY_HARDENING"
+  missing_optional_assurance_blocks_bootstrap: false
