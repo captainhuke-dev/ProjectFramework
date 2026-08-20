@@ -84,9 +84,15 @@ managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md
 managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
 ```
 
-`FRAMEWORK-RELEASE.yaml` is machine-readable distribution metadata. It declares the Framework/Schema version, canonical repository/branch, stable release tag, entrypoint paths, latest amendment, and provenance policy. It is not a Project Source semantic document, not a semantic slot, and not Root Governance.
+`FRAMEWORK-RELEASE.yaml` is machine-readable distribution metadata. It declares Framework/Schema identity, canonical repository/branch, entrypoint paths, latest amendment, bootstrap policy, and optional assurance policy. It is not a Project Source semantic document, semantic slot, or Root Governance.
 
-The platform instruction files are launcher instructions, not Project Source documents and not semantic slots. Their shared governance contract MUST remain byte-identical. They may route a NEW project through the release descriptor and immutable bootstrap ref or route an initialized project to its local pinned Project Source, but they MUST NOT replace, weaken, bypass, or override active `FRAMEWORK-001`.
+The platform instruction files are launcher instructions, not Project Source documents and not semantic slots. Their shared governance contract MUST remain byte-identical. They route a NEW project to canonical upstream bootstrap or an initialized project to its local pinned Project Source, but MUST NOT replace, weaken, bypass, or override active `FRAMEWORK-001`.
+
+### 2.1 Concept-First Framework Boundary
+
+ProjectFramework is a **conceptual Project governance and planning framework first**. It defines governance semantics, namespace, integrity expectations, bootstrap, authority, migration, handoff, readiness, pressure scenarios, mockups, and examples.
+
+An Integrity Contract is a semantic requirement. It does not implicitly authorize or require executable enforcement software. Unless the user explicitly requests a separate implementation scope, do not create a validator, CLI, CI/GitHub Actions workflow, migration engine, background automation, runtime daemon, or similar enforcement system merely because a rule can be checked mechanically.
 
 ## 3. Naming and Revision
 
@@ -212,7 +218,7 @@ created_by: "ACTOR-001"
 created_by_instance: "INST-..."
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "CHANGEABLE"
-project_source_framework_version: "1.1.4"
+project_source_framework_version: "1.1.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -220,7 +226,7 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Binary/non-Markdown artifacts do not need embedded YAML; control them via registries, paths, hashes, and manifest metadata.
 
-Phase 1 uses agent/manual validation against this contract. Do not invent runtime validator software unless explicitly requested.
+ProjectFramework uses agent/manual semantic validation by default. Do not invent runtime validator software unless explicitly requested as a separate implementation scope.
 
 ## 8. Truth, Uncertainty, and Freshness
 
@@ -343,6 +349,8 @@ The generated registry is not manually authoritative.
 
 `14-Manifest` covers the Current Reconstructable Snapshot: active docs, continuation-relevant formal drafts, registered evidence, schema/validation snapshots, necessary generated assets, and every active/current Detail Document required to interpret a referenced current Stable ID. It does not include the entire archive by default, and the snapshot MUST NOT depend on omitted archived revisions to determine Current Truth.
 
+When Framework Source Provenance is tracked, `14` preserves the same observed state as active `00`. Missing optional exact Git provenance is not by itself a Manifest defect; fabricated provenance is prohibited. A mismatch between tracked observed values requires root-cause classification.
+
 Manifest integrity mismatch requires root-cause classification; do not blindly regenerate to hide unexpected change.
 
 ## 16. Handoff
@@ -365,7 +373,9 @@ Refresh handoff when user requests it or continuation state materially changes.
 
 ### GREENFIELD
 
-If the environment is a ChatGPT Project or Claude Project, begin with the matching canonical platform Project instruction artifact. If no valid local Project Source exists, read the canonical repository discovery entrypoint and `FRAMEWORK-RELEASE.yaml`, resolve the declared `stable_release_tag`, and normally continue from that immutable tagged source. Then: Discover → identity → adaptive interview → preview → user approval → create governance layer → validate → readiness → completion report. If the immutable release source cannot be resolved, stop the affected governance mutation; mutable-source bootstrap requires explicit user approval and degraded provenance rather than reconstructed or fabricated Framework identity.
+If the environment is a ChatGPT Project or Claude Project, begin with the matching canonical platform Project instruction artifact. If no valid local Project Source exists, bootstrap from canonical repository `main` using `README.md → FRAMEWORK-RELEASE.yaml → SKILL.md → latest amendment → Core Governance → Framework template → skeletons → mockup`, then continue: Discover → identity → adaptive interview → preview → user approval → create governance layer → validate → readiness → completion report.
+
+Exact Git tag/SHA provenance is optional assurance. If observed, record it accurately; if unavailable, do not fabricate it and do not block otherwise valid bootstrap solely for that reason. If canonical Framework source itself is inaccessible, stop the affected governance mutation instead of reconstructing Framework rules from memory.
 
 ### BROWNFIELD
 
@@ -381,31 +391,60 @@ Each Project pins Framework/Schema version and compatibility range. Never auto-u
 
 Managed migration uses `MIG-*` and covers source, target, compatibility assessment, affected documents/objects, steps, rollback, approval, validation, and evidence. Project-Specific Rules are preserved unless explicitly resolved otherwise.
 
-### 18.1 Framework Release Provenance
+### 18.1 Framework Operational Use and Optional Release Assurance
 
-`FRAMEWORK-RELEASE.yaml` is the Framework distribution release descriptor. It is metadata about the reusable distribution, not a new Project Source semantic slot.
+`FRAMEWORK-RELEASE.yaml` is distribution metadata, not a Project Source semantic slot.
 
-For NEW Projects, the declared `stable_release_tag` is the preferred immutable bootstrap ref. `main` remains a mutable discovery/release branch and MUST NOT be represented as equivalent immutable provenance.
+Treat Framework state as independent dimensions:
 
-A consuming Project records observed source provenance locally:
+```text
+OPERATIONALLY_USABLE
+REPRODUCIBLY_RELEASED
+REPOSITORY_HARDENED
+```
+
+- `OPERATIONALLY_USABLE` asks whether the canonical Framework can correctly bootstrap and govern a Project.
+- `REPRODUCIBLY_RELEASED` is optional assurance that an immutable Git identity such as tag/commit was preserved.
+- `REPOSITORY_HARDENED` is optional assurance about repository controls such as branch protection/rulesets.
+
+A Framework MAY be operationally usable while exact Git provenance is `UNKNOWN`/`UNVERIFIED` or repository hardening is not configured. These optional assurance states MUST NOT become blockers unless a Project-Specific Rule explicitly requires them.
+
+When exact source provenance is actually observed, a Project may record:
 
 ```yaml
 framework_source_provenance:
   repository: "captainhuke-dev/ProjectFramework"
-  release_tag: "<ACTUALLY_RESOLVED_RELEASE_TAG>"
-  resolved_commit_sha: "<ACTUALLY_RESOLVED_40_HEX_SHA>"
-  framework_version: "1.1.4"
+  source_ref: "<OBSERVED_REF_OR_MAIN>"
+  release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
+  resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
+  framework_version: "1.1.5"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
+  provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
 ```
 
 Rules:
 
-- The resolved SHA comes from the Git ref actually used for bootstrap/migration; it is not predicted or fabricated.
-- The release descriptor MUST NOT embed the SHA of its own containing release commit as a binding field because that creates self-reference.
-- If immutable tag resolution is unavailable, disclose the limitation and stop the affected mutation. Mutable-source bootstrap requires explicit user approval and must record degraded provenance / `VERIFICATION_REQUIRED` rather than false immutability.
-- Existing Projects MUST NOT backfill an unobserved historical SHA merely to look complete.
-- A newer upstream release never auto-upgrades an existing Project; migration remains governed by `MIG-*`.
+- exact tag/SHA values come only from what was actually observed; never predict, fabricate, or retroactively backfill them;
+- canonical `main` is a valid normal bootstrap source for NEW Projects;
+- absence of an immutable tag or resolved SHA does not by itself block bootstrap, migration, readiness, or normal Framework use;
+- a newer upstream release never auto-upgrades an existing Project; migration remains governed by `MIG-*`.
+
+### 18.2 Framework Integrity Contract
+
+Current Framework distribution integrity means at minimum:
+
+- current Framework/Schema declarations are internally consistent;
+- semantic slots `00–17` retain their governed meanings;
+- `06–08` remain conditional;
+- `18–19` remain reserved;
+- ChatGPT and Claude shared governance semantics remain equivalent;
+- current Stable IDs resolve without archive dependency;
+- existing Projects do not silently auto-upgrade;
+- platform launchers do not override active local Root Governance;
+- missing facts, authority, source, or provenance are never fabricated.
+
+These are semantic requirements and may be reviewed manually or by an Agent. They do not require executable enforcement tooling to exist.
 
 ## 19. Export Profiles
 
@@ -428,6 +467,8 @@ Validate structure, references, semantic state, index/manifest, secret policy, a
 Preserve Project Source revisions, Decisions, Requirements, Change Log, and Identity lineage indefinitely by default. Evidence follows Project-Specific retention. Purge requires authorization, no active references, auditability, and retained reconstructability.
 
 A Project Source may be `VALID + NOT_OPERATIONALLY_READY` when uncertainty is explicit. It is `OPERATIONALLY_READY` only when a new actor can determine current truth, current authority, active blockers, and exact next action without guessing.
+
+Optional immutable-tag/SHA provenance or repository branch protection does not change Project Source readiness automatically unless a Project-Specific Rule makes it a requirement.
 
 ## 21. Interview Policy
 
