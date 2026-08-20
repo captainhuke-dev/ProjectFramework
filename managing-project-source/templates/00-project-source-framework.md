@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.1.2"
+project_source_framework_version: "1.1.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -126,6 +126,8 @@ Conditional documents สร้างเฉพาะเมื่อ applicable; 
 
 Canonical bootstrap mockup อยู่ที่ `templates/project-source-mockup/`. ใช้เพื่อดู mapping เลข `00–17` และ starter filenames เท่านั้น; normative authority ยังคงเป็น Framework + Core Governance + document skeletons. Mockup มี template ของ `06–08` เพื่อ discoverability แต่ไม่ได้บังคับให้สร้าง active files. `18–19` ยัง RESERVED และ `20–99` สร้างเมื่อมี use case เท่านั้น.
 
+Platform Project bootstrap launchers อยู่ที่ `CHATGPT-PROJECT-INSTRUCTIONS.md` และ `CLAUDE-PROJECT-INSTRUCTIONS.md` ใน Framework distribution. ไฟล์เหล่านี้ใช้ชี้ Agent ไปยัง canonical bootstrap source หรือ local pinned Project Source เท่านั้น และห้ามทำหน้าที่แทน/override/weakening `FRAMEWORK-001` เมื่อ Project Source ถูก initialize แล้ว.
+
 ## 4. Naming and Revision
 
 Project Source artifacts ใช้ timestamp ท้าย basename:
@@ -157,6 +159,8 @@ Canonical implementation files ที่ ecosystem บังคับชื่�
 จากนั้น `01-Project Source Index` route ไปเอกสารที่เกี่ยวข้องกับ task
 
 สำหรับ GREENFIELD bootstrap ให้ resolve semantic-slot mapping จาก `templates/project-source-mockup/README.md` ก่อน instantiate files; สร้าง mandatory `00–05, 09–17`, evaluate conditional `06–08`, และห้าม materialize `18–19`.
+
+ถ้าเริ่มจาก ChatGPT Project หรือ Claude Project ให้ใช้ platform instruction artifact ที่ตรงกับ platform เป็น launcher เพื่อแยกกรณี NEW Project ออกจาก initialized Project. NEW Project bootstrap จาก canonical repository `main`; initialized Project ต้องใช้ local pinned Project Source เป็น authority และห้าม auto-upgrade จาก upstream. ถ้า required upstream/local source เข้าถึงไม่ได้ ให้หยุด governance mutation ที่ได้รับผลกระทบและรายงาน limitation แทนการ reconstruct จาก memory.
 
 ห้ามใช้ Handoff, memory, README เก่า หรือไฟล์ “ล่าสุด” แทน bootstrap นี้โดยปริยาย
 

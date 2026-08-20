@@ -23,7 +23,6 @@ Root inheritance and authority:
 
 Governed Markdown descendants declare `inherits_from: ["FRAMEWORK-001"]`; non-Markdown artifacts inherit through their canonical Registry/Manifest metadata. Missing active Framework makes Project Source `INVALID + NOT_OPERATIONALLY_READY`.
 
-
 Legacy rename migration: if a Brownfield Project still has `00-Project Source Rule`, treat it as the legacy predecessor of slot `00`. Do not delete it in place. Create a Framework candidate, promote it through governed revision/migration, then archive the predecessor only after active `FRAMEWORK-001` is established.
 
 Agents may propose Framework changes but must not modify `00-Project Source Framework` without explicit user approval. Framework revision preserves stable identity `FRAMEWORK-001`, supersedes/archive the old revision, and never deletes the root. Each project pins its approved Framework version; upgrades require a governed migration.
@@ -76,6 +75,15 @@ Extended taxonomy:
 ```
 
 Reserved anchors: `20 General Research`, `30 Business Flow`, `40 Technical Design`, `50 Test Strategy`, `60 Deployment Plan`, `70 Data Model`, `80 Review Report`, `90 Special Governance Extension`.
+
+Framework distribution platform bootstrap artifacts exist **outside** the Project Source semantic namespace:
+
+```text
+managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md
+managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
+```
+
+These files are platform launcher instructions, not Project Source documents and not semantic slots. Their shared governance contract MUST remain byte-identical. They may route a NEW project to canonical upstream bootstrap or an initialized project to its local pinned Project Source, but they MUST NOT replace, weaken, bypass, or override active `FRAMEWORK-001`.
 
 ## 3. Naming and Revision
 
@@ -201,7 +209,7 @@ created_by: "ACTOR-001"
 created_by_instance: "INST-..."
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "CHANGEABLE"
-project_source_framework_version: "1.1.1"
+project_source_framework_version: "1.1.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -354,7 +362,7 @@ Refresh handoff when user requests it or continuation state materially changes.
 
 ### GREENFIELD
 
-Discover → identity → adaptive interview → preview → user approval → create governance layer → validate → readiness → completion report.
+If the environment is a ChatGPT Project or Claude Project, begin with the matching canonical platform Project instruction artifact. If no valid local Project Source exists, continue: Discover → identity → adaptive interview → preview → user approval → create governance layer → validate → readiness → completion report. If required upstream source is inaccessible, stop the affected governance mutation instead of reconstructing Framework rules from memory.
 
 ### BROWNFIELD
 

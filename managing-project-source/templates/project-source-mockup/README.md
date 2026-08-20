@@ -1,6 +1,6 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.1.2 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.1.3 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, the active `00-Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup mismatch is release-blocking drift.
 
@@ -46,17 +46,19 @@ Reserved anchors remain: `20 General Research`, `30 Business Flow`, `40 Technica
 ## GREENFIELD Bootstrap Recipe
 
 ```text
-1. Read repository README.md
-2. Read SKILL.md + latest amendment + Core Governance
-3. Read 00 template + core-document-skeletons.md
-4. Read this mockup mapping
-5. Preview proposed Project Source → obtain explicit user approval
-6. Create active 00 first
-7. Create mandatory 01–05 and 09–17
-8. Evaluate 06–08; create active files only when applicable
-9. Keep 18–19 reserved
-10. Add 20–99 only for real project-specific needs
-11. Build/verify Index + Manifest + readiness
+1. If running inside a platform Project, start from the canonical ChatGPT/Claude Project instruction artifact
+2. Read repository README.md
+3. Read SKILL.md + latest amendment + Core Governance
+4. Read 00 template + core-document-skeletons.md
+5. Read this mockup mapping
+6. Preview proposed Project Source → obtain explicit user approval
+7. Create active 00 first
+8. Create mandatory 01–05 and 09–17
+9. Evaluate 06–08; create active files only when applicable
+10. Keep 18–19 reserved
+11. Add 20–99 only for real project-specific needs
+12. Build/verify Index + Manifest + readiness
+13. Pin Framework/Schema locally; do not auto-upgrade from upstream later
 ```
 
 ## Template vs Active Filename
