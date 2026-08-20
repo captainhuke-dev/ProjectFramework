@@ -24,9 +24,10 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `ACT-*`.
 
-```text
-TODO → IN_PROGRESS → DONE
-side states: BLOCKED / CANCELLED
-```
-
-Each Action has an exact next step. `ACT DONE ≠ MS REACHED ≠ OUT ACHIEVED`.
+## ACT-<NNN> — <TITLE>
+- **Status:** <TODO | IN_PROGRESS | DONE | BLOCKED | CANCELLED>
+- **Owner:** <ACTOR_REF>
+- **Scope:** <CONTENT>
+- **Related REQ / DEC / ISS:** <REFS>
+- **Exact Next Step:** <EXECUTABLE_ACTION>
+- **Verification / Completion Evidence:** <EVD_REF_OR_CRITERIA>

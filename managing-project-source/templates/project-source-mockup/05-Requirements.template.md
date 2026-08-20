@@ -24,13 +24,15 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `REQ-*`.
 
-## REQ-<NNN> — <TITLE>
+## Current Requirements
+
+### REQ-<NNN> — <TITLE>
 - **Status:** <STATUS>
-- **Requirement:** <CURRENT_REQUIREMENT>
+- **Requirement:** <MATERIALIZED_CURRENT_REQUIREMENT>
 - **Acceptance / Verification Criteria:** <CRITERIA>
-- **Priority / Scope:** <VALUE>
+- **Priority / Scope:** <WHEN_RELEVANT>
 - **Epistemic Status:** <STATUS>
-- **Related:** <DEC / ACT / RISK / ASM / DEP / MS / OUT / CR / GATE / EVD>
+- **Related:** <DEC / ACT / EVD REFS>
 - **Supersedes / Superseded By:** <REFS_OR_NONE>
 
-Current semantics must resolve without archive traversal.
+Current semantics must be materialized here or linked to an active/current canonical Detail Document; archive-dependent shorthand is not authoritative current payload.

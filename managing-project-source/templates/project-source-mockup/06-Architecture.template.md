@@ -22,18 +22,31 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 06 — Architecture
 
-> **CONDITIONAL:** Create only when the Project has meaningful systems/components/interfaces.
+> **CONDITIONAL:** Create an active document only when the project has meaningful systems/components/interfaces.
 
-```text
-Architecture Scope
-Components
-Interfaces
-Data Flow
-Dependencies
-Security / Authority Boundaries
-Runtime / Deployment Boundaries
-Key Architecture Decisions
-Known Constraints
-```
+## Architecture Scope
+<CONTENT>
 
-Use `40 Technical Design` for deeper implementation-facing blueprint detail when applicable.
+## Components
+<CONTENT>
+
+## Interfaces
+<CONTENT>
+
+## Data Flow
+<CONTENT>
+
+## Dependencies
+<CONTENT>
+
+## Security / Authority Boundaries
+<CONTENT>
+
+## Runtime / Deployment Boundaries
+<CONTENT>
+
+## Key Architecture Decisions
+<DEC_REFS>
+
+## Known Constraints
+<CONTENT>

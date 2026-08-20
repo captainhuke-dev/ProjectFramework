@@ -22,15 +22,13 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 10 — Change Log
 
-Canonical logical append-only home of `CHG-*` history.
+Canonical home of logical append-only `CHG-*` history.
 
-```text
-CHG-ID
-Timestamp
-Actor / Instance
-Object / Document
-Previous State
-New State
-Reason / Trigger
-Related User Instruction / DEC / CR / EVD
-```
+## CHG-<NNN> — <TITLE>
+- **Timestamp:** <ISO8601>
+- **Actor / Instance:** <ACTOR / INST REFS>
+- **Object / Document:** <REF>
+- **Previous State:** <CONTENT>
+- **New State:** <CONTENT>
+- **Reason / Trigger:** <CONTENT>
+- **Related User Instruction / DEC / EVD:** <REFS>

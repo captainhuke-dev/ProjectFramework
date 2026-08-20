@@ -22,4 +22,20 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 12 — Authorization Registry
 
-Canonical home of `AUTH-*` and `DEL-*`. Record grantor, grantee, allowed/forbidden actions, scope, risk ceiling, start, expiry/termination, status. Delegation never exceeds parent authority.
+Canonical home of `AUTH-*` and `DEL-*`.
+
+## AUTH-<NNN> — <TITLE>
+- **Grantor:** <ACTOR_REF>
+- **Grantee:** <ACTOR_REF>
+- **Allowed Actions:** <ACTIONS>
+- **Scope / Paths:** <SCOPE>
+- **Forbidden Actions / Effects:** <CONTENT>
+- **Risk Ceiling:** <R0_R1_R2_R3>
+- **Start:** <ISO8601>
+- **Expiry / Termination:** <CONTENT>
+- **Status:** <STATUS>
+
+## DEL-<NNN> — <TITLE>
+- **Parent Authorization:** <AUTH_REF>
+- **Delegated Scope:** <MUST_NOT_EXCEED_PARENT>
+- **Status:** <STATUS>

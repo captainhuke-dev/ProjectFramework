@@ -24,6 +24,14 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `MIG-*`.
 
-Record source/target, compatibility, affected documents/objects, steps, rollback, approval, validation/evidence, lifecycle.
-
-Framework `1.2.0` migration explicitly checks pre-existing slot `91` collision and forbids automatic promotion of old free-text into new management Stable IDs.
+## MIG-<NNN> — <TITLE>
+- **Status:** <STATUS>
+- **Source Version / Structure:** <SOURCE>
+- **Target Version / Structure:** <TARGET>
+- **Compatibility Assessment:** <CONTENT>
+- **Affected Documents / Objects:** <REFS>
+- **Steps:** <CONTENT>
+- **Reversibility / Rollback:** <CONTENT>
+- **Approval:** <AUTHORITY / USER_APPROVAL>
+- **Validation:** <CONTENT>
+- **Evidence:** <EVD_REFS>

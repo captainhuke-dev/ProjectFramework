@@ -24,12 +24,13 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `SECRET-*` metadata only. Actual secret values are forbidden.
 
-```text
-SECRET-ID
-Secret Type
-System / Environment
-External Storage Reference
-Required Authority
-Status
+## SECRET-<NNN> — <TITLE>
+- **Secret Type:** <TYPE>
+- **System / Environment:** <SYSTEM>
+- **External Storage Reference:** <REFERENCE_ONLY>
+- **Required Authority:** <AUTH_REF>
+- **Status:** <STATUS>
+
+```yaml
 secret_value_present: false
 ```

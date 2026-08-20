@@ -22,26 +22,32 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 02 — Project Overview
 
+## Project Identity
+<VERIFIED_OR_EXPLICIT_STATE>
+
 ## Purpose / Objective
-<PURPOSE>
+<CONTENT>
 
 ## In Scope
-<SCOPE>
+<CONTENT>
 
 ## Out of Scope
-<OUT_OF_SCOPE>
+<CONTENT>
 
 ## Stakeholders / Systems
-<STAKEHOLDERS_AND_SYSTEMS>
+<CONTENT>
 
 ## Known Constraints
-<CONSTRAINTS>
+<CONTENT>
 
-## Current High-Level Context
-<CONTEXT>
+## Current High-Level Architecture / Context
+<CONTENT_OR_UNKNOWN>
 
 ## Authoritative External Sources
-<SOURCES>
+<REFS_OR_NONE>
 
-## Project Lineage / Terminology
-<LINEAGE_AND_TERMS>
+## Project Lineage
+<CONTENT>
+
+## Project-Specific Terminology
+<CONTENT>

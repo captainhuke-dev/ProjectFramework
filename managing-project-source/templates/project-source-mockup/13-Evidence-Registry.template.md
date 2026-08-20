@@ -24,16 +24,14 @@ compatible_schema_range: ">=1.0,<2.0"
 
 Canonical home of `EVD-*`.
 
-```text
-EVD-ID
-Evidence Type
-Captured At
-Captured By Actor / Instance
-Source Reference
-Artifact Path
-Artifact Hash
-Supports Stable IDs
-Epistemic Status
-```
+## EVD-<NNN> — <TITLE>
+- **Evidence Type:** <TYPE>
+- **Captured At:** <ISO8601>
+- **Captured By Actor / Instance:** <ACTOR / INST REFS>
+- **Source Reference:** <SOURCE>
+- **Artifact Path:** <PATH>
+- **Artifact Hash:** <HASH>
+- **Supports:** <STABLE_ID_REFS>
+- **Epistemic Status:** <STATUS>
 
 Never store actual secrets as evidence.
