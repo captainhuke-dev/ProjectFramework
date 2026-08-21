@@ -6,11 +6,13 @@
 
 ### Project ยังไม่ได้ติดตั้ง UAAC
 
-สำหรับมนุษย์ที่ต้องการ walkthrough:
+สำหรับมนุษย์ที่ต้องการ walkthrough แบบกดอ่านง่ายจากหน้าแรก:
 
-[`universal-ai-agent-constitution/HUMAN-INSTALL-WALKTHROUGH-TH.md`](universal-ai-agent-constitution/HUMAN-INSTALL-WALKTHROUGH-TH.md)
+[`HUMAN-INSTALL-WALKTHROUGH-TH.md`](HUMAN-INSTALL-WALKTHROUGH-TH.md)
 
 เอกสารข้างต้นมีสถานะ **FOR HUMAN / NON-NORMATIVE / DO NOT EXECUTE** และไม่ใช่ Agent installation protocol
+
+> UAAC v4.2.0 verified package ยังคงเก็บ release copy ไว้ที่ `universal-ai-agent-constitution/HUMAN-INSTALL-WALKTHROUGH-TH.md`; root file เป็น human convenience view เพื่อไม่แก้ package bytes ที่ผ่าน remote verification แล้ว
 
 สำหรับ Agent/Installer ให้เริ่มจาก canonical protocol:
 
@@ -46,8 +48,8 @@ front door นี้เป็น router ไปยัง Constitution ที่ P
 
 ## เอกสารหลัก
 
+- [Human install walkthrough — root](HUMAN-INSTALL-WALKTHROUGH-TH.md)
 - [README ภาษาไทยและภาพรวมระบบ](universal-ai-agent-constitution/README.md)
-- [Human install walkthrough](universal-ai-agent-constitution/HUMAN-INSTALL-WALKTHROUGH-TH.md)
 - [Canonical Agent installation protocol](universal-ai-agent-constitution/INSTALL-UAAC.md)
 - [Adoption runbook](universal-ai-agent-constitution/ADOPTION-RUNBOOK.md)
 - [เหตุผลและรูปแบบ adoption](universal-ai-agent-constitution/ADOPTION-GUIDE.md)

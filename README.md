@@ -1,244 +1,323 @@
-# ProjectFramework
+# ProjectFramework — HZ Framework + UAAC
 
-`captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
+> Repository: `captainhuke-dev/ProjectFramework`  
+> Distribution branch: **`hz-framework`**  
+> Project Source Framework: **1.2.2**  
+> Universal AI Agent Constitution (UAAC): **4.2.0**
 
-## Current Release
+สาขา `hz-framework` คือชุดที่เราใช้รวม **ProjectFramework + UAAC** สำหรับสร้างและควบคุม Project ที่มี Human และ AI Agent หลายตัวทำงานร่วมกัน เช่น ChatGPT, Codex, Claude, Hermes และ CLI Agent
 
-- Project Source Framework: **1.2.2**
-- Project Source Schema: **1.0.0**
-- Distributable package root: `managing-project-source/`
-- Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
+เป้าหมายหลักคือทำให้ Agent ทุกตัวกลับมาอ่าน **Project เดียวกัน กฎหมายเดียวกัน เอกสาร/PRD เดียวกัน Current State เดียวกัน และ Continuation เดียวกัน** แทนการพึ่งความจำของแต่ละแชตหรือแต่ละ Agent
 
-## Framework Intent
+> **หลักการจำง่าย:** ผู้ใช้สั่ง “งาน” ไม่ต้องสั่ง “กฎหมาย” ซ้ำ เมื่อ Project ติดตั้ง UAAC แล้ว Agent ต้อง Auto-Boot และเลือก applicable Skills เอง
 
-ProjectFramework is a **conceptual Project governance and planning framework**. It defines how a Project should represent current truth, authority, requirements, decisions, evidence, risks, assumptions, milestones, outcomes, dependencies, change control, handoff, migration, technical blueprint, installation/deployment knowledge, readiness, and continuation context across agents.
+---
 
-It is intentionally **documentation/governance first**. Integrity and technical rules are semantic contracts that a Human/Agent can evaluate from Framework sources. They do not imply that this repository must contain application code, a validator, CLI, Docker runtime artifacts, CI/CD, migration engine, scheduler, background automation, or other enforcement software.
+# 🚀 ถ้าคุณเพิ่งเข้ามา ให้เริ่มตรงนี้
 
-Executable implementation remains a separate explicit scope.
+## 🧑 สำหรับมนุษย์ — ดูตัวอย่างตั้งแต่ศูนย์
 
-## Operational Use vs Optional Release Assurance
-
-Framework usability and repository/release assurance are independent dimensions:
+ถ้าต้องการเห็นภาพตั้งแต่:
 
 ```text
-OPERATIONALLY_USABLE
-REPRODUCIBLY_RELEASED
-REPOSITORY_HARDENED
+Windows folder ว่าง
+→ เปิด Codex ใน folder
+→ สร้าง Git/GitHub Project
+→ ติดตั้ง UAAC
+→ push canonical Project state
+→ สร้าง ChatGPT Project
+→ เชื่อม ChatGPT + Codex
+→ ทดสอบว่าอ่าน Project state ตรงกัน
 ```
 
-- **OPERATIONALLY_USABLE** — the Framework can correctly bootstrap and govern a Project.
-- **REPRODUCIBLY_RELEASED** — optional assurance that an immutable source identity such as a Git tag/commit was preserved.
-- **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
+ให้เปิดไฟล์นี้ที่ root ได้เลย:
 
-A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+➡️ **[HUMAN-INSTALL-WALKTHROUGH-TH.md](HUMAN-INSTALL-WALKTHROUGH-TH.md)**
 
-## Framework 1.2.2 Additions
+ไฟล์นี้เป็น **FOR HUMAN / NON-NORMATIVE / DO NOT EXECUTE** ใช้เพื่ออธิบายและยกตัวอย่างเท่านั้น
 
-Framework `1.2.2` adds **Git Base Freshness and Forward-Port governance** for Projects that use branches/worktrees. New independent work starts from a freshly verified canonical integration target rather than inheriting whichever feature branch happens to be checked out. Feature-on-feature ancestry is explicit `STACKED_WORK`.
+## 🤖 สำหรับ Agent / Installer — ติดตั้งจริง
 
-Base freshness distinguishes `FRESH`, `STALE_NON_SEMANTIC`, `STALE_SEMANTIC`, and `UNKNOWN`. Non-semantic drift may be updated safely without rewriting shared history; semantic drift uses `BASE_STALE` and normally `FORWARD_PORT_REQUIRED` into clean current-base work. Immediately before acceptance/merge, the target head is rechecked: a conflict-free Git merge is not semantic approval — **Mergeable ≠ Acceptable**.
+Agent ที่ได้รับคำสั่งให้ “ติดตั้งรัฐธรรมนูญ Project” ต้องใช้ canonical installation protocol:
 
-This remains documentation/governance scope. Framework `1.2.2` introduces no Git hook, bot, CI workflow, validator, branch-protection automation, new semantic slot, or new Stable-ID namespace. Existing initialized Projects remain locally pinned and do not auto-upgrade.
-
-## Framework 1.2.1 Additions
-
-Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** governance. Material connector/MCP work is persisted at logical checkpoints to its source-native durable owner; transient reads/searches stay transient by default. Persistence failure is explicit through `PERSISTENCE_PENDING`, and `START_NEW_CHAT` is continuation-safe only after the minimum continuation state is durable outside Chat.
-
-The Project Source namespace and Schema remain unchanged at `1.0.0`; existing initialized Projects remain locally pinned and do not auto-upgrade.
-
-## Framework 1.2.0 Additions
-
-Framework `1.2.0` adds three standard **conditional** extended documents:
+➡️ **[universal-ai-agent-constitution/INSTALL-UAAC.md](universal-ai-agent-constitution/INSTALL-UAAC.md)**
 
 ```text
-40 Technical Design              CONDITIONAL
-60 Deployment Plan               CONDITIONAL
-91 Project Management Control    CONDITIONAL / STANDARD IN 1.2.0+
+Human Guide = อ่านเพื่อเข้าใจ
+INSTALL-UAAC.md = Agent protocol สำหรับทำจริง
 ```
 
-### 91 — Project Management Control
+## 📜 จุดเริ่มต้น UAAC
 
-`91` is the canonical home for:
+➡️ **[UAAC.md](UAAC.md)**
+
+ใช้เพื่อดูภาพรวม UAAC, จุดเริ่มต้นของ Human/Agent และเส้นทางไปยัง Constitution, Skills, tests และ release artifacts
+
+---
+
+# ถ้าจำได้แค่ 2 อย่าง
+
+## 1. Project ยังไม่ได้ติดตั้ง UAAC
+
+สั่ง Agent เช่น Codex ด้วย prompt แบบนี้:
 
 ```text
-RISK-*   Risk
-ASM-*    Assumption
-MS-*     Milestone
-OUT-*    Outcome
-DEP-*    Dependency
-CR-*     Change Request
-GATE-*   Review / Phase Gate
+ติดตั้งรัฐธรรมนูญ Project ตาม UAAC จาก:
+https://github.com/captainhuke-dev/ProjectFramework/blob/hz-framework/universal-ai-agent-constitution/INSTALL-UAAC.md
+
+ให้กับ Project:
+<PROJECT_REPO_URL_OR_LOCAL_ROOT>
+
+ทำตาม INSTALL-UAAC.md จนมีหลักฐานรองรับ INSTALLATION_VALIDATED
+ตั้ง governance/UAAC-BOOT.md เป็น front door ของ Project
+และพิสูจน์ Auto-Boot + cross-agent convergence ก่อนรายงานผล
 ```
 
-It supports explicit Risk/Assumption management, Milestone vs Outcome distinction, dependency control, scope/change assessment, and review gates without changing the mandatory core `00–17` set.
+URL ของ branch ใช้เพื่อ **ค้นหา installation protocol** เท่านั้น Installer ต้อง resolve และ pin exact immutable UAAC identity ก่อนนำไปเป็น effective Constitution ของ Project
 
-### 40 — Technical Design
+## 2. Project ติดตั้ง UAAC แล้ว
 
-`40` is the deeper technical blueprint for Projects with meaningful software/technical implementation. It may document:
+ทุก Human / ChatGPT / Codex / Claude / Hermes / CLI เริ่มจาก:
 
 ```text
-Tech Stack
-system/component responsibilities
-interfaces and dependencies
-source-structure responsibilities
-configuration contract
-runtime requirements
-Source/Docker architecture
-Source/Docker parity and variance
+governance/UAAC-BOOT.md
 ```
 
-It does **not** authorize creation of application source code, Dockerfile, Compose/Kubernetes/Helm artifacts, scripts, CI, or automation.
+สำหรับ remote Agent ใช้ canonical URL ของไฟล์เดียวกัน
 
-### 60 — Deployment Plan
-
-`60` is the installation/operations blueprint. It may document:
+หลังจากนั้นผู้ใช้สั่งงานปกติ เช่น:
 
 ```text
-prerequisites
-Source installation
-Docker installation
-configuration and secret references
-startup / shutdown
-verification / health
-logs / diagnostics
-upgrade / rollback
-backup / restore
-cleanup / troubleshooting
+แก้ bug login นี้และรัน tests
 ```
 
-A real Project may record concrete commands/paths in `60` when they are verified Project truth. ProjectFramework itself does not invent executable commands for nonexistent software.
+Agent ต้อง Auto-Boot, resolve canonical Project state และเลือก applicable Skills เอง
 
-### Deployment Support Vocabulary
+---
 
-Software Projects may declare:
+# Architecture หลัก
 
 ```text
-SOURCE_ONLY
-DOCKER_ONLY
-SOURCE_AND_DOCKER
-NOT_APPLICABLE
+                         HUMAN
+                           │
+        ┌──────────────────┴──────────────────┐
+        ▼                                     ▼
+HUMAN-INSTALL-WALKTHROUGH-TH.md       copy install prompt
+        │                                     │
+   explanation                               ▼
+   only                                Installer Agent
+                                              │
+                                              ▼
+                                      INSTALL-UAAC.md
+                                              │
+                                              ▼
+                                           Project
+                                              │
+                                      Minimal Boot Kernel
+                                              │
+                                              ▼
+                                   governance/UAAC-BOOT.md
+                                              │
+              ┌───────────────────────────────┼───────────────────────────────┐
+              ▼                               ▼                               ▼
+       Constitution/Law              Project docs / PRD             State / Continuation
+              │                               │                               │
+              └───────────────────────────────┼───────────────────────────────┘
+                                              ▼
+                                      Applicable Skills
+                                              │
+                        ┌─────────────────────┼─────────────────────┐
+                        ▼                     ▼                     ▼
+                     ChatGPT                Codex             Claude/Hermes/CLI
 ```
 
-`SOURCE_AND_DOCKER` requires one declared application/configuration/data/security/persistence contract. Intentional differences must be explicit Deployment Mode Variance; unexpected differences are `DRIFT-*`.
+เราไม่ได้ทำให้ AI ทุกตัวมี memory เดียวกัน แต่ทำให้ทุกตัวกลับมา resolve canonical Project state ชุดเดียวกัน
 
-## Project Operating Model
+---
 
-Framework `1.2.0` also adds:
+# UAAC v4.2.0
 
-- multi-dimensional Project Health in `03 Current State` using `GREEN / AMBER / RED / UNKNOWN` with reason/evidence;
-- `TIME_BASED` and `EVENT_BASED` review cadence semantics without creating a scheduler;
-- Decision Revalidation fields in `04 Decision Log`;
-- Responsibility Mapping in `11 Actor Registry` while preserving **Responsibility ≠ Authority**;
-- `ISS-* issue_type: KNOWLEDGE_DEBT` in `08 Open Issues` for material stale/missing operational knowledge.
+UAAC คือรัฐธรรมนูญกลางของ AI Project
 
-## Platform Project Instructions
-
-For a platform Project, use the matching canonical bootstrap instruction artifact:
-
-- **ChatGPT Projects:** copy `managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md` into **Project settings → Instructions**.
-- **Claude Projects:** copy `managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md` into **Set project instructions**.
-
-The two platform files contain the same shared governance contract. They are **bootstrap/continuation launchers, not competing governance roots**. After a valid local `Project-Source/` is initialized, the locally pinned Project Source becomes authoritative for that Project.
-
-## New-Project Bootstrap Read Order
-
-For every NEW Project Source:
-
-1. Start from the matching platform Project instruction artifact when using ChatGPT Projects or Claude Projects.
-2. Read this `README.md` from canonical repository `main`.
-3. Read `managing-project-source/FRAMEWORK-RELEASE.yaml`.
-4. Read `managing-project-source/SKILL.md`.
-5. Read the latest Framework governance amendment and `managing-project-source/references/core-governance-rules.md`.
-6. Read `managing-project-source/templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, and `templates/project-source-mockup/README.md`.
-7. Preview the proposed Project Source and obtain explicit user approval before writing.
-8. Create active `00-Project Source Framework` first, then mandatory `01–05` and `09–17`.
-9. Evaluate `06–08`, `40`, `60`, and `91` by applicability; do not create empty conditional documents merely to make a tree look complete.
-10. Keep `18–19` reserved; use `92–99` as Project-specific/Governance Extension space unless a later Framework revision governs them otherwise.
-11. Pin the imported Framework/Schema locally. The repository is not a live dependency after bootstrap.
-12. If exact Git tag/SHA provenance is actually observed and useful, record it. If unavailable, do not invent it and do not block otherwise valid bootstrap solely for that reason.
-
-## Existing Projects and Migration Safety
-
-Existing Projects **do not auto-upgrade** when this repository changes. Their project-local approved Framework/Schema pins remain authoritative. Upgrade to a newer Framework uses governed `MIG-*` assessment, explicit approval, validation, promotion, supersede/archive, and postflight.
-
-A Brownfield Project may already use semantic slot `91` for a custom document. Framework `1.2.0` must not overwrite it: assess through `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` if applicable.
-
-Old free-text notes are not automatically converted into new `RISK-*`, `ASM-*`, `MS-*`, `OUT-*`, `DEP-*`, `CR-*`, or `GATE-*` objects. Promotion requires sufficient current semantics, ownership, status, and epistemic/evidence state.
-
-## Concept-First Integrity Contract
-
-At minimum, Framework integrity means:
-
-- current Framework/Schema declarations agree across current distribution artifacts;
-- semantic slots `00–17` retain their governed meanings;
-- `06–08` remain **CONDITIONAL**;
-- `18–19` remain **RESERVED**;
-- `40`, `60`, and `91` are applicability-driven conditional documents;
-- `91` owns `RISK / ASM / MS / OUT / DEP / CR / GATE` current records;
-- `92–99` remain extension space unless governed otherwise;
-- ChatGPT and Claude shared governance semantics remain equivalent;
-- active/current Stable IDs resolve without archive dependency;
-- existing Projects never silently auto-upgrade;
-- platform launchers never override active local `FRAMEWORK-001`;
-- missing facts, authority, source, or provenance are never fabricated.
-
-These requirements may be reviewed manually or by an Agent. **The existence of an Integrity Contract is not authorization to build enforcement software.**
-
-## Optional Source Provenance
-
-`FRAMEWORK-RELEASE.yaml` identifies the canonical repository and bootstrap branch. Exact Git provenance is enhanced assurance, not a bootstrap prerequisite.
-
-When exact provenance is actually observed, a Project may record source ref/tag and resolved commit SHA. When it is not observed, use an explicit `UNKNOWN` / `UNVERIFIED` state only when provenance tracking is material. Never fabricate or retroactively backfill an unobserved Git identity merely to make records look complete.
-
-## Bootstrap Mockup
-
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`.
-
-The mockup is **executable documentation, not normative authority**. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document.
-
-## Golden Reference
-
-Framework `1.2.0` includes a synthetic composition example at:
+Canonical release ที่ผ่าน remote verification:
 
 ```text
-examples/golden-reference-software-project/Project-Source/
+Version: 4.2.0
+Release commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+Canonical laws: 25
+Conformance scenarios: 142
 ```
 
-It demonstrates `00–17 + 40 + 60 + 91`, Project Health, management-control objects, a fictional Tech Stack, `SOURCE_AND_DOCKER`, parity/variance, installation/operations blueprint, migration safety, and handoff. It contains **no application code, Dockerfile, Compose, install script, CI workflow, binary/runtime artifact, or real secret**.
+Package:
 
-The Golden Reference is illustrative only. Core Governance, active Framework, templates, and Project-specific approved truth remain authoritative over the example.
+➡️ **[universal-ai-agent-constitution/](universal-ai-agent-constitution/)**
 
-## Current-Truth Integrity
+เอกสารสำคัญ:
 
-Active canonical registries are materialized current projections, not delta chains. Current Stable IDs must resolve from the Current Reconstructable Snapshot without requiring archived revisions. Archive remains Historical Truth; it must not become a dependency for determining Current Truth.
+- [Agent installation protocol](universal-ai-agent-constitution/INSTALL-UAAC.md)
+- [UAAC README](universal-ai-agent-constitution/README.md)
+- [Constitution v4.2](universal-ai-agent-constitution/UAAC-v4.2-CONSTITUTION.md)
+- [Adoption Guide](universal-ai-agent-constitution/ADOPTION-GUIDE.md)
+- [Adoption Runbook](universal-ai-agent-constitution/ADOPTION-RUNBOOK.md)
+- [Installation Threat Model](universal-ai-agent-constitution/INSTALLATION-THREAT-MODEL.md)
+- [Systems Thinking Analysis](universal-ai-agent-constitution/SYSTEMS-THINKING-ANALYSIS-TH.md)
+- [Release Receipt](universal-ai-agent-constitution/CONSTITUTION-RELEASE.yaml)
 
-## Repository Layout
+> `universal-ai-agent-constitution/` v4.2.0 เป็น release package ที่ตรวจแล้ว เอกสาร navigation ที่ root อาจถูกปรับปรุงได้ แต่ไม่ควรแก้ package bytes เดิมโดยไม่ออก release/version ใหม่ตาม governance
+
+---
+
+# Human Walkthrough กับ Agent Protocol ต่างกันอย่างไร
+
+| เอกสาร | ผู้ใช้หลัก | Execute ได้หรือไม่ | Authority / Truth |
+|---|---|---:|---|
+| `HUMAN-INSTALL-WALKTHROUGH-TH.md` | Human | ❌ ไม่ใช่ runbook | NONE |
+| `universal-ai-agent-constitution/INSTALL-UAAC.md` | Installer Agent | ✅ ตาม protocol | Procedural contract ภายใต้ UAAC |
+| `UAAC.md` | Human/Agent navigation | ❌ ไม่ใช่ Project Law | NONE |
+| Project `governance/UAAC-BOOT.md` | ทุก Agent หลัง install | ✅ เป็น router | NONE; route ไป canonical sources |
+
+ดังนั้น Agent ห้ามเอา path, repo, branch หรือ command ตัวอย่างจาก Human Guide ไปใช้เป็น Current Truth
+
+---
+
+# ProjectFramework 1.2.2
+
+ProjectFramework เป็น framework สำหรับทำให้ Project มีโครงสร้าง Current Truth, Authority, Requirements, Decisions, Evidence, Risks, Assumptions, Milestones, Outcomes, Dependencies, Change Control, Handoff, Migration, Technical Design, Deployment knowledge และ Continuation ที่ reconstruct ได้
+
+Package หลัก:
+
+➡️ **[managing-project-source/](managing-project-source/)**
+
+เอกสารหลัก:
+
+- [Framework Release](managing-project-source/FRAMEWORK-RELEASE.yaml)
+- [Managing Project Source Skill](managing-project-source/SKILL.md)
+- [Core Governance Rules](managing-project-source/references/core-governance-rules.md)
+- [Project Source templates](managing-project-source/templates/)
+
+### Framework 1.2.2 เพิ่มอะไร
+
+Framework 1.2.2 เพิ่ม **Git Base Freshness and Forward-Port governance** สำหรับ branch/worktree:
+
+```text
+FRESH
+STALE_NON_SEMANTIC
+STALE_SEMANTIC
+UNKNOWN
+```
+
+งานใหม่ต้องเริ่มจาก canonical integration target ที่ fresh หรือประกาศ `STACKED_WORK` อย่างชัดเจน ไม่ใช่เริ่มต่อจาก feature branch ที่บังเอิญ checkout อยู่
+
+หลักสำคัญ:
+
+```text
+Mergeable != Acceptable
+Responsibility != Authority
+Memory != Current Truth
+Process Exit != Verified Completion
+```
+
+Existing Project ไม่ auto-upgrade เมื่อ Framework upstream เปลี่ยน ต้องใช้ governed migration/forward-port ตาม Project Law
+
+---
+
+# โครงสร้าง Repository บน `hz-framework`
 
 ```text
 ProjectFramework/
-├── README.md
-├── LICENSE
+├── README.md                              ← หน้าแรกของเรา
+├── HUMAN-INSTALL-WALKTHROUGH-TH.md       ← Human example อ่านง่ายจาก root
+├── UAAC.md                                ← UAAC front door
+├── .gitattributes
+├── managing-project-source/               ← ProjectFramework package
+├── universal-ai-agent-constitution/       ← UAAC v4.2.0 verified package
 ├── examples/
-│   └── golden-reference-software-project/
-│       └── Project-Source/
-├── managing-project-source/
-│   ├── FRAMEWORK-RELEASE.yaml
-│   ├── CHATGPT-PROJECT-INSTRUCTIONS.md
-│   ├── CLAUDE-PROJECT-INSTRUCTIONS.md
-│   ├── SKILL.md
-│   ├── references/
-│   ├── templates/
-│   │   └── project-source-mockup/
-│   └── tests/
 └── docs/
-    └── superpowers/
-        ├── specs/
-        └── plans/
 ```
 
-Use `managing-project-source/` as the reusable framework package. Files under `docs/superpowers/` document development of this repository and are not automatically copied into each Project Source.
+ภายใน Project ที่ติดตั้ง UAAC แล้ว โครงมาตรฐานจะประมาณ:
 
-## Supersession Note
+```text
+Project-A/
+├── AGENTS.md / platform launchers
+├── governance/
+│   ├── BOOTSTRAP-KERNEL.md
+│   ├── PROJECT-BINDING.yaml
+│   ├── UAAC-BOOT.md
+│   ├── CONSTITUTION-ADOPTION.yaml
+│   ├── PROJECT-LAWS/PROJECT_RULES.md
+│   ├── STATE-AUTHORITY-MAP.yaml
+│   ├── PROJECT-DOCUMENT-REGISTRY.yaml
+│   ├── PROJECT-CAPABILITY-PACK.yaml
+│   ├── AGENT-ADAPTER-REGISTRY.yaml
+│   ├── SKILL-REGISTRY.yaml
+│   ├── CLAIM-CONTRACT-REGISTRY.yaml
+│   ├── CURRENT-CONTINUATION.yaml
+│   └── continuation/<LINEAGE>/CURRENT.yaml
+├── project-docs/
+└── vendor/uaac/v4.2.0/
+```
 
-Framework `1.2.2` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, and CI enforcement remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+---
+
+# ChatGPT Project Instructions แบบสั้น
+
+หลังติดตั้ง Project แล้ว ให้ ChatGPT Project Instructions ชี้ Project front door เท่านั้น:
+
+```text
+Project นี้ใช้ UAAC: <PROJECT_UAAC_BOOT_URL>
+ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง และทำต่อจาก canonical Project state เท่านั้น; ถ้าอ่าน/ยืนยันไม่ได้ให้หยุดและรายงาน — memory != Current Truth
+```
+
+ไม่ต้อง copy Constitution, PRD หรือ Current State เข้า Project Instructions
+
+---
+
+# สิ่งที่ไม่ใช่ Current Truth โดยอัตโนมัติ
+
+```text
+Conversation / Chat memory      != Current Truth
+Agent memory / OpenViking       != Current Truth
+Wiki / Retrieval / Summary      != Verification
+Skill file presence             != Invocation / Authority
+Local worktree                  != Receiver-visible shared state
+Prompt                          != Authority
+Process exit                    != Verified completion
+```
+
+เมื่อ source ขัดกัน ให้ resolve ตาม Project Law + State Authority Map + canonical artifact identity ไม่ใช่เลือกจากความจำ
+
+---
+
+# Branch และ Release Policy
+
+- `main` คือ upstream ProjectFramework baseline
+- `hz-framework` คือ distribution branch ที่เราใช้สำหรับ Framework + UAAC
+- การแก้เอกสาร navigation ของ `hz-framework` ไม่ควรเปลี่ยน UAAC v4.2 package bytes
+- Project ปลายทางต้อง vendor/pin UAAC identity แบบ immutable
+- Project ที่ติดตั้งแล้วไม่ auto-follow `hz-framework` HEAD
+
+ถ้าจะ upgrade UAAC หรือ ProjectFramework ใน Project ปลายทาง ต้องประเมินผลกระทบ, validate และ promote ตาม governance ของ Project นั้น
+
+---
+
+# สรุป
+
+```text
+อยากเข้าใจตั้งแต่ศูนย์
+→ HUMAN-INSTALL-WALKTHROUGH-TH.md
+
+ให้ Agent ติดตั้งจริง
+→ universal-ai-agent-constitution/INSTALL-UAAC.md
+
+อยากดู UAAC
+→ UAAC.md
+
+Project ติดตั้งแล้ว
+→ governance/UAAC-BOOT.md
+
+จากนั้นผู้ใช้สั่ง “งาน” ตามปกติ
+→ Agent Auto-Boot + ใช้ applicable Skills เอง
+```
+
+**เป้าหมายสุดท้าย:** Human ไม่ต้องจำกฎทุกข้อ และ Agent ไม่ต้องแชร์ memory กัน แต่ทุกฝ่ายต้องกลับมาอ่าน canonical Project state ชุดเดียวกันเสมอ

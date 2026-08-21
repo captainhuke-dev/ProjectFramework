@@ -1,3 +1,4 @@
 # Preserve UAAC release-manifest hashes across platform checkouts.
 UAAC.md text eol=lf
+HUMAN-INSTALL-WALKTHROUGH-TH.md text eol=lf
 universal-ai-agent-constitution/** text eol=lf
