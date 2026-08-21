@@ -2,7 +2,7 @@
 
 Paste this file's contents into **Claude Project → Set project instructions**.
 
-Distribution release: **Project Source Framework 1.2.2 / Schema 1.0.0**.
+Distribution release: **Project Source Framework 1.2.3 / Schema 1.0.0**.
 
 <!-- PROJECTFRAMEWORK-SHARED-CONTRACT:START -->
 ## Shared ProjectFramework Bootstrap Contract

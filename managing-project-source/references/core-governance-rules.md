@@ -314,6 +314,36 @@ Authoritative source varies by domain:
 - History → `10` + archive.
 - External → verified external source/system.
 
+### 8.1 Canonical Implementation Source and Runtime Authority
+
+เมื่อ implementation มีอยู่และความแตกต่างระหว่าง source กับ runtime มีผลต่อการพัฒนา, recovery, verification หรือ deployment Project MUST สามารถระบุ **Canonical Implementation Source** สำหรับ affected scope ได้: durable declared source location ที่ verified state ของมันเป็น authoritative `IMPLEMENTATION` Truth.
+
+สำหรับ Git-backed Project โดยปกติคือ verified Git/source tree ตาม repository/workspace contract ของ Project. Canonical Implementation Source MUST durable เพียงพอต่อ development/recovery lifecycle ที่ Project ประกาศ; `durable` ในที่นี้หมายถึงไม่พึ่งการคงอยู่ของ runtime instance ที่ architecture ระบุว่า replace/recreate/dispose ได้ ไม่ได้หมายความว่า source MUST อยู่บน physical host filesystem เสมอ.
+
+Valid topology อาจรวม:
+
+```text
+host filesystem Git repository
+Git worktree
+remote durable development workspace
+VM-backed durable workspace
+Dev Container + durable bind mount/workspace volume
+other explicitly declared durable source location
+```
+
+**Runtime Truth remains distinct.** Fresh runtime observation authoritative สำหรับสิ่งที่กำลังรันอยู่จริง แต่ runtime execution/editing ไม่โอน Implementation authority โดยปริยาย.
+
+```text
+Implementation Truth → Canonical Implementation Source
+Runtime Truth        → fresh runtime observation
+```
+
+ถ้า runtime/container filesystem มี code/config ที่ต่างจาก Canonical Implementation Source และสอง domain นี้ควร align ให้ใช้ `DRIFT-*` เมื่อ material. Runtime-only hotfix หรือ interactive edit MAY เป็น diagnosis/emergency intervention แต่ MUST NOT ถูกอ้างว่า canonical implementation update จน accepted intent ถูกนำกลับผ่าน governed change path เข้า Canonical Implementation Source และ reverify สำเร็จ.
+
+Runtime component ที่ประกาศว่า disposable/recreatable MUST NOT เป็น sole authoritative implementation copy โดยอุบัติเหตุ. State ที่ `REQ-*`, `DEC-*`, `40 Technical Design` หรือ deployment contract กำหนดว่าต้อง survive expected runtime replacement MUST มี declared persistent-state authority/mechanism ที่สอดคล้องกับ lifecycle นั้น. Rebuildable cache/temp/scratch/generated state MAY remain ephemeral เมื่อไม่มี survival requirement.
+
+Framework ไม่บังคับ Docker, host-local source, immutable image หรือ production source mount policy แบบ universal; topology เหล่านี้เป็น Project-specific/applicability-driven และต้อง preserve Truth/authority/persistence contracts ข้างต้น.
+
 Epistemic Status:
 
 ```text
@@ -337,6 +367,8 @@ Use `CONFLICT-*` for competing document/semantic states, including concurrent re
 Formal candidates record `base_revision` and `base_document_hash`. If active base changed, promotion stops and a conflict is opened. Agents may auto-resolve only non-semantic differences such as formatting, whitespace, deterministic sorting, or a typo that cannot alter meaning.
 
 For `SOURCE_AND_DOCKER`, unexpected feature/configuration/data/security/persistence divergence from the declared parity contract is `DRIFT-*`. Intentional difference is represented as Deployment Mode Variance instead.
+
+A material Canonical Implementation Source / Runtime mismatch that should align is also `DRIFT-*`; do not create a parallel workspace/runtime drift family.
 
 ## 10. Draft, Promotion, and Archive
 
@@ -700,7 +732,31 @@ Replacement Boundary when material
 Epistemic / Verification State
 ```
 
-`40` may also document Component Responsibility, Inputs/Outputs, Interfaces, Dependencies, Data/Storage interaction, Security/Authority boundaries, Runtime boundaries, source-structure responsibilities, Configuration Contract, and Runtime Requirements.
+`40` may also document Component Responsibility, Inputs/Outputs, Interfaces, Dependencies, Data/Storage interaction, Security/Authority boundaries, Runtime boundaries, source-structure responsibilities, Development Workspace Contract, Configuration Contract, and Runtime Requirements.
+
+#### 21.1.1 Development Workspace Contract
+
+When software development is material and workspace/runtime ambiguity could affect correctness, recovery, testing, deployment, or Agent operation, `40` SHOULD identify:
+
+```text
+Canonical Implementation Source
+Repository / Source Identity when applicable
+Development Workspace Type
+Workspace Location / Boundary
+Workspace Durability
+Human / Agent Edit Location
+Execution Environment
+Source-to-Runtime Mapping
+Dependency Isolation Strategy
+Runtime Mutability Boundary
+Persistent-State Boundary
+Related REQ / DEC / RISK / ASM / DEP / CR / EVD
+Verification / Drift Notes
+```
+
+Common descriptive workspace types MAY include `LOCAL_WORKSPACE`, `GIT_WORKTREE`, `REMOTE_DURABLE_WORKSPACE`, `DEV_CONTAINER_DURABLE_WORKSPACE`, and `OTHER_DECLARED_WORKSPACE`. Common mapping descriptions MAY include `DIRECT_EXECUTION`, `BIND_MOUNT`, `WORKSPACE_VOLUME`, `IMAGE_OR_ARTIFACT_BUILD`, `REMOTE_SYNC`, and `OTHER_DECLARED_MAPPING`. These are blueprint vocabulary only; they are not Project states or Stable-ID families.
+
+A Project MAY use different source-to-runtime mappings for development, test/integration, staging, and production. Differences must remain compatible with applicable Requirements/Decisions and declared Technical/Deployment contracts.
 
 Configuration semantics are independent from packaging mode and may include Application Settings, Environment-specific Settings, External Service Endpoints, Persistence Settings, Feature/Capability Settings, and Secret References. Actual secret values remain forbidden.
 
@@ -741,12 +797,18 @@ When applicable, `60` addresses:
 ```text
 Prerequisites
 Supported OS / Platform / Architecture
-Source or Artifact Acquisition
+Deployment Source / Artifact Acquisition
 Required Runtime / Container Runtime
 External Services
 Required Permissions
 Configuration Inputs
 Secret Requirements / SECRET-* references
+Source-to-Runtime Mapping for the supported mode
+Runtime Mutability Expectation
+Persistent-State Boundary
+Data / Storage Authority
+Replacement / Recreation Expectation
+Development-only vs Production Mapping Differences
 Data / Storage Initialization
 Installation / Initialization Procedure
 Start / Stop Procedure
@@ -760,7 +822,7 @@ Troubleshooting
 Known Limitations / Deployment Mode Variance
 ```
 
-Installation is not operationally ready merely because an install/start command returns success. Verification may include service availability, dependency reachability, storage initialization/persistence, configuration loading, secret resolution without exposure, health/runtime signal, core flow usability, running version identity, and Source/Docker parity when applicable.
+Installation is not operationally ready merely because an install/start command returns success. Verification may include service availability, dependency reachability, storage initialization/persistence, configuration loading, secret resolution without exposure, health/runtime signal, core flow usability, running version identity, Source/Docker parity when applicable, and survival of state that the declared replacement/recreation lifecycle requires.
 
 ## 22. Framework Integrity Contract
 
@@ -778,6 +840,8 @@ Current Framework distribution integrity means at minimum:
 - existing Projects do not silently auto-upgrade;
 - actual secrets remain forbidden;
 - technical planning does not silently expand into implementation artifacts;
+- Canonical Implementation Source and Runtime Truth remain distinct when the distinction is material;
+- required-survival state has a persistence contract compatible with declared runtime replacement/recreation;
 - missing facts, authority, source, provenance, or management-object identity are never fabricated.
 
 These are semantic requirements and may be reviewed manually or by an Agent. They do not require executable enforcement tooling.
