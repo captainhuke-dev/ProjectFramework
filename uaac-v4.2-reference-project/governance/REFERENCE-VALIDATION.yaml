@@ -35,12 +35,14 @@ static_resolution:
       resolves_to: governance/UAAC-BOOT.md
       status: STATIC_PASS
 live_behavioral_convergence:
-  status: NOT_RUN
-  required_receipts:
-  - governance/receipts/CHATGPT-BOOT.yaml
-  - governance/receipts/CODEX-BOOT.yaml
-  pass_condition: Both receipts resolve the expected identity set from the canonical
-    surface.
+  status: PARTIAL
+  chatgpt:
+    status: PASS
+    receipt: governance/receipts/CHATGPT-BOOT.yaml
+  codex:
+    status: NOT_RUN
+    receipt: governance/receipts/CODEX-BOOT.yaml
+  pass_condition: Both receipts resolve the expected identity set from the canonical surface.
 limitations:
-- Static convergence does not prove platform behavior.
-- Live PASS must not be claimed until both receiver-side receipts exist and agree.
+  - Static convergence does not prove both platform behaviors.
+  - Live cross-agent PASS must not be claimed until the Codex receiver-side receipt exists and agrees with the ChatGPT receipt.

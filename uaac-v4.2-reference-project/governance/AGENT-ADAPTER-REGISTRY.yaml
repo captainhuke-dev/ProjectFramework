@@ -9,7 +9,8 @@ adapters:
     bootstrap_kernel: governance/BOOTSTRAP-KERNEL.md
     boot_procedure_id: UAAC-BOOT
     static_status: VERIFIED
-    live_status: NOT_RUN
+    live_status: PASS
+    live_receipt: governance/receipts/CHATGPT-BOOT.yaml
   - adapter_id: ADAPTER-CODEX-REFERENCE-001
     platform: CODEX
     launcher: AGENTS.md

@@ -1,0 +1,40 @@
+schema_version: '1.0'
+document_type: UAAC_RECEIVER_BOOT_RECEIPT
+receipt_id: CHATGPT-BOOT-UAAC-V42-REFERENCE-001
+platform: CHATGPT
+project_id: uaac-v42-reference
+status: PASS
+canonical_repository: captainhuke-dev/ProjectFramework
+canonical_ref: hz-framework
+observed_branch_commit: a20254dfbad870257c7c4e13d7df852cf9d79ac8
+front_door:
+  locator: uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+  git_blob_sha1: 3abc8612db5862c8d83ddd44fa58d719caf4104a
+resolved_identity_set:
+  constitution_identity: git:captainhuke-dev/ProjectFramework@5a309d8d38046bf3e8cd4beb2fc82a872f211cad:universal-ai-agent-constitution/
+  project_law_identity: PROJECT-LAW-UAAC-V42-REFERENCE-001
+  state_authority_map_identity: SAM-UAAC-V42-REFERENCE-001
+  project_document_registry_identity: PDR-UAAC-V42-REFERENCE-001
+  skill_registry_identity: SKR-UAAC-V42-REFERENCE-001
+  continuation_index_identity: CONT-UAAC-V42-REFERENCE-001
+  lineage_id: LINEAGE-REFERENCE
+  task_id: REF-CROSS-AGENT-BOOT-001
+  project_binding_identity: PB-UAAC-V42-REFERENCE-001
+  adapter_registry_identity: AAR-UAAC-V42-REFERENCE-001
+  claim_contract_registry_identity: CCR-UAAC-V42-REFERENCE-001
+canonical_access: PASS
+memory_used_as_truth: false
+live_cross_agent_convergence_claimed: false
+observed_at: '2026-08-22T01:20:00+07:00'
+evidence:
+  - uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+  - uaac-v4.2-reference-project/governance/CONSTITUTION-ADOPTION.yaml
+  - uaac-v4.2-reference-project/governance/PROJECT-BINDING.yaml
+  - uaac-v4.2-reference-project/governance/PROJECT-LAWS/PROJECT_RULES.md
+  - uaac-v4.2-reference-project/governance/STATE-AUTHORITY-MAP.yaml
+  - uaac-v4.2-reference-project/governance/PROJECT-DOCUMENT-REGISTRY.yaml
+  - uaac-v4.2-reference-project/governance/SKILL-REGISTRY.yaml
+  - uaac-v4.2-reference-project/governance/CURRENT-CONTINUATION.yaml
+  - uaac-v4.2-reference-project/governance/continuation/LINEAGE-REFERENCE/CURRENT.yaml
+  - uaac-v4.2-reference-project/governance/AGENT-ADAPTER-REGISTRY.yaml
+  - uaac-v4.2-reference-project/governance/CLAIM-CONTRACT-REGISTRY.yaml

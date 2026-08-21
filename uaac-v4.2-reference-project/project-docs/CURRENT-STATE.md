@@ -1,6 +1,8 @@
 # Current State
 
-Remote-backed reference material is prepared and statically convergent.
-The Project remains `STAGED`. Live ChatGPT and Codex receiver-side boot
-receipts are required before live convergence or effective adoption may be
-claimed.
+The remote-backed reference Project is published and its canonical GitHub
+binding has been read back successfully. ChatGPT receiver-side Auto-Boot has a
+recorded PASS against the canonical surface.
+
+The Project remains `STAGED`: Codex receiver-side boot is still `NOT_RUN`, so
+live cross-agent convergence and effective adoption are not yet claimed.
