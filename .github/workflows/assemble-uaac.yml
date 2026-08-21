@@ -1,0 +1,61 @@
+name: Assemble UAAC v4.1.0 release payload
+
+on:
+  push:
+    branches:
+      - hz-framework
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out staging commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Reconstruct and verify large source files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .uaac-upload/payload.part* > /tmp/uaac-payload.b64
+          base64 --decode /tmp/uaac-payload.b64 > /tmp/uaac-payload.tar.xz
+          echo "d284f5a77b379639252dfb0059e501be5170962757e7309433f99b4753d366fe  /tmp/uaac-payload.tar.xz" | sha256sum --check --strict
+          tar -xJf /tmp/uaac-payload.tar.xz -C universal-ai-agent-constitution
+          cat <<'HASHES' | sha256sum --check --strict
+          a9d7ec6af217246ae5276bdcb3c44b10beb2fb6c3ec9f023ce0128fd42f6e7de  universal-ai-agent-constitution/UAAC-v4.1-CONSTITUTION.md
+          0cb03b6f0d0757b7830bb49501fa395c4d95b486aae8b7112b529417d9a27fb6  universal-ai-agent-constitution/registers/must-coverage-index.md
+          d02bd24098b9665a7c6bfca89dc18fb407291f0e2307f80bbeef7f4bb33bfbfb  universal-ai-agent-constitution/registers/must-coverage-index.yaml
+          35aa798f5633d934013ddecc831d93faf94bd9fb4765e272a1fc11e885146e36  universal-ai-agent-constitution/tests/conformance-scenarios.md
+          HASHES
+
+      - name: Validate package and tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet pytest PyYAML jsonschema
+          python universal-ai-agent-constitution/tools/validate_package.py \
+            --package universal-ai-agent-constitution --check
+          python -m pytest -q universal-ai-agent-constitution/tests/test_installation_protocol.py
+          python -m pytest -q universal-ai-agent-constitution/tests/test_validate_package.py
+
+      - name: Remove staging transport and publish assembled commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          find universal-ai-agent-constitution -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find universal-ai-agent-constitution -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          rm -rf .uaac-upload
+          rm -f .github/workflows/assemble-uaac.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "build: assemble UAAC v4.1.0 release payload"
+          git push origin HEAD:hz-framework
