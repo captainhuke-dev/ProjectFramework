@@ -247,6 +247,7 @@ resolve verified Canonical Integration Target
 → create work from verified current base
 → check Base Freshness at material checkpoints
 → classify STALE_NON_SEMANTIC vs STALE_SEMANTIC
+→ BASE_STALE while unresolved
 → update/rebase appropriately OR FORWARD_PORT_REQUIRED
 → re-resolve target head immediately before acceptance/merge
 ```
@@ -257,7 +258,7 @@ Required behavior:
 2. **STACKED_WORK:** feature-on-feature ancestry is allowed only when deliberate and discoverable. Preserve parent branch/ref or commit, dependency reason, what becomes invalid if parent changes, and expected integration order. Material parent movement requires child re-evaluation.
 3. **Base Snapshot:** when material, record only observed repository/ref/SHA/version/time values. Never fabricate Git identity merely to complete metadata.
 4. **Checkpoint:** re-evaluate base before new independent work, before a new material implementation phase when upstream may have moved, before material PR/integration updates, and immediately before merge if target head moved after review.
-5. **STALE_NON_SEMANTIC:** use `REBASE_REQUIRED` for private/rewritable work when appropriate. For shared/public branches, prefer a history-preserving merge/update rather than rewriting published history. Re-run affected verification afterward.
+5. **STALE_NON_SEMANTIC:** mark the work `BASE_STALE` until its base is updated appropriately and affected verification passes. Use `REBASE_REQUIRED` for private/rewritable work when appropriate; for shared/public branches, prefer a history-preserving merge/update rather than rewriting published history. Return to `FRESH` only after the update and affected verification succeed.
 6. **STALE_SEMANTIC:** mark `BASE_STALE`, stop affected new implementation scope, inspect changed Framework/governance/schema/authority/REQ/DEC/interface/contracts, and use `FORWARD_PORT_REQUIRED` by default.
 7. **Forward-Port:** create a clean branch/worktree from the current target, treat the stale branch as source material, and carry only still-valid accepted changes. Cherry-pick only when boundaries are clean; otherwise re-implement accepted intent on the current base. Exclude temporary staging/transport artifacts, obsolete workflow/version metadata, superseded assumptions, and unrelated experiments.
 8. **Pre-Merge Base Freshness Gate:** re-resolve current target head and classify `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`. `UNKNOWN` or unresolved semantic drift blocks affected acceptance.
@@ -303,7 +304,7 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 | Exact Git provenance unavailable | normal bootstrap continues if canonical source accessible; never fabricate |
 | Independent Git worktree/branch | fresh canonical target first; do not inherit current feature branch by default |
 | Feature depends on unmerged feature | explicit `STACKED_WORK` with parent/dependency/integration order |
-| `STALE_NON_SEMANTIC` base | update safely; rebase private/rewritable or preserve shared history; reverify |
+| `STALE_NON_SEMANTIC` base | `BASE_STALE` → update safely; rebase private/rewritable or preserve shared history → reverify → `FRESH` |
 | `STALE_SEMANTIC` base | `BASE_STALE` → reassess → `FORWARD_PORT_REQUIRED` into clean current-base work |
 | Pre-merge Git acceptance | re-resolve current target head; `Mergeable ≠ Acceptable` |
 | Material MCP work | batch to Logical Checkpoint; persist usable state/pointers to source-native owner; compact Chat result |
