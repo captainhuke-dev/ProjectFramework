@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - hz-framework
+  pull_request:
+    branches:
+      - hz-framework
 
 permissions:
   contents: write
@@ -15,6 +18,7 @@ jobs:
       - name: Check out staging commit
         uses: actions/checkout@v4
         with:
+          ref: hz-framework
           fetch-depth: 0
           persist-credentials: true
 
