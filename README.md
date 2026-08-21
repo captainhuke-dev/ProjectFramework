@@ -7,17 +7,138 @@
 
 สาขา `hz-framework` คือชุดที่เราใช้รวม **ProjectFramework + UAAC** สำหรับสร้างและควบคุม Project ที่มี Human และ AI Agent หลายตัวทำงานร่วมกัน เช่น ChatGPT, Codex, Claude, Hermes และ CLI Agent
 
-เป้าหมายหลักคือทำให้ Agent ทุกตัวกลับมาอ่าน **Project เดียวกัน กฎหมายเดียวกัน เอกสาร/PRD เดียวกัน Current State เดียวกัน และ Continuation เดียวกัน** แทนการพึ่งความจำของแต่ละแชตหรือแต่ละ Agent
+เป้าหมายหลักคือให้ Agent ทุกตัวกลับมาอ่าน **Project เดียวกัน กฎหมายเดียวกัน เอกสาร/PRD เดียวกัน Current State เดียวกัน และ Continuation เดียวกัน** แทนการพึ่งความจำของแต่ละแชตหรือแต่ละ Agent
 
 > **หลักการจำง่าย:** ผู้ใช้สั่ง “งาน” ไม่ต้องสั่ง “กฎหมาย” ซ้ำ เมื่อ Project ติดตั้ง UAAC แล้ว Agent ต้อง Auto-Boot และเลือก applicable Skills เอง
 
 ---
 
-# 🚀 ถ้าคุณเพิ่งเข้ามา ให้เริ่มตรงนี้
+# ⚡ ใช้งานแบบสั้นที่สุด
 
-## 🧑 สำหรับมนุษย์ — ดูตัวอย่างตั้งแต่ศูนย์
+## Project ยังไม่ได้ติดตั้ง UAAC
 
-ถ้าต้องการเห็นภาพตั้งแต่:
+ถ้า Agent เช่น Codex / Claude / Hermes เปิดอยู่ใน **Project เป้าหมาย** แล้ว ให้สั่งเพียง:
+
+```text
+ติดตั้งรัฐธรรมนูญ Project จาก
+https://github.com/captainhuke-dev/ProjectFramework/tree/hz-framework
+ลงใน Project ปัจจุบัน
+```
+
+นี่คือ **Canonical Quick Install Command** ของเรา
+
+### Agent ต้องตีความคำสั่งนี้อย่างไร
+
+```text
+SOURCE
+https://github.com/captainhuke-dev/ProjectFramework/tree/hz-framework
+= แหล่งค้นหา Framework + UAAC installation protocol
+
+TARGET
+Project/workspace ที่ Agent กำลังเปิดอยู่
+= Project ที่ต้องติดตั้ง
+```
+
+**ห้ามสลับ SOURCE กับ TARGET** และห้ามแก้ `captainhuke-dev/ProjectFramework` เพียงเพราะ URL ของมันถูกส่งมาในคำสั่งติดตั้ง
+
+เมื่อได้รับคำสั่งข้างต้น Agent ต้องทำเองตามลำดับ:
+
+```text
+1. เปิด root README.md ของ SOURCE นี้
+2. ระบุว่าตนกำลังทำงานในบทบาท Agent/Installer
+3. อ่าน UAAC.md เพื่อ resolve release/navigation context
+4. fresh-read canonical installer:
+   universal-ai-agent-constitution/INSTALL-UAAC.md
+5. resolve และ pin exact immutable UAAC release identity
+6. inventory TARGET Project ก่อน mutation
+7. classify GREENFIELD / BROWNFIELD / MONOREPO-NESTED
+8. ใช้ isolated adoption branch/worktree หรือ transaction boundary
+9. install/reconcile Project Governance
+10. map Project Definition / PRD / Requirements / Current State เดิม
+11. materialize applicable Skills + platform adapters
+12. establish governance/UAAC-BOOT.md เป็น Project front door
+13. establish continuation / artifact / state routing
+14. validate installation + Auto-Boot + applicable convergence checks
+15. publish/readback ตาม authority และ visibility ที่ Project อนุญาต
+16. ส่งผลลัพธ์พร้อม ChatGPT Project Instructions แบบสั้นที่สุดให้ Human
+```
+
+Agent ต้องปฏิบัติตาม `INSTALL-UAAC.md` เป็น canonical protocol; README นี้เป็น discovery/navigation contract ไม่แทนตัว installer
+
+---
+
+# 🤖 Mandatory Agent Completion Output
+
+เมื่อ Agent ติดตั้งจนถึงสถานะที่มีหลักฐานรองรับตาม authority ที่ได้รับแล้ว **รายงานสุดท้ายต้องมีส่วนนี้เสมอ**:
+
+```text
+CHATGPT PROJECT INSTRUCTIONS — COPY THIS
+
+Project นี้ใช้ UAAC: <ACTUAL_PROJECT_UAAC_BOOT_URL>
+ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง และทำต่อจาก canonical Project state เท่านั้น; ถ้าอ่าน/ยืนยันไม่ได้ให้หยุดและรายงาน — memory != Current Truth
+```
+
+`<ACTUAL_PROJECT_UAAC_BOOT_URL>` ต้องเป็น URL จริงของ Project ที่ติดตั้งแล้ว เช่น:
+
+```text
+https://github.com/OWNER/PROJECT/blob/<CANONICAL_VISIBLE_REF>/governance/UAAC-BOOT.md
+```
+
+ห้ามคืน placeholder ถ้า Agent อ้างว่าพร้อมให้ ChatGPT ใช้งานแล้ว
+
+ถ้ายังไม่มี canonical-visible URL ให้รายงานสถานะตามจริง เช่น:
+
+```text
+CHATGPT_PROJECT_BOOT_URL: NOT_YET_CANONICAL_VISIBLE
+```
+
+และห้ามอ้างว่า cross-agent setup เสร็จสมบูรณ์
+
+### ทำไมต้องส่งข้อความนี้
+
+Human จะเอาข้อความสั้นนี้ไปใส่ใน **ChatGPT Project → Instructions** เพียงครั้งเดียว หลังจากนั้นผู้ใช้สั่งแต่งานตามปกติ ไม่ต้อง prompt กฎหมาย, PRD, continuation หรือชื่อ Skill ซ้ำอีก
+
+---
+
+# ✅ Project ติดตั้งแล้ว
+
+ทุก Human / ChatGPT / Codex / Claude / Hermes / CLI เริ่มจาก front door ของ Project:
+
+```text
+governance/UAAC-BOOT.md
+```
+
+สำหรับ remote Agent ให้ใช้ canonical URL ของไฟล์เดียวกัน
+
+หลังจากนั้นผู้ใช้สั่งงานปกติ เช่น:
+
+```text
+แก้ bug login นี้และรัน tests
+```
+
+Agent ต้องทำภายในเอง:
+
+```text
+Minimal Bootstrap Kernel
+→ Project Binding check
+→ governance/UAAC-BOOT.md
+→ freshness/applicability check
+→ Project Law / PRD / Current State / Authority
+→ applicable Skills
+→ work
+→ pre-write context recheck
+→ checkpoint / handoff / report ตาม applicability
+```
+
+---
+
+# 🧑 สำหรับมนุษย์ — ดูตัวอย่างตั้งแต่ศูนย์
+
+ถ้าต้องการดู flow ตั้งแต่ Windows folder ว่าง → Codex → GitHub → ChatGPT ให้เปิด:
+
+➡️ **[HUMAN-INSTALL-WALKTHROUGH-TH.md](HUMAN-INSTALL-WALKTHROUGH-TH.md)**
+
+ตัวอย่างครอบคลุม:
 
 ```text
 Windows folder ว่าง
@@ -26,72 +147,104 @@ Windows folder ว่าง
 → ติดตั้ง UAAC
 → push canonical Project state
 → สร้าง ChatGPT Project
-→ เชื่อม ChatGPT + Codex
-→ ทดสอบว่าอ่าน Project state ตรงกัน
+→ ใส่ ChatGPT Project Instructions
+→ ทดสอบ Codex ↔ ChatGPT convergence
+→ เริ่มสั่งงานปกติ
 ```
 
-ให้เปิดไฟล์นี้ที่ root ได้เลย:
+ไฟล์ Human Walkthrough เป็น **FOR HUMAN / NON-NORMATIVE / DO NOT EXECUTE** เท่านั้น
 
-➡️ **[HUMAN-INSTALL-WALKTHROUGH-TH.md](HUMAN-INSTALL-WALKTHROUGH-TH.md)**
+Agent ห้ามเอา path, repository, branch หรือ command ตัวอย่างจาก Human Guide ไปใช้เป็น Current Truth
 
-ไฟล์นี้เป็น **FOR HUMAN / NON-NORMATIVE / DO NOT EXECUTE** ใช้เพื่ออธิบายและยกตัวอย่างเท่านั้น
+---
 
-## 🤖 สำหรับ Agent / Installer — ติดตั้งจริง
+# 🤖 สำหรับ Agent / Installer — canonical protocol
 
-Agent ที่ได้รับคำสั่งให้ “ติดตั้งรัฐธรรมนูญ Project” ต้องใช้ canonical installation protocol:
+Agent ที่ได้รับคำสั่งให้ “ติดตั้งรัฐธรรมนูญ Project” ต้องใช้:
 
 ➡️ **[universal-ai-agent-constitution/INSTALL-UAAC.md](universal-ai-agent-constitution/INSTALL-UAAC.md)**
 
 ```text
-Human Guide = อ่านเพื่อเข้าใจ
-INSTALL-UAAC.md = Agent protocol สำหรับทำจริง
+Human Guide = explanation/example
+Root README = discovery + quick-install contract
+INSTALL-UAAC.md = canonical Agent installation protocol
 ```
 
-## 📜 จุดเริ่มต้น UAAC
+ตัว installer ครอบคลุม:
 
-➡️ **[UAAC.md](UAAC.md)**
-
-ใช้เพื่อดูภาพรวม UAAC, จุดเริ่มต้นของ Human/Agent และเส้นทางไปยัง Constitution, Skills, tests และ release artifacts
+- authority / target / immutable source resolution
+- inventory before mutation
+- GREENFIELD / BROWNFIELD / MONOREPO handling
+- isolated staging
+- Minimal Bootstrap Kernel
+- Project Binding
+- Project Law
+- State Authority Map
+- Project Document Registry / PRD routing
+- Capability Pack / Skills
+- Agent Adapter Registry
+- Auto-Boot
+- Current Continuation / lineage
+- visibility / receiver access
+- pre-write TOCTOU recheck
+- claim contracts
+- installation validation
+- atomic commit/publication
+- remote readback
+- EFFECTIVE adoption separation
 
 ---
 
-# ถ้าจำได้แค่ 2 อย่าง
+# 📜 UAAC Front Door
 
-## 1. Project ยังไม่ได้ติดตั้ง UAAC
+➡️ **[UAAC.md](UAAC.md)**
 
-สั่ง Agent เช่น Codex ด้วย prompt แบบนี้:
+`UAAC.md` เป็น navigation page ของ UAAC ไม่ใช่ Project Law หรือ Current Truth
 
-```text
-ติดตั้งรัฐธรรมนูญ Project ตาม UAAC จาก:
-https://github.com/captainhuke-dev/ProjectFramework/blob/hz-framework/universal-ai-agent-constitution/INSTALL-UAAC.md
-
-ให้กับ Project:
-<PROJECT_REPO_URL_OR_LOCAL_ROOT>
-
-ทำตาม INSTALL-UAAC.md จนมีหลักฐานรองรับ INSTALLATION_VALIDATED
-ตั้ง governance/UAAC-BOOT.md เป็น front door ของ Project
-และพิสูจน์ Auto-Boot + cross-agent convergence ก่อนรายงานผล
-```
-
-URL ของ branch ใช้เพื่อ **ค้นหา installation protocol** เท่านั้น Installer ต้อง resolve และ pin exact immutable UAAC identity ก่อนนำไปเป็น effective Constitution ของ Project
-
-## 2. Project ติดตั้ง UAAC แล้ว
-
-ทุก Human / ChatGPT / Codex / Claude / Hermes / CLI เริ่มจาก:
+Canonical UAAC v4.2.0 release ที่ผ่าน remote verification:
 
 ```text
-governance/UAAC-BOOT.md
+Version: 4.2.0
+Release commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+Canonical laws: 25
+Conformance scenarios: 142
 ```
 
-สำหรับ remote Agent ใช้ canonical URL ของไฟล์เดียวกัน
+Package:
 
-หลังจากนั้นผู้ใช้สั่งงานปกติ เช่น:
+➡️ **[universal-ai-agent-constitution/](universal-ai-agent-constitution/)**
 
-```text
-แก้ bug login นี้และรัน tests
-```
+เอกสารสำคัญ:
 
-Agent ต้อง Auto-Boot, resolve canonical Project state และเลือก applicable Skills เอง
+- [Canonical Agent Installer](universal-ai-agent-constitution/INSTALL-UAAC.md)
+- [UAAC README](universal-ai-agent-constitution/README.md)
+- [Constitution v4.2](universal-ai-agent-constitution/UAAC-v4.2-CONSTITUTION.md)
+- [Adoption Guide](universal-ai-agent-constitution/ADOPTION-GUIDE.md)
+- [Adoption Runbook](universal-ai-agent-constitution/ADOPTION-RUNBOOK.md)
+- [Installation Threat Model](universal-ai-agent-constitution/INSTALLATION-THREAT-MODEL.md)
+- [Systems Thinking Analysis](universal-ai-agent-constitution/SYSTEMS-THINKING-ANALYSIS-TH.md)
+- [Release Receipt](universal-ai-agent-constitution/CONSTITUTION-RELEASE.yaml)
+
+> `universal-ai-agent-constitution/` v4.2.0 เป็น verified release package การปรับ UX/navigation ที่ root ไม่เปลี่ยน package identity และไม่ควรแก้ package bytes เดิมโดยไม่ออก release/version ใหม่
+
+---
+
+# ProjectFramework 1.2.2
+
+ProjectFramework เป็น framework สำหรับทำให้ Project มีโครงสร้าง Current Truth, Authority, Requirements, Decisions, Evidence, Risks, Assumptions, Milestones, Outcomes, Dependencies, Change Control, Handoff, Migration, Technical Design, Deployment knowledge และ Continuation ที่ reconstruct ได้
+
+Package หลัก:
+
+➡️ **[managing-project-source/](managing-project-source/)**
+
+เอกสารหลัก:
+
+- [Framework Release](managing-project-source/FRAMEWORK-RELEASE.yaml)
+- [Managing Project Source Skill](managing-project-source/SKILL.md)
+- [Core Governance Rules](managing-project-source/references/core-governance-rules.md)
+- [Project Source templates](managing-project-source/templates/)
+
+ProjectFramework pin ของแต่ละ Project และ UAAC release identity เป็นคนละ dependency; การติดตั้ง UAAC ไม่ได้อนุมัติการ upgrade ProjectFramework pin โดยอัตโนมัติ
 
 ---
 
@@ -100,15 +253,17 @@ Agent ต้อง Auto-Boot, resolve canonical Project state และเลื
 ```text
                          HUMAN
                            │
-        ┌──────────────────┴──────────────────┐
-        ▼                                     ▼
-HUMAN-INSTALL-WALKTHROUGH-TH.md       copy install prompt
-        │                                     │
-   explanation                               ▼
-   only                                Installer Agent
+          ┌────────────────┴─────────────────┐
+          ▼                                  ▼
+ Human Walkthrough                   one-line install command
+   explanation only                          │
+                                              ▼
+                                       Installer Agent
+                                              │
+                                  root README discovery
                                               │
                                               ▼
-                                      INSTALL-UAAC.md
+                                       INSTALL-UAAC.md
                                               │
                                               ▼
                                            Project
@@ -135,107 +290,22 @@ HUMAN-INSTALL-WALKTHROUGH-TH.md       copy install prompt
 
 ---
 
-# UAAC v4.2.0
-
-UAAC คือรัฐธรรมนูญกลางของ AI Project
-
-Canonical release ที่ผ่าน remote verification:
-
-```text
-Version: 4.2.0
-Release commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
-Canonical laws: 25
-Conformance scenarios: 142
-```
-
-Package:
-
-➡️ **[universal-ai-agent-constitution/](universal-ai-agent-constitution/)**
-
-เอกสารสำคัญ:
-
-- [Agent installation protocol](universal-ai-agent-constitution/INSTALL-UAAC.md)
-- [UAAC README](universal-ai-agent-constitution/README.md)
-- [Constitution v4.2](universal-ai-agent-constitution/UAAC-v4.2-CONSTITUTION.md)
-- [Adoption Guide](universal-ai-agent-constitution/ADOPTION-GUIDE.md)
-- [Adoption Runbook](universal-ai-agent-constitution/ADOPTION-RUNBOOK.md)
-- [Installation Threat Model](universal-ai-agent-constitution/INSTALLATION-THREAT-MODEL.md)
-- [Systems Thinking Analysis](universal-ai-agent-constitution/SYSTEMS-THINKING-ANALYSIS-TH.md)
-- [Release Receipt](universal-ai-agent-constitution/CONSTITUTION-RELEASE.yaml)
-
-> `universal-ai-agent-constitution/` v4.2.0 เป็น release package ที่ตรวจแล้ว เอกสาร navigation ที่ root อาจถูกปรับปรุงได้ แต่ไม่ควรแก้ package bytes เดิมโดยไม่ออก release/version ใหม่ตาม governance
-
----
-
-# Human Walkthrough กับ Agent Protocol ต่างกันอย่างไร
-
-| เอกสาร | ผู้ใช้หลัก | Execute ได้หรือไม่ | Authority / Truth |
-|---|---|---:|---|
-| `HUMAN-INSTALL-WALKTHROUGH-TH.md` | Human | ❌ ไม่ใช่ runbook | NONE |
-| `universal-ai-agent-constitution/INSTALL-UAAC.md` | Installer Agent | ✅ ตาม protocol | Procedural contract ภายใต้ UAAC |
-| `UAAC.md` | Human/Agent navigation | ❌ ไม่ใช่ Project Law | NONE |
-| Project `governance/UAAC-BOOT.md` | ทุก Agent หลัง install | ✅ เป็น router | NONE; route ไป canonical sources |
-
-ดังนั้น Agent ห้ามเอา path, repo, branch หรือ command ตัวอย่างจาก Human Guide ไปใช้เป็น Current Truth
-
----
-
-# ProjectFramework 1.2.2
-
-ProjectFramework เป็น framework สำหรับทำให้ Project มีโครงสร้าง Current Truth, Authority, Requirements, Decisions, Evidence, Risks, Assumptions, Milestones, Outcomes, Dependencies, Change Control, Handoff, Migration, Technical Design, Deployment knowledge และ Continuation ที่ reconstruct ได้
-
-Package หลัก:
-
-➡️ **[managing-project-source/](managing-project-source/)**
-
-เอกสารหลัก:
-
-- [Framework Release](managing-project-source/FRAMEWORK-RELEASE.yaml)
-- [Managing Project Source Skill](managing-project-source/SKILL.md)
-- [Core Governance Rules](managing-project-source/references/core-governance-rules.md)
-- [Project Source templates](managing-project-source/templates/)
-
-### Framework 1.2.2 เพิ่มอะไร
-
-Framework 1.2.2 เพิ่ม **Git Base Freshness and Forward-Port governance** สำหรับ branch/worktree:
-
-```text
-FRESH
-STALE_NON_SEMANTIC
-STALE_SEMANTIC
-UNKNOWN
-```
-
-งานใหม่ต้องเริ่มจาก canonical integration target ที่ fresh หรือประกาศ `STACKED_WORK` อย่างชัดเจน ไม่ใช่เริ่มต่อจาก feature branch ที่บังเอิญ checkout อยู่
-
-หลักสำคัญ:
-
-```text
-Mergeable != Acceptable
-Responsibility != Authority
-Memory != Current Truth
-Process Exit != Verified Completion
-```
-
-Existing Project ไม่ auto-upgrade เมื่อ Framework upstream เปลี่ยน ต้องใช้ governed migration/forward-port ตาม Project Law
-
----
-
 # โครงสร้าง Repository บน `hz-framework`
 
 ```text
 ProjectFramework/
-├── README.md                              ← หน้าแรกของเรา
-├── HUMAN-INSTALL-WALKTHROUGH-TH.md       ← Human example อ่านง่ายจาก root
-├── UAAC.md                                ← UAAC front door
+├── README.md                              ← Agent/Human discovery front page
+├── HUMAN-INSTALL-WALKTHROUGH-TH.md       ← Human example
+├── UAAC.md                                ← UAAC navigation front door
 ├── .gitattributes
 ├── managing-project-source/               ← ProjectFramework package
 ├── universal-ai-agent-constitution/       ← UAAC v4.2.0 verified package
+├── uaac-v4.2-reference-project/           ← reference/convergence evidence project
 ├── examples/
 └── docs/
 ```
 
-ภายใน Project ที่ติดตั้ง UAAC แล้ว โครงมาตรฐานจะประมาณ:
+หลังติดตั้ง Project ปลายทางจะประมาณ:
 
 ```text
 Project-A/
@@ -260,16 +330,14 @@ Project-A/
 
 ---
 
-# ChatGPT Project Instructions แบบสั้น
-
-หลังติดตั้ง Project แล้ว ให้ ChatGPT Project Instructions ชี้ Project front door เท่านั้น:
+# Result-state discipline
 
 ```text
-Project นี้ใช้ UAAC: <PROJECT_UAAC_BOOT_URL>
-ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง และทำต่อจาก canonical Project state เท่านั้น; ถ้าอ่าน/ยืนยันไม่ได้ให้หยุดและรายงาน — memory != Current Truth
+COPIED ≠ CORE_INSTALLED ≠ INSTALLATION_VALIDATED ≠ EFFECTIVE
+EXECUTED ≠ VERIFIED ≠ ACCEPTED ≠ PUBLISHED ≠ DEPLOYED ≠ CLOSED
 ```
 
-ไม่ต้อง copy Constitution, PRD หรือ Current State เข้า Project Instructions
+Agent ต้องรายงานสถานะแยกตามหลักฐาน ห้ามใช้ `DONE` หรือ `COMPLETE` ครอบสถานะที่ยังไม่ได้พิสูจน์
 
 ---
 
@@ -293,31 +361,46 @@ Process exit                    != Verified completion
 
 - `main` คือ upstream ProjectFramework baseline
 - `hz-framework` คือ distribution branch ที่เราใช้สำหรับ Framework + UAAC
-- การแก้เอกสาร navigation ของ `hz-framework` ไม่ควรเปลี่ยน UAAC v4.2 package bytes
 - Project ปลายทางต้อง vendor/pin UAAC identity แบบ immutable
 - Project ที่ติดตั้งแล้วไม่ auto-follow `hz-framework` HEAD
-
-ถ้าจะ upgrade UAAC หรือ ProjectFramework ใน Project ปลายทาง ต้องประเมินผลกระทบ, validate และ promote ตาม governance ของ Project นั้น
+- root navigation/docs อาจปรับปรุงได้โดยไม่เปลี่ยน UAAC v4.2 verified package bytes
+- การ upgrade UAAC หรือ ProjectFramework ใน Project ปลายทางต้องประเมินผลกระทบ, validate และ promote ตาม governance ของ Project นั้น
 
 ---
 
-# สรุป
+# TL;DR
+
+### ติดตั้งครั้งแรก
 
 ```text
-อยากเข้าใจตั้งแต่ศูนย์
-→ HUMAN-INSTALL-WALKTHROUGH-TH.md
-
-ให้ Agent ติดตั้งจริง
-→ universal-ai-agent-constitution/INSTALL-UAAC.md
-
-อยากดู UAAC
-→ UAAC.md
-
-Project ติดตั้งแล้ว
-→ governance/UAAC-BOOT.md
-
-จากนั้นผู้ใช้สั่ง “งาน” ตามปกติ
-→ Agent Auto-Boot + ใช้ applicable Skills เอง
+ติดตั้งรัฐธรรมนูญ Project จาก
+https://github.com/captainhuke-dev/ProjectFramework/tree/hz-framework
+ลงใน Project ปัจจุบัน
 ```
 
-**เป้าหมายสุดท้าย:** Human ไม่ต้องจำกฎทุกข้อ และ Agent ไม่ต้องแชร์ memory กัน แต่ทุกฝ่ายต้องกลับมาอ่าน canonical Project state ชุดเดียวกันเสมอ
+### Agent ทำเอง
+
+```text
+README
+→ UAAC.md
+→ INSTALL-UAAC.md
+→ inventory
+→ pin immutable release
+→ install/reconcile governance + docs + Skills
+→ UAAC-BOOT
+→ validate
+→ canonical visibility/readback
+```
+
+### Agent ต้องส่งกลับให้ Human
+
+```text
+CHATGPT PROJECT INSTRUCTIONS — COPY THIS
+
+Project นี้ใช้ UAAC: <ACTUAL_PROJECT_UAAC_BOOT_URL>
+ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง และทำต่อจาก canonical Project state เท่านั้น; ถ้าอ่าน/ยืนยันไม่ได้ให้หยุดและรายงาน — memory != Current Truth
+```
+
+### หลังจากนั้น
+
+ผู้ใช้สั่งแต่งาน ส่วนการอ่านกฎหมาย, Project state และเลือก Skill เป็นหน้าที่ของ Agent
