@@ -1,8 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.1 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.2 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
+
+## Framework 1.2.2 Git Base Freshness Semantics
+
+Framework `1.2.2` adds **Git Base Freshness and Forward-Port** governance without changing semantic slots or Schema `1.0.0`. Independent branch/worktree work begins from a freshly verified canonical integration target; feature-on-feature ancestry is explicit `STACKED_WORK`; semantic base drift uses `BASE_STALE` / `FORWARD_PORT_REQUIRED`; and the current target head is rechecked before acceptance/merge. `Mergeable ≠ Acceptable`.
+
+The complete binding contract is carried by Core Governance and the full root `00` template. The mockup starter points to those semantics rather than duplicating them.
 
 ## Framework 1.2.1 Continuation Semantics
 
@@ -76,6 +82,8 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 14. Pin Framework/Schema locally; do not auto-upgrade later
 15. Optionally record exact Git provenance only when actually observed/material
 ```
+
+When Git branch/worktree integration is later used inside an initialized Project, apply the locally pinned root `00` Base Freshness contract. Upstream Framework movement does not auto-upgrade that Project.
 
 ## Framework 1.2.0 Management and Technical Routing
 
