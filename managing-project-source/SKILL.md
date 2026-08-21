@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.1 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.2 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
-- `references/framework-governance-amendment-260821-1254.md`
+- `references/framework-governance-amendment-260821-1505.md`
+- `references/framework-governance-amendment-260821-1254.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1142.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1024.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-0821.md` (historical approved amendment)
@@ -233,6 +234,39 @@ For Google Drive, update the existing designated Project progress `.md` when one
 
 Do not persist raw tool payloads, long search results, full diffs, repetitive intermediate state, or private intermediate reasoning merely for audit convenience. `09 Handoff` remains a continuation contract, not an execution log. A new chat must be able to continue from persisted state and Required Read pointers without the old transcript.
 
+## Git Base Freshness and Worktree/Branch Integration
+
+Apply this section only when Git branches/worktrees are actually in scope. It operationalizes the binding Core Governance contract; it does not replace it.
+
+Operational sequence:
+
+```text
+resolve verified Canonical Integration Target
+→ fresh-read/fetch current target
+→ classify Independent Work vs STACKED_WORK
+→ create work from verified current base
+→ check Base Freshness at material checkpoints
+→ classify STALE_NON_SEMANTIC vs STALE_SEMANTIC
+→ BASE_STALE while unresolved
+→ update/rebase appropriately OR FORWARD_PORT_REQUIRED
+→ re-resolve target head immediately before acceptance/merge
+```
+
+Required behavior:
+
+1. **Independent Work:** create the new branch/worktree from current observed canonical target, not from whichever feature branch is checked out. For ProjectFramework use repository `main` / local `origin/main` semantics. Never assume local `main` is current without a fresh target check.
+2. **STACKED_WORK:** feature-on-feature ancestry is allowed only when deliberate and discoverable. Preserve parent branch/ref or commit, dependency reason, what becomes invalid if parent changes, and expected integration order. Material parent movement requires child re-evaluation.
+3. **Base Snapshot:** when material, record only observed repository/ref/SHA/version/time values. Never fabricate Git identity merely to complete metadata.
+4. **Checkpoint:** re-evaluate base before new independent work, before a new material implementation phase when upstream may have moved, before material PR/integration updates, and immediately before merge if target head moved after review.
+5. **STALE_NON_SEMANTIC:** mark the work `BASE_STALE` until its base is updated appropriately and affected verification passes. Use `REBASE_REQUIRED` for private/rewritable work when appropriate; for shared/public branches, prefer a history-preserving merge/update rather than rewriting published history. Return to `FRESH` only after the update and affected verification succeed.
+6. **STALE_SEMANTIC:** mark `BASE_STALE`, stop affected new implementation scope, inspect changed Framework/governance/schema/authority/REQ/DEC/interface/contracts, and use `FORWARD_PORT_REQUIRED` by default.
+7. **Forward-Port:** create a clean branch/worktree from the current target, treat the stale branch as source material, and carry only still-valid accepted changes. Cherry-pick only when boundaries are clean; otherwise re-implement accepted intent on the current base. Exclude temporary staging/transport artifacts, obsolete workflow/version metadata, superseded assumptions, and unrelated experiments.
+8. **Pre-Merge Base Freshness Gate:** re-resolve current target head and classify `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`. `UNKNOWN` or unresolved semantic drift blocks affected acceptance.
+9. `git conflict = 0`, `mergeable = true`, or successful rebase is not semantic approval. **Mergeable ≠ Acceptable.**
+10. Use existing `DRIFT-* / CONFLICT-* / MIG-* / CR-*` only when base staleness becomes material Project truth; do not invent a parallel Stable-ID family.
+
+Commit count alone never decides semantic freshness. One Root Governance change can matter more than many unrelated commits.
+
 ## Workflow
 
 1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT` and detect whether valid local Project Source already exists.
@@ -247,9 +281,10 @@ Do not persist raw tool payloads, long search results, full diffs, repetitive in
 10. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
 11. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval.
 12. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
-13. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
-14. Never store actual secrets; use `SECRET-*` metadata references only.
-15. Preserve history and finish with completion/readiness/exact-next-action summary.
+13. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
+14. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
+15. Never store actual secrets; use `SECRET-*` metadata references only.
+16. Preserve history and finish with completion/readiness/exact-next-action summary.
 
 ## Quick Reference
 
@@ -267,6 +302,11 @@ Do not persist raw tool payloads, long search results, full diffs, repetitive in
 | Existing custom slot 91 | `MIG-*`; never overwrite; approved relocation first |
 | Old free text | never auto-promote into new Stable IDs |
 | Exact Git provenance unavailable | normal bootstrap continues if canonical source accessible; never fabricate |
+| Independent Git worktree/branch | fresh canonical target first; do not inherit current feature branch by default |
+| Feature depends on unmerged feature | explicit `STACKED_WORK` with parent/dependency/integration order |
+| `STALE_NON_SEMANTIC` base | `BASE_STALE` → update safely; rebase private/rewritable or preserve shared history → reverify → `FRESH` |
+| `STALE_SEMANTIC` base | `BASE_STALE` → reassess → `FORWARD_PORT_REQUIRED` into clean current-base work |
+| Pre-merge Git acceptance | re-resolve current target head; `Mergeable ≠ Acceptable` |
 | Material MCP work | batch to Logical Checkpoint; persist usable state/pointers to source-native owner; compact Chat result |
 | Persistence failure / chat switch | `PERSISTENCE_PENDING` → `CONTINUE_CURRENT_CHAT`; `START_NEW_CHAT` only after durable continuation state exists |
 | Handoff | authority does not transfer |
@@ -285,6 +325,15 @@ Do not persist raw tool payloads, long search results, full diffs, repetitive in
 - auto-promoting old prose into Stable IDs;
 - Source/Docker divergence without declared variance or DRIFT;
 - turning Tech Stack/install/Docker planning into unrequested source code/Dockerfile/Compose/scripts/CI/automation;
+- creating unrelated Independent Work from the currently checked-out feature branch by default;
+- assuming local `main` is current without verifying the canonical integration target;
+- using commit count alone as proof of semantic staleness/freshness;
+- continuing or merging a `STALE_SEMANTIC` branch merely because Git reports no conflict;
+- treating `mergeable = true` as semantic acceptance;
+- rewriting shared/public branch history merely to satisfy a rebase preference;
+- hiding feature-on-feature ancestry instead of declaring `STACKED_WORK`;
+- carrying temporary staging/transport or obsolete metadata into a Forward-Port merely to preserve branch history;
+- merging after the canonical target moves materially without rechecking Base Freshness;
 - reconstructing inaccessible Framework/project facts from memory;
 - archive-dependent Current Truth;
 - guessing facts/secrets/provenance;

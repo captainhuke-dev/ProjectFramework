@@ -283,7 +283,7 @@ created_by: "ACTOR-001"
 created_by_instance: "INST-..."
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "CHANGEABLE"
-project_source_framework_version: "1.2.0"
+project_source_framework_version: "<PINNED_FRAMEWORK_VERSION>"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -554,13 +554,59 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.0"
+  framework_version: "<PINNED_FRAMEWORK_VERSION>"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
 ```
 
 Exact tag/SHA values come only from actual observation; never predict, fabricate, or retroactively backfill them.
+
+### 18.4 Git Work Base Freshness and Forward-Port
+
+เมื่อ Project ใช้ Git branch/worktree สำหรับงานที่ต้อง integrate กลับ canonical target ให้แยก **Git mergeability** ออกจาก **semantic acceptability**. Branch ที่ merge/rebase แบบไม่มี textual conflict ยังอาจใช้ Framework, authority, Requirements, routing หรือ contract รุ่นเก่าอยู่ได้.
+
+Canonical terms:
+
+- **Canonical Integration Target** — integration branch/ref ที่ verify แล้วว่าเป็น target ปัจจุบันของ Project; สำหรับ ProjectFramework คือ repository `main` (`origin/main` ใน local Git terminology).
+- **Base Snapshot** — observed repository, target ref, base commit SHA, applicable Framework/Schema version และ captured time เมื่อข้อมูลเหล่านี้ material ต่อการ integrate.
+- **Independent Work** — งานที่ไม่ต้องพึ่ง unmerged feature state อื่น.
+- **STACKED_WORK** — feature-on-feature dependency ที่ตั้งใจและเปิดเผย parent ref/commit, dependency reason, invalidation condition และ expected integration order.
+- **FRESH / STALE_NON_SEMANTIC / STALE_SEMANTIC / UNKNOWN** — Base Freshness vocabulary.
+- **BASE_STALE** — workflow condition ของ work package; ไม่ใช่ Project Lifecycle/Execution state, Epistemic Status หรือ Stable-ID family ใหม่.
+- **REBASE_REQUIRED** — disposition สำหรับ private/rewritable work เมื่อ drift เป็น non-semantic และ replay บน current target เหมาะสม; shared/public branch ใช้ history-preserving merge/update ได้แทน.
+- **FORWARD_PORT_REQUIRED** — disposition เมื่อ semantic base เปลี่ยนจนงานเก่าต้อง re-evaluate กับ current target ก่อน integrate.
+
+Binding behavior:
+
+1. ก่อนสร้าง branch/worktree ใหม่ที่เป็น **Independent Work** ต้อง fresh-read/fetch Canonical Integration Target และสร้างงานจาก current observed target; ห้าม inherit จาก feature branch ที่บังเอิญ checkout อยู่โดย default. Local branch ชื่อ `main` ไม่ได้ prove ว่า current.
+2. Feature-on-feature ancestry อนุญาตเฉพาะ explicit `STACKED_WORK`. Parent change ที่ material ต้อง trigger child base re-evaluation; parent merge/closure ไม่ได้ prove ว่า child fresh โดยอัตโนมัติ.
+3. Base Freshness ต้องตรวจอย่างน้อยก่อนสร้าง independent work, ก่อนเริ่ม material implementation phase ใหม่เมื่อ upstream อาจขยับ, ก่อนเปิด/อัปเดต integration PR ที่ base อาจ stale, และ immediately before acceptance/merge เมื่อ target head เปลี่ยนหลัง review.
+4. Commit count ไม่ใช่ semantic-staleness threshold. Classification ต้องดู impact ต่อ Framework/governance/schema/authority/Requirements/Decisions/interfaces/technical-deployment contracts/source-of-truth assumptions ที่งานพึ่งพา.
+5. `STALE_NON_SEMANTIC` ใช้เมื่อ upstream change ไม่เปลี่ยน material assumption/contract ของงาน. ให้ mark `BASE_STALE` จนกว่า base จะถูก update ด้วยวิธีที่เหมาะสมและ affected verification จะผ่าน. Private/rewritable work อาจใช้ `REBASE_REQUIRED`; shared/public work ต้องรักษา published history ด้วย merge/update strategy ที่เหมาะสม. หลัง update + verification สำเร็จจึงกลับ `FRESH`.
+6. `STALE_SEMANTIC` ใช้เมื่อ upstream เปลี่ยน applicable Framework/Root Governance/Schema/authority/routing/Requirements/Decisions/interfaces หรือ contract ที่งานพึ่งพา. ให้ mark `BASE_STALE`, หยุด affected new implementation scope, assess changed assumptions และใช้ `FORWARD_PORT_REQUIRED` โดย default.
+7. Forward-Port ต้องเริ่ม clean branch/worktree จาก current Canonical Integration Target, treat stale branch เป็น source material/evidence ไม่ใช่ authority, แล้ว carry เฉพาะ still-valid accepted changes. Cherry-pick ได้เมื่อ commit boundary สะอาด; ถ้าไม่สะอาดให้ re-implement accepted intent บน current base.
+8. Forward-Port ต้อง exclude temporary staging/transport artifacts, obsolete workflow, old version metadata, superseded assumptions และ unrelated experimental history ที่ไม่ใช่ current deliverable.
+9. Large/old/experimental/stacked/semantically-drifted work ควร integrate ผ่าน clean integration branch จาก current target แล้ว validate current deliverable ก่อน PR/merge.
+10. Pre-Merge Base Freshness Gate ต้อง re-resolve current target head และ classify `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`. `UNKNOWN`, unresolved semantic drift หรือ target movement ที่ material ต้อง block affected acceptance จน re-evaluated.
+11. `git conflict = 0`, `mergeable = true`, successful rebase หรือ clean textual diff ไม่ override Base Freshness Gate. **Mergeable ≠ Acceptable.**
+12. หาก Base Staleness กลายเป็น material Project truth ให้ใช้ object เดิมตาม semantics: `DRIFT-*` สำหรับ truth-domain misalignment, `CONFLICT-*` สำหรับ competing semantic states, `MIG-*` สำหรับ pinned Framework/Schema migration และ `CR-*` สำหรับ material governed change. ห้ามสร้าง parallel Stable-ID family เพียงเพื่อ Git base freshness.
+13. Existing initialized Projects ยังคงใช้ local pinned `FRAMEWORK-001`; upstream Framework movement ไม่ auto-upgrade Project. กติกานี้ govern work-package integration; local Framework upgrade ยังใช้ `MIG-*` + assessment + approval + validation.
+14. Framework กำหนด semantics เท่านั้น. ห้าม infer authorization ให้สร้าง Git hook, bot, GitHub Actions, validator, scheduler, merge queue หรือ branch-protection automation จากกติกานี้.
+
+เมื่อ material สามารถบันทึก Base Snapshot / gate state ได้ เช่น:
+
+```yaml
+base_freshness_gate:
+  target_ref: "<VERIFIED_CURRENT_TARGET>"
+  target_head_sha: "<OBSERVED_SHA>"
+  reviewed_feature_base_sha: "<OBSERVED_BASE_SHA>"
+  freshness: "FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN"
+  semantic_base_changed: true|false|unknown
+  disposition: "ACCEPT | UPDATE_BASE | REBASE_REQUIRED | FORWARD_PORT_REQUIRED | BLOCK"
+```
+
+ค่า ref/SHA/version ต้องมาจาก observation เท่านั้น; ห้าม fabricate เพื่อให้ record ดู complete.
 
 ## 19. Project Health and Review Cadence
 

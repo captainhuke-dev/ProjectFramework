@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.1**
+- Project Source Framework: **1.2.2**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,14 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.2.2 Additions
+
+Framework `1.2.2` adds **Git Base Freshness and Forward-Port governance** for Projects that use branches/worktrees. New independent work starts from a freshly verified canonical integration target rather than inheriting whichever feature branch happens to be checked out. Feature-on-feature ancestry is explicit `STACKED_WORK`.
+
+Base freshness distinguishes `FRESH`, `STALE_NON_SEMANTIC`, `STALE_SEMANTIC`, and `UNKNOWN`. Non-semantic drift may be updated safely without rewriting shared history; semantic drift uses `BASE_STALE` and normally `FORWARD_PORT_REQUIRED` into clean current-base work. Immediately before acceptance/merge, the target head is rechecked: a conflict-free Git merge is not semantic approval — **Mergeable ≠ Acceptable**.
+
+This remains documentation/governance scope. Framework `1.2.2` introduces no Git hook, bot, CI workflow, validator, branch-protection automation, new semantic slot, or new Stable-ID namespace. Existing initialized Projects remain locally pinned and do not auto-upgrade.
 
 ## Framework 1.2.1 Additions
 
@@ -152,7 +160,7 @@ For every NEW Project Source:
 
 ## Existing Projects and Migration Safety
 
-Existing Projects **do not auto-upgrade** when this repository changes. Their project-local approved Framework/Schema pins remain authoritative. Upgrade to Framework `1.2.0` uses governed `MIG-*` assessment, explicit approval, validation, promotion, supersede/archive, and postflight.
+Existing Projects **do not auto-upgrade** when this repository changes. Their project-local approved Framework/Schema pins remain authoritative. Upgrade to a newer Framework uses governed `MIG-*` assessment, explicit approval, validation, promotion, supersede/archive, and postflight.
 
 A Brownfield Project may already use semantic slot `91` for a custom document. Framework `1.2.0` must not overwrite it: assess through `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` if applicable.
 
@@ -233,4 +241,4 @@ Use `managing-project-source/` as the reusable framework package. Files under `d
 
 ## Supersession Note
 
-Framework `1.2.0` extends the concept-first direction established in `1.1.5`. Git tags, exact commit provenance, branch protection, executable validators, and CI enforcement remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+Framework `1.2.2` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, and CI enforcement remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
