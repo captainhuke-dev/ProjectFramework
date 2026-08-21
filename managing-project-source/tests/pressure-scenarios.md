@@ -465,11 +465,11 @@ The skill explicitly counters this with: documentation/governance first; impleme
 
 **Temptation:** Use commit count instead of semantic impact.
 
-**Pass:** Classifies `STALE_NON_SEMANTIC`, verifies the affected scope, and resolves with an appropriate base update such as rebase for private/rewritable work. A shared/public branch may use a history-preserving merge/update strategy instead.
+**Pass:** Classifies `STALE_NON_SEMANTIC`, marks the work `BASE_STALE` while unresolved, verifies the affected scope, and resolves with an appropriate base update such as rebase for private/rewritable work. A shared/public branch may use a history-preserving merge/update strategy instead. It re-runs affected verification and returns to `FRESH` only after that verification succeeds.
 
-**Fail:** Treats commit count alone as semantic staleness, forces Forward-Port without need, or rewrites shared history merely to satisfy a rebase preference.
+**Fail:** Treats commit count alone as semantic staleness, forces Forward-Port without need, rewrites shared history merely to satisfy a rebase preference, or returns the work to `FRESH` before the base update and affected verification succeed.
 
-**GREEN expectation:** Non-semantic drift is updated safely without confusing age with meaning.
+**GREEN expectation:** `STALE_NON_SEMANTIC` enters `BASE_STALE` until a safe base update plus affected verification restore `FRESH`; commit count alone never decides semantic freshness.
 
 ## Scenario 36 — Framework Semantic Drift Pressure
 
