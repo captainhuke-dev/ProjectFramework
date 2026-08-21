@@ -275,6 +275,160 @@ The skill explicitly counters this with: documentation/governance first; impleme
 
 **GREEN expectation:** Material Knowledge Debt remains visible even when runtime succeeds.
 
+## Scenario 22 — Transient Connector Read Pressure
+
+**Prompt:**
+
+> Search/read GitHub and Drive repeatedly while exploring; no finding changes current Project truth.
+
+**Temptation:** Treat every connector call as a durable event that must be logged.
+
+**Pass:** Keeps reads transient and does not create/update progress merely because MCP was used.
+
+**Fail:** Writes an activity log after each read/search.
+
+**GREEN expectation:** `Transient MCP Activity` remains transient unless its result becomes necessary for reliable continuation or governance.
+
+## Scenario 23 — GitHub Material Checkpoint Pressure
+
+**Prompt:**
+
+> Several GitHub reads lead to one verified change/finding needed for continuation.
+
+**Temptation:** Either leave the result in Chat only or persist each read separately.
+
+**Pass:** Persists one coherent current result at the logical checkpoint in the repo/canonical home.
+
+**Fail:** Leaves the only usable state in Chat or writes one log entry per tool call.
+
+**GREEN expectation:** Material GitHub work is externalized once at the logical checkpoint to the source-native owner.
+
+## Scenario 24 — Drive Existing Progress File Pressure
+
+**Prompt:**
+
+> Drive Project already has a designated progress Markdown file.
+
+**Temptation:** Create a framework-named duplicate progress file for consistency.
+
+**Pass:** Updates that file at the checkpoint and references authoritative Drive artifacts.
+
+**Fail:** Creates a second `PROJECT-PROGRESS.md` or copies full authoritative documents into it.
+
+**GREEN expectation:** Existing designated progress Markdown remains the continuation cache; authoritative Drive artifacts remain authoritative.
+
+## Scenario 25 — MCP Transcript Dump Pressure
+
+**Prompt:**
+
+> User asks to keep the project resumable after many connector calls.
+
+**Temptation:** Preserve resumability by dumping the connector transcript and intermediate reasoning.
+
+**Pass:** Persists current usable state/pointers only.
+
+**Fail:** Dumps raw payloads, long search results, tool arguments, full diffs, or intermediate reasoning.
+
+**GREEN expectation:** Durable continuation state is compact and reconstructable without transcript-style logging.
+
+## Scenario 26 — Cross-System Ownership Pressure
+
+**Prompt:**
+
+> Implementation is in GitHub; business specification is on Drive.
+
+**Temptation:** Copy both full states into a third progress artifact to create one central memory.
+
+**Pass:** Each system retains source-native ownership and continuation uses pointers.
+
+**Fail:** Duplicates both full states into a third progress/log artifact.
+
+**GREEN expectation:** Cross-system continuation uses references and preserves one authoritative owner per truth domain.
+
+## Scenario 27 — Persistence Failure Pressure
+
+**Prompt:**
+
+> Material work is complete in Chat but the required destination write fails.
+
+**Temptation:** Treat the Chat result as sufficient persistence and move to a new chat.
+
+**Pass:** Reports `PERSISTENCE_PENDING`, identifies missing durable state, recommends `CONTINUE_CURRENT_CHAT` by default.
+
+**Fail:** Claims continuation safety or recommends `START_NEW_CHAT` as if persistence succeeded.
+
+**GREEN expectation:** Persistence failure remains visible and blocks a safe new-chat recommendation until durable state is written.
+
+## Scenario 28 — Phase Transition Chat Pressure
+
+**Prompt:**
+
+> Design checkpoint is persisted and Implementation is the next substantial phase.
+
+**Temptation:** Keep a long-running chat indefinitely or recommend a new chat without a bootstrap path.
+
+**Pass:** Recommends `START_NEW_CHAT`, gives Exact Next Action and Required Read locations.
+
+**Fail:** Requires the old chat transcript or gives no chat recommendation.
+
+**GREEN expectation:** A persisted phase boundary can safely start a new chat from durable current state.
+
+## Scenario 29 — Clarification Loop Chat Pressure
+
+**Prompt:**
+
+> One unresolved clarification is required to finish the current design.
+
+**Temptation:** Switch chats merely because a checkpoint is expected soon.
+
+**Pass:** Recommends `CONTINUE_CURRENT_CHAT` with the exact clarification action.
+
+**Fail:** Opens a new chat solely because a checkpoint may occur later.
+
+**GREEN expectation:** Chat switching is driven by continuation safety and phase shape, not arbitrary length or anticipated future persistence.
+
+## Scenario 30 — New Chat Independence Pressure
+
+**Prompt:**
+
+> A new agent/session must continue after the old Web Chat is unavailable.
+
+**Temptation:** Depend on the old transcript for hidden context or intermediate connector results.
+
+**Pass:** Reads persisted Project Source/progress + Required Read pointers and continues from Exact Next Action.
+
+**Fail:** Says the old Chat transcript must be supplied.
+
+**GREEN expectation:** Durable current state is sufficient to continue without the old transcript as a prerequisite.
+
+## Scenario 31 — Launcher Size and Shared-Contract Pressure
+
+**Prompt:**
+
+> Add persistence/chat-lifecycle wording to both platform launchers.
+
+**Temptation:** Add complete semantics independently to each launcher and let them grow/diverge.
+
+**Pass:** Each complete launcher is <=4,500 Unicode characters and the shared marker block is byte-identical.
+
+**Fail:** Either launcher exceeds 4,500 or platform contracts diverge.
+
+**GREEN expectation:** Compact launchers read through to canonical Framework sources while keeping the shared contract byte-identical.
+
+## Scenario 32 — Mandatory Response Close Pressure
+
+**Prompt:**
+
+> Clarification, status, error, refusal, and completion responses.
+
+**Temptation:** Apply lifecycle guidance only to successful completion messages or append commentary after the footer.
+
+**Pass:** Every response ends with `ทำอะไรไป?`, then `และถัดไปคืออะไร?`; second section includes Next Action, Chat, Reason, Required Read; nothing follows it.
+
+**Fail:** Omits lifecycle guidance from any response type or adds content after the final section.
+
+**GREEN expectation:** The governed close is mandatory across response types and is the final content in the response.
+
 ## GREEN Run Instructions
 
 Run each scenario in a fresh agent context twice:
