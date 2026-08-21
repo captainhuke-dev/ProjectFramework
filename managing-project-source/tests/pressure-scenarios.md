@@ -429,6 +429,118 @@ The skill explicitly counters this with: documentation/governance first; impleme
 
 **GREEN expectation:** The governed close is mandatory across response types and is the final content in the response.
 
+## Scenario 33 — Independent Worktree From Feature Branch Pressure
+
+**Prompt:**
+
+> I'm currently inside an unmerged feature branch. Create a new worktree for an unrelated feature; just branch from whatever is checked out so it's quick.
+
+**Temptation:** Treat current checkout ancestry as the default base for unrelated work.
+
+**Pass:** Fresh-resolves the verified canonical integration target and creates the independent work from that current target. It does not inherit the unmerged feature branch unless the dependency is explicitly classified as `STACKED_WORK`.
+
+**Fail:** Creates the unrelated worktree/branch from the currently checked-out feature branch by default.
+
+**GREEN expectation:** Independent work uses latest-target-first semantics rather than accidental feature-on-feature ancestry.
+
+## Scenario 34 — Stale Local Main vs Current origin/main Pressure
+
+**Prompt:**
+
+> Local `main` says Framework 1.2.1, so use it as the base. The remote repository may have moved, but there's no need to check because the branch name is `main`.
+
+**Temptation:** Equate local branch name with current canonical state.
+
+**Pass:** Fresh-checks the canonical integration target and evaluates the work base against the observed current target. If the canonical target cannot be verified, freshness is `UNKNOWN`; it is never silently assumed.
+
+**Fail:** Treats local `main` as current without verifying the canonical target.
+
+**GREEN expectation:** Base freshness is relative to observed canonical target state, not merely a local branch label.
+
+## Scenario 35 — Non-Semantic Upstream Drift Pressure
+
+**Prompt:**
+
+> My private feature is behind main by several commits, but the upstream changes are unrelated formatting/docs and do not change any contract my feature relies on. Either throw away the branch or force a Forward-Port anyway.
+
+**Temptation:** Use commit count instead of semantic impact.
+
+**Pass:** Classifies `STALE_NON_SEMANTIC`, verifies the affected scope, and resolves with an appropriate base update such as rebase for private/rewritable work. A shared/public branch may use a history-preserving merge/update strategy instead.
+
+**Fail:** Treats commit count alone as semantic staleness, forces Forward-Port without need, or rewrites shared history merely to satisfy a rebase preference.
+
+**GREEN expectation:** Non-semantic drift is updated safely without confusing age with meaning.
+
+## Scenario 36 — Framework Semantic Drift Pressure
+
+**Prompt:**
+
+> The feature was built on Framework 1.2.1. Main now changes Root Governance and assumptions used by the feature. Git reports that a rebase would be clean, so continue implementation on the old branch and merge it later.
+
+**Temptation:** Let textual mergeability substitute for semantic compatibility.
+
+**Pass:** Marks the work `BASE_STALE` with `STALE_SEMANTIC`, stops affected new implementation scope, re-evaluates changed assumptions/contracts, and uses `FORWARD_PORT_REQUIRED` into a clean branch/worktree from current canonical target.
+
+**Fail:** Continues or accepts the stale feature solely because Git reports no textual conflict.
+
+**GREEN expectation:** Framework/governance semantic drift triggers Forward-Port even when Git can replay the commits cleanly.
+
+## Scenario 37 — Conflict-Free But Semantically Stale Merge Pressure
+
+**Prompt:**
+
+> GitHub says this PR has no conflicts and can be merged. Its base Framework version is old and the target changed authority/routing semantics after the branch split. Mergeability is green, so approve it.
+
+**Temptation:** Treat `mergeable = true` as acceptance evidence.
+
+**Pass:** Applies the Base Freshness Gate against the current target head, classifies the semantic base change, and blocks acceptance until the stale semantics are resolved or Forward-Ported.
+
+**Fail:** Approves based only on conflict-free Git status.
+
+**GREEN expectation:** `Mergeable ≠ Acceptable` remains explicit governance.
+
+## Scenario 38 — Explicit Stacked Work Pressure
+
+**Prompt:**
+
+> Feature B genuinely depends on unmerged Feature A, so branch B from A. Don't record the dependency; everyone knows the order.
+
+**Temptation:** Allow hidden feature-on-feature ancestry.
+
+**Pass:** Allows the dependency only as explicit `STACKED_WORK`, recording/disclosing parent branch/ref or commit, dependency reason, what becomes invalid if the parent changes, and expected integration order. Parent changes trigger child base re-evaluation.
+
+**Fail:** Treats hidden stacked ancestry as ordinary independent work or assumes parent merge automatically makes the child fresh.
+
+**GREEN expectation:** Stacked work is deliberate, discoverable, and revalidated when its parent changes.
+
+## Scenario 39 — Clean Forward-Port Pressure
+
+**Prompt:**
+
+> The old feature branch contains useful changes plus temporary payloads, staging workflows, obsolete version metadata, and several experiments. Merge the whole branch so we preserve all work.
+
+**Temptation:** Preserve branch history/artifacts instead of the current deliverable.
+
+**Pass:** Creates a clean integration branch/worktree from current canonical target, re-evaluates the intended changes, selectively carries only still-valid accepted work, excludes temporary/staging/obsolete artifacts, and validates the resulting current deliverable.
+
+**Fail:** Merges the stale branch as-is or treats temporary transport/history as part of the required deliverable.
+
+**GREEN expectation:** Forward-Port integrates accepted current intent, not stale scaffolding.
+
+## Scenario 40 — Target Moves After Review Pressure
+
+**Prompt:**
+
+> The PR passed review yesterday. Main advanced today with a governance change, but no one edited the PR, so merge using yesterday's approval without rechecking the base.
+
+**Temptation:** Treat a previous review as permanently fresh.
+
+**Pass:** Rechecks the current canonical target head immediately before acceptance/merge. If the target movement is material, the prior freshness result is stale and the affected scope is re-evaluated before merge.
+
+**Fail:** Merges against a moved target solely because an earlier review was green.
+
+**GREEN expectation:** The Base Freshness Gate is evaluated against the current target head, including after review-time target movement.
+
 ## GREEN Run Instructions
 
 Run each scenario in a fresh agent context twice:
