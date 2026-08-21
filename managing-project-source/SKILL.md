@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.1 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.2 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
-- `references/framework-governance-amendment-260821-1254.md`
+- `references/framework-governance-amendment-260821-1505.md`
+- `references/framework-governance-amendment-260821-1254.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1142.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1024.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-0821.md` (historical approved amendment)
