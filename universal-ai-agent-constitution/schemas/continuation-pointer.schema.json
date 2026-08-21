@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "document_type",
+    "pointer_id",
+    "project_id",
+    "lineage_id",
+    "epoch",
+    "task_id",
+    "status",
+    "current_actor",
+    "objective",
+    "completed",
+    "pending",
+    "artifacts",
+    "verification",
+    "blockers",
+    "checkpoint",
+    "exact_next_action",
+    "governance_bundle_identity",
+    "project_document_registry_identity",
+    "skill_registry_identity",
+    "predecessor_pointer_identity",
+    "update_precondition",
+    "created_at",
+    "updated_at",
+    "updated_by",
+    "boot_receipt_identity",
+    "attempt_preconditions",
+    "visibility"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "LINEAGE_CONTINUATION_POINTER"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "QUEUED",
+        "IN_PROGRESS",
+        "BLOCKED",
+        "INTERRUPTED",
+        "VERIFYING",
+        "VERIFIED",
+        "ACCEPTED",
+        "PUBLISHED",
+        "DEPLOYED",
+        "OPERATIONALLY_VERIFIED",
+        "CLOSED",
+        "FAILED",
+        "CANCELLED",
+        "ABANDONED",
+        "SUPERSEDED"
+      ]
+    },
+    "visibility": {
+      "type": "object",
+      "required": [
+        "state",
+        "canonical_surface",
+        "receiver_visible"
+      ]
+    },
+    "attempt_preconditions": {
+      "type": "object",
+      "required": [
+        "governance_identity",
+        "project_law_identity",
+        "continuation_index_identity",
+        "artifact_base_identity"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

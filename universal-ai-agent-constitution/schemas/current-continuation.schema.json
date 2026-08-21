@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "document_type",
+    "index_id",
+    "project_id",
+    "index_epoch",
+    "state_authority_map_identity",
+    "current_focus_lineage_id",
+    "lineages",
+    "terminal_history_locator",
+    "predecessor_index_identity",
+    "updated_at",
+    "updated_by"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "PROJECT_CONTINUATION_INDEX"
+    },
+    "index_epoch": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lineages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "lineage_id",
+          "status",
+          "pointer_locator",
+          "pointer_identity",
+          "task_id",
+          "artifact_identity",
+          "updated_at"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "QUEUED",
+              "IN_PROGRESS",
+              "BLOCKED",
+              "INTERRUPTED",
+              "VERIFYING",
+              "VERIFIED",
+              "ACCEPTED",
+              "PUBLISHED",
+              "DEPLOYED",
+              "OPERATIONALLY_VERIFIED",
+              "CLOSED",
+              "FAILED",
+              "CANCELLED",
+              "ABANDONED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

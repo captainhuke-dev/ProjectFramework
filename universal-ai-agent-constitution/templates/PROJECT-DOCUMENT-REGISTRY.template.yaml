@@ -1,0 +1,24 @@
+schema_version: '1.0'
+document_type: PROJECT_DOCUMENT_REGISTRY
+registry_id: <id>
+project_id: <project-id>
+documents:
+- role: PROJECT_DEFINITION
+  status: BLOCKED
+  locator: <canonical-project-definition>
+  identity: <revision/hash>
+  state_class: GOVERNANCE
+- role: REQUIREMENTS
+  status: BLOCKED
+  locator: <canonical-requirements-or-prd>
+  identity: <revision/hash>
+  state_class: GOVERNANCE
+- role: CURRENT_STATE
+  status: BLOCKED
+  locator: <canonical-current-state>
+  identity: <revision/hash>
+  state_class: CONTINUATION
+optional_documents: []
+conflicts: []
+last_verified_at: <timestamp>
+last_verified_by: <identity>

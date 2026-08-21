@@ -1,0 +1,12 @@
+schema_version: '1.0'
+document_type: UAAC_PUBLICATION_CONTRACT
+release: 4.2.0
+strategy: ATOMIC_TREE_REPLACEMENT
+staging_on_effective_branch: false
+base_freshness_recheck: REQUIRED_BEFORE_REF_UPDATE
+expected_old_ref_guard: REQUIRED
+final_tree_requirements:
+- UAAC.md and every linked package target exist in the same commit
+- no temporary payload or assembly artifact exists
+- package validation and tests pass before ref update
+- remote readback verifies exact final identities

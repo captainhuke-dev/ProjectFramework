@@ -1,0 +1,120 @@
+schema_version: '1.0'
+project_id: example-installed-project
+registry_id: SKR-INSTALLED-001
+procedures:
+- procedure_id: UAAC-BOOT
+  function: BOOT
+  status: ACTIVE
+  triggers:
+  - project_entry
+  - new_session
+  - resume
+  - material_task
+  - governance_or_state_stale
+  entrypoint: skills/uaac-boot/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVERY_MATERIAL_TASK
+    automatic_by_applicability: true
+    user_restatement_required: false
+- procedure_id: UAAC-REPORT
+  function: REPORT
+  status: ACTIVE
+  triggers:
+  - report
+  entrypoint: skills/uaac-report/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVENT_DRIVEN
+    automatic_by_applicability: true
+    user_restatement_required: false
+- procedure_id: UAAC-RECALL
+  function: RECALL
+  status: ACTIVE
+  triggers:
+  - recall
+  entrypoint: skills/uaac-recall/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVENT_DRIVEN
+    automatic_by_applicability: true
+    user_restatement_required: false
+- procedure_id: UAAC-CHECKPOINT
+  function: CHECKPOINT
+  status: ACTIVE
+  triggers:
+  - checkpoint
+  entrypoint: skills/uaac-checkpoint/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVENT_DRIVEN
+    automatic_by_applicability: true
+    user_restatement_required: false
+- procedure_id: UAAC-HANDOFF
+  function: HANDOFF
+  status: ACTIVE
+  triggers:
+  - handoff
+  entrypoint: skills/uaac-handoff/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVENT_DRIVEN
+    automatic_by_applicability: true
+    user_restatement_required: false
+- procedure_id: UAAC-DECISION
+  function: DECISION
+  status: ACTIVE
+  triggers:
+  - decision
+  entrypoint: skills/uaac-decision/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVENT_DRIVEN
+    automatic_by_applicability: true
+    user_restatement_required: false
+- procedure_id: UAAC-COMMUNICATION
+  function: COMMUNICATION
+  status: ACTIVE
+  triggers:
+  - communication
+  entrypoint: skills/uaac-communication/SKILL.md
+  source_laws:
+  - CONST-023
+  project_law_identity: PROJECT-LAW-001
+  authority_effect: NONE
+  volatile_truth_embedded: false
+  adapter_registry_identity: AAR-INSTALLED-001
+  invocation_contract:
+    trigger: EVENT_DRIVEN
+    automatic_by_applicability: true
+    user_restatement_required: false

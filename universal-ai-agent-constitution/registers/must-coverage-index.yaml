@@ -1,0 +1,320 @@
+schema_version: '2.0'
+constitution_id: UAAC-001
+constitution_version: 4.2.0
+generated: true
+detail_generation: DERIVED_AT_VALIDATION_TIME
+requirement_count: 253
+laws:
+- law_id: CONST-001
+  requirement_count: 6
+  scenario_ids:
+  - S-SUP-01
+  - S-SUP-02
+  - S-SUP-03
+  - S-CST-01
+  - S-CST-02
+  - S-CST-03
+  audit_id: AUDIT-CONST-001
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-002
+  requirement_count: 5
+  scenario_ids:
+  - S-AUT-01
+  - S-ENT-01
+  - S-INSTALL-15
+  - S-INSTALL-19
+  audit_id: AUDIT-CONST-002
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-003
+  requirement_count: 7
+  scenario_ids:
+  - S-AUT-02
+  - S-AUT-03
+  - S-AUT-04
+  - S-AUT-05
+  - S-ACC-01
+  - S-ACC-02
+  - S-AUT-06
+  audit_id: AUDIT-CONST-003
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-004
+  requirement_count: 3
+  scenario_ids:
+  - S-ENT-02
+  - S-XFR-05
+  audit_id: AUDIT-CONST-004
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-005
+  requirement_count: 7
+  scenario_ids:
+  - S-MEM-01
+  - S-MEM-02
+  - S-MEM-03
+  - S-EPI-01
+  - S-EPI-02
+  - S-CTX-03
+  audit_id: AUDIT-CONST-005
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-006
+  requirement_count: 4
+  scenario_ids:
+  - S-EVD-01
+  - S-EVD-02
+  - S-EVD-03
+  - S-CTX-02
+  - S-EVD-04
+  audit_id: AUDIT-CONST-006
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-007
+  requirement_count: 5
+  scenario_ids:
+  - S-INS-01
+  - S-INS-02
+  - S-INS-03
+  - S-CTX-04
+  audit_id: AUDIT-CONST-007
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-008
+  requirement_count: 7
+  scenario_ids:
+  - S-CMP-01
+  - S-CMP-02
+  - S-CMP-03
+  - S-CTX-01
+  audit_id: AUDIT-CONST-008
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-009
+  requirement_count: 6
+  scenario_ids:
+  - S-KNW-01
+  - S-KNW-02
+  - S-KNW-03
+  audit_id: AUDIT-CONST-009
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-010
+  requirement_count: 4
+  scenario_ids:
+  - S-RSK-01
+  - S-RSK-02
+  - S-RSK-03
+  audit_id: AUDIT-CONST-010
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-011
+  requirement_count: 7
+  scenario_ids:
+  - S-CNF-01
+  - S-CNF-02
+  - S-CNF-03
+  - S-CNF-04
+  - S-CNF-05
+  - S-CNF-06
+  audit_id: AUDIT-CONST-011
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-012
+  requirement_count: 12
+  scenario_ids:
+  - S-DEC-01
+  - S-DEC-02
+  - S-DEC-03
+  - S-DEC-04
+  - S-DEC-05
+  - S-DEC-06
+  - S-DEC-07
+  - S-DEC-08
+  audit_id: AUDIT-CONST-012
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-013
+  requirement_count: 5
+  scenario_ids:
+  - S-COM-01
+  - S-COM-02
+  - S-COM-03
+  - S-COM-04
+  - S-COM-05
+  - S-COM-06
+  audit_id: AUDIT-CONST-013
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-014
+  requirement_count: 19
+  scenario_ids:
+  - S-CKP-01
+  - S-CKP-02
+  - S-CTX-05
+  - S-STA-02
+  - S-INSTALL-02
+  - S-INSTALL-03
+  - S-INSTALL-09
+  - S-INSTALL-16
+  - S-INSTALL-17
+  audit_id: AUDIT-CONST-014
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-015
+  requirement_count: 17
+  scenario_ids:
+  - S-XFR-01
+  - S-XFR-02
+  - S-XFR-03
+  - S-XFR-04
+  - S-XFR-05
+  - S-STA-01
+  - S-REV-02
+  - S-INSTALL-01
+  - S-INSTALL-02
+  - S-INSTALL-10
+  - S-INSTALL-17
+  - S-INSTALL-20
+  audit_id: AUDIT-CONST-015
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-016
+  requirement_count: 12
+  scenario_ids:
+  - S-DEP-01
+  - S-DEP-02
+  - S-DEP-03
+  - S-STA-01
+  - S-STA-02
+  - S-INSTALL-01
+  - S-INSTALL-05
+  - S-INSTALL-11
+  - S-INSTALL-16
+  - S-INSTALL-22
+  - S-INSTALL-23
+  audit_id: AUDIT-CONST-016
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-017
+  requirement_count: 5
+  scenario_ids:
+  - S-RES-01
+  - S-RES-02
+  - S-SUB-06
+  - S-INSTALL-06
+  audit_id: AUDIT-CONST-017
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-018
+  requirement_count: 4
+  scenario_ids:
+  - S-NCP-01
+  - S-NCP-02
+  - S-NCP-03
+  - S-BLK-01
+  audit_id: AUDIT-CONST-018
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-019
+  requirement_count: 3
+  scenario_ids:
+  - S-RPR-01
+  - S-RPR-02
+  audit_id: AUDIT-CONST-019
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-020
+  requirement_count: 4
+  scenario_ids:
+  - S-RUN-01
+  - S-RUN-02
+  - S-SUP-01
+  audit_id: AUDIT-CONST-020
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-021
+  requirement_count: 21
+  scenario_ids:
+  - S-ADP-01
+  - S-ESC-01
+  - S-ESC-02
+  - S-CST-01
+  - S-INT-01
+  - S-STA-01
+  - S-CST-03
+  - S-INSTALL-01
+  - S-INSTALL-04
+  - S-INSTALL-05
+  - S-INSTALL-06
+  - S-INSTALL-08
+  - S-INSTALL-10
+  - S-INSTALL-11
+  - S-INSTALL-12
+  - S-INSTALL-13
+  - S-INSTALL-14
+  - S-INSTALL-15
+  - S-INSTALL-18
+  - S-INSTALL-19
+  - S-INSTALL-20
+  - S-INSTALL-22
+  - S-INSTALL-23
+  audit_id: AUDIT-CONST-021
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-022
+  requirement_count: 14
+  scenario_ids:
+  - S-ADP-02
+  - S-ADP-03
+  - S-PKG-01
+  - S-PKG-02
+  - S-INSTALL-22
+  - S-INSTALL-23
+  audit_id: AUDIT-CONST-022
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-023
+  requirement_count: 20
+  scenario_ids:
+  - S-SKL-01
+  - S-SKL-02
+  - S-SKL-03
+  - S-SKL-04
+  - S-SKL-05
+  - S-SKL-06
+  - S-CTX-07
+  - S-SKL-07
+  - S-INSTALL-07
+  - S-INSTALL-08
+  - S-INSTALL-13
+  - S-INSTALL-18
+  - S-INSTALL-21
+  audit_id: AUDIT-CONST-023
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-024
+  requirement_count: 36
+  scenario_ids:
+  - S-CTX-01
+  - S-CTX-02
+  - S-CTX-03
+  - S-CTX-04
+  - S-CTX-05
+  - S-CTX-06
+  - S-CTX-07
+  - S-CTX-08
+  - S-CTX-09
+  - S-CTX-10
+  - S-CTX-11
+  - S-OV-01
+  - S-OV-02
+  - S-OV-03
+  - S-OV-04
+  - S-OV-05
+  - S-CTX-12
+  - S-INSTALL-01
+  - S-INSTALL-10
+  - S-INSTALL-17
+  - S-INSTALL-20
+  audit_id: AUDIT-CONST-024
+  execution_status: SPECIFIED_NOT_EXECUTED
+- law_id: CONST-025
+  requirement_count: 20
+  scenario_ids:
+  - S-SUB-01
+  - S-SUB-02
+  - S-SUB-03
+  - S-SUB-04
+  - S-SUB-05
+  - S-SUB-06
+  - S-SUB-07
+  - S-INSTALL-06
+  - S-INSTALL-12
+  - S-INSTALL-15
+  - S-INSTALL-16
+  - S-INSTALL-17
+  - S-INSTALL-18
+  - S-INSTALL-21
+  - S-INSTALL-22
+  - S-INSTALL-23
+  audit_id: AUDIT-CONST-025
+  execution_status: SPECIFIED_NOT_EXECUTED

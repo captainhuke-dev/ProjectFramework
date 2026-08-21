@@ -1,0 +1,268 @@
+schema_version: '1.0'
+constitution_id: UAAC-001
+constitution_version: 4.2.0
+policy: EXTRACT_NORMATIVE_SENTENCES_AND_REQUIRE_METHOD
+default_methods_by_law:
+  CONST-001:
+    scenarios:
+    - S-SUP-01
+    - S-SUP-02
+    - S-SUP-03
+    - S-CST-01
+    - S-CST-02
+    - S-CST-03
+    inspection: LAW_SPECIFIC
+  CONST-002:
+    scenarios:
+    - S-AUT-01
+    - S-ENT-01
+    - S-INSTALL-15
+    - S-INSTALL-19
+    inspection: LAW_SPECIFIC
+  CONST-003:
+    scenarios:
+    - S-AUT-02
+    - S-AUT-03
+    - S-AUT-04
+    - S-AUT-05
+    - S-ACC-01
+    - S-ACC-02
+    - S-AUT-06
+    inspection: LAW_SPECIFIC
+  CONST-004:
+    scenarios:
+    - S-ENT-02
+    - S-XFR-05
+    inspection: LAW_SPECIFIC
+  CONST-005:
+    scenarios:
+    - S-MEM-01
+    - S-MEM-02
+    - S-MEM-03
+    - S-EPI-01
+    - S-EPI-02
+    - S-CTX-03
+    inspection: LAW_SPECIFIC
+  CONST-006:
+    scenarios:
+    - S-EVD-01
+    - S-EVD-02
+    - S-EVD-03
+    - S-CTX-02
+    - S-EVD-04
+    inspection: LAW_SPECIFIC
+  CONST-007:
+    scenarios:
+    - S-INS-01
+    - S-INS-02
+    - S-INS-03
+    - S-CTX-04
+    inspection: LAW_SPECIFIC
+  CONST-008:
+    scenarios:
+    - S-CMP-01
+    - S-CMP-02
+    - S-CMP-03
+    - S-CTX-01
+    inspection: LAW_SPECIFIC
+  CONST-009:
+    scenarios:
+    - S-KNW-01
+    - S-KNW-02
+    - S-KNW-03
+    inspection: LAW_SPECIFIC
+  CONST-010:
+    scenarios:
+    - S-RSK-01
+    - S-RSK-02
+    - S-RSK-03
+    inspection: LAW_SPECIFIC
+  CONST-011:
+    scenarios:
+    - S-CNF-01
+    - S-CNF-02
+    - S-CNF-03
+    - S-CNF-04
+    - S-CNF-05
+    - S-CNF-06
+    inspection: LAW_SPECIFIC
+  CONST-012:
+    scenarios:
+    - S-DEC-01
+    - S-DEC-02
+    - S-DEC-03
+    - S-DEC-04
+    - S-DEC-05
+    - S-DEC-06
+    - S-DEC-07
+    - S-DEC-08
+    inspection: LAW_SPECIFIC
+  CONST-013:
+    scenarios:
+    - S-COM-01
+    - S-COM-02
+    - S-COM-03
+    - S-COM-04
+    - S-COM-05
+    - S-COM-06
+    inspection: LAW_SPECIFIC
+  CONST-014:
+    scenarios:
+    - S-CKP-01
+    - S-CKP-02
+    - S-CTX-05
+    - S-STA-02
+    - S-INSTALL-02
+    - S-INSTALL-03
+    - S-INSTALL-09
+    - S-INSTALL-16
+    - S-INSTALL-17
+    inspection: LAW_SPECIFIC
+  CONST-015:
+    scenarios:
+    - S-XFR-01
+    - S-XFR-02
+    - S-XFR-03
+    - S-XFR-04
+    - S-XFR-05
+    - S-STA-01
+    - S-REV-02
+    - S-INSTALL-01
+    - S-INSTALL-02
+    - S-INSTALL-10
+    - S-INSTALL-17
+    - S-INSTALL-20
+    inspection: LAW_SPECIFIC
+  CONST-016:
+    scenarios:
+    - S-DEP-01
+    - S-DEP-02
+    - S-DEP-03
+    - S-STA-01
+    - S-STA-02
+    - S-INSTALL-01
+    - S-INSTALL-05
+    - S-INSTALL-11
+    - S-INSTALL-16
+    - S-INSTALL-22
+    - S-INSTALL-23
+    inspection: LAW_SPECIFIC
+  CONST-017:
+    scenarios:
+    - S-RES-01
+    - S-RES-02
+    - S-SUB-06
+    - S-INSTALL-06
+    inspection: LAW_SPECIFIC
+  CONST-018:
+    scenarios:
+    - S-NCP-01
+    - S-NCP-02
+    - S-NCP-03
+    - S-BLK-01
+    inspection: LAW_SPECIFIC
+  CONST-019:
+    scenarios:
+    - S-RPR-01
+    - S-RPR-02
+    inspection: LAW_SPECIFIC
+  CONST-020:
+    scenarios:
+    - S-RUN-01
+    - S-RUN-02
+    - S-SUP-01
+    inspection: LAW_SPECIFIC
+  CONST-021:
+    scenarios:
+    - S-ADP-01
+    - S-ESC-01
+    - S-ESC-02
+    - S-CST-01
+    - S-INT-01
+    - S-STA-01
+    - S-CST-03
+    - S-INSTALL-01
+    - S-INSTALL-04
+    - S-INSTALL-05
+    - S-INSTALL-06
+    - S-INSTALL-08
+    - S-INSTALL-10
+    - S-INSTALL-11
+    - S-INSTALL-12
+    - S-INSTALL-13
+    - S-INSTALL-14
+    - S-INSTALL-15
+    - S-INSTALL-18
+    - S-INSTALL-19
+    - S-INSTALL-20
+    - S-INSTALL-22
+    - S-INSTALL-23
+    inspection: LAW_SPECIFIC
+  CONST-022:
+    scenarios:
+    - S-ADP-02
+    - S-ADP-03
+    - S-PKG-01
+    - S-PKG-02
+    - S-INSTALL-22
+    - S-INSTALL-23
+    inspection: LAW_SPECIFIC
+  CONST-023:
+    scenarios:
+    - S-SKL-01
+    - S-SKL-02
+    - S-SKL-03
+    - S-SKL-04
+    - S-SKL-05
+    - S-SKL-06
+    - S-CTX-07
+    - S-SKL-07
+    - S-INSTALL-07
+    - S-INSTALL-08
+    - S-INSTALL-13
+    - S-INSTALL-18
+    - S-INSTALL-21
+    inspection: LAW_SPECIFIC
+  CONST-024:
+    scenarios:
+    - S-CTX-01
+    - S-CTX-02
+    - S-CTX-03
+    - S-CTX-04
+    - S-CTX-05
+    - S-CTX-06
+    - S-CTX-07
+    - S-CTX-08
+    - S-CTX-09
+    - S-CTX-10
+    - S-CTX-11
+    - S-OV-01
+    - S-OV-02
+    - S-OV-03
+    - S-OV-04
+    - S-OV-05
+    - S-CTX-12
+    - S-INSTALL-01
+    - S-INSTALL-10
+    - S-INSTALL-17
+    - S-INSTALL-20
+    inspection: LAW_SPECIFIC
+  CONST-025:
+    scenarios:
+    - S-SUB-01
+    - S-SUB-02
+    - S-SUB-03
+    - S-SUB-04
+    - S-SUB-05
+    - S-SUB-06
+    - S-SUB-07
+    - S-INSTALL-06
+    - S-INSTALL-12
+    - S-INSTALL-15
+    - S-INSTALL-16
+    - S-INSTALL-17
+    - S-INSTALL-18
+    - S-INSTALL-21
+    - S-INSTALL-22
+    - S-INSTALL-23
+    inspection: LAW_SPECIFIC

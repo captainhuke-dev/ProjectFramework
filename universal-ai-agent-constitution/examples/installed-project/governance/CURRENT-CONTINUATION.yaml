@@ -1,0 +1,26 @@
+schema_version: '2.0'
+document_type: PROJECT_CONTINUATION_INDEX
+index_id: CONT-INDEX-001
+project_id: example-installed-project
+index_epoch: 2
+state_authority_map_identity: SAM-INSTALLED-001
+current_focus_lineage_id: LINEAGE-ACTIVE
+lineages:
+- lineage_id: LINEAGE-ACTIVE
+  status: IN_PROGRESS
+  pointer_locator: governance/continuation/LINEAGE-ACTIVE/CURRENT.yaml
+  pointer_identity: PTR-ACTIVE-002
+  task_id: TASK-ACTIVE
+  artifact_identity: git:feature/example@abc123
+  updated_at: '2026-08-21T00:10:00+07:00'
+- lineage_id: LINEAGE-CLOSED
+  status: CLOSED
+  pointer_locator: governance/continuation/LINEAGE-CLOSED/CURRENT.yaml
+  pointer_identity: PTR-CLOSED-003
+  task_id: TASK-CLOSED
+  artifact_identity: git:main@closed123
+  updated_at: '2026-08-20T20:00:00+07:00'
+terminal_history_locator: governance/continuation/history/
+predecessor_index_identity: CONT-INDEX-000
+updated_at: '2026-08-21T00:10:00+07:00'
+updated_by: CODEX-EXAMPLE

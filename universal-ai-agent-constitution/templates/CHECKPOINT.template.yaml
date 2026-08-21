@@ -1,0 +1,30 @@
+schema_version: '1.0'
+checkpoint_id: <id>
+parent_checkpoint_id: <id-or-none>
+project_id: <project>
+task_id: <task>
+lineage_id: <lineage>
+agent_identity: <agent>
+governance_bundle_identity: <bundle>
+state_authority_map_identity: <map>
+objective: <objective>
+current_state: <state>
+completed: []
+pending: []
+exact_next_action: <action>
+artifacts: []
+verification_state: <state>
+open_uncertainties: []
+open_blockers: []
+canonical_references: []
+created_at: <timestamp>
+boot_receipt_identity: <boot-receipt-identity>
+attempt_preconditions:
+  governance_identity: <identity>
+  project_law_identity: <identity>
+  continuation_index_identity: <identity>
+  artifact_base_identity: <identity>
+visibility:
+  state: LOCAL_ONLY
+  canonical_surface: <locator>
+  receiver_visible: false
