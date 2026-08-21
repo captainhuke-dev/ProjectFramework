@@ -98,20 +98,20 @@ Core documents:
 02 Project Overview             MANDATORY
 03 Current State                MANDATORY
 04 Decision Log                 MANDATORY
-05 Requirements                MANDATORY
-06 Architecture                CONDITIONAL
-07 Implementation Plan         CONDITIONAL
-08 Open Issues                 CONDITIONAL
-09 Handoff                     MANDATORY
-10 Change Log                  MANDATORY
-11 Actor Registry              MANDATORY
-12 Authorization Registry      MANDATORY
-13 Evidence Registry           MANDATORY
-14 Project Source Manifest     MANDATORY
-15 Action Registry             MANDATORY
-16 Migration Registry          MANDATORY
-17 Secret Reference Registry   MANDATORY
-18–19                          RESERVED
+05 Requirements                 MANDATORY
+06 Architecture                 CONDITIONAL
+07 Implementation Plan          CONDITIONAL
+08 Open Issues                  CONDITIONAL
+09 Handoff                      MANDATORY
+10 Change Log                   MANDATORY
+11 Actor Registry               MANDATORY
+12 Authorization Registry       MANDATORY
+13 Evidence Registry            MANDATORY
+14 Project Source Manifest      MANDATORY
+15 Action Registry              MANDATORY
+16 Migration Registry           MANDATORY
+17 Secret Reference Registry    MANDATORY
+18–19                           RESERVED
 ```
 
 Framework `1.2.0` standardizes extended documents:
