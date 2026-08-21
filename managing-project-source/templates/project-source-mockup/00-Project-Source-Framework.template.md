@@ -40,6 +40,10 @@ Create this document first as active `FRAMEWORK-001`; descendants inherit from i
 
 `91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`. Technical planning remains documentation/blueprint scope and does not authorize source code, Dockerfile/Compose, scripts, CI, or automation.
 
+## Externalized Working Memory / Chat Lifecycle Pointer
+
+The full root template `../00-project-source-framework.md` carries the binding `Externalized Working Memory and Chat Lifecycle` contract, including Material vs Transient connector activity, Logical Checkpoint persistence, `PERSISTENCE_PENDING`, and `CONTINUE_CURRENT_CHAT | START_NEW_CHAT`. Keep those semantics in the full root template; do not duplicate or weaken the normative contract in this starter.
+
 ## Framework Source Provenance — Optional Assurance
 
 ```yaml

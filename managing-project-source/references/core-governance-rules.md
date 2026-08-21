@@ -446,6 +446,33 @@ When applicable, surface continuation-critical `RISK-*`, invalid/unverified `ASM
 
 Before `ACCEPTED`, recipient reads `00 → 01 → 03 → 09`, checks actor/authority, relevant active objects, volatile state, and current handoff revision.
 
+### 16.1 Externalized Working Memory and Chat Lifecycle
+
+**Externalized Working Memory** is the minimum durable continuation state maintained outside Chat in source-native Project storage. Chat remains a temporary interaction/execution surface; connector/MCP use does not make Chat persistent Project memory.
+
+Canonical terms:
+
+- **Material Project Work** — any connector-derived result or change needed for reliable continuation, governance, decision-making, or execution.
+- **Transient MCP Activity** — reads, searches, comparisons, or intermediate connector detail that is discarded or not needed for later continuation.
+- **Logical Checkpoint** — the coherent point after related connector activity where the current usable result can be persisted once without per-tool-call logging.
+- **PERSISTED** — required durable continuation state has been successfully written to its source-native owner or approved continuation cache.
+- **PERSISTENCE_PENDING** — required durable continuation state has not been successfully written; continuation safety must not be claimed.
+- **CONTINUE_CURRENT_CHAT** / **START_NEW_CHAT** — the only Chat lifecycle recommendation vocabulary.
+
+Binding behavior:
+
+1. Material Project Work MUST be persisted at a Logical Checkpoint; Transient MCP Activity has no persistence requirement by default.
+2. GitHub-backed Material Project Work persists to the repository artifact or canonical Project Source semantic home that owns the state.
+3. Google Drive Material Project Work updates the existing designated Project progress `.md` when one exists. If none exists and durable continuation state is required, use one stable `PROJECT-PROGRESS.md` as a continuation cache, not as a new authoritative source.
+4. Cross-system GitHub/Drive state uses references/pointers. Do not create a third duplicate source of truth.
+5. Do not persist raw MCP/tool payloads, long search-result dumps, full diffs, repetitive intermediate state, or private intermediate reasoning merely for audit convenience. Include such detail only when explicitly requested or necessary for approval or ambiguity resolution.
+6. `09-Handoff` remains a continuation contract, not an MCP transcript or execution log.
+7. If required persistence fails, classify the state as `PERSISTENCE_PENDING`, disclose what remains unpersisted, and default to `CONTINUE_CURRENT_CHAT`.
+8. `START_NEW_CHAT` is continuation-safe only after the durable state outside Chat includes current state, blocker/pending state, Exact Next Action, and Required Read location.
+9. A new chat/session MUST be able to continue from persisted current state and Required Read pointers without the old chat transcript as a prerequisite.
+10. A successful connector call alone is not a Logical Checkpoint and MUST NOT trigger one progress write per tool call.
+11. Existing initialized Projects remain governed by their local pinned Framework and never auto-upgrade merely because upstream ProjectFramework changes.
+
 ## 17. Adoption Modes and Bootstrap
 
 ### GREENFIELD

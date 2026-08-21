@@ -500,6 +500,22 @@ Handoff ต้องมี current/pending work, active objects, required read o
 
 เมื่อ applicable ให้ surface active/high `RISK-*`, invalid/unverified `ASM-*`, blocking `DEP-*`, next/recent `MS-*`, Outcomes awaiting measurement, open/approved `CR-*`, upcoming/failed `GATE-*`, Technical/Deployment warnings, Source/Docker variance, Knowledge Debt.
 
+### 17.1 Externalized Working Memory and Chat Lifecycle
+
+Project-local binding contract:
+
+```text
+Material connector work → persist at logical checkpoint to source-native durable state.
+Transient connector reads/searches → no persistence requirement by default.
+GitHub → repository/canonical Project Source owner.
+Drive → existing designated progress .md, else one stable PROJECT-PROGRESS.md when needed.
+Persistence failure → PERSISTENCE_PENDING; no safe START_NEW_CHAT recommendation.
+Chat lifecycle → CONTINUE_CURRENT_CHAT | START_NEW_CHAT.
+New chat → bootstrap from persisted current state, not old transcript.
+```
+
+`Material Project Work` คือ connector-derived result/change ที่ต้องใช้ต่อเพื่อ reliable continuation, governance, decision-making หรือ execution; `Transient MCP Activity` คือ intermediate read/search/comparison ที่ไม่ต้องใช้ต่อ. Persist Material work ครั้งเดียวต่อ `Logical Checkpoint`, ไม่ใช่ทุก tool call. `PROJECT-PROGRESS.md` เป็น continuation cache เมื่อไม่มี designated progress Markdown เดิมและ durable continuation state จำเป็น; ไม่ใช่ source of truth ใหม่. Existing initialized Projects ใช้ local pinned Framework ต่อไปและไม่ auto-upgrade จาก upstream.
+
 ## 18. Technical Design — `40`
 
 `06 Architecture` = major architecture view. `40 Technical Design` = deeper implementation-facing blueprint; deepen/reference `06`, ห้าม fork authoritative payload ซ้ำ.
