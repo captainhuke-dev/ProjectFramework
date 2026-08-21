@@ -1,0 +1,8 @@
+constitution_id: UAAC-001
+version: 4.2.0
+upstream_repository: captainhuke-dev/ProjectFramework
+upstream_commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+upstream_package_tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
+upstream_path: universal-ai-agent-constitution/
+pinned_reference: git:captainhuke-dev/ProjectFramework@5a309d8d38046bf3e8cd4beb2fc82a872f211cad:universal-ai-agent-constitution/
+note: This pin record avoids recursively vendoring the upstream package into its own repository.

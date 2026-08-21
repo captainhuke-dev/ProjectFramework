@@ -1,0 +1,13 @@
+schema_version: '1.0'
+document_type: PROJECT_BINDING
+binding_id: PB-UAAC-V42-REFERENCE-001
+status: DECLARED
+project_id: uaac-v42-reference
+project_root: uaac-v4.2-reference-project
+canonical_repository: captainhuke-dev/ProjectFramework
+canonical_ref_policy: hz-framework
+governance_front_door: governance/UAAC-BOOT.md
+nested_project_policy: EXPLICIT_BOUNDARY
+verification:
+  status: PENDING_REMOTE_READBACK
+  expected_front_door_blob: 3abc8612db5862c8d83ddd44fa58d719caf4104a

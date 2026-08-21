@@ -1,0 +1,9 @@
+schema_version: '1.0'
+document_type: PROJECT_CONTINUATION_INDEX
+continuation_index_id: CONT-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+epoch: 1
+active_lineages:
+  - lineage_id: LINEAGE-REFERENCE
+    pointer: governance/continuation/LINEAGE-REFERENCE/CURRENT.yaml
+terminal_lineages: []

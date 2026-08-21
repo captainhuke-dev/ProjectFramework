@@ -1,0 +1,20 @@
+schema_version: '1.0'
+document_type: SKILL_REGISTRY
+registry_id: SKR-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+skills:
+  - procedure_id: UAAC-BOOT
+    locator: skills/uaac-boot/SKILL.md
+    status: ACTIVE
+  - procedure_id: UAAC-REPORT
+    locator: skills/uaac-report/SKILL.md
+    status: ACTIVE
+  - procedure_id: UAAC-RECALL
+    locator: skills/uaac-recall/SKILL.md
+    status: ACTIVE
+  - procedure_id: UAAC-CHECKPOINT
+    locator: skills/uaac-checkpoint/SKILL.md
+    status: ACTIVE
+  - procedure_id: UAAC-HANDOFF
+    locator: skills/uaac-handoff/SKILL.md
+    status: ACTIVE

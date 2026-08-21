@@ -1,0 +1,16 @@
+schema_version: '1.0'
+document_type: PROJECT_CAPABILITY_PACK
+pack_id: PCP-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+constitutional_procedures:
+  always:
+    - UAAC-BOOT
+    - UAAC-REPORT
+  multi_agent:
+    - UAAC-RECALL
+    - UAAC-CHECKPOINT
+    - UAAC-HANDOFF
+not_applicable:
+  - UAAC-DECISION
+  - UAAC-COMMUNICATION
+reason: Reference Project verifies bootstrap and continuity only.

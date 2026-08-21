@@ -1,0 +1,14 @@
+schema_version: '1.0'
+document_type: CLAIM_CONTRACT_REGISTRY
+registry_id: CCR-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+claim_contracts:
+  - token: STATIC_CONVERGENCE_VERIFIED
+    substantiating_artifact: governance/REFERENCE-VALIDATION.yaml
+    safe_fallback: STATIC_CONVERGENCE_UNVERIFIED
+  - token: LIVE_CROSS_AGENT_CONVERGENCE_PASS
+    substantiating_artifacts:
+      - governance/receipts/CHATGPT-BOOT.yaml
+      - governance/receipts/CODEX-BOOT.yaml
+    validation_method: COMPARE_RESOLVED_IDENTITY_SET
+    safe_fallback: LIVE_CONVERGENCE_NOT_RUN

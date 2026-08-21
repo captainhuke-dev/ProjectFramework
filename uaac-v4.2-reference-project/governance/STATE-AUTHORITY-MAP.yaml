@@ -1,0 +1,33 @@
+schema_version: '1.0'
+document_type: STATE_AUTHORITY_MAP
+map_id: SAM-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+state_classes:
+  GOVERNANCE:
+    canonical:
+      repository: captainhuke-dev/ProjectFramework
+      ref: hz-framework
+      root: uaac-v4.2-reference-project/governance/
+  CONSTITUTION:
+    canonical:
+      repository: captainhuke-dev/ProjectFramework
+      commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+      tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
+      path: universal-ai-agent-constitution/
+  PROJECT_DOCUMENTS:
+    canonical:
+      repository: captainhuke-dev/ProjectFramework
+      ref: hz-framework
+      root: uaac-v4.2-reference-project/project-docs/
+  CONTINUATION:
+    canonical:
+      repository: captainhuke-dev/ProjectFramework
+      ref: hz-framework
+      index: uaac-v4.2-reference-project/governance/CURRENT-CONTINUATION.yaml
+  EVIDENCE:
+    canonical:
+      repository: captainhuke-dev/ProjectFramework
+      ref: hz-framework
+      locator: uaac-v4.2-reference-project/governance/REFERENCE-VALIDATION.yaml
+  DERIVED_CONTEXT:
+    authority_effect: NONE
