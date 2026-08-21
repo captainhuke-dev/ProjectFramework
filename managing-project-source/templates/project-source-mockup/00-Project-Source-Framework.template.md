@@ -44,6 +44,10 @@ Create this document first as active `FRAMEWORK-001`; descendants inherit from i
 
 The full root template `../00-project-source-framework.md` carries the binding `Externalized Working Memory and Chat Lifecycle` contract, including Material vs Transient connector activity, Logical Checkpoint persistence, `PERSISTENCE_PENDING`, and `CONTINUE_CURRENT_CHAT | START_NEW_CHAT`. Keep those semantics in the full root template; do not duplicate or weaken the normative contract in this starter.
 
+## Git Base Freshness / Forward-Port Pointer
+
+The full root template also carries the binding `Git Work Base Freshness and Forward-Port` contract. Independent Git work starts from a freshly verified canonical integration target; feature-on-feature ancestry must be explicit `STACKED_WORK`; semantic base drift uses `BASE_STALE` / `FORWARD_PORT_REQUIRED`; and pre-merge acceptance is rechecked against the current target head. `Mergeable ≠ Acceptable`. Keep the complete normative semantics in the full root template rather than duplicating them here.
+
 ## Framework Source Provenance — Optional Assurance
 
 ```yaml
