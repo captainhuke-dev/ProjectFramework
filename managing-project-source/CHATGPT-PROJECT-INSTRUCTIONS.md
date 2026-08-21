@@ -2,7 +2,7 @@
 
 Paste this file's contents into **ChatGPT Project → Project settings → Instructions**.
 
-Distribution release: **Project Source Framework 1.2.0 / Schema 1.0.0**.
+Distribution release: **Project Source Framework 1.2.1 / Schema 1.0.0**.
 
 <!-- PROJECTFRAMEWORK-SHARED-CONTRACT:START -->
 ## Shared ProjectFramework Bootstrap Contract

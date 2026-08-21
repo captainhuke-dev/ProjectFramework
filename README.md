@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.0**
+- Project Source Framework: **1.2.1**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,12 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.2.1 Additions
+
+Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** governance. Material connector/MCP work is persisted at logical checkpoints to its source-native durable owner; transient reads/searches stay transient by default. Persistence failure is explicit through `PERSISTENCE_PENDING`, and `START_NEW_CHAT` is continuation-safe only after the minimum continuation state is durable outside Chat.
+
+The Project Source namespace and Schema remain unchanged at `1.0.0`; existing initialized Projects remain locally pinned and do not auto-upgrade.
 
 ## Framework 1.2.0 Additions
 

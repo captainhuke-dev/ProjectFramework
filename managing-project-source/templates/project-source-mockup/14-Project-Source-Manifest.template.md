@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.0"
+project_source_framework_version: "1.2.1"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -41,7 +41,7 @@ Repository
 Source Ref
 Optional Release Tag when observed
 Optional Resolved Commit SHA when observed
-Framework Version: 1.2.0
+Framework Version: 1.2.1
 Schema Version: 1.0.0
 Captured At
 Provenance Status: VERIFIED / PARTIAL / UNVERIFIED

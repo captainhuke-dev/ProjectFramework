@@ -1,8 +1,12 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.1 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
+
+## Framework 1.2.1 Continuation Semantics
+
+Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** governance without changing the semantic-slot namespace or Schema `1.0.0`. Material connector/MCP work persists at logical checkpoints to source-native durable state; transient reads/searches do not require persistence by default. `PERSISTENCE_PENDING` blocks a safe `START_NEW_CHAT` recommendation until continuation state is durable outside Chat.
 
 ## Core Slot Map
 
