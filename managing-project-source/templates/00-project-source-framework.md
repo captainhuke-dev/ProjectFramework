@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.1"
+project_source_framework_version: "1.2.2"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -98,7 +98,7 @@ Core documents:
 02 Project Overview             MANDATORY
 03 Current State                MANDATORY
 04 Decision Log                 MANDATORY
-05 Requirements                 MANDATORY
+05 Requirements                MANDATORY
 06 Architecture                 CONDITIONAL
 07 Implementation Plan          CONDITIONAL
 08 Open Issues                  CONDITIONAL
@@ -168,7 +168,7 @@ canonical main
 → pin Framework/Schema locally
 ```
 
-หาก canonical Framework sourceเข้าถึงไม่ได้ ให้หยุด affected governance mutation และรายงาน limitation; ห้าม reconstruct จาก memory. การไม่มี immutable tag, exact SHA หรือ branch protection ไม่ใช่เหตุให้ block bootstrap ถ้า canonical source ยังเข้าถึงได้.
+หาก canonical Framework sourceเข้าถึงไม่ได้ ให้หยุด affected governance mutation และรายงาน limitation; ห้าม reconstruct จาก memory. การไม่มี immutable tag, exact SHA หรือ branch protection ไม่ใช่เหตุให้ block bootstrap ถ้า canonical sourceยังเข้าถึงได้.
 
 ### 5.1 Framework Source Provenance — Optional Assurance
 
@@ -180,7 +180,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.1"
+  framework_version: "1.2.2"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
