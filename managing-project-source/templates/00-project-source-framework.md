@@ -168,7 +168,7 @@ canonical main
 → pin Framework/Schema locally
 ```
 
-หาก canonical Framework source เข้าถึงไม่ได้ ให้หยุด affected governance mutation และรายงาน limitation; ห้าม reconstruct จาก memory. การไม่มี immutable tag, exact SHA หรือ branch protection ไม่ใช่เหตุให้ block bootstrap ถ้า canonical source ยังเข้าถึงได้.
+หาก canonical Framework sourceเข้าถึงไม่ได้ ให้หยุด affected governance mutation และรายงาน limitation; ห้าม reconstruct จาก memory. การไม่มี immutable tag, exact SHA หรือ branch protection ไม่ใช่เหตุให้ block bootstrap ถ้า canonical source ยังเข้าถึงได้.
 
 ### 5.1 Framework Source Provenance — Optional Assurance
 
@@ -637,6 +637,32 @@ detect occupied 91
 Old prose mentioning risk/assumption/date/dependency/scope/outcome/gate ห้าม auto-create Stable IDs. Promote เป็น `RISK/ASM/MS/OUT/DEP/CR/GATE` ได้เมื่อ current semantics, status, ownership และ epistemic/evidence state เพียงพอเท่านั้น. ถ้าไม่พอ ให้ preserve uncertainty แทน fabricate identity.
 
 Legacy `00-Project Source Rule` migration ยังใช้ preserve-first governed promotion เช่นเดิม.
+
+### 20.3 Git Work Base Freshness and Forward-Port
+
+เมื่อ Project ใช้ Git branch/worktree เพื่อสร้าง work package ที่จะ integrate กลับ canonical target ให้ใช้ contract นี้:
+
+```text
+Independent Git work → fresh Canonical Integration Target
+Feature-on-feature dependency → explicit STACKED_WORK
+STALE_NON_SEMANTIC → update/rebase appropriately
+STALE_SEMANTIC → BASE_STALE + FORWARD_PORT_REQUIRED
+Before merge → Base Freshness Gate against current target head
+Git conflict-free / mergeable → ไม่เท่ากับ semantic acceptance
+```
+
+Binding semantics:
+
+1. **Independent Work** ต้องเริ่มจาก current observed Canonical Integration Target; ห้ามสร้างจาก feature branch ที่ checkout อยู่โดย default. Local `main` ไม่ได้ prove ว่า current จนกว่าจะ fresh-check canonical target.
+2. Feature-on-feature dependency อนุญาตเฉพาะ explicit `STACKED_WORK` พร้อม parent ref/commit, dependency reason, invalidation condition และ expected integration order. Parent change ต้อง re-evaluate child base เมื่อ material.
+3. Base Freshness vocabulary คือ `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`. `BASE_STALE` เป็น workflow condition เท่านั้น ไม่ใช่ Project state, Epistemic Status หรือ Stable-ID family.
+4. Commit count ไม่ใช่ semantic threshold. ให้ดูว่า upstream เปลี่ยน Framework/Root Governance/Schema/authority/routing/REQ/DEC/interfaces/technical-deployment contracts หรือ assumption ที่งานพึ่งพาหรือไม่.
+5. `STALE_NON_SEMANTIC`: private/rewritable work อาจใช้ `REBASE_REQUIRED`; shared/public branch ใช้ history-preserving merge/update strategy ได้. ต้อง re-run affected verification หลัง update.
+6. `STALE_SEMANTIC`: หยุด affected new implementation scope, assess changed assumptions และใช้ `FORWARD_PORT_REQUIRED` โดย default. Forward-Port ต้องสร้าง clean branch/worktree จาก current target แล้ว carry เฉพาะ still-valid accepted changes; temporary staging/transport, obsolete workflow/version metadata, superseded assumptions และ unrelated experiment ไม่ควรถูกนำเข้าเพียงเพราะอยู่ใน stale branch.
+7. ก่อน acceptance/merge ต้อง fresh-resolve current target head อีกครั้ง. Target movement หลัง review อาจทำให้ review/gate เดิม stale และต้อง re-evaluate.
+8. `git conflict = 0`, `mergeable = true` หรือ successful rebase ไม่ override semantic gate. **Mergeable ≠ Acceptable.**
+9. เมื่อ base staleness materialize เป็น Project truth ให้ใช้ `DRIFT-* / CONFLICT-* / MIG-* / CR-*` เดิมตาม semantics; ห้ามสร้าง parallel ID family.
+10. Existing Project ยังคง pinned local `FRAMEWORK-001`; upstream movement ไม่ auto-upgrade. กติกานี้ไม่ authorize Git hooks, bots, Actions, validator, scheduler หรือ branch-protection automation.
 
 ## 21. Export
 
