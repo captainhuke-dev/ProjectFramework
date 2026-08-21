@@ -194,6 +194,42 @@ For Framework `1.2.0` migration:
 
 It is **illustrative, not normative**. Core Governance/templates win on conflict. It contains no actual application code, Dockerfile/Compose, install scripts, CI, binary/runtime artifact, or real secret.
 
+## MCP Material Persistence and Chat Lifecycle
+
+Connector activity is classified as **Material Project Work** or **Transient MCP Activity**. Chat is temporary interaction/execution state, not canonical Project memory merely because MCP/connectors are available.
+
+Operational sequence:
+
+1. Inspect/read/search as needed; keep intermediate connector detail transient.
+2. Classify the outcome as Material Project Work or Transient MCP Activity.
+3. If Material, determine the source-native canonical owner.
+4. Batch related connector activity until a Logical Checkpoint.
+5. Persist current usable state/pointers once at the checkpoint.
+6. If persistence fails, report `PERSISTENCE_PENDING` and identify what remains unpersisted.
+7. Return a compact Chat result; do not replay the connector transcript.
+8. Recommend exactly `CONTINUE_CURRENT_CHAT` or `START_NEW_CHAT`.
+9. Recommend `START_NEW_CHAT` only after the persistence gate passes: durable current state, pending/blocker state, Exact Next Action, and Required Read location exist outside Chat.
+
+GitHub routing examples:
+
+```text
+03 → current state / current phase / current blocker
+04 → DEC-* current decision state
+05 → REQ-* current requirement state
+08 → ISS-* / DRIFT-* / CONFLICT-* / Knowledge Debt
+09 → continuation contract and exact next action
+10 → applied/observed historical change
+13 → material evidence references
+15 → ACT-* current action state
+91 → RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*
+```
+
+If the natural owner is a normal repository artifact outside Project Source (for example implementation code, README, config, or an approved plan), persist there rather than duplicating the whole state into Project Source. Cross-system GitHub/Drive continuation uses pointers to each source-native owner.
+
+For Google Drive, update the existing designated Project progress `.md` when one already exists. Only when no designated progress Markdown exists and durable continuation state is required, use one stable `PROJECT-PROGRESS.md` as a continuation cache. It references authoritative Drive artifacts and MUST NOT become a duplicate source of truth or MCP transcript.
+
+Do not persist raw tool payloads, long search results, full diffs, repetitive intermediate state, or private intermediate reasoning merely for audit convenience. `09 Handoff` remains a continuation contract, not an execution log. A new chat must be able to continue from persisted state and Required Read pointers without the old transcript.
+
 ## Workflow
 
 1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT` and detect whether valid local Project Source already exists.
@@ -228,6 +264,8 @@ It is **illustrative, not normative**. Core Governance/templates win on conflict
 | Existing custom slot 91 | `MIG-*`; never overwrite; approved relocation first |
 | Old free text | never auto-promote into new Stable IDs |
 | Exact Git provenance unavailable | normal bootstrap continues if canonical source accessible; never fabricate |
+| Material MCP work | batch to Logical Checkpoint; persist usable state/pointers to source-native owner; compact Chat result |
+| Persistence failure / chat switch | `PERSISTENCE_PENDING` → `CONTINUE_CURRENT_CHAT`; `START_NEW_CHAT` only after durable continuation state exists |
 | Handoff | authority does not transfer |
 | R2/R3 mutation | fresh authority + required postflight/evidence |
 

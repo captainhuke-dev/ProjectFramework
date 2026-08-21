@@ -35,11 +35,19 @@ Active RISK / ASM / DEP / MS / OUT / CR / GATE when applicable
 Technical / Deployment warnings
 Source/Docker known variance
 Knowledge Debt affecting continuation
+Material Persistence State: PERSISTED | PERSISTENCE_PENDING | NOT_APPLICABLE
+External Working Source / Pointers
+Unpersisted Material State when applicable
 Required Read Order
 Authority References
 authority_transfer: false
 Freshness Warnings
 Exact Next Action
+Chat Continuity: CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+Chat Continuity Reason
+Required Read Before Continue
 ```
+
+Use this as a compact continuation contract. Do not turn Handoff into an MCP transcript, raw tool log, search dump, full diff archive, or private intermediate-reasoning store.
 
 Lifecycle: `DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED`.
