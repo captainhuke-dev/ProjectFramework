@@ -1,7 +1,7 @@
 # MCP Material Persistence and Chat Lifecycle Design
 
 Date: 2026-08-21
-Status: DESIGN APPROVED IN CHAT / WRITTEN SPEC REVIEW PENDING
+Status: WRITTEN SPEC APPROVED — 2026-08-21T12:54:00+07:00
 Repository: `captainhuke-dev/ProjectFramework`
 
 ## 1. Purpose
