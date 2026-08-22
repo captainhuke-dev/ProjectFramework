@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.4 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.5 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,6 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
+- `references/framework-governance-amendment-260822-1835.md`
 - `references/framework-governance-amendment-260822-1424.md`
 - `references/framework-governance-amendment-260821-1934.md`
 - `references/framework-governance-amendment-260821-1505.md` (historical approved amendment)
@@ -82,6 +83,48 @@ Operational rules:
 8. Project-specific repository/Drive/progress pointers belong in local `FRAMEWORK-001`, not platform launchers.
 
 GREENFIELD has no active local binding. Use read-only candidate discovery as needed → include proposed GitHub/Drive states and durable identities in Preview → obtain explicit approval → first Material Project-Source write creates active `00 / FRAMEWORK-001` with the approved binding → subsequent Material connector work resolves that active binding. Unresolved applicable systems remain `VERIFICATION_REQUIRED` and fail-closed for Material mutation.
+
+## Framework 1.2.5 Agent Continuity, Progressive Verification, and Local Workspace Binding
+
+Framework `1.2.5` composes with `1.2.1–1.2.4` and adds no new slot, Stable-ID family, lifecycle state, Git freshness state, or authority family.
+
+### Local Workspace Binding
+
+Before Material local/MCP work, resolve the applicable environment-scoped **Local Workspace Binding** from active `FRAMEWORK-001`. Reuse exactly `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`. `BOUND` requires a verified/user-confirmed absolute path for that environment; for Git-backed work, cross-check repository identity when practical. `VERIFICATION_REQUIRED` allows read/list/search/inspect needed to resolve the workspace but blocks Material mutation by default. `NOT_APPLICABLE` blocks Material local scope. MCP `workspaceId`, editor handles, active/recent workspace lists, and similar tool identifiers are routing evidence only, not canonical Project identity.
+
+Keep the separation explicit:
+
+```text
+Repository Location Binding
+  ≠ Local Workspace Binding
+  ≠ current branch/worktree
+  ≠ Canonical Integration Target
+  ≠ Canonical Implementation Source
+  ≠ Runtime Location
+```
+
+A one-off exact local target instruction is action-specific and does not persistently rewrite Root Governance. Persistent Local Workspace Binding changes require User Explicit Approval plus `FRAMEWORK-001` revision/validate/promote/supersede/archive.
+
+### Verified Task Completion Checkpoint
+
+For a Material Task / `ACT-*` that materially mutates a Git-backed Canonical Implementation Source or another authoritative repository artifact, durable `DONE` requires a **Verified Task Completion Checkpoint**: affected/risk-appropriate verification passed; required completed state is represented by observed Git commit(s); no required completed result remains only uncommitted; remaining working-tree state is understood. Read-only/no-mutation Tasks require no synthetic commit. `WIP commit ≠ Task DONE`. One Task may use multiple commits. **commit ≠ push**; remote publication remains a separate shared-state/authority action.
+
+### Progressive Verification and Evidence Reuse
+
+Choose the minimum sufficient verification from changed scope → affected dependencies/invariants → `R0 / R1 / R2 / R3` risk. Operational labels are:
+
+```text
+TASK_LOCAL_FAST
+CHECKPOINT_INTEGRITY
+RELEASE_FULL
+INTEGRATION_GATE
+```
+
+These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope before Task completion. `CHECKPOINT_INTEGRITY` verifies durable continuation; **Logical Checkpoint ≠ RELEASE_FULL**. `RELEASE_FULL` runs once on the completed release/candidate state. `INTEGRATION_GATE` re-resolves Canonical Integration Target/Base Freshness and prior evidence validity. Fresh state-bound evidence may be reused while candidate/dependency/target assumptions remain materially unchanged; selectively invalidate affected evidence when assumptions change, and escalate when impact cannot be bounded safely. Exact fast-forward to an already verified candidate normally needs resulting-state confirmation rather than an unconditional full rerun.
+
+### Response Close Completeness Gate
+
+Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. Missing/duplicate/malformed/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
 
 ## Framework 1.2.0 Namespace and Routing
 
@@ -281,7 +324,7 @@ Operational sequence:
 2. Classify the outcome as Material Project Work or Transient MCP Activity.
 3. If Material, determine the source-native canonical owner.
 4. Batch related connector activity until a Logical Checkpoint.
-5. Persist current usable state/pointers once at the checkpoint.
+5. Persist current usable state/pointers once at the checkpoint; CHECKPOINT_INTEGRITY verifies continuation state and only affected cross-surface integrity, not full release regression by default.
 6. If persistence fails, report `PERSISTENCE_PENDING` and identify what remains unpersisted.
 7. Return a compact Chat result; do not replay the connector transcript.
 8. Recommend exactly `CONTINUE_CURRENT_CHAT` or `START_NEW_CHAT`.
@@ -364,6 +407,10 @@ Required behavior:
 
 Commit count alone never decides semantic freshness. One Root Governance change can matter more than many unrelated commits.
 
+### Framework 1.2.5 Integration Evidence Behavior
+
+Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canonical Integration Target, applies Framework `1.2.2` Base Freshness, and checks whether prior `RELEASE_FULL`/Task evidence remains valid. Reuse fresh evidence when its bound state/assumptions remain unchanged; selectively rerun invalidated/newly affected checks. Candidate/tree changes, semantic/unknown target movement, conflict resolution, rebase result, merge-time edits, or unbounded impact require affected/full reverification. `Mergeable ≠ Acceptable` remains binding.
+
 ## Workflow
 
 1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT` and detect whether valid local Project Source already exists.
@@ -372,18 +419,23 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 4. Confirm active `FRAMEWORK-001`; if missing in an existing Project, stop affected work and propose governed repair.
 5. Existing Project: read `00 → 01 → 03`, follow `01` routing, preserve local pin.
 6. Before Material GitHub/Drive work in an initialized Project, resolve the applicable Project Location Binding from active `FRAMEWORK-001`; enforce `BOUND / NOT_APPLICABLE / VERIFICATION_REQUIRED` fail-closed routing and do not infer authority from recency/ranking/chat memory.
-7. Inspect accessible sources before asking; do not ask for facts that can be verified.
-8. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
-9. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.
-10. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
-11. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
-12. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval; Framework `1.2.4` migration never invents repository/Drive identities or `canonical_branch`.
-13. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
-14. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
-15. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
-16. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
-17. Never store actual secrets; use `SECRET-*` metadata references only.
-18. Preserve history and finish with completion/readiness/exact-next-action summary using the mandatory bracketed response close; enforce Chat Closure Consistency.
+7. Before Material local/MCP work, resolve the environment-scoped Local Workspace Binding; tool/MCP workspace IDs are evidence only and unresolved applicable local execution is fail-closed.
+8. For each Material Task, derive minimum sufficient verification from affected scope/dependencies/risk; a Git-backed Material Task becomes durably DONE only after a Verified Task Completion Checkpoint.
+9. At Logical Checkpoints use CHECKPOINT_INTEGRITY, not RELEASE_FULL by default; run RELEASE_FULL once on a completed release/candidate and reuse valid state-bound evidence until invalidated.
+10. Before integration run INTEGRATION_GATE with current Base Freshness + evidence-validity review.
+11. Before every governed response emit run Response Close Completeness Gate.
+12. Inspect accessible sources before asking; do not ask for facts that can be verified.
+13. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
+14. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.
+15. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
+16. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
+17. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval; Framework `1.2.5` migration never invents repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
+18. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
+19. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
+20. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
+21. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
+22. Never store actual secrets; use `SECRET-*` metadata references only.
+23. Preserve history and finish with completion/readiness/exact-next-action summary using the mandatory bracketed response close; enforce Chat Closure Consistency and Response Close Completeness Gate.
 
 ## Quick Reference
 
