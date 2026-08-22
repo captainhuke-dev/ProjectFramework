@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.4"
+project_source_framework_version: "1.2.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -30,4 +30,9 @@ Canonical home of `ACT-*`.
 - **Scope:** <CONTENT>
 - **Related REQ / DEC / ISS:** <REFS>
 - **Exact Next Step:** <EXECUTABLE_ACTION>
-- **Verification / Completion Evidence:** <EVD_REF_OR_CRITERIA>
+- **Affected Verification / Completion Criteria:** <CRITERIA>
+- **Verification Result / Evidence Pointer:** <PASS_FAIL_BLOCKED_AND_EVD_OR_REFERENCE>
+- **Completion Commit(s):** <OBSERVED_GIT_SHA_OR_NOT_APPLICABLE>
+- **Remaining Working-tree State:** <CLEAN_OR_EXPLAINED_WIP_OR_NOT_APPLICABLE>
+
+For Material Git-backed mutation, `DONE` requires a Verified Task Completion Checkpoint; required completed state cannot remain only uncommitted. Read-only/no-mutation Actions require no synthetic commit; `WIP commit ≠ Task DONE`; `commit ≠ push`.

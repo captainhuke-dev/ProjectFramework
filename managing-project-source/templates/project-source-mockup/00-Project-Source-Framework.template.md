@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.4"
+project_source_framework_version: "1.2.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -31,7 +31,7 @@ Create this document first as active `FRAMEWORK-001`; descendants inherit from i
 
 ## Project Location Binding Pointer
 
-The full root template `../00-project-source-framework.md` carries the authoritative Framework `1.2.4` Project Location Binding contract. A GREENFIELD starter records approved states/identities in active `FRAMEWORK-001`, for example:
+The full root template `../00-project-source-framework.md` carries the authoritative Framework `1.2.5` Project Location Binding contract. A GREENFIELD starter records approved states/identities in active `FRAMEWORK-001`, for example:
 
 ```yaml
 project_location_binding:
@@ -43,9 +43,14 @@ project_location_binding:
     binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
     project_root_id: "<FOLDER_ID_OR_UNKNOWN>"
     project_root_url: "<CANONICAL_FOLDER_URL_OR_UNKNOWN>"
+  local_workspaces:
+    - environment_scope: "<USER_CONFIRMED_ENVIRONMENT_SCOPE>"
+      binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
+      canonical_path: "<ABSOLUTE_LOCAL_PATH_OR_UNKNOWN>"
+      repository: "<OWNER/REPOSITORY_OR_UNKNOWN_OR_NOT_APPLICABLE>"
 ```
 
-Use the full root contract for minimum durable identity, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and separation from Canonical Integration Target / Canonical Implementation Source. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
+Use the full root contract for minimum durable identity, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and environment-scoped local routing, MCP/tool IDs as evidence only, and separation from current branch/worktree / Canonical Integration Target / Canonical Implementation Source / Runtime Location. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
 ## Framework 1.2.0 Extended Semantics
 
 ```text
@@ -77,7 +82,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.4"
+  framework_version: "1.2.5"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
