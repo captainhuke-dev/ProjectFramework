@@ -57,3 +57,8 @@ Operational constitutional law อยู่ใน `laws/CONST-001.md` ถึง 
 - Reference fixture: [`uaac-v4.2-reference-project/`](uaac-v4.2-reference-project/)
 
 ใช้ immutable commit/tree ที่บันทึกไว้ใน historical inventory ห้ามใช้ current v5 package แทน bytes ของ v4.2
+
+## Patch audit
+
+- Report: [`docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-REPORT.md`](docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-REPORT.md)
+- State: [`docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-STATE.yaml`](docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-STATE.yaml)

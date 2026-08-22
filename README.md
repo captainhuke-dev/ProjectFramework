@@ -54,3 +54,5 @@ Historical material is not an active v5 dependency and never resolves current v5
 ## Repository development records
 
 The [UAAC 5.0 design](docs/superpowers/specs/2026-08-23-uaac-5.0-constitution-first-runtime-free-design.md) and [implementation plan](docs/superpowers/plans/2026-08-23-uaac-5.0-constitution-first-runtime-free.md) document this release work. Development records are not copied into adopting Projects.
+
+Patch audit: [`docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-REPORT.md`](docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-REPORT.md) and [`docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-STATE.yaml`](docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-STATE.yaml).

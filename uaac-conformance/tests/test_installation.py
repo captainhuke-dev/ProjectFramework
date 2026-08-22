@@ -186,3 +186,14 @@ def test_root_human_walkthrough_uses_v5_minimum(
         "does not install or upgrade projectframework",
     ):
         assert required in text
+
+
+def test_root_navigation_links_patch_audit_artifacts(
+    repo_root: Path, required_file
+) -> None:
+    report = "docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-REPORT.md"
+    state = "docs/uaac-repair/UAAC-CONSTITUTION-FIRST-PATCH-STATE.yaml"
+    for navigation in (repo_root / "README.md", repo_root / "UAAC.md"):
+        text = _text(navigation, required_file)
+        assert report in text
+        assert state in text

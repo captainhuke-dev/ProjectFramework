@@ -1,0 +1,120 @@
+document_type: UAAC_CONSTITUTION_FIRST_PATCH_STATE
+status: VERIFIED_IMPLEMENTATION_REMOTE_READBACK
+evidence_commit_identity: SELF
+self_rule: SELF resolves to the Git commit containing this exact report/state artifact; the literal SHA is reported externally after remote publication and readback.
+repository: captainhuke-dev/ProjectFramework
+target_branch: refs/heads/hz-framework
+observed:
+  starting_main_sha: d5b27ab9856c7cf6da5c47dbad4ab57534e4f7f9
+  starting_hz_sha: e2463f113ebb4b84119b8f165862812d27a178b8
+  merge_base_sha: a9b2bb0ea95e6dd6cc33c9bd295dff48406d50d4
+  reconciled_merge_sha: 8ea3700dcf126f926b0d5ad0fad4d1c3669d1b8d
+  final_observed_main_sha: d5b27ab9856c7cf6da5c47dbad4ab57534e4f7f9
+  phase_a_pre_push_hz_sha: e2463f113ebb4b84119b8f165862812d27a178b8
+  implementation_commit_sha: 3a8169421044e83edf96f28445f41258cc85d50a
+  implementation_remote_readback_sha: 3a8169421044e83edf96f28445f41258cc85d50a
+versions:
+  framework: "1.2.5"
+  framework_schema: "1.0.0"
+  old_uaac: "4.2.0"
+  new_uaac: "5.0.0"
+boundaries:
+  normative_operational_root: universal-ai-agent-constitution/laws/
+  stable_law_ids: CONST-001..CONST-025
+  production_root: universal-ai-agent-constitution/
+  production_extensions:
+    - .md
+    - .yaml
+    - .yml
+  conformance_root: uaac-conformance/
+  conformance_classification: DEVELOPER_ONLY_NON_NORMATIVE
+  conformance_required_for_operation: false
+  profiles_activation: EXPLICIT_ADOPTION_ONLY
+  projectframework_installation_coupled: false
+historical_v4_2:
+  status: PASS
+  release_commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+  package_tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
+  reference_fixture_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
+  reference_fixture_files: 27
+  current_fixture_mutable_resolution: false
+migration:
+  guide: PASS
+  fixture: PASS
+  live_external_project: NOT_RUN
+rollback:
+  qualification_documented: PASS
+  compatibility_and_remap_required_after_v5_state_change: true
+  destructive_live_rollback: NOT_RUN
+verification:
+  v4_2_package_validator:
+    status: PASS
+    result: PACKAGE_VALIDATION_PASS laws=25 scenarios=142
+  v4_2_pytest:
+    status: PASS
+    result: 45 passed in 28.81s
+  v4_2_canonical_template_schema_pairs:
+    status: FAIL_DEFECT_CONFIRMED
+    passed: 15
+    failed: 1
+    failed_pair: CONSTITUTION-ADOPTION.template.yaml -> constitution-adoption.schema.json
+  v5_red_suite:
+    status: EXPECTED_RED_CONFIRMED
+    failed: 44
+    passed: 7
+    collection_or_setup_errors: 0
+  v5_distribution_cli:
+    status: PASS
+    result: UAAC_CONFORMANCE_PASS
+  v5_phase_a_pytest:
+    status: PASS
+    result: 59 passed in 2.30s
+  constitutional_acceptance:
+    status: PASS
+    scenario_count: 11
+    executable_marker_count: 0
+  link_integrity: PASS
+  production_distribution:
+    status: PASS
+    file_count: 44
+    law_count: 25
+    forbidden_extension_count: 0
+  historical_reconstruction:
+    status: PASS
+    focused_tests: 5
+  conformance_deletion_smoke: PASS
+  framework_preservation: PASS
+  local_main_ancestry: PASS
+  local_hz_ancestry: PASS
+  implementation_remote_readback: PASS
+  phase_b_local_verification:
+    status: PASS
+    result: 60 passed
+publication:
+  main_push: NOT_PERFORMED
+  main_merge: NOT_PERFORMED
+  force_push: NOT_PERFORMED
+  phase_a:
+    status: PASS
+    refspec: HEAD:refs/heads/hz-framework
+    remote_sha: 3a8169421044e83edf96f28445f41258cc85d50a
+  phase_b:
+    status: VERIFIED_CANDIDATE_READY_FOR_PUBLICATION
+    evidence_commit: SELF
+    evidence_commit_remote_readback: EXTERNAL_POST_COMMIT_CHECK_REQUIRED
+fail: []
+not_run:
+  - live_external_project_migration
+  - destructive_live_rollback
+  - historical_cross_agent_convergence_reexecution
+known_limitations:
+  - Constitutional semantics remain partly Human/LLM interpreted rather than exhaustively machine-provable.
+  - Conformance fixtures route to repository-local production content instead of duplicating the complete release.
+  - Historical receiver evidence is preserved but not re-executed.
+  - Only the actual YAML Project-installation template has a JSON schema; Markdown templates are read directly.
+remaining_risks:
+  - Future semantic edits can evade structural guards without careful review.
+  - Adopters can misconfigure local locators or source-appropriate immutable identity.
+  - Remote branch state can move after any observed readback.
+blockers: []
+exact_next_action: Commit SELF evidence, fast-forward push only to hz-framework, and perform final remote readback.
