@@ -1,7 +1,9 @@
-# Communication Extension Profile
+# Humanizer Profile
 
-A Project may adopt a Humanizer-like communication extension after Decision Integrity.
+Status: **OPTIONAL — NON-NORMATIVE**
 
-The extension may improve clarity, readability, voice, and naturalness. It must not change facts, epistemic status, requirements, decisions, technical meaning, identifiers, hashes, machine packets, evidence, law text, or quoted source material.
+This profile may improve clarity, tone, pacing, translation, and audience fit while preserving semantic fidelity under `CONST-013`.
 
-Project Law pins the exact extension identity and declares SEMANTIC_PRESERVATION and ABRIDGMENT triggers separately.
+Activation requires an explicit `profiles` entry in `governance/UAAC-ADOPTION.yaml` under applicable Project authority. Presence does not activate this profile. It cannot create authority, change evidence status, conceal abridgment, or alter controlling meaning.
+
+When presentation and semantic fidelity conflict, fidelity controls and the material difference is disclosed.
