@@ -1,0 +1,20 @@
+document_type: UAAC_V42_TO_V5_FIXTURE_MAP
+v4_2_release_commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+v4_2_package_tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
+v5_local_locator: ../../../universal-ai-agent-constitution/UAAC-v5.0-CONSTITUTION.md
+launcher_switch: AFTER_SIDE_BY_SIDE_VERIFICATION
+mappings:
+  binding: project.id_and_boundary
+  adoption: minimal_v5_adoption
+  kernel_and_boot: persistent_launcher_and_project_router
+  project_law_and_document_registry: direct_actual_rule_and_source_locators
+  state_authority_map: direct_routes_or_optional_high_assurance_profile
+  continuation_index_and_lineage: actual_continuation_route_or_optional_assurance
+  skill_capability_and_adapter_registries: optional_reusable_procedures_or_high_assurance_profile
+  claim_registry_and_receipts: historical_evidence_or_optional_assurance
+  llm_wiki_and_openviking: optional_openviking_profile
+  installation_validation: historical_migration_evidence_only
+rollback:
+  preserve_old_pin: true
+  compatibility_assessment_after_v5_changes: required
+  remap_incompatible_state_before_reversion: required

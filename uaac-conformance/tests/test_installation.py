@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import jsonschema
+import pytest
 import yaml
 
 
@@ -117,3 +119,26 @@ def test_migration_fixture_preserves_old_pin_and_qualified_rollback(
     assert mapping["v4_2_release_commit"] == "5a309d8d38046bf3e8cd4beb2fc82a872f211cad"
     assert mapping["v5_local_locator"].endswith("UAAC-v5.0-CONSTITUTION.md")
     assert "compatibility" in rollback and "remap" in rollback
+
+
+@pytest.mark.parametrize("fixture_name", ["greenfield", "brownfield"])
+def test_project_fixture_adoption_validates_and_local_constitution_resolves(
+    repo_root: Path, required_file, fixture_name: str
+) -> None:
+    fixture_root = repo_root / "uaac-conformance" / "fixtures" / fixture_name
+    adoption = yaml.safe_load(
+        _text(fixture_root / "governance" / "UAAC-ADOPTION.yaml", required_file)
+    )
+    schema = yaml.safe_load(
+        _text(repo_root / "uaac-conformance/schemas/uaac-adoption.schema.json", required_file)
+    )
+    errors = sorted(
+        error.message
+        for error in jsonschema.Draft202012Validator(schema).iter_errors(adoption)
+    )
+    assert errors == []
+    local_constitution = (
+        fixture_root / adoption["constitution"]["local_locator"]
+    ).resolve()
+    assert local_constitution.is_file()
+    assert local_constitution.name == "UAAC-v5.0-CONSTITUTION.md"

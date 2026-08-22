@@ -1,0 +1,17 @@
+project:
+  id: fixture-brownfield
+  boundary: .
+constitution:
+  id: UAAC-001
+  version: "5.0.0"
+  local_locator: ../../../universal-ai-agent-constitution/UAAC-v5.0-CONSTITUTION.md
+  immutable_identity: fixture-object:brownfield-uaac-v5.0.0-r1
+project_rules:
+  - locator: governance/PROJECT-RULES.md
+canonical_sources:
+  - role: product_definition
+    locator: project-docs/PRD.md
+  - role: current_state
+    locator: project-docs/CURRENT-STATE.md
+continuation:
+  locator: project-docs/CURRENT-STATE.md

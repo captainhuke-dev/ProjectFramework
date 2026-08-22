@@ -1,0 +1,8 @@
+project:
+  id: fixture-greenfield
+  boundary: .
+constitution:
+  id: UAAC-001
+  version: "5.0.0"
+  local_locator: ../../../universal-ai-agent-constitution/UAAC-v5.0-CONSTITUTION.md
+  immutable_identity: fixture-object:greenfield-uaac-v5.0.0-r1
