@@ -1,57 +1,56 @@
-# UAAC v4.2 Adoption Guide
+# UAAC 5.0 Adoption Guide
 
-## Constitution versus installation versus adoption
+Status: **NON-NORMATIVE GUIDE**
 
-- **Constitution:** universal invariants—what must be true
-- **Installation:** materializes Project binding, front door, registries, procedures, continuation, adapters and evidence
-- **Validation:** proves the installed system resolves and behaves as required
-- **Adoption/EFFECTIVE:** Project authority puts the pinned release and Project Law into force
+## Required record
 
-```text
-COPIED ≠ INSTALLED ≠ INSTALLATION_VALIDATED ≠ EFFECTIVE
+`governance/UAAC-ADOPTION.yaml` contains exactly two required sections:
+
+```yaml
+project:
+  id: project-a
+  boundary: .
+constitution:
+  id: UAAC-001
+  version: "5.0.0"
+  local_locator: vendor/uaac/v5.0.0/UAAC-v5.0-CONSTITUTION.md
+  immutable_identity: project-release-object:uaac-5.0.0-r1
 ```
 
-## Recommended dependency model
+The required fields are `project.id`, `project.boundary`, `constitution.id`, `constitution.version`, `constitution.local_locator`, and `constitution.immutable_identity`.
 
-Use an immutable vendored snapshot or equivalent exact pin inside each Project:
+The local locator is the normal operating route. The immutable identity is established at install or migration using a mechanism appropriate to the source system, such as an immutable object ID, Git identity, content digest, signed revision, or equivalent. No particular mechanism and no repeated runtime hashing are universally required.
 
-```text
-Project-A/vendor/uaac/v4.2.0/
+## Optional real routes
+
+Omit every unused section. Do not emit an empty list or placeholder object.
+
+```yaml
+project_rules:
+  - locator: governance/PROJECT-RULES.md
+
+canonical_sources:
+  - role: product_definition
+    locator: project-docs/PRD.md
+  - role: current_state
+    locator: project-docs/CURRENT-STATE.md
+
+continuation:
+  locator: project-docs/CURRENT-STATE.md
+
+profiles:
+  - id: high-assurance
+    locator: vendor/uaac/v5.0.0/profiles/high-assurance/PROFILE.md
 ```
 
-Do not make Project runtime governance depend on a mutable upstream branch. Upstream is for discovery, upgrade and provenance; the Project front door routes to its locally pinned Constitution
+Project rules are optional because Projects differ. Reuse an existing actual rules source; create `governance/PROJECT-RULES.md` only when real Project-specific rules will be written.
 
-Git submodules can be supported by Project Law but are not the default because uninitialized/drifted submodules create cross-agent byte mismatches
+Profiles are active only when explicitly listed under applicable Project authority. Their presence in the vendored release does not activate them.
 
-## Greenfield
+## Forbidden adoption content
 
-Create Project definition/requirements, governance, adapters and continuation before feature work. Human authority supplies intent and approval; Agent must not invent Project purpose merely to complete templates
+The adoption record is not a status store or runtime control plane. It excludes lifecycle status, epochs, receipts, claim tokens, boot modes, mutable runtime state, validation results, adapter or capability graphs, registries, and tool configuration.
 
-## Brownfield
+## Bounded reading
 
-Inventory and map existing rules/PRD/current state/history first. Preserve one canonical source per semantic role/state class. Conflicts remain explicit and block only affected work
-
-## Monorepo and nested Projects
-
-One effective front door applies per declared Project boundary, not per repository. Child Project binding/front door must be explicit and excluded from parent scans; shared source may be referenced through declared authority maps
-
-## Agent collaboration
-
-ChatGPT and Codex do not synchronize private memory. They converge by resolving:
-
-```text
-Project Binding
-pinned Constitution
-Project Law
-State Authority Map
-Project Document Registry
-Capability/Adapter/Skill Registries
-Continuation Index + lineage pointer
-artifact base and exact next action
-```
-
-Receiver-visible canonical access is mandatory before handoff/continuation is claimed shared
-
-## Upgrade
-
-Install new releases side-by-side, assess law/schema/procedure impacts, rerun generator/validators/scenarios, update adapters and Project Law where needed, then change adoption identity through authorized promotion. Prior lineages retain the governing identities under which they ran
+The Project router uses adoption to find real sources. For each task, identify a bounded set of materially required laws, rules, and canonical sources, then obtain sufficient complete coverage of each selected source. Search, relevance, retrieval, and summaries may route reading; they do not prove complete coverage.

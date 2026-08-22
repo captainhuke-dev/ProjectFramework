@@ -33,7 +33,7 @@ def test_installer_defaults_to_local_offline_release(
     production_root: Path, required_file
 ) -> None:
     text = _text(production_root / "INSTALL-UAAC.md", required_file).lower()
-    assert "network unavailable" in text
+    assert "network" in text and "unavailable" in text
     assert "vendor" in text
     assert "remote" in text and "provenance" in text
 

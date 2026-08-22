@@ -1,0 +1,10 @@
+document_type: UAAC_TEMPLATE_SCHEMA_MAP
+status: DEVELOPER_ONLY_NON_NORMATIVE
+pairs:
+  - id: uaac-adoption
+    template: universal-ai-agent-constitution/templates/UAAC-ADOPTION.yaml
+    schema: uaac-conformance/schemas/uaac-adoption.schema.json
+    negative_mutation:
+      operation: add_root_key
+      key: runtime_status
+      value: active

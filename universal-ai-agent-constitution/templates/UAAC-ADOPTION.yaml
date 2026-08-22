@@ -1,0 +1,8 @@
+project:
+  id: REPLACE_WITH_STABLE_PROJECT_ID
+  boundary: REPLACE_WITH_DECLARED_PROJECT_BOUNDARY
+constitution:
+  id: UAAC-001
+  version: "5.0.0"
+  local_locator: vendor/uaac/v5.0.0/UAAC-v5.0-CONSTITUTION.md
+  immutable_identity: REPLACE_WITH_SOURCE_APPROPRIATE_IMMUTABLE_IDENTITY
