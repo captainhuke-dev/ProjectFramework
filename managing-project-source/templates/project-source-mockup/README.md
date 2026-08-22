@@ -1,11 +1,25 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.3 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.4 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
 
+## Framework 1.2.4 Project Location Binding & Chat Closure Semantics
+
+Framework `1.2.4` adds a durable **Project Location Binding** in active local `FRAMEWORK-001` for GitHub/Google Drive routing while keeping Schema `1.0.0` and all Stable-ID families unchanged.
+
+- GitHub and Drive independently use `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`.
+- `VERIFICATION_REQUIRED` is fail-closed for Material mutation; `NOT_APPLICABLE` blocks Material Project work through that connector.
+- `BOUND` requires durable routing identity, not chat memory, recent activity, display path, or search ranking.
+- Persistent binding changes require User Explicit Approval plus governed `FRAMEWORK-001` revision/promotion; one-off exact-target instructions do not rewrite the persistent binding.
+- Repository binding remains distinct from current branch/worktree, Canonical Integration Target, and Canonical Implementation Source; no new branch authority is introduced.
+- `09 Handoff` references the root binding and preserves source-native GitHub/Drive pointers rather than duplicating authoritative content.
+- Chat Closure Consistency requires `ไม่มีขั้นตอนถัดไป → START_NEW_CHAT`; `CONTINUE_CURRENT_CHAT` requires one concrete Next Action; `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus a persistence/recovery action.
+- Mandatory response-close display uses `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` as separate Markdown paragraphs.
+
+Existing initialized Projects remain locally pinned and do not auto-upgrade.
 ## Framework 1.2.3 Development Workspace & Runtime Authority Semantics
 
 Framework `1.2.3` adds the missing governance boundary between **Canonical Implementation Source** and **Runtime Truth** without changing semantic slots, Stable-ID families, or Schema `1.0.0`.
@@ -90,8 +104,8 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 4. Read SKILL.md + latest amendment + Core Governance
 5. Read 00 template + core-document-skeletons.md
 6. Read this mockup mapping
-7. Preview proposed Project Source → obtain explicit user approval
-8. Create active 00 first
+7. Preview proposed Project Source, including GitHub/Drive Project Location Binding states/identities → obtain explicit user approval
+8. Create active 00 first with the approved Project Location Binding
 9. Create mandatory 01–05 and 09–17
 10. Evaluate 06–08, 40, 60, 91; create only when applicable
 11. Keep 18–19 reserved

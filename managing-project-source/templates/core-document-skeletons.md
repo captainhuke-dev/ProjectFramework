@@ -8,6 +8,7 @@ Framework `1.2.0` treats exact Git provenance as optional assurance. If provenan
 
 Framework `1.2.3` adds Development Workspace / Runtime Authority semantics without changing Schema `1.0.0`, slot ownership, or Framework `1.2.2` Git Base Freshness vocabulary.
 
+Framework `1.2.4` adds **Project Location Binding** and Chat Closure Consistency without changing Schema `1.0.0`. Active `00 / FRAMEWORK-001` is the canonical home of GitHub/Drive binding. `03` and `09` may carry references/pointers for current-state and continuation purposes but MUST NOT duplicate location authority. Before Material GitHub/Drive mutation, resolve the active binding state and fail closed when it is `VERIFICATION_REQUIRED` or `NOT_APPLICABLE` as defined by Core Governance.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -28,7 +29,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.3"
+project_source_framework_version: "1.2.4"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -87,6 +88,8 @@ Current Phase
 Current Scope
 Current Owner/Actor
 Current Source-of-Truth references
+
+Project Location Binding Reference (FRAMEWORK-001; no duplicate authority)
 Active Actions (ACT refs)
 Active Issues / DRIFT / CONFLICT refs
 Active RISK / ASM / DEP / MS / OUT / CR / GATE refs when applicable
@@ -270,6 +273,8 @@ Technical / Deployment health warnings
 Source/Docker known variance when applicable
 Knowledge Debt affecting continuation
 Material Persistence State: PERSISTED | PERSISTENCE_PENDING | NOT_APPLICABLE
+
+Project Location Binding Reference / Pointers (FRAMEWORK-001; no independent binding copy)
 External Working Source / Pointers
 Unpersisted Material State when applicable
 Required Read Order
@@ -284,6 +289,15 @@ Required Read Before Continue
 
 Handoff is a continuation contract, not an MCP transcript or execution log. Persist current usable state/pointers and unresolved material state; do not dump raw connector payloads or repetitive intermediate activity.
 
+Chat closure invariants:
+
+```text
+Exact Next Action = ไม่มีขั้นตอนถัดไป → Chat Continuity = START_NEW_CHAT
+Chat Continuity = CONTINUE_CURRENT_CHAT → one concrete Exact Next Action required
+Material Persistence State = PERSISTENCE_PENDING → CONTINUE_CURRENT_CHAT + concrete persistence/recovery action
+```
+
+`START_NEW_CHAT` may still carry a concrete Next Action when state is durably persisted and fresh-chat continuation is safe.
 Lifecycle: `DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED`.
 
 ## 10 — Change Log
