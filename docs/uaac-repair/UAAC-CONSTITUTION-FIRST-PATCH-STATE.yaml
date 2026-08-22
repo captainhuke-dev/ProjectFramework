@@ -1,7 +1,5 @@
 document_type: UAAC_CONSTITUTION_FIRST_PATCH_STATE
-status: VERIFIED_IMPLEMENTATION_REMOTE_READBACK
-evidence_commit_identity: SELF
-self_rule: SELF resolves to the Git commit containing this exact report/state artifact; the literal SHA is reported externally after remote publication and readback.
+status: FULLY_CLOSED
 repository: captainhuke-dev/ProjectFramework
 target_branch: refs/heads/hz-framework
 observed:
@@ -90,6 +88,14 @@ verification:
   phase_b_local_verification:
     status: PASS
     result: 60 passed
+  canonical_audit_closeout:
+    status: PASS
+    distribution_validator: UAAC_CONFORMANCE_PASS
+    developer_tests: 60 passed
+    production_file_count: 44
+    law_count: 25
+    forbidden_extension_count: 0
+    key_documents_readable: 5
 publication:
   main_push: NOT_PERFORMED
   main_merge: NOT_PERFORMED
@@ -99,9 +105,13 @@ publication:
     refspec: HEAD:refs/heads/hz-framework
     remote_sha: 3a8169421044e83edf96f28445f41258cc85d50a
   phase_b:
-    status: VERIFIED_CANDIDATE_READY_FOR_PUBLICATION
-    evidence_commit: SELF
-    evidence_commit_remote_readback: EXTERNAL_POST_COMMIT_CHECK_REQUIRED
+    status: PASS
+    evidence_commit_sha: 5f34031ed04ee01f316bd9ea1476c64b48d85cb9
+    remote_readback_sha: 5f34031ed04ee01f316bd9ea1476c64b48d85cb9
+historical_notes:
+  - Before Phase B publication, the evidence artifacts used SELF because a Git commit cannot contain its own not-yet-created SHA.
+  - After publication, remote readback resolved the historical evidence-commit identity to 5f34031ed04ee01f316bd9ea1476c64b48d85cb9.
+  - This documentation-only closeout does not embed or schedule publication of its own commit SHA; that SHA is reported externally after readback.
 fail: []
 not_run:
   - live_external_project_migration
@@ -117,4 +127,4 @@ remaining_risks:
   - Adopters can misconfigure local locators or source-appropriate immutable identity.
   - Remote branch state can move after any observed readback.
 blockers: []
-exact_next_action: Commit SELF evidence, fast-forward push only to hz-framework, and perform final remote readback.
+exact_next_action: NONE

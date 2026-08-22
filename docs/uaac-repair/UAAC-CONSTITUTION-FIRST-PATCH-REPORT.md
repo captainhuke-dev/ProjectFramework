@@ -2,18 +2,20 @@
 
 ```yaml
 document_type: UAAC_CONSTITUTION_FIRST_PATCH_REPORT
-status: VERIFIED_IMPLEMENTATION_REMOTE_READBACK
+status: FULLY_CLOSED
 repository: captainhuke-dev/ProjectFramework
 target_branch: hz-framework
 report_date: 2026-08-23
 implementation_commit_sha: 3a8169421044e83edf96f28445f41258cc85d50a
 implementation_remote_readback_sha: 3a8169421044e83edf96f28445f41258cc85d50a
-evidence_commit_identity: SELF
+evidence_commit_sha: 5f34031ed04ee01f316bd9ea1476c64b48d85cb9
+evidence_commit_remote_readback_sha: 5f34031ed04ee01f316bd9ea1476c64b48d85cb9
+canonical_audit_status: FULLY_CLOSED
 ```
 
 ## Audit scope
 
-This report covers the owner-authorized UAAC 5.0 Constitution-first/runtime-free repair in `captainhuke-dev/ProjectFramework`. It includes fresh branch reconciliation, the complete v4.2 package/reference audit, architecture and implementation plans, all 25 stable laws, installation/adoption/migration/profile boundaries, developer conformance, Framework preservation, Phase A publication, and Phase B evidence preparation.
+This report covers the owner-authorized UAAC 5.0 Constitution-first/runtime-free repair in `captainhuke-dev/ProjectFramework`. It includes fresh branch reconciliation, the complete v4.2 package/reference audit, architecture and implementation plans, all 25 stable laws, installation/adoption/migration/profile boundaries, developer conformance, Framework preservation, Phase A publication, Phase B evidence publication/readback, and canonical audit closeout.
 
 It does not authorize or report a push/merge to `main`, force-push, history rewrite, another repository, secret/account change, or unrelated deployment.
 
@@ -28,6 +30,7 @@ It does not authorize or report a push/merge to `main`, force-push, history rewr
 | Final observed `origin/main` before Phase A | `d5b27ab9856c7cf6da5c47dbad4ab57534e4f7f9` |
 | Final observed `origin/hz-framework` before Phase A | `e2463f113ebb4b84119b8f165862812d27a178b8` |
 | Phase A implementation/readback | `3a8169421044e83edf96f28445f41258cc85d50a` |
+| Phase B evidence/readback | `5f34031ed04ee01f316bd9ea1476c64b48d85cb9` |
 | Framework base | `1.2.5` / schema `1.0.0` |
 | Old UAAC | `4.2.0` |
 | New UAAC | `5.0.0` |
@@ -148,12 +151,15 @@ The migration guide and fixture preserve the exact v4.2 pin, build v5 side-by-si
 | Local ancestry | `PASS` — candidate descends from observed main and old hz tips |
 | Phase A remote readback | `PASS` — remote head exactly `3a816942...`, 44 production files, 0 bad extensions |
 | Phase B local verification | `PASS` — validator PASS, `60 passed`, diff/Framework/ancestry checks exit `0` |
+| Canonical closeout verification | `PASS` — `UAAC_CONFORMANCE_PASS`; `60 passed`; 44 production files, 25 laws, 0 forbidden extensions; 5 key documents readable |
 
 ## Publication
 
 Phase A used only `git push origin HEAD:refs/heads/hz-framework` without force. Git reported `e2463f1..3a81694`. Fresh readback proved `origin/hz-framework == 3a8169421044e83edf96f28445f41258cc85d50a` and `origin/main` remained unchanged.
 
-For the Phase B evidence commit, `evidence_commit_identity: SELF` means the Git commit containing this exact report/state pair. A commit cannot literally contain its own SHA. The literal evidence SHA is established and reported externally only after the final push/readback.
+Phase B used only `git push origin HEAD:refs/heads/hz-framework` without force. The evidence commit `5f34031ed04ee01f316bd9ea1476c64b48d85cb9` was pushed successfully and fresh remote readback resolved `origin/hz-framework` to that exact SHA while `origin/main` remained unchanged. No evidence publication or readback remains pending.
+
+**Historical `SELF` note:** Before Phase B publication, the evidence artifacts used `SELF` because a Git commit cannot contain its own not-yet-created SHA. After publication, `5f34031ed04ee01f316bd9ea1476c64b48d85cb9` was observed remotely and became the resolved historical evidence-commit identity. This documentation-only closeout does not attempt to embed its own commit SHA; that literal SHA belongs only in the final operator response after remote readback.
 
 ## FAIL, NOT_RUN, limitations, risks, and blockers
 
@@ -165,6 +171,8 @@ For the Phase B evidence commit, `evidence_commit_identity: SELF` means the Git 
 
 **Remaining risks:** Future edits can reintroduce semantic mechanism leakage despite structural guards; adopters can misconfigure local locators or immutable identity; a remote branch can move after a readback. These risks require ordinary review, Project authority, and fresh evidence.
 
-**Blockers:** None at report preparation.
+**Blockers:** None at canonical audit closeout.
 
-**Exact next action:** Commit this verified report/state with `evidence_commit_identity: SELF`, fresh-fetch `main` and `hz-framework`, require the Phase A remote SHA unchanged, fast-forward push the evidence commit to `hz-framework`, and perform final remote readback.
+**Canonical audit status:** `FULLY_CLOSED`.
+
+**Exact next action:** `NONE`.
