@@ -26,14 +26,20 @@ EXPECTED_ENTRYPOINT_HEADINGS = [
 ]
 
 
-def test_validator_cli_reports_current_boundary_findings(repo_root: Path) -> None:
+def test_validator_cli_reports_runtime_extensions(repo_root: Path, tmp_path: Path) -> None:
+    production = tmp_path / "universal-ai-agent-constitution"
+    production.mkdir()
+    (production / "UAAC-v5.0-CONSTITUTION.md").write_text(
+        "# Controlled fixture\n", encoding="utf-8"
+    )
+    (production / "runtime.py").write_text("raise SystemExit(0)\n", encoding="utf-8")
     completed = subprocess.run(
         [
             sys.executable,
             "-B",
-            "uaac-conformance/tools/validate_distribution.py",
+            str(repo_root / "uaac-conformance/tools/validate_distribution.py"),
             "--repository-root",
-            ".",
+            str(tmp_path),
         ],
         cwd=repo_root,
         capture_output=True,
@@ -42,7 +48,7 @@ def test_validator_cli_reports_current_boundary_findings(repo_root: Path) -> Non
     )
 
     assert completed.returncode == 1
-    assert "missing UAAC-v5.0-CONSTITUTION.md" in completed.stdout
+    assert "runtime extension: universal-ai-agent-constitution/runtime.py" in completed.stdout
 
 
 def test_production_extensions_are_runtime_free(production_root: Path) -> None:
@@ -102,9 +108,16 @@ def test_manifest_is_navigation_for_exactly_25_laws(production_root: Path) -> No
 
 def test_production_has_no_conformance_dependency(production_root: Path) -> None:
     references = []
-    for path in production_root.rglob("*"):
-        if path.is_file():
-            text = path.read_text(encoding="utf-8")
-            if "uaac-conformance/" in text or "uaac-conformance\\" in text:
-                references.append(path.relative_to(production_root).as_posix())
+    operational_paths = [
+        production_root / "UAAC-v5.0-CONSTITUTION.md",
+        production_root / "INSTALL-UAAC.md",
+        *sorted((production_root / "laws").glob("*.md")),
+        *sorted((production_root / "templates").rglob("*")),
+    ]
+    for path in operational_paths:
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if "uaac-conformance/" in text or "uaac-conformance\\" in text:
+            references.append(path.relative_to(production_root).as_posix())
     assert references == []

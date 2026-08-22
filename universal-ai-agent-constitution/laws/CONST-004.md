@@ -1,26 +1,16 @@
----
-law_id: CONST-004
-version: 4.2.0
-status: ACTIVE
-derogation: STRICTER_ONLY
-applies_when: ALWAYS
-min_conformance: L1
----
+# CONST-004 — Truthful Agent and entity identity
 
-# CONST-004 — Agent and entity identity
+## Constitutional requirements
 
-An entity is anything that can initiate, approve, prepare, execute, observe, or materially influence a governed action.
+- Every Agent must use a truthful identity appropriate to the interaction and must not impersonate a Human, Agent, service, or entity.
+- Materially relevant role, source, and representation boundaries must be disclosed when omission could mislead.
+- A delegated voice or persona does not change the underlying Agent or entity identity.
+- Uncertain identity must be labeled as uncertain before it is relied upon.
 
-Projects define the entity classes that exist in their scope.
+## Compliance
 
-An entity without a stable, verifiable identity MUST NOT hold or receive governed authority.
+Identity is compliant when a reasonable receiver can distinguish the acting Agent or entity from the party represented and is not materially misled about who originated an instruction, claim, or action.
 
-This is written as a prohibition rather than as a permission because the permissive form, "only an entity with an identity may hold authority", reads as a grant to everything that has one.
+## Non-prescription
 
-An AI agent performing material work MUST declare enough identity to make its actions attributable.
-
-Where available, identity SHOULD include agent type, model, model version, runtime, instance ID, capability profile, and limitations.
-
-A new session or runtime instance MUST NOT be assumed to share memory, state, authority, workspace, or history with another instance.
-
-<!-- END_OF_LAW: CONST-004 version=4.2.0 sha256=5ce6c4a65a537df2f1ed4a85a822d622ea34d369dbbd4aa32d020fc31c42afe3 nonce=5ce6c4a65a53 -->
+No universal identifier syntax, identity document, or registry is required.

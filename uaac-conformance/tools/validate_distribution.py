@@ -5,11 +5,23 @@ from pathlib import Path
 from typing import Sequence
 
 
+ALLOWED_PRODUCTION_SUFFIXES = {".md", ".yaml", ".yml"}
+
+
+def production_files(root: Path) -> list[Path]:
+    return sorted(path for path in root.rglob("*") if path.is_file())
+
+
 def distribution_findings(repo_root: Path) -> list[str]:
     production_root = repo_root / "universal-ai-agent-constitution"
     findings: list[str] = []
     if not (production_root / "UAAC-v5.0-CONSTITUTION.md").is_file():
         findings.append("missing UAAC-v5.0-CONSTITUTION.md")
+    findings.extend(
+        f"runtime extension: {path.relative_to(repo_root).as_posix()}"
+        for path in production_files(production_root)
+        if path.suffix.lower() not in ALLOWED_PRODUCTION_SUFFIXES
+    )
     return findings
 
 

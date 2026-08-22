@@ -1,38 +1,22 @@
-# Changelog
+# UAAC Changelog
 
-## 4.2.0
+## 5.0.0 — 2026-08-23
 
-- Separated the HUMAN walkthrough from the canonical Agent installation protocol.
-- Added a Minimal Bootstrap Kernel before Skill discovery and full `UAAC-BOOT`.
-- Added Project Binding, Boot Receipt, Agent Adapter Registry, material-task floor, freshness modes, attempt preconditions, pre-write recheck, and visibility states.
-- Added nested-Project boundary semantics and receiver-visible canonical-surface requirements.
-- Added atomic publication/base-freshness contracts and `S-INSTALL-14` through `S-INSTALL-23`.
-- Preserved stable law IDs `CONST-001` through `CONST-025`.
+Breaking architectural release:
 
-## 4.1.0
+- preserved stable law IDs `CONST-001` through `CONST-025` while rewriting prescribed machinery as universal constitutional properties;
+- made law files the sole normative operational boundary;
+- made local Markdown/YAML the complete production distribution and removed runtime effectiveness conditions;
+- reduced normal Project adoption to a persistent launcher, a small router, a minimal adoption record, and locally readable pinned Constitution content;
+- made Project rules conditional and optional profiles explicitly opt-in and non-authoritative;
+- refined bounded comprehension, source-appropriate immutable identity, continuation, handoff, retrieval, and evidence without universal implementation mandates;
+- separated developer conformance from UAAC Core; and
+- documented side-by-side migration and qualified rollback from 4.2.
 
-- Defined **Install Project Constitution / ติดตั้งรัฐธรรมนูญ Project** as protocol `UAAC-INSTALL-001` rather than a copy operation.
-- Added one standard Project front door at `governance/UAAC-BOOT.md` with no truth or authority effect.
-- Added byte-identical shared boot contracts for ChatGPT, Codex/AGENTS, and generic Agent wrappers.
-- Added Project Document Registry with semantic roles for Project Definition, Requirements/PRD, and Current State.
-- Added Project Capability Pack and applicability-driven constitutional procedures.
-- Replaced a single global continuation pointer with a Project Continuation Index and lineage-local pointers.
-- Added terminal lineage retention and conflict-controlled continuation updates.
-- Added cross-agent bootstrap convergence and interrupted-work recovery as installation acceptance criteria.
-- Added Greenfield/Brownfield installation runbook, threat model, templates, schemas, installed-project fixture, and installation validator.
-- Added 12 `S-INSTALL-*` conformance scenarios.
-- Hardened installation validation against path traversal, duplicate lineages, failed static checks, unrun convergence, and mismatched effective authority receipts.
-- Hardened installation templates to fail-safe defaults and blocked unresolved placeholders from substantiating positive installation/adoption claims.
-- Removed machine-local path leakage from structural validation receipts; installed fixture locators are package-relative and portable.
-- Modularized the Constitution entrypoint, conformance scenarios, and MUST coverage artifacts so canonical law text is not duplicated and agents can load only applicable sections.
-- Preserved all 25 stable law IDs.
+## 4.2.0 — 2026-08-21
 
-## 4.0.0
+Historical release preserved at Git commit `5a309d8d38046bf3e8cd4beb2fc82a872f211cad`, package tree `3e62912bcbd88d91339dfa772dc6776ee95c77c5`. Its runbooks, schemas, validators, fixtures, and reference machinery are historical inputs rather than active 5.0 dependencies.
 
-- Applied Systems Thinking to actor incentives, state flows, feedback loops, recurring failure archetypes, and unintended consequences.
-- Replaced single Project state location with State Authority Map and Current Continuation Pointer.
-- Added potential/applicable/rejected external-constraint lifecycle.
-- Reworked claim substantiation into Claim Contract Registry with explicit safe fallbacks.
-- Split proven capability, task-required level, and attempt operating level.
-- Replaced fixed seven-Skill file obligation with conditional functional outcomes while shipping seven reference Skills.
-- Added schemas, templates, examples, validators, release receipt, and systems-health metrics.
+## Earlier releases
+
+Earlier history remains reconstructible through repository ancestry and the immutable 4.2 predecessor.

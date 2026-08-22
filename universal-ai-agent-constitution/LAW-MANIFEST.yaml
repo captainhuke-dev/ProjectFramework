@@ -1,636 +1,84 @@
-manifest_version: 4.2.0
-constitution_id: UAAC-001
-constitution_version: 4.2.0
-canonical_form: laws/*.md
-law_count: 25
+document_type: UAAC_LAW_MANIFEST
+status: NON_NORMATIVE_NAVIGATION
+constitution:
+  id: UAAC-001
+  version: "5.0.0"
+  entrypoint: UAAC-v5.0-CONSTITUTION.md
+normative_root: laws
+coverage_effect: NONE
 laws:
-- law_id: CONST-001
-  order: 1
-  title: Scope, constitutional position, and applicable constraints
-  path: laws/CONST-001.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 2058
-  body_sha256: 136fbc058a102b6f5709ee31c3163d98b496254ede6a108894a39c3b737e877b
-  file_sha256: 8cb24da2ab07cb850638385379bef806dcb6a455704e5ec6023c5cf6c262f6ab
-  nonce: 136fbc058a10
-  tests:
-  - S-SUP-01
-  - S-SUP-02
-  - S-SUP-03
-  - S-CST-01
-  - S-CST-02
-  - S-CST-03
-- law_id: CONST-002
-  order: 2
-  title: Identity, responsibility, capability, authority, and execution permission
-  path: laws/CONST-002.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1606
-  body_sha256: 4ce941d971504134650741db7a6e4b3dd4da8dc5f59d37e8b3d22bd8dd9c7b6c
-  file_sha256: 1d610bc358c621779689b12987dd6313d9e95a3307b6368ffbf81bf9358fe6c7
-  nonce: 4ce941d97150
-  tests:
-  - S-AUT-01
-  - S-ENT-01
-  - S-INSTALL-15
-  - S-INSTALL-19
-- law_id: CONST-003
-  order: 3
-  title: Human authority origin, delegation, revocation, and accountability
-  path: laws/CONST-003.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1599
-  body_sha256: da3a403e468e7609a1b0535e3cd331ba94d6511912ab2918bee1424a1b07ca1a
-  file_sha256: c38ab0700b369292d25d0d33cfc9d27faab762b72cda86c2b8e1e75c64b96fb8
-  nonce: da3a403e468e
-  tests:
-  - S-AUT-02
-  - S-AUT-03
-  - S-AUT-04
-  - S-AUT-05
-  - S-ACC-01
-  - S-ACC-02
-  - S-AUT-06
-- law_id: CONST-004
-  order: 4
-  title: Agent and entity identity
-  path: laws/CONST-004.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 838
-  body_sha256: 5ce6c4a65a537df2f1ed4a85a822d622ea34d369dbbd4aa32d020fc31c42afe3
-  file_sha256: 4df0d68879cbe97142e05992c1b1ee4ac02a45e52c16aac199e197fea368f53d
-  nonce: 5ce6c4a65a53
-  tests:
-  - S-ENT-02
-  - S-XFR-05
-- law_id: CONST-005
-  order: 5
-  title: Truth, state integrity, uncertainty, and conflict
-  path: laws/CONST-005.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1886
-  body_sha256: a4f387a63008e9a72c48c1ac1f991fd6d8bfeac7efa6213985b921a20bf08835
-  file_sha256: 98ff53d1ba449fc78b0797b449ac5d11ce71ed153bb0c8336cd042f4ae9d78e0
-  nonce: a4f387a63008
-  tests:
-  - S-MEM-01
-  - S-MEM-02
-  - S-MEM-03
-  - S-EPI-01
-  - S-EPI-02
-  - S-CTX-03
-- law_id: CONST-006
-  order: 6
-  title: Evidence, traceability, and compliance proof
-  path: laws/CONST-006.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 2208
-  body_sha256: 27f1ebb9ff3cd013c50e7acf2e0830513ba78129785e77f471d79f3942c0d74d
-  file_sha256: 201e2ffbc4d5b366285c79fa866ea0d1c3c300b5d47c7aca62d717d3000a85a3
-  nonce: 27f1ebb9ff3c
-  tests:
-  - S-EVD-01
-  - S-EVD-02
-  - S-EVD-03
-  - S-CTX-02
-  - S-EVD-04
-- law_id: CONST-007
-  order: 7
-  title: Instruction authority and input trust
-  path: laws/CONST-007.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1437
-  body_sha256: 1b68ed7ef65f26eae0acbdd4b12236772dca445555c676b6fd51e8a297a7f12b
-  file_sha256: 1c844b7305cce57fb532adda1f9b1c625908f2a90e172b862af458ad850ce80e
-  nonce: 1b68ed7ef65f
-  tests:
-  - S-INS-01
-  - S-INS-02
-  - S-INS-03
-  - S-CTX-04
-- law_id: CONST-008
-  order: 8
-  title: Comprehension integrity and complete reading
-  path: laws/CONST-008.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 2372
-  body_sha256: 5fb97a3b38a5db467453ae662c0241c98dd764858ffb48b3e67a1b4cecd6e17b
-  file_sha256: 6468d8f0e11c6f922513685d92980707dfd69df7e5960f2b37929edea7d2f4b9
-  nonce: 5fb97a3b38a5
-  tests:
-  - S-CMP-01
-  - S-CMP-02
-  - S-CMP-03
-  - S-CTX-01
-- law_id: CONST-009
-  order: 9
-  title: Knowledge navigation and LLM Wiki
-  path: laws/CONST-009.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L2
-  body_bytes: 2294
-  body_sha256: 35ff09997e44e62527aa582683b183ff288ae9aa2680beafff26b7ed98019a7a
-  file_sha256: 4f19dad757ecaa07698dd648b8987acebfff8387b1836218fb861e2359a2438f
-  nonce: 35ff09997e44
-  tests:
-  - S-KNW-01
-  - S-KNW-02
-  - S-KNW-03
-- law_id: CONST-010
-  order: 10
-  title: Risk boundary and autonomy boundary
-  path: laws/CONST-010.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1124
-  body_sha256: b4f92b81c9056bc799d77bb008a0462081ef4dbc06a30efe96b1b49757559fe4
-  file_sha256: c98062503d8b00ed16d3d14c49e7bd7a9ce818062bc86fce763a77ff18d58547
-  nonce: b4f92b81c905
-  tests:
-  - S-RSK-01
-  - S-RSK-02
-  - S-RSK-03
-- law_id: CONST-011
-  order: 11
-  title: Capability declaration and conformance level
-  path: laws/CONST-011.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1965
-  body_sha256: 838a4062498856fa9665cf2dfe69b6e80b45b3147f33f04fff3fe9a76ed2037a
-  file_sha256: 80185a958dca4e395bde1e540d29f025e2b823223d86bf38e6f59330e4b48dc6
-  nonce: 838a40624988
-  tests:
-  - S-CNF-01
-  - S-CNF-02
-  - S-CNF-03
-  - S-CNF-04
-  - S-CNF-05
-  - S-CNF-06
-- law_id: CONST-012
-  order: 12
-  title: Decision integrity
-  path: laws/CONST-012.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: DECISION_SUPPORT_OUTPUT
-  min_conformance: L2
-  body_bytes: 3042
-  body_sha256: 4def3e6269251f3d62d49680fccf70205e5dbd65f8ebeb28319bc9fc3ce45c6e
-  file_sha256: 77099359ab8444990a0f09550cc3adfa19441df8f26d0428ee0b6204e4c0f2b2
-  nonce: 4def3e626925
-  tests:
-  - S-DEC-01
-  - S-DEC-02
-  - S-DEC-03
-  - S-DEC-04
-  - S-DEC-05
-  - S-DEC-06
-  - S-DEC-07
-  - S-DEC-08
-- law_id: CONST-013
-  order: 13
-  title: Communication integrity and abridgment
-  path: laws/CONST-013.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: HUMAN_FACING_OUTPUT
-  min_conformance: L1
-  body_bytes: 2211
-  body_sha256: 515c3387d380b365365be027de43a4c118324f63758c424bcd6b26de8a88cb71
-  file_sha256: fb32b9a718084fddd51d8e40aed90e03e39eff5f64a3ce9dcbef587159003021
-  nonce: 515c3387d380
-  tests:
-  - S-COM-01
-  - S-COM-02
-  - S-COM-03
-  - S-COM-04
-  - S-COM-05
-  - S-COM-06
-- law_id: CONST-014
-  order: 14
-  title: Checkpoint and context continuity
-  path: laws/CONST-014.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L2
-  body_bytes: 5501
-  body_sha256: a4b6830c8f37d5e9faeaab0aa69a536d07967a39077f2f505033f4e62a85098a
-  file_sha256: b0ab7bd6546b2cfd81ab5f317af2ea1ea61d1bc8f7592adcae567a6d9657b84b
-  nonce: a4b6830c8f37
-  tests:
-  - S-CKP-01
-  - S-CKP-02
-  - S-CTX-05
-  - S-STA-02
-  - S-INSTALL-02
-  - S-INSTALL-03
-  - S-INSTALL-09
-  - S-INSTALL-16
-  - S-INSTALL-17
-- law_id: CONST-015
-  order: 15
-  title: Agent-to-agent state transfer
-  path: laws/CONST-015.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: MULTI_AGENT
-  min_conformance: L2
-  body_bytes: 5583
-  body_sha256: 59d6cfeb4e1b47fdbd5b5ed4b7f8b6941c3014a741f838c49bd3ccdfe17d68e2
-  file_sha256: 15c7764358678c1b6d52b3442dc69d8bfb356b4716673ada3377f8d7072dc512
-  nonce: 59d6cfeb4e1b
-  tests:
-  - S-XFR-01
-  - S-XFR-02
-  - S-XFR-03
-  - S-XFR-04
-  - S-XFR-05
-  - S-STA-01
-  - S-REV-02
-  - S-INSTALL-01
-  - S-INSTALL-02
-  - S-INSTALL-10
-  - S-INSTALL-17
-  - S-INSTALL-20
-- law_id: CONST-016
-  order: 16
-  title: Artifact identity and synchronization
-  path: laws/CONST-016.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L2
-  body_bytes: 3509
-  body_sha256: 4d3d4fe77389ff2cc18fc497052dec77b891e37928b6e43df19ea880aecad677
-  file_sha256: 25498d7afd376d13da8a943c1ad28d6a59232b03cdb3cfd92f9a727436b95f5a
-  nonce: 4d3d4fe77389
-  tests:
-  - S-DEP-01
-  - S-DEP-02
-  - S-DEP-03
-  - S-STA-01
-  - S-STA-02
-  - S-INSTALL-01
-  - S-INSTALL-05
-  - S-INSTALL-11
-  - S-INSTALL-16
-  - S-INSTALL-22
-  - S-INSTALL-23
-- law_id: CONST-017
-  order: 17
-  title: Result states, completion, and failure reporting
-  path: laws/CONST-017.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1967
-  body_sha256: 549a545406c4fd5d1211ea8c0ac06ed5bcb34abacd7420b0a378f045c79ad36c
-  file_sha256: b542b6b354e20d43371dff866edb27c5d9d45e720249d9a0da4d3399e306ba03
-  nonce: 549a545406c4
-  tests:
-  - S-RES-01
-  - S-RES-02
-  - S-SUB-06
-  - S-INSTALL-06
-- law_id: CONST-018
-  order: 18
-  title: Non-compliance and fail-closed behavior
-  path: laws/CONST-018.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1038
-  body_sha256: 5d7269286375f14570bab85dfee96914497423e5ced73d0af63ce7a8bcf97af7
-  file_sha256: 78f2000ce4b7ea51fa35d6a16536733b00738611147e6f2e39f18f2020d783de
-  nonce: 5d7269286375
-  tests:
-  - S-NCP-01
-  - S-NCP-02
-  - S-NCP-03
-  - S-BLK-01
-- law_id: CONST-019
-  order: 19
-  title: Reproducibility and reconstruction
-  path: laws/CONST-019.md
-  status: ACTIVE
-  derogation: STRICTER_ONLY
-  applies_when: ALWAYS
-  min_conformance: L2
-  body_bytes: 1049
-  body_sha256: 36654bc6a9d1fc24c97edc8a610fde4a60e24e6e68c876b5db3895556afea1d0
-  file_sha256: dc7eb8772de9df3a0b9d7b673ca741510cbb12f684b1592830e5b3112c9ae988
-  nonce: 36654bc6a9d1
-  tests:
-  - S-RPR-01
-  - S-RPR-02
-- law_id: CONST-020
-  order: 20
-  title: Frameworks, extensions, and adopted mechanisms
-  path: laws/CONST-020.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 1819
-  body_sha256: c3bb9f48d17f3b9fd4ef73da6b59fac15207fb0ecbf458ef0a82513240b8a34f
-  file_sha256: 340450f474ebdac58621fc7f1ce8c204cb5f4d42dad4039eb7b2d59a97671d45
-  nonce: c3bb9f48d17f
-  tests:
-  - S-RUN-01
-  - S-RUN-02
-  - S-SUP-01
-- law_id: CONST-021
-  order: 21
-  title: Project adoption, pinning, and local Project Law
-  path: laws/CONST-021.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 7827
-  body_sha256: a0d3802d0a1bcf24ee80ecf9d8d25e8cb20212506be103eff8653ed968e35421
-  file_sha256: c258b6a0fd54f7da4b83387384934a7f4ae901986ee79c5fa09fd99c6c7c9ea2
-  nonce: a0d3802d0a1b
-  tests:
-  - S-ADP-01
-  - S-ESC-01
-  - S-ESC-02
-  - S-CST-01
-  - S-INT-01
-  - S-STA-01
-  - S-CST-03
-  - S-INSTALL-01
-  - S-INSTALL-04
-  - S-INSTALL-05
-  - S-INSTALL-06
-  - S-INSTALL-08
-  - S-INSTALL-10
-  - S-INSTALL-11
-  - S-INSTALL-12
-  - S-INSTALL-13
-  - S-INSTALL-14
-  - S-INSTALL-15
-  - S-INSTALL-18
-  - S-INSTALL-19
-  - S-INSTALL-20
-  - S-INSTALL-22
-  - S-INSTALL-23
-- law_id: CONST-022
-  order: 22
-  title: Amendment, versioning, and migration
-  path: laws/CONST-022.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 3172
-  body_sha256: bcd53809de18c9f216368c027d06f9820c0368fb54f4880f8290b8a580cee1b0
-  file_sha256: 714c32ceb04d2d98ef74777d5324d64d36b30f1a73cc408c23b341d4e5308755
-  nonce: bcd53809de18
-  tests:
-  - S-ADP-02
-  - S-ADP-03
-  - S-PKG-01
-  - S-PKG-02
-  - S-INSTALL-22
-  - S-INSTALL-23
-- law_id: CONST-023
-  order: 23
-  title: Skill materialization, discovery, recall, and regeneration
-  path: laws/CONST-023.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: REUSABLE_PROCEDURE_REQUIRED
-  min_conformance: L2
-  body_bytes: 6169
-  body_sha256: fae2f1dce13212a84002a925f66a09ae59082dfd51dcd9e8d8d8f1ebe2cf1f03
-  file_sha256: 02d7809aea52e5a017e3771162acca023bd1c71ce18d3ff961a2e7d38c8b3451
-  nonce: fae2f1dce132
-  tests:
-  - S-SKL-01
-  - S-SKL-02
-  - S-SKL-03
-  - S-SKL-04
-  - S-SKL-05
-  - S-SKL-06
-  - S-CTX-07
-  - S-SKL-07
-  - S-INSTALL-07
-  - S-INSTALL-08
-  - S-INSTALL-13
-  - S-INSTALL-18
-  - S-INSTALL-21
-- law_id: CONST-024
-  order: 24
-  title: Context substrate, retrieval, memory, and derived-context integrity
-  path: laws/CONST-024.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: CONTEXT_SUBSTRATE_ADOPTED
-  min_conformance: L2
-  body_bytes: 12610
-  body_sha256: 7b46a2abbe0d1e0826177a3f3c995ba4ce3cdddb7dd37d9835bc388673b2ab9c
-  file_sha256: 2ad8aa41de24296aaf03d88a2be596d2d4a6397c679059796a0194c8cf032e55
-  nonce: 7b46a2abbe0d
-  tests:
-  - S-CTX-01
-  - S-CTX-02
-  - S-CTX-03
-  - S-CTX-04
-  - S-CTX-05
-  - S-CTX-06
-  - S-CTX-07
-  - S-CTX-08
-  - S-CTX-09
-  - S-CTX-10
-  - S-CTX-11
-  - S-OV-01
-  - S-OV-02
-  - S-OV-03
-  - S-OV-04
-  - S-OV-05
-  - S-CTX-12
-  - S-INSTALL-01
-  - S-INSTALL-10
-  - S-INSTALL-17
-  - S-INSTALL-20
-- law_id: CONST-025
-  order: 25
-  title: Substantiation of claims
-  path: laws/CONST-025.md
-  status: ACTIVE
-  derogation: FORBIDDEN
-  applies_when: ALWAYS
-  min_conformance: L1
-  body_bytes: 4279
-  body_sha256: 444fb426bea20715447bd6af1ae961649d27854d49dec20482ec1bdb40082ce5
-  file_sha256: a0d804feeac5e48b47bca3825cfd190e1b7f3b62e37052f4102f47aef7d9d956
-  nonce: 444fb426bea2
-  tests:
-  - S-SUB-01
-  - S-SUB-02
-  - S-SUB-03
-  - S-SUB-04
-  - S-SUB-05
-  - S-SUB-06
-  - S-SUB-07
-  - S-INSTALL-06
-  - S-INSTALL-12
-  - S-INSTALL-15
-  - S-INSTALL-16
-  - S-INSTALL-17
-  - S-INSTALL-18
-  - S-INSTALL-21
-  - S-INSTALL-22
-  - S-INSTALL-23
-condition_requirements:
-  MULTI_AGENT:
-    minimum_level: L2
-    engage:
-    - CONST-014
-    - CONST-015
-    - CONST-016
-    - CONST-019
-    - CONST-023
-  DECISION_SUPPORT_OUTPUT:
-    minimum_level: L2
-    engage:
-    - CONST-012
-  HUMAN_FACING_OUTPUT:
-    minimum_level: L1
-    engage:
-    - CONST-013
-  CONTEXT_SUBSTRATE_ADOPTED:
-    minimum_level: L2
-    engage:
-    - CONST-024
-  REUSABLE_PROCEDURE_REQUIRED:
-    minimum_level: L2
-    engage:
-    - CONST-023
-reading_profiles:
-  BOOT_L1:
-    unconditional:
-    - CONST-001
-    - CONST-002
-    - CONST-003
-    - CONST-004
-    - CONST-005
-    - CONST-006
-    - CONST-007
-    - CONST-008
-    - CONST-010
-    - CONST-011
-    - CONST-013
-    - CONST-017
-    - CONST-018
-    - CONST-020
-    - CONST-021
-    - CONST-022
-    - CONST-025
-    unconditional_count: 17
-    unconditional_bytes: 39406
-  BOOT_L2:
-    unconditional:
-    - CONST-001
-    - CONST-002
-    - CONST-003
-    - CONST-004
-    - CONST-005
-    - CONST-006
-    - CONST-007
-    - CONST-008
-    - CONST-009
-    - CONST-010
-    - CONST-011
-    - CONST-013
-    - CONST-014
-    - CONST-016
-    - CONST-017
-    - CONST-018
-    - CONST-019
-    - CONST-020
-    - CONST-021
-    - CONST-022
-    - CONST-023
-    - CONST-025
-    unconditional_count: 22
-    unconditional_bytes: 57928
-  BOOT_L3:
-    unconditional:
-    - CONST-001
-    - CONST-002
-    - CONST-003
-    - CONST-004
-    - CONST-005
-    - CONST-006
-    - CONST-007
-    - CONST-008
-    - CONST-009
-    - CONST-010
-    - CONST-011
-    - CONST-012
-    - CONST-013
-    - CONST-014
-    - CONST-015
-    - CONST-016
-    - CONST-017
-    - CONST-018
-    - CONST-019
-    - CONST-020
-    - CONST-021
-    - CONST-022
-    - CONST-023
-    - CONST-024
-    - CONST-025
-    unconditional_count: 25
-    unconditional_bytes: 79163
-size_budget:
-  full_law_text_bytes: 79163
-  l1_unconditional_bytes: 39406
-  l2_unconditional_bytes: 57928
-  largest_laws:
-  - law_id: CONST-024
-    body_bytes: 12610
-  - law_id: CONST-021
-    body_bytes: 7827
-  - law_id: CONST-023
-    body_bytes: 6169
-  - law_id: CONST-015
-    body_bytes: 5583
-  - law_id: CONST-014
-    body_bytes: 5501
+  - id: CONST-001
+    locator: laws/CONST-001.md
+    title: Universal constitutional scope
+  - id: CONST-002
+    locator: laws/CONST-002.md
+    title: Separation of identity, responsibility, capability, authority, and permission
+  - id: CONST-003
+    locator: laws/CONST-003.md
+    title: Human-origin authority, delegation, and accountability
+  - id: CONST-004
+    locator: laws/CONST-004.md
+    title: Truthful Agent and entity identity
+  - id: CONST-005
+    locator: laws/CONST-005.md
+    title: Current Truth, uncertainty, and conflict
+  - id: CONST-006
+    locator: laws/CONST-006.md
+    title: Evidence and traceability
+  - id: CONST-007
+    locator: laws/CONST-007.md
+    title: Instruction authority and input trust
+  - id: CONST-008
+    locator: laws/CONST-008.md
+    title: Bounded comprehension integrity
+  - id: CONST-009
+    locator: laws/CONST-009.md
+    title: Canonical-source recovery before guessing
+  - id: CONST-010
+    locator: laws/CONST-010.md
+    title: Risk, autonomy, and safe escalation
+  - id: CONST-011
+    locator: laws/CONST-011.md
+    title: Honest capability and limitation disclosure
+  - id: CONST-012
+    locator: laws/CONST-012.md
+    title: Decision integrity
+  - id: CONST-013
+    locator: laws/CONST-013.md
+    title: Semantic fidelity and abridgment
+  - id: CONST-014
+    locator: laws/CONST-014.md
+    title: Proportional durable continuation
+  - id: CONST-015
+    locator: laws/CONST-015.md
+    title: Safe handoff
+  - id: CONST-016
+    locator: laws/CONST-016.md
+    title: Artifact identity, freshness, and synchronization
+  - id: CONST-017
+    locator: laws/CONST-017.md
+    title: Truthful result and lifecycle states
+  - id: CONST-018
+    locator: laws/CONST-018.md
+    title: Scoped fail-closed behavior
+  - id: CONST-019
+    locator: laws/CONST-019.md
+    title: Proportional reproducibility and reconstruction
+  - id: CONST-020
+    locator: laws/CONST-020.md
+    title: Optional and subordinate mechanisms
+  - id: CONST-021
+    locator: laws/CONST-021.md
+    title: Minimal Project adoption
+  - id: CONST-022
+    locator: laws/CONST-022.md
+    title: Version, amendment, migration, rollback, and identity
+  - id: CONST-023
+    locator: laws/CONST-023.md
+    title: Optional reusable procedures
+  - id: CONST-024
+    locator: laws/CONST-024.md
+    title: Retrieval, memory, and derived-context integrity
+  - id: CONST-025
+    locator: laws/CONST-025.md
+    title: Claim substantiation and epistemic honesty

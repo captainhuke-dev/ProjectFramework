@@ -1,76 +1,16 @@
----
-law_id: CONST-017
-version: 4.2.0
-status: ACTIVE
-derogation: FORBIDDEN
-applies_when: ALWAYS
-min_conformance: L1
----
+# CONST-017 — Truthful result and lifecycle states
 
-# CONST-017 — Result states, completion, and failure reporting
+## Constitutional requirements
 
-Completion language MUST distinguish materially different states.
+- Execution, verification, acceptance, publication, deployment, and closure are distinct states and must not be conflated.
+- A later state cannot be claimed merely because an earlier state succeeded.
+- Failure, partial completion, skipped verification, unavailable publication, and unresolved acceptance must be reported at the affected scope.
+- Closure requires that material requested outcomes and required reporting are actually complete or explicitly accounted for.
 
-Reference progression:
+## Compliance
 
-```text
-EXECUTED
-VERIFIED
-ACCEPTED
-PUBLISHED
-DEPLOYED
-OPERATIONALLY_VERIFIED
-CLOSED
-```
+Status is compliant when each claimed state is supported by evidence and a receiver can distinguish completed work from verification, acceptance, publication, deployment, and closure still outstanding.
 
-No agent may use unqualified `DONE`, `COMPLETE`, or `FINISHED` to imply states that have not been established.
+## Non-prescription
 
-```text
-Executed != Verified
-Verified != Accepted
-Accepted != Published
-Published != Deployed
-Deployed != Operationally Verified
-Operationally Verified != Closed
-```
-
-Each governance/status state used to control work MUST have a claim contract under `CONST-025` that identifies the substantiating artifact and safe fallback.
-
-Failure is a first-class result. Reference outcome/continuation states include:
-
-```text
-SUCCESS
-FAILED
-BLOCKED
-INTERRUPTED
-CANCELLED
-ABANDONED
-SUPERSEDED
-```
-
-A failed, blocked, interrupted, cancelled, abandoned, superseded, or closed task MUST NOT disappear when it materially affects future work. Project Law MUST define terminal accounting for work it starts durably.
-
-A result record SHOULD distinguish result validity, verification state, publication/deployment state, closure state, known limitations, and exact next action.
-
-## Installation and adoption states
-
-A standard Project installation MUST distinguish at least:
-
-```text
-STAGED
-CORE_INSTALLED
-PROJECT_PROFILE_RESOLVED
-PROJECT_DOCUMENTS_RESOLVED
-SKILLS_MATERIALIZED
-AGENT_ENTRYPOINTS_CONFIGURED
-INSTALLATION_VALIDATED
-EFFECTIVE
-```
-
-Copying constitutional files establishes neither `INSTALLATION_VALIDATED` nor `EFFECTIVE`.
-
-`INSTALLATION_VALIDATED` means the registered installation checks and required cross-agent/access tests produced valid evidence. `EFFECTIVE` means the competent Project authority accepted the validated adoption. They are separate claim tokens with separate evidence and safe fallbacks.
-
-A Project MAY expose more detailed internal lifecycle states, but MUST NOT collapse installation, validation, and effective adoption into one unqualified completion word.
-
-<!-- END_OF_LAW: CONST-017 version=4.2.0 sha256=549a545406c4fd5d1211ea8c0ac06ed5bcb34abacd7420b0a378f045c79ad36c nonce=549a545406c4 -->
+UAAC does not prescribe a lifecycle engine, status vocabulary, release service, or workflow platform.
