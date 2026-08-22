@@ -35,15 +35,21 @@ This launcher is intentionally compact. The complete ChatGPT/Claude Project inst
    Text between these markers MUST remain byte-identical in ChatGPT and Claude launchers. Wrappers may differ only in placement instructions. This launcher never outranks local Root Governance.
 
 8. **Mandatory response close.**
+   In the second section, `Next Action`, `Chat`, `Reason`, and `Required Read` MUST render as four separate Markdown paragraphs, with a blank line between fields. Never collapse multiple fields into one paragraph or line.
+
    Every response—including clarification, preview, status, error, refusal, and completion—MUST end with these headings, in order, with nothing after the second section:
 
    `ทำอะไรไป?`
    concise statement of what was done or determined
 
    `และถัดไปคืออะไร?`
+
    `Next Action: <one exact next action or ไม่มีขั้นตอนถัดไป>`
+
    `Chat: CONTINUE_CURRENT_CHAT | START_NEW_CHAT`
+
    `Reason: <concise reason>`
+
    `Required Read: <canonical locations or ไม่มี>`
 
 <!-- PROJECTFRAMEWORK-SHARED-CONTRACT:END -->
