@@ -1,6 +1,0 @@
----
-name: uaac-boot
-description: Example BOOT procedure router.
----
-
-Resolve current Project truth from `governance/UAAC-BOOT.md`; do not embed volatile state.

@@ -5,10 +5,12 @@ status: VERIFIED
 project_id: uaac-v42-reference
 project_root: uaac-v4.2-reference-project
 canonical_repository: captainhuke-dev/ProjectFramework
-canonical_ref_policy: hz-framework
+canonical_ref_policy: immutable_snapshot
+immutable_reference_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
 governance_front_door: governance/UAAC-BOOT.md
 nested_project_policy: EXPLICIT_BOUNDARY
 verification:
+  evidence_scope: HISTORICAL_SNAPSHOT
   status: PASS
   expected_front_door_blob: 3abc8612db5862c8d83ddd44fa58d719caf4104a
   observed_front_door_blob: 3abc8612db5862c8d83ddd44fa58d719caf4104a

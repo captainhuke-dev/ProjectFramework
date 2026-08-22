@@ -1,6 +1,0 @@
----
-name: uaac-communication
-description: Example COMMUNICATION procedure router.
----
-
-Resolve current Project truth from `governance/UAAC-BOOT.md`; do not embed volatile state.

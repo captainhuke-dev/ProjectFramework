@@ -1,0 +1,48 @@
+document_type: UAAC_V42_HISTORICAL_REFERENCE_INVENTORY
+status: HISTORICAL_NON_NORMATIVE
+audited_at: "2026-08-23"
+release_commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+package_tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
+reference_fixture_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
+reference_fixture_file_count: 27
+reconstruction:
+  core: git:captainhuke-dev/ProjectFramework@5a309d8d38046bf3e8cd4beb2fc82a872f211cad:universal-ai-agent-constitution/
+  reference_fixture: git:captainhuke-dev/ProjectFramework@5cc9488427c8034a67f4898ace5f1c5806760b85:uaac-v4.2-reference-project/
+  mutable_branch_is_identity: false
+  current_v5_path_is_substitute: false
+historical_categories:
+  - runbooks
+  - schemas
+  - validators
+  - fixtures_and_scenarios
+  - threat_and_system_reviews
+  - registers
+  - skills
+  - templates
+  - validation_output
+original_path_roots:
+  runbooks:
+    - universal-ai-agent-constitution/ADOPTION-RUNBOOK.md
+    - universal-ai-agent-constitution/HUMAN-INSTALL-WALKTHROUGH-TH.md
+  schemas:
+    - universal-ai-agent-constitution/schemas/
+  validators:
+    - universal-ai-agent-constitution/tools/
+  fixtures_and_scenarios:
+    - universal-ai-agent-constitution/examples/
+    - universal-ai-agent-constitution/tests/
+    - uaac-v4.2-reference-project/
+  threat_and_system_reviews:
+    - universal-ai-agent-constitution/INSTALLATION-THREAT-MODEL.md
+    - universal-ai-agent-constitution/SYSTEMS-THINKING-ANALYSIS-TH.md
+    - universal-ai-agent-constitution/reviews/
+  registers:
+    - universal-ai-agent-constitution/registers/
+  skills:
+    - universal-ai-agent-constitution/SKILL.md
+    - universal-ai-agent-constitution/skills/
+  templates:
+    - universal-ai-agent-constitution/templates/
+  validation_output:
+    - universal-ai-agent-constitution/validation/
+active_v5_dependency: false

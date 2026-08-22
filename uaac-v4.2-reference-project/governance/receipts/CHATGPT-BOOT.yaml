@@ -4,8 +4,10 @@ receipt_id: CHATGPT-BOOT-UAAC-V42-REFERENCE-001
 platform: CHATGPT
 project_id: uaac-v42-reference
 status: PASS
+evidence_scope: HISTORICAL_OBSERVATION_ONLY
 canonical_repository: captainhuke-dev/ProjectFramework
-canonical_ref: hz-framework
+observed_branch_name: hz-framework
+reconstruction_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
 observed_branch_commit: a20254dfbad870257c7c4e13d7df852cf9d79ac8
 front_door:
   locator: uaac-v4.2-reference-project/governance/UAAC-BOOT.md

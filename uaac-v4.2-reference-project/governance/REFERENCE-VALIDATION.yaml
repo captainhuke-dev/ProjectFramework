@@ -3,6 +3,8 @@ document_type: UAAC_REFERENCE_VALIDATION
 validation_id: REF-VALIDATION-UAAC-V42-001
 project_id: uaac-v42-reference
 status: STATIC_CONVERGENCE_VERIFIED
+evidence_scope: HISTORICAL_SNAPSHOT
+reference_fixture_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
 uaac_core:
   commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
   package_tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
@@ -10,7 +12,7 @@ front_door:
   locator: governance/UAAC-BOOT.md
   git_blob_sha1: 3abc8612db5862c8d83ddd44fa58d719caf4104a
   sha256: 808569a15ec52b1c696f8520fc4f3a5f75ce6e11f233ec2287f68abfc3a7f6f7
-  canonical_url: https://github.com/captainhuke-dev/ProjectFramework/blob/hz-framework/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+  canonical_url: https://github.com/captainhuke-dev/ProjectFramework/blob/5cc9488427c8034a67f4898ace5f1c5806760b85/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
 static_resolution:
   expected_identity_set:
     project_id: uaac-v42-reference

@@ -1,5 +1,4 @@
-Project นี้ใช้ UAAC:
-https://github.com/captainhuke-dev/ProjectFramework/blob/hz-framework/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+Historical UAAC v4.2 Project front door:
+https://github.com/captainhuke-dev/ProjectFramework/blob/5cc9488427c8034a67f4898ace5f1c5806760b85/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
 
-ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง
-ทำต่อจาก canonical Project state เท่านั้น; memory != Current Truth
+This is an immutable historical fixture route. It does not resolve current UAAC v5 files and does not activate the old Project.

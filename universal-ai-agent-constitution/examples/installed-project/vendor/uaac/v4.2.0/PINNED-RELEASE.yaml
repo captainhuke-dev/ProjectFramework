@@ -1,4 +1,0 @@
-constitution_id: UAAC-001
-version: 4.2.0
-pinned_reference: sha256:example-uaac-v4.2.0-package
-example_note: Full vendored package omitted from nested example to avoid recursive packaging.

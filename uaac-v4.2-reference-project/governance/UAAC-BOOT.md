@@ -8,7 +8,8 @@ truth_authority: NONE
 project_boundary: uaac-v4.2-reference-project
 governance_source:
   repository: captainhuke-dev/ProjectFramework
-  canonical_ref_policy: hz-framework
+  canonical_ref_policy: immutable_snapshot
+  immutable_reference_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
   bootstrap_path: uaac-v4.2-reference-project/governance/UAAC-BOOT.md
 bootstrap_kernel:
   locator: governance/BOOTSTRAP-KERNEL.md

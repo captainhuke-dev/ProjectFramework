@@ -1,31 +1,23 @@
-# UAAC v4.2 Remote-Backed Reference Project
+# UAAC v4.2 Immutable Historical Reference Project
 
-This directory is a **real GitHub-backed staged reference installation boundary** for
-testing UAAC multi-agent boot and continuation without modifying the immutable
-UAAC v4.2 core package.
+This directory preserves the staged UAAC 4.2 cross-Agent reference installation as historical evidence. It is not an active UAAC 5.0 Project and never resolves Constitution bytes from the current v5 package.
 
 - Repository: `captainhuke-dev/ProjectFramework`
-- Canonical branch: `hz-framework`
+- Historical publication branch: `hz-framework`
+- Completed fixture snapshot commit: `5cc9488427c8034a67f4898ace5f1c5806760b85`
 - Project boundary: `uaac-v4.2-reference-project`
-- Project front door: `governance/UAAC-BOOT.md`
+- Historical front door: `governance/UAAC-BOOT.md`
 - Pinned UAAC core commit: `5a309d8d38046bf3e8cd4beb2fc82a872f211cad`
 - Pinned UAAC package tree: `3e62912bcbd88d91339dfa772dc6776ee95c77c5`
 
-## What this proves
+## Evidence scope
 
-The reference project gives ChatGPT-style remote readers and Codex-style local
-repo agents the same Project ID, Constitution pin, Project Law, document routes,
-Skill Registry, continuation lineage, and exact next action.
+The files record the original staged Project identity, Constitution pin, Project Law, document routes, procedures, continuation lineage, and receiver evidence. Existing PASS/PARTIAL/NOT_RUN values are historical claims made by the v4.2 fixture; UAAC 5.0 did not produce or upgrade them.
 
-`governance/REFERENCE-VALIDATION.yaml` records **static convergence** only.
-The Project remains `STAGED`; live behavioral convergence is not claimed until each real platform produces a
-receiver-side boot receipt against the canonical GitHub surface.
+The completed 27-file fixture is reconstructed from commit `5cc9488427c8034a67f4898ace5f1c5806760b85`. The v4.2 core is reconstructed independently from release commit `5a309d8d38046bf3e8cd4beb2fc82a872f211cad`. Mutable branch names are provenance only and are not a current resolution route.
 
-## Live verification sequence
+## Historical verification sequence
 
-1. ChatGPT fresh-reads the GitHub `UAAC-BOOT.md` and resolves the declared state.
-2. Codex opens this repository/branch locally and resolves the same state.
-3. Both receipts must agree on the convergence identity set.
-4. Only then may live cross-agent convergence be marked `PASS`.
+The original sequence asked ChatGPT and Codex receivers to read the same front door and compare receiver-side evidence. Static convergence and the recorded ChatGPT receipt do not prove later behavior or UAAC 5.0 compliance.
 
-The immutable UAAC v4.2 core remains pinned to commit `5a309d8d38046bf3e8cd4beb2fc82a872f211cad`.
+For current historical reconstruction guidance, use `docs/uaac-history/v4.2/README.md` at the repository root.

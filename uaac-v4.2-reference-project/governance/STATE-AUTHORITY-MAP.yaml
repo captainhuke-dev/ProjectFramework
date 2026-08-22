@@ -6,7 +6,7 @@ state_classes:
   GOVERNANCE:
     canonical:
       repository: captainhuke-dev/ProjectFramework
-      ref: hz-framework
+      commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
       root: uaac-v4.2-reference-project/governance/
   CONSTITUTION:
     canonical:
@@ -17,17 +17,17 @@ state_classes:
   PROJECT_DOCUMENTS:
     canonical:
       repository: captainhuke-dev/ProjectFramework
-      ref: hz-framework
+      commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
       root: uaac-v4.2-reference-project/project-docs/
   CONTINUATION:
     canonical:
       repository: captainhuke-dev/ProjectFramework
-      ref: hz-framework
+      commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
       index: uaac-v4.2-reference-project/governance/CURRENT-CONTINUATION.yaml
   EVIDENCE:
     canonical:
       repository: captainhuke-dev/ProjectFramework
-      ref: hz-framework
+      commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
       locator: uaac-v4.2-reference-project/governance/REFERENCE-VALIDATION.yaml
   DERIVED_CONTEXT:
     authority_effect: NONE

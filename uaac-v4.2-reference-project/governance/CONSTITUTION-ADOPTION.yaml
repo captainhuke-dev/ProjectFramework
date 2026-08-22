@@ -18,9 +18,10 @@ project:
   boundary: uaac-v4.2-reference-project
 governance_source:
   repository: captainhuke-dev/ProjectFramework
-  canonical_ref_policy: hz-framework
+  canonical_ref_policy: immutable_snapshot
+  immutable_reference_commit: 5cc9488427c8034a67f4898ace5f1c5806760b85
   bootstrap_path: uaac-v4.2-reference-project/governance/UAAC-BOOT.md
-  bootstrap_canonical_url: https://github.com/captainhuke-dev/ProjectFramework/blob/hz-framework/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+  bootstrap_canonical_url: https://github.com/captainhuke-dev/ProjectFramework/blob/5cc9488427c8034a67f4898ace5f1c5806760b85/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
 project_law:
   locator: governance/PROJECT-LAWS/PROJECT_RULES.md
 state_authority_map:
