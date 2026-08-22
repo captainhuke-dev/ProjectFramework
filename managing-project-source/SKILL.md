@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.3 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.4 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,6 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
+- `references/framework-governance-amendment-260822-1424.md`
 - `references/framework-governance-amendment-260821-1934.md`
 - `references/framework-governance-amendment-260821-1505.md` (historical approved amendment)
 - `references/framework-governance-amendment-260821-1254.md` (historical approved amendment)
@@ -45,6 +46,42 @@ Official platform launchers:
 Their text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` MUST remain byte-identical. Platform wrappers may differ only in placement instructions. Launchers are bootstrap/continuation helpers, never a competing governance root.
 
 If active local `FRAMEWORK-001` exists, local pinned Project Source is authoritative. NEW Project bootstrap begins from canonical repository `main`. Exact Git tag/SHA and branch protection are optional assurance, not normal-use prerequisites.
+
+## Framework 1.2.4 Project Location Binding
+
+For initialized Projects, active local `FRAMEWORK-001` is the canonical home of **Project Location Binding**. Resolve it before Material GitHub/Google Drive work. The binding answers **where Project work belongs**; Authority/Risk rules independently answer **who may mutate what**.
+
+Keep these concepts distinct:
+
+```text
+Repository Location Binding
+  ≠ current work branch/worktree
+  ≠ Canonical Integration Target
+  ≠ Canonical Implementation Source
+```
+
+Do not add or infer `canonical_branch` from Location Binding. Framework `1.2.2` Canonical Integration Target/Base Freshness and Framework `1.2.3` Canonical Implementation Source/Runtime Authority remain independently authoritative.
+
+GitHub and Drive each resolve to exactly one state:
+
+```text
+BOUND
+NOT_APPLICABLE
+VERIFICATION_REQUIRED
+```
+
+Operational rules:
+
+1. `BOUND` requires durable routing identity: GitHub owner/repository or canonical repository URL; Drive project-root folder ID or canonical folder URL. Display names, Drive text paths, recent activity, chat memory, ranking, and discovery hits do not establish authority by themselves.
+2. `BOUND` → compare the intended Material target to the durable routing identity when possible; a material mismatch stops the affected mutation and is surfaced.
+3. `VERIFICATION_REQUIRED` → discovery/read/search and candidate comparison may continue; Material mutation is blocked by default.
+4. A User Explicit Instruction naming one exact target may authorize that one otherwise-permitted action; it does not persistently rewrite Root Governance or promote the binding to `BOUND`.
+5. `NOT_APPLICABLE` → no Material Project work through that connector until an explicitly approved binding/scope revision.
+6. Persistent binding change → User Explicit Approval + governed `FRAMEWORK-001` revision/validate/promote/supersede/archive flow. Connector discovery, recent activity, or search ranking never transfers Project authority.
+7. `03`/`09` may reference the active root binding; they do not keep independent authoritative repository/folder copies.
+8. Project-specific repository/Drive/progress pointers belong in local `FRAMEWORK-001`, not platform launchers.
+
+GREENFIELD has no active local binding. Use read-only candidate discovery as needed → include proposed GitHub/Drive states and durable identities in Preview → obtain explicit approval → first Material Project-Source write creates active `00 / FRAMEWORK-001` with the approved binding → subsequent Material connector work resolves that active binding. Unresolved applicable systems remain `VERIFICATION_REQUIRED` and fail-closed for Material mutation.
 
 ## Framework 1.2.0 Namespace and Routing
 
@@ -249,6 +286,30 @@ Operational sequence:
 7. Return a compact Chat result; do not replay the connector transcript.
 8. Recommend exactly `CONTINUE_CURRENT_CHAT` or `START_NEW_CHAT`.
 9. Recommend `START_NEW_CHAT` only after the persistence gate passes: durable current state, pending/blocker state, Exact Next Action, and Required Read location exist outside Chat.
+10. If `[Next Action]` is exactly `ไม่มีขั้นตอนถัดไป`, `[Chat]` MUST be `START_NEW_CHAT`.
+11. `CONTINUE_CURRENT_CHAT` requires one concrete Next Action and MUST NOT pair with `ไม่มีขั้นตอนถัดไป`.
+12. `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus one concrete persistence/recovery Next Action; it cannot pair with `START_NEW_CHAT` or `ไม่มีขั้นตอนถัดไป`.
+13. `START_NEW_CHAT` may carry a concrete Next Action when state is durably persisted and continuation is safe from Required Read locations.
+
+Mandatory Framework response close:
+
+```text
+### ทำอะไรไป?
+
+<concise statement of what was done or determined>
+
+### และถัดไปคืออะไร?
+
+[Next Action]: <one exact next action or ไม่มีขั้นตอนถัดไป>
+
+[Chat]: CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+
+[Reason]: <concise reason>
+
+[Required Read]: <canonical locations or ไม่มี>
+```
+
+The four bracketed fields are separate Markdown paragraphs. Canonical lifecycle tokens stay unescaped; Markdown escaping is display-only.
 
 GitHub routing examples:
 
@@ -310,18 +371,19 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 3. Resolve explicit `FAST/GRILL`; otherwise `ADAPTIVE`.
 4. Confirm active `FRAMEWORK-001`; if missing in an existing Project, stop affected work and propose governed repair.
 5. Existing Project: read `00 → 01 → 03`, follow `01` routing, preserve local pin.
-6. Inspect accessible sources before asking; do not ask for facts that can be verified.
-7. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
-8. Initial creation/major structural migration requires Preview → explicit user approval → write.
-9. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
-10. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
-11. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval.
-12. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
-13. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
-14. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
-15. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
-16. Never store actual secrets; use `SECRET-*` metadata references only.
-17. Preserve history and finish with completion/readiness/exact-next-action summary.
+6. Before Material GitHub/Drive work in an initialized Project, resolve the applicable Project Location Binding from active `FRAMEWORK-001`; enforce `BOUND / NOT_APPLICABLE / VERIFICATION_REQUIRED` fail-closed routing and do not infer authority from recency/ranking/chat memory.
+7. Inspect accessible sources before asking; do not ask for facts that can be verified.
+8. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
+9. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.
+10. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
+11. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
+12. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval; Framework `1.2.4` migration never invents repository/Drive identities or `canonical_branch`.
+13. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
+14. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
+15. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
+16. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
+17. Never store actual secrets; use `SECRET-*` metadata references only.
+18. Preserve history and finish with completion/readiness/exact-next-action summary using the mandatory bracketed response close; enforce Chat Closure Consistency.
 
 ## Quick Reference
 
@@ -344,6 +406,16 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 | Responsibility | mapping in `11`; permission still comes from `12` |
 | Knowledge Debt | `ISS-* issue_type: KNOWLEDGE_DEBT` in `08` |
 | Existing custom slot 91 | `MIG-*`; never overwrite; approved relocation first |
+| Initialized Project + Material GitHub/Drive work | resolve active `FRAMEWORK-001` Project Location Binding before mutation |
+| `BOUND` connector | require durable routing identity and compare intended Material target when possible |
+| `VERIFICATION_REQUIRED` connector | discovery/read-only allowed; Material mutation blocked by default |
+| `NOT_APPLICABLE` connector | Material Project work blocked until approved Root Governance binding/scope revision |
+| One-off exact target instruction | may govern that action only; never silently persist as new binding authority |
+| Persistent binding change | User Explicit Approval + governed `FRAMEWORK-001` revision/promotion |
+| Repository binding | never substitute for current branch/worktree, Canonical Integration Target, or Canonical Implementation Source |
+| `ไม่มีขั้นตอนถัดไป` | pair with `START_NEW_CHAT` |
+| `CONTINUE_CURRENT_CHAT` | requires one concrete Next Action |
+| `PERSISTENCE_PENDING` | `CONTINUE_CURRENT_CHAT` + concrete persistence/recovery Next Action |
 | Old free text | never auto-promote into new Stable IDs |
 | Exact Git provenance unavailable | normal bootstrap continues if canonical source accessible; never fabricate |
 | Independent Git worktree/branch | fresh canonical target first; do not inherit current feature branch by default |
@@ -377,6 +449,13 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 - blanket-forbidding production source mounts or universally requiring immutable images;
 - storing state that must survive expected recreation only in a disposable runtime layer while claiming recreation/readiness support;
 - inventing `WORKSPACE_STALE`, `RUNTIME_STALE`, or another parallel freshness/Stable-ID family instead of reusing 1.2.2 and `DRIFT-*`;
+- inferring Project GitHub/Drive authority from chat memory, recent activity, search ranking, display names, or another accessible Project instead of resolving active Project Location Binding;
+- treating `VERIFICATION_REQUIRED` or `NOT_APPLICABLE` as permission for Material connector mutation;
+- accepting `BOUND` without minimum durable routing identity;
+- silently rewriting Project Location Binding from connector discovery or a one-off exact-target instruction;
+- adding `canonical_branch` or other parallel Git branch authority to Location Binding;
+- pairing `ไม่มีขั้นตอนถัดไป` with `CONTINUE_CURRENT_CHAT`, or `PERSISTENCE_PENDING` with `START_NEW_CHAT`;
+- omitting one of `[Next Action] / [Chat] / [Reason] / [Required Read]` from the mandatory Framework response close;
 - maintaining a second full Project Source example/template tree alongside `templates/project-source-mockup/` in the current distribution;
 - creating unrelated Independent Work from the currently checked-out feature branch by default;
 - assuming local `main` is current without verifying the canonical integration target;

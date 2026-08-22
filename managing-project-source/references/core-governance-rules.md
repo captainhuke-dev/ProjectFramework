@@ -104,6 +104,60 @@ A technical or integrity requirement does not implicitly authorize executable im
 
 A real Project's current Project Source may document concrete verified commands, paths, ports, configuration keys, or operating procedures when those are actual Project truth. ProjectFramework itself does not invent executable commands for nonexistent software.
 
+### 2.2 Project Location Binding
+
+For an initialized Project, active local `00-Project Source Framework` / `FRAMEWORK-001` is the canonical home of **Project Location Binding**: the durable routing boundary that answers which GitHub repository and/or Google Drive project container belongs to the Project for connector-mediated Project work. `03 Current State` and `09 Handoff` MAY reference the active binding but MUST NOT maintain an independent authoritative copy.
+
+Project Location Binding is distinct from implementation and Git integration authority:
+
+```text
+Repository Location Binding
+  ≠ current work branch/worktree
+  ≠ Canonical Integration Target
+  ≠ Canonical Implementation Source
+```
+
+Location Binding MUST NOT add `canonical_branch` or any equivalent parallel branch authority. Framework `1.2.2` Canonical Integration Target/Base Freshness semantics and Framework `1.2.3` Canonical Implementation Source/Runtime Authority semantics remain independently binding.
+
+GitHub and Google Drive are classified independently using exactly:
+
+```text
+BOUND
+NOT_APPLICABLE
+VERIFICATION_REQUIRED
+```
+
+`BOUND` requires sufficient durable routing identity for Material work:
+
+```text
+GitHub       → repository owner/name OR canonical repository URL
+Google Drive → project-root folder ID OR canonical folder URL
+```
+
+A display name, textual Drive path, chat memory, recent connector activity, search ranking, or discovery result alone is insufficient to establish `BOUND`. A Drive display path is descriptive only when a stable folder/file ID or canonical URL is available.
+
+`VERIFICATION_REQUIRED` is **fail-closed for Material mutation**. Read/search/discovery, candidate comparison, and user confirmation needed to resolve the location MAY proceed, but Material mutation through the unresolved system is blocked by default. A User Explicit Instruction naming one exact target MAY authorize that one action when otherwise permitted; it does not persistently change the binding or promote it to `BOUND`.
+
+`NOT_APPLICABLE` means the connector/system is outside the declared Project working-location contract. Material Project work through it is blocked by default until a governed binding/scope revision is explicitly approved.
+
+When `BOUND`, the intended Material target MUST match the durable routing identity when comparison is possible. A material mismatch stops the affected mutation and is disclosed; use existing `DRIFT-*` semantics when Truth Domains that are expected to align materially disagree. Location Binding answers **where** Project work belongs; existing `AUTH-* / DEL-*`, approval, and Risk rules still answer **who may mutate what**.
+
+Because Project Location Binding is part of `FRAMEWORK-001`, a persistent binding change is a **Root Governance mutation**. It requires User Explicit Approval plus the existing revision → validate → promote → supersede/archive flow. Connector discovery, recent activity, search ranking, or access to another Project location MUST NOT transfer authority or silently rewrite the binding.
+
+For Material GitHub/Drive work in an initialized Project, operational preflight is:
+
+```text
+resolve active local FRAMEWORK-001
+→ read applicable Project Location Binding state
+→ if BOUND, compare intended target to durable routing identity when possible
+→ if VERIFICATION_REQUIRED, discovery/read-only only by default; block Material mutation
+→ if NOT_APPLICABLE, block Material Project work through that connector
+→ preserve independent Authority/Risk gates
+→ persist Material result to its source-native owner at a Logical Checkpoint
+```
+
+Project-specific repository, Drive-root, and designated-progress pointers belong in the local root binding, not platform launchers. Cross-system work continues to use source-native owners plus pointers rather than duplicated canonical content.
+
 ## 3. Naming and Revision
 
 Governed Project Source documents, Handoff, evidence/schema artifacts, exports, and packages created as Project Source artifacts end with:
@@ -426,9 +480,9 @@ Project-Specific Rules may be stricter. Before R2/R3 mutation, fresh-read author
 
 ## 13. Preflight and Postflight
 
-READ PREFLIGHT checks identity, `00`, `01`, `03`, task scope, Truth Domain, freshness, and active blockers.
+READ PREFLIGHT checks identity, `00`, `01`, `03`, task scope, Truth Domain, freshness, and active blockers. For initialized Projects, any Material GitHub/Google Drive work additionally resolves the applicable active `FRAMEWORK-001` Project Location Binding before treating a connector target as Project authority. `VERIFICATION_REQUIRED` permits resolution-oriented read/search/discovery but does not authorize Material mutation.
 
-MUTATION PREFLIGHT additionally checks actor/instance, authority, target, allowed paths, forbidden effects, risk, approval, relevant REQ/DEC, management controls when relevant, base/hash, downstream impact, reversibility, and evidence requirements.
+MUTATION PREFLIGHT additionally checks actor/instance, authority, target, allowed paths, forbidden effects, risk, approval, relevant REQ/DEC, management controls when relevant, base/hash, downstream impact, reversibility, and evidence requirements. For Material connector mutation, preflight also checks binding state, minimum durable routing identity, intended-target match when comparison is possible, and the rule that a one-off exact-target instruction does not persistently rewrite Root Governance.
 
 Postflight is risk-tiered. Execution alone does not prove completion. R3 requires verification of resulting external/runtime state, not merely exit code 0.
 
@@ -505,6 +559,36 @@ Binding behavior:
 10. A successful connector call alone is not a Logical Checkpoint and MUST NOT trigger one progress write per tool call.
 11. Existing initialized Projects remain governed by their local pinned Framework and never auto-upgrade merely because upstream ProjectFramework changes.
 
+### 16.2 Chat Closure Consistency and Mandatory Response Close
+
+Framework `1.2.4` makes Chat closure deterministic while preserving the existing persistence gate and lifecycle vocabulary. Binding invariants are:
+
+1. If `[Next Action]` is exactly `ไม่มีขั้นตอนถัดไป`, `[Chat]` MUST be `START_NEW_CHAT`.
+2. If `[Chat]` is `CONTINUE_CURRENT_CHAT`, `[Next Action]` MUST contain one concrete continuation action and MUST NOT be `ไม่มีขั้นตอนถัดไป`.
+3. `PERSISTENCE_PENDING` MUST pair with `CONTINUE_CURRENT_CHAT` and one concrete persistence/recovery Next Action. `PERSISTENCE_PENDING + ไม่มีขั้นตอนถัดไป` and `PERSISTENCE_PENDING + START_NEW_CHAT` are invalid.
+4. `START_NEW_CHAT` MAY pair with a concrete Next Action when required Material state is durably persisted and continuation is safe from external state plus Required Read pointers.
+5. `START_NEW_CHAT` is a continuation-safety recommendation, not a claim that the platform forces navigation.
+
+Every Framework-governed response MUST end with exactly these two headings, in order, with nothing after the second section:
+
+```text
+### ทำอะไรไป?
+
+<concise statement of what was done or determined>
+
+### และถัดไปคืออะไร?
+
+[Next Action]: <one exact next action or ไม่มีขั้นตอนถัดไป>
+
+[Chat]: CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+
+[Reason]: <concise reason>
+
+[Required Read]: <canonical locations or ไม่มี>
+```
+
+The four bracketed fields are separate Markdown paragraphs. Canonical lifecycle tokens remain exactly `CONTINUE_CURRENT_CHAT` and `START_NEW_CHAT`; renderer escaping is presentation-only.
+
 ## 17. Adoption Modes and Bootstrap
 
 ### GREENFIELD
@@ -523,6 +607,19 @@ README.md
 ```
 
 Then Discover → identity → adaptive interview → Preview → user approval → create governance layer → validate → readiness → completion report.
+
+Because GREENFIELD has no active local `FRAMEWORK-001`, Project Location Binding uses a pre-binding exception:
+
+```text
+canonical Framework bootstrap read
+→ read-only discovery/inspection of candidate GitHub/Drive locations when needed
+→ Preview proposed GitHub/Drive binding state + durable identity
+→ explicit user approval
+→ first Material Project-Source write creates active 00 / FRAMEWORK-001 with approved binding
+→ subsequent Material connector work resolves the active binding
+```
+
+The Preview MUST classify each applicable system as `BOUND`, `NOT_APPLICABLE`, or `VERIFICATION_REQUIRED`. Insufficient routing identity remains `VERIFICATION_REQUIRED`; never invent repository identity, Drive folder/file ID, or canonical URL merely to complete the bootstrap. Material mutation through an unresolved system remains fail-closed.
 
 Create mandatory `00–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, and `91` by applicability. Keep `18–19` reserved. Do not create empty conditional files merely to look complete.
 
@@ -639,6 +736,24 @@ base_freshness_gate:
 ```
 
 ค่า ref/SHA/version ต้องมาจาก observation เท่านั้น; ห้าม fabricate เพื่อให้ record ดู complete.
+
+### 18.5 Framework 1.2.4 Project Location Binding Migration
+
+Existing initialized Projects do not auto-upgrade to Framework `1.2.4`. A governed migration MUST preserve the active prior `FRAMEWORK-001` until approval/promotion completes and MUST NOT invent Project locations.
+
+Migration behavior:
+
+1. Inventory actual Project sources and user-confirmed context for GitHub/Drive locations.
+2. Classify GitHub and Drive independently as `BOUND`, `NOT_APPLICABLE`, or `VERIFICATION_REQUIRED`.
+3. Require GitHub owner/repository or canonical repository URL before treating GitHub as `BOUND`; require Drive project-root folder ID or canonical folder URL before treating Drive as `BOUND`.
+4. Record only observed/user-confirmed identities. Display names/paths remain descriptive and do not substitute for durable routing identity.
+5. Do not create or migrate a `canonical_branch` field; preserve Framework `1.2.2` Canonical Integration Target semantics separately.
+6. Preserve Canonical Implementation Source semantics independently.
+7. Revise `FRAMEWORK-001` only through User Explicit Approval plus governed revision/validate/promote/supersede/archive flow.
+8. Update continuation documents to reference the root binding rather than create a competing authoritative repository/folder copy.
+9. Validate fail-closed behavior and Project Source integrity after promotion.
+
+A Project that does not use a connector may mark it `NOT_APPLICABLE`; a Project that materially relies on a connector but cannot resolve durable routing identity remains `VERIFICATION_REQUIRED` for affected Material mutation.
 
 ## 19. Project Health and Review Cadence
 
@@ -843,7 +958,13 @@ Current Framework distribution integrity means at minimum:
 - technical planning does not silently expand into implementation artifacts;
 - Canonical Implementation Source and Runtime Truth remain distinct when the distinction is material;
 - required-survival state has a persistence contract compatible with declared runtime replacement/recreation;
-- missing facts, authority, source, provenance, or management-object identity are never fabricated.
+- Project Location Binding authority is held in active local `FRAMEWORK-001` for initialized Projects and is not inferred from chat memory, recency, ranking, or another accessible Project;
+- `VERIFICATION_REQUIRED` and `NOT_APPLICABLE` fail closed for affected Material connector mutation, while `BOUND` has sufficient durable routing identity;
+- Project Location Binding does not create a competing `canonical_branch`, Canonical Integration Target, or Canonical Implementation Source;
+- persistent Project Location Binding changes require User Explicit Approval and governed Root Governance revision/promotion;
+- `ไม่มีขั้นตอนถัดไป` pairs with `START_NEW_CHAT`, while `CONTINUE_CURRENT_CHAT` and `PERSISTENCE_PENDING` require a concrete Next Action consistent with the persistence gate;
+- the mandatory response close preserves the two-heading structure and bracketed `[Next Action] / [Chat] / [Reason] / [Required Read]` fields;
+- missing facts, authority, source, provenance, routing identity, or management-object identity are never fabricated.
 
 These are semantic requirements and may be reviewed manually or by an Agent. They do not require executable enforcement tooling.
 
