@@ -142,3 +142,47 @@ def test_project_fixture_adoption_validates_and_local_constitution_resolves(
     ).resolve()
     assert local_constitution.is_file()
     assert local_constitution.name == "UAAC-v5.0-CONSTITUTION.md"
+
+
+def test_root_readme_separates_current_products_and_support_boundaries(
+    repo_root: Path, required_file
+) -> None:
+    text = _text(repo_root / "README.md", required_file).lower()
+    for required in (
+        "project source framework 1.2.5",
+        "universal ai agent constitution (uaac) 5.0.0",
+        "install uaac != install or upgrade projectframework",
+        "developer-only conformance",
+        "historical/reference v4.2",
+    ):
+        assert required in text
+
+
+def test_root_uaac_navigation_routes_current_and_historical_material(
+    repo_root: Path, required_file
+) -> None:
+    text = _text(repo_root / "UAAC.md", required_file)
+    for locator in (
+        "universal-ai-agent-constitution/UAAC-v5.0-CONSTITUTION.md",
+        "universal-ai-agent-constitution/INSTALL-UAAC.md",
+        "universal-ai-agent-constitution/MIGRATION-v4.2-TO-v5.0.md",
+        "universal-ai-agent-constitution/profiles/",
+        "uaac-conformance/",
+        "docs/uaac-history/v4.2/",
+    ):
+        assert locator in text
+
+
+def test_root_human_walkthrough_uses_v5_minimum(
+    repo_root: Path, required_file
+) -> None:
+    text = _text(repo_root / "HUMAN-INSTALL-WALKTHROUGH-TH.md", required_file).lower()
+    for required in (
+        "governance/uaac.md",
+        "governance/uaac-adoption.yaml",
+        "uaac-v5.0-constitution.md",
+        "project rules",
+        "conditional",
+        "does not install or upgrade projectframework",
+    ):
+        assert required in text

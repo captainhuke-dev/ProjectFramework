@@ -1,66 +1,56 @@
 # ProjectFramework
 
-This repository contains two separate, independently adoptable distributions:
+This repository publishes two separate, independently adoptable products and keeps their support/history boundaries explicit.
 
-- **Project Source Framework 1.2.5** under `managing-project-source/`
-- **Universal AI Agent Constitution (UAAC) 4.2.0** under `universal-ai-agent-constitution/`
+## Project Source Framework 1.2.5
 
-The `hz-framework` branch preserves the UAAC release history while carrying the current ProjectFramework baseline from `main`.
+ProjectFramework is under [`managing-project-source/`](managing-project-source/).
 
-## Install the product you intend
-
-```text
-Install UAAC
-!=
-Install or upgrade ProjectFramework
-```
-
-Adopting UAAC does not install ProjectFramework. Adopting or upgrading ProjectFramework does not adopt or upgrade UAAC. A Project that intentionally uses both pins and governs them as separate dependencies.
-
-## ProjectFramework 1.2.5
-
-- Package: [`managing-project-source/`](managing-project-source/)
-- Release descriptor: [`managing-project-source/FRAMEWORK-RELEASE.yaml`](managing-project-source/FRAMEWORK-RELEASE.yaml)
-- Managing skill: [`managing-project-source/SKILL.md`](managing-project-source/SKILL.md)
-- Core governance: [`managing-project-source/references/core-governance-rules.md`](managing-project-source/references/core-governance-rules.md)
-- Current Framework: **1.2.5**
+- Release descriptor: [`FRAMEWORK-RELEASE.yaml`](managing-project-source/FRAMEWORK-RELEASE.yaml)
+- Managing procedure: [`SKILL.md`](managing-project-source/SKILL.md)
+- Core governance: [`core-governance-rules.md`](managing-project-source/references/core-governance-rules.md)
+- Framework version: **1.2.5**
 - Project Source Schema: **1.0.0**
 
-ProjectFramework is a conceptual Project-governance and planning framework. Its integrity requirements are semantic contracts that Humans and Agents can inspect. They do not require a validator, CLI, runtime service, CI/CD workflow, scheduler, or other executable enforcement.
+Framework semantics are readable contracts; they do not require a validator, CLI, runtime service, scheduler, or CI system.
 
-Framework 1.2.5 adds verified Material Task completion checkpoints, progressive risk-scoped verification with evidence reuse, environment-scoped Local Workspace Binding, and response-close completeness semantics. Existing initialized Projects remain locally pinned and do not auto-upgrade.
+## Universal AI Agent Constitution (UAAC) 5.0.0
 
-## UAAC 4.2.0 release history
+UAAC production is under [`universal-ai-agent-constitution/`](universal-ai-agent-constitution/).
 
 - Navigation: [`UAAC.md`](UAAC.md)
-- Package: [`universal-ai-agent-constitution/`](universal-ai-agent-constitution/)
-- Installer: [`universal-ai-agent-constitution/INSTALL-UAAC.md`](universal-ai-agent-constitution/INSTALL-UAAC.md)
-- Constitution: [`universal-ai-agent-constitution/UAAC-v4.2-CONSTITUTION.md`](universal-ai-agent-constitution/UAAC-v4.2-CONSTITUTION.md)
-- Release descriptor: [`universal-ai-agent-constitution/CONSTITUTION-RELEASE.yaml`](universal-ai-agent-constitution/CONSTITUTION-RELEASE.yaml)
-- Immutable release commit: `5a309d8d38046bf3e8cd4beb2fc82a872f211cad`
+- Constitution: [`UAAC-v5.0-CONSTITUTION.md`](universal-ai-agent-constitution/UAAC-v5.0-CONSTITUTION.md)
+- Installer: [`INSTALL-UAAC.md`](universal-ai-agent-constitution/INSTALL-UAAC.md)
+- Adoption guide: [`ADOPTION-GUIDE.md`](universal-ai-agent-constitution/ADOPTION-GUIDE.md)
+- Migration/rollback: [`MIGRATION-v4.2-TO-v5.0.md`](universal-ai-agent-constitution/MIGRATION-v4.2-TO-v5.0.md)
+- Human walkthrough (Thai): [`HUMAN-INSTALL-WALKTHROUGH-TH.md`](HUMAN-INSTALL-WALKTHROUGH-TH.md)
 
-The staged historical reference Project is under [`uaac-v4.2-reference-project/`](uaac-v4.2-reference-project/). It is a reference/evidence boundary, not ProjectFramework and not a requirement for every UAAC Project.
-
-## Repository layout
+The production boundary contains only Markdown/YAML. Operational constitutional requirements live only in the 25 stable law files. A capable LLM can operate from locally pinned content without Python, OpenViking, Serena, MCP, RAG, vector storage, native Skills, CI, or network access.
 
 ```text
-ProjectFramework/
-├── README.md
-├── LICENSE
-├── HUMAN-INSTALL-WALKTHROUGH-TH.md
-├── UAAC.md
-├── managing-project-source/               # ProjectFramework distribution
-├── universal-ai-agent-constitution/       # UAAC distribution
-├── uaac-v4.2-reference-project/           # historical/reference Project
-└── docs/                                  # repository development records
+Install UAAC != install or upgrade ProjectFramework
 ```
 
-Files under `docs/superpowers/` document development of this repository and are not automatically copied into adopting Projects.
+UAAC adoption does not install or change ProjectFramework. Framework adoption does not adopt or upgrade UAAC. A Project using both pins them separately.
 
-## Current-truth boundaries
+## Optional UAAC profiles
 
-- An adopting Project's local pinned sources govern that Project; upstream branch movement does not auto-upgrade it.
-- Conversation, memory, retrieval, summaries, examples, and optional tools are not Current Truth or authority by themselves.
-- Exact Git identities and other release-assurance mechanisms must be recorded only when actually observed.
-- Missing facts, authority, provenance, or Project-specific rules are never invented merely to fill a template.
+Profiles under [`universal-ai-agent-constitution/profiles/`](universal-ai-agent-constitution/profiles/) are opt-in and non-normative. Presence does not activate a profile or create authority.
 
+## Developer-only conformance
+
+[`uaac-conformance/`](uaac-conformance/) contains developer-only Python, JSON Schema, tests, fixtures, and acceptance material. It is non-normative, is not installed into Projects, and may be deleted without breaking UAAC Core.
+
+## Historical/reference v4.2
+
+- Immutable reconstruction: [`docs/uaac-history/v4.2/`](docs/uaac-history/v4.2/)
+- Preserved historical fixture: [`uaac-v4.2-reference-project/`](uaac-v4.2-reference-project/)
+- Release commit: `5a309d8d38046bf3e8cd4beb2fc82a872f211cad`
+- Package tree: `3e62912bcbd88d91339dfa772dc6776ee95c77c5`
+- Completed fixture snapshot: `5cc9488427c8034a67f4898ace5f1c5806760b85`
+
+Historical material is not an active v5 dependency and never resolves current v5 files as if they were 4.2.
+
+## Repository development records
+
+The [UAAC 5.0 design](docs/superpowers/specs/2026-08-23-uaac-5.0-constitution-first-runtime-free-design.md) and [implementation plan](docs/superpowers/plans/2026-08-23-uaac-5.0-constitution-first-runtime-free.md) document this release work. Development records are not copied into adopting Projects.
