@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.2"
+project_source_framework_version: "1.2.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -180,7 +180,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.2"
+  framework_version: "1.2.3"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
@@ -230,6 +230,23 @@ IMMUTABLE STABLE CHANGEABLE VOLATILE
 ```
 
 ห้ามยกระดับ `ASSUMED/INFERRED` เป็น `VERIFIED` โดยไม่มี evidence; `VOLATILE` ต้อง fresh-check เมื่อมีผลต่อ decision/mutation. Truth mismatch ใช้ `DRIFT-*`; competing semantic state ใช้ `CONFLICT-*` และห้าม last-write-wins.
+
+### 6.1 Canonical Implementation Source and Runtime Authority
+
+เมื่อ implementation มีอยู่และ distinction นี้ material ต่อ development/recovery/verification/deployment Project MUST ระบุ **Canonical Implementation Source** สำหรับ affected scope ได้. Canonical Implementation Source คือ durable declared source location ที่ verified state เป็น authoritative `IMPLEMENTATION` Truth; สำหรับ Git-backed Project โดยปกติคือ verified Git/source tree ตาม repository/workspace contract.
+
+`durable` หมายถึง source ต้อง survive lifecycle ที่ Project อ้างว่าสามารถ replace/recreate runtime ได้ โดยไม่พึ่ง runtime instance ที่ disposable/recreatable เป็น sole copy. ไม่ได้บังคับว่า source ต้องอยู่ physical host filesystem. Valid topology อาจเป็น host Git repo, Git worktree, remote/VM durable workspace หรือ Dev Container ที่ใช้ durable bind mount/workspace volume.
+
+```text
+Implementation Truth → Canonical Implementation Source
+Runtime Truth        → fresh runtime observation
+```
+
+Runtime execution/editing ไม่ transfer Implementation authority โดยปริยาย. Runtime-only hotfix/interactive edit ไม่ใช่ canonical implementation completion จน accepted intent ถูกนำกลับผ่าน governed change path เข้า Canonical Implementation Source และ reverify สำเร็จ. หาก Implementation กับ Runtime ควร align แต่ต่างกัน materially ให้ใช้ `DRIFT-*`; ห้ามสร้าง parallel workspace/runtime drift family.
+
+Runtime component ที่ประกาศ disposable/recreatable ห้ามกลายเป็น sole authoritative implementation copy โดยอุบัติเหตุ. State ที่ `REQ-*`, `DEC-*`, `40` หรือ deployment contract กำหนดว่าต้อง survive expected replacement ต้องมี declared persistent-state authority/mechanism. Rebuildable cache/temp/scratch state สามารถ ephemeral ได้เมื่อไม่มี survival requirement.
+
+Docker, host-local source, immutable image และ production source mount ไม่ใช่ universal requirement/prohibition; topology เป็น Project-specific/applicability-driven และต้อง preserve Truth/authority/persistence contract นี้.
 
 ## 7. Canonical Object Homes
 
@@ -535,7 +552,31 @@ Replacement Boundary when material
 Epistemic / Verification State
 ```
 
-`40` อาจเก็บ Component Responsibility, Inputs/Outputs, Interfaces, Dependencies, Data/Storage interaction, Security/Authority Boundary, Runtime Boundary, Source Structure Blueprint, Configuration Contract, Runtime Requirements.
+`40` อาจเก็บ Component Responsibility, Inputs/Outputs, Interfaces, Dependencies, Data/Storage interaction, Security/Authority Boundary, Runtime Boundary, Source Structure Blueprint, Development Workspace Contract, Configuration Contract, Runtime Requirements.
+
+### 18.1 Development Workspace Contract
+
+เมื่อ material ให้ `40` ระบุ/resolve:
+
+```text
+Canonical Implementation Source
+Repository / Source Identity when applicable
+Development Workspace Type
+Workspace Location / Boundary
+Workspace Durability
+Human / Agent Edit Location
+Execution Environment
+Source-to-Runtime Mapping
+Dependency Isolation Strategy
+Runtime Mutability Boundary
+Persistent-State Boundary
+Related REQ / DEC / RISK / ASM / DEP / CR / EVD
+Verification / Drift Notes
+```
+
+Workspace/mapping labels เช่น `LOCAL_WORKSPACE`, `GIT_WORKTREE`, `REMOTE_DURABLE_WORKSPACE`, `DEV_CONTAINER_DURABLE_WORKSPACE`, `DIRECT_EXECUTION`, `BIND_MOUNT`, `WORKSPACE_VOLUME`, `IMAGE_OR_ARTIFACT_BUILD`, `REMOTE_SYNC` เป็น descriptive blueprint vocabulary ไม่ใช่ lifecycle state หรือ Stable-ID family ใหม่.
+
+Project อาจใช้ mapping ต่างกันระหว่าง Development/Test/Staging/Production ได้ แต่ต้อง explicit เมื่อ material และไม่ขัด REQ/DEC/Technical/Deployment contracts.
 
 Configuration Contract แยก semantic meaning ออกจาก packaging mode:
 
@@ -585,12 +626,18 @@ Intentional difference ใช้ Deployment Mode Variance: Affected Capability, 
 ```text
 Prerequisites
 Supported OS / Platform / Architecture
-Source or Artifact Acquisition
+Deployment Source / Artifact Acquisition
 Required Runtime / Container Runtime
 External Services
 Required Permissions
 Configuration Inputs
 Secret Requirements / SECRET-* references
+Source-to-Runtime Mapping
+Runtime Mutability Expectation
+Persistent-State Boundary
+Data / Storage Authority
+Replacement / Recreation Expectation
+Development-only vs Production Mapping Differences
 Data / Storage Initialization
 Installation / Initialization Procedure
 Start / Stop Procedure
@@ -604,7 +651,7 @@ Troubleshooting
 Known Limitations / Deployment Mode Variance
 ```
 
-Install/start command success ไม่เท่ากับ operational readiness. Verification พิจารณา service availability, dependency reachability, storage initialization/persistence, configuration loaded, secrets resolved without exposure, health/runtime signal, core flow usability, running version identity, Source/Docker parity ตาม applicability.
+Install/start command success ไม่เท่ากับ operational readiness. Verification พิจารณา service availability, dependency reachability, storage initialization/persistence, configuration loaded, secrets resolved without exposure, health/runtime signal, core flow usability, running version identity, Source/Docker parity และ required-survival state ตาม declared recreation lifecycle เมื่อ applicable.
 
 ## 20. Adoption Mode and Migration
 

@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.2**
+- Project Source Framework: **1.2.3**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,22 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.2.3 Additions
+
+Framework `1.2.3` adds **Development Workspace and Runtime Authority** governance for software/implementation-bearing Projects without changing Project Source Schema `1.0.0`, semantic slots, or Stable-ID families.
+
+When the distinction is material, a Project identifies a **Canonical Implementation Source**: the durable declared source location whose verified state determines current `IMPLEMENTATION` Truth. Fresh runtime observation remains authoritative for `RUNTIME` Truth. Editing or successfully running code only inside an otherwise disposable runtime does not silently transfer Implementation authority; material expected-alignment mismatch reuses existing `DRIFT-*` semantics.
+
+`40 Technical Design` may now carry a **Development Workspace Contract** covering source identity, workspace type/location/durability, Human/Agent edit location, execution environment, Source-to-Runtime Mapping, dependency isolation, Runtime Mutability Boundary, Persistent-State Boundary, and related verification/drift context. `60 Deployment Plan` may carry runtime mutability, data/storage authority, persistent-state, replacement/recreation, and material development/production mapping semantics.
+
+Durability is about the lifecycle/recovery contract, not physical host placement. Host Git repositories, Git worktrees, remote/VM durable workspaces, and Dev Containers backed by durable source storage can all be valid. Docker, host-local source storage, immutable production images, and production source mounts remain Project-specific/applicability-driven rather than universal requirements or prohibitions.
+
+State that must survive expected runtime replacement requires a declared persistent authority/mechanism; rebuildable cache/temp/scratch state may remain ephemeral when no survival requirement applies.
+
+Framework `1.2.3` composes with and does not replace Framework `1.2.2` Git Base Freshness. `STACKED_WORK`, `FRESH / STALE_NON_SEMANTIC / STALE_SEMANTIC / UNKNOWN`, `BASE_STALE`, `REBASE_REQUIRED`, `FORWARD_PORT_REQUIRED`, and the Pre-Merge Base Freshness Gate retain their existing meanings. **Mergeable ≠ Acceptable.**
+
+This remains documentation/governance scope. Framework `1.2.3` introduces no Dockerfile/Compose/Dev Container runtime artifacts, Git hook, bot, CI workflow, validator, scheduler, merge queue, runtime enforcement, new semantic slot, or new Stable-ID namespace. Existing initialized Projects remain locally pinned and do not auto-upgrade.
 
 ## Framework 1.2.2 Additions
 
@@ -88,7 +104,9 @@ Source/Docker architecture
 Source/Docker parity and variance
 ```
 
-It does **not** authorize creation of application source code, Dockerfile, Compose/Kubernetes/Helm artifacts, scripts, CI, or automation.
+Framework `1.2.3` extends this existing home with Development Workspace Contract semantics; it does not create a new technical slot.
+
+`40` does **not** authorize creation of application source code, Dockerfile, Compose/Kubernetes/Helm artifacts, scripts, CI, or automation.
 
 ### 60 — Deployment Plan
 
@@ -106,6 +124,8 @@ upgrade / rollback
 backup / restore
 cleanup / troubleshooting
 ```
+
+Framework `1.2.3` extends this existing home with source-to-runtime, runtime-mutability, persistent-state, and replacement/recreation semantics when material.
 
 A real Project may record concrete commands/paths in `60` when they are verified Project truth. ProjectFramework itself does not invent executable commands for nonexistent software.
 
@@ -166,6 +186,8 @@ A Brownfield Project may already use semantic slot `91` for a custom document. F
 
 Old free-text notes are not automatically converted into new `RISK-*`, `ASM-*`, `MS-*`, `OUT-*`, `DEP-*`, `CR-*`, or `GATE-*` objects. Promotion requires sufficient current semantics, ownership, status, and epistemic/evidence state.
 
+Framework `1.2.3` migration also does not invent Canonical Implementation Source, workspace durability, source-to-runtime mapping, or persistence topology. Unknown values remain explicit until verified from actual Project sources/runtime.
+
 ## Concept-First Integrity Contract
 
 At minimum, Framework integrity means:
@@ -181,6 +203,8 @@ At minimum, Framework integrity means:
 - active/current Stable IDs resolve without archive dependency;
 - existing Projects never silently auto-upgrade;
 - platform launchers never override active local `FRAMEWORK-001`;
+- Canonical Implementation Source and Runtime Truth remain distinct when the distinction is material;
+- required-survival state has a declared persistence contract compatible with claimed runtime replacement/recreation;
 - missing facts, authority, source, or provenance are never fabricated.
 
 These requirements may be reviewed manually or by an Agent. **The existence of an Integrity Contract is not authorization to build enforcement software.**
@@ -193,21 +217,9 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`; current starter metadata is stamped to Framework `1.2.3` / Schema `1.0.0`.
 
-The mockup is **executable documentation, not normative authority**. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document.
-
-## Golden Reference
-
-Framework `1.2.0` includes a synthetic composition example at:
-
-```text
-examples/golden-reference-software-project/Project-Source/
-```
-
-It demonstrates `00–17 + 40 + 60 + 91`, Project Health, management-control objects, a fictional Tech Stack, `SOURCE_AND_DOCKER`, parity/variance, installation/operations blueprint, migration safety, and handoff. It contains **no application code, Dockerfile, Compose, install script, CI workflow, binary/runtime artifact, or real secret**.
-
-The Golden Reference is illustrative only. Core Governance, active Framework, templates, and Project-specific approved truth remain authoritative over the example.
+The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
 ## Current-Truth Integrity
 
@@ -219,9 +231,6 @@ Active canonical registries are materialized current projections, not delta chai
 ProjectFramework/
 ├── README.md
 ├── LICENSE
-├── examples/
-│   └── golden-reference-software-project/
-│       └── Project-Source/
 ├── managing-project-source/
 │   ├── FRAMEWORK-RELEASE.yaml
 │   ├── CHATGPT-PROJECT-INSTRUCTIONS.md
@@ -241,4 +250,4 @@ Use `managing-project-source/` as the reusable framework package. Files under `d
 
 ## Supersession Note
 
-Framework `1.2.2` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, and CI enforcement remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+Framework `1.2.3` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.

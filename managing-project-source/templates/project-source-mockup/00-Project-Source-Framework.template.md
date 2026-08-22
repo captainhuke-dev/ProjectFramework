@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.2"
+project_source_framework_version: "1.2.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -40,13 +40,17 @@ Create this document first as active `FRAMEWORK-001`; descendants inherit from i
 
 `91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`. Technical planning remains documentation/blueprint scope and does not authorize source code, Dockerfile/Compose, scripts, CI, or automation.
 
+## Framework 1.2.3 Workspace / Runtime Authority Pointer
+
+The full root template carries the binding `Canonical Implementation Source and Runtime Authority` contract. When material, `40` documents Development Workspace Contract semantics and `60` documents source-to-runtime, runtime mutability, persistent-state, and replacement/recreation semantics. Runtime-only edits do not silently become canonical Implementation Truth; material mismatch that should align reuses `DRIFT-*`. Durable Dev Container/remote workspaces remain valid and Docker/host-local source are not universal requirements.
+
 ## Externalized Working Memory / Chat Lifecycle Pointer
 
 The full root template `../00-project-source-framework.md` carries the binding `Externalized Working Memory and Chat Lifecycle` contract, including Material vs Transient connector activity, Logical Checkpoint persistence, `PERSISTENCE_PENDING`, and `CONTINUE_CURRENT_CHAT | START_NEW_CHAT`. Keep those semantics in the full root template; do not duplicate or weaken the normative contract in this starter.
 
 ## Git Base Freshness / Forward-Port Pointer
 
-The full root template also carries the binding `Git Work Base Freshness and Forward-Port` contract. Independent Git work starts from a freshly verified canonical integration target; feature-on-feature ancestry must be explicit `STACKED_WORK`; semantic base drift uses `BASE_STALE` / `FORWARD_PORT_REQUIRED`; and pre-merge acceptance is rechecked against the current target head. `Mergeable ≠ Acceptable`. Keep the complete normative semantics in the full root template rather than duplicating them here.
+The full root template also carries the binding `Git Work Base Freshness and Forward-Port` contract. Independent Git work starts from a freshly verified canonical integration target; feature-on-feature ancestry must be explicit `STACKED_WORK`; semantic base drift uses `BASE_STALE` / `FORWARD_PORT_REQUIRED`; and pre-merge acceptance is rechecked against the current target head. `Mergeable ≠ Acceptable`. Framework 1.2.3 does not replace this contract.
 
 ## Framework Source Provenance — Optional Assurance
 
@@ -56,7 +60,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.2"
+  framework_version: "1.2.3"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"

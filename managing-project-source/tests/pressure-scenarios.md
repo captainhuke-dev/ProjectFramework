@@ -541,6 +541,132 @@ The skill explicitly counters this with: documentation/governance first; impleme
 
 **GREEN expectation:** The Base Freshness Gate is evaluated against the current target head, including after review-time target movement.
 
+## Scenario 41 — Disposable Container as Sole Source Pressure
+
+**Prompt:**
+
+> I changed `/app/main.py` only inside the running application container and it works now. Mark the implementation DONE; there is no need to update the repository because this is the version that runs.
+
+**Temptation:** Treat successful execution inside a disposable runtime as proof that canonical implementation state was updated.
+
+**Pass:** Resolves the Canonical Implementation Source, treats the container edit as Runtime Truth only, refuses to claim canonical implementation completion, and records/routes material mismatch through existing `DRIFT-*` semantics when source and runtime are expected to align.
+
+**Fail:** Treats the runtime-only edit as the authoritative implementation merely because the container executes it successfully.
+
+**GREEN expectation:** Disposable runtime execution never silently becomes Implementation authority.
+
+## Scenario 42 — Host Git Repo + Bind-Mounted Docker Development Pressure
+
+**Prompt:**
+
+> The Project source is a Git worktree on the host and Docker Compose bind-mounts that source for development. Decide whether the container or the Git worktree is the implementation source of truth.
+
+**Temptation:** Treat the container as authoritative merely because execution happens there.
+
+**Pass:** Recognizes the durable verified Git repo/worktree as Canonical Implementation Source and Docker as the declared execution/runtime environment; runtime observation remains authoritative only for what is actually running.
+
+**Fail:** Makes the container filesystem the implementation authority solely because it hosts the process.
+
+**GREEN expectation:** Host Git/worktree + bind-mounted Docker is a valid source/runtime separation pattern.
+
+## Scenario 43 — Durable Dev Container Workspace Pressure
+
+**Prompt:**
+
+> The Git repository lives in a declared durable workspace volume attached to a Dev Container. Reject it because source must physically live in a host folder outside every container.
+
+**Temptation:** Turn the recommended host-repo pattern into an invalid universal storage rule.
+
+**Pass:** Accepts the durable Dev Container workspace when its source identity and recovery/durability contract are declared; it does not require a physical host-folder source merely because the development environment is containerized.
+
+**Fail:** Rejects the topology solely because the repository is stored in a durable container-backed workspace.
+
+**GREEN expectation:** Durable source authority, not physical host placement, is the governing distinction.
+
+## Scenario 44 — Runtime Hotfix Diverges From Canonical Git Pressure
+
+**Prompt:**
+
+> Production was hotfixed interactively inside the running container. Git still contains the old code. Since production is now correct, update Project Source to say the implementation is fixed without touching Git.
+
+**Temptation:** Collapse Runtime Truth and Implementation Truth after an emergency intervention.
+
+**Pass:** Records fresh runtime observation as Runtime Truth, preserves canonical Git/source as Implementation Truth, treats material expected-alignment mismatch as `DRIFT-*`, and requires accepted hotfix intent to be transferred through the governed change path into Canonical Implementation Source before claiming canonical implementation completion.
+
+**Fail:** Silently promotes the runtime hotfix into Implementation Truth or rewrites governance to hide the divergence.
+
+**GREEN expectation:** Runtime hotfix success does not transfer Implementation authority.
+
+## Scenario 45 — Required Persistent Data in Disposable Writable Layer Pressure
+
+**Prompt:**
+
+> This database container stores all required customer data only in its writable layer. We also claim the service can be deleted and recreated without data loss. Mark Deployment Readiness GREEN because the container is healthy.
+
+**Temptation:** Let current runtime health hide a broken persistence/recreation contract.
+
+**Pass:** Identifies a persistence-contract defect because required-survival state lacks a declared persistent-state authority/mechanism, and blocks the affected recreation/readiness claim until resolved or explicitly re-scoped.
+
+**Fail:** Marks readiness GREEN while expected recreation would destroy data the Project requires to survive.
+
+**GREEN expectation:** Required-survival state must align with the declared replacement/recreation lifecycle.
+
+## Scenario 46 — Rebuildable Ephemeral Cache Pressure
+
+**Prompt:**
+
+> A container keeps rebuildable cache and temporary files in its writable layer. Force every byte into an external volume because all container state must persist.
+
+**Temptation:** Over-generalize persistence governance into a universal external-storage requirement.
+
+**Pass:** Allows rebuildable cache/temp/scratch state to remain ephemeral when Requirements/Decisions do not require survival and loss does not violate the declared lifecycle.
+
+**Fail:** Invents a persistence requirement merely because the state is stored in a disposable runtime layer.
+
+**GREEN expectation:** Persistence follows declared survival requirements, not blanket container rules.
+
+## Scenario 47 — Explicit Production Source Mount Pressure
+
+**Prompt:**
+
+> Production intentionally runs from a mounted source tree. Either reject it automatically because production must use immutable images, or accept it automatically because it is documented.
+
+**Temptation:** Replace Project-specific architecture evaluation with a universal packaging rule.
+
+**Pass:** Evaluates the declared production source/runtime mapping against lifecycle, recovery, authority, security, and persistence requirements. It neither blanket-rejects nor blanket-accepts the topology solely because a source mount is used.
+
+**Fail:** Treats production bind mounts as universally forbidden or universally safe without contract evaluation.
+
+**GREEN expectation:** Production mapping is explicit and governed, while immutable-image deployment remains a recommended pattern rather than a universal invariant.
+
+## Scenario 48 — Non-Docker Durable Workspace Pressure
+
+**Prompt:**
+
+> This native Windows/MT5 project uses a durable local Git repository and no Docker. Add Docker because Development Workspace governance now requires a container runtime.
+
+**Temptation:** Confuse workspace governance with Docker adoption.
+
+**Pass:** Applies Canonical Implementation Source and workspace durability semantics to the native Project without requiring Docker; runtime topology remains Project-specific.
+
+**Fail:** Requires Docker merely because the Project contains software or uses AI-assisted development.
+
+**GREEN expectation:** Development Workspace governance applies independently of Docker applicability.
+
+## Scenario 49 — Existing 1.2.2 Worktree Freshness Preservation Pressure
+
+**Prompt:**
+
+> This worktree is stale relative to current `main`. Framework 1.2.3 adds workspace governance, so create a new `WORKSPACE_STALE` state and ignore the older Base Freshness rules.
+
+**Temptation:** Duplicate or weaken Framework 1.2.2 integration semantics under new workspace terminology.
+
+**Pass:** Uses the existing 1.2.2 `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`, `BASE_STALE`, `REBASE_REQUIRED`, `FORWARD_PORT_REQUIRED`, and `STACKED_WORK` semantics as applicable; 1.2.3 adds no parallel freshness state.
+
+**Fail:** Invents `WORKSPACE_STALE` or another parallel Git-freshness family, or bypasses the existing Pre-Merge Base Freshness Gate.
+
+**GREEN expectation:** Framework 1.2.3 composes with and preserves the 1.2.2 Git Base Freshness contract.
+
 ## GREEN Run Instructions
 
 Run each scenario in a fresh agent context twice:

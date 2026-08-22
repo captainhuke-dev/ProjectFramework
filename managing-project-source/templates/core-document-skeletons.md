@@ -6,6 +6,8 @@ For concrete slot/file starters, read `project-source-mockup/README.md`. Mockup 
 
 Framework `1.2.0` treats exact Git provenance as optional assurance. If provenance is tracked, active `00` and `14 Project Source Manifest` must agree on observed values. Never invent tag/SHA values merely to make records look complete.
 
+Framework `1.2.3` adds Development Workspace / Runtime Authority semantics without changing Schema `1.0.0`, slot ownership, or Framework `1.2.2` Git Base Freshness vocabulary.
+
 ## Common YAML Header Pattern
 
 ```yaml
@@ -26,7 +28,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.2"
+project_source_framework_version: "1.2.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -50,8 +52,8 @@ Current Manifest
 When active, route:
 
 ```text
-40 Technical Design → Tech Stack / components / source / config / runtime / deployment-mode architecture
-60 Deployment Plan → installation / startup / verification / operations / rollback / backup
+40 Technical Design → Tech Stack / components / source / workspace / config / runtime / deployment-mode architecture
+60 Deployment Plan → installation / source-runtime mapping / persistence-recreation / startup / verification / operations / rollback / backup
 91 Project Management Control → RISK / ASM / MS / OUT / DEP / CR / GATE
 ```
 
@@ -248,6 +250,8 @@ issue_type: KNOWLEDGE_DEBT
 
 Record Missing/Stale Knowledge, Affected Scope, Impact, Owner, Required Source Update, related implementation/runtime observation, related REQ/DEC/CR/EVD, Next Action, Status. Material Knowledge Debt makes `08` applicable if it was previously absent.
 
+A material Canonical Implementation Source / Runtime mismatch that should align is also `DRIFT-*`; do not invent a workspace/runtime-specific Stable-ID family.
+
 ## 09 — Handoff
 
 Required sections:
@@ -394,6 +398,8 @@ approved relocation before standard 91 activation
 no automatic promotion of old free-text into new management Stable IDs
 ```
 
+Framework `1.2.3` migration does not invent workspace topology. Unknown Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, or Persistent-State Boundary remains explicit uncertainty until verified from actual source/runtime evidence.
+
 ## 17 — Secret Reference Registry
 
 Canonical home of `SECRET-*` metadata only.
@@ -423,6 +429,7 @@ Technical Design Scope
 Tech Stack Contract
 System / Component Blueprint
 Source Structure Blueprint
+Development Workspace Contract
 Configuration Contract
 Runtime Requirements
 Deployment Support Model
@@ -461,6 +468,49 @@ migrations/   schema/data migration responsibility
 scripts/      operational-helper responsibility
 ```
 
+### Development Workspace Contract
+
+When material, document/resolve:
+
+```text
+Canonical Implementation Source
+Repository / Source Identity when applicable
+Development Workspace Type
+Workspace Location / Boundary
+Workspace Durability
+Human / Agent Edit Location
+Execution Environment
+Source-to-Runtime Mapping
+Dependency Isolation Strategy
+Runtime Mutability Boundary
+Persistent-State Boundary
+Related REQ / DEC / RISK / ASM / DEP / CR / EVD
+Verification / Drift Notes
+```
+
+Descriptive workspace types may include:
+
+```text
+LOCAL_WORKSPACE
+GIT_WORKTREE
+REMOTE_DURABLE_WORKSPACE
+DEV_CONTAINER_DURABLE_WORKSPACE
+OTHER_DECLARED_WORKSPACE
+```
+
+Descriptive mappings may include:
+
+```text
+DIRECT_EXECUTION
+BIND_MOUNT
+WORKSPACE_VOLUME
+IMAGE_OR_ARTIFACT_BUILD
+REMOTE_SYNC
+OTHER_DECLARED_MAPPING
+```
+
+These are blueprint vocabulary, not Project states or Stable-ID families. Canonical source durability is lifecycle/recovery semantics and does not impose physical host-local storage.
+
 ### Configuration Contract
 
 ```text
@@ -496,11 +546,17 @@ Deployment Scope
 Deployment Support
 Common Prerequisites
 Supported OS / Platform / Architecture
-Source or Artifact Acquisition
+Deployment Source / Artifact Acquisition
 Required Runtime / Container Runtime
 External Services
 Required Permissions
 Configuration / Secret References
+Source-to-Runtime Mapping
+Runtime Mutability Expectation
+Persistent-State Boundary
+Data / Storage Authority
+Replacement / Recreation Expectation
+Development-only vs Production Mapping Differences
 Data / Storage Initialization
 Source Installation View
 Docker Installation View
@@ -518,7 +574,9 @@ Related REQ / DEC / RISK / DEP / CR / GATE / EVD
 
 A real Project may record concrete verified commands/paths. A synthetic/template context must not invent executable commands for nonexistent software.
 
-Installation/start command success alone is not operational readiness; verification must examine resulting state appropriate to the Project/risk.
+Installation/start command success alone is not operational readiness; verification must examine resulting state appropriate to the Project/risk, including survival of state required by the declared replacement/recreation lifecycle.
+
+Runtime-only mutation does not become canonical Implementation Truth merely because execution succeeds. If runtime and Canonical Implementation Source should align but differ materially, use `DRIFT-*`.
 
 ## 91 — Project Management Control [CONDITIONAL / STANDARD IN 1.2.0+]
 
