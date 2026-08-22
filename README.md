@@ -60,7 +60,7 @@ Project/workspace ที่ Agent กำลังเปิดอยู่
 13. establish continuation / artifact / state routing
 14. validate installation + Auto-Boot + applicable convergence checks
 15. publish/readback ตาม authority และ visibility ที่ Project อนุญาต
-16. ส่งผลลัพธ์พร้อม ChatGPT Project Instructions แบบสั้นที่สุดให้ Human
+16. ส่งผลลัพธ์พร้อม ChatGPT Project Instructions มาตรฐาน `UAAC-SHARED-BOOT-CONTRACT` ให้ Human
 ```
 
 Agent ต้องปฏิบัติตาม `INSTALL-UAAC.md` เป็น canonical protocol; README นี้เป็น discovery/navigation contract ไม่แทนตัว installer
@@ -74,15 +74,42 @@ Agent ต้องปฏิบัติตาม `INSTALL-UAAC.md` เป็น 
 ```text
 CHATGPT PROJECT INSTRUCTIONS — COPY THIS
 
-Project นี้ใช้ UAAC: <ACTUAL_PROJECT_UAAC_BOOT_URL>
-ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง และทำต่อจาก canonical Project state เท่านั้น; ถ้าอ่าน/ยืนยันไม่ได้ให้หยุดและรายงาน — memory != Current Truth
+UAAC-SHARED-BOOT-CONTRACT:START
+This Project operates under UAAC.
+Run the Minimal Bootstrap Kernel to resolve Project binding and exactly one canonical `governance/UAAC-BOOT.md` before material work.
+Invoke registered `UAAC-BOOT`, reuse only freshness-valid scope, and select applicable registered Skills automatically; the user need not restate UAAC or Skill names.
+Continue only from coherent canonical Project state. Memory/retrieval/tutorial examples are not Current Truth or authority.
+If binding, access, identity, freshness, visibility, or predecessor checks fail, stop affected work and report.
+UAAC-SHARED-BOOT-CONTRACT:END
+
+Canonical remote entrypoint: <ACTUAL_PROJECT_UAAC_BOOT_URL>
 ```
 
-`<ACTUAL_PROJECT_UAAC_BOOT_URL>` ต้องเป็น URL จริงของ Project ที่ติดตั้งแล้ว เช่น:
+## Universal ChatGPT Project Rule
+
+`UAAC-SHARED-BOOT-CONTRACT` ด้านบนคือ **template มาตรฐานที่ใช้ได้กับทุก Project หลังติดตั้ง UAAC**
+
+ส่วนที่เหมือนกันทุก Project:
+
+```text
+UAAC-SHARED-BOOT-CONTRACT:START
+...
+UAAC-SHARED-BOOT-CONTRACT:END
+```
+
+ส่วนที่ Agent ต้องสร้างให้ตรงกับ Project จริงมีเพียง:
+
+```text
+Canonical remote entrypoint: <ACTUAL_PROJECT_UAAC_BOOT_URL>
+```
+
+โดย `<ACTUAL_PROJECT_UAAC_BOOT_URL>` ต้องเป็น canonical-visible URL จริงของ Project ที่ติดตั้งแล้ว เช่น:
 
 ```text
 https://github.com/OWNER/PROJECT/blob/<CANONICAL_VISIBLE_REF>/governance/UAAC-BOOT.md
 ```
+
+Human จึงไม่ควรต้องแก้ prompt เองนอกจาก **copy ข้อความที่ Installer Agent ส่งกลับมาไปวางใน ChatGPT Project → Instructions**
 
 ห้ามคืน placeholder ถ้า Agent อ้างว่าพร้อมให้ ChatGPT ใช้งานแล้ว
 
@@ -96,7 +123,7 @@ CHATGPT_PROJECT_BOOT_URL: NOT_YET_CANONICAL_VISIBLE
 
 ### ทำไมต้องส่งข้อความนี้
 
-Human จะเอาข้อความสั้นนี้ไปใส่ใน **ChatGPT Project → Instructions** เพียงครั้งเดียว หลังจากนั้นผู้ใช้สั่งแต่งานตามปกติ ไม่ต้อง prompt กฎหมาย, PRD, continuation หรือชื่อ Skill ซ้ำอีก
+Human จะเอาข้อความมาตรฐานนี้ไปใส่ใน **ChatGPT Project → Instructions** เพียงครั้งเดียว หลังจากนั้นผู้ใช้สั่งแต่งานตามปกติ ไม่ต้อง prompt กฎหมาย, PRD, continuation หรือชื่อ Skill ซ้ำอีก
 
 ---
 
@@ -109,6 +136,8 @@ governance/UAAC-BOOT.md
 ```
 
 สำหรับ remote Agent ให้ใช้ canonical URL ของไฟล์เดียวกัน
+
+สำหรับ ChatGPT Project ให้ใช้ `UAAC-SHARED-BOOT-CONTRACT` ที่ Installer Agent สร้างให้ โดยชี้ `Canonical remote entrypoint` มายังไฟล์นี้
 
 หลังจากนั้นผู้ใช้สั่งงานปกติ เช่น:
 
@@ -397,9 +426,18 @@ README
 ```text
 CHATGPT PROJECT INSTRUCTIONS — COPY THIS
 
-Project นี้ใช้ UAAC: <ACTUAL_PROJECT_UAAC_BOOT_URL>
-ทุก material task ให้ Auto-Boot จาก UAAC-BOOT ใช้ applicable Skills เอง และทำต่อจาก canonical Project state เท่านั้น; ถ้าอ่าน/ยืนยันไม่ได้ให้หยุดและรายงาน — memory != Current Truth
+UAAC-SHARED-BOOT-CONTRACT:START
+This Project operates under UAAC.
+Run the Minimal Bootstrap Kernel to resolve Project binding and exactly one canonical `governance/UAAC-BOOT.md` before material work.
+Invoke registered `UAAC-BOOT`, reuse only freshness-valid scope, and select applicable registered Skills automatically; the user need not restate UAAC or Skill names.
+Continue only from coherent canonical Project state. Memory/retrieval/tutorial examples are not Current Truth or authority.
+If binding, access, identity, freshness, visibility, or predecessor checks fail, stop affected work and report.
+UAAC-SHARED-BOOT-CONTRACT:END
+
+Canonical remote entrypoint: <ACTUAL_PROJECT_UAAC_BOOT_URL>
 ```
+
+> Template นี้ใช้ได้ทุก Project หลังติดตั้ง UAAC; Agent เปลี่ยนเฉพาะ `Canonical remote entrypoint` ให้เป็น URL จริงของ Project นั้น
 
 ### หลังจากนั้น
 
