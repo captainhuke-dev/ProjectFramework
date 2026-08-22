@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.2"
+project_source_framework_version: "1.2.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -36,6 +36,27 @@ compatible_schema_range: ">=1.0,<2.0"
 ## Configuration / Secret References
 <CONFIG_AND_SECRET_REFS>
 
+## Deployment Source / Artifact Acquisition
+<SOURCE_OR_ARTIFACT_IDENTITY_AND_ACQUISITION>
+
+## Source-to-Runtime Mapping
+<DIRECT_EXECUTION_BIND_MOUNT_WORKSPACE_VOLUME_IMAGE_ARTIFACT_REMOTE_SYNC_OR_OTHER_DECLARED_MAPPING>
+
+## Runtime Mutability Expectation
+<IMMUTABLE_RECREATABLE_MUTABLE_DECLARED_BOUNDARY>
+
+## Persistent-State Boundary
+<STATE_THAT_MUST_SURVIVE_REPLACEMENT_AND_ITS_DURABLE_AUTHORITY>
+
+## Data / Storage Authority
+<AUTHORITATIVE_DATASTORE_VOLUME_EXTERNAL_STORAGE_OR_OTHER_DECLARED_AUTHORITY>
+
+## Replacement / Recreation Expectation
+<WHAT_CAN_BE_REPLACED_RECREATED_AND_WHAT_MUST_SURVIVE>
+
+## Development-only vs Production Mapping Differences
+<EXPLICIT_MATERIAL_DIFFERENCES_AND_RELATED_VARIANCE>
+
 ## Source Installation View
 <ACQUISITION_RUNTIME_DEPENDENCIES_CONFIG_DATA_INIT_START_STOP_VERIFY_UPGRADE_ROLLBACK_CLEANUP>
 
@@ -43,7 +64,7 @@ compatible_schema_range: ">=1.0,<2.0"
 <CONTAINER_RUNTIME_IMAGE_RESPONSIBILITY_CONFIG_SECRETS_VOLUME_NETWORK_PORTS_ORDER_START_STOP_HEALTH_LOGS_UPGRADE_ROLLBACK_BACKUP_CLEANUP>
 
 ## Verification / Health
-<RESULTING_STATE_CHECKS>
+<RESULTING_STATE_CHECKS_INCLUDING_REQUIRED_SURVIVAL_ACROSS_DECLARED_RECREATION_WHEN_APPLICABLE>
 
 ## Logs / Diagnostics
 <LOGS_AND_DIAGNOSTICS>
@@ -69,4 +90,4 @@ compatible_schema_range: ">=1.0,<2.0"
 ## Related
 <REQ / DEC / RISK / DEP / CR / GATE / EVD>
 
-Concrete commands/paths belong here only when they are verified Project truth; templates/synthetic examples must not invent executable commands.
+Concrete commands/paths belong here only when they are verified Project truth; templates/synthetic examples must not invent executable commands. Runtime-only mutation does not become canonical Implementation Truth merely because execution succeeds.

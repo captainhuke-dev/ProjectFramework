@@ -1,13 +1,16 @@
 # ProjectFramework — HZ Framework + UAAC
 
-> Repository: `captainhuke-dev/ProjectFramework`  
-> Distribution branch: **`hz-framework`**  
-> Project Source Framework: **1.2.2**  
+> Repository: `captainhuke-dev/ProjectFramework` \
+> Distribution branch: **`hz-framework`** \
+> Project Source Framework: **1.2.3** \
+> Project Source Schema: **1.0.0** \
 > Universal AI Agent Constitution (UAAC): **4.2.0**
 
 สาขา `hz-framework` คือชุดที่เราใช้รวม **ProjectFramework + UAAC** สำหรับสร้างและควบคุม Project ที่มี Human และ AI Agent หลายตัวทำงานร่วมกัน เช่น ChatGPT, Codex, Claude, Hermes และ CLI Agent
 
 เป้าหมายหลักคือให้ Agent ทุกตัวกลับมาอ่าน **Project เดียวกัน กฎหมายเดียวกัน เอกสาร/PRD เดียวกัน Current State เดียวกัน และ Continuation เดียวกัน** แทนการพึ่งความจำของแต่ละแชตหรือแต่ละ Agent
+
+ProjectFramework package อยู่ที่ `managing-project-source/` และ release identity อยู่ที่ `managing-project-source/FRAMEWORK-RELEASE.yaml`
 
 > **หลักการจำง่าย:** ผู้ใช้สั่ง “งาน” ไม่ต้องสั่ง “กฎหมาย” ซ้ำ เมื่อ Project ติดตั้ง UAAC แล้ว Agent ต้อง Auto-Boot และเลือก applicable Skills เอง
 
@@ -258,9 +261,25 @@ Package:
 
 ---
 
-# ProjectFramework 1.2.2
+# ProjectFramework 1.2.3
 
 ProjectFramework เป็น framework สำหรับทำให้ Project มีโครงสร้าง Current Truth, Authority, Requirements, Decisions, Evidence, Risks, Assumptions, Milestones, Outcomes, Dependencies, Change Control, Handoff, Migration, Technical Design, Deployment knowledge และ Continuation ที่ reconstruct ได้
+
+## ส่วนที่เพิ่มใน 1.2.3 — Development Workspace and Runtime Authority
+
+Framework `1.2.3` เพิ่ม governance สำหรับ **Development Workspace and Runtime Authority** โดยไม่เปลี่ยน Project Source Schema `1.0.0`, semantic slots หรือ Stable-ID families
+
+- เมื่อความแตกต่างมีผลต่อ Project ต้องระบุ **Canonical Implementation Source** ซึ่งเป็น durable declared source ที่ใช้ตัดสิน Current Truth ของ `IMPLEMENTATION`
+- Fresh runtime observation ยังคงเป็น authority ของ `RUNTIME` Truth; การแก้หรือรันโค้ดสำเร็จใน disposable runtime ไม่ได้ย้าย Implementation authority โดยอัตโนมัติ
+- `40 Technical Design` สามารถบันทึก **Development Workspace Contract** ได้แก่ source identity, workspace type/location/durability, Human/Agent edit location, execution environment, Source-to-Runtime Mapping, dependency isolation, Runtime Mutability Boundary, Persistent-State Boundary และ verification/drift context
+- `60 Deployment Plan` สามารถบันทึก runtime mutability, data/storage authority, persistent-state, replacement/recreation และ development/production mapping เมื่อมีผลต่อ Project
+- State ที่ต้องอยู่รอดหลัง expected runtime replacement ต้องมี declared persistent authority/mechanism; cache/temp/scratch ที่สร้างใหม่ได้อาจเป็น ephemeral ตาม applicability
+
+Durability หมายถึง lifecycle/recovery contract ไม่ใช่ตำแหน่งเครื่องเพียงอย่างเดียว ดังนั้น host Git repository, Git worktree, durable remote/VM workspace และ Dev Container ที่ source อยู่บน durable storage สามารถใช้ได้ตาม Project Truth ส่วน Docker, host-local source, immutable production image หรือ production source mount ไม่ใช่ข้อบังคับหรือข้อห้ามสากล
+
+Framework `1.2.3` ทำงานร่วมกับและไม่แทนที่ Git Base Freshness ของ `1.2.2`; `STACKED_WORK`, `FRESH / STALE_NON_SEMANTIC / STALE_SEMANTIC / UNKNOWN`, `BASE_STALE`, `REBASE_REQUIRED`, `FORWARD_PORT_REQUIRED` และ Pre-Merge Base Freshness Gate ยังคงความหมายเดิม — **Mergeable ≠ Acceptable**
+
+ขอบเขตยังเป็น documentation/governance ไม่มีการสร้าง Dockerfile, Compose, Dev Container, Git hook, bot, CI workflow, validator, scheduler, merge queue, runtime enforcement, semantic slot หรือ Stable-ID namespace ใหม่ และ Project ที่ติดตั้งแล้วไม่ auto-upgrade จากการเปลี่ยน repository นี้
 
 Package หลัก:
 
@@ -272,6 +291,8 @@ Package หลัก:
 - [Managing Project Source Skill](managing-project-source/SKILL.md)
 - [Core Governance Rules](managing-project-source/references/core-governance-rules.md)
 - [Project Source templates](managing-project-source/templates/)
+
+`managing-project-source/templates/project-source-mockup/` คือ concrete starter representation ชุดเดียวที่ดูแลใน distribution ปัจจุบัน โดย current starter metadata pin ที่ Framework `1.2.3` / Schema `1.0.0`; historical composition examples ยังเรียกคืนได้จาก Git history แต่ไม่ถูกดูแลเป็น starter tree ชุดที่สอง
 
 ProjectFramework pin ของแต่ละ Project และ UAAC release identity เป็นคนละ dependency; การติดตั้ง UAAC ไม่ได้อนุมัติการ upgrade ProjectFramework pin โดยอัตโนมัติ
 
@@ -324,13 +345,21 @@ ProjectFramework pin ของแต่ละ Project และ UAAC release ide
 ```text
 ProjectFramework/
 ├── README.md                              ← Agent/Human discovery front page
+├── LICENSE
 ├── HUMAN-INSTALL-WALKTHROUGH-TH.md       ← Human example
 ├── UAAC.md                                ← UAAC navigation front door
 ├── .gitattributes
-├── managing-project-source/               ← ProjectFramework package
+├── managing-project-source/               ← ProjectFramework 1.2.3 package
+│   ├── FRAMEWORK-RELEASE.yaml
+│   ├── CHATGPT-PROJECT-INSTRUCTIONS.md
+│   ├── CLAUDE-PROJECT-INSTRUCTIONS.md
+│   ├── SKILL.md
+│   ├── references/
+│   ├── templates/
+│   │   └── project-source-mockup/
+│   └── tests/
 ├── universal-ai-agent-constitution/       ← UAAC v4.2.0 verified package
 ├── uaac-v4.2-reference-project/           ← reference/convergence evidence project
-├── examples/
 └── docs/
 ```
 

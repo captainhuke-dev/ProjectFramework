@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.2"
+project_source_framework_version: "1.2.3"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -32,8 +32,8 @@ Front Door + derived Active Document Registry + task routing.
 04 DEC-* / Decision Revalidation
 05 REQ-*
 08 ISS-* / DRIFT-* / CONFLICT-* / KNOWLEDGE_DEBT
-40 Tech Stack / technical / source / config / runtime blueprint when active
-60 installation / deployment / operations blueprint when active
+40 Tech Stack / technical / source / workspace / config / runtime blueprint when active
+60 installation / deployment / source-runtime / persistence-recreation / operations blueprint when active
 91 RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-* when active
 ```
 

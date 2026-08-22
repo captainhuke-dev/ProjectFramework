@@ -1,8 +1,26 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.2 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.3 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
+
+> **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.2.3 Development Workspace & Runtime Authority Semantics
+
+Framework `1.2.3` adds the missing governance boundary between **Canonical Implementation Source** and **Runtime Truth** without changing semantic slots, Stable-ID families, or Schema `1.0.0`.
+
+When material:
+
+- `40 Technical Design` captures a **Development Workspace Contract**: canonical source identity, workspace type/location/durability, Human/Agent edit location, execution environment, Source-to-Runtime Mapping, dependency isolation, Runtime Mutability Boundary, and Persistent-State Boundary;
+- runtime-only code/config mutation does not silently become canonical Implementation Truth;
+- material source/runtime mismatch that should align reuses `DRIFT-*`;
+- `60 Deployment Plan` captures source/artifact acquisition, source-to-runtime mapping, runtime mutability, persistent-state/data authority, replacement/recreation expectation, and material development/production differences;
+- state required to survive expected runtime replacement needs a declared persistent authority/mechanism, while rebuildable cache/temp state may remain ephemeral;
+- durable Dev Container, remote, VM, host Git, and Git-worktree source topologies can all be valid; physical host-folder source and Docker are not universal requirements;
+- production source mounts and image/artifact deployment are evaluated by the Project contract rather than blanket rules.
+
+Framework `1.2.3` does **not** replace Framework `1.2.2` Git Base Freshness. Existing `STACKED_WORK`, `BASE_STALE`, `REBASE_REQUIRED`, `FORWARD_PORT_REQUIRED`, and Pre-Merge Base Freshness semantics remain authoritative.
 
 ## Framework 1.2.2 Git Base Freshness Semantics
 
@@ -85,6 +103,8 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 
 When Git branch/worktree integration is later used inside an initialized Project, apply the locally pinned root `00` Base Freshness contract. Upstream Framework movement does not auto-upgrade that Project.
 
+When implementation/workspace/runtime mapping is material, route the deep blueprint to `40`, deployment/recreation behavior to `60`, and any expected-alignment mismatch to existing `DRIFT-*` semantics.
+
 ## Framework 1.2.0 Management and Technical Routing
 
 ```text
@@ -92,8 +112,8 @@ When Git branch/worktree integration is later used inside an initialized Project
 04 → Decision Revalidation
 08 → KNOWLEDGE_DEBT through ISS-*
 11 → Responsibility Mapping; Responsibility ≠ Authority
-40 → Tech Stack / source / config / runtime / Source-Docker technical blueprint
-60 → Source/Docker installation / verification / operations
+40 → Tech Stack / source / workspace / config / runtime / Source-Docker technical blueprint
+60 → Source/Docker installation / source-runtime mapping / persistence-recreation / verification / operations
 91 → Risk / Assumption / Milestone / Outcome / Dependency / Change Request / Gate
 ```
 
@@ -101,7 +121,7 @@ When Git branch/worktree integration is later used inside an initialized Project
 
 ## Concept-First Boundary
 
-Tech Stack/install/Docker planning does not authorize source code, Dockerfile/Compose, scripts, CI, or automation. Concrete commands belong only to a real Project when verified as Project truth.
+Tech Stack/install/Docker/workspace/persistence planning does not authorize source code, Dockerfile/Compose, scripts, CI, or automation. Concrete commands belong only to a real Project when verified as Project truth.
 
 ## Template vs Active Filename
 

@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.2 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.3 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
-- `references/framework-governance-amendment-260821-1505.md`
+- `references/framework-governance-amendment-260821-1934.md`
+- `references/framework-governance-amendment-260821-1505.md` (historical approved amendment)
 - `references/framework-governance-amendment-260821-1254.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1142.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1024.md` (historical approved amendment)
@@ -62,8 +63,8 @@ Framework `1.2.0` standardizes:
 When active, route:
 
 ```text
-40 → Tech Stack / components / source structure / config / runtime / Source-Docker technical blueprint
-60 → installation / startup-shutdown / verification / diagnostics / upgrade-rollback / backup-restore / cleanup
+40 → Tech Stack / components / source structure / workspace / config / runtime / Source-Docker technical blueprint
+60 → installation / startup-shutdown / verification / diagnostics / runtime-persistence-recreation / upgrade-rollback / backup-restore / cleanup
 91 → RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*
 ```
 
@@ -157,7 +158,11 @@ Runtime success does not erase Knowledge Debt. If material it may degrade Knowle
 
 Use when deeper technical detail is needed beyond `06 Architecture`. Document material Tech Stack entries with Technology, Role/Responsibility, Version/Supported Range, Required/Optional state, reason/Decision reference, component usage, operational dependency, lifecycle/support constraint, replacement boundary, and epistemic/verification state.
 
-May also document component interfaces, source-area responsibilities, Configuration Contract, Runtime Requirements, deployment-mode architecture, and parity/variance.
+May also document component interfaces, source-area responsibilities, **Development Workspace Contract**, Configuration Contract, Runtime Requirements, deployment-mode architecture, and parity/variance.
+
+When material, Development Workspace Contract resolves Canonical Implementation Source, repository/source identity, workspace type/location/durability, Human/Agent edit location, execution environment, Source-to-Runtime Mapping, dependency isolation, Runtime Mutability Boundary, Persistent-State Boundary, and verification/drift notes.
+
+Descriptive workspace/mapping labels such as `LOCAL_WORKSPACE`, `GIT_WORKTREE`, `REMOTE_DURABLE_WORKSPACE`, `DEV_CONTAINER_DURABLE_WORKSPACE`, `DIRECT_EXECUTION`, `BIND_MOUNT`, `WORKSPACE_VOLUME`, `IMAGE_OR_ARTIFACT_BUILD`, and `REMOTE_SYNC` are blueprint vocabulary only; they are not Project states or Stable-ID families.
 
 ### `60 Deployment Plan`
 
@@ -172,9 +177,38 @@ NOT_APPLICABLE
 
 For `SOURCE_AND_DOCKER`, preserve one declared application/configuration/data/security/persistence contract. Intentional differences are explicit Deployment Mode Variance; unexpected mismatch is `DRIFT-*`.
 
-`60` may document prerequisites, Source installation, Docker installation, configuration/secret refs, data initialization, start/stop, health verification, logs, upgrade, rollback, backup/restore, cleanup, troubleshooting. A real Project may include concrete commands/paths only when verified as actual Project truth.
+`60` may document prerequisites, Source installation, Docker installation, configuration/secret refs, deployment source/artifact acquisition, Source-to-Runtime Mapping, Runtime Mutability Expectation, Persistent-State Boundary, Data/Storage Authority, Replacement/Recreation Expectation, development/production mapping differences, data initialization, start/stop, health verification, logs, upgrade, rollback, backup/restore, cleanup, troubleshooting. A real Project may include concrete commands/paths only when verified as actual Project truth.
 
-**Planning is not implementation authorization:** a request to define Tech Stack, installation, Docker topology, ports/volumes, or verification does not authorize creation of source code, Dockerfile, Compose/Kubernetes/Helm, package manifests, install scripts, CI, or automation.
+**Planning is not implementation authorization:** a request to define Tech Stack, installation, Docker topology, ports/volumes, workspace mapping, persistence, or verification does not authorize creation of source code, Dockerfile, Compose/Kubernetes/Helm, package manifests, install scripts, CI, or automation.
+
+## Development Workspace and Runtime Authority
+
+Apply this contract when implementation exists and workspace/runtime distinction is material. It composes with, but does not replace, Framework 1.2.2 Git Base Freshness.
+
+Operational sequence:
+
+```text
+resolve Canonical Implementation Source / durable workspace
+→ if Git branch/worktree integration is in scope, apply existing Base Freshness contract
+→ mutate canonical durable source / valid worktree
+→ execute/test through declared Source-to-Runtime Mapping
+→ compare Implementation Truth with Runtime Truth when material
+→ DRIFT-* for mismatch that should align
+→ ensure required-survival state has declared persistent authority/mechanism
+→ verify resulting Implementation/Runtime state appropriate to risk
+```
+
+Required behavior:
+
+1. **Canonical Implementation Source:** identify the durable declared source location whose verified state determines affected `IMPLEMENTATION` Truth. For Git-backed Projects this is normally verified Git/source tree under the Project's repository/workspace contract.
+2. **Durability, not host-only:** source must be durable enough for the Project's declared development/recovery lifecycle. Host Git repo, worktree, remote/VM durable workspace, and Dev Container backed by durable bind/workspace storage are all valid when declared. Do not require a physical host folder merely because development is containerized.
+3. **Runtime Authority:** fresh runtime observation determines `RUNTIME` Truth only. Editing/running code in an otherwise disposable runtime does not silently transfer Implementation authority.
+4. **Runtime-only hotfix:** diagnosis/emergency runtime edits may be observed as runtime state, but canonical implementation completion requires accepted intent to be transferred through the governed change path into Canonical Implementation Source and reverified.
+5. **DRIFT reuse:** if canonical implementation and runtime should align but differ materially, use existing `DRIFT-*`; do not invent a workspace/runtime drift family.
+6. **Persistence boundary:** state required by REQ/DEC/Technical/Deployment contracts to survive expected runtime replacement must have a declared persistent-state authority/mechanism. Rebuildable cache/temp/scratch state may remain ephemeral when survival is not required.
+7. **Production mapping:** production source mounts and image/artifact deployment are evaluated against declared lifecycle, recovery, authority, security, and persistence requirements. Do not blanket-forbid source mounts or universally require immutable images.
+8. **Docker optional:** this contract applies equally to native/non-Docker Projects. Do not require Docker merely because software development exists.
+9. **Git semantics unchanged:** workspace governance never replaces `FRESH / STALE_NON_SEMANTIC / STALE_SEMANTIC / UNKNOWN`, `BASE_STALE`, `REBASE_REQUIRED`, `FORWARD_PORT_REQUIRED`, `STACKED_WORK`, or the Pre-Merge Base Freshness Gate.
 
 ## Materialized Current State Invariant
 
@@ -192,11 +226,13 @@ For Framework `1.2.0` migration:
 - never automatically convert old prose into new management Stable IDs; promotion requires sufficient current semantics, status, ownership, and evidence/epistemic state;
 - preserve local Project-specific rules unless explicitly resolved otherwise.
 
-## Golden Reference
+Framework `1.2.3` migration does not invent workspace topology. Unknown Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, or persistence boundary remains explicit `UNKNOWN / VERIFICATION_REQUIRED` until verified from actual Project sources/runtime.
 
-`examples/golden-reference-software-project/Project-Source/` is a synthetic composition example. It illustrates `00–17 + 40 + 60 + 91`, management objects, Health/Review Cadence, Tech Stack, `SOURCE_AND_DOCKER`, installation/operations blueprints, migration safety, and handoff.
+## Maintained Starter Representation
 
-It is **illustrative, not normative**. Core Governance/templates win on conflict. It contains no actual application code, Dockerfile/Compose, install scripts, CI, binary/runtime artifact, or real secret.
+`templates/project-source-mockup/` is the **single maintained concrete starter representation** for the current Framework distribution. It covers the governed semantic namespace and current starter surfaces used during GREENFIELD bootstrap.
+
+Do not maintain a second full Project Source example/template tree in the current distribution. Historical composition examples remain available through Git history; current bootstrap and maintenance use Core Governance, the root `00` template, core skeletons, and `templates/project-source-mockup/`.
 
 ## MCP Material Persistence and Chat Lifecycle
 
@@ -260,7 +296,7 @@ Required behavior:
 4. **Checkpoint:** re-evaluate base before new independent work, before a new material implementation phase when upstream may have moved, before material PR/integration updates, and immediately before merge if target head moved after review.
 5. **STALE_NON_SEMANTIC:** mark the work `BASE_STALE` until its base is updated appropriately and affected verification passes. Use `REBASE_REQUIRED` for private/rewritable work when appropriate; for shared/public branches, prefer a history-preserving merge/update rather than rewriting published history. Return to `FRESH` only after the update and affected verification succeed.
 6. **STALE_SEMANTIC:** mark `BASE_STALE`, stop affected new implementation scope, inspect changed Framework/governance/schema/authority/REQ/DEC/interface/contracts, and use `FORWARD_PORT_REQUIRED` by default.
-7. **Forward-Port:** create a clean branch/worktree from the current target, treat the stale branch as source material, and carry only still-valid accepted changes. Cherry-pick only when boundaries are clean; otherwise re-implement accepted intent on the current base. Exclude temporary staging/transport artifacts, obsolete workflow/version metadata, superseded assumptions, and unrelated experiments.
+7. **Forward-Port:** create a clean branch/worktree from the current target, treat the stale branch as source material/evidence, and carry only still-valid accepted changes. Cherry-pick only when boundaries are clean; otherwise re-implement accepted intent on the current base. Exclude temporary staging/transport artifacts, obsolete workflow/version metadata, superseded assumptions, and unrelated experiments.
 8. **Pre-Merge Base Freshness Gate:** re-resolve current target head and classify `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`. `UNKNOWN` or unresolved semantic drift blocks affected acceptance.
 9. `git conflict = 0`, `mergeable = true`, or successful rebase is not semantic approval. **Mergeable ≠ Acceptable.**
 10. Use existing `DRIFT-* / CONFLICT-* / MIG-* / CR-*` only when base staleness becomes material Project truth; do not invent a parallel Stable-ID family.
@@ -282,9 +318,10 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 11. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval.
 12. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
 13. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
-14. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
-15. Never store actual secrets; use `SECRET-*` metadata references only.
-16. Preserve history and finish with completion/readiness/exact-next-action summary.
+14. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
+15. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
+16. Never store actual secrets; use `SECRET-*` metadata references only.
+17. Preserve history and finish with completion/readiness/exact-next-action summary.
 
 ## Quick Reference
 
@@ -292,9 +329,16 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 |---|---|
 | New Project | canonical main → Preview → approval → mandatory core; conditionals only when applicable |
 | Project-management control | use `91`; canonical `RISK/ASM/MS/OUT/DEP/CR/GATE` |
-| Technical design | use `40` when deeper than `06`; document blueprint, do not silently code |
-| Install/deployment | use `60`; support Source/Docker model and resulting-state verification |
+| Technical design | use `40` when deeper than `06`; include workspace contract when material; do not silently code |
+| Install/deployment | use `60`; document source/runtime/persistence/recreation and resulting-state verification when material |
 | Source + Docker | shared contract + explicit variance; unexpected mismatch = DRIFT |
+| Runtime-only hotfix | Runtime Truth only; preserve accepted intent through governed update to Canonical Implementation Source before canonical completion |
+| Host Git/worktree + bind-mounted Docker | Git/worktree = Canonical Implementation Source; Docker = execution/runtime environment |
+| Durable Dev Container workspace | valid when source identity/durability/recovery are declared; host-folder source not required |
+| Required-survival runtime state | declare persistent-state authority/mechanism compatible with expected recreation |
+| Rebuildable cache/temp state | may remain ephemeral when no survival requirement exists |
+| Production source mount | evaluate declared lifecycle/recovery/authority/security/persistence contract; no blanket prohibition |
+| Non-Docker software Project | apply workspace/runtime authority semantics without requiring Docker |
 | Project Health | dimensional `GREEN/AMBER/RED/UNKNOWN` in `03`, evidence-backed |
 | Decision changed basis | mark/review revalidation in `04` |
 | Responsibility | mapping in `11`; permission still comes from `12` |
@@ -324,7 +368,16 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 - overwriting a Brownfield custom slot `91`;
 - auto-promoting old prose into Stable IDs;
 - Source/Docker divergence without declared variance or DRIFT;
-- turning Tech Stack/install/Docker planning into unrequested source code/Dockerfile/Compose/scripts/CI/automation;
+- turning Tech Stack/install/Docker/workspace/persistence planning into unrequested source code/Dockerfile/Compose/scripts/CI/automation;
+- claiming implementation DONE after editing only an otherwise disposable runtime;
+- silently promoting a runtime hotfix into Implementation Truth;
+- assuming every container filesystem is ephemeral without checking the declared workspace durability/source contract;
+- requiring Canonical Implementation Source to live on a physical host filesystem;
+- requiring Docker for all software/AI-assisted Projects;
+- blanket-forbidding production source mounts or universally requiring immutable images;
+- storing state that must survive expected recreation only in a disposable runtime layer while claiming recreation/readiness support;
+- inventing `WORKSPACE_STALE`, `RUNTIME_STALE`, or another parallel freshness/Stable-ID family instead of reusing 1.2.2 and `DRIFT-*`;
+- maintaining a second full Project Source example/template tree alongside `templates/project-source-mockup/` in the current distribution;
 - creating unrelated Independent Work from the currently checked-out feature branch by default;
 - assuming local `main` is current without verifying the canonical integration target;
 - using commit count alone as proof of semantic staleness/freshness;
