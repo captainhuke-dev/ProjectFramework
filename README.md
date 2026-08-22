@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.3**
+- Project Source Framework: **1.2.4**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,22 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.2.4 Additions
+
+Framework `1.2.4` adds **Project Location Binding**, Chat Closure Consistency, and the bracketed Mandatory Response Close without changing Project Source Schema `1.0.0`, semantic slots, or Stable-ID families.
+
+Active local `FRAMEWORK-001` is the canonical home for GitHub/Google Drive Project Location Binding. GitHub and Drive resolve independently as `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`: `BOUND` requires durable routing identity, `VERIFICATION_REQUIRED` is fail-closed for Material mutation while read/search/discovery may resolve candidates, and `NOT_APPLICABLE` blocks Material Project work through that connector. Connector recency, search ranking, chat memory, or another accessible Project never transfer Project authority.
+
+Persistent binding changes are Root Governance mutations requiring User Explicit Approval plus governed `FRAMEWORK-001` revision/validate/promote/supersede/archive flow. A one-off exact-target instruction may authorize only that otherwise-allowed action and does not persistently rewrite the binding.
+
+Repository Location Binding remains distinct from current branch/worktree, **Canonical Integration Target**, and **Canonical Implementation Source**. Framework `1.2.4` introduces no competing `canonical_branch`; Framework `1.2.2` Base Freshness and integration-target semantics remain authoritative.
+
+GitHub/Drive continuation keeps source-native ownership and durable pointers rather than replicating canonical content. `09 Handoff` references the active root binding instead of becoming a second repo/folder authority.
+
+Chat closure is deterministic: `ไม่มีขั้นตอนถัดไป → START_NEW_CHAT`; `CONTINUE_CURRENT_CHAT` requires one concrete Next Action; `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus a concrete persistence/recovery action. Mandatory response-close fields render as `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` in separate Markdown paragraphs.
+
+This remains governance/documentation scope. Framework `1.2.4` adds no application/runtime implementation, connector synchronization, validator, scheduler, bot, CI/CD, new semantic slot, or Stable-ID namespace. Existing initialized Projects remain locally pinned and do not auto-upgrade; migration must not invent repository/folder identities.
 
 ## Framework 1.2.3 Additions
 
@@ -171,8 +187,8 @@ For every NEW Project Source:
 4. Read `managing-project-source/SKILL.md`.
 5. Read the latest Framework governance amendment and `managing-project-source/references/core-governance-rules.md`.
 6. Read `managing-project-source/templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, and `templates/project-source-mockup/README.md`.
-7. Preview the proposed Project Source and obtain explicit user approval before writing.
-8. Create active `00-Project Source Framework` first, then mandatory `01–05` and `09–17`.
+7. Preview the proposed Project Source, including proposed GitHub/Drive Project Location Binding states/identities, and obtain explicit user approval before writing.
+8. Create active `00-Project Source Framework` first with the approved Project Location Binding, then mandatory `01–05` and `09–17`.
 9. Evaluate `06–08`, `40`, `60`, and `91` by applicability; do not create empty conditional documents merely to make a tree look complete.
 10. Keep `18–19` reserved; use `92–99` as Project-specific/Governance Extension space unless a later Framework revision governs them otherwise.
 11. Pin the imported Framework/Schema locally. The repository is not a live dependency after bootstrap.
@@ -217,7 +233,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`; current starter metadata is stamped to Framework `1.2.3` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`; current starter metadata is stamped to Framework `1.2.4` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
@@ -250,4 +266,4 @@ Use `managing-project-source/` as the reusable framework package. Files under `d
 
 ## Supersession Note
 
-Framework `1.2.3` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+Framework `1.2.4` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
