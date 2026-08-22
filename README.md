@@ -219,19 +219,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 `templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`; current starter metadata is stamped to Framework `1.2.3` / Schema `1.0.0`.
 
-The mockup is **executable documentation, not normative authority**. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document.
-
-## Golden Reference
-
-Framework `1.2.0` includes a synthetic composition example at:
-
-```text
-examples/golden-reference-software-project/Project-Source/
-```
-
-It demonstrates `00–17 + 40 + 60 + 91`, Project Health, management-control objects, a fictional Tech Stack, `SOURCE_AND_DOCKER`, parity/variance, installation/operations blueprint, migration safety, and handoff. It contains **no application code, Dockerfile, Compose, install script, CI workflow, binary/runtime artifact, or real secret**.
-
-The Golden Reference is illustrative only. Core Governance, active Framework, templates, and Project-specific approved truth remain authoritative over the example.
+The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
 ## Current-Truth Integrity
 
@@ -243,9 +231,6 @@ Active canonical registries are materialized current projections, not delta chai
 ProjectFramework/
 ├── README.md
 ├── LICENSE
-├── examples/
-│   └── golden-reference-software-project/
-│       └── Project-Source/
 ├── managing-project-source/
 │   ├── FRAMEWORK-RELEASE.yaml
 │   ├── CHATGPT-PROJECT-INSTRUCTIONS.md

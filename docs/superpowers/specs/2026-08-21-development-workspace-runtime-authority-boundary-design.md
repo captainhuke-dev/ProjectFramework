@@ -7,6 +7,7 @@ Design branch: `framework-1.2.3-workspace-runtime-boundary`
 Base: `main@a9b2bb0ea95e6dd6cc33c9bd295dff48406d50d4` (Framework 1.2.2)
 Release target: Framework 1.2.3 / Schema 1.0.0
 Approval basis: User selected approach B (targeted Framework enhancement) on 2026-08-21T18:41:00+07:00 and approved continuation from the written spec on 2026-08-21T19:34:00+07:00.
+Structural cleanup approval: User explicitly approved removal of the duplicate Golden Reference tree and retention of `templates/project-source-mockup/` as the single maintained concrete starter representation on 2026-08-22.
 
 ## 1. Purpose
 
@@ -369,7 +370,13 @@ managing-project-source/templates/project-source-mockup/60-Deployment-Plan.templ
 managing-project-source/tests/pressure-scenarios.md
 ```
 
-Review the synthetic Golden Reference and update its `40`/`60` only if necessary to demonstrate the new contract coherently. Do not change it merely to increase churn.
+Structural cleanup approved on 2026-08-22 also removes the current duplicate tree:
+
+```text
+examples/golden-reference-software-project/
+```
+
+`managing-project-source/templates/project-source-mockup/` is the single maintained concrete starter representation for the current distribution. Do not maintain a second full Project Source example/template tree alongside it. Historical composition examples remain available through Git history.
 
 ChatGPT/Claude launchers should remain compact. Modify their byte-identical shared contract only if the new semantics cannot be reached reliably through the existing canonical read-through. Any launcher change must preserve the <=4,500 Unicode-character constraint and byte identity between shared markers.
 
@@ -450,7 +457,8 @@ Framework 1.2.3 is acceptable only when:
 11. existing Source/Docker parity/variance and `DRIFT-*` semantics are reused rather than duplicated;
 12. pressure scenarios cover the accepted design cases;
 13. launchers remain byte-identical between shared markers if touched;
-14. no application code, Docker artifacts, CI, hooks, validators, or runtime enforcement are created by this governance release.
+14. no application code, Docker artifacts, CI, hooks, validators, or runtime enforcement are created by this governance release;
+15. `templates/project-source-mockup/` is the single maintained concrete starter representation and no duplicate full Project Source example/template tree remains in the current distribution.
 
 ## 20. Migration Semantics
 

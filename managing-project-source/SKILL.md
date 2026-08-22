@@ -228,11 +228,11 @@ For Framework `1.2.0` migration:
 
 Framework `1.2.3` migration does not invent workspace topology. Unknown Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, or persistence boundary remains explicit `UNKNOWN / VERIFICATION_REQUIRED` until verified from actual Project sources/runtime.
 
-## Golden Reference
+## Maintained Starter Representation
 
-`examples/golden-reference-software-project/Project-Source/` is a synthetic composition example. It illustrates `00–17 + 40 + 60 + 91`, management objects, Health/Review Cadence, Tech Stack, `SOURCE_AND_DOCKER`, installation/operations blueprints, migration safety, and handoff.
+`templates/project-source-mockup/` is the **single maintained concrete starter representation** for the current Framework distribution. It covers the governed semantic namespace and current starter surfaces used during GREENFIELD bootstrap.
 
-It is **illustrative, not normative**. Core Governance/templates win on conflict. It contains no actual application code, Dockerfile/Compose, install scripts, CI, binary/runtime artifact, or real secret.
+Do not maintain a second full Project Source example/template tree in the current distribution. Historical composition examples remain available through Git history; current bootstrap and maintenance use Core Governance, the root `00` template, core skeletons, and `templates/project-source-mockup/`.
 
 ## MCP Material Persistence and Chat Lifecycle
 
@@ -296,7 +296,7 @@ Required behavior:
 4. **Checkpoint:** re-evaluate base before new independent work, before a new material implementation phase when upstream may have moved, before material PR/integration updates, and immediately before merge if target head moved after review.
 5. **STALE_NON_SEMANTIC:** mark the work `BASE_STALE` until its base is updated appropriately and affected verification passes. Use `REBASE_REQUIRED` for private/rewritable work when appropriate; for shared/public branches, prefer a history-preserving merge/update rather than rewriting published history. Return to `FRESH` only after the update and affected verification succeed.
 6. **STALE_SEMANTIC:** mark `BASE_STALE`, stop affected new implementation scope, inspect changed Framework/governance/schema/authority/REQ/DEC/interface/contracts, and use `FORWARD_PORT_REQUIRED` by default.
-7. **Forward-Port:** create a clean branch/worktree from the current target, treat the stale branch as source material, and carry only still-valid accepted changes. Cherry-pick only when boundaries are clean; otherwise re-implement accepted intent on the current base. Exclude temporary staging/transport artifacts, obsolete workflow/version metadata, superseded assumptions, and unrelated experiments.
+7. **Forward-Port:** create a clean branch/worktree from the current target, treat the stale branch as source material/evidence, and carry only still-valid accepted changes. Cherry-pick only when boundaries are clean; otherwise re-implement accepted intent on the current base. Exclude temporary staging/transport artifacts, obsolete workflow/version metadata, superseded assumptions, and unrelated experiments.
 8. **Pre-Merge Base Freshness Gate:** re-resolve current target head and classify `FRESH | STALE_NON_SEMANTIC | STALE_SEMANTIC | UNKNOWN`. `UNKNOWN` or unresolved semantic drift blocks affected acceptance.
 9. `git conflict = 0`, `mergeable = true`, or successful rebase is not semantic approval. **Mergeable ≠ Acceptable.**
 10. Use existing `DRIFT-* / CONFLICT-* / MIG-* / CR-*` only when base staleness becomes material Project truth; do not invent a parallel Stable-ID family.
@@ -377,6 +377,7 @@ Commit count alone never decides semantic freshness. One Root Governance change 
 - blanket-forbidding production source mounts or universally requiring immutable images;
 - storing state that must survive expected recreation only in a disposable runtime layer while claiming recreation/readiness support;
 - inventing `WORKSPACE_STALE`, `RUNTIME_STALE`, or another parallel freshness/Stable-ID family instead of reusing 1.2.2 and `DRIFT-*`;
+- maintaining a second full Project Source example/template tree alongside `templates/project-source-mockup/` in the current distribution;
 - creating unrelated Independent Work from the currently checked-out feature branch by default;
 - assuming local `main` is current without verifying the canonical integration target;
 - using commit count alone as proof of semantic staleness/freshness;

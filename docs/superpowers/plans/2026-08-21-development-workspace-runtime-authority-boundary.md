@@ -28,6 +28,7 @@
 - Existing initialized Projects remain locally pinned and never auto-upgrade from upstream.
 - No semantic slot or Stable-ID family is added.
 - Framework 1.2.3 is governance/documentation only; no executable enforcement or runtime artifacts are authorized.
+- `managing-project-source/templates/project-source-mockup/` is the single maintained concrete starter representation; do not maintain a second full Project Source example/template tree in the current distribution.
 
 ---
 
@@ -69,14 +70,21 @@ current active starter version stamps under managing-project-source/templates/pr
 managing-project-source/references/framework-governance-amendment-260821-1934.md
 ```
 
-### Conditional review only
+### Approved structural cleanup — 2026-08-22
+
+Remove the duplicate current composition tree:
 
 ```text
-examples/golden-reference-software-project/Project-Source/40-Technical Design-*.md
-examples/golden-reference-software-project/Project-Source/60-Deployment Plan-*.md
+examples/golden-reference-software-project/
 ```
 
-Update Golden Reference only if its current `40`/`60` would materially misrepresent the new contract. Do not change it for cosmetic release stamping.
+Retain and maintain only:
+
+```text
+managing-project-source/templates/project-source-mockup/
+```
+
+Historical composition examples remain available through Git history. Current Framework maintenance/bootstrap must not depend on a second full Project Source example/template tree.
 
 ---
 
@@ -378,6 +386,8 @@ duplicating 1.2.2 worktree freshness vocabulary
 
 Add a concise Framework 1.2.3 section explaining that `40` now captures Development Workspace Contract and `60` captures runtime/persistent-state boundary, while 1.2.2 Git Base Freshness remains unchanged and Docker remains optional.
 
+Also state that `templates/project-source-mockup/` is the single maintained concrete starter representation in the current distribution and that a second full Project Source example/template tree must not be maintained alongside it.
+
 - [ ] **Step 6: Verify Task 3 contract markers**
 
 Run:
@@ -406,10 +416,11 @@ git commit -m "feat: add development workspace and persistence blueprints"
 - Modify: `managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md`
 - Modify: `managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md`
 - Modify: current active starter metadata under `managing-project-source/templates/project-source-mockup/*.template.md`
+- Remove: `examples/golden-reference-software-project/`
 
 **Interfaces:**
-- Consumes: Tasks 1–3.
-- Produces: coherent Framework 1.2.3 / Schema 1.0.0 release identity and discoverability.
+- Consumes: Tasks 1–3 plus explicit structural-cleanup approval on 2026-08-22.
+- Produces: coherent Framework 1.2.3 / Schema 1.0.0 release identity, discoverability, and one maintained concrete starter representation.
 
 - [ ] **Step 1: Create the 1.2.3 governance amendment**
 
@@ -499,15 +510,22 @@ project_source_schema_version: "1.0.0"
 
 Do not rewrite historical narrative labels such as “Framework 1.2.0” or “Framework 1.2.2” when they describe when a capability was introduced.
 
-- [ ] **Step 6: Review Golden Reference applicability**
+- [ ] **Step 6: Apply approved duplicate-representation cleanup**
 
-Read its active `40` and `60`. Update only if the reference would otherwise teach a materially contradictory workspace/runtime authority model. If it already remains compatible and illustrative without claiming runtime-only source authority, leave it unchanged and record that decision in the final verification summary.
+Remove:
+
+```text
+examples/golden-reference-software-project/
+```
+
+Keep `managing-project-source/templates/project-source-mockup/` as the single maintained concrete starter representation. Update current README/SKILL/Core Governance/mockup documentation and the approved 1.2.3 spec/plan so no current bootstrap or maintenance guidance points to the removed tree. Do not rewrite historical amendments merely to erase historical references; Git history remains the historical evidence.
 
 - [ ] **Step 7: Commit release packaging**
 
 ```bash
-git add README.md managing-project-source/FRAMEWORK-RELEASE.yaml managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md managing-project-source/references/framework-governance-amendment-260821-1934.md managing-project-source/templates/project-source-mockup
-git commit -m "release: prepare Framework 1.2.3 workspace authority governance"
+git add README.md managing-project-source docs/superpowers/specs/2026-08-21-development-workspace-runtime-authority-boundary-design.md docs/superpowers/plans/2026-08-21-development-workspace-runtime-authority-boundary.md
+git rm -r examples/golden-reference-software-project
+git commit -m "docs: consolidate Project Source starter representation"
 ```
 
 ---
@@ -585,7 +603,7 @@ rg -n 'framework_version: "1\.2\.[0-9]+"|Project Source Framework: \*\*1\.2\.[0-
 rg -n 'project_source_framework_version: "1\.2\.[0-9]+"' managing-project-source/templates/00-project-source-framework.md managing-project-source/templates/core-document-skeletons.md managing-project-source/templates/project-source-mockup
 ```
 
-Expected current distribution/starter declarations: `1.2.3`; Schema: `1.0.0`. Historical amendments/specs/examples may retain older versions when describing historical truth.
+Expected current distribution/starter declarations: `1.2.3`; Schema: `1.0.0`. Historical amendments/specs may retain older versions when describing historical truth.
 
 - [ ] **Step 6: Verify launcher byte identity and size**
 
@@ -615,7 +633,7 @@ PY
 
 Expected: PASS.
 
-- [ ] **Step 7: Verify no prohibited implementation scope or namespace expansion**
+- [ ] **Step 7: Verify no prohibited implementation scope, namespace expansion, or duplicate starter tree**
 
 Run:
 
@@ -623,15 +641,16 @@ Run:
 git diff --name-only origin/main...HEAD
 ```
 
-Inspect the list and require no newly introduced application source, Dockerfile/Compose/Kubernetes/Helm, `.github/workflows`, executable validator/CLI, hook, bot, scheduler, or runtime-enforcement file.
+Inspect the list and require no newly introduced application source, Dockerfile/Compose/Kubernetes/Helm, `.github/workflows`, executable validator/CLI, hook, bot, scheduler, or runtime-enforcement file. Deletion of the approved duplicate example tree is expected.
 
 Also run:
 
 ```bash
 rg -n "WORKSPACE_STALE|RUNTIME_STALE|WORKSPACE-[0-9]|RUNTIME-[0-9]" managing-project-source README.md
+rg -n "golden-reference-software-project|Golden Reference" README.md managing-project-source docs/superpowers/specs/2026-08-21-development-workspace-runtime-authority-boundary-design.md docs/superpowers/plans/2026-08-21-development-workspace-runtime-authority-boundary.md
 ```
 
-Expected: no new parallel state/Stable-ID family.
+Expected: no new parallel state/Stable-ID family; current distribution/approved 1.2.3 records contain no live Golden Reference dependency other than explicit historical-removal rationale in the approved cleanup records.
 
 - [ ] **Step 8: Verify formatting and final diff**
 
@@ -678,11 +697,13 @@ persistent-state/recreation boundary in 60
 Dev Container and non-Docker compatibility
 Docker/host-local source remain optional
 Framework 1.2.2 Base Freshness unchanged
+project-source-mockup as the single maintained concrete starter representation
+no duplicate full Project Source example/template tree in current distribution
 no new slot / Stable-ID namespace
 no executable enforcement/runtime scope
 ```
 
-- [ ] **Step 3: Open PR to `main`**
+- [ ] **Step 3: Open/update PR to `main`**
 
 Use title:
 
@@ -690,7 +711,7 @@ Use title:
 Framework 1.2.3: add development workspace and runtime authority governance
 ```
 
-The PR body must identify the approved spec and implementation plan paths, base-freshness result, verification summary, Golden Reference disposition, launcher byte-identity result, and any known limitations.
+The PR body must identify the approved spec and implementation plan paths, base-freshness result, verification summary, duplicate Golden Reference removal / mockup single-source disposition, launcher byte-identity result, and any known limitations.
 
 - [ ] **Step 4: Stop at review gate**
 

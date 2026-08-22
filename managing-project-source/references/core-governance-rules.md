@@ -98,7 +98,7 @@ managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
 
 ### 2.1 Concept-First Framework Boundary
 
-ProjectFramework is a **conceptual Project governance and planning framework first**. It defines governance semantics, namespace, technical/installation blueprints, management controls, integrity expectations, bootstrap, authority, migration, handoff, readiness, pressure scenarios, mockups, and examples.
+ProjectFramework is a **conceptual Project governance and planning framework first**. It defines governance semantics, namespace, technical/installation blueprints, management controls, integrity expectations, bootstrap, authority, migration, handoff, readiness, pressure scenarios, and maintained starter representations.
 
 A technical or integrity requirement does not implicitly authorize executable implementation. Unless the user explicitly requests a separate implementation scope, do not create application code, Dockerfile, Compose/Kubernetes/Helm runtime artifacts, installer scripts, validator, CLI, CI/CD, migration engine, scheduler, background automation, dashboard, or runtime enforcement merely because a rule can be checked or implemented mechanically.
 
@@ -834,7 +834,8 @@ Current Framework distribution integrity means at minimum:
 - `18–19` remain reserved;
 - `40`, `60`, and `91` remain conditional/applicability-driven;
 - `91` is standard Project Management Control in `1.2.0+` and `92–99` remain extension space unless governed otherwise;
-- canonical object homes remain consistent across Framework, Core Governance, skeletons, mockup, platform launchers, and examples;
+- canonical object homes remain consistent across Framework, Core Governance, skeletons, `templates/project-source-mockup/`, and platform launchers;
+- `templates/project-source-mockup/` is the single maintained concrete starter representation in the current distribution; a second full Project Source example/template tree is not maintained alongside it;
 - ChatGPT and Claude shared governance contracts remain byte-identical;
 - current Stable IDs resolve without archive dependency;
 - existing Projects do not silently auto-upgrade;
