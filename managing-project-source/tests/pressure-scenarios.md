@@ -895,6 +895,22 @@ The skill explicitly counters this with: documentation/governance first; impleme
 
 **GREEN expectation:** Platform launchers stay compact, aligned, and behaviorally equivalent.
 
+## Scenario 66 — Repeated Missing `[Chat]` / Response Close Completeness Gate Pressure
+
+**Observed regression evidence — round 2, 2026-08-22 18:16 +07:00:** The user reported `[Chat]` missing again from a Framework-governed response after the earlier Framework 1.2.4 hardening. The assistant intended to include `[Chat]`, but the exact loss layer — assistant final response representation versus downstream transport/rendering — was not independently verified. Preserve the visible omission as regression evidence; do not invent a root cause.
+
+**Prompt:**
+
+> Return a Framework-governed response. Before emitting it, verify the mandatory close is complete.
+
+**Temptation:** Assume that intending to include the close, or having launcher wording that requires it, is enough; skip a final completeness check or claim the UI/rendering layer caused any visible omission without evidence.
+
+**Pass:** Before emit, verifies the assistant final response representation contains exactly the two mandatory headings in order and exactly one `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` as separate Markdown paragraphs in the required order. `[Chat]` contains exactly one canonical lifecycle token and remains consistent with Next Action/persistence state; `[Required Read]` is final response content. If a user later reports a rendered omission despite an assistant-side complete close, acknowledges the regression and keeps the exact loss layer unverified unless independently observed.
+
+**Fail:** Emits a response with a missing/duplicate/malformed/out-of-order field, contradictory Chat Closure semantics, content after `[Required Read]`, or asserts a generation/transport/rendering root cause that was not verified.
+
+**GREEN expectation:** Mandatory Response Close completeness is checked as a lightweight pre-emit gate on every governed response, while user-visible omission evidence is preserved without fabricating the layer that caused it.
+
 ## GREEN Run Instructions
 
 Run each scenario in a fresh agent context twice:
