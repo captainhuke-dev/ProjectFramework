@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.4**
+- Project Source Framework: **1.2.5**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,20 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.2.5 Additions
+
+Framework `1.2.5` adds **Verified Material Task Completion Checkpoints**, **Progressive / Risk-Scoped Verification with Evidence Reuse**, **Environment-Scoped Local Workspace Binding**, and a **Response Close Completeness Gate** while keeping Project Source Schema `1.0.0`, semantic slots, Stable-ID families, and existing Project-local pinning unchanged.
+
+For Material Git-backed Tasks, durable `DONE` requires affected verification to pass and the required completed result to exist in observed Git commit(s); read-only/no-mutation Tasks require no synthetic commit, `WIP commit ≠ Task DONE`, and `commit ≠ push`. Cross-environment handoff must make the completion commit reachable to the receiving environment before claiming continuation safety.
+
+Verification now scales with affected scope, dependencies, and `R0–R3` risk. Task-level work uses minimum sufficient checks, Logical Checkpoints verify durable continuation rather than full regression, a completed release/candidate receives one full verification per unchanged candidate state, and fresh state-bound evidence may be reused until selectively invalidated. Integration still re-resolves Canonical Integration Target/Base Freshness and evidence validity; exact fast-forward to an already verified tree normally needs proportional resulting-state confirmation rather than an unconditional full rerun.
+
+Project Location Binding now supports environment-scoped **Local Workspace Binding** for local/MCP execution using the existing `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED` states. A bound local environment uses a verified/user-confirmed absolute path and, for Git-backed work, repository identity should be cross-checked when practical. MCP `workspaceId`, active/recent workspace lists, and similar tool identifiers are routing evidence only. Repository Location Binding, Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime Location remain distinct semantics.
+
+Every Framework-governed assistant response also performs a lightweight **Response Close Completeness Gate** before emit to ensure the two mandatory headings plus `[Next Action]`, `[Chat]`, `[Reason]`, and `[Required Read]` are present exactly once, ordered, lifecycle-consistent, and final. The gate validates assistant output representation only and does not fabricate claims about downstream UI rendering.
+
+This remains governance/documentation scope. Framework `1.2.5` adds no executable validator, hook, bot, CI/CD workflow, scheduler, filesystem watcher, automatic workspace selector, new semantic slot, or Stable-ID namespace. Existing initialized Projects remain locally pinned and do not auto-upgrade.
 
 ## Framework 1.2.4 Additions
 
