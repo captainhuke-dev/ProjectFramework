@@ -1,6 +1,7 @@
 import subprocess
 import sys
 from pathlib import Path
+import shutil
 
 import yaml
 
@@ -26,20 +27,31 @@ EXPECTED_ENTRYPOINT_HEADINGS = [
 ]
 
 
-def test_validator_cli_reports_runtime_extensions(repo_root: Path, tmp_path: Path) -> None:
-    production = tmp_path / "universal-ai-agent-constitution"
-    production.mkdir()
-    (production / "UAAC-v5.0-CONSTITUTION.md").write_text(
-        "# Controlled fixture\n", encoding="utf-8"
+def _copy_developer_validation_fixture(repo_root: Path, destination: Path) -> None:
+    shutil.copytree(
+        repo_root / "universal-ai-agent-constitution",
+        destination / "universal-ai-agent-constitution",
     )
-    (production / "runtime.py").write_text("raise SystemExit(0)\n", encoding="utf-8")
-    completed = subprocess.run(
+    conformance = destination / "uaac-conformance"
+    conformance.mkdir()
+    shutil.copy2(
+        repo_root / "uaac-conformance/template-schema-map.yaml",
+        conformance / "template-schema-map.yaml",
+    )
+    shutil.copytree(
+        repo_root / "uaac-conformance/schemas",
+        conformance / "schemas",
+    )
+
+
+def _run_validator(repo_root: Path, target_root: Path) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
         [
             sys.executable,
             "-B",
             str(repo_root / "uaac-conformance/tools/validate_distribution.py"),
             "--repository-root",
-            str(tmp_path),
+            str(target_root),
         ],
         cwd=repo_root,
         capture_output=True,
@@ -47,8 +59,51 @@ def test_validator_cli_reports_runtime_extensions(repo_root: Path, tmp_path: Pat
         check=False,
     )
 
+
+def test_validator_cli_reports_runtime_extensions(repo_root: Path, tmp_path: Path) -> None:
+    production = tmp_path / "universal-ai-agent-constitution"
+    production.mkdir()
+    (production / "UAAC-v5.0-CONSTITUTION.md").write_text(
+        "# Controlled fixture\n", encoding="utf-8"
+    )
+    (production / "runtime.py").write_text("raise SystemExit(0)\n", encoding="utf-8")
+    completed = _run_validator(repo_root, tmp_path)
+
     assert completed.returncode == 1
     assert "runtime extension: universal-ai-agent-constitution/runtime.py" in completed.stdout
+
+
+def test_validator_cli_rejects_missing_stable_law(repo_root: Path, tmp_path: Path) -> None:
+    _copy_developer_validation_fixture(repo_root, tmp_path)
+    (tmp_path / "universal-ai-agent-constitution/laws/CONST-025.md").unlink()
+
+    completed = _run_validator(repo_root, tmp_path)
+
+    assert completed.returncode == 1
+    assert "law IDs differ from CONST-001..CONST-025" in completed.stdout
+
+
+def test_validator_cli_rejects_corrupt_canonical_template(
+    repo_root: Path, tmp_path: Path
+) -> None:
+    _copy_developer_validation_fixture(repo_root, tmp_path)
+    template_path = (
+        tmp_path / "universal-ai-agent-constitution/templates/UAAC-ADOPTION.yaml"
+    )
+    instance = yaml.safe_load(template_path.read_text(encoding="utf-8"))
+    instance["runtime_status"] = "active"
+    template_path.write_text(yaml.safe_dump(instance, sort_keys=False), encoding="utf-8")
+
+    completed = _run_validator(repo_root, tmp_path)
+
+    assert completed.returncode == 1
+    assert "template/schema violation: uaac-adoption" in completed.stdout
+
+
+def test_validator_cli_accepts_current_distribution(repo_root: Path) -> None:
+    completed = _run_validator(repo_root, repo_root)
+    assert completed.returncode == 0
+    assert completed.stdout.strip() == "UAAC_CONFORMANCE_PASS"
 
 
 def test_production_extensions_are_runtime_free(production_root: Path) -> None:
