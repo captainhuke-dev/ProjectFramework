@@ -1,6 +1,6 @@
 # Framework Next Improvement Candidates
 
-Status: PLANNING_ONLY / NOT_IMPLEMENTED
+Status: CONSOLIDATED_SCOPE_APPROVED / DESIGN_IN_PROGRESS / NOT_IMPLEMENTED
 
 Created: 2026-08-22
 
@@ -14,7 +14,7 @@ This document is a planning checkpoint only. It does not change Framework `1.2.4
 
 ## Candidate 1 — Verified Material Task Completion Commit
 
-**Planning status:** USER_APPROVED_FOR_PLANNING
+**Planning status:** USER_APPROVED_FOR_UPGRADE
 
 **Implementation status:** NOT_STARTED
 
@@ -76,7 +76,7 @@ Provide a deterministic handoff boundary between GPT-Web, Codex, and other Agent
 
 ## Candidate 2 — Progressive / Risk-Scoped Verification and Evidence Reuse
 
-**Planning status:** USER_APPROVED_FOR_PLANNING
+**Planning status:** USER_APPROVED_FOR_UPGRADE
 
 **Implementation status:** NOT_STARTED
 
@@ -184,6 +184,106 @@ This keeps Agent handoffs deterministic without making every Task pay the cost o
 
 ---
 
+## Candidate 3 — Environment-Scoped Local Workspace Binding
+
+**Planning status:** USER_APPROVED_FOR_UPGRADE
+
+**Implementation status:** NOT_STARTED
+
+### Problem
+
+Framework `1.2.4` binds GitHub repository and Google Drive locations, but Material local/MCP execution can still target the wrong local Project path if an Agent acts on whichever workspace is active, most recent, or first discovered. A repository binding alone does not tell a local execution tool which filesystem workspace it may mutate.
+
+### Selected direction
+
+Extend Project Location Binding with an **environment-scoped Local Workspace Binding**. The binding answers where local/MCP Project work is allowed to operate for the applicable execution environment. It is not named `MCP Path` because MCP is an access mechanism and may be replaced by Codex shell, another MCP server, or another local execution surface without changing the Project's local workspace identity.
+
+For a typical single-workstation Project, one environment-scoped binding may be sufficient. Projects that operate from multiple machines/environments may carry multiple environment-scoped local workspace entries; paths are not assumed to be globally identical across hosts.
+
+Conceptual preflight:
+
+```text
+resolve Project / active FRAMEWORK-001
+→ resolve applicable Local Workspace Binding for current execution environment
+→ inspect actual local/MCP workspace
+→ compare canonical path and, when Git-backed, repository identity when practical
+→ BOUND + match → continue to Authority/Risk preflight
+→ VERIFICATION_REQUIRED → read/search/inspection only by default
+→ NOT_APPLICABLE → block Material local/MCP Project work
+→ material mismatch → stop affected mutation and surface mismatch/DRIFT when applicable
+```
+
+### Proposed semantic contract
+
+1. **Canonical home:** Local Workspace Binding is part of active local `FRAMEWORK-001` Project Location Binding; `03`, `09`, plans, or MCP configuration may reference it but do not become independent Project-location authority.
+2. **Environment scope:** A local path is scoped to a declared execution environment. The Framework must not require one absolute path to be valid on every machine that can access the Project.
+3. **Binding states:** Reuse exactly `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`; do not create an MCP-specific state family.
+4. **Minimum BOUND locator:** The applicable environment entry needs a verified/user-confirmed absolute canonical Project/workspace path. For Git-backed work, repository identity should be cross-checked when practical so path-name coincidence alone does not silently bind the wrong clone/project.
+5. **Fail closed:** `VERIFICATION_REQUIRED` allows read/list/inspect/search needed to resolve the local workspace but blocks Material mutation by default.
+6. **NOT_APPLICABLE:** Blocks Material local/MCP Project work for that environment/scope until an approved Root Governance binding/scope revision.
+7. **One-off exact target:** Existing Framework `1.2.4` semantics apply: a User Explicit Instruction naming one exact local target may authorize that one otherwise-permitted action without persistently rewriting Local Workspace Binding.
+8. **Persistent change:** Changing a Local Workspace Binding is a `FRAMEWORK-001` Root Governance mutation requiring User Explicit Approval and governed revision/validate/promote/supersede/archive flow.
+9. **Tool-specific IDs are evidence only:** MCP `workspaceId`, server-local handles, recent workspace lists, editor state, and similar tool-specific identifiers may help verify routing but are not canonical Project identity and must not silently rewrite the binding.
+10. **Repository cross-check:** When the bound local workspace is Git-backed, observed repository identity/origin is verification evidence. Repository identity mismatch blocks affected Material mutation until resolved.
+11. **No branch authority:** Local Workspace Binding does not define or infer `canonical_branch`, current work branch/worktree, or Canonical Integration Target.
+12. **No implementation-authority collapse:** Local Workspace Binding answers where the local tool may operate. Canonical Implementation Source / Development Workspace Contract answers what durable source determines `IMPLEMENTATION` Truth. They may point to the same path but remain distinct semantics.
+13. **No runtime collapse:** Runtime/container path or execution location remains distinct from Local Workspace Binding unless the Project explicitly declares the same durable workspace and applicable contracts support it.
+14. **GREENFIELD:** Candidate local paths may be discovered read-only and presented in the bootstrap Preview. Unknown applicable local execution remains `VERIFICATION_REQUIRED`; Project paths are never invented from recent activity or tool ranking.
+15. **Migration:** Existing Projects upgrading from `1.2.4` must not invent local paths. If local execution is applicable but unresolved, migrate as `VERIFICATION_REQUIRED`; if local execution is outside Project scope, use `NOT_APPLICABLE`.
+
+### Required semantic separation
+
+```text
+Repository Location Binding
+≠ Local Workspace Binding
+≠ current branch/worktree
+≠ Canonical Integration Target
+≠ Canonical Implementation Source
+≠ Runtime Location
+```
+
+### Relationship to Candidates 1 and 2
+
+```text
+Candidate 3 → establish WHERE local/MCP work may operate
+Candidate 2 → establish WHAT verification is sufficient for the changed scope/risk
+Candidate 1 → establish WHEN the Material Git-backed Task may become durably DONE
+```
+
+Together they form a deterministic multi-Agent continuation path:
+
+```text
+resolve correct workspace
+→ verify affected scope efficiently
+→ create verified completion commit
+→ hand off observed workspace/repository/HEAD/next-action pointers
+```
+
+### Explicit non-goals
+
+- Do not make MCP itself a Project authority.
+- Do not require one universal filesystem path across all machines.
+- Do not persist volatile MCP workspace IDs as canonical identity.
+- Do not create a new Stable-ID family, Git freshness state, lifecycle state, or schema namespace.
+- Do not add workspace auto-selection, filesystem watcher, hook, bot, CI/CD, scheduler, or enforcement runtime.
+
+---
+
+## Approved upgrade scope — Framework 1.2.5 candidate
+
+**User approval:** Candidate 1, Candidate 2, and Candidate 3 are approved to move together into the next Framework upgrade design.
+
+**Target Framework:** `1.2.5`
+
+**Target Schema:** `1.0.0` unchanged
+
+**Compatibility intent:** backward-compatible governance/workflow enhancement; existing initialized Projects remain locally pinned and do not auto-upgrade.
+
+**Consolidated objective:** Improve multi-Agent/local-MCP continuity by requiring verified Git completion checkpoints for Material completed Tasks, replacing repeated full verification with risk/scope-proportional verification plus state-bound evidence reuse, and extending Project Location Binding to environment-scoped local workspaces without creating competing repository, branch, implementation, or runtime authority.
+
+The consolidated design must preserve all Framework `1.2.4` invariants unless explicitly amended and must not introduce executable enforcement tooling.
+
+---
 ## Implementation gate
 
-No candidate in this document authorizes implementation. Before any candidate changes normative/current Framework distribution artifacts, it must go through design consolidation, scope review, explicit user approval, and a separate implementation plan.
+Candidates 1–3 are approved for consolidated Framework 1.2.5 design. Normative/current Framework implementation remains gated until the written consolidated design is reviewed/accepted and a separate implementation plan is created under the governed workflow.
