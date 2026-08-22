@@ -1,0 +1,14 @@
+schema_version: '1.0'
+document_type: PROJECT_DOCUMENT_REGISTRY
+registry_id: PDR-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+documents:
+  project_definition:
+    locator: project-docs/PROJECT-DEFINITION.md
+    status: CANONICAL
+  requirements:
+    locator: project-docs/REQUIREMENTS.md
+    status: CANONICAL
+  current_state:
+    locator: project-docs/CURRENT-STATE.md
+    status: CANONICAL

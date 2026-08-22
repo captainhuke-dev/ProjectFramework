@@ -1,0 +1,25 @@
+schema_version: '1.0'
+handoff_id: <id>
+project_id: <project>
+task_id: <task>
+lineage_id: <lineage>
+from_agent: <agent>
+intended_receiver: <receiver>
+state_authority_map_identity: <map>
+continuation_pointer_identity: <pointer>
+checkpoint_identity: <checkpoint>
+current_state: <state>
+completed: []
+not_completed: []
+artifacts: []
+verification_state: <state>
+open_uncertainties: []
+exact_next_action: <action>
+created_at: <timestamp>
+receiver_receipt: null
+boot_receipt_identity: <boot-receipt-identity>
+canonical_surface:
+  locator: <receiver-visible-locator>
+  identity: <identity>
+  observed_at: <timestamp>
+receiver_visibility_required: true

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "document_type", "registry_id", "project_id", "adapters", "verified_at", "verified_by"],
+  "properties": {
+    "document_type": {"const": "AGENT_ADAPTER_REGISTRY"},
+    "adapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "adapter_id", "agent_id", "platform", "status", "launcher",
+          "bootstrap_kernel_identity", "boot_procedure_id", "invocation_trigger",
+          "invocation_evidence"
+        ],
+        "properties": {
+          "status": {"enum": ["VERIFIED", "BLOCKED", "STALE", "FILE_ONLY"]},
+          "boot_procedure_id": {"const": "UAAC-BOOT"},
+          "invocation_trigger": {"const": "EVERY_MATERIAL_TASK"},
+          "invocation_evidence": {
+            "type": "object",
+            "required": ["status", "receipt"],
+            "properties": {"status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}}
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

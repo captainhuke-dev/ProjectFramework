@@ -1,0 +1,25 @@
+schema_version: '1.0'
+document_type: LINEAGE_CONTINUATION_POINTER
+pointer_id: PTR-UAAC-V42-REFERENCE-002
+predecessor_pointer_id: PTR-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+lineage_id: LINEAGE-REFERENCE
+task_id: REF-CROSS-AGENT-BOOT-001
+epoch: 2
+status: IN_PROGRESS
+constitution_identity: git:captainhuke-dev/ProjectFramework@5a309d8d38046bf3e8cd4beb2fc82a872f211cad:universal-ai-agent-constitution/
+project_law_identity: PROJECT-LAW-UAAC-V42-REFERENCE-001
+state_authority_map_identity: SAM-UAAC-V42-REFERENCE-001
+project_document_registry_identity: PDR-UAAC-V42-REFERENCE-001
+skill_registry_identity: SKR-UAAC-V42-REFERENCE-001
+completed:
+  - UAAC v4.2 core published and remotely verified
+  - Remote-backed reference Project published to hz-framework
+  - Remote Project Binding readback verified
+  - Static launcher convergence verified
+  - Live ChatGPT receiver-side boot PASS recorded
+pending:
+  - live Codex receiver-side boot receipt
+  - compare Codex receipt with ChatGPT receipt
+  - mark live cross-agent convergence only if identity sets agree
+exact_next_action: RUN_CODEX_RECEIVER_BOOT_AND_COMPARE_RECEIPTS

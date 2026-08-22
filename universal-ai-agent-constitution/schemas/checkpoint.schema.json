@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "checkpoint_id",
+    "project_id",
+    "task_id",
+    "lineage_id",
+    "agent_identity",
+    "governance_bundle_identity",
+    "state_authority_map_identity",
+    "objective",
+    "current_state",
+    "completed",
+    "pending",
+    "exact_next_action",
+    "created_at",
+    "boot_receipt_identity",
+    "attempt_preconditions",
+    "visibility"
+  ],
+  "additionalProperties": true
+}

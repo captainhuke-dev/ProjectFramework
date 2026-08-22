@@ -1,0 +1,17 @@
+schema_version: '1.0'
+document_type: PROJECT_BINDING
+binding_id: PB-UAAC-V42-REFERENCE-001
+status: VERIFIED
+project_id: uaac-v42-reference
+project_root: uaac-v4.2-reference-project
+canonical_repository: captainhuke-dev/ProjectFramework
+canonical_ref_policy: hz-framework
+governance_front_door: governance/UAAC-BOOT.md
+nested_project_policy: EXPLICIT_BOUNDARY
+verification:
+  status: PASS
+  expected_front_door_blob: 3abc8612db5862c8d83ddd44fa58d719caf4104a
+  observed_front_door_blob: 3abc8612db5862c8d83ddd44fa58d719caf4104a
+  observed_branch_commit: a20254dfbad870257c7c4e13d7df852cf9d79ac8
+  observed_at: '2026-08-22T01:20:00+07:00'
+  observed_by: CHATGPT

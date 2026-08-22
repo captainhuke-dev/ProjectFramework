@@ -1,0 +1,38 @@
+schema_version: '2.0'
+document_type: CONSTITUTION_ADOPTION
+installation:
+  lifecycle_state: STAGED
+  validation_locator: governance/REFERENCE-VALIDATION.yaml
+constitution:
+  id: UAAC-001
+  version: 4.2.0
+  upstream_source: captainhuke-dev/ProjectFramework
+  upstream_observed_commit: 5a309d8d38046bf3e8cd4beb2fc82a872f211cad
+  upstream_package_tree: 3e62912bcbd88d91339dfa772dc6776ee95c77c5
+  upstream_locator: universal-ai-agent-constitution/
+  local_pin_locator: vendor/uaac/v4.2.0/PINNED-RELEASE.yaml
+  pinned_reference: git:captainhuke-dev/ProjectFramework@5a309d8d38046bf3e8cd4beb2fc82a872f211cad:universal-ai-agent-constitution/
+project:
+  id: uaac-v42-reference
+  name: UAAC v4.2 Remote-Backed Reference Project
+  boundary: uaac-v4.2-reference-project
+governance_source:
+  repository: captainhuke-dev/ProjectFramework
+  canonical_ref_policy: hz-framework
+  bootstrap_path: uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+  bootstrap_canonical_url: https://github.com/captainhuke-dev/ProjectFramework/blob/hz-framework/uaac-v4.2-reference-project/governance/UAAC-BOOT.md
+project_law:
+  locator: governance/PROJECT-LAWS/PROJECT_RULES.md
+state_authority_map:
+  locator: governance/STATE-AUTHORITY-MAP.yaml
+current_continuation_index:
+  locator: governance/CURRENT-CONTINUATION.yaml
+project_document_registry:
+  locator: governance/PROJECT-DOCUMENT-REGISTRY.yaml
+project_capability_pack:
+  locator: governance/PROJECT-CAPABILITY-PACK.yaml
+procedure_registry:
+  locator: governance/SKILL-REGISTRY.yaml
+effective_scope:
+  external_effects: FORBIDDEN
+  purpose: CROSS_AGENT_REFERENCE_VERIFICATION

@@ -1,0 +1,140 @@
+schema_version: '1.0'
+project_id: example-installed-project
+contracts:
+- token: INSTALLATION_VALIDATED
+  meaning: Static and configured cross-agent installation checks passed.
+  issuer_scope: authorized installation verifier
+  substantiating_artifact: governance/INSTALLATION-VALIDATION.yaml
+  validation_method: schema + static validator + cross-agent evidence
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL
+  - EVIDENCE_SOURCE
+  freshness_or_expiry: invalidated by governance/install artifact change
+  safe_fallback: INSTALLATION_UNVERIFIED
+  controls:
+  - may request effective adoption
+- token: EFFECTIVE
+  meaning: Authorized Project adoption is in force.
+  issuer_scope: Project principal
+  substantiating_artifact: governance/CONSTITUTION-ADOPTION.yaml
+  validation_method: authority reference and effective lifecycle state
+  admissible_evidence_classes:
+  - EVIDENCE_HUMAN
+  - EVIDENCE_SOURCE
+  freshness_or_expiry: until superseded/revoked
+  safe_fallback: ADOPTION_NOT_EFFECTIVE
+  controls:
+  - governs material work
+- token: BOOTSTRAP_CONVERGENCE_FAILED
+  meaning: Intended agents resolved differing Project governance/state identities.
+  issuer_scope: installer or verifier
+  substantiating_artifact: governance/INSTALLATION-VALIDATION.yaml
+  validation_method: compare recorded resolutions
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL
+  - EVIDENCE_SOURCE
+  freshness_or_expiry: until revalidation
+  safe_fallback: INSTALLATION_UNVERIFIED
+  controls:
+  - blocks effective installation
+- token: PROJECT_BINDING_MATCH
+  meaning: Project root, ID, repository/ref policy and front door agree.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: governance/PROJECT-BINDING.yaml
+  validation_method: IDENTITY_COMPARISON
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: PROJECT_BINDING_UNKNOWN
+  controls:
+  - material Project work
+- token: TASK_CONTEXT_CURRENT
+  meaning: Attempt preconditions match current canonical identities immediately before
+    material write.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: governance/BOOT-RECEIPT.yaml
+  validation_method: PRE_WRITE_COMPARISON
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: TASK_CONTEXT_UNKNOWN
+  controls:
+  - material write/commit/push/merge/state transition
+- token: CANONICAL_SURFACE_VISIBLE
+  meaning: Intended receiver can read back the canonical surface and exact identity.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: governance/INSTALLATION-VALIDATION.yaml
+  validation_method: RECEIVER_READBACK
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: CANONICAL_SURFACE_VISIBILITY_UNKNOWN
+  controls:
+  - cross-agent handoff/continuation
+- token: PLATFORM_ADAPTER_INVOKED
+  meaning: Platform adapter invoked Bootstrap Kernel/UAAC-BOOT at required trigger.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: governance/AGENT-ADAPTER-REGISTRY.yaml
+  validation_method: BEHAVIORAL_INVOCATION_TEST
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: PLATFORM_ADAPTER_UNVERIFIED
+  controls:
+  - Auto-Boot installation status
+- token: AUTO_BOOT_VALID
+  meaning: Auto-Boot resolves canonical state and selects applicable procedures without
+    a user reminder.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: governance/BOOT-RECEIPT.yaml
+  validation_method: BEHAVIORAL_SCENARIO
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: AUTO_BOOT_UNVERIFIED
+  controls:
+  - ordinary material tasks
+- token: BASE_FRESHNESS_MATCH
+  meaning: Publication base and expected predecessor remain current at ref update.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: PUBLICATION-CONTRACT.yaml
+  validation_method: BASE_AND_REF_RECHECK
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: BASE_FRESHNESS_UNKNOWN
+  controls:
+  - publication
+- token: ATOMIC_PUBLICATION_VERIFIED
+  meaning: Exact final tree is visible remotely with no partial/staging artifacts.
+  issuer_scope:
+  - authorized validator or verifier
+  substantiating_artifact: PUBLICATION-CONTRACT.yaml
+  validation_method: REMOTE_TREE_READBACK
+  admissible_evidence_classes:
+  - EVIDENCE_TOOL_OBSERVATION
+  - EVIDENCE_SOURCE_RECORD
+  - EVIDENCE_PROCESS_RECEIPT
+  freshness_or_expiry: invalidated by a material referenced identity or access change
+  safe_fallback: PUBLICATION_UNVERIFIED
+  controls:
+  - PUBLISHED claim
+registry_id: CCR-INSTALLED-001

@@ -1,0 +1,20 @@
+schema_version: '1.0'
+document_type: AGENT_ADAPTER_REGISTRY
+registry_id: AAR-UAAC-V42-REFERENCE-001
+project_id: uaac-v42-reference
+adapters:
+  - adapter_id: ADAPTER-CHATGPT-REFERENCE-001
+    platform: CHATGPT
+    launcher: governance/platform/CHATGPT-PROJECT-INSTRUCTIONS.md
+    bootstrap_kernel: governance/BOOTSTRAP-KERNEL.md
+    boot_procedure_id: UAAC-BOOT
+    static_status: VERIFIED
+    live_status: PASS
+    live_receipt: governance/receipts/CHATGPT-BOOT.yaml
+  - adapter_id: ADAPTER-CODEX-REFERENCE-001
+    platform: CODEX
+    launcher: AGENTS.md
+    bootstrap_kernel: governance/BOOTSTRAP-KERNEL.md
+    boot_procedure_id: UAAC-BOOT
+    static_status: VERIFIED
+    live_status: NOT_RUN

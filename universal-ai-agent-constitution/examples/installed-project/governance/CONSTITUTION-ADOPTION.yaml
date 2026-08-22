@@ -1,0 +1,109 @@
+schema_version: '2.0'
+document_type: CONSTITUTION_ADOPTION
+installation:
+  protocol_id: UAAC-INSTALL-001
+  lifecycle_state: EFFECTIVE
+  validation_locator: governance/INSTALLATION-VALIDATION.yaml
+  effective_authority_ref: OWNER-DECISION-001
+constitution:
+  id: UAAC-001
+  version: 4.2.0
+  upstream_source: captainhuke-dev/ProjectFramework
+  upstream_observed_commit: example-upstream-commit
+  local_locator: vendor/uaac/v4.2.0/
+  pinned_reference: sha256:example-uaac-v4.2.0-package
+project:
+  id: example-installed-project
+  name: Example Installed Project
+  boundary: examples/installed-project
+governance_source:
+  repository: example/installed-project
+  canonical_ref_policy: main
+  bootstrap_path: governance/UAAC-BOOT.md
+  bootstrap_canonical_url: https://github.com/example/installed-project/blob/main/governance/UAAC-BOOT.md
+constraint_register:
+  locator: governance/CONSTRAINT-REGISTER.yaml
+  potential: []
+  applicable: []
+  rejected: []
+materiality:
+  threshold: Errors affecting authority, canonical state, external effects, cost,
+    or risk are material.
+authorized_channels:
+- id: owner-direct
+  grants:
+  - Project governance and execution instructions within Project Law
+state_authority_map:
+  locator: governance/STATE-AUTHORITY-MAP.yaml
+current_continuation_index:
+  locator: governance/CURRENT-CONTINUATION.yaml
+claim_contract_registry:
+  locator: governance/CLAIM-CONTRACT-REGISTRY.yaml
+project_document_registry:
+  locator: governance/PROJECT-DOCUMENT-REGISTRY.yaml
+project_capability_pack:
+  locator: governance/PROJECT-CAPABILITY-PACK.yaml
+conformance:
+  agents:
+  - agent_id: CHATGPT-EXAMPLE
+    proven_capability_level: L2
+    task_required_level_default: L1
+    allowed_operating_levels:
+    - L1
+    - L2
+    capabilities:
+    - read canonical GitHub sources
+    - inspect artifacts
+    limitations:
+    - no local uncommitted workspace access
+    evidence_locator: governance/INSTALLATION-VALIDATION.yaml
+  - agent_id: CODEX-EXAMPLE
+    proven_capability_level: L3
+    task_required_level_default: L1
+    allowed_operating_levels:
+    - L1
+    - L2
+    - L3
+    capabilities:
+    - read and write local Project files
+    - run tests
+    - verify hashes
+    limitations: []
+    evidence_locator: governance/INSTALLATION-VALIDATION.yaml
+project_law:
+  locator: governance/PROJECT-LAWS/PROJECT_RULES.md
+project_wiki:
+  locator: governance/LLM-WIKI/index.md
+  fallback_route: governance/UAAC-BOOT.md
+procedure_registry:
+  locator: governance/SKILL-REGISTRY.yaml
+  procedures_relied_upon:
+  - UAAC-BOOT
+  - UAAC-REPORT
+  - UAAC-RECALL
+  - UAAC-CHECKPOINT
+  - UAAC-HANDOFF
+  - UAAC-DECISION
+  - UAAC-COMMUNICATION
+extensions: []
+context_substrates: []
+escalation_policy:
+  when_principal_unavailable: CHECKPOINT_AND_STOP
+  timeout: PT24H
+  pre_authorized_defaults: []
+  never_proceed_on:
+  - irreversible actions
+  - actions touching secrets
+  - external publication
+  - R3 actions
+system_feedback:
+  metrics_locator: governance/SYSTEM-HEALTH-METRICS.yaml
+  review_trigger: installation or governance change
+adopted_at: '2026-08-21T00:00:00+07:00'
+adopted_by: EXAMPLE-OWNER
+project_binding:
+  locator: governance/PROJECT-BINDING.yaml
+agent_adapter_registry:
+  locator: governance/AGENT-ADAPTER-REGISTRY.yaml
+boot_receipt:
+  locator: governance/BOOT-RECEIPT.yaml

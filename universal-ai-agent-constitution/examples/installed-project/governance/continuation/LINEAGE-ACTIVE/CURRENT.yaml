@@ -1,0 +1,52 @@
+schema_version: '1.0'
+document_type: LINEAGE_CONTINUATION_POINTER
+pointer_id: PTR-ACTIVE-002
+project_id: example-installed-project
+lineage_id: LINEAGE-ACTIVE
+epoch: 2
+task_id: TASK-ACTIVE
+job_id: JOB-ACTIVE
+status: IN_PROGRESS
+current_actor:
+  actor_id: CODEX-EXAMPLE
+  actor_type: CODEX
+objective: Implement the next governed change.
+completed:
+- design reviewed
+pending:
+- implementation
+- verification
+artifacts:
+- locator: feature/example
+  identity: git:feature/example@abc123
+verification:
+  state: NOT_RUN
+  evidence: []
+blockers: []
+checkpoint:
+  locator: governance/checkpoints/CP-ACTIVE-002.yaml
+  identity: CP-ACTIVE-002
+handoff:
+  locator: null
+  identity: null
+exact_next_action: Implement from the approved design and run tests.
+governance_bundle_identity: UAAC-4.2.0+PROJECT-LAW-001
+project_document_registry_identity: PDR-INSTALLED-001
+skill_registry_identity: SKR-INSTALLED-001
+context_binding_identity: null
+predecessor_pointer_identity: PTR-ACTIVE-001
+update_precondition:
+  expected_predecessor_identity: PTR-ACTIVE-001
+created_at: '2026-08-21T00:00:00+07:00'
+updated_at: '2026-08-21T00:10:00+07:00'
+updated_by: CODEX-EXAMPLE
+boot_receipt_identity: BOOT-RECEIPT-001
+attempt_preconditions:
+  governance_identity: git:example-install-commit
+  project_law_identity: PROJECT-LAW-001
+  continuation_index_identity: CONT-INDEX-001
+  artifact_base_identity: git:feature/example@abc123
+visibility:
+  state: CANONICAL_VISIBLE
+  canonical_surface: https://github.com/example/installed-project/blob/main/governance/UAAC-BOOT.md
+  receiver_visible: true

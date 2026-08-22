@@ -1,0 +1,92 @@
+schema_version: '1.0'
+document_type: UAAC_INSTALLATION_VALIDATION
+validation_id: INSTALL-VALIDATION-001
+project_id: example-installed-project
+status: INSTALLATION_VALIDATED
+installation_protocol: UAAC-INSTALL-001
+constitution_identity: sha256:example-uaac-v4.2.0-package
+front_door:
+  locator: governance/UAAC-BOOT.md
+  identity: git:example-install-commit
+static_checks:
+- check: ONE_EFFECTIVE_FRONT_DOOR
+  status: PASS
+- check: REQUIRED_LOCATORS_RESOLVE
+  status: PASS
+- check: PROJECT_DOCUMENTS_RESOLVED
+  status: PASS
+- check: CAPABILITY_PACK_RESOLVED
+  status: PASS
+- check: CONTINUATION_VALID
+  status: PASS
+- check: PROJECT_BINDING_VALID
+  status: PASS
+- check: NESTED_BOUNDARY_VALID
+  status: PASS
+- check: AUTO_BOOT_CONFIGURED
+  status: PASS
+- check: PLATFORM_ADAPTERS_VERIFIED
+  status: PASS
+- check: RECEIVER_CANONICAL_ACCESS
+  status: PASS
+- check: PRE_WRITE_CONTEXT_VALID
+  status: PASS
+- check: BASE_FRESHNESS_VALID
+  status: PASS
+- check: ATOMIC_PUBLICATION_VALID
+  status: PASS
+cross_agent_convergence:
+  status: PASS
+  resolutions:
+  - agent_id: CHATGPT-EXAMPLE
+    entrypoint: governance/platform/CHATGPT-PROJECT-INSTRUCTIONS.md
+    project_id: example-installed-project
+    constitution_identity: sha256:example-uaac-v4.2.0-package
+    project_law_identity: PROJECT-LAW-001
+    state_authority_map_identity: SAM-INSTALLED-001
+    continuation_index_identity: CONT-INDEX-001
+    project_document_registry_identity: PDR-INSTALLED-001
+    skill_registry_identity: SKR-INSTALLED-001
+    adapter_registry_identity: AAR-INSTALLED-001
+    canonical_access:
+      status: PASS
+      locator: https://github.com/example/installed-project/blob/main/governance/UAAC-BOOT.md
+      observed_identity: git:example-install-commit
+      observed_at: '2026-08-21T00:20:00+07:00'
+  - agent_id: CODEX-EXAMPLE
+    entrypoint: AGENTS.md
+    project_id: example-installed-project
+    constitution_identity: sha256:example-uaac-v4.2.0-package
+    project_law_identity: PROJECT-LAW-001
+    state_authority_map_identity: SAM-INSTALLED-001
+    continuation_index_identity: CONT-INDEX-001
+    project_document_registry_identity: PDR-INSTALLED-001
+    skill_registry_identity: SKR-INSTALLED-001
+    adapter_registry_identity: AAR-INSTALLED-001
+    canonical_access:
+      status: PASS
+      locator: https://github.com/example/installed-project/blob/main/governance/UAAC-BOOT.md
+      observed_identity: git:example-install-commit
+      observed_at: '2026-08-21T00:20:00+07:00'
+behavioral_scenarios:
+- S-INSTALL-01
+- S-INSTALL-02
+- S-INSTALL-13
+- S-INSTALL-14
+- S-INSTALL-15
+- S-INSTALL-16
+- S-INSTALL-17
+- S-INSTALL-18
+- S-INSTALL-19
+- S-INSTALL-20
+- S-INSTALL-21
+- S-INSTALL-22
+- S-INSTALL-23
+known_limitations:
+- Example identities are illustrative
+- not a real Git release
+validated_at: '2026-08-21T00:20:00+07:00'
+validated_by: INSTALL-VERIFIER-001
+effective_adoption:
+  status: EFFECTIVE
+  authority_ref: OWNER-DECISION-001

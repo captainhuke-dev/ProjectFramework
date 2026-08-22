@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "document_type",
+    "pack_id",
+    "project_id",
+    "status",
+    "profile",
+    "required_functional_outcomes",
+    "procedure_registry",
+    "project_document_registry",
+    "resolved_at",
+    "resolved_by",
+    "auto_boot"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "PROJECT_CAPABILITY_PACK"
+    },
+    "status": {
+      "enum": [
+        "RESOLVED",
+        "BLOCKED",
+        "STALE"
+      ]
+    },
+    "required_functional_outcomes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "BOOT",
+          "REPORT",
+          "RECALL",
+          "CHECKPOINT",
+          "HANDOFF",
+          "DECISION",
+          "COMMUNICATION"
+        ]
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": [
+        "multi_session",
+        "multi_agent",
+        "decision_support",
+        "human_facing_transformation"
+      ],
+      "properties": {
+        "multi_session": {
+          "type": "boolean"
+        },
+        "multi_agent": {
+          "type": "boolean"
+        },
+        "decision_support": {
+          "type": "boolean"
+        },
+        "human_facing_transformation": {
+          "type": "boolean"
+        }
+      }
+    },
+    "auto_boot": {
+      "type": "object",
+      "required": [
+        "status",
+        "trigger",
+        "procedure_id",
+        "automatic_skill_selection",
+        "user_restatement_required",
+        "freshness_policy"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ACTIVE",
+            "BLOCKED",
+            "STALE"
+          ]
+        },
+        "trigger": {
+          "const": "EVERY_MATERIAL_TASK"
+        },
+        "procedure_id": {
+          "const": "UAAC-BOOT"
+        },
+        "automatic_skill_selection": {
+          "const": true
+        },
+        "user_restatement_required": {
+          "const": false
+        },
+        "freshness_policy": {
+          "enum": [
+            "IDENTITY_AND_TRIGGER_BASED"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

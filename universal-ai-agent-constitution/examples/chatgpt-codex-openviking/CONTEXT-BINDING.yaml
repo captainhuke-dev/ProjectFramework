@@ -1,0 +1,17 @@
+schema_version: '1.0'
+binding_id: CB-EXAMPLE-001
+project_id: example-chatgpt-codex
+substrate_profile_identity: OPENVIKING-PROFILE-1
+service_identity: OV-SERVICE-OPAQUE-1
+isolation_boundary:
+  account_or_tenant: ACCOUNT-OPAQUE
+  user_or_agent: SHARED-PROJECT-USER
+  peer: NONE
+roots:
+  resources: viking://resources/example-project
+  memories: viking://user/memories/example-project
+  skills: viking://user/skills/example-project
+state_authority_map_identity: SAM-EXAMPLE-CHATCODEX-001
+continuation_pointer_identity: CPTR-EXAMPLE-CHATCODEX-001
+observed_at: '2026-08-20T00:00:00+07:00'
+observed_by: EXAMPLE

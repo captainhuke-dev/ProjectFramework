@@ -1,0 +1,34 @@
+{
+  "document_type": "STRUCTURAL_VALIDATION_RECEIPT",
+  "constitution_id": "UAAC-001",
+  "constitution_version": "4.2.0",
+  "status": "PASS",
+  "summary": {
+    "installation_fixture": {
+      "project": "examples/installed-project",
+      "terminal_lineage_retention": "PASS",
+      "project_id": "example-installed-project",
+      "front_door_count": 1,
+      "nested_project_count": 0,
+      "document_roles": 3,
+      "required_outcomes": [
+        "BOOT",
+        "CHECKPOINT",
+        "COMMUNICATION",
+        "DECISION",
+        "HANDOFF",
+        "RECALL",
+        "REPORT"
+      ],
+      "lineage_count": 2,
+      "agent_resolution_count": 2,
+      "finding_count": 0
+    },
+    "law_count": 25,
+    "scenario_count": 142,
+    "full_law_bytes": 79163,
+    "finding_count": 0,
+    "requirement_count": 253
+  },
+  "findings": []
+}
