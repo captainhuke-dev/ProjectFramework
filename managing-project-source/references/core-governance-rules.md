@@ -106,20 +106,22 @@ A real Project's current Project Source may document concrete verified commands,
 
 ### 2.2 Project Location Binding
 
-For an initialized Project, active local `00-Project Source Framework` / `FRAMEWORK-001` is the canonical home of **Project Location Binding**: the durable routing boundary that answers which GitHub repository and/or Google Drive project container belongs to the Project for connector-mediated Project work. `03 Current State` and `09 Handoff` MAY reference the active binding but MUST NOT maintain an independent authoritative copy.
+For an initialized Project, active local `00-Project Source Framework` / `FRAMEWORK-001` is the canonical home of **Project Location Binding**: the durable routing boundary that answers which GitHub repository, Google Drive project container, and environment-scoped **Local Workspace Binding** belongs to the Project for connector/local execution work. `03 Current State`, `09 Handoff`, `40 Technical Design`, plans, or MCP configuration MAY reference the active binding but MUST NOT maintain an independent authoritative copy.
 
 Project Location Binding is distinct from implementation and Git integration authority:
 
 ```text
 Repository Location Binding
+  ≠ Local Workspace Binding
   ≠ current work branch/worktree
   ≠ Canonical Integration Target
   ≠ Canonical Implementation Source
+  ≠ Runtime Location
 ```
 
 Location Binding MUST NOT add `canonical_branch` or any equivalent parallel branch authority. Framework `1.2.2` Canonical Integration Target/Base Freshness semantics and Framework `1.2.3` Canonical Implementation Source/Runtime Authority semantics remain independently binding.
 
-GitHub and Google Drive are classified independently using exactly:
+GitHub, Google Drive, and each applicable environment-scoped Local Workspace Binding are classified independently using exactly:
 
 ```text
 BOUND
@@ -130,8 +132,9 @@ VERIFICATION_REQUIRED
 `BOUND` requires sufficient durable routing identity for Material work:
 
 ```text
-GitHub       → repository owner/name OR canonical repository URL
-Google Drive → project-root folder ID OR canonical folder URL
+GitHub          → repository owner/name OR canonical repository URL
+Google Drive    → project-root folder ID OR canonical folder URL
+Local Workspace → verified/user-confirmed absolute canonical path for that environment; when Git-backed, repository identity SHOULD be cross-checked when practical
 ```
 
 A display name, textual Drive path, chat memory, recent connector activity, search ranking, or discovery result alone is insufficient to establish `BOUND`. A Drive display path is descriptive only when a stable folder/file ID or canonical URL is available.
@@ -157,6 +160,16 @@ resolve active local FRAMEWORK-001
 ```
 
 Project-specific repository, Drive-root, and designated-progress pointers belong in the local root binding, not platform launchers. Cross-system work continues to use source-native owners plus pointers rather than duplicated canonical content.
+
+### 2.3 Environment-Scoped Local Workspace Binding
+
+**Local Workspace Binding** answers where a local execution surface (GPT-Web/MCP, Codex/local shell, another MCP, IDE/terminal, or equivalent) may perform Material Project work for a declared execution environment. It reuses `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED` and creates no MCP-specific state family.
+
+A Project MAY have different local workspace paths across workstations, VMs, WSL distributions, Dev Containers, remote durable workspaces, or other environments. One global absolute path is not required. For `BOUND`, the applicable environment entry has a verified/user-confirmed absolute path; Git-backed work SHOULD cross-check repository owner/name or canonical URL when practical so a same-named wrong clone does not silently satisfy routing. If local execution is applicable but no verified entry can be resolved, the effective local binding is `VERIFICATION_REQUIRED`.
+
+MCP `workspaceId`, editor handles, active/recent workspaces, search ranking, and similar tool/runtime identifiers are **routing evidence only**. They are not canonical Project identity and MUST NOT silently rewrite Project Location Binding. A one-off User Explicit Instruction naming an exact local target applies only to that otherwise-authorized action and does not persistently rewrite the binding. Persistent Local Workspace Binding change is a Root Governance mutation requiring User Explicit Approval and the normal `FRAMEWORK-001` revision/validate/promote/supersede/archive flow.
+
+Before Material local/MCP mutation, preflight resolves the applicable environment-scoped Local Workspace Binding, compares the actual execution path and—when Git-backed/material—repository identity when practical, then preserves independent Authority/Risk, Canonical Integration Target, Canonical Implementation Source, and Runtime Truth gates.
 
 ## 3. Naming and Revision
 
@@ -317,6 +330,12 @@ PLANNED → READY_FOR_REVIEW → PASSED / FAILED / WAIVED
 ```
 
 `WAIVED` requires explicit rationale plus applicable authority/decision reference. A Gate blocks only its governed scope unless a stricter Project-Specific Rule states otherwise.
+
+### 6.3 Verified Task Completion Checkpoint
+
+For a Material Task / `ACT-*` that materially mutates a Git-backed Canonical Implementation Source or another authoritative repository artifact, durable `DONE` requires a **Verified Task Completion Checkpoint**. Required scope is complete; applicable affected-scope/risk verification has passed; the required completed result is represented by observed Git commit(s); no required completed result exists only as uncommitted working-tree state; and any remaining working-tree changes are understood.
+
+Read-only/no-repository-mutation Tasks require no synthetic commit. Failed, blocked, cancelled, or incomplete work cannot use commit existence to claim `DONE`; **WIP commit ≠ Task DONE**. One Task may use multiple coherent commits. **commit ≠ push**: remote publication remains a separate shared-state/authority action. Cross-environment handoff is continuation-safe only when the receiving environment can obtain the completion commit through the same durable repository or another governed transfer. Existing `ACT DONE ≠ MS REACHED ≠ OUT ACHIEVED` remains binding.
 
 ## 7. Metadata
 
@@ -482,13 +501,13 @@ Project-Specific Rules may be stricter. Before R2/R3 mutation, fresh-read author
 
 READ PREFLIGHT checks identity, `00`, `01`, `03`, task scope, Truth Domain, freshness, and active blockers. For initialized Projects, any Material GitHub/Google Drive work additionally resolves the applicable active `FRAMEWORK-001` Project Location Binding before treating a connector target as Project authority. `VERIFICATION_REQUIRED` permits resolution-oriented read/search/discovery but does not authorize Material mutation.
 
-MUTATION PREFLIGHT additionally checks actor/instance, authority, target, allowed paths, forbidden effects, risk, approval, relevant REQ/DEC, management controls when relevant, base/hash, downstream impact, reversibility, and evidence requirements. For Material connector mutation, preflight also checks binding state, minimum durable routing identity, intended-target match when comparison is possible, and the rule that a one-off exact-target instruction does not persistently rewrite Root Governance.
+MUTATION PREFLIGHT additionally checks actor/instance, authority, target, allowed paths, forbidden effects, risk, approval, relevant REQ/DEC, management controls when relevant, base/hash, downstream impact, reversibility, and evidence requirements. For Material connector/local mutation, preflight also checks binding state, minimum durable routing identity, intended-target match when comparison is possible, and the rule that a one-off exact-target instruction does not persistently rewrite Root Governance. Material local/MCP mutation additionally resolves the applicable Local Workspace Binding and, when Git-backed/material, cross-checks repository identity when practical.
 
 Postflight is risk-tiered. Execution alone does not prove completion. R3 requires verification of resulting external/runtime state, not merely exit code 0.
 
 ## 14. Evidence, Knowledge Debt, and Secrets
 
-`EVD-*` is required for important evidence such as DRIFT, R2/R3 shared-state verification, runtime/external state, and material source conflicts. Raw evidence belongs under `evidence/<category>/` and is referenced by path/hash.
+`EVD-*` is required for important evidence such as DRIFT, R2/R3 shared-state verification, runtime/external state, and material source conflicts. Raw evidence belongs under `evidence/<category>/` and is referenced by path/hash. Reusable verification evidence is **state-bound**: when material, identify the candidate/source or Git HEAD/tree, affected scope/invariants, result, capture time, and relevant dependency/integration-target assumptions. Formal `EVD-*` registration is required only when evidence importance/risk warrants it; routine Task-local checks do not create a new `EVD-*` merely because they ran.
 
 Material stale/missing operational knowledge is represented in `08 Open Issues` as:
 
@@ -526,7 +545,7 @@ Manifest integrity mismatch requires root-cause classification; do not blindly r
 DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED
 ```
 
-It records from/to, previous handoff, trigger, current phase/state, completed work, pending work, formal drafts/WIP, active objects, read order, freshness warnings, authority references, `authority_transfer: false`, and exact next action.
+It records from/to, previous handoff, trigger, current phase/state, completed work, pending work, formal drafts/WIP, active objects, read order, freshness warnings, authority references, `authority_transfer: false`, and exact next action. When material to continuation, it also references the active Local Workspace Binding plus observed repository identity, current branch/worktree, verified HEAD, working-tree state, last completed Task/ACT, completion commit(s), verification result/evidence pointer, and remote reachability when the receiver needs it.
 
 When applicable, surface continuation-critical `RISK-*`, invalid/unverified `ASM-*`, blocking `DEP-*`, upcoming/recent `MS-*`, Outcomes awaiting measurement, open/approved `CR-*`, upcoming/failed `GATE-*`, Technical/Deployment health warnings, Source/Docker variance, and Knowledge Debt.
 
@@ -558,8 +577,20 @@ Binding behavior:
 9. A new chat/session MUST be able to continue from persisted current state and Required Read pointers without the old chat transcript as a prerequisite.
 10. A successful connector call alone is not a Logical Checkpoint and MUST NOT trigger one progress write per tool call.
 11. Existing initialized Projects remain governed by their local pinned Framework and never auto-upgrade merely because upstream ProjectFramework changes.
+12. A Logical Checkpoint proves durable continuation integrity; **Logical Checkpoint ≠ RELEASE_FULL**. Run only materially affected cross-surface checks at the checkpoint unless it is itself a semantic acceptance/release gate.
 
-### 16.2 Chat Closure Consistency and Mandatory Response Close
+### 16.2 Progressive / Risk-Scoped Verification
+
+Verification depth follows affected scope, dependency impact, and `R0 / R1 / R2 / R3` risk. Workflow labels `TASK_LOCAL_FAST`, `CHECKPOINT_INTEGRITY`, `RELEASE_FULL`, and `INTEGRATION_GATE` are operational vocabulary only—not lifecycle, Epistemic Status, Git freshness, or Stable-ID states.
+
+- `TASK_LOCAL_FAST` → minimum sufficient affected-scope/risk checks before a Material Task can become `DONE`.
+- `CHECKPOINT_INTEGRITY` → durable continuation checks plus only affected cross-surface integrity.
+- `RELEASE_FULL` → full candidate/distribution verification at a completed Release Candidate or equivalent semantic acceptance boundary.
+- `INTEGRATION_GATE` → fresh Canonical Integration Target/Base Freshness + validity of prior acceptance evidence.
+
+Fresh state-bound evidence MAY be reused while its proven candidate/dependency/target assumptions remain materially unchanged. Candidate/source changes, materially changed dependencies, semantic target movement, changed acceptance criteria, contradicting evidence, or unbounded uncertainty invalidate affected evidence. If impact cannot be bounded safely, verification escalates.
+
+### 16.3 Chat Closure Consistency and Mandatory Response Close
 
 Framework `1.2.4` makes Chat closure deterministic while preserving the existing persistence gate and lifecycle vocabulary. Binding invariants are:
 
@@ -588,6 +619,8 @@ Every Framework-governed response MUST end with exactly these two headings, in o
 ```
 
 The four bracketed fields are separate Markdown paragraphs. Canonical lifecycle tokens remain exactly `CONTINUE_CURRENT_CHAT` and `START_NEW_CHAT`; renderer escaping is presentation-only.
+
+Before emit, every Framework-governed assistant response MUST run a lightweight **Response Close Completeness Gate** on the assistant final-response representation: exactly the two mandatory headings in order; exactly one `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` as separate Markdown paragraphs in that order; one canonical lifecycle token in `[Chat]`; valid Chat Closure Consistency; and nothing after `[Required Read]`. Missing, duplicate, malformed, out-of-order, or contradictory close content must be corrected before emit. The gate does not claim visibility into downstream transport/UI rendering; user-reported rendered omissions are regression evidence while the exact loss layer remains unverified unless independently observed.
 
 ## 17. Adoption Modes and Bootstrap
 
@@ -737,7 +770,13 @@ base_freshness_gate:
 
 ค่า ref/SHA/version ต้องมาจาก observation เท่านั้น; ห้าม fabricate เพื่อให้ record ดู complete.
 
-### 18.5 Framework 1.2.4 Project Location Binding Migration
+### 18.5 Framework 1.2.5 Integration Gate and Evidence Reuse
+
+Immediately before integration, **INTEGRATION_GATE** re-resolves the current Canonical Integration Target, applies existing Framework `1.2.2` Base Freshness classification, and checks whether prior Task/Release verification evidence is still valid. Unchanged candidate + unchanged material assumptions MAY reuse fresh `RELEASE_FULL` evidence. Non-semantic target movement triggers only freshness/affected rechecks when it does not invalidate candidate assumptions. Candidate/tree change, semantic/unknown movement, conflict resolution, rebase result, merge-time edits, or unbounded impact invalidates affected/full evidence as required.
+
+Exact fast-forward to an already verified candidate tree normally requires resulting-state confirmation (target/remote HEAD or tree identity and clean/understood workspace/shared state) rather than unconditional `RELEASE_FULL` rerun. `Mergeable ≠ Acceptable` remains binding.
+
+### 18.6 Framework 1.2.4 Project Location Binding Migration
 
 Existing initialized Projects do not auto-upgrade to Framework `1.2.4`. A governed migration MUST preserve the active prior `FRAMEWORK-001` until approval/promotion completes and MUST NOT invent Project locations.
 
@@ -754,6 +793,10 @@ Migration behavior:
 9. Validate fail-closed behavior and Project Source integrity after promotion.
 
 A Project that does not use a connector may mark it `NOT_APPLICABLE`; a Project that materially relies on a connector but cannot resolve durable routing identity remains `VERIFICATION_REQUIRED` for affected Material mutation.
+
+### 18.7 Framework 1.2.5 Agent Continuity / Local Workspace Migration
+
+Existing initialized Projects do not auto-upgrade. Migration to `1.2.5` MUST NOT invent local filesystem paths, environment-scope identity, completion-commit provenance, verification evidence, repository origins, or MCP workspace identifiers. For an applicable local environment: verified/user-confirmed path → `BOUND`; local execution applicable but unresolved → `VERIFICATION_REQUIRED`; local execution outside declared scope → `NOT_APPLICABLE`. Preserve Repository Location Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime Location as distinct semantics.
 
 ## 19. Project Health and Review Cadence
 

@@ -9,6 +9,8 @@ Framework `1.2.0` treats exact Git provenance as optional assurance. If provenan
 Framework `1.2.3` adds Development Workspace / Runtime Authority semantics without changing Schema `1.0.0`, slot ownership, or Framework `1.2.2` Git Base Freshness vocabulary.
 
 Framework `1.2.4` adds **Project Location Binding** and Chat Closure Consistency without changing Schema `1.0.0`. Active `00 / FRAMEWORK-001` is the canonical home of GitHub/Drive binding. `03` and `09` may carry references/pointers for current-state and continuation purposes but MUST NOT duplicate location authority. Before Material GitHub/Drive mutation, resolve the active binding state and fail closed when it is `VERIFICATION_REQUIRED` or `NOT_APPLICABLE` as defined by Core Governance.
+
+Framework `1.2.5` adds environment-scoped **Local Workspace Binding**, **Verified Task Completion Checkpoint**, progressive/risk-scoped verification with evidence reuse, and the **Response Close Completeness Gate**. `00 / FRAMEWORK-001` remains the routing authority; `09`, `15`, and `40` reference observed workspace/commit/verification state without becoming competing location, branch, or implementation authority.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -29,7 +31,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.4"
+project_source_framework_version: "1.2.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -89,7 +91,7 @@ Current Scope
 Current Owner/Actor
 Current Source-of-Truth references
 
-Project Location Binding Reference (FRAMEWORK-001; no duplicate authority)
+Project Location Binding Reference (FRAMEWORK-001; includes applicable Local Workspace Binding; no duplicate authority)
 Active Actions (ACT refs)
 Active Issues / DRIFT / CONFLICT refs
 Active RISK / ASM / DEP / MS / OUT / CR / GATE refs when applicable
@@ -395,7 +397,7 @@ TODO → IN_PROGRESS → DONE
 side states: BLOCKED / CANCELLED
 ```
 
-Each Action has an exact executable next step. `ACT DONE` does not automatically mean `MS REACHED` or `OUT ACHIEVED`.
+Each Action has an exact executable next step. For Material Git-backed mutation, record affected verification/completion criteria, verification result/evidence pointer, completion commit(s), and remaining working-tree state when relevant. `DONE` is prohibited while required completed state exists only uncommitted. Read-only/no-mutation Actions need no synthetic commit. `ACT DONE` does not automatically mean `MS REACHED` or `OUT ACHIEVED`.
 
 ## 16 — Migration Registry
 

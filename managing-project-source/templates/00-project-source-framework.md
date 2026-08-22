@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.4"
+project_source_framework_version: "1.2.5"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -106,18 +106,27 @@ project_location_binding:
     designated_progress_file_url: "<CANONICAL_FILE_URL_OR_UNKNOWN>"
     verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
     last_verified_at: "<ISO8601_OR_UNKNOWN>"
+
+  local_workspaces:
+    - environment_scope: "<USER_CONFIRMED_ENVIRONMENT_SCOPE>"
+      binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
+      canonical_path: "<ABSOLUTE_LOCAL_PATH_OR_UNKNOWN>"
+      repository: "<OWNER/REPOSITORY_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+      repository_url: "<CANONICAL_REPOSITORY_URL_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+      verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
+      last_verified_at: "<ISO8601_OR_UNKNOWN>"
 ```
 
-Binding state ของ GitHub และ Google Drive ต้อง resolve แยกกันเป็น exactly `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`:
+Binding state ของ GitHub, Google Drive และแต่ละ environment-scoped Local Workspace Binding ต้อง resolve แยกกันเป็น exactly `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`:
 
-- `BOUND` ต้องมี durable routing identity อย่างน้อย GitHub owner/repository หรือ canonical repository URL; Drive project-root folder ID หรือ canonical folder URL. Display path, recent activity, search ranking หรือชื่อที่คล้ายกันอย่างเดียวไม่พอ.
+- `BOUND` ต้องมี durable routing identity อย่างน้อย GitHub owner/repository หรือ canonical repository URL; Drive project-root folder ID หรือ canonical folder URL; Local Workspace ต้องมี verified/user-confirmed absolute path ของ environment นั้น และ Git-backed workspace ควร cross-check repository identity เมื่อ practical.
 - `VERIFICATION_REQUIRED` เป็น **fail-closed สำหรับ Material mutation**; read/search/discovery เพื่อ resolve candidate ทำได้ แต่ห้าม Material write ไป unresolved target โดย default.
 - `NOT_APPLICABLE` block Material Project work ผ่าน connector นั้นจนกว่าจะมี approved Root Governance binding/scope change.
 - User Explicit Instruction ที่ระบุ exact target อาจ authorize action เดียวเมื่อ otherwise allowed แต่ไม่ persistently rewrite binding.
 - การเปลี่ยน active binding เป็น Root Governance mutation: ต้อง User Explicit Approval และใช้ `FRAMEWORK-001` revision → validate → promote → supersede/archive flow. Connector discovery, recency หรือ ranking ไม่ transfer authority.
-- Repository Location Binding `≠` current work branch/worktree `≠` Canonical Integration Target `≠` Canonical Implementation Source. Project Location Binding ห้ามสร้าง `canonical_branch` หรือ branch authority คู่ขนาน; Git integration target ยัง governed โดย Framework `1.2.2` Base Freshness contract.
+- Repository Location Binding `≠` Local Workspace Binding `≠` current work branch/worktree `≠` Canonical Integration Target `≠` Canonical Implementation Source `≠` Runtime Location. Project Location Binding ห้ามสร้าง `canonical_branch` หรือ branch authority คู่ขนาน; Git integration target ยัง governed โดย Framework `1.2.2` Base Freshness contract.
 
-GREENFIELD ที่ยังไม่มี active `FRAMEWORK-001` ใช้ read-only discovery เมื่อจำเป็น → Preview proposed GitHub/Drive binding states/identities → explicit user approval → first Material Project-Source write creates active `00` with approved binding. Binding uncertainty ห้ามถูกเดาจาก chat memory, recent activity หรือ search result.
+GREENFIELD ที่ยังไม่มี active `FRAMEWORK-001` ใช้ read-only discovery เมื่อจำเป็น → Preview proposed GitHub/Drive/local-workspace binding states/identities → explicit user approval → first Material Project-Source write creates active `00` with approved binding. Binding uncertainty ห้ามถูกเดาจาก chat memory, recent activity หรือ search result. MCP `workspaceId`, editor handle, active/recent workspace เป็น routing evidence เท่านั้น ไม่ใช่ canonical Project identity; missing applicable local environment = `VERIFICATION_REQUIRED` โดย default. Persistent Local Workspace Binding change ยังเป็น Root Governance mutation และ one-off exact local target ไม่ persistently rewrite binding.
 ## 3. Project Source Location and Semantic Namespace
 
 Project Source อยู่ที่:

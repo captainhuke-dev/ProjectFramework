@@ -1,10 +1,23 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.4 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.5 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.2.5 Agent Continuity, Progressive Verification & Local Workspace Semantics
+
+Framework `1.2.5` keeps Schema `1.0.0` and existing Stable-ID families while adding:
+
+- environment-scoped **Local Workspace Binding** under active `FRAMEWORK-001`, reusing `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`;
+- local/MCP routing that fails closed when the environment/path is unresolved; MCP/tool workspace IDs remain evidence only;
+- **Verified Task Completion Checkpoint** for Material Git-backed Tasks: affected verification PASS + durable observed completion commit before `DONE`; read-only Tasks need no synthetic commit; `WIP commit ≠ DONE`; `commit ≠ push`;
+- progressive verification: Task-level affected/risk checks, Logical Checkpoint continuity integrity, one `RELEASE_FULL` per unchanged completed candidate, and `INTEGRATION_GATE` evidence validity/Base Freshness;
+- state-bound verification evidence reuse with selective invalidation;
+- lightweight **Response Close Completeness Gate** before every governed assistant response emit.
+
+Repository Location Binding, Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime Location remain semantically distinct. Existing Projects remain locally pinned and do not auto-upgrade.
 
 ## Framework 1.2.4 Project Location Binding & Chat Closure Semantics
 
