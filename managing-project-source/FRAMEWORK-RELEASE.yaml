@@ -1,5 +1,5 @@
 release_format_version: 2
-framework_version: "1.2.5"
+framework_version: "1.2.6"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
@@ -9,8 +9,9 @@ entrypoints:
   chatgpt_project: "CHATGPT-PROJECT-INSTRUCTIONS.md"
   claude_project: "CLAUDE-PROJECT-INSTRUCTIONS.md"
   skill: "SKILL.md"
+  project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260822-1835.md"
+latest_framework_amendment: "references/framework-governance-amendment-260823-0816.md"
 core_governance: "references/core-governance-rules.md"
 framework_template: "templates/00-project-source-framework.md"
 core_skeletons: "templates/core-document-skeletons.md"

@@ -123,15 +123,16 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 4. Read SKILL.md + latest amendment + Core Governance
 5. Read 00 template + core-document-skeletons.md
 6. Read this mockup mapping
-7. Preview proposed Project Source, including GitHub/Drive Project Location Binding states/identities → obtain explicit user approval
-8. Create active 00 first with the approved Project Location Binding
-9. Create mandatory 01–05 and 09–17
-10. Evaluate 06–08, 40, 60, 91; create only when applicable
-11. Keep 18–19 reserved
-12. Use 92–99 only for real Project-specific/governance-extension needs
-13. Build/verify Index + Manifest + readiness
-14. Pin Framework/Schema locally; do not auto-upgrade later
-15. Optionally record exact Git provenance only when actually observed/material
+7. Read `../project-location-bootstrap.md` when Project/environment bootstrap configuration is being prepared; resolve Framework Source / Remote / Local / MCP / File Storage locators read-only as applicable
+8. Preview proposed Project Source, including governed GitHub/Drive/local-workspace/generic-file-storage states/identities → obtain explicit user approval
+9. Create active 00 first with the approved Project Location Binding
+10. Create mandatory 01–05 and 09–17
+11. Evaluate 06–08, 40, 60, 91; create only when applicable
+12. Keep 18–19 reserved
+13. Use 92–99 only for real Project-specific/governance-extension needs
+14. Build/verify Index + Manifest + readiness
+15. Pin Framework/Schema locally; do not auto-upgrade later
+16. Optionally record exact Git provenance only when actually observed/material
 ```
 
 When Git branch/worktree integration is later used inside an initialized Project, apply the locally pinned root `00` Base Freshness contract. Upstream Framework movement does not auto-upgrade that Project.

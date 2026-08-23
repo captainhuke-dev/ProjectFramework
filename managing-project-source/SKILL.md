@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.5 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.6 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
