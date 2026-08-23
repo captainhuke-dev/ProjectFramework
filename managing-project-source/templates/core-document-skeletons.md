@@ -529,6 +529,10 @@ OTHER_DECLARED_MAPPING
 
 These are blueprint vocabulary, not Project states or Stable-ID families. Canonical source durability is lifecycle/recovery semantics and does not impose physical host-local storage.
 
+### File Storage / Content Ownership Mapping
+
+When material, reference active `FRAMEWORK-001` File Storage Binding by `storage_key` / content scope and document `content scope → provider → canonical durable locator → environment access path/mount`. Do not copy independent binding authority into `40`. File Storage Binding does not become Canonical Implementation Source or Development Workspace authority merely because source files are accessible there; any such implementation role must be separately declared/verified. Mounted/synced/cache paths are mapping evidence only.
+
 ### Configuration Contract
 
 ```text
@@ -589,6 +593,8 @@ Troubleshooting
 Known Limitations / Deployment Mode Variance
 Related REQ / DEC / RISK / DEP / CR / GATE / EVD
 ```
+
+When Project File Storage is relevant to deployment, reference the active `FRAMEWORK-001` storage scope rather than redefining it. `File Storage Binding ≠ Runtime Data / Storage Authority ≠ Persistent-State Boundary`. The same physical target may serve multiple roles only when each role is explicitly declared; backup/mirror/mount/sync accessibility does not transfer current authority.
 
 A real Project may record concrete verified commands/paths. A synthetic/template context must not invent executable commands for nonexistent software.
 
