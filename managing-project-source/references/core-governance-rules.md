@@ -251,7 +251,7 @@ MCP `workspaceId`, editor handles, active/recent workspaces, search ranking, and
 
 Before Material local/MCP mutation, preflight resolves the applicable environment-scoped Local Workspace Binding, compares the actual execution path and—when Git-backed/material—repository identity when practical, then preserves independent Authority/Risk, Canonical Integration Target, Canonical Implementation Source, and Runtime Truth gates.
 
-### 2.4 Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
+### 2.6 Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
 
 A Project-specific **Bootstrap Location Block** is a pre-`FRAMEWORK-001` discovery/execution preamble, not a semantic slot, Root Governance object, or competing steady-state Project authority. It keeps six bootstrap/execution concepts distinct:
 
