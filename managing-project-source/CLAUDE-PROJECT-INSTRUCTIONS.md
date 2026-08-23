@@ -1,9 +1,10 @@
 # Claude Project — F`1.2.6` / S`1.0.0`
+Paste in Instructions.
 Framework Remote Path: `<FRAMEWORK_REMOTE>`
 Git Remote Path: `<GIT_REMOTE>`
 Storage Path: `<STORAGE>`
 MCP Path: `<MCP_PATH>`
-Workspace Path: `<WORKSPACE>`
+Workspace Path: `<WS>`
 `Project Path`: verify
 
 <!-- PROJECTFRAMEWORK-SHARED-CONTRACT:START -->
