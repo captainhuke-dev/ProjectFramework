@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.6**
+- Project Source Framework: **1.3.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,18 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.3.0 Command & Direct-to-Latest Upgrade Additions
+
+Framework `1.3.0` adds a small registered bracketed Project command contract, Markdown-safe mandatory response-close rendering, and **Direct-to-Latest / Cumulative Target-State Upgrade** semantics while keeping Project Source Schema `1.0.0`, semantic slots, Stable-ID families, initialized-Project local pinning, and existing authority systems unchanged.
+
+Registered commands require literal brackets and match case-insensitively inside them. `[Project Status]` fresh-observes Project/Task/Git/verification/blocker state as a read-only dashboard; `[Project Path]` shows/validates configured bootstrap path values and routes explicit change requests through existing location governance. Angle-bracket values such as `<STORAGE>` or `<WS>` mean unset, not literal paths. Natural-language command-help requests list only registered commands as `[XXX] : purpose`.
+
+Mandatory response-close semantic labels remain `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:`, but Framework `1.3.0` recommends Markdown-safe presentation such as `**[Chat]:** CONTINUE_CURRENT_CHAT` so a renderer cannot hide the field as reference-definition syntax. Lifecycle vocabulary and Chat Closure Consistency are unchanged.
+
+Initialized Project upgrades now compare current reconstructable truth directly with the explicitly selected target Framework instead of mechanically executing every intermediate release migration. The path is classified `FAST_PATH`, `ASSESSED_PATH`, or `MAJOR_MIGRATION_REQUIRED`; cumulative migration still preserves Stable IDs, Project-specific rules, bindings, history, approval, rollback, validation, evidence, and promotion controls. The latest starter remains a NEW-Project target representation, not a default destructive rebuild mechanism for initialized Projects.
+
+Upgrade verification reuses Framework `1.2.5` progressive verification: affected/risk-scoped checks during migration, checkpoint integrity at handoff boundaries, and one `RELEASE_FULL` on the final unchanged target candidate. Historical amendments/migrations remain provenance and rationale; skipping intermediate execution never deletes history or weakens governance. Framework `1.3.0` adds no automatic updater, migration engine, command parser service, CLI, hook, bot, CI/CD, scheduler, watcher, or runtime enforcement.
 
 ## Framework 1.2.6 Bootstrap Location & File Storage Additions
 

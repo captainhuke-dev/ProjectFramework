@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.5"
+project_source_framework_version: "1.3.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -237,7 +237,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.4"
+  framework_version: "1.3.0"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
@@ -265,6 +265,19 @@ dashboard / runtime enforcement
 ```
 
 A real Project อาจมี artifacts เหล่านี้อยู่แล้ว และ Project Source สามารถ document/reference/govern/verify ได้. การสร้างหรือแก้ implementation จริงต้องเป็น separate explicit scope.
+
+### 5.3 Registered Project Commands
+
+Framework `1.3.0` registers bracketed Project inspection commands. Literal `[` and `]` are required; matching inside brackets is case-insensitive. Initial registry:
+
+```text
+[Project Status] : fresh read-only Project/Task/Git/verification/blocker dashboard
+[Project Path]   : show/verify configured Project path values and route explicit change requests through existing location governance
+```
+
+Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. `[Project Status]` fresh-observes Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers, reuses `GREEN | AMBER | RED | UNKNOWN`, and keeps Task count distinct from Git change count. `[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. Persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
+
+Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
 
 ## 6. Truth and Uncertainty
 
@@ -720,7 +733,7 @@ GREENFIELD BROWNFIELD IMPORT
 - BROWNFIELD → preserve-first; ห้าม move/rename/delete legacy source อัตโนมัติ
 - IMPORT → quarantine `import-staging/` ก่อน promotion
 
-Project pin Framework/Schema version. ห้าม auto-upgrade. Upgrade ใช้ `MIG-*` + assessment + approval + validation + promotion.
+Project pin Framework/Schema version. ห้าม auto-upgrade. Framework `1.3.0` ใช้ Direct-to-Latest / Cumulative Target-State Upgrade สำหรับ upgrade ที่ได้รับอนุมัติ: compare current reconstructable Project โดยตรงกับ selected target, migrate เฉพาะ cumulative semantic delta, preserve Stable IDs/current truth/Project-Specific Rules/bindings/history, และไม่บังคับ execute intermediate release migrations. Classify exactly `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. Skipping intermediate execution ไม่ skip assessment, Preview/approval, rollback, validation, evidence หรือ promotion. Latest starter ไม่ใช่ default destructive rebuild path สำหรับ initialized Project. ใช้ affected verification ระหว่างงานและ `RELEASE_FULL` ครั้งเดียวบน final unchanged target candidate.
 
 ### 20.1 Brownfield Slot `91` Collision
 

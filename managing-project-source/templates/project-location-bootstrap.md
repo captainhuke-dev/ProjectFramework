@@ -7,11 +7,11 @@ Use this copyable Project/environment configuration **before active `FRAMEWORK-0
 When installing the launcher into Project Settings, fill this compact block directly. These labels are a human-facing representation of the existing Bootstrap Location semantics; they do not create new location authority or state families.
 
 ```text
-Framework Remote Path: <PROJECTFRAMEWORK_REMOTE>
-Git Remote Path: <PROJECT_REMOTE>
-Storage Path: <EXTERNAL_STORAGE_OR_NONE>
-MCP Path: <MCP_LOCAL_PATH>
-Workspace Path: <LOCAL_PROJECT_ROOT>
+Framework Remote Path: <FRAMEWORK_REMOTE>
+Git Remote Path: <GIT_REMOTE>
+Storage Path: <STORAGE>
+MCP Path: <MCP_PATH>
+Workspace Path: <WS>
 Git state: DYNAMIC / VERIFY_EACH_SESSION
 ```
 
@@ -60,17 +60,20 @@ current_branch_worktree:
   rule: "VERIFY_EACH_SESSION"
 ```
 
-## `Project Path` Command
+## `[Project Path]` Command
 
-`Project Path` is a read/verify preflight command over location semantics that already exist. It does not configure paths and does not change authority.
+`[Project Path]` is a registered read/verify command over location semantics that already exist. Literal brackets are required for registered-command identity; matching inside brackets is case-insensitive. The command may carry an explicit path-change request, but it creates no new authority.
 
-On exact `Project Path`:
+Any configured value still written as an angle-bracket placeholder such as `<FRAMEWORK_REMOTE>`, `<GIT_REMOTE>`, `<STORAGE>`, `<MCP_PATH>`, or `<WS>` means **unset / not configured**. Never treat the placeholder as a literal path and never infer a fallback from recent/active/mounted/search-ranked locations.
+
+On `[Project Path]` (case-insensitive inside brackets):
 
 1. Read the Project Settings values for Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path.
 2. Surface the saved values before Material work.
 3. Verify available repository identity/remote, MCP target, local workspace, storage locator/reachability as applicable, and active `FRAMEWORK-001` Project Location Binding when present.
 4. Report each comparison as `MATCH`, `MISMATCH`, or `NOT_VERIFIED`. These are diagnostic display labels, not Framework lifecycle, epistemic, binding, or authority states.
 5. A Material mismatch fails closed for the affected mutation. Do not silently rewrite Project Settings, a repo reference, or `FRAMEWORK-001`.
+6. If the user explicitly requests a path change, distinguish one-off action targeting from persistent configuration/binding change; persistent governed changes retain explicit approval plus applicable `FRAMEWORK-001` revision/validate/promote/history flow.
 
 ## Optional Repo-Native Reference
 

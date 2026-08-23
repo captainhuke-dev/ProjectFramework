@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.6 / Schema 1.0.0**.
+Current distribution: **Framework 1.3.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,6 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
+- `references/framework-governance-amendment-260823-1439.md`
 - `references/framework-governance-amendment-260823-0816.md`
 - `references/framework-governance-amendment-260822-1835.md`
 - `references/framework-governance-amendment-260822-1424.md`
@@ -125,7 +126,22 @@ These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope be
 
 ### Response Close Completeness Gate
 
-Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. Missing/duplicate/malformed/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
+Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` field as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. For Markdown output, render the labels safely, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`, so a bare reference-definition-like line cannot disappear. Bold/wrapping is presentation-only; semantic labels and canonical lifecycle tokens remain unchanged. Missing/duplicate/malformed/hidden/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
+
+## Framework 1.3.0 Registered Project Commands
+
+Registered Project command identity requires literal brackets; matching inside brackets is case-insensitive. Canonical display forms are:
+
+```text
+[Project Status] : fresh Project/Task/Git/verification/blocker dashboard
+[Project Path]   : show/verify configured bootstrap paths and route explicit path-change requests through existing governance
+```
+
+Natural-language command-help requests list only commands registered by the active Framework/Project as `[XXX] : purpose`; do not invent commands.
+
+`[Project Status]` is read-only and fresh-observation driven. Report applicable dimensions in order: Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers. Health reuses `GREEN | AMBER | RED | UNKNOWN`. Read Task count from the Task source; never infer Tasks from changed-file count. Working Tree reports Waiting Commit Yes/No plus changed/staged/unstaged/untracked counts. A verified remote-sync claim requires fresh remote evidence; unavailable dimensions stay `UNKNOWN / VERIFICATION_REQUIRED`.
+
+`[Project Path]` surfaces Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations. An explicit requested path may be used as action input, but persistent Bootstrap/Project Location changes retain existing approval and `FRAMEWORK-001` revision/validation/promotion/history rules.
 
 ## Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
 
@@ -355,7 +371,11 @@ This applies equally to current `DEC-*`, `REQ-*`, and `RISK/ASM/MS/OUT/DEP/CR/GA
 
 ## Migration Safety
 
-Existing Projects never auto-upgrade.
+Existing Projects never auto-upgrade. Framework `1.3.0` uses **Direct-to-Latest / Cumulative Target-State Upgrade** by default for explicitly approved initialized-Project upgrades: compare the current reconstructable locally pinned Project directly with the selected target Framework and migrate only the affected cumulative semantic delta. Historical amendments/releases remain preserved rationale/history; do not execute each intermediate migration merely because its version existed.
+
+Classify exactly `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. `FAST_PATH` requires bounded compatible delta; `ASSESSED_PATH` uses one cumulative `MIG-*` assessment/plan; `MAJOR_MIGRATION_REQUIRED` applies when breaking schema/namespace/root semantics, non-reconstructable current truth, or material unresolved conflicts/unknowns prevent safe bounded direct migration. Skipping intermediate execution never skips Preview/approval, compatibility assessment, Stable-ID/current-truth/Project-Specific-Rule/binding/history preservation, rollback, validation, evidence, or promotion. The maintained starter is not the default destructive upgrade path for initialized Projects.
+
+Use affected/risk-scoped verification during migration, `CHECKPOINT_INTEGRITY` at logical checkpoints, one `RELEASE_FULL` on the final unchanged target candidate, and `INTEGRATION_GATE` for current Base Freshness/evidence validity. Do not run full release verification once per skipped historical version.
 
 For Framework `1.2.0` migration:
 
@@ -391,7 +411,7 @@ Operational sequence:
 12. `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus one concrete persistence/recovery Next Action; it cannot pair with `START_NEW_CHAT` or `ไม่มีขั้นตอนถัดไป`.
 13. `START_NEW_CHAT` may carry a concrete Next Action when state is durably persisted and continuation is safe from Required Read locations.
 
-Mandatory Framework response close:
+Mandatory Framework response close (Markdown-safe presentation; semantic labels unchanged):
 
 ```text
 ### ทำอะไรไป?
@@ -400,16 +420,16 @@ Mandatory Framework response close:
 
 ### และถัดไปคืออะไร?
 
-[Next Action]: <one exact next action or ไม่มีขั้นตอนถัดไป>
+**[Next Action]:** <one exact next action or ไม่มีขั้นตอนถัดไป>
 
-[Chat]: CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+**[Chat]:** CONTINUE_CURRENT_CHAT | START_NEW_CHAT
 
-[Reason]: <concise reason>
+**[Reason]:** <concise reason>
 
-[Required Read]: <canonical locations or ไม่มี>
+**[Required Read]:** <canonical locations or ไม่มี>
 ```
 
-The four bracketed fields are separate Markdown paragraphs. Canonical lifecycle tokens stay unescaped; Markdown escaping is display-only.
+The four semantic fields are separate Markdown paragraphs. Bold/wrapping is presentation-only; canonical labels remain `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` and lifecycle tokens stay unescaped.
 
 GitHub routing examples:
 
@@ -486,7 +506,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 14. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.
 15. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
 16. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
-17. Pin imported Framework/Schema locally; upgrades use `MIG-*` and approval; Framework `1.2.5` migration never invents repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
+17. Pin imported Framework/Schema locally; upgrades use direct current→target assessment plus `MIG-*`/approval as required; classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; never invent repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
 18. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
 19. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
 20. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
@@ -522,6 +542,10 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 | One-off exact target instruction | may govern that action only; never silently persist as new binding authority |
 | Persistent binding change | User Explicit Approval + governed `FRAMEWORK-001` revision/promotion |
 | Repository binding | never substitute for current branch/worktree, Canonical Integration Target, or Canonical Implementation Source |
+| `[Project Status]` | fresh read-only Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers; Task count ≠ Git change count |
+| `[Project Path]` | show/verify configured path values; `<...>` means unset; persistent changes keep existing approval/root-governance rules |
+| Command discovery | list registered commands only as `[XXX] : purpose`; bracketed command matching is case-insensitive and brackets are required |
+| Framework upgrade | direct current→target cumulative assessment; `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; preserve history; no mandatory intermediate execution |
 | `ไม่มีขั้นตอนถัดไป` | pair with `START_NEW_CHAT` |
 | `CONTINUE_CURRENT_CHAT` | requires one concrete Next Action |
 | `PERSISTENCE_PENDING` | `CONTINUE_CURRENT_CHAT` + concrete persistence/recovery Next Action |

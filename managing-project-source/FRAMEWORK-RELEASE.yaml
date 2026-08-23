@@ -1,5 +1,5 @@
-release_format_version: 2
-framework_version: "1.2.6"
+release_format_version: 3
+framework_version: "1.3.0"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
@@ -11,7 +11,7 @@ entrypoints:
   skill: "SKILL.md"
   project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260823-0816.md"
+latest_framework_amendment: "references/framework-governance-amendment-260823-1439.md"
 core_governance: "references/core-governance-rules.md"
 framework_template: "templates/00-project-source-framework.md"
 core_skeletons: "templates/core-document-skeletons.md"
@@ -21,6 +21,17 @@ bootstrap_policy:
   canonical_bootstrap_ref: "main"
   local_project_source_authoritative_after_bootstrap: true
   exact_git_provenance_required_for_operational_use: false
+
+upgrade_policy:
+  strategy: "DIRECT_TO_LATEST_CUMULATIVE"
+  intermediate_migration_execution_required: false
+  preserve_history: true
+  preserve_project_specific_rules: true
+  path_classes:
+    - "FAST_PATH"
+    - "ASSESSED_PATH"
+    - "MAJOR_MIGRATION_REQUIRED"
+  final_release_full_per_unchanged_candidate: 1
 
 assurance_policy:
   immutable_tag: "OPTIONAL"
