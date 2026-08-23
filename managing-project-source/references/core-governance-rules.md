@@ -104,7 +104,50 @@ A technical or integrity requirement does not implicitly authorize executable im
 
 A real Project's current Project Source may document concrete verified commands, paths, ports, configuration keys, or operating procedures when those are actual Project truth. ProjectFramework itself does not invent executable commands for nonexistent software.
 
-### 2.2 Project Location Binding
+
+### 2.2 Bootstrap Location Semantics
+
+Framework `1.2.6` defines a Project-specific **Bootstrap Location Block** as pre-`FRAMEWORK-001` discovery/execution routing input, not a second Root Governance object. When a valid local active `FRAMEWORK-001` is already available, resolve it first and use its governed Project Location state.
+
+Keep the six bootstrap/execution concepts distinct:
+
+```text
+Framework Source
+≠ Remote Location
+≠ File Storage Location
+≠ MCP Location
+≠ Local Workspace
+≠ current branch/worktree
+≠ Repository / Project Location Binding authority
+≠ Canonical Integration Target
+≠ Canonical Implementation Source
+≠ Runtime Location
+```
+
+Resolution order when authority is not already resolved:
+
+```text
+read Project-specific Bootstrap Location Block when present
+→ Framework Source for Framework bootstrap/read-through only
+→ declared Local Workspace for read-only local active-FRAMEWORK-001 resolution
+→ Remote Location for deterministic remote Project Source discovery when needed
+→ MCP Location for applicable execution-boundary verification
+→ File Storage Location(s) for their declared non-repository artifact scopes
+→ fresh-observe current branch/worktree from Git whenever Material Git state matters
+→ once active FRAMEWORK-001 resolves, use its governed Project Location Binding
+→ apply independent Scope / AUTH / Risk / REQ / DEC / integration / implementation / runtime gates
+```
+
+`Framework Source` is Framework upstream/read-through only and never auto-upgrades an initialized Project. `Remote Location` is a discovery starting point, not Repository Location Binding or branch authority. Explicit discovery indirection may legitimately differ from the final governed repository; a direct identity contradiction that would route Material work elsewhere is a material mismatch.
+
+`MCP Location` and `Local Workspace` are environment-scoped locators with different roles. MCP workspace IDs, editor handles, recent/active workspace lists, drive letters, mounts, and comparable runtime identifiers are evidence only. Host/container paths may differ when an explicit mapping plus repository/source identity proves the same governed Project.
+
+`current branch/worktree` is volatile observed Git state. Bootstrap configuration may persist only dynamic intent such as `DYNAMIC / VERIFY_EACH_SESSION`, never a concrete branch as authority. When Material, freshly resolve repository identity, worktree path, branch/ref, HEAD, working-tree status, and applicable tracking state.
+
+A bootstrap/root mismatch that would route Material work to an incompatible Project target fails closed for the affected mutation and is disclosed. Neither side is silently rewritten. Persistent location changes require explicit approval plus coordinated governed propagation. A one-off exact target remains action-specific. **Correct location does not grant Authority or reduce Risk.**
+
+
+### 2.3 Project Location Binding
 
 For an initialized Project, active local `00-Project Source Framework` / `FRAMEWORK-001` is the canonical home of **Project Location Binding**: the durable routing boundary that answers which GitHub repository, Google Drive project container, and environment-scoped **Local Workspace Binding** belongs to the Project for connector/local execution work. `03 Current State`, `09 Handoff`, `40 Technical Design`, plans, or MCP configuration MAY reference the active binding but MUST NOT maintain an independent authoritative copy.
 
@@ -161,7 +204,44 @@ resolve active local FRAMEWORK-001
 
 Project-specific repository, Drive-root, and designated-progress pointers belong in the local root binding, not platform launchers. Cross-system work continues to use source-native owners plus pointers rather than duplicated canonical content.
 
-### 2.3 Environment-Scoped Local Workspace Binding
+
+### 2.4 Governed File Storage Binding
+
+Framework `1.2.6` extends Project Location Binding with purpose/content-scoped **File Storage Binding** for non-Google-Drive external Project files/objects. Generic governed storage may cover `S3 | NAS | SMB | NFS | SHAREPOINT | OBJECT_STORAGE | FILE_SERVER | FILESYSTEM | OTHER`.
+
+File Storage Binding reuses exactly:
+
+```text
+binding_state: BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED
+verification_status: VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED
+```
+
+`BOUND` requires sufficient provider-appropriate durable identity and MUST pair only with `VERIFIED` or `USER_CONFIRMED`, never `verification_status: VERIFICATION_REQUIRED`. Examples include S3 bucket+prefix/canonical URI, NAS/SMB server+share+governed path, NFS server+export+path, SharePoint stable site/library/folder identity, or comparable durable provider identity.
+
+Known-applicable but unresolved storage is `VERIFICATION_REQUIRED`: read/search/discovery and user confirmation needed to resolve it may proceed, but Material mutation is blocked by default. A Project with no external/non-repository storage may omit generic storage entries; do not synthesize provider `NOT_APPLICABLE` entries merely to populate a template. Missing, empty, or unresolved storage never authorizes fallback to a recent/search-ranked/similarly named bucket, folder, share, mount, sync folder, cache, mirror, or backup.
+
+Multiple storage bindings are valid for distinct governed content scopes. One governed content scope has one declared authoritative owner at a time. Backup/mirror/replica existence or content similarity never transfers current authority.
+
+Framework `1.2.6` keeps the dedicated `project_location_binding.google_drive` block as the canonical Root Governance representation for Google Drive Project-root/content routing. A bootstrap `GOOGLE_DRIVE` File Storage Location maps to that dedicated Drive binding. Generic File Storage MUST NOT duplicate the same Drive target/content scope. Future Drive normalization, if ever approved, requires governed migration and history preservation.
+
+Mounted, synced, or cached storage paths are routing/mapping evidence only. File Storage Binding does not automatically become Local Workspace, Canonical Implementation Source, Runtime/Data/Persistent-State authority, backup authority, or deployment authority. A physical target may hold multiple separately governed roles without collapsing their authority domains.
+
+Actual storage credentials MUST NOT be stored in Bootstrap Location or Project Location metadata. Access keys, passwords, tokens, secret-bearing signed URLs, and comparable secrets remain external; use existing `SECRET-*` reference metadata when credential routing is needed.
+
+File Storage preflight is:
+
+```text
+resolve active FRAMEWORK-001 after bootstrap discovery
+→ resolve declared content scope and applicable storage owner
+→ BOUND: compare intended target to durable provider identity when possible
+→ VERIFICATION_REQUIRED: discovery/read-only only by default; block Material mutation
+→ NOT_APPLICABLE: block Material work for that declared scope
+→ absence: never infer/fallback; establish applicability/identity through governed flow when required
+→ preserve independent Authority/Risk/implementation/runtime/persistence gates
+```
+
+
+### 2.5 Environment-Scoped Local Workspace Binding
 
 **Local Workspace Binding** answers where a local execution surface (GPT-Web/MCP, Codex/local shell, another MCP, IDE/terminal, or equivalent) may perform Material Project work for a declared execution environment. It reuses `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED` and creates no MCP-specific state family.
 
@@ -170,6 +250,91 @@ A Project MAY have different local workspace paths across workstations, VMs, WSL
 MCP `workspaceId`, editor handles, active/recent workspaces, search ranking, and similar tool/runtime identifiers are **routing evidence only**. They are not canonical Project identity and MUST NOT silently rewrite Project Location Binding. A one-off User Explicit Instruction naming an exact local target applies only to that otherwise-authorized action and does not persistently rewrite the binding. Persistent Local Workspace Binding change is a Root Governance mutation requiring User Explicit Approval and the normal `FRAMEWORK-001` revision/validate/promote/supersede/archive flow.
 
 Before Material local/MCP mutation, preflight resolves the applicable environment-scoped Local Workspace Binding, compares the actual execution path and—when Git-backed/material—repository identity when practical, then preserves independent Authority/Risk, Canonical Integration Target, Canonical Implementation Source, and Runtime Truth gates.
+
+### 2.4 Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
+
+A Project-specific **Bootstrap Location Block** is a pre-`FRAMEWORK-001` discovery/execution preamble, not a semantic slot, Root Governance object, or competing steady-state Project authority. It keeps six bootstrap/execution concepts distinct:
+
+```text
+Framework Source
+Remote Location
+File Storage Location
+MCP Location
+Local Workspace
+current branch/worktree
+```
+
+Required semantics:
+
+- **Framework Source** → Framework upstream/read-through only. It never auto-upgrades an initialized Project or becomes consuming-Project authority merely because the values match.
+- **Remote Location** → deterministic remote Project Source discovery start before active authority resolves. It defines no branch authority and is not Repository Location Binding, Canonical Integration Target, or Canonical Implementation Source. Explicit discovery/index indirection may differ from the final governed repository without automatic DRIFT when the relationship is intentional and verified.
+- **File Storage Location** → zero-or-more bootstrap locators for durable Project-managed external file/object scopes. It is not itself File Storage Binding.
+- **MCP Location** → environment-specific execution-adapter routing. MCP workspace IDs, recent/focused workspace lists, and similar runtime handles are evidence only.
+- **Local Workspace** → environment-local Project-root/bootstrap locator. It remains distinct from governed Local Workspace Binding; explicit verified host/container/mount mappings may legitimately use different path syntax.
+- **current branch/worktree** → volatile Git observation. Persist only dynamic intent such as `DYNAMIC / VERIFY_EACH_SESSION`; fresh-observe branch/ref, HEAD, worktree, status, and upstream/tracking state whenever material.
+
+Resolution order is:
+
+```text
+read Project-specific Bootstrap Location Block when present
+→ inspect declared Local Workspace read-only for valid active FRAMEWORK-001
+→ valid active local FRAMEWORK-001 wins; read 00 → 01 → 03
+→ otherwise use Framework Source only for Framework read-through and Remote Location for deterministic Project discovery
+→ use MCP / Local / File Storage locators only for their declared roles
+→ once active FRAMEWORK-001 resolves, its Project Location Binding governs repository, local-workspace, Drive, and applicable File Storage routing
+→ fresh-observe current branch/worktree when material
+→ preserve independent Scope / AUTH / DEL / Risk / REQ / DEC / integration / implementation / runtime gates
+```
+
+A material bootstrap/Root Governance contradiction that would route Material work to an incompatible Project target is fail-closed for the affected mutation and is surfaced; neither layer is silently rewritten. Benign syntax, mount, cache, container-path, or declared discovery-indirection differences are not DRIFT merely because strings differ when an explicit verified mapping proves the same governed Project/source identity.
+
+For initialized Framework `1.2.6` Projects, generalized non-Google-Drive external storage is governed in active local `FRAMEWORK-001` under Project Location Binding as **File Storage Binding** / `file_storage_locations`. Framework `1.2.6` preserves the dedicated `project_location_binding.google_drive` block as the sole active Root Governance authority for Google Drive Project-root/content routing. A bootstrap `GOOGLE_DRIVE` locator maps to that dedicated block; the same Drive target/content scope MUST NOT be duplicated as generic File Storage authority.
+
+Generic non-Drive provider/type vocabulary may include:
+
+```text
+S3 | NAS | SMB | NFS | SHAREPOINT | OBJECT_STORAGE | FILE_SERVER | FILESYSTEM | OTHER
+```
+
+Each applicable File Storage scope reuses exactly:
+
+```text
+BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED
+```
+
+Verification status reuses exactly:
+
+```text
+VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED
+```
+
+`BOUND` requires sufficient provider-appropriate durable identity and MUST pair only with `VERIFIED` or `USER_CONFIRMED`, never `verification_status: VERIFICATION_REQUIRED`. Durable identity SHOULD prefer source/provider-native identity where available: S3 bucket+prefix/canonical `s3://` URI; NAS/SMB server/share+governed path; NFS server/export+path; SharePoint stable site/library/folder identity; equivalent stable provider identifiers for other stores. Drive letters, local mounts, sync/cache paths, and display names are access/mapping evidence when a more durable identity exists.
+
+Known-applicable but unresolved storage is `VERIFICATION_REQUIRED`: read/search/discovery/user confirmation needed to resolve it MAY proceed, but Material mutation is blocked by default. A Project with no external/non-repository storage MAY omit generic storage entries; do not synthesize provider `NOT_APPLICABLE` entries merely to fill a template. Missing/empty/unresolved storage never authorizes fallback to recent/search-ranked buckets, folders, shares, mounts, mirrors, or similarly named targets.
+
+Multiple storage bindings are valid when content scopes are distinct; one governed content scope has one declared authoritative owner at a time. Backup, mirror, replica, archive, mounted, synced, cached, or copied content does not gain current storage/workspace/implementation authority by accessibility, recency, or content similarity.
+
+File Storage Binding is Project file/object routing/content ownership and remains distinct from implementation/runtime authority:
+
+```text
+Repository Location Binding
+≠ File Storage Binding
+≠ Local Workspace Binding
+≠ current branch/worktree
+≠ Canonical Integration Target
+≠ Canonical Implementation Source
+≠ Runtime Location / Runtime Data / Persistent-State authority
+```
+
+A single physical S3/NAS/Drive/filesystem target may participate in more than one role only when each role is independently declared and governed. Source-code files existing in a storage copy do not make it Canonical Implementation Source. Project Location Binding MUST NOT add `canonical_branch` or another competing Git integration authority.
+
+Actual storage credentials MUST NOT be stored in Bootstrap Location or Project Location metadata. Access keys, passwords, tokens, SAS tokens, secret-bearing signed URLs, and equivalent credential material remain outside Project Source; use existing `SECRET-*` external-reference metadata when credential routing must be referenced.
+
+Location correctness never grants mutation authority. Existing `AUTH-*`, `DEL-*`, approval, scope, R0–R3 Risk, Requirements/Decisions, Base Freshness, Canonical Implementation Source, Runtime Truth, persistence, verification, and completion gates remain independently binding.
+
+A one-off User Explicit Instruction naming an exact repository/workspace/storage target applies only to that otherwise-authorized action and does not persistently rewrite bootstrap or Root Governance locations. Persistent location change requires explicit approval and coordinated propagation; when active Project Location Binding changes, the existing `FRAMEWORK-001` revision → validate → promote → supersede/archive flow remains mandatory.
+
+Existing initialized Projects stay pinned to their approved local Framework and do not auto-upgrade to `1.2.6`. Migration MUST NOT invent provider applicability, repository/storage identities, local paths, mappings, branch state, runtime roles, or verification status. Framework `1.2.6` adds no semantic slot, Stable-ID family, lifecycle/Git-freshness/Epistemic state, authority family, executable validator, selector, sync service, credential mechanism, or runtime enforcement automation.
 
 ## 3. Naming and Revision
 
