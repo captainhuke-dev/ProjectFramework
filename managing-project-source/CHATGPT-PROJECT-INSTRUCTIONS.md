@@ -1,8 +1,11 @@
-# ChatGPT Project Instructions — ProjectFramework
-
-Paste into **ChatGPT Project → Project settings → Instructions**.
-
-Distribution release: **Project Source Framework 1.2.6 / Schema 1.0.0**.
+# ChatGPT Project — F`1.2.6` / S`1.0.0`
+Paste in Instructions.
+Framework Remote Path: `<FRAMEWORK_REMOTE>`
+Git Remote Path: `<GIT_REMOTE>`
+Storage Path: `<STORAGE>`
+MCP Path: `<MCP_PATH>`
+Workspace Path: `<WS>`
+`Project Path`: verify
 
 <!-- PROJECTFRAMEWORK-SHARED-CONTRACT:START -->
 ## Shared ProjectFramework Bootstrap Contract

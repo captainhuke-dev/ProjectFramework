@@ -2,6 +2,34 @@
 
 Use this copyable Project/environment configuration **before active `FRAMEWORK-001` authority is resolved** when deterministic discovery/routing locators are needed. This file is a distribution/bootstrap artifact outside the `00–99` Project Source semantic-slot namespace. It is **not** `FRAMEWORK-001`, Root Governance, or a second Project Location Binding.
 
+## Project Settings Representation
+
+When installing the launcher into Project Settings, fill this compact block directly. These labels are a human-facing representation of the existing Bootstrap Location semantics; they do not create new location authority or state families.
+
+```text
+Framework Remote Path: <PROJECTFRAMEWORK_REMOTE>
+Git Remote Path: <PROJECT_REMOTE>
+Storage Path: <EXTERNAL_STORAGE_OR_NONE>
+MCP Path: <MCP_LOCAL_PATH>
+Workspace Path: <LOCAL_PROJECT_ROOT>
+Git state: DYNAMIC / VERIFY_EACH_SESSION
+```
+
+Mapping to canonical Bootstrap Location fields:
+
+```text
+Framework Remote Path → framework_source
+Git Remote Path       → remote_location
+Storage Path          → file_storage_locations
+MCP Path              → mcp_location
+Workspace Path        → local_workspace
+Git state             → current_branch_worktree
+```
+
+`Storage Path` may represent zero, one, or multiple durable external/non-repository storage targets. Use `NONE` only when external storage is genuinely not applicable; do not use it to hide an unresolved applicable location.
+
+## Canonical Bootstrap Representation
+
 ```yaml
 framework_source:
   repository: "<FRAMEWORK_OWNER_REPOSITORY>"
@@ -31,6 +59,28 @@ current_branch_worktree:
   state: "DYNAMIC"
   rule: "VERIFY_EACH_SESSION"
 ```
+
+## `Project Path` Command
+
+`Project Path` is a read/verify preflight command over location semantics that already exist. It does not configure paths and does not change authority.
+
+On exact `Project Path`:
+
+1. Read the Project Settings values for Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path.
+2. Surface the saved values before Material work.
+3. Verify available repository identity/remote, MCP target, local workspace, storage locator/reachability as applicable, and active `FRAMEWORK-001` Project Location Binding when present.
+4. Report each comparison as `MATCH`, `MISMATCH`, or `NOT_VERIFIED`. These are diagnostic display labels, not Framework lifecycle, epistemic, binding, or authority states.
+5. A Material mismatch fails closed for the affected mutation. Do not silently rewrite Project Settings, a repo reference, or `FRAMEWORK-001`.
+
+## Optional Repo-Native Reference
+
+For repo-native entry that does not begin in GPT/Claude Project Settings, the same configured values MAY be mirrored at:
+
+```text
+<repo-root>/PROJECT-CONFIG.md
+```
+
+`PROJECT-CONFIG.md` is an optional portable bootstrap/reference representation only. It is not a semantic slot, not Root Governance, and never overrides active `FRAMEWORK-001`. Do not store secrets in it. When Project Settings and `PROJECT-CONFIG.md` disagree before active governance resolves, surface the mismatch rather than choosing by recency. After valid active `FRAMEWORK-001` resolves, its governed Project Location Binding remains authoritative.
 
 ## Semantics
 
