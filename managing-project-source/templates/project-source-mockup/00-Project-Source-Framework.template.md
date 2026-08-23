@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.2.6"
+project_source_framework_version: "1.3.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -31,7 +31,7 @@ Create this document first as active `FRAMEWORK-001`; descendants inherit from i
 
 ## Project Location Binding Pointer
 
-The full root template `../00-project-source-framework.md` carries the authoritative Framework `1.2.6` Project Location Binding contract. A GREENFIELD starter records approved states/identities in active `FRAMEWORK-001`, for example:
+The full root template `../00-project-source-framework.md` carries the authoritative current Framework Project Location Binding contract. A GREENFIELD starter records approved states/identities in active `FRAMEWORK-001`, for example:
 
 ```yaml
 project_location_binding:
@@ -60,6 +60,10 @@ project_location_binding:
 ```
 
 Use the full root contract for Bootstrap Location precedence, minimum durable identity, generic non-Drive File Storage Binding, dedicated non-duplicated Google Drive authority, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and environment-scoped local routing, MCP/tool IDs as evidence only, and separation from current branch/worktree / Canonical Integration Target / Canonical Implementation Source / Runtime Location. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
+## Framework 1.3 Command / Direct Upgrade Pointer
+
+The full root template carries registered `[Project Status]` / `[Project Path]` semantics, Markdown-safe mandatory response-close presentation, and Direct-to-Latest cumulative upgrade governance. Brackets are required and command-name matching inside them is case-insensitive. `<...>` Project Path placeholders mean unset. Initialized Projects remain pinned and, when explicitly upgraded, classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; direct current→target migration preserves Stable IDs, Project-Specific Rules, bindings, current truth, and history without mandatory intermediate-release execution.
+
 ## Framework 1.2.0 Extended Semantics
 
 ```text
@@ -91,7 +95,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.2.5"
+  framework_version: "1.3.0"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"

@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.6"
+project_source_framework_version: "1.3.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -29,9 +29,13 @@ Canonical home of `MIG-*`.
 - **Source Version / Structure:** <SOURCE>
 - **Target Version / Structure:** <TARGET>
 - **Compatibility Assessment:** <CONTENT>
+- **Upgrade Strategy:** <DIRECT_TO_LATEST_CUMULATIVE | SEPARATELY_GOVERNED_LEGACY_CASE>
+- **Upgrade Path Class:** <FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED>
+- **Cumulative Target Delta:** <ALREADY_SATISFIED / REQUIRED / NOT_APPLICABLE / VERIFICATION_REQUIRED / CONFLICT_REVIEW assessment>
+- **Preservation Mapping:** <STABLE_IDS / PROJECT_SPECIFIC_RULES / BINDINGS / CURRENT_TRUTH / HISTORY refs>
 - **Affected Documents / Objects:** <REFS>
-- **Steps:** <CONTENT>
+- **Steps:** <CURRENT_TO_TARGET_REQUIRED_STEPS_ONLY>
 - **Reversibility / Rollback:** <CONTENT>
 - **Approval:** <AUTHORITY / USER_APPROVAL>
-- **Validation:** <CONTENT>
+- **Validation:** <AFFECTED_VERIFICATION + FINAL_UNCHANGED_CANDIDATE_RELEASE_FULL_AS_APPLICABLE>
 - **Evidence:** <EVD_REFS>

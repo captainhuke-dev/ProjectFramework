@@ -765,7 +765,7 @@ Framework `1.2.4` makes Chat closure deterministic while preserving the existing
 4. `START_NEW_CHAT` MAY pair with a concrete Next Action when required Material state is durably persisted and continuation is safe from external state plus Required Read pointers.
 5. `START_NEW_CHAT` is a continuation-safety recommendation, not a claim that the platform forces navigation.
 
-Every Framework-governed response MUST end with exactly these two headings, in order, with nothing after the second section:
+Every Framework-governed response MUST end with exactly these two headings, in order, with nothing after the second section. The canonical semantic field labels are `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:`. For Markdown output, use a presentation wrapper that keeps the labels visibly renderable rather than beginning a bare paragraph with reference-definition-like syntax:
 
 ```text
 ### ทำอะไรไป?
@@ -774,18 +774,51 @@ Every Framework-governed response MUST end with exactly these two headings, in o
 
 ### และถัดไปคืออะไร?
 
-[Next Action]: <one exact next action or ไม่มีขั้นตอนถัดไป>
+**[Next Action]:** <one exact next action or ไม่มีขั้นตอนถัดไป>
 
-[Chat]: CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+**[Chat]:** CONTINUE_CURRENT_CHAT | START_NEW_CHAT
 
-[Reason]: <concise reason>
+**[Reason]:** <concise reason>
 
-[Required Read]: <canonical locations or ไม่มี>
+**[Required Read]:** <canonical locations or ไม่มี>
 ```
 
-The four bracketed fields are separate Markdown paragraphs. Canonical lifecycle tokens remain exactly `CONTINUE_CURRENT_CHAT` and `START_NEW_CHAT`; renderer escaping is presentation-only.
+The four semantic fields remain separate Markdown paragraphs. Bold or equivalent Markdown-safe wrapping is presentation-only; it does not rename the canonical labels or lifecycle tokens. Canonical lifecycle tokens remain exactly `CONTINUE_CURRENT_CHAT` and `START_NEW_CHAT` and stay unescaped.
 
-Before emit, every Framework-governed assistant response MUST run a lightweight **Response Close Completeness Gate** on the assistant final-response representation: exactly the two mandatory headings in order; exactly one `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` as separate Markdown paragraphs in that order; one canonical lifecycle token in `[Chat]`; valid Chat Closure Consistency; and nothing after `[Required Read]`. Missing, duplicate, malformed, out-of-order, or contradictory close content must be corrected before emit. The gate does not claim visibility into downstream transport/UI rendering; user-reported rendered omissions are regression evidence while the exact loss layer remains unverified unless independently observed.
+Before emit, every Framework-governed assistant response MUST run a lightweight **Response Close Completeness Gate** on the assistant final-response representation: exactly the two mandatory headings in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` field in separate paragraphs and in that order; one canonical lifecycle token in `[Chat]`; valid Chat Closure Consistency; and nothing after `[Required Read]`. Presentation wrappers are ignored for semantic field identity. Missing, duplicate, malformed, hidden/non-visible, out-of-order, or contradictory close content must be corrected before emit. The gate does not claim visibility into downstream transport/UI rendering; user-reported rendered omissions are regression evidence while the exact loss layer remains unverified unless independently observed.
+
+### 16.4 Registered Project Command Contract
+
+Framework `1.3.0` defines a small semantic command registry for common Project inspection. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service or other executable runtime.
+
+Initial registry:
+
+```text
+[Project Status] : fresh-read Project identity, Task state, Git sync/working-tree state, verification, blockers, and health
+[Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
+```
+
+Natural-language requests for available commands (for example “มีชุดคำสั่งอะไรบ้าง”, “command list”, or “available commands”) MUST list only commands registered by the active Framework/Project in `[XXX] : purpose` form. Do not invent commands merely because an Agent/tool could perform another action.
+
+#### `[Project Status]`
+
+`[Project Status]` is read-only and MUST fresh-observe available current sources rather than reuse chat memory as current evidence. Present applicable dimensions in this order: **Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers**.
+
+- Identity includes Project/repository, Workspace, current branch/ref, and observed HEAD when available.
+- Health reuses existing `GREEN | AMBER | RED | UNKNOWN`; no competing `YELLOW` state is introduced.
+- Remain Tasks comes from the applicable Task source and shows count plus Task ID/state/concise detail when exposed.
+- Git Sync reports remote/tracking target, ahead/behind/divergence, and remote freshness. A `VERIFIED` remote-freshness claim requires an applicable fresh remote observation; cached remote-tracking state alone is insufficient. `STALE` / `VERIFICATION_REQUIRED` may be used as diagnostic report labels without becoming new Framework lifecycle states.
+- Working Tree reports `Waiting Commit: Yes | No` plus changed/staged/unstaged/untracked counts. Git file/change count MUST NOT be converted into logical Task count.
+- Verification reports latest applicable `PASS | FAIL | NOT_RUN | UNKNOWN` plus evidence validity/context when available.
+- Blockers report material blockers or `None` only when absence is actually supported.
+
+Unavailable dimensions remain explicit `UNKNOWN` / `VERIFICATION_REQUIRED`; never fabricate status from memory, old tool output, search ranking, or an unverified remote ref.
+
+#### `[Project Path]`
+
+`[Project Path]` reads and verifies the configured Project Settings/bootstrap values for Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Any value still syntactically represented by an angle-bracket placeholder such as `<FRAMEWORK_REMOTE>`, `<STORAGE>`, `<MCP_PATH>`, or `<WS>` means **unset / not configured**, not a literal path. Missing/unset values never authorize fallback to recent, active, mounted, cached, search-ranked, or similarly named locations.
+
+The command may include an explicit request to change one or more path values, but it grants no new mutation authority. A one-off exact target remains action-specific. Persistent Bootstrap Location or active Project Location Binding changes still require applicable User Explicit Approval and, when Root Governance is affected, the normal `FRAMEWORK-001` revision → validate → promote → supersede/archive flow.
 
 ## 17. Adoption Modes and Bootstrap
 
@@ -837,7 +870,46 @@ Each Project pins Framework/Schema version and compatibility range. Never auto-u
 
 Managed migration uses `MIG-*` and covers source, target, compatibility assessment, affected documents/objects, steps, rollback, approval, validation, and evidence. Project-Specific Rules are preserved unless explicitly resolved otherwise.
 
-### 18.1 Framework 1.2.0 Slot-91 Migration Safety
+### 18.1 Framework 1.3 Direct-to-Latest / Cumulative Target-State Upgrade
+
+Framework `1.3.0` changes default upgrade **execution architecture** while preserving migration safety and history. The governing invariant is: **upgrade cost SHOULD scale with the affected semantic difference between current reconstructable Project state and the approved target Framework, not with the number of releases skipped.**
+
+For an initialized Project, resolve the active locally pinned current state and compare it directly with an explicitly selected target Framework. Historical amendments/releases remain provenance/rationale and existing `MIG-*`/Git/history remain preserved; they are not mandatory sequential execution steps merely because their versions existed.
+
+```text
+resolve active current Project/local pin
+→ materialize current reconstructable truth
+→ resolve explicitly selected target Framework
+→ compare current state directly with target required semantics
+→ classify cumulative semantic delta
+→ choose upgrade path
+→ Preview cumulative delta + preservation + rollback
+→ explicit approval
+→ apply only required current→target changes
+→ affected/risk-scoped verification
+→ RELEASE_FULL once on final unchanged target candidate
+→ promote target Framework revision and preserve superseded/history state
+```
+
+Cumulative assessment MAY label target semantics `ALREADY_SATISFIED | REQUIRED | NOT_APPLICABLE | VERIFICATION_REQUIRED | CONFLICT_REVIEW`; these are migration-assessment labels only, not new lifecycle/Epistemic/authority states.
+
+Direct-upgrade path classes are exactly:
+
+```text
+FAST_PATH
+ASSESSED_PATH
+MAJOR_MIGRATION_REQUIRED
+```
+
+- `FAST_PATH` — current truth is reconstructable and compatible; target delta is bounded with no material unresolved conflict.
+- `ASSESSED_PATH` — one cumulative `MIG-*` assessment/plan is required, but safe current→target migration does not require replaying each intermediate release.
+- `MAJOR_MIGRATION_REQUIRED` — breaking schema/namespace/root semantics, non-reconstructable current truth, or material unresolved conflicts/unknowns prevent safe bounded direct migration.
+
+Skipping intermediate **execution** never skips compatibility assessment, authority, Preview/approval, reversibility/rollback, validation, evidence, promotion, Stable-ID/current-truth preservation, Project-Specific Rules, bindings, or history. The maintained starter is the target representation for NEW Projects, not a default destructive rebuild path for initialized Projects. Full reconstruction requires an explicitly approved `MAJOR_MIGRATION_REQUIRED` preservation/mapping plan.
+
+Reuse Progressive / Risk-Scoped Verification: affected checks during migration, `CHECKPOINT_INTEGRITY` at logical checkpoints, one `RELEASE_FULL` on the final unchanged candidate, then `INTEGRATION_GATE` for Base Freshness/evidence validity. Do not run `RELEASE_FULL` once per skipped historical release.
+
+### 18.2 Framework 1.2.0 Slot-91 Migration Safety
 
 Framework releases before `1.2.0` allowed `90–99` as Project-specific/Governance Extension space. A Brownfield Project may already use slot `91` for a custom document.
 
@@ -855,13 +927,13 @@ detect occupied 91
 
 Existing Projects that do not migrate remain unaffected.
 
-### 18.2 No Automatic Free-Text Promotion
+### 18.3 No Automatic Free-Text Promotion
 
 Existing prose mentioning risks, assumptions, dates, dependencies, scope changes, outcomes, or gates MUST NOT be automatically reinterpreted as new `RISK-*`, `ASM-*`, `MS-*`, `OUT-*`, `DEP-*`, `CR-*`, or `GATE-*` identities.
 
 Promotion requires enough current semantics, status, ownership, and epistemic/evidence state to avoid fabrication. If identity/current truth cannot be established, preserve prose as historical/current context with explicit uncertainty rather than inventing a Stable ID.
 
-### 18.3 Framework Operational Use and Optional Release Assurance
+### 18.4 Framework Operational Use and Optional Release Assurance
 
 Treat Framework state as independent dimensions:
 
@@ -889,7 +961,7 @@ framework_source_provenance:
 
 Exact tag/SHA values come only from actual observation; never predict, fabricate, or retroactively backfill them.
 
-### 18.4 Git Work Base Freshness and Forward-Port
+### 18.5 Git Work Base Freshness and Forward-Port
 
 เมื่อ Project ใช้ Git branch/worktree สำหรับงานที่ต้อง integrate กลับ canonical target ให้แยก **Git mergeability** ออกจาก **semantic acceptability**. Branch ที่ merge/rebase แบบไม่มี textual conflict ยังอาจใช้ Framework, authority, Requirements, routing หรือ contract รุ่นเก่าอยู่ได้.
 

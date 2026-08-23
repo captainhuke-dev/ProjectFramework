@@ -1,10 +1,16 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.2.5 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.3.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.3 Command & Direct-to-Latest Upgrade Semantics
+
+Framework `1.3.0` keeps Schema `1.0.0` and existing semantic slots/Stable-ID families while adding registered bracketed `[Project Status]` / `[Project Path]` commands, Markdown-safe mandatory response-close presentation, and cumulative current→target upgrades. Brackets are required; registered command-name matching is case-insensitive. Command discovery lists only registered commands. `[Project Status]` fresh-observes Project/Task/Git/verification/blocker state and keeps Task count distinct from Git changes. `[Project Path]` treats angle-bracket placeholders as unset and adds no location mutation authority.
+
+Initialized Projects remain locally pinned. An approved upgrade compares current reconstructable truth directly with the selected target, classifies `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preserves Stable IDs/current truth/Project-specific rules/bindings/history, and does not mechanically execute every intermediate release. Affected verification is proportional and one `RELEASE_FULL` is run on the final unchanged candidate. The maintained starter remains the current NEW-Project representation, not a default destructive rebuild mechanism.
 
 ## Framework 1.2.6 Bootstrap Location & File Storage Semantics
 

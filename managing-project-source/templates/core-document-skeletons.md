@@ -13,6 +13,8 @@ Framework `1.2.4` adds **Project Location Binding** and Chat Closure Consistency
 Framework `1.2.6` adds a Project-specific **Bootstrap Location Block** for pre-`FRAMEWORK-001` discovery plus governed non-Drive **File Storage Binding** under active `FRAMEWORK-001`, while Schema stays `1.0.0`. Framework Source / Remote / File Storage / MCP / Local Workspace / current branch-worktree remain distinct; current Git state is dynamic. Google Drive remains canonical in the dedicated root Drive binding; generic File Storage covers non-Drive content scopes. Existing Projects remain pinned and migration invents no locations/provider applicability.
 
 Framework `1.2.5` adds environment-scoped **Local Workspace Binding**, **Verified Task Completion Checkpoint**, progressive/risk-scoped verification with evidence reuse, and the **Response Close Completeness Gate**. `00 / FRAMEWORK-001` remains the routing authority; `09`, `15`, and `40` reference observed workspace/commit/verification state without becoming competing location, branch, or implementation authority.
+
+Framework `1.3.0` adds registered bracketed `[Project Status]` / `[Project Path]` commands, Markdown-safe response-close presentation, and Direct-to-Latest cumulative upgrades using `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. Existing Projects remain pinned; intermediate release execution is not mandatory, but current truth/Stable IDs/Project-specific rules/history/approval/rollback/validation remain preserved.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -33,7 +35,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.2.5"
+project_source_framework_version: "1.3.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
