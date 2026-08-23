@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.2.5 / Schema 1.0.0**.
+Current distribution: **Framework 1.2.6 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,6 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
+- `references/framework-governance-amendment-260823-0816.md`
 - `references/framework-governance-amendment-260822-1835.md`
 - `references/framework-governance-amendment-260822-1424.md`
 - `references/framework-governance-amendment-260821-1934.md`
@@ -125,6 +126,62 @@ These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope be
 ### Response Close Completeness Gate
 
 Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. Missing/duplicate/malformed/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
+
+## Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
+
+Framework `1.2.6` composes with `1.2.1–1.2.5`. It adds deterministic pre-`FRAMEWORK-001` bootstrap locators and generalized governed non-Drive File Storage without creating a second Project authority.
+
+When Project-specific Bootstrap Location configuration is present, use this order:
+
+```text
+valid active local FRAMEWORK-001 already resolved? → local pin remains authoritative
+otherwise read Bootstrap Location Block
+→ Framework Source = Framework read-through only
+→ declared Local Workspace = first read-only attempt to resolve local Project/active FRAMEWORK-001
+→ Remote Location = deterministic remote Project Source discovery start when local authority does not resolve
+→ MCP Location = verify intended execution adapter/boundary for the current environment
+→ File Storage Location(s) = bootstrap locators for declared non-repository artifact scopes
+→ current branch/worktree = fresh Git observation; never trust static text as current state
+→ once FRAMEWORK-001 resolves, its Project Location Binding governs steady-state routing
+→ then apply Scope / AUTH / DEL / Risk / REQ / DEC / Git integration / implementation / runtime gates
+```
+
+Keep these meanings distinct even when values align:
+
+```text
+Framework Source
+≠ Remote Location
+≠ File Storage Location
+≠ MCP Location
+≠ Local Workspace
+≠ current branch/worktree
+≠ Repository Location Binding
+≠ File Storage Binding
+≠ Local Workspace Binding
+≠ Canonical Integration Target
+≠ Canonical Implementation Source
+≠ Runtime Location
+```
+
+Operational rules:
+
+1. Bootstrap locators help find/route authority; they never silently become authority. A valid active local `FRAMEWORK-001` wins for initialized Project Location state.
+2. Remote Location may be an explicit discovery/index indirection; string inequality with final governed repository is not automatic DRIFT. A direct contradictory identity that would route Material work elsewhere stops the affected mutation and is surfaced.
+3. MCP Location and Local Workspace may use different host/container/mount syntax when an explicit verified mapping proves the same governed Project/source identity. MCP `workspaceId`, editor handles, focus/recent lists, and local mount letters remain evidence only.
+4. Bootstrap/Root mismatch is fail-closed for the affected Material mutation. Do not silently rewrite either layer.
+5. `current branch/worktree` is `DYNAMIC / VERIFY_EACH_SESSION`: fresh-observe repository identity, worktree, branch/ref, HEAD, status, and tracking state when material. Never persist a concrete current branch as bootstrap authority or infer Canonical Integration Target from it.
+6. Generic **File Storage Binding** lives under active local `FRAMEWORK-001` Project Location Binding for non-Google-Drive external scopes. Supported descriptive provider vocabulary may include `S3 | NAS | SMB | NFS | SHAREPOINT | OBJECT_STORAGE | FILE_SERVER | FILESYSTEM | OTHER`.
+7. Google Drive remains governed by the dedicated `project_location_binding.google_drive` block in Framework `1.2.6`. A bootstrap `GOOGLE_DRIVE` locator maps there. Never duplicate the same Drive target/content scope in generic `file_storage_locations`.
+8. File Storage binding states are exactly `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`; verification is exactly `VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED`. `BOUND` pairs only with `VERIFIED` or `USER_CONFIRMED` and requires provider-appropriate durable identity.
+9. Known-applicable unresolved storage = `VERIFICATION_REQUIRED`; discovery/read-only resolution may proceed, Material mutation does not. A Project with no external storage may omit generic entries entirely; do not synthesize provider `NOT_APPLICABLE` rows. Missing/unresolved storage never authorizes recent/search-ranked fallback.
+10. Multiple storage locations are allowed for distinct content scopes; one governed content scope has one declared authoritative owner at a time. Mirrors, backups, archives, mounts, sync/cache paths, or copies do not gain current authority by accessibility or recency.
+11. File Storage Binding does not automatically become Local Workspace, Canonical Implementation Source, Runtime/Data/Persistent-State authority, backup authority, or deployment authority. The same physical target may serve multiple roles only when each role is independently declared. Source-code presence alone does not grant IMPLEMENTATION Truth.
+12. Never store storage credentials in location metadata. Use existing `SECRET-*` external-reference metadata; no actual access keys, passwords, tokens, SAS tokens, or secret-bearing signed URLs.
+13. Correct location never grants `AUTH-*`, `DEL-*`, Risk approval, scope expansion, branch/integration authority, implementation authority, or runtime authority.
+14. One-off exact targets remain action-specific. Persistent bootstrap/governed location change requires explicit approval and coordinated propagation; active `FRAMEWORK-001` binding changes use normal Root Governance revision/validate/promote/supersede/archive flow.
+15. Existing initialized Projects remain pinned and do not auto-upgrade to 1.2.6. Migration invents no provider applicability, identities, paths, mappings, branch state, roles, or verification status.
+
+No new semantic slot, Stable-ID family, lifecycle/freshness/Epistemic state, authority family, executable selector, storage sync, validator, hook, bot, CI/CD, scheduler, watcher, credential mechanism, or runtime enforcement is introduced.
 
 ## Framework 1.2.0 Namespace and Routing
 

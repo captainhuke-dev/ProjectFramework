@@ -6,6 +6,12 @@ This directory is the concrete starter representation of the Project Source sema
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
 
+## Framework 1.2.6 Bootstrap Location & File Storage Semantics
+
+Framework `1.2.6` keeps Schema `1.0.0` and existing Stable-ID/state families. A Project-specific Bootstrap Location Block supplies Framework Source, Remote Location, optional File Storage Location(s), MCP Location, Local Workspace, and `DYNAMIC / VERIFY_EACH_SESSION` current branch/worktree intent before authority resolves. It is not a second root; active `FRAMEWORK-001` remains initialized-Project authority.
+
+Generic `file_storage_locations` in active `FRAMEWORK-001` govern non-Drive S3/NAS/SMB/NFS/SharePoint/object/file/filesystem scopes by content ownership. Dedicated `google_drive` remains canonical for Drive and must not be duplicated generically. `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED` and `VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED` are reused; unresolved/absent storage never authorizes fallback. File Storage does not automatically become Local Workspace, Canonical Implementation Source, or Runtime/Persistent-State authority. Existing Projects remain pinned; migration invents no provider applicability.
+
 ## Framework 1.2.5 Agent Continuity, Progressive Verification & Local Workspace Semantics
 
 Framework `1.2.5` keeps Schema `1.0.0` and existing Stable-ID families while adding:
@@ -117,15 +123,16 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 4. Read SKILL.md + latest amendment + Core Governance
 5. Read 00 template + core-document-skeletons.md
 6. Read this mockup mapping
-7. Preview proposed Project Source, including GitHub/Drive Project Location Binding states/identities → obtain explicit user approval
-8. Create active 00 first with the approved Project Location Binding
-9. Create mandatory 01–05 and 09–17
-10. Evaluate 06–08, 40, 60, 91; create only when applicable
-11. Keep 18–19 reserved
-12. Use 92–99 only for real Project-specific/governance-extension needs
-13. Build/verify Index + Manifest + readiness
-14. Pin Framework/Schema locally; do not auto-upgrade later
-15. Optionally record exact Git provenance only when actually observed/material
+7. Read `../project-location-bootstrap.md` when Project/environment bootstrap configuration is being prepared; resolve Framework Source / Remote / Local / MCP / File Storage locators read-only as applicable
+8. Preview proposed Project Source, including governed GitHub/Drive/local-workspace/generic-file-storage states/identities → obtain explicit user approval
+9. Create active 00 first with the approved Project Location Binding
+10. Create mandatory 01–05 and 09–17
+11. Evaluate 06–08, 40, 60, 91; create only when applicable
+12. Keep 18–19 reserved
+13. Use 92–99 only for real Project-specific/governance-extension needs
+14. Build/verify Index + Manifest + readiness
+15. Pin Framework/Schema locally; do not auto-upgrade later
+16. Optionally record exact Git provenance only when actually observed/material
 ```
 
 When Git branch/worktree integration is later used inside an initialized Project, apply the locally pinned root `00` Base Freshness contract. Upstream Framework movement does not auto-upgrade that Project.

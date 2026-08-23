@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.2.5**
+- Project Source Framework: **1.2.6**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,18 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.2.6 Bootstrap Location & File Storage Additions
+
+Framework `1.2.6` adds deterministic **Bootstrap Location Semantics** before `FRAMEWORK-001` resolution and generalized governed **File Storage Binding** for non-Google-Drive external storage while keeping Project Source Schema `1.0.0`, semantic slots, Stable-ID families, existing authority systems, and initialized-Project pinning unchanged.
+
+The six bootstrap/execution concepts remain distinct: **Framework Source**, **Remote Location**, **File Storage Location**, **MCP Location**, **Local Workspace**, and dynamically observed **current branch/worktree**. Bootstrap locators help find/rout authority but never silently become it. Once valid active `FRAMEWORK-001` resolves, its Project Location Binding governs initialized-Project routing. Material bootstrap/root mismatch fails closed and rewrites neither side silently. Current branch/worktree remains `DYNAMIC / VERIFY_EACH_SESSION`; Remote Location creates no branch authority.
+
+Generic `file_storage_locations` under active `FRAMEWORK-001` govern purpose/content-scoped non-Drive stores such as S3/object storage, NAS/SMB/NFS, SharePoint, file servers, and durable filesystem storage. File Storage reuses `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`; verification reuses `VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED`, with `BOUND` permitted only with `VERIFIED` or `USER_CONFIRMED`. Known-applicable unresolved storage fails closed; Projects with no external storage need no synthetic provider entries; absence never authorizes fallback.
+
+Framework `1.2.6` preserves the dedicated `project_location_binding.google_drive` block as canonical Drive authority. Bootstrap Google Drive locators map to it; generic storage must not duplicate the same Drive target/content scope. File Storage remains distinct from Repository/Local Workspace routing, Canonical Implementation Source, Runtime/Data/Persistent-State, backup, and deployment authority. Actual storage credentials remain external via existing `SECRET-*` reference semantics.
+
+Existing initialized Projects do not auto-upgrade or gain new storage applicability. Migration must preserve the local pin and must not invent locations/providers. This release remains governance/documentation scope and adds no automatic discovery/sync, validator, hook, bot, CI/CD, scheduler, watcher, branch switcher, or runtime enforcement.
 
 ## Framework 1.2.5 Additions
 
