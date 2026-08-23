@@ -42,6 +42,8 @@ For each material technology record Technology, Role/Responsibility, Version/Sup
 
 When material, resolve Canonical Implementation Source, repository/source identity, workspace type/location/durability, Human/Agent edit location, execution environment, Source-to-Runtime Mapping, dependency isolation, Runtime Mutability Boundary, Persistent-State Boundary, related REQ/DEC/RISK/ASM/DEP/CR/EVD, and verification/drift notes. Local Workspace Binding may be referenced for routing context, but its authority stays in `FRAMEWORK-001`; Canonical Implementation Source remains distinct.
 
+When material, reference File Storage Binding for technical storage/source topology as `artifact/content scope → provider → canonical durable locator → environment access path/mount`. File Storage Binding remains routing/content ownership in `FRAMEWORK-001`; `File Storage Binding ≠ Canonical Implementation Source`, and mounted/synced storage does not become Development Workspace authority by accessibility alone. If one physical store also carries implementation or runtime roles, each role must be separately declared/verified. Google Drive/S3/NAS/filesystem ownership remains scope-specific and non-duplicative.
+
 Descriptive workspace/mapping vocabulary may include `LOCAL_WORKSPACE`, `GIT_WORKTREE`, `REMOTE_DURABLE_WORKSPACE`, `DEV_CONTAINER_DURABLE_WORKSPACE`, `DIRECT_EXECUTION`, `BIND_MOUNT`, `WORKSPACE_VOLUME`, `IMAGE_OR_ARTIFACT_BUILD`, and `REMOTE_SYNC`. These are blueprint descriptions, not Project states or Stable-ID families.
 
 ## Configuration Contract

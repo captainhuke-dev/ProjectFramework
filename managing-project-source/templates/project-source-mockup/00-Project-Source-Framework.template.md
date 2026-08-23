@@ -31,7 +31,7 @@ Create this document first as active `FRAMEWORK-001`; descendants inherit from i
 
 ## Project Location Binding Pointer
 
-The full root template `../00-project-source-framework.md` carries the authoritative Framework `1.2.5` Project Location Binding contract. A GREENFIELD starter records approved states/identities in active `FRAMEWORK-001`, for example:
+The full root template `../00-project-source-framework.md` carries the authoritative Framework `1.2.6` Project Location Binding contract. A GREENFIELD starter records approved states/identities in active `FRAMEWORK-001`, for example:
 
 ```yaml
 project_location_binding:
@@ -48,9 +48,18 @@ project_location_binding:
       binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
       canonical_path: "<ABSOLUTE_LOCAL_PATH_OR_UNKNOWN>"
       repository: "<OWNER/REPOSITORY_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+  file_storage_locations:
+    - storage_key: "<PROJECT_DEFINED_STORAGE_KEY>"
+      binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
+      storage_type: "<S3 | NAS | SMB | NFS | SHAREPOINT | OBJECT_STORAGE | FILE_SERVER | FILESYSTEM | OTHER>"
+      canonical_locator: "<PROVIDER_APPROPRIATE_DURABLE_LOCATOR_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+      content_scope: "<DECLARED_CONTENT_SCOPE>"
+      authoritative_scope: "<OWNED_PROJECT_FILE_OBJECT_SCOPE>"
+      verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
+      last_verified_at: "<ISO8601_OR_UNKNOWN>"
 ```
 
-Use the full root contract for minimum durable identity, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and environment-scoped local routing, MCP/tool IDs as evidence only, and separation from current branch/worktree / Canonical Integration Target / Canonical Implementation Source / Runtime Location. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
+Use the full root contract for Bootstrap Location precedence, minimum durable identity, generic non-Drive File Storage Binding, dedicated non-duplicated Google Drive authority, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and environment-scoped local routing, MCP/tool IDs as evidence only, and separation from current branch/worktree / Canonical Integration Target / Canonical Implementation Source / Runtime Location. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
 ## Framework 1.2.0 Extended Semantics
 
 ```text

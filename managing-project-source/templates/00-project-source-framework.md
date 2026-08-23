@@ -115,7 +115,19 @@ project_location_binding:
       repository_url: "<CANONICAL_REPOSITORY_URL_OR_UNKNOWN_OR_NOT_APPLICABLE>"
       verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
       last_verified_at: "<ISO8601_OR_UNKNOWN>"
+
+  file_storage_locations:
+    - storage_key: "<PROJECT_DEFINED_STORAGE_KEY>"
+      binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
+      storage_type: "<S3 | NAS | SMB | NFS | SHAREPOINT | OBJECT_STORAGE | FILE_SERVER | FILESYSTEM | OTHER>"
+      canonical_locator: "<PROVIDER_APPROPRIATE_DURABLE_LOCATOR_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+      content_scope: "<DECLARED_CONTENT_SCOPE>"
+      authoritative_scope: "<OWNED_PROJECT_FILE_OBJECT_SCOPE>"
+      verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
+      last_verified_at: "<ISO8601_OR_UNKNOWN>"
 ```
+
+Generic `file_storage_locations` ใช้เฉพาะ non-Google-Drive external storage scopes; Google Drive ยังคง canonical ใน dedicated `google_drive` block และห้าม duplicate target/content scope เดียวกัน. `BOUND` ต้องมี provider-appropriate durable identity และ pair เฉพาะ `VERIFIED` หรือ `USER_CONFIRMED`; known-applicable unresolved = `VERIFICATION_REQUIRED`. Project ที่ไม่มี external storage omit list นี้ได้; absence/unresolved ห้าม fallback ไป recent/search-ranked/mounted target. Multiple stores ใช้ได้เมื่อ content scopes distinct และหนึ่ง governed content scope มี authoritative owner เดียว ณ เวลาเดียว. Actual credentials ห้ามเก็บที่นี่; ใช้ `SECRET-*` reference. Mount/sync/cache path เป็น routing evidence ไม่ใช่ Local Workspace, Canonical Implementation Source หรือ Runtime/Persistent-State authority โดยอัตโนมัติ.
 
 Binding state ของ GitHub, Google Drive และแต่ละ environment-scoped Local Workspace Binding ต้อง resolve แยกกันเป็น exactly `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED`:
 
@@ -126,7 +138,7 @@ Binding state ของ GitHub, Google Drive และแต่ละ environmen
 - การเปลี่ยน active binding เป็น Root Governance mutation: ต้อง User Explicit Approval และใช้ `FRAMEWORK-001` revision → validate → promote → supersede/archive flow. Connector discovery, recency หรือ ranking ไม่ transfer authority.
 - Repository Location Binding `≠` Local Workspace Binding `≠` current work branch/worktree `≠` Canonical Integration Target `≠` Canonical Implementation Source `≠` Runtime Location. Project Location Binding ห้ามสร้าง `canonical_branch` หรือ branch authority คู่ขนาน; Git integration target ยัง governed โดย Framework `1.2.2` Base Freshness contract.
 
-GREENFIELD ที่ยังไม่มี active `FRAMEWORK-001` ใช้ read-only discovery เมื่อจำเป็น → Preview proposed GitHub/Drive/local-workspace binding states/identities → explicit user approval → first Material Project-Source write creates active `00` with approved binding. Binding uncertainty ห้ามถูกเดาจาก chat memory, recent activity หรือ search result. MCP `workspaceId`, editor handle, active/recent workspace เป็น routing evidence เท่านั้น ไม่ใช่ canonical Project identity; missing applicable local environment = `VERIFICATION_REQUIRED` โดย default. Persistent Local Workspace Binding change ยังเป็น Root Governance mutation และ one-off exact local target ไม่ persistently rewrite binding.
+GREENFIELD ที่ยังไม่มี active `FRAMEWORK-001` อ่าน Project-specific Bootstrap Location Block เมื่อมี → ใช้ read-only discovery เมื่อจำเป็น → Preview proposed GitHub/Drive/local-workspace/generic-file-storage binding states/identities ตาม applicability → explicit user approval → first Material Project-Source write creates active `00` with approved binding. Binding uncertainty ห้ามถูกเดาจาก chat memory, recent activity หรือ search result. MCP `workspaceId`, editor handle, active/recent workspace เป็น routing evidence เท่านั้น ไม่ใช่ canonical Project identity; missing applicable local environment = `VERIFICATION_REQUIRED` โดย default. Persistent Local Workspace Binding change ยังเป็น Root Governance mutation และ one-off exact local target ไม่ persistently rewrite binding.
 ## 3. Project Source Location and Semantic Namespace
 
 Project Source อยู่ที่:

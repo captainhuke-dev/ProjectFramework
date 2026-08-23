@@ -6,6 +6,12 @@ This directory is the concrete starter representation of the Project Source sema
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
 
+## Framework 1.2.6 Bootstrap Location & File Storage Semantics
+
+Framework `1.2.6` keeps Schema `1.0.0` and existing Stable-ID/state families. A Project-specific Bootstrap Location Block supplies Framework Source, Remote Location, optional File Storage Location(s), MCP Location, Local Workspace, and `DYNAMIC / VERIFY_EACH_SESSION` current branch/worktree intent before authority resolves. It is not a second root; active `FRAMEWORK-001` remains initialized-Project authority.
+
+Generic `file_storage_locations` in active `FRAMEWORK-001` govern non-Drive S3/NAS/SMB/NFS/SharePoint/object/file/filesystem scopes by content ownership. Dedicated `google_drive` remains canonical for Drive and must not be duplicated generically. `BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED` and `VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED` are reused; unresolved/absent storage never authorizes fallback. File Storage does not automatically become Local Workspace, Canonical Implementation Source, or Runtime/Persistent-State authority. Existing Projects remain pinned; migration invents no provider applicability.
+
 ## Framework 1.2.5 Agent Continuity, Progressive Verification & Local Workspace Semantics
 
 Framework `1.2.5` keeps Schema `1.0.0` and existing Stable-ID families while adding:

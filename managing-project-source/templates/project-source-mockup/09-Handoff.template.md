@@ -37,7 +37,10 @@ Source/Docker known variance
 Knowledge Debt affecting continuation
 Material Persistence State: PERSISTED | PERSISTENCE_PENDING | NOT_APPLICABLE
 
-Project Location Binding / Local Workspace Binding Reference: active FRAMEWORK-001 (no independent repo/folder/path authority copy)
+Project Location Binding / Local Workspace / File Storage Binding Reference: active FRAMEWORK-001 (no independent repo/folder/path/storage authority copy)
+Bootstrap Location Mismatch / Freshness Warning when material
+Observed MCP execution path/workspace evidence when needed
+File Storage routing reference by storage_key/content scope/provider/source-native pointer when continuation requires external storage
 Observed Repository Identity when material
 Current Work Branch / Worktree
 Verified HEAD SHA
@@ -68,5 +71,5 @@ Chat Continuity = CONTINUE_CURRENT_CHAT → concrete Exact Next Action required
 Material Persistence State = PERSISTENCE_PENDING → CONTINUE_CURRENT_CHAT + concrete persistence/recovery action
 ```
 
-When continuation depends on GitHub/Drive/local routing, reference the active `FRAMEWORK-001` Project Location Binding and source-native durable identities; do not store an independent authoritative repo/folder binding in `09`.
+When continuation depends on GitHub/Drive/local/File Storage routing, reference the active `FRAMEWORK-001` Project Location Binding and source-native durable identities. `09` does not persist an independent Bootstrap Location Block, repository/workspace binding, or File Storage binding authority; current branch/worktree/HEAD remains observed dynamic evidence.
 Lifecycle: `DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED`.

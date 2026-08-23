@@ -10,6 +10,8 @@ Framework `1.2.3` adds Development Workspace / Runtime Authority semantics witho
 
 Framework `1.2.4` adds **Project Location Binding** and Chat Closure Consistency without changing Schema `1.0.0`. Active `00 / FRAMEWORK-001` is the canonical home of GitHub/Drive binding. `03` and `09` may carry references/pointers for current-state and continuation purposes but MUST NOT duplicate location authority. Before Material GitHub/Drive mutation, resolve the active binding state and fail closed when it is `VERIFICATION_REQUIRED` or `NOT_APPLICABLE` as defined by Core Governance.
 
+Framework `1.2.6` adds a Project-specific **Bootstrap Location Block** for pre-`FRAMEWORK-001` discovery plus governed non-Drive **File Storage Binding** under active `FRAMEWORK-001`, while Schema stays `1.0.0`. Framework Source / Remote / File Storage / MCP / Local Workspace / current branch-worktree remain distinct; current Git state is dynamic. Google Drive remains canonical in the dedicated root Drive binding; generic File Storage covers non-Drive content scopes. Existing Projects remain pinned and migration invents no locations/provider applicability.
+
 Framework `1.2.5` adds environment-scoped **Local Workspace Binding**, **Verified Task Completion Checkpoint**, progressive/risk-scoped verification with evidence reuse, and the **Response Close Completeness Gate**. `00 / FRAMEWORK-001` remains the routing authority; `09`, `15`, and `40` reference observed workspace/commit/verification state without becoming competing location, branch, or implementation authority.
 ## Common YAML Header Pattern
 

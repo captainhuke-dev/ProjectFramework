@@ -51,6 +51,8 @@ compatible_schema_range: ">=1.0,<2.0"
 ## Data / Storage Authority
 <AUTHORITATIVE_DATASTORE_VOLUME_EXTERNAL_STORAGE_OR_OTHER_DECLARED_AUTHORITY>
 
+File Storage Binding may be referenced for Project-file routing, but `File Storage Binding ≠ Runtime Data / Storage Authority` and `File Storage Binding ≠ Persistent-State Boundary`. The same physical Google Drive/S3/NAS/filesystem target may participate in Project-file and runtime/data roles only when each role is explicitly declared; never infer runtime persistence, backup, or deployment authority from Project File Storage Binding alone.
+
 ## Replacement / Recreation Expectation
 <WHAT_CAN_BE_REPLACED_RECREATED_AND_WHAT_MUST_SURVIVE>
 
