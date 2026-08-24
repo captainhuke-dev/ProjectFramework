@@ -21,9 +21,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Required behavior:** If Workspace and upstream differ, ask the user whether to upgrade. Do not auto-upgrade merely because a newer/different upstream state exists.
 - **Upgrade rule:** If the user later approves an upgrade, preserve the active Project's local pin/history and follow the current Direct-to-Latest cumulative upgrade governance rather than mechanically replaying every intermediate release.
 - **Design Spec:** `docs/superpowers/specs/2026-08-24-project-upgrade-command-design.md`
-- **Design State:** `USER_APPROVED_DESIGN / SPEC_READY_FOR_REVIEW`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-24-project-upgrade-command.md`
+- **Plan State:** `PLAN_READY_FOR_REVIEW`
 - **Completion criteria:** Command semantics, comparison inputs, difference reporting, approval boundary, preservation behavior, affected Framework surfaces, and verification expectations are explicitly designed and implemented; applicable tests/pressure scenarios pass.
-- **Exact Next Step:** Review and approve the written `[Project Upgrade]` design spec before creating an implementation plan or making implementation mutations.
+- **Exact Next Step:** Review and approve the implementation plan, then choose Subagent-Driven or Inline Execution before any implementation mutation.
 
 ## Task #19 — Simpler user-facing language
 
