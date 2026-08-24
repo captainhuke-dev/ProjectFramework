@@ -4,7 +4,7 @@
 
 ## Current Release
 
-- Project Source Framework: **1.3.0**
+- Project Source Framework: **1.3.1**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -32,6 +32,14 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.3.1 Project Upgrade Command
+
+Framework `1.3.1` adds registered `[Project Upgrade]` behavior while keeping Project Source Schema `1.0.0`, release format `3`, existing semantic slots/Stable-ID families, and the Framework `1.3.0` Direct-to-Latest architecture unchanged.
+
+For initialized Projects, the command treats the active local `FRAMEWORK-001` pin as current authority and fresh-resolves canonical upstream only as a target candidate. It reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`; equal version strings do not suppress material source divergence, and unavailable freshness evidence fails closed rather than using memory, cached refs, recent workspaces, or similarly named repositories.
+
+When `UPGRADE_AVAILABLE` is verified, the command asks whether the user wants to **prepare** an upgrade. A positive answer starts cumulative current→target assessment and Preview only; actual Project mutation still requires `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` classification, preservation/rollback planning, separate explicit mutation approval, affected verification, one final `RELEASE_FULL`, and governed promotion/history preservation. The command is not an automatic updater and adds no path/binding, branch, implementation-source, runtime, or persistent-state authority.
 
 ## Framework 1.3.0 Command & Direct-to-Latest Upgrade Additions
 
