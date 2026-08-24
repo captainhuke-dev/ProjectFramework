@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.3.0"
+project_source_framework_version: "1.3.1"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -237,7 +237,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.3.0"
+  framework_version: "1.3.1"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
@@ -268,14 +268,15 @@ A real Project อาจมี artifacts เหล่านี้อยู่แ
 
 ### 5.3 Registered Project Commands
 
-Framework `1.3.0` registers bracketed Project inspection commands. Literal `[` and `]` are required; matching inside brackets is case-insensitive. Initial registry:
+Framework `1.3.1` registers bracketed Project inspection commands. Literal `[` and `]` are required; matching inside brackets is case-insensitive. Current registry:
 
 ```text
-[Project Status] : fresh read-only Project/Task/Git/verification/blocker dashboard
-[Project Path]   : show/verify configured Project path values and route explicit change requests through existing location governance
+[Project Status]  : fresh read-only Project/Task/Git/verification/blocker dashboard
+[Project Path]    : show/verify configured Project path values and route explicit change requests through existing location governance
+[Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
 ```
 
-Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. `[Project Status]` fresh-observes Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers, reuses `GREEN | AMBER | RED | UNKNOWN`, and keeps Task count distinct from Git change count. `[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. Persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
+Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. `[Project Status]` fresh-observes Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers, reuses `GREEN | AMBER | RED | UNKNOWN`, and keeps Task count distinct from Git change count. `[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. `[Project Upgrade]` keeps the active local `FRAMEWORK-001` pin as current authority, fresh-resolves canonical upstream as target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and asks before preparing an upgrade when a verified difference exists. A positive answer authorizes assessment/Preview only, not Project mutation; persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
 
 Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
 

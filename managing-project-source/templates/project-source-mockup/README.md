@@ -1,10 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.3.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.3.1 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.3.1 Project Upgrade Command Semantics
+
+Framework `1.3.1` adds registered `[Project Upgrade]` while keeping Schema `1.0.0` and existing slots/Stable-ID/state families unchanged. The command fresh-resolves the active local Framework pin as current Project authority and canonical upstream as target evidence, then reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`. A verified difference asks whether the user wants to prepare an upgrade; “yes” starts cumulative assessment/Preview only and does not authorize Project mutation. Existing Direct-to-Latest `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preservation, rollback, explicit mutation approval, and final verification semantics remain unchanged.
 
 ## Framework 1.3 Command & Direct-to-Latest Upgrade Semantics
 

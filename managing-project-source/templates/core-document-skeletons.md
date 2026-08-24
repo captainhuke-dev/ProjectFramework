@@ -15,6 +15,8 @@ Framework `1.2.6` adds a Project-specific **Bootstrap Location Block** for pre-`
 Framework `1.2.5` adds environment-scoped **Local Workspace Binding**, **Verified Task Completion Checkpoint**, progressive/risk-scoped verification with evidence reuse, and the **Response Close Completeness Gate**. `00 / FRAMEWORK-001` remains the routing authority; `09`, `15`, and `40` reference observed workspace/commit/verification state without becoming competing location, branch, or implementation authority.
 
 Framework `1.3.0` adds registered bracketed `[Project Status]` / `[Project Path]` commands, Markdown-safe response-close presentation, and Direct-to-Latest cumulative upgrades using `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. Existing Projects remain pinned; intermediate release execution is not mandatory, but current truth/Stable IDs/Project-specific rules/history/approval/rollback/validation remain preserved.
+
+Framework `1.3.1` adds registered `[Project Upgrade]` as a read-only fresh comparator between the active local Framework pin and canonical upstream target evidence. It reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`; a detected difference asks whether to prepare an upgrade, and a positive answer authorizes assessment/Preview only—not mutation. Schema remains `1.0.0` and existing Direct-to-Latest approval/preservation rules remain unchanged.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -35,7 +37,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.3.0"
+project_source_framework_version: "1.3.1"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
