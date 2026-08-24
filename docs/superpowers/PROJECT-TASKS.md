@@ -15,7 +15,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #18 — `[Project Upgrade]`
 
 - **ID:** `TASK-018`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework command / upgrade workflow improvement
 - **Scope:** Add a `[Project Upgrade]` Project command/workflow that fresh-checks which Project Framework version the current Workspace uses, compares it with the canonical upstream Framework, and reports whether there is a difference.
 - **Required behavior:** If Workspace and upstream differ, ask the user whether to upgrade. Do not auto-upgrade merely because a newer/different upstream state exists.
@@ -23,9 +23,17 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-08-24-project-upgrade-command-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-24-project-upgrade-command.md`
-- **Plan State:** `PLAN_READY_FOR_REVIEW`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Implementation Release:** Framework `1.3.1` / Schema `1.0.0`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-24-framework-1.3.1-project-upgrade-release-full.md`
+- **Verification Result:** `AFFECTED 56/56 PASS; RELEASE_FULL 64/64 PASS`
+- **Implementation Commit(s):** `2086e0d`, `01f56dd`, `8853f43`, `d34d323`, `f06e3be`
+- **Completion Evidence Commit:** `5951738b90364daa3b48f38f0e4bf76792d0eb08`
+- **Completion Working Tree:** `CLEAN`
+- **Publication State:** `NOT_PUSHED` (`commit ≠ push`)
+- **Execution Note:** `SUBAGENT_DRIVEN_REQUESTED / INLINE_FALLBACK_RECORDED_IN_RELEASE_EVIDENCE`
 - **Completion criteria:** Command semantics, comparison inputs, difference reporting, approval boundary, preservation behavior, affected Framework surfaces, and verification expectations are explicitly designed and implemented; applicable tests/pressure scenarios pass.
-- **Exact Next Step:** Review and approve the implementation plan, then choose Subagent-Driven or Inline Execution before any implementation mutation.
+- **Exact Next Step:** Proceed to `TASK-019` by identifying the user-facing Framework surfaces affected by its simpler-language rule and preparing a scoped design/change proposal before implementation.
 
 ## Task #19 — Simpler user-facing language
 
