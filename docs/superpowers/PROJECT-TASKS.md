@@ -26,9 +26,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
 - **Implementation Release:** Framework `1.3.1` / Schema `1.0.0`
 - **Release Evidence:** `docs/superpowers/evidence/2026-08-24-framework-1.3.1-project-upgrade-release-full.md`
-- **Verification Result:** `AFFECTED 56/56 PASS; RELEASE_FULL 64/64 PASS`
-- **Implementation Commit(s):** `2086e0d`, `01f56dd`, `8853f43`, `d34d323`, `f06e3be`
-- **Completion Evidence Commit:** `5951738b90364daa3b48f38f0e4bf76792d0eb08`
+- **Verification Result:** `AFFECTED 57/57 PASS; RELEASE_FULL 65/65 PASS`
+- **Implementation Commit(s):** `2086e0d`, `01f56dd`, `8853f43`, `d34d323`, `f06e3be`, `c8c66d2`
+- **Completion Evidence Commit:** `70c5026978f8a1cd4c9328a2c3ea4c73088c3f41`
+- **Final Review Fixes:** `d971ac0` (Task-source lifecycle wording), `c8c66d2` (latest-amendment Required Read alignment)
 - **Completion Working Tree:** `CLEAN`
 - **Publication State:** `NOT_PUSHED` (`commit ≠ push`)
 - **Execution Note:** `SUBAGENT_DRIVEN_REQUESTED / INLINE_FALLBACK_RECORDED_IN_RELEASE_EVIDENCE`

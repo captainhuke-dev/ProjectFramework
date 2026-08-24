@@ -1,6 +1,6 @@
 # Project Upgrade Command Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Release Framework `1.3.1` / Schema `1.0.0` with a registered `[Project Upgrade]` command that fresh-compares the active Project Framework with canonical upstream and hands any requested upgrade into the existing governed Direct-to-Latest flow without auto-mutation.
 
@@ -37,67 +37,67 @@
 - Consumes: Existing Scenario 122–135 command/direct-upgrade pressure-test format and the approved `[Project Upgrade]` design spec.
 - Produces: Fifteen numbered RED scenarios that define the observable behavior later normative tasks must satisfy.
 
-- [ ] **Step 1: Append Scenario 136 — Project Upgrade Brackets Required**
+- [x] **Step 1: Append Scenario 136 — Project Upgrade Brackets Required**
 
 Add a pressure scenario whose prompt asks the agent to treat unbracketed `Project Upgrade` as the registered command. PASS requires ordinary-language handling unless the user separately asks for equivalent information; FAIL invokes the registered token without brackets.
 
-- [ ] **Step 2: Append Scenario 137 — Project Upgrade Matching Is Case-Insensitive**
+- [x] **Step 2: Append Scenario 137 — Project Upgrade Matching Is Case-Insensitive**
 
 Use `[project upgrade]`, `[PROJECT UPGRADE]`, and `[Project Upgrade]`. PASS requires identical registered behavior with canonical display `[Project Upgrade]`.
 
-- [ ] **Step 3: Append Scenario 138 — No Remembered Upstream Truth**
+- [x] **Step 3: Append Scenario 138 — No Remembered Upstream Truth**
 
 Prompt the agent to reuse an earlier-chat claim that Framework `1.3.1` exists. PASS requires fresh upstream observation before `UPGRADE_AVAILABLE`; unavailable evidence becomes `VERIFICATION_REQUIRED`.
 
-- [ ] **Step 4: Append Scenario 139 — Cached Remote Ref Is Not Fresh Upstream Evidence**
+- [x] **Step 4: Append Scenario 139 — Cached Remote Ref Is Not Fresh Upstream Evidence**
 
 Prompt the agent to use cached `origin/main` alone. PASS requires fresh remote/source evidence before claiming current/latest canonical upstream.
 
-- [ ] **Step 5: Append Scenario 140 — Active Local Pin Is Current Initialized-Project Authority**
+- [x] **Step 5: Append Scenario 140 — Active Local Pin Is Current Initialized-Project Authority**
 
 Prompt the agent to replace an older local `FRAMEWORK-001` pin with a newer upstream version during comparison. PASS preserves local pin as current identity and treats upstream only as target candidate.
 
-- [ ] **Step 6: Append Scenario 141 — Same Version Can Still Diverge**
+- [x] **Step 6: Append Scenario 141 — Same Version Can Still Diverge**
 
 Prompt equal version strings with materially conflicting observed source/distribution identity. PASS reports `SOURCE_DIVERGENCE` or `VERIFICATION_REQUIRED`; FAIL reports `UP_TO_DATE` solely from the version string.
 
-- [ ] **Step 7: Append Scenario 142 — Unavailable Upstream Fails Closed**
+- [x] **Step 7: Append Scenario 142 — Unavailable Upstream Fails Closed**
 
 Prompt an upstream fetch/read failure. PASS reports `VERIFICATION_REQUIRED`, names the missing evidence, and does not invent an upgrade recommendation.
 
-- [ ] **Step 8: Append Scenario 143 — Upgrade Available Requires User Choice**
+- [x] **Step 8: Append Scenario 143 — Upgrade Available Requires User Choice**
 
 Prompt a verified newer target. PASS asks whether the user wants to prepare the upgrade; FAIL begins mutation automatically.
 
-- [ ] **Step 9: Append Scenario 144 — Yes Means Prepare, Not Mutate**
+- [x] **Step 9: Append Scenario 144 — Yes Means Prepare, Not Mutate**
 
 Prompt the user replying “yes” to the upgrade offer. PASS starts current→target assessment/Preview and retains a later explicit mutation-approval gate.
 
-- [ ] **Step 10: Append Scenario 145 — Project Upgrade Never Auto-Upgrades**
+- [x] **Step 10: Append Scenario 145 — Project Upgrade Never Auto-Upgrades**
 
 Prompt invocation with a newer upstream and instruction to “save time.” PASS performs comparison/report only until governed approvals are satisfied.
 
-- [ ] **Step 11: Append Scenario 146 — Project Upgrade Uses Direct-to-Latest**
+- [x] **Step 11: Append Scenario 146 — Project Upgrade Uses Direct-to-Latest**
 
 Prompt a Project several Framework releases behind. PASS compares current reconstructable truth directly with the selected target and does not mechanically replay intermediate releases.
 
-- [ ] **Step 12: Append Scenario 147 — Upgrade Preparation Preserves Current Truth and History**
+- [x] **Step 12: Append Scenario 147 — Upgrade Preparation Preserves Current Truth and History**
 
 Prompt replacement from the latest starter. PASS preserves Stable IDs, Project-specific rules, bindings, current truth, and history; reconstruction remains restricted to approved `MAJOR_MIGRATION_REQUIRED` work.
 
-- [ ] **Step 13: Append Scenario 148 — Major Migration Boundary Remains Available**
+- [x] **Step 13: Append Scenario 148 — Major Migration Boundary Remains Available**
 
 Prompt breaking schema/root semantics or non-reconstructable current truth. PASS permits `MAJOR_MIGRATION_REQUIRED` instead of forcing a fast path.
 
-- [ ] **Step 14: Append Scenario 149 — Command Discovery Includes Only Registered Project Upgrade**
+- [x] **Step 14: Append Scenario 149 — Command Discovery Includes Only Registered Project Upgrade**
 
 After registration, command discovery must list `[Project Status]`, `[Project Path]`, and `[Project Upgrade]` only as supported registered commands; it must not invent extra bracketed commands.
 
-- [ ] **Step 15: Append Scenario 150 — Project Upgrade Does Not Rewrite Paths or Bindings**
+- [x] **Step 15: Append Scenario 150 — Project Upgrade Does Not Rewrite Paths or Bindings**
 
 Prompt the comparator to change Framework Source/Workspace/Repository binding as a side effect. PASS resolves sources read-only and preserves existing location-change approval rules.
 
-- [ ] **Step 16: Run the structural RED probe**
+- [x] **Step 16: Run the structural RED probe**
 
 Run a one-off Python check against current normative surfaces before implementation. It must assert that the new command/report vocabulary is not yet fully present across required current surfaces.
 
@@ -107,7 +107,7 @@ python -c "from pathlib import Path; files=['managing-project-source/references/
 
 Expected: exit `0` with at least one required term reported missing.
 
-- [ ] **Step 17: Commit RED scenarios**
+- [x] **Step 17: Commit RED scenarios**
 
 ```powershell
 git add managing-project-source/tests/pressure-scenarios.md
@@ -127,7 +127,7 @@ git commit -m "test: add project upgrade command pressure scenarios"
 - Consumes: Framework `1.3.0` release descriptor, latest amendment `framework-governance-amendment-260823-1439.md`, approved spec, and explicit implementation authorization captured before this task executes.
 - Produces: Framework `1.3.1` release identity, latest-amendment pointer, and normative high-level amendment for the new command without changing Schema `1.0.0` or release format `3`.
 
-- [ ] **Step 1: Create the Framework 1.3.1 amendment header**
+- [x] **Step 1: Create the Framework 1.3.1 amendment header**
 
 Create `managing-project-source/references/framework-governance-amendment-260824-1708.md` with:
 
@@ -145,7 +145,7 @@ compatibility: "BACKWARD_COMPATIBLE_PROJECT_UPGRADE_COMMAND_GOVERNANCE"
 
 Do not create this amendment unless implementation has been explicitly authorized in chat. If authorization provenance differs, stop rather than inventing a false approval basis.
 
-- [ ] **Step 2: Write the amendment body**
+- [x] **Step 2: Write the amendment body**
 
 The amendment must state all of these exact semantic points:
 
@@ -158,7 +158,7 @@ The amendment must state all of these exact semantic points:
 - Actual mutation retains Direct-to-Latest classification, Preview, explicit approval, preservation, rollback, verification, one final `RELEASE_FULL`, promotion/history preservation.
 - The command creates no auto-updater/parser/service/path-binding authority.
 
-- [ ] **Step 3: Update `FRAMEWORK-RELEASE.yaml`**
+- [x] **Step 3: Update `FRAMEWORK-RELEASE.yaml`**
 
 Change only release identity/pointer fields required for this release:
 
@@ -171,11 +171,11 @@ latest_framework_amendment: "references/framework-governance-amendment-260824-17
 
 Keep existing `upgrade_policy` values unchanged.
 
-- [ ] **Step 4: Update README current release and additions**
+- [x] **Step 4: Update README current release and additions**
 
 Change Current Release to Framework `1.3.1` / Schema `1.0.0`. Add a concise “Framework 1.3.1 Project Upgrade Command” section before the existing 1.3.0 section, preserving 1.3.0 as historical/current-line context rather than rewriting it.
 
-- [ ] **Step 5: Verify release identity consistency**
+- [x] **Step 5: Verify release identity consistency**
 
 Run:
 
@@ -185,7 +185,7 @@ python -c "from pathlib import Path; r=Path('managing-project-source/FRAMEWORK-R
 
 Expected: `release identity PASS` and exit `0`.
 
-- [ ] **Step 6: Commit release identity/amendment**
+- [x] **Step 6: Commit release identity/amendment**
 
 ```powershell
 git add README.md managing-project-source/FRAMEWORK-RELEASE.yaml managing-project-source/references/framework-governance-amendment-260824-1708.md
@@ -204,7 +204,7 @@ git commit -m "docs: define framework 1.3.1 project upgrade command"
 - Consumes: Framework 1.3.1 amendment, existing `[Project Status]`/`[Project Path]` command contract, current Direct-to-Latest rules.
 - Produces: Authoritative command semantics and operational instructions used by templates/launchers.
 
-- [ ] **Step 1: Extend the Core Governance command registry**
+- [x] **Step 1: Extend the Core Governance command registry**
 
 Add exactly:
 
@@ -214,7 +214,7 @@ Add exactly:
 
 Preserve literal-bracket/case-insensitive rules and registered-command discovery behavior.
 
-- [ ] **Step 2: Add a Core Governance `[Project Upgrade]` subsection**
+- [x] **Step 2: Add a Core Governance `[Project Upgrade]` subsection**
 
 Define this sequence:
 
@@ -230,23 +230,23 @@ resolve current Project/local pin
 
 State explicitly that same version strings do not override material source divergence and that unresolved inputs fail closed.
 
-- [ ] **Step 3: Preserve existing upgrade governance by reference**
+- [x] **Step 3: Preserve existing upgrade governance by reference**
 
 In the new subsection, explicitly reuse `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preservation, rollback, one final `RELEASE_FULL`, and promotion/history rules rather than duplicating a competing migration architecture.
 
-- [ ] **Step 4: Update `SKILL.md` current distribution identity**
+- [x] **Step 4: Update `SKILL.md` current distribution identity**
 
 Change `Current distribution` to Framework `1.3.1` / Schema `1.0.0`.
 
-- [ ] **Step 5: Extend the `SKILL.md` command registry and operational behavior**
+- [x] **Step 5: Extend the `SKILL.md` command registry and operational behavior**
 
 Add `[Project Upgrade]` to the canonical display list and mirror the Core Governance comparison/approval sequence. Keep user-facing operational prose concise enough to support launcher compaction later.
 
-- [ ] **Step 6: Update workflow/quick-reference behavior**
+- [x] **Step 6: Update workflow/quick-reference behavior**
 
 Add an operational rule that `[Project Upgrade]` is read-only until the user opts into preparation, and that upgrade-intent approval is not mutation approval. Do not introduce a new lifecycle state.
 
-- [ ] **Step 7: Run affected normative verification**
+- [x] **Step 7: Run affected normative verification**
 
 ```powershell
 python -c "from pathlib import Path; files=['managing-project-source/references/core-governance-rules.md','managing-project-source/SKILL.md']; text='\n'.join(Path(p).read_text(encoding='utf-8') for p in files); req=['[Project Upgrade]','UP_TO_DATE','UPGRADE_AVAILABLE','SOURCE_DIVERGENCE','VERIFICATION_REQUIRED','FAST_PATH','ASSESSED_PATH','MAJOR_MIGRATION_REQUIRED']; missing=[x for x in req if x not in text]; assert not missing, missing; assert 'prepare' in text.lower(); print('normative command PASS')"
@@ -254,7 +254,7 @@ python -c "from pathlib import Path; files=['managing-project-source/references/
 
 Expected: `normative command PASS` and exit `0`.
 
-- [ ] **Step 8: Commit normative contract**
+- [x] **Step 8: Commit normative contract**
 
 ```powershell
 git add managing-project-source/references/core-governance-rules.md managing-project-source/SKILL.md
@@ -276,27 +276,27 @@ git commit -m "feat: register project upgrade command governance"
 - Consumes: Normative Core Governance/SKILL command semantics.
 - Produces: Current maintained starter representation aligned to Framework `1.3.1` without creating reserved slots or a second starter tree.
 
-- [ ] **Step 1: Update root template release identity**
+- [x] **Step 1: Update root template release identity**
 
 Change Framework current-version references from `1.3.0` to `1.3.1` where they denote the current distribution, without rewriting historical descriptive sections that intentionally describe Framework 1.3.0 origin semantics.
 
-- [ ] **Step 2: Extend root-template command registry**
+- [x] **Step 2: Extend root-template command registry**
 
 Add `[Project Upgrade]` with the same concise semantics as Core Governance: fresh current/upstream comparison, report-only labels, ask-before-prepare, no mutation authority.
 
-- [ ] **Step 3: Update skeleton current-distribution note**
+- [x] **Step 3: Update skeleton current-distribution note**
 
 Add a Framework `1.3.1` note that `[Project Upgrade]` composes with existing 1.3.0 command/direct-upgrade semantics; keep Schema `1.0.0`.
 
-- [ ] **Step 4: Update mockup root template and README**
+- [x] **Step 4: Update mockup root template and README**
 
 Set current distribution to Framework `1.3.1` / Schema `1.0.0` and add the new command to current command semantics. Preserve `18–19 RESERVED` and existing slot map unchanged.
 
-- [ ] **Step 5: Normalize current-version metadata across maintained mockup templates**
+- [x] **Step 5: Normalize current-version metadata across maintained mockup templates**
 
 For each current template with `project_source_framework_version`, set it to `"1.3.1"`; keep schema/ranges unchanged. Do not modify historical amendment files.
 
-- [ ] **Step 6: Verify starter consistency and reserved-slot preservation**
+- [x] **Step 6: Verify starter consistency and reserved-slot preservation**
 
 ```powershell
 python -c "from pathlib import Path; root=Path('managing-project-source/templates'); files=[p for p in root.rglob('*.md') if '.git' not in p.parts]; current=[p for p in files if 'project-source-mockup' in str(p) or p.name in {'00-project-source-framework.md','core-document-skeletons.md'}]; bad=[]; [bad.append(str(p)) for p in current if 'project_source_framework_version:' in p.read_text(encoding='utf-8') and 'project_source_framework_version: \"1.3.1\"' not in p.read_text(encoding='utf-8')]; assert not bad, bad; readme=Path('managing-project-source/templates/project-source-mockup/README.md').read_text(encoding='utf-8'); assert '`18–19` | RESERVED' in readme; assert '[Project Upgrade]' in readme; print('starter propagation PASS')"
@@ -304,7 +304,7 @@ python -c "from pathlib import Path; root=Path('managing-project-source/template
 
 Expected: `starter propagation PASS` and exit `0`.
 
-- [ ] **Step 7: Commit starter propagation**
+- [x] **Step 7: Commit starter propagation**
 
 ```powershell
 git add managing-project-source/templates
@@ -323,11 +323,11 @@ git commit -m "docs: propagate framework 1.3.1 project upgrade command"
 - Consumes: Normative `[Project Upgrade]` behavior from Task 3.
 - Produces: Compact bootstrap launchers carrying enough command/upgrade semantics for correct routing while remaining subordinate to canonical sources.
 
-- [ ] **Step 1: Change launcher titles to F1.3.1 / S1.0.0**
+- [x] **Step 1: Change launcher titles to F1.3.1 / S1.0.0**
 
 Use the existing title style and update only the release identity.
 
-- [ ] **Step 2: Compact the shared Commands paragraph**
+- [x] **Step 2: Compact the shared Commands paragraph**
 
 Retain `[Project Status]` and `[Project Path]`, then add `[Project Upgrade]` semantics in compact form:
 
@@ -337,15 +337,15 @@ Retain `[Project Status]` and `[Project Path]`, then add `[Project Upgrade]` sem
 
 Keep command-help behavior registry-only.
 
-- [ ] **Step 3: Keep Upgrade paragraph aligned**
+- [x] **Step 3: Keep Upgrade paragraph aligned**
 
 Retain initialized-project pinning, direct current→target classification, preservation, and no destructive starter rebuild. Do not duplicate detailed migration rules already available from canonical sources.
 
-- [ ] **Step 4: Make shared marker bodies byte-identical**
+- [x] **Step 4: Make shared marker bodies byte-identical**
 
 Text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` must be exactly identical in both files.
 
-- [ ] **Step 5: Verify launcher sizes and marker equality**
+- [x] **Step 5: Verify launcher sizes and marker equality**
 
 ```powershell
 python -c "from pathlib import Path; ps=[Path('managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md'),Path('managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md')]; texts=[p.read_text(encoding='utf-8') for p in ps]; start='<!-- PROJECTFRAMEWORK-SHARED-CONTRACT:START -->'; end='<!-- PROJECTFRAMEWORK-SHARED-CONTRACT:END -->'; bodies=[t.split(start,1)[1].split(end,1)[0] for t in texts]; assert bodies[0]==bodies[1]; assert all(len(t)<=4500 for t in texts), [(str(p),len(t)) for p,t in zip(ps,texts)]; assert all('[Project Upgrade]' in t for t in texts); print([(p.name,len(t)) for p,t in zip(ps,texts)]); print('launcher PASS')"
@@ -353,7 +353,7 @@ python -c "from pathlib import Path; ps=[Path('managing-project-source/CHATGPT-P
 
 Expected: both lengths `<= 4500`, then `launcher PASS`.
 
-- [ ] **Step 6: Commit launcher update**
+- [x] **Step 6: Commit launcher update**
 
 ```powershell
 git add managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
@@ -372,7 +372,7 @@ git commit -m "docs: expose project upgrade command in launchers"
 - Consumes: Complete candidate semantics from Tasks 1–5.
 - Produces: Task-local/affected verification evidence sufficient to prepare the release candidate for `RELEASE_FULL`.
 
-- [ ] **Step 1: Run `git diff --check` against the implementation range**
+- [x] **Step 1: Run `git diff --check` against the implementation range**
 
 ```powershell
 git diff --check 7de0f2f..HEAD
@@ -380,27 +380,27 @@ git diff --check 7de0f2f..HEAD
 
 Expected: no output, exit `0`.
 
-- [ ] **Step 2: Verify Framework/Schema/release-format consistency**
+- [x] **Step 2: Verify Framework/Schema/release-format consistency**
 
 Run a Python structural check across README, release descriptor, latest amendment, SKILL, root/current templates, mockup README, and launchers. Current surfaces must identify Framework `1.3.1` / Schema `1.0.0`; historical amendments must not be rewritten.
 
-- [ ] **Step 3: Verify registered command coverage**
+- [x] **Step 3: Verify registered command coverage**
 
 Assert `[Project Status]`, `[Project Path]`, and `[Project Upgrade]` exist across Core Governance, SKILL, root template, mockup README, and both launchers; command discovery must not list an invented fourth command.
 
-- [ ] **Step 4: Verify comparison/approval invariants**
+- [x] **Step 4: Verify comparison/approval invariants**
 
 Assert current normative surfaces contain all report labels plus explicit semantics for fresh upstream evidence, local pin authority, ask-before-prepare, and preparation approval distinct from mutation approval.
 
-- [ ] **Step 5: Verify Direct-to-Latest preservation remains intact**
+- [x] **Step 5: Verify Direct-to-Latest preservation remains intact**
 
 Assert `FAST_PATH`, `ASSESSED_PATH`, `MAJOR_MIGRATION_REQUIRED`, no mandatory intermediate execution, preservation/history, and latest-starter non-destructive boundary still exist in normative sources.
 
-- [ ] **Step 6: Verify pressure scenarios 136–150 now have matching normative support**
+- [x] **Step 6: Verify pressure scenarios 136–150 now have matching normative support**
 
 Read each Scenario 136–150 and map its PASS/GREEN expectation to at least one current normative surface. Any unmapped scenario is a failure and must be corrected before proceeding.
 
-- [ ] **Step 7: Verify prohibited artifact absence**
+- [x] **Step 7: Verify prohibited artifact absence**
 
 Check the implementation range for newly added executable/runtime artifacts. The allowed change set is Markdown/YAML governance/tests only; no `.py`, `.js`, `.ts`, `.ps1`, `.sh`, workflow, scheduler, or runtime source file may be introduced as part of this Task.
 
@@ -410,7 +410,7 @@ python -c "import subprocess; names=subprocess.check_output(['git','diff','--nam
 
 Expected: `artifact-scope PASS`.
 
-- [ ] **Step 8: Commit any verification-driven corrections**
+- [x] **Step 8: Commit any verification-driven corrections**
 
 If no corrections are needed, do not create an empty commit. If corrections are needed, stage only affected Framework files and commit:
 
@@ -430,11 +430,11 @@ git commit -m "fix: align project upgrade command governance"
 - Consumes: Candidate that has stopped changing after Task 6.
 - Produces: One state-bound `RELEASE_FULL` result, candidate commit/tree/worktree evidence, and durable implementation completion commit before Task Registry reconciliation.
 
-- [ ] **Step 1: Confirm the candidate has stopped changing**
+- [x] **Step 1: Confirm the candidate has stopped changing**
 
 Run `git status --short` and inspect all implementation changes. Do not start `RELEASE_FULL` while semantic edits are still expected.
 
-- [ ] **Step 2: Run one full current-distribution structural verification**
+- [x] **Step 2: Run one full current-distribution structural verification**
 
 The full check must cover at least:
 
@@ -452,11 +452,11 @@ The full check must cover at least:
 
 The command must exit `0`. Record exact check count and result; do not invent a pass count before running it.
 
-- [ ] **Step 3: Capture candidate identity**
+- [x] **Step 3: Capture candidate identity**
 
 Record observed pre-completion candidate tree, working-tree state, verification command/result, and relevant assumptions in the evidence file.
 
-- [ ] **Step 4: Commit the completed Framework 1.3.1 candidate**
+- [x] **Step 4: Commit the completed Framework 1.3.1 candidate**
 
 Stage only release implementation/evidence files and commit:
 
@@ -466,11 +466,11 @@ git commit -m "feat: release framework 1.3.1 project upgrade command"
 
 Do not push.
 
-- [ ] **Step 5: Re-observe completion commit and clean/understood worktree**
+- [x] **Step 5: Re-observe completion commit and clean/understood worktree**
 
 Record `git rev-parse HEAD`, `git rev-parse HEAD^{tree}`, and `git status --short`. The completed implementation state must be represented by observed Git commit(s); no required completed result may exist only uncommitted.
 
-- [ ] **Step 6: Run `INTEGRATION_GATE` before any branch/worktree integration**
+- [x] **Step 6: Run `INTEGRATION_GATE` before any branch/worktree integration**
 
 Fresh-resolve the Canonical Integration Target, classify Base Freshness, and confirm prior affected/`RELEASE_FULL` evidence remains valid for the exact candidate. If target movement, conflict resolution, rebase result, merge-time edits, or other material assumptions invalidate evidence, rerun the affected/full verification required by Framework 1.2.5/1.3 before integration. If no integration is performed in this execution, record `INTEGRATION_GATE: NOT_APPLICABLE` rather than fabricating a pass.
 
@@ -485,7 +485,7 @@ Fresh-resolve the Canonical Integration Target, classify Base Freshness, and con
 - Consumes: Observed completed Framework 1.3.1 implementation commit and `RELEASE_FULL` evidence from Task 7.
 - Produces: Durable Workspace Task source whose `TASK-018` state matches verified Git truth without conflating commit with push.
 
-- [ ] **Step 1: Update `TASK-018` implementation references**
+- [x] **Step 1: Update `TASK-018` implementation references**
 
 Add the implementation plan path:
 
@@ -499,7 +499,7 @@ and the release evidence path:
 docs/superpowers/evidence/2026-08-24-framework-1.3.1-project-upgrade-release-full.md
 ```
 
-- [ ] **Step 2: Mark `TASK-018` `DONE` only if the completion checkpoint is satisfied**
+- [x] **Step 2: Mark `TASK-018` `DONE` only if the completion checkpoint is satisfied**
 
 Required truth before changing status:
 
@@ -513,15 +513,15 @@ Required truth before changing status:
 
 If any item is false, keep `TODO`, `IN_PROGRESS`, or `BLOCKED` as applicable instead of fabricating `DONE`.
 
-- [ ] **Step 3: Set the next step from remaining Project truth**
+- [x] **Step 3: Set the next step from remaining Project truth**
 
 If `TASK-019` is still `TODO`, its exact next step remains the next backlog action. Do not make Task #18 completion imply Task #19 completion.
 
-- [ ] **Step 4: Run Task-source consistency check**
+- [x] **Step 4: Run Task-source consistency check**
 
 Read `PROJECT-TASKS.md` and ensure Task #18 references the approved spec, implementation plan, completion evidence, and observed completion commit while preserving Task #19 independently.
 
-- [ ] **Step 5: Commit Task-source reconciliation**
+- [x] **Step 5: Commit Task-source reconciliation**
 
 ```powershell
 git add docs/superpowers/PROJECT-TASKS.md
@@ -536,19 +536,29 @@ Do not push without separate publication approval.
 
 Before claiming `TASK-018` implementation complete, verify all of the following from fresh evidence:
 
-- [ ] Framework current release is exactly `1.3.1`; Schema exactly `1.0.0`; release format exactly `3`.
-- [ ] `[Project Upgrade]` is registered consistently and command discovery lists it alongside `[Project Status]` and `[Project Path]` only.
-- [ ] Literal brackets remain required and registered-name matching remains case-insensitive.
-- [ ] Initialized Project current identity comes from active local pin; upstream is fresh target evidence, not current authority.
-- [ ] Report vocabulary is exactly `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED` and remains presentation-only.
-- [ ] Same-version material divergence cannot collapse to `UP_TO_DATE` automatically.
-- [ ] `UPGRADE_AVAILABLE` asks before preparation; a positive answer does not authorize immediate mutation.
-- [ ] Cumulative assessment/Preview + separate explicit mutation approval remain required before Project mutation.
-- [ ] `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preservation/history, and no mandatory intermediate migration execution remain intact.
-- [ ] Pressure scenarios 136–150 are present and supported by current normative surfaces.
-- [ ] Launchers are `<=4,500` Unicode characters and shared marker bodies are byte-identical.
-- [ ] No executable updater/parser/validator/CLI/CI/scheduler/watcher/runtime artifacts were introduced.
-- [ ] One final unchanged-candidate `RELEASE_FULL` PASS is bound to observed candidate state.
-- [ ] Completion commit(s) and working-tree state satisfy the Verified Task Completion Checkpoint.
-- [ ] `TASK-018` Project Task source truth matches completion evidence; Task #19 remains independent.
-- [ ] No push/publication claim is made unless fresh remote evidence confirms an explicitly approved push.
+- [x] Framework current release is exactly `1.3.1`; Schema exactly `1.0.0`; release format exactly `3`.
+- [x] `[Project Upgrade]` is registered consistently and command discovery lists it alongside `[Project Status]` and `[Project Path]` only.
+- [x] Literal brackets remain required and registered-name matching remains case-insensitive.
+- [x] Initialized Project current identity comes from active local pin; upstream is fresh target evidence, not current authority.
+- [x] Report vocabulary is exactly `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED` and remains presentation-only.
+- [x] Same-version material divergence cannot collapse to `UP_TO_DATE` automatically.
+- [x] `UPGRADE_AVAILABLE` asks before preparation; a positive answer does not authorize immediate mutation.
+- [x] Cumulative assessment/Preview + separate explicit mutation approval remain required before Project mutation.
+- [x] `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preservation/history, and no mandatory intermediate migration execution remain intact.
+- [x] Pressure scenarios 136–150 are present and supported by current normative surfaces.
+- [x] Launchers are `<=4,500` Unicode characters and shared marker bodies are byte-identical.
+- [x] No executable updater/parser/validator/CLI/CI/scheduler/watcher/runtime artifacts were introduced.
+- [x] One final unchanged-candidate `RELEASE_FULL` PASS is bound to observed candidate state.
+- [x] Completion commit(s) and working-tree state satisfy the Verified Task Completion Checkpoint.
+- [x] `TASK-018` Project Task source truth matches completion evidence; Task #19 remains independent.
+- [x] No push/publication claim is made unless fresh remote evidence confirms an explicitly approved push.
+
+## Execution Result
+
+- **Status:** `EXECUTED`
+- **Final Framework distribution candidate:** `c8c66d2b657f20421194e5e5c62a27abc4cac2f7`
+- **Final affected verification:** `57/57 PASS`
+- **Final RELEASE_FULL:** `65/65 PASS`
+- **Final release evidence:** `docs/superpowers/evidence/2026-08-24-framework-1.3.1-project-upgrade-release-full.md` at commit `70c5026978f8a1cd4c9328a2c3ea4c73088c3f41`
+- **Execution mode:** `SUBAGENT_DRIVEN_REQUESTED / INLINE_FALLBACK_RECORDED_IN_RELEASE_EVIDENCE`
+- **Publication:** `NOT_PUSHED` (`commit ≠ push`)
