@@ -1,6 +1,6 @@
 # ProjectFramework Project Task Source
 
-This file is the durable Workspace source for ProjectFramework development Tasks that are not yet implementation plans or completed work.
+This file is the durable Workspace source for ProjectFramework development Task lifecycle state, including backlog, in-progress, blocked, cancelled, and completed Tasks. Design specs, implementation plans, and evidence are referenced from each Task rather than duplicated here.
 
 Task numbers in this file are backlog sequence numbers. They are **not** Project Source semantic document slots; Framework slots `18–19` remain RESERVED.
 
