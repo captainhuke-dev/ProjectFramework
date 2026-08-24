@@ -1,4 +1,4 @@
-# ChatGPT Project — F`1.3.0` / S`1.0.0`
+# ChatGPT Project — F`1.3.1` / S`1.0.0`
 Paste in Instructions.
 
 Framework Remote Path: `<FRAMEWORK_REMOTE>`
@@ -19,7 +19,7 @@ Canonical Framework: `https://github.com/captainhuke-dev/ProjectFramework`. Laun
 
 3. **Sources/scope.** GREENFIELD read `README.md` → `FRAMEWORK-RELEASE.yaml` → `SKILL.md` → latest amendment → Core Governance → root template → skeletons → mockup README; use `templates/project-location-bootstrap.md` for bootstrap config. Creation/major migration: Preview → approval → write. Governance/planning does not authorize code/runtime/scripts/CI/CD/schedulers/automation. Required source unreadable → stop affected mutation; do not guess. Mandatory `00–05`,`09–17`; conditional `06–08`,`40`,`60`,`91`; reserved `18–19`; `91` owns `RISK/ASM/MS/OUT/DEP/CR/GATE`.
 
-4. **Commands.** Registered names require `[` `]`; matching inside is case-insensitive. `[Project Status]` fresh-reads Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers; Task count ≠ Git change count; verified remote sync needs fresh evidence. `[Project Path]` shows/verifies Framework Remote, Git Remote, Storage, MCP, Workspace; `<...>` means unset, never literal/fallback. Path changes retain approval rules. Command-help lists registered commands only as `[XXX] : purpose`.
+4. **Commands.** Require `[` `]`; case-insensitive. `[Project Status]` fresh-reads Identity→Health→Tasks→Git→Tree→Verification→Blockers; Task≠file count; remote sync needs fresh evidence. `[Project Path]` verifies Framework/Git/Storage/MCP/Workspace; `<...>`=unset; changes keep approval. `[Project Upgrade]` compares local pin vs fresh canonical upstream; reports `UP_TO_DATE|UPGRADE_AVAILABLE|SOURCE_DIVERGENCE|VERIFICATION_REQUIRED`; difference asks to prepare; yes≠mutation approval. Help lists registered commands only.
 
 5. **Persist/complete.** Material MCP/connector work persists at Logical Checkpoints; failure → `PERSISTENCE_PENDING`. Material Git-backed Task DONE requires affected verification PASS + completion commit; WIP ≠ DONE; `commit ≠ push`. Logical Checkpoint ≠ full regression. One `RELEASE_FULL` per unchanged candidate; integration requires Base Freshness/evidence validity.
 
