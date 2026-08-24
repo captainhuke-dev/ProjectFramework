@@ -561,4 +561,4 @@ Before claiming `TASK-018` implementation complete, verify all of the following 
 - **Final RELEASE_FULL:** `65/65 PASS`
 - **Final release evidence:** `docs/superpowers/evidence/2026-08-24-framework-1.3.1-project-upgrade-release-full.md` at commit `70c5026978f8a1cd4c9328a2c3ea4c73088c3f41`
 - **Execution mode:** `SUBAGENT_DRIVEN_REQUESTED / INLINE_FALLBACK_RECORDED_IN_RELEASE_EVIDENCE`
-- **Publication:** `NOT_PUSHED` (`commit ≠ push`)
+- **Publication:** `PUSHED / PR_OPEN` — branch `work/project-upgrade-command`, PR `#20` targeting `main`; merge remains separate (`commit ≠ push ≠ merge`).
