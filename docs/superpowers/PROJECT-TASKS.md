@@ -31,11 +31,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion Evidence Commit:** `70c5026978f8a1cd4c9328a2c3ea4c73088c3f41`
 - **Final Review Fixes:** `d971ac0` (Task-source lifecycle wording), `c8c66d2` (latest-amendment Required Read alignment)
 - **Completion Working Tree:** `CLEAN`
-- **Publication State:** `PUBLISHED_TO_PR_20`; merge state is external and must be verified fresh (`commit ≠ push ≠ merge`)
-- **Pull Request:** `#20` — `https://github.com/captainhuke-dev/ProjectFramework/pull/20` (`main` ← `work/project-upgrade-command`)
+- **Publication State:** `MERGED_TO_MAIN`
+- **Pull Request:** `#20` — `https://github.com/captainhuke-dev/ProjectFramework/pull/20` (`MERGED`)
+- **Merge Commit:** `ba817a6c4a6ccbe5a33cab63868e90330095b5e6`
+- **Canonical Main Verification:** local `main` = `origin/main` = remote `main` at merge commit `ba817a6c4a6ccbe5a33cab63868e90330095b5e6`
 - **Execution Note:** `SUBAGENT_DRIVEN_REQUESTED / INLINE_FALLBACK_RECORDED_IN_RELEASE_EVIDENCE`
 - **Completion criteria:** Command semantics, comparison inputs, difference reporting, approval boundary, preservation behavior, affected Framework surfaces, and verification expectations are explicitly designed and implemented; applicable tests/pressure scenarios pass.
-- **Exact Next Step:** Review/merge PR `#20` independently; `TASK-019` remains the next backlog design task and is not implied complete by this publication.
+- **Exact Next Step:** Proceed to `TASK-019` by identifying the user-facing Framework surfaces affected by its simpler-language rule and preparing a scoped design/change proposal before implementation.
 
 ## Task #19 — Simpler user-facing language
 
