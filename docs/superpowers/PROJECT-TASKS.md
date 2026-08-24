@@ -20,8 +20,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Scope:** Add a `[Project Upgrade]` Project command/workflow that fresh-checks which Project Framework version the current Workspace uses, compares it with the canonical upstream Framework, and reports whether there is a difference.
 - **Required behavior:** If Workspace and upstream differ, ask the user whether to upgrade. Do not auto-upgrade merely because a newer/different upstream state exists.
 - **Upgrade rule:** If the user later approves an upgrade, preserve the active Project's local pin/history and follow the current Direct-to-Latest cumulative upgrade governance rather than mechanically replaying every intermediate release.
+- **Design Spec:** `docs/superpowers/specs/2026-08-24-project-upgrade-command-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_READY_FOR_REVIEW`
 - **Completion criteria:** Command semantics, comparison inputs, difference reporting, approval boundary, preservation behavior, affected Framework surfaces, and verification expectations are explicitly designed and implemented; applicable tests/pressure scenarios pass.
-- **Exact Next Step:** Prepare the design/spec for `[Project Upgrade]` against the current Framework before any implementation mutation.
+- **Exact Next Step:** Review and approve the written `[Project Upgrade]` design spec before creating an implementation plan or making implementation mutations.
 
 ## Task #19 — Simpler user-facing language
 
