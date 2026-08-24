@@ -18,6 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read:
 
 - `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
+- `references/framework-governance-amendment-260824-1708.md`
 - `references/framework-governance-amendment-260823-1439.md`
 - `references/framework-governance-amendment-260823-0816.md`
 - `references/framework-governance-amendment-260822-1835.md`
