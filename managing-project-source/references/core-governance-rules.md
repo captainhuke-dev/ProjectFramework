@@ -789,13 +789,14 @@ Before emit, every Framework-governed assistant response MUST run a lightweight 
 
 ### 16.4 Registered Project Command Contract
 
-Framework `1.3.0` defines a small semantic command registry for common Project inspection. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service or other executable runtime.
+Framework `1.3.1` extends the Framework `1.3.0` semantic command registry for common Project inspection and governed upgrade entry. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service, updater, or other executable runtime.
 
 Initial registry:
 
 ```text
 [Project Status] : fresh-read Project identity, Task state, Git sync/working-tree state, verification, blockers, and health
 [Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
+[Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
 ```
 
 Natural-language requests for available commands (for example “มีชุดคำสั่งอะไรบ้าง”, “command list”, or “available commands”) MUST list only commands registered by the active Framework/Project in `[XXX] : purpose` form. Do not invent commands merely because an Agent/tool could perform another action.
@@ -819,6 +820,25 @@ Unavailable dimensions remain explicit `UNKNOWN` / `VERIFICATION_REQUIRED`; neve
 `[Project Path]` reads and verifies the configured Project Settings/bootstrap values for Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Any value still syntactically represented by an angle-bracket placeholder such as `<FRAMEWORK_REMOTE>`, `<STORAGE>`, `<MCP_PATH>`, or `<WS>` means **unset / not configured**, not a literal path. Missing/unset values never authorize fallback to recent, active, mounted, cached, search-ranked, or similarly named locations.
 
 The command may include an explicit request to change one or more path values, but it grants no new mutation authority. A one-off exact target remains action-specific. Persistent Bootstrap Location or active Project Location Binding changes still require applicable User Explicit Approval and, when Root Governance is affected, the normal `FRAMEWORK-001` revision → validate → promote → supersede/archive flow.
+
+#### `[Project Upgrade]`
+
+`[Project Upgrade]` is read-only through current/target comparison and reporting. For an initialized Project, resolve the valid active local `FRAMEWORK-001` first and treat its locally pinned Framework/Schema identity as current Project authority. Then fresh-resolve the applicable canonical upstream Framework as a target candidate. Chat memory, prior command output, cached `origin/main`, recent/active workspace ranking, similarly named repositories, or other inferred fallbacks do not establish current upstream truth.
+
+Minimum comparison considers current/target Framework version, Schema version, observable source/distribution identity, and freshness evidence. Report exactly one of these presentation-only labels when supported:
+
+```text
+UP_TO_DATE
+UPGRADE_AVAILABLE
+SOURCE_DIVERGENCE
+VERIFICATION_REQUIRED
+```
+
+These are command-report labels only, not new lifecycle, Epistemic Status, Git freshness, authority, migration, or health state families. Equal version strings do not suppress a material source/distribution conflict; unresolved or conflicting inputs fail closed as `SOURCE_DIVERGENCE` or `VERIFICATION_REQUIRED` rather than being guessed `UP_TO_DATE`.
+
+If a verified target differs from the current local pin, `UPGRADE_AVAILABLE` asks whether the user wants to **prepare** an upgrade. A positive answer authorizes cumulative current→target assessment and Preview preparation only; it does **not** authorize immediate Project mutation. Actual mutation still reuses the existing Direct-to-Latest flow: classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preserve current truth/Stable IDs/Project-specific rules/bindings/history and applicable authority/Task state, include rollback/reversibility and verification in the Preview, obtain separate explicit mutation approval, run affected verification plus one final `RELEASE_FULL`, then promote while preserving history. Intermediate release execution remains non-mandatory and the latest starter remains non-destructive by default.
+
+`[Project Upgrade]` grants no Bootstrap/Project Location mutation authority and no branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime, or Persistent-State authority.
 
 ## 17. Adoption Modes and Bootstrap
 
