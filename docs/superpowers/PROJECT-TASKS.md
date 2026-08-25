@@ -80,7 +80,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #21 — ChatGPT→MCP Continuity (Continuous System Management)
 
 - **ID:** `TASK-021`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework continuity / interaction reliability improvement
 - **Problem:** System management driven through ChatGPT → MCP stops frequently for three distinct reasons: (1) ChatGPT session/conversation expiry losing in-chat context, (2) MCP connection drops mid-task forcing step restarts, (3) per-step approval gates interrupting otherwise continuous flows.
 - **Scope:**
@@ -91,4 +91,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Constraints:** Documentation/governance scope only — ProjectFramework defines the contracts; no relay/runtime implementation, validator, CLI, or automation artifact. The actual persistent outbound relay runtime remains lnwjud project scope and must stay contract-compatible. Schema stays `1.0.0`; canonical tokens unchanged; `commit ≠ push`.
 - **Design State:** problem framing discussed and user-approved direction ("ลง Task ได้เลย"); scoped design spec still required before implementation.
 - **Completion criteria:** Continuation Contract, `[Session Envelope]` command contract, MCP Resume Semantics, and `[Project Status]` continuity fields implemented across normative sources + templates + launchers; pressure scenarios added; AFFECTED verification passes; one final `RELEASE_FULL` on unchanged candidate; evidence committed (target release Framework `1.5.0` / Schema `1.0.0`, pending design confirmation).
-- **Exact Next Step:** Prepare scoped design spec for TASK-021 covering the four items, obtain user design approval before implementation.
+- **Design Spec:** `docs/superpowers/specs/2026-08-25-task021-mcp-continuity-design.md` (`USER_APPROVED_DESIGN / SPEC_APPROVED`)
+- **Implementation Release:** Framework `1.5.0` / Schema `1.0.0` (user-approved minor bump)
+- **Implementation Commit(s):** `e9c65f2`, `bbf82d2`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-25-task-021-mcp-continuity-release-full.md`
+- **Verification Result:** `RELEASE_FULL 23/23 PASS` (first run 23/24 — SKILL latest-amendment alignment finding corrected in `bbf82d2`)
+- **Completion criteria met:** all four items implemented; scenarios 158–162 added; launchers ≤4,500 byte-identical; Schema/format unchanged.
+- **Publication State:** to be recorded after merge+push.
+- **Exact Next Step:** Merge branch to `main`, push, then record final publication commit.

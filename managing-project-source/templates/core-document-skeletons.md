@@ -37,7 +37,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.4.0"
+project_source_framework_version: "1.5.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -745,3 +745,9 @@ Reviewed At
 ```
 
 `WAIVED` requires explicit rationale plus authority/Decision reference.
+
+**Resume Block (latest checkpoint):**
+
+```text
+Task: <TASK/ACT id> | Done: <last completed step> | Next: <exact next step> | Blockers: <none or list> | Envelope: <ENV-* or none>
+```
