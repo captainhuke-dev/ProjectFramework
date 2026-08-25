@@ -56,7 +56,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #20 — Upgrade Acceleration (Framework 1.4.0)
 
 - **ID:** `TASK-020`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework release / upgrade-workflow improvement
 - **Scope:** Reduce the time cost of upgrading an initialized Project from an older ProjectFramework version to a newer one. Five bounded changes:
   1. Per-release `MIGRATION-NOTES.md` + `migration_notes` field in `FRAMEWORK-RELEASE.yaml` listing affected surfaces and a per-release checklist.
@@ -66,4 +66,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. `[Project Upgrade]` `UPGRADE_AVAILABLE` report references the target release's MIGRATION-NOTES.
 - **Constraints:** Markdown/YAML only; no validator/CLI/auto-updater/runtime artifact; Schema stays `1.0.0`; release format `3`; backward compatible with locally pinned Projects; historical amendments unchanged; `commit ≠ push`.
 - **Completion criteria:** All five items implemented across descriptor, normative sources, templates, launchers, README; pressure scenarios added for the new upgrade-scope rules; affected verification passes; one final `RELEASE_FULL` on the unchanged candidate; release evidence committed as Framework `1.4.0` / Schema `1.0.0`.
-- **Exact Next Step:** Prepare scoped design spec for TASK-020 covering the five items, obtain user design approval before implementation.
+- **Design Spec:** `docs/superpowers/specs/2026-08-25-upgrade-acceleration-design.md` (`USER_APPROVED_DESIGN / SPEC_APPROVED`)
+- **Implementation Release:** Framework `1.4.0` / Schema `1.0.0`
+- **Implementation Commit(s):** `c0bb174`, `63c7306`, `d6cd6e0`, `dbd2fc9`, `f370eb3`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-25-task-020-upgrade-acceleration-release-full.md`
+- **Verification Result:** `RELEASE_FULL 25/25 PASS`
+- **Completion criteria met:** all five items implemented; scenarios 153–157 added; launchers remain ≤4,500 with byte-identical markers; Schema/release format unchanged.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-020 scope; publication (push/PR) awaits separate user approval.
