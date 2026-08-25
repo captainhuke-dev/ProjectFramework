@@ -2,7 +2,7 @@
 
 Captured: `2026-08-24T21:09:00+07:00`
 
-Purpose: close legacy state before starting `TASK-019` and preserve the exact continuation point for the WSL repair that requires a Windows restart.
+Purpose: record legacy cleanup before `TASK-019` and preserve WSL repair diagnostics as an optional Tai-F3 environment capability. WSL is not a ProjectFramework Task dependency and does not gate `TASK-019`.
 
 ## 1. TASK-018 post-merge reconciliation
 
@@ -101,7 +101,14 @@ After Windows restart, verify in this order:
 - TASK-018 reconciliation: `COMPLETE`.
 - merged worktree/branch cleanup: `COMPLETE` for safely deletable merged state.
 - WSL component repair: `INSTALLED / REBOOT_REQUIRED`.
-- `TASK-019` must not begin until post-reboot WSL verification resolves the remaining environment state.
+- WSL classification: `OPTIONAL / NOT_BLOCKING` for ProjectFramework Tasks. `TASK-019` may proceed independently of WSL functional enablement.
+
+## WSL scope reclassification — 2026-08-25
+
+- **Classification:** `OPTIONAL / NOT_BLOCKING`.
+- WSL/Tai-F3 `wsl_exec` and `wsl_fs` are optional environment capabilities, not dependencies of `TASK-018`, `TASK-019`, or the ProjectFramework Markdown/YAML governance workflow.
+- The remaining SVM/AMD-V firmware work may be completed later when WSL2 execution is actually needed.
+- No Project Task readiness, completion, or next-task eligibility may be blocked solely because WSL2 functional enablement is incomplete.
 
 ## Post-reboot verification — 2026-08-25
 
@@ -131,4 +138,4 @@ Enable `SVM` / AMD-V in ASRock UEFI, save changes, and reboot. Then verify `Virt
 - merged worktree/branch cleanup: `COMPLETE`; only intentionally unmerged work remains (`framework-next-improvement-planning` local and `hz-framework` remote).
 - WSL Windows component repair: `COMPLETE`.
 - WSL2 functional enablement: `FIRMWARE_SVM_REQUIRED`.
-- `TASK-019` remains deferred until this firmware boundary is resolved.
+- WSL classification: `OPTIONAL / NOT_BLOCKING`. The SVM/WSL2 firmware boundary is optional environment technical debt and does not defer or block `TASK-019`.
