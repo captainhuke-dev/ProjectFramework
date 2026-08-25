@@ -18,7 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260824-1708.md` — latest amendment: `[Project Upgrade]` command (current authority)
+- `references/framework-governance-amendment-260825-task021.md` — latest amendment: ChatGPT→MCP Continuity (current authority)
 - `references/framework-governance-amendment-260823-1439.md` — Direct-to-Latest upgrade semantics
 - `references/framework-governance-amendment-260823-0816.md` — Framework 1.3.0 command contract
 - `references/framework-governance-amendment-260822-1835.md` — bootstrap location and file storage
