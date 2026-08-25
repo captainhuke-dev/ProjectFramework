@@ -15,15 +15,15 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 
 ## Required References
 
-Before creating or materially changing Project Source, read:
+Before creating or materially changing Project Source, read (each entry notes what it is for):
 
-- `FRAMEWORK-RELEASE.yaml` for current distribution identity/bootstrap policy
-- `references/framework-governance-amendment-260824-1708.md`
-- `references/framework-governance-amendment-260823-1439.md`
-- `references/framework-governance-amendment-260823-0816.md`
-- `references/framework-governance-amendment-260822-1835.md`
-- `references/framework-governance-amendment-260822-1424.md`
-- `references/framework-governance-amendment-260821-1934.md`
+- `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
+- `references/framework-governance-amendment-260824-1708.md` — latest amendment: `[Project Upgrade]` command (current authority)
+- `references/framework-governance-amendment-260823-1439.md` — Direct-to-Latest upgrade semantics
+- `references/framework-governance-amendment-260823-0816.md` — Framework 1.3.0 command contract
+- `references/framework-governance-amendment-260822-1835.md` — bootstrap location and file storage
+- `references/framework-governance-amendment-260822-1424.md` — local workspace binding and checkpoints
+- `references/framework-governance-amendment-260821-1934.md` — workspace/runtime authority
 - `references/framework-governance-amendment-260821-1505.md` (historical approved amendment)
 - `references/framework-governance-amendment-260821-1254.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-1142.md` (historical approved amendment)
@@ -33,10 +33,10 @@ Before creating or materially changing Project Source, read:
 - `references/framework-governance-amendment-260820-0707.md` (historical approved amendment)
 - `references/framework-governance-amendment-260820-0646.md` (historical approved amendment)
 - `references/framework-governance-amendment-260814-0808.md` (historical approved amendment)
-- `references/core-governance-rules.md`
-- `templates/00-project-source-framework.md`
-- `templates/core-document-skeletons.md`
-- `templates/project-source-mockup/README.md`
+- `references/core-governance-rules.md` — the full normative rulebook (deepest authority below amendments)
+- `templates/00-project-source-framework.md` — root template for document `00`
+- `templates/core-document-skeletons.md` — skeletons for mandatory documents
+- `templates/project-source-mockup/README.md` — starter tree overview
 
 Historical spec/design files are rationale only. Latest Framework amendment wins on conflict.
 
