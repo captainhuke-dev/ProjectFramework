@@ -75,3 +75,20 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria met:** all five items implemented; scenarios 153–157 added; launchers remain ≤4,500 with byte-identical markers; Schema/release format unchanged.
 - **Publication State:** `MERGED_TO_MAIN` — merged locally and pushed; `main` = `origin/main` at `faf3406bec9d16d676ec9406ecc4a13dc2b14a6d`. No PR by user decision (direct merge).
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+
+## Task #21 — ChatGPT→MCP Continuity (Continuous System Management)
+
+- **ID:** `TASK-021`
+- **Status:** `TODO`
+- **Type:** Framework continuity / interaction reliability improvement
+- **Problem:** System management driven through ChatGPT → MCP stops frequently for three distinct reasons: (1) ChatGPT session/conversation expiry losing in-chat context, (2) MCP connection drops mid-task forcing step restarts, (3) per-step approval gates interrupting otherwise continuous flows.
+- **Scope:**
+  1. **Continuation Contract** — normative rule that every Logical Checkpoint writes MCP-readable continuation state (`09 Handoff` + `03 Current State`) sufficient for any fresh session/agent to resume within one read.
+  2. **Pre-Approved Action Envelope** — new registered `[Session Envelope]` command: user pre-approves a bounded scope of operations for a session/task; fail-closed governance still applies outside the envelope; envelope never grants location/binding/root authority.
+  3. **MCP Resume Semantics** — governed requirement that Material MCP operations be designed idempotent with declared resume checkpoints, so connection drops resume from the last checkpoint instead of restarting.
+  4. **Continuity health fields in `[Project Status]`** — expose which handoff/checkpoint links are stale or repeatedly breaking.
+- **Constraints:** Documentation/governance scope only — ProjectFramework defines the contracts; no relay/runtime implementation, validator, CLI, or automation artifact. The actual persistent outbound relay runtime remains lnwjud project scope and must stay contract-compatible. Schema stays `1.0.0`; canonical tokens unchanged; `commit ≠ push`.
+- **Design State:** problem framing discussed and user-approved direction ("ลง Task ได้เลย"); scoped design spec still required before implementation.
+- **Completion criteria:** Continuation Contract, `[Session Envelope]` command contract, MCP Resume Semantics, and `[Project Status]` continuity fields implemented across normative sources + templates + launchers; pressure scenarios added; AFFECTED verification passes; one final `RELEASE_FULL` on unchanged candidate; evidence committed (target release Framework `1.5.0` / Schema `1.0.0`, pending design confirmation).
+- **Exact Next Step:** Prepare scoped design spec for TASK-021 covering the four items, obtain user design approval before implementation.
