@@ -139,3 +139,12 @@ Enable `SVM` / AMD-V in ASRock UEFI, save changes, and reboot. Then verify `Virt
 - WSL Windows component repair: `COMPLETE`.
 - WSL2 functional enablement: `FIRMWARE_SVM_REQUIRED`.
 - WSL classification: `OPTIONAL / NOT_BLOCKING`. The SVM/WSL2 firmware boundary is optional environment technical debt and does not defer or block `TASK-019`.
+
+## Closure decision — 2026-08-25
+
+WSL2/SVM functional enablement is **CANCELLED BY USER DECISION** (no longer pending):
+
+- SVM/AMD-V will not be enabled in ASRock UEFI; no Ubuntu distribution will be installed.
+- Consequence accepted: Tai-F3 `wsl_exec` and `wsl_fs` remain `available=false` on this host indefinitely; Linux execution through Tai-F3 on this machine is unavailable.
+- No impact to ProjectFramework Tasks, NAS/Docker workflows (Synology via SSH), or Windows-host builds — all verified independent of WSL.
+- Future sessions must not reopen this item unprompted; reopening requires a new explicit user request.
