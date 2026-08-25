@@ -14,7 +14,7 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.3.1**
+- Project Source Framework: **1.4.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -42,6 +42,16 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.4.0 Upgrade Acceleration
+
+Framework `1.4.0` keeps Project Source Schema `1.0.0` and release format `3` and makes upgrading initialized Projects faster without weakening governance:
+
+- **MIGRATION-NOTES.md** documents affected surfaces and an upgrade checklist per release (starting with `1.3.x → 1.4.0`); `FRAMEWORK-RELEASE.yaml` points at the current notes. Notes are routing aids, never normative authority.
+- **FAST_PATH verification scope rule**: when the exact target candidate tree carries committed state-bound evidence (matching tree SHA), proportional resulting-state confirmation may replace a full rerun; any post-evidence change fails closed back to the full requirement. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` keep one final `RELEASE_FULL`.
+- **templates/upgrade-preview.md** standardizes upgrade Previews: identity, classification, affected surfaces, preservation checklist, rollback plan, approvals.
+- **Launcher compaction policy** keeps the `<=4,500` character ceiling; prose may be compacted, canonical tokens/commands/labels/close fields never are.
+- **`[Project Upgrade]` reports now include the target release's migration-notes pointer** when notes exist, so affected surfaces are visible before preparation.
 
 ## Framework 1.3.1 Project Upgrade Command
 
