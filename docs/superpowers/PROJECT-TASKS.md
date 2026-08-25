@@ -48,3 +48,18 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Required behavior:** Keep canonical Framework tokens, Stable IDs, lifecycle/status values, commands, filenames, and other exact technical identifiers unchanged where exact wording is required; simplify the explanation around them rather than renaming governed terms.
 - **Completion criteria:** Applicable user-facing Framework guidance is reviewed, unnecessary jargon is reduced, explanations remain technically accurate, and required canonical terms remain intact.
 - **Exact Next Step:** Identify the user-facing Framework surfaces affected by this language rule and prepare a scoped design/change proposal before implementation.
+
+## Task #20 — Upgrade Acceleration (Framework 1.4.0)
+
+- **ID:** `TASK-020`
+- **Status:** `TODO`
+- **Type:** Framework release / upgrade-workflow improvement
+- **Scope:** Reduce the time cost of upgrading an initialized Project from an older ProjectFramework version to a newer one. Five bounded changes:
+  1. Per-release `MIGRATION-NOTES.md` + `migration_notes` field in `FRAMEWORK-RELEASE.yaml` listing affected surfaces and a per-release checklist.
+  2. FAST_PATH `RELEASE_FULL` scope rule — state-bound confirmation against exact tree SHA evidence instead of unconditional full rerun.
+  3. Standard Upgrade Preview template (`templates/upgrade-preview.md`).
+  4. Launcher compaction policy + ceiling raised from 4,500 to 5,000 Unicode characters.
+  5. `[Project Upgrade]` `UPGRADE_AVAILABLE` report references the target release's MIGRATION-NOTES.
+- **Constraints:** Markdown/YAML only; no validator/CLI/auto-updater/runtime artifact; Schema stays `1.0.0`; release format `3`; backward compatible with locally pinned Projects; historical amendments unchanged; `commit ≠ push`.
+- **Completion criteria:** All five items implemented across descriptor, normative sources, templates, launchers, README; pressure scenarios added for the new upgrade-scope rules; affected verification passes; one final `RELEASE_FULL` on the unchanged candidate; release evidence committed as Framework `1.4.0` / Schema `1.0.0`.
+- **Exact Next Step:** Prepare scoped design spec for TASK-020 covering the five items, obtain user design approval before implementation.
