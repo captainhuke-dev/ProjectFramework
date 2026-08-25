@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.3.1 / Schema 1.0.0**.
+Current distribution: **Framework 1.4.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -34,9 +34,11 @@ Before creating or materially changing Project Source, read (each entry notes wh
 - `references/framework-governance-amendment-260820-0646.md` (historical approved amendment)
 - `references/framework-governance-amendment-260814-0808.md` (historical approved amendment)
 - `references/core-governance-rules.md` — the full normative rulebook (deepest authority below amendments)
+- `MIGRATION-NOTES.md` — per-release upgrade guidance (routing aid, not normative authority)
 - `templates/00-project-source-framework.md` — root template for document `00`
 - `templates/core-document-skeletons.md` — skeletons for mandatory documents
 - `templates/project-source-mockup/README.md` — starter tree overview
+- `templates/upgrade-preview.md` — standard structure for upgrade preparation Previews
 
 Historical spec/design files are rationale only. Latest Framework amendment wins on conflict.
 
@@ -47,7 +49,7 @@ Official platform launchers:
 - `CHATGPT-PROJECT-INSTRUCTIONS.md`
 - `CLAUDE-PROJECT-INSTRUCTIONS.md`
 
-Their text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` MUST remain byte-identical. Platform wrappers may differ only in placement instructions. Launchers are bootstrap/continuation helpers, never a competing governance root.
+Their text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` MUST remain byte-identical. Platform wrappers may differ only in placement instructions. Launcher compaction policy: each complete launcher stays `<=4,500` Unicode characters. Prose explanations may be compacted; canonical tokens, registered commands, lifecycle values, report labels, response-close fields, and marker identity must never be compacted, renamed, or dropped, and shared marker bodies remain byte-identical. Launchers are bootstrap/continuation helpers, never a competing governance root.
 
 If active local `FRAMEWORK-001` exists, local pinned Project Source is authoritative. NEW Project bootstrap begins from canonical repository `main`. Exact Git tag/SHA and branch protection are optional assurance, not normal-use prerequisites.
 
@@ -511,7 +513,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 15. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
 16. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
 17. Pin imported Framework/Schema locally; upgrades use direct current→target assessment plus `MIG-*`/approval as required; classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; never invent repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
-18. `[Project Upgrade]` remains read-only through comparison; `UPGRADE_AVAILABLE` may ask to prepare an upgrade, but upgrade-intent approval authorizes assessment/Preview only and is never mutation approval.
+18. When `[Project Upgrade]` reports `UPGRADE_AVAILABLE`, the report includes the target release's migration-notes pointer when notes exist (`MIGRATION-NOTES.md`) and states their absence explicitly when they do not; comparison vocabulary and approval boundaries are unchanged. Upgrade preparation uses `templates/upgrade-preview.md` as the standard Preview structure. FAST_PATH scope rule: when the exact target candidate tree already carries committed state-bound evidence (recorded tree SHA matches the observed target tree exactly), proportional resulting-state confirmation may replace rerunning one full verification; any post-evidence candidate change invalidates reuse and fails closed. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` keep the existing one-final-`RELEASE_FULL` requirement. `[Project Upgrade]` remains read-only through comparison; `UPGRADE_AVAILABLE` may ask to prepare an upgrade, but upgrade-intent approval authorizes assessment/Preview only and is never mutation approval.
 19. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
 20. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
 21. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.

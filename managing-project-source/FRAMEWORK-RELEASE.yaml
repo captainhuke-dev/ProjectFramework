@@ -1,5 +1,5 @@
 release_format_version: 3
-framework_version: "1.3.1"
+framework_version: "1.4.0"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
@@ -11,7 +11,9 @@ entrypoints:
   skill: "SKILL.md"
   project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260824-1708.md"
+latest_framework_amendment: "references/framework-governance-amendment-260825-task020.md"
+migration_notes: "MIGRATION-NOTES.md"
+upgrade_preview_template: "templates/upgrade-preview.md"
 core_governance: "references/core-governance-rules.md"
 framework_template: "templates/00-project-source-framework.md"
 core_skeletons: "templates/core-document-skeletons.md"
