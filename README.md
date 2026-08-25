@@ -14,7 +14,7 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.4.0**
+- Project Source Framework: **1.5.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -42,6 +42,15 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.5.0 ChatGPT→MCP Continuity
+
+Framework `1.5.0` keeps Schema `1.0.0` and makes agent-driven system management run continuously instead of stopping:
+
+- **Resume Blocks** — every Logical Checkpoint writes resume state into `09 Handoff` (task, last step, next step, blockers, active envelope) so any fresh session continues within one read.
+- **`[Session Envelope]`** — pre-approve a bounded operation scope once per session (`ENV-*` entries in `15 Action Registry`, with expiry and prohibited zones); fail-closed gates for location/binding/root/secret/push never lift.
+- **MCP Resume Semantics** — mutations should be idempotent; non-idempotent calls record intent first; after a drop, work resumes from the last checkpoint, not from memory.
+- **`[Project Status]` Continuity dimension** — shows Resume Block freshness (`FRESH | STALE | NONE`), the active Envelope, and repeated handoff breaks.
 
 ## Framework 1.4.0 Upgrade Acceleration
 

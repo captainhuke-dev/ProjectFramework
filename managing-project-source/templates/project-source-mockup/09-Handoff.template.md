@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "CHANGEABLE"
-project_source_framework_version: "1.4.0"
+project_source_framework_version: "1.5.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -73,3 +73,9 @@ Material Persistence State = PERSISTENCE_PENDING → CONTINUE_CURRENT_CHAT + con
 
 When continuation depends on GitHub/Drive/local/File Storage routing, reference the active `FRAMEWORK-001` Project Location Binding and source-native durable identities. `09` does not persist an independent Bootstrap Location Block, repository/workspace binding, or File Storage binding authority; current branch/worktree/HEAD remains observed dynamic evidence.
 Lifecycle: `DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED`.
+
+**Resume Block (latest checkpoint):**
+
+```text
+Task: <TASK/ACT id> | Done: <last completed step> | Next: <exact next step> | Blockers: <none or list> | Envelope: <ENV-* or none>
+```

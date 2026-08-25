@@ -797,17 +797,19 @@ Initial registry:
 [Project Status] : fresh-read Project identity, Task state, Git sync/working-tree state, verification, blockers, and health
 [Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Session Envelope] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 ```
 
 Natural-language requests for available commands (for example “มีชุดคำสั่งอะไรบ้าง”, “command list”, or “available commands”) MUST list only commands registered by the active Framework/Project in `[XXX] : purpose` form. Do not invent commands merely because an Agent/tool could perform another action.
 
 #### `[Project Status]`
 
-`[Project Status]` is read-only and MUST fresh-observe available current sources rather than reuse chat memory as current evidence. Present applicable dimensions in this order: **Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers**.
+`[Project Status]` is read-only and MUST fresh-observe available current sources rather than reuse chat memory as current evidence. Present applicable dimensions in this order: **Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity**.
 
 - Identity includes Project/repository, Workspace, current branch/ref, and observed HEAD when available.
 - Health reuses existing `GREEN | AMBER | RED | UNKNOWN`; no competing `YELLOW` state is introduced.
 - Remain Tasks comes from the applicable Task source and shows count plus Task ID/state/concise detail when exposed.
+- Continuity reports the latest Resume Block freshness as `FRESH | STALE | NONE`, the active Envelope (`ENV-*`, valid/expired), and a repeated-break indicator when handoffs show the same link breaking across consecutive checkpoints (surfaced as an `ISS-* KNOWLEDGE_DEBT` candidate). All vocabulary reuses existing families.
 - Git Sync reports remote/tracking target, ahead/behind/divergence, and remote freshness. A `VERIFIED` remote-freshness claim requires an applicable fresh remote observation; cached remote-tracking state alone is insufficient. `STALE` / `VERIFICATION_REQUIRED` may be used as diagnostic report labels without becoming new Framework lifecycle states.
 - Working Tree reports `Waiting Commit: Yes | No` plus changed/staged/unstaged/untracked counts. Git file/change count MUST NOT be converted into logical Task count.
 - Verification reports latest applicable `PASS | FAIL | NOT_RUN | UNKNOWN` plus evidence validity/context when available.
@@ -845,6 +847,20 @@ When the command reports `UPGRADE_AVAILABLE`, its report includes the target rel
 `[Project Upgrade]` grants no Bootstrap/Project Location mutation authority and no branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime, or Persistent-State authority.
 
 `MIGRATION-NOTES.md` documents per-release upgrade guidance (affected surfaces, checklist). It is a routing/documentation aid — never normative authority — and Core Governance plus the latest amendment win on any conflict. Missing notes for a transition remain an explicit `UNKNOWN`; they are never invented retroactively.
+
+### Continuation Contract and Resume Blocks
+
+At every Logical Checkpoint on Material work, persist a **Resume Block** into `09 Handoff` (mirrored as a one-line status in `03 Current State`) containing exactly: active task ID, last completed step, next step, open blockers, and the active Envelope reference (`ENV-*`) if any. A fresh session — ChatGPT, Claude, or any agent with MCP access to the Project Source — MUST be able to resume Material work from the Resume Block alone within one read, with no chat-history dependency. Failure to persist follows existing `PERSISTENCE_PENDING` semantics; no new failure state exists.
+
+### MCP Resume Semantics
+
+Material MCP operations that mutate state SHOULD be structured as idempotent steps: re-executing an already-applied step produces no duplicate effect. Non-idempotent operations MUST record pre-execution intent in the current Checkpoint before the call, so a connection drop cannot cause silent double-execution without evidence. After any drop, resume from the last persisted Resume Block/Logical Checkpoint — never from memory of the dropped session. This is a contract for runtime implementations; this Framework defines it and implements none of it.
+
+#### `[Session Envelope]`
+
+`[Session Envelope]` declares (`declare`), displays (`show`), or ends early (`close`) a user-pre-approved scope of operations for the current session/task. `declare` records an explicit Envelope as an `ENV-*` entry in `15 Action Registry`: allowed operation types, target surfaces, expiry (session end / task completion / explicit time), and prohibited zones.
+
+An Envelope never overrides fail-closed governance: location/binding changes, Root Governance mutation, schema/slot authority, secret handling, and push keep their own approval gates regardless of any Envelope. Ambiguous or out-of-scope operations fail closed to normal approval. One-off exact-target instructions remain action-specific as before. Envelopes are auditable records in `15`, not side-channel permissions.
 
 ## 17. Adoption Modes and Bootstrap
 
