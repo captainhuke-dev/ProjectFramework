@@ -51,6 +51,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Release Evidence:** `docs/superpowers/evidence/2026-08-25-task-019-simpler-language-release-full.md`
 - **Verification Result:** `AFFECTED 10/10 PASS; RELEASE_FULL 24/24 PASS`
 - **Completion criteria met:** launchers simplified and restored to `<=4,500` (both 4,481 chars, byte-identical marker bodies); README TL;DR added; SKILL Required References annotated; canonical tokens preserved verbatim; pressure scenarios 151–152 added.
+- **Publication State:** `MERGED_TO_MAIN` — merge commit `0bdf6e5` (included in the same push as TASK-020); `main` = `origin/main` at `faf3406`.
 - **Exact Next Step:** Proceed to `TASK-020` design spec.
 
 ## Task #20 — Upgrade Acceleration (Framework 1.4.0)
@@ -72,4 +73,5 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Release Evidence:** `docs/superpowers/evidence/2026-08-25-task-020-upgrade-acceleration-release-full.md`
 - **Verification Result:** `RELEASE_FULL 25/25 PASS`
 - **Completion criteria met:** all five items implemented; scenarios 153–157 added; launchers remain ≤4,500 with byte-identical markers; Schema/release format unchanged.
-- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-020 scope; publication (push/PR) awaits separate user approval.
+- **Publication State:** `MERGED_TO_MAIN` — merged locally and pushed; `main` = `origin/main` at `faf3406bec9d16d676ec9406ecc4a13dc2b14a6d`. No PR by user decision (direct merge).
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
