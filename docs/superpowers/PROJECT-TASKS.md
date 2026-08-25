@@ -97,5 +97,5 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Release Evidence:** `docs/superpowers/evidence/2026-08-25-task-021-mcp-continuity-release-full.md`
 - **Verification Result:** `RELEASE_FULL 23/23 PASS` (first run 23/24 — SKILL latest-amendment alignment finding corrected in `bbf82d2`)
 - **Completion criteria met:** all four items implemented; scenarios 158–162 added; launchers ≤4,500 byte-identical; Schema/format unchanged.
-- **Publication State:** to be recorded after merge+push.
-- **Exact Next Step:** Merge branch to `main`, push, then record final publication commit.
+- **Publication State:** `MERGED_TO_MAIN` — `main` = `origin/main` at `5834a3eab03215f2350e369f48673186f2d0a98c` (direct merge, no PR per established pattern).
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
