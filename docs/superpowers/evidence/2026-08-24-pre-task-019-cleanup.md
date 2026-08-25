@@ -102,3 +102,33 @@ After Windows restart, verify in this order:
 - merged worktree/branch cleanup: `COMPLETE` for safely deletable merged state.
 - WSL component repair: `INSTALLED / REBOOT_REQUIRED`.
 - `TASK-019` must not begin until post-reboot WSL verification resolves the remaining environment state.
+
+## Post-reboot verification — 2026-08-25
+
+Windows was restarted after enabling the WSL optional components. Fresh observations:
+
+- Tai-F3 `wsl_exec`: `available=true`, `ready=true`.
+- Tai-F3 `wsl_fs`: `available=true`, `ready=true`.
+- `wsl_fs(status)` for the registered ProjectFramework workspace: `available=true`, `ready=true`.
+- `wsl.exe --list --verbose`: no Linux distributions installed.
+- Ubuntu 24.04 LTS was selected as the conservative functional-test distro and its download began successfully. Registration failed with `HCS_E_HYPERV_NOT_INSTALLED`.
+- CPU: AMD Ryzen 5 1600; `VMMonitorModeExtensions=True`, `SecondLevelAddressTranslationExtensions=True`, but `VirtualizationFirmwareEnabled=False`.
+- `HypervisorPresent=False`.
+- Motherboard: ASRock AB350 Gaming K4; BIOS: American Megatrends P4.60.
+- No Ubuntu distro remains registered after the failed registration attempt.
+
+Root cause is now narrowed to firmware virtualization: AMD-V/SVM is disabled in BIOS/UEFI. Windows WSL/VMP components are installed and active; Tai-F3 WSL adapters are healthy, but WSL2 cannot create a VM until SVM is enabled in firmware.
+
+Official ASRock firmware documentation for this board exposes `SVM` under CPU configuration; enabling it permits VMM use of AMD-V.
+
+### Remaining recovery action
+
+Enable `SVM` / AMD-V in ASRock UEFI, save changes, and reboot. Then verify `VirtualizationFirmwareEnabled=True`, install/register Ubuntu 24.04 LTS, and run functional Tai-F3 `wsl_exec` and `wsl_fs` checks.
+
+### Checkpoint state
+
+- TASK-018 reconciliation: `COMPLETE`.
+- merged worktree/branch cleanup: `COMPLETE`; only intentionally unmerged work remains (`framework-next-improvement-planning` local and `hz-framework` remote).
+- WSL Windows component repair: `COMPLETE`.
+- WSL2 functional enablement: `FIRMWARE_SVM_REQUIRED`.
+- `TASK-019` remains deferred until this firmware boundary is resolved.
