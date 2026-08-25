@@ -1,5 +1,15 @@
 # ProjectFramework
 
+## TL;DR — What this is and how to use it
+
+ProjectFramework is a **documentation-first governance framework** for planning and running Projects with AI agents. It defines where current truth, decisions, requirements, risks, and continuation context live — in a `Project-Source/` folder of numbered Markdown documents (`00–17` mandatory core; `40`, `60`, `91` optional). It contains **no software**: rules are written contracts that humans/agents read and follow.
+
+How to use it:
+
+1. **New Project** — start from this repository's `main`: copy the platform launcher (ChatGPT/Claude) into your Project settings, then follow the Bootstrap Read Order below to create an approved, locally pinned `Project-Source/`.
+2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]` give you dashboards, path verification, and upgrade checks. Every governed response ends with a fixed close: `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
 ## Current Release

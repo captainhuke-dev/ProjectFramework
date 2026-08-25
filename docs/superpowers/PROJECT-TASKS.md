@@ -42,12 +42,16 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #19 — Simpler user-facing language
 
 - **ID:** `TASK-019`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework interaction / language usability improvement
 - **Scope:** Make user-facing explanations and Project interaction guidance easier to understand, using plain language by default and avoiding unnecessarily advanced technical jargon.
 - **Required behavior:** Keep canonical Framework tokens, Stable IDs, lifecycle/status values, commands, filenames, and other exact technical identifiers unchanged where exact wording is required; simplify the explanation around them rather than renaming governed terms.
 - **Completion criteria:** Applicable user-facing Framework guidance is reviewed, unnecessary jargon is reduced, explanations remain technically accurate, and required canonical terms remain intact.
-- **Exact Next Step:** Identify the user-facing Framework surfaces affected by this language rule and prepare a scoped design/change proposal before implementation.
+- **Implementation Commit(s):** `3754476`, `69fbcc3`, `8c6c08d`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-25-task-019-simpler-language-release-full.md`
+- **Verification Result:** `AFFECTED 10/10 PASS; RELEASE_FULL 24/24 PASS`
+- **Completion criteria met:** launchers simplified and restored to `<=4,500` (both 4,481 chars, byte-identical marker bodies); README TL;DR added; SKILL Required References annotated; canonical tokens preserved verbatim; pressure scenarios 151–152 added.
+- **Exact Next Step:** Proceed to `TASK-020` design spec.
 
 ## Task #20 — Upgrade Acceleration (Framework 1.4.0)
 
