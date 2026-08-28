@@ -1,4 +1,4 @@
-# Claude Project — F`1.5.0` / S`1.0.0`
+# Claude Project — F`1.6.0` / S`1.0.0`
 Paste in Instructions.
 
 Framework Remote Path: `<FRAMEWORK_REMOTE>`

@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.5.0"
+project_source_framework_version: "1.6.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -35,6 +35,7 @@ Front Door + derived Active Document Registry + task routing.
 40 Tech Stack / technical / source / workspace / config / runtime blueprint when active
 60 installation / deployment / source-runtime / persistence-recreation / operations blueprint when active
 91 RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-* when active
+92 REL-* current Project-relation assertions when active
 ```
 
 The derived registry is not manually authoritative.

@@ -1,10 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.5.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.6.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.6.0 Federated Project Graph Semantics
+
+Framework `1.6.0` adds standard conditional `92 Project Graph`, canonical current `REL-*` assertions keyed by immutable `project_uuid`, late binding, Brownfield custom-slot-92 migration safety, and an AI-ControlTower/OpenViking boundary where the external index is `DERIVED_ONLY` and rebuildable. Project relation topology never transfers repository/workspace/binding/integration/implementation/runtime authority. Generic extension space is now `93–99`.
 
 ## Framework 1.3.1 Project Upgrade Command Semantics
 
@@ -105,8 +109,9 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 | `40` | Technical Design | **CONDITIONAL** | `40-Technical-Design.template.md` |
 | `60` | Deployment Plan | **CONDITIONAL** | `60-Deployment-Plan.template.md` |
 | `91` | Project Management Control | **CONDITIONAL / STANDARD IN 1.2.0+** | `91-Project-Management-Control.template.md` |
+| `92` | Project Graph | **CONDITIONAL / STANDARD IN 1.6.0+** | `92-Project-Graph.template.md` |
 
-`91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`.
+`91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`. `92` canonically owns current `REL-*` Project-relation assertions when active.
 
 ## Reserved and Extended Taxonomy
 
@@ -122,7 +127,8 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 | `80–89` | Audit / Review / Assessment / Reports | Create only when needed |
 | `90` | General / Special Governance Extension anchor | Create only when needed |
 | `91` | Project Management Control | Standard conditional in `1.2.0+` |
-| `92–99` | Project-specific / Governance Extension | Create only when needed |
+| `92` | Project Graph | Standard conditional in `1.6.0+` |
+| `93–99` | Project-specific / Governance Extension | Create only when needed |
 
 ## GREENFIELD Bootstrap Recipe
 
@@ -137,9 +143,9 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 8. Preview proposed Project Source, including governed GitHub/Drive/local-workspace/generic-file-storage states/identities → obtain explicit user approval
 9. Create active 00 first with the approved Project Location Binding
 10. Create mandatory 01–05 and 09–17
-11. Evaluate 06–08, 40, 60, 91; create only when applicable
+11. Evaluate 06–08, 40, 60, 91, 92; create only when applicable
 12. Keep 18–19 reserved
-13. Use 92–99 only for real Project-specific/governance-extension needs
+13. Use 93–99 only for real Project-specific/governance-extension needs
 14. Build/verify Index + Manifest + readiness
 15. Pin Framework/Schema locally; do not auto-upgrade later
 16. Optionally record exact Git provenance only when actually observed/material

@@ -17,6 +17,8 @@ Framework `1.2.5` adds environment-scoped **Local Workspace Binding**, **Verifie
 Framework `1.3.0` adds registered bracketed `[Project Status]` / `[Project Path]` commands, Markdown-safe response-close presentation, and Direct-to-Latest cumulative upgrades using `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. Existing Projects remain pinned; intermediate release execution is not mandatory, but current truth/Stable IDs/Project-specific rules/history/approval/rollback/validation remain preserved.
 
 Framework `1.3.1` adds registered `[Project Upgrade]` as a read-only fresh comparator between the active local Framework pin and canonical upstream target evidence. It reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`; a detected difference asks whether to prepare an upgrade, and a positive answer authorizes assessment/Preview only—not mutation. Schema remains `1.0.0` and existing Direct-to-Latest approval/preservation rules remain unchanged.
+
+Framework `1.6.0` standardizes conditional `92 Project Graph` as the canonical home of current `REL-*` Project-relation assertions. Endpoints use immutable `project_uuid`; AI-ControlTower/OpenViking indexing is `DERIVED_ONLY` and rebuildable; relation topology remains distinct from Project Location Binding, Git integration, implementation, and runtime authority.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -37,7 +39,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.5.0"
+project_source_framework_version: "1.6.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -64,6 +66,7 @@ When active, route:
 40 Technical Design → Tech Stack / components / source / workspace / config / runtime / deployment-mode architecture
 60 Deployment Plan → installation / source-runtime mapping / persistence-recreation / startup / verification / operations / rollback / backup
 91 Project Management Control → RISK / ASM / MS / OUT / DEP / CR / GATE
+92 Project Graph → REL-* current Project relation assertions when active
 ```
 
 Do not manually treat the derived registry as authoritative.
@@ -751,3 +754,32 @@ Reviewed At
 ```text
 Task: <TASK/ACT id> | Done: <last completed step> | Next: <exact next step> | Blockers: <none or list> | Envelope: <ENV-* or none>
 ```
+
+## 92 — Project Graph [CONDITIONAL / STANDARD IN 1.6.0+]
+
+Create only when Project relation truth is applicable. Canonical home of current `REL-*` records.
+
+Minimum relation fields:
+
+```text
+Relation ID: REL-*
+Source Project UUID
+Target Project UUID
+Relation Type
+Direction
+Assertion State
+Related Stable IDs
+Evidence / Source Pointers
+Last Verified / Reviewed
+Notes when material
+```
+
+Core relation types are exactly `PARENT_OF | CHILD_OF | PEER_OF | DEPENDS_ON | SUPPORTS | RELATED_TO`. Project/domain extensions use `X-<PROJECT_OR_DOMAIN_NAMESPACE>:<RELATION_TOKEN>` and must not redefine a core token.
+
+Assertion state is exactly `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`. Reciprocal corroboration requires verified compatible authoritative assertions with matching endpoint UUIDs: `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, `RELATED_TO ↔ RELATED_TO`. Derived inverse edges are traversal aids only and never become another Project's assertion.
+
+`REL-*` stores graph linkage/pointers, not duplicated authoritative payload from `DEP-*` in `91`, `DEC-*` in `04`, `REQ-*` in `05`, or `ISS-* / DRIFT-* / CONFLICT-*` in `08`.
+
+Project relation endpoints use immutable `project_uuid`. `PARENT_OF` / `CHILD_OF` is semantic topology and does not imply nested folders/repositories/workspaces or transfer Repository/File Storage/Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime Location, Authority, or Risk approval.
+
+AI-ControlTower owns cross-Project indexing/orchestration. OpenViking is `DERIVED_ONLY` and `REBUILDABLE`; it may normalize/query/correlate/index and surface stale/orphan/conflicting derived state, but Project Source wins on disagreement. Reuse existing `DRIFT-*`, `CONFLICT-*`, and `MIG-*` families. No OpenViking credentials/runtime configuration belongs in this document.

@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.5.0"
+project_source_framework_version: "1.6.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -31,7 +31,7 @@ Registered Evidence
 Pinned Schema / Validation Assets
 Required Generated Assets
 Required Active Detail Documents
-Active 40 / 60 / 91 when required to interpret current truth
+Active 40 / 60 / 91 / 92 when required to interpret current truth
 ```
 
 ## Framework Source Provenance — When Tracked

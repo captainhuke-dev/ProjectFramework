@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.5.0"
+project_source_framework_version: "1.6.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -27,7 +27,7 @@ compatible_schema_range: ">=1.0,<2.0"
 
 ## Bootstrap Requirement
 
-Create this document first as active `FRAMEWORK-001`; descendants inherit from it. NEW Projects bootstrap from canonical repository `main`, then create mandatory `01–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
+Create this document first as active `FRAMEWORK-001`; descendants inherit from it. NEW Projects bootstrap from canonical repository `main`, then create mandatory `01–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, `91`, `92`; keep `18–19` reserved.
 
 ## Project Location Binding Pointer
 
@@ -70,10 +70,11 @@ The full root template carries registered `[Project Status]` / `[Project Path]` 
 40 Technical Design               CONDITIONAL
 60 Deployment Plan                CONDITIONAL
 91 Project Management Control     CONDITIONAL / STANDARD IN 1.2.0+
-92–99 Project-specific / Governance Extension
+92 Project Graph                  CONDITIONAL / STANDARD IN 1.6.0+
+93–99 Project-specific / Governance Extension
 ```
 
-`91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`. Technical planning remains documentation/blueprint scope and does not authorize source code, Dockerfile/Compose, scripts, CI, or automation.
+`91` canonically owns `RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*`. Framework `1.6.0` standardizes conditional `92 Project Graph` as canonical home of current `REL-*` assertions; AI-ControlTower/OpenViking indexing remains `DERIVED_ONLY` / rebuildable and relation topology never transfers location/implementation/runtime authority. Technical planning remains documentation/blueprint scope and does not authorize source code, Dockerfile/Compose, scripts, CI, or automation.
 
 ## Framework 1.2.3 Workspace / Runtime Authority Pointer
 

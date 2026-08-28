@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.5.0"
+project_source_framework_version: "1.6.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -81,6 +81,19 @@ project_name: "<PROJECT_NAME>"   # mutable display name
 ```
 
 Rename ห้ามเปลี่ยน `project_uuid`. Merge/Split ต้อง preserve lineage แบบ reconstructable.
+
+### 2.2 Project Graph Applicability
+
+```yaml
+project_graph:
+  applicability: "<APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
+  relation_document_slot: "92"
+  external_index:
+    owner_scope: "AI_CONTROLTOWER"
+    authority: "DERIVED_ONLY"
+```
+
+`92 Project Graph` materialize เฉพาะเมื่อ relation truth applicable. OpenViking/runtime endpoint/credentials ไม่ใช่ Root Governance authority และห้ามเก็บ secret ที่นี่. Relation change ไม่เปลี่ยน `project_uuid` และไม่ rewrite Project Location Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source หรือ Runtime Location โดยอัตโนมัติ.
 
 ### 2.1 Project Location Binding
 
@@ -178,7 +191,14 @@ Framework `1.2.0` standardizes extended documents:
 60 Deployment Plan                CONDITIONAL
 90 General / Special Governance Extension anchor
 91 Project Management Control     CONDITIONAL / STANDARD IN 1.2.0+
-92–99 Project-specific / Governance Extension
+92–99 Project-specific / Governance Extension   # historical Framework 1.2.0 view
+```
+
+Framework `1.6.0` further standardizes:
+
+```text
+92 Project Graph                  CONDITIONAL / STANDARD IN 1.6.0+
+93–99 Project-specific / Governance Extension
 ```
 
 Conditional documents สร้างเฉพาะเมื่อ applicable; ห้ามสร้างไฟล์ว่างเพื่อให้ดูครบ. `18–19` ห้าม materialize เป็น default/active starter.
@@ -343,6 +363,7 @@ OUT-*       → 91
 DEP-*       → 91
 CR-*        → 91
 GATE-*      → 91
+REL-*       → 92
 ```
 
 หนึ่ง object type มี authoritative home เดียว. เอกสารอื่น reference Stable ID เท่านั้น.
@@ -353,7 +374,7 @@ Active canonical registries เป็น **materialized current projections, not
 
 Delta-only shorthand เช่น `retain previous status`, `unchanged from rNNN`, `see archived revision` ใช้แทน current authoritative payload ไม่ได้เมื่อ semantics จริงอยู่เฉพาะ archive.
 
-กฎนี้ใช้กับ `DEC-*`, `REQ-*`, และ `RISK/ASM/MS/OUT/DEP/CR/GATE` ใน `91` เท่ากัน. Failure = integrity/readiness defect ของ affected scope.
+กฎนี้ใช้กับ `DEC-*`, `REQ-*`, `RISK/ASM/MS/OUT/DEP/CR/GATE` ใน `91`, และ current `REL-*` ใน active `92` เท่ากัน. Failure = integrity/readiness defect ของ affected scope.
 
 ## 8. Project Management Control — `91`
 
@@ -551,6 +572,7 @@ Archive เป็น Historical Truth; current resolution ห้ามพึ่�
 40 → Tech Stack / technical / source / config / runtime blueprint
 60 → installation / deployment / operations
 91 → RISK / ASM / MS / OUT / DEP / CR / GATE
+92 → REL / Project relation assertions when active
 ```
 
 `14` = Current Reconstructable Snapshot inventory. ถ้า `40`, `60`, `91` active/current และจำเป็นต่อ current truth ต้องรวมใน Manifest/CURRENT export.
@@ -744,13 +766,29 @@ Pre-1.2.0 Project อาจใช้ `91` เป็น custom extension อย�
 detect occupied 91
 → MIG-* compatibility assessment
 → preserve identity/history/references
-→ propose suitable free 92–99 or other semantically correct slot
+→ propose suitable free 93–99 or other semantically correct slot
 → explicit approval
 → governed migration
 → then standard 91 activation if applicable
 ```
 
-### 20.2 No Automatic Free-Text Promotion
+### 20.2 Brownfield Slot `92` Project Graph Collision
+
+Framework ก่อน `1.6.0` อาจใช้ `92` เป็น custom extension อยู่แล้ว. ห้าม overwrite.
+
+```text
+detect occupied custom 92
+→ MIG-* compatibility assessment
+→ preserve identity/history/references/current semantics
+→ propose suitable free 93–99 or other semantically correct slot
+→ governed approval
+→ governed migration
+→ then standard 92 Project Graph activation if applicable
+```
+
+Migration ห้าม invent `REL-*`, reciprocal assertions, relation applicability หรือ OpenViking configuration.
+
+### 20.3 No Automatic Free-Text Promotion
 
 Old prose mentioning risk/assumption/date/dependency/scope/outcome/gate ห้าม auto-create Stable IDs. Promote เป็น `RISK/ASM/MS/OUT/DEP/CR/GATE` ได้เมื่อ current semantics, status, ownership และ epistemic/evidence state เพียงพอเท่านั้น. ถ้าไม่พอ ให้ preserve uncertainty แทน fabricate identity.
 
