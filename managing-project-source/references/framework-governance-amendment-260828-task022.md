@@ -83,7 +83,7 @@ Existing Project identity/lineage rules remain authoritative. Absorption, true m
 
 ## 5. AI-ControlTower / OpenViking derived-index contract
 
-Cross-Project indexing/orchestration belongs at AI-ControlTower scope. OpenViking is a **derived, rebuildable** knowledge/index layer, not a Project authority.
+Cross-Project indexing/orchestration belongs at AI-ControlTower scope. OpenViking authority is exactly `DERIVED_ONLY`; its knowledge/index projection is `REBUILDABLE` from authoritative Project Sources and is not a Project authority.
 
 Projects expose enough non-secret identity/relation metadata and durable source pointers for indexing. AI-ControlTower/OpenViking may discover, normalize, correlate reciprocal assertions, query/traverse, incrementally update, detect stale/orphan/conflicting derived state, and fully rebuild the index.
 
