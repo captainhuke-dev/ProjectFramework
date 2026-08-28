@@ -103,7 +103,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #22 — Project Graph + OpenViking Relation Governance
 
 - **ID:** `TASK-022`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / cross-Project knowledge-relation governance
 - **Problem:** A Project may begin independently and only later become related to other Projects, or become a parent/child/nested Project. The Framework needs a durable relation model that does not require all relationships to be known at Project creation time and does not make one Project's local truth depend on a central knowledge index.
 - **Scope:**
@@ -116,8 +116,17 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-08-28-task022-project-graph-openviking-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-28-task022-project-graph-openviking.md`
-- **Plan State:** `USER_APPROVED_PLAN / EXECUTING`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
 - **Implementation Release:** Framework `1.6.0` / Schema `1.0.0`
 - **Target Release:** Framework `1.6.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `9f32f72`, `ea43867`, `0d9978b`, `2240cec`, `6eb8790`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-28-task-022-project-graph-release-full.md`
+- **Verification Result:** `RELEASE_FULL 73/73 PASS`
+- **Candidate Commit:** `6eb87904374f1fb3034db572e3773238e4ed0e14`
+- **Candidate Distribution Tree:** `9d1d06916b944f8169477c220777ee5874e689bf`
+- **Completion criteria met:** federated Project-authoritative graph; standard conditional slot `92`; canonical `REL-*`; immutable `project_uuid` endpoints; late binding; semantic nesting/location separation; evidence-based corroboration/conflict; merge/split reassessment; AI-ControlTower/OpenViking `DERIVED_ONLY` + `REBUILDABLE` boundary; Brownfield custom-slot-92 migration; 22 starter templates; scenarios `1–171`; documentation-only scope.
+- **Publication State:** `NOT_PUSHED`
+- **Completion Working Tree:** `CLEAN`
+- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes/commits there; implementation continued inline on local `main` under the user's explicit continuous approval. No push was performed.
 - **Completion criteria:** A user-approved design specifies relation ownership, canonical-vs-derived truth boundaries, Project Graph representation, AI-ControlTower/OpenViking integration contract, late-binding lifecycle, rebuild/re-index behavior, failure/drift handling, and affected Framework surfaces; implementation proceeds under the user's explicit continuous approval with proportional verification and a final unchanged-candidate `RELEASE_FULL` before completion.
-- **Exact Next Step:** Implement Task 1 release identity/amendment/migration routing in the isolated TASK-022 worktree.
+- **Exact Next Step:** Obtain separate explicit publication approval before pushing verified local `main` to `origin/main`; `commit ≠ push`.
