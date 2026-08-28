@@ -84,4 +84,4 @@ No OpenViking runtime/deployment, graph database selection/provisioning, Graphif
 
 ## Publication state
 
-`commit ≠ push` remains binding. This evidence records local verified completion only. Remote publication state at evidence creation: **`NOT_PUSHED`**.
+`commit ≠ push` remains binding. At evidence creation, remote publication state was **`NOT_PUSHED`**. After separate explicit user publication approval on `2026-08-28`, verified local `main` through completion commit `9a34b49` was pushed to `origin/main`; the Task/evidence publication-state reconciliation record was then committed and included in the same approved publication operation.

@@ -125,8 +125,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Candidate Commit:** `6eb87904374f1fb3034db572e3773238e4ed0e14`
 - **Candidate Distribution Tree:** `9d1d06916b944f8169477c220777ee5874e689bf`
 - **Completion criteria met:** federated Project-authoritative graph; standard conditional slot `92`; canonical `REL-*`; immutable `project_uuid` endpoints; late binding; semantic nesting/location separation; evidence-based corroboration/conflict; merge/split reassessment; AI-ControlTower/OpenViking `DERIVED_ONLY` + `REBUILDABLE` boundary; Brownfield custom-slot-92 migration; 22 starter templates; scenarios `1–171`; documentation-only scope.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `PUBLISHED_TO_ORIGIN_MAIN` — verified TASK-022 implementation and completion through `9a34b49` were pushed to `origin/main` on `2026-08-28` under explicit user publication approval; this publication-state reconciliation record is included in the same approved publication operation.
 - **Completion Working Tree:** `CLEAN`
-- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes/commits there; implementation continued inline on local `main` under the user's explicit continuous approval. No push was performed.
+- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes/commits there; implementation continued inline on local `main` under the user's explicit continuous approval. Remote publication was performed only after the user's separate explicit push approval.
 - **Completion criteria:** A user-approved design specifies relation ownership, canonical-vs-derived truth boundaries, Project Graph representation, AI-ControlTower/OpenViking integration contract, late-binding lifecycle, rebuild/re-index behavior, failure/drift handling, and affected Framework surfaces; implementation proceeds under the user's explicit continuous approval with proportional verification and a final unchanged-candidate `RELEASE_FULL` before completion.
-- **Exact Next Step:** Obtain separate explicit publication approval before pushing verified local `main` to `origin/main`; `commit ≠ push`.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
