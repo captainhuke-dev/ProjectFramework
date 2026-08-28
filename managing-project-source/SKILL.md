@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.5.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.6.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260825-task021.md` — latest amendment: ChatGPT→MCP Continuity (current authority)
+- `references/framework-governance-amendment-260828-task022.md` — latest amendment: Federated Project Graph + OpenViking relation governance (current authority)
+- `references/framework-governance-amendment-260825-task021.md` — previous amendment: ChatGPT→MCP Continuity
 - `references/framework-governance-amendment-260823-1439.md` — Direct-to-Latest upgrade semantics
 - `references/framework-governance-amendment-260823-0816.md` — Framework 1.3.0 command contract
 - `references/framework-governance-amendment-260822-1835.md` — bootstrap location and file storage
@@ -206,7 +207,34 @@ Operational rules:
 
 No new semantic slot, Stable-ID family, lifecycle/freshness/Epistemic state, authority family, executable selector, storage sync, validator, hook, bot, CI/CD, scheduler, watcher, credential mechanism, or runtime enforcement is introduced.
 
-## Framework 1.2.0 Namespace and Routing
+## Framework 1.6.0 Federated Project Graph
+
+Framework `1.6.0` standardizes conditional `92 Project Graph` and current `REL-*` relation assertions while keeping Schema `1.0.0` and release format `3`.
+
+Current extended routing is:
+
+```text
+40 Technical Design               CONDITIONAL
+60 Deployment Plan                CONDITIONAL
+90 General / Special Governance Extension anchor
+91 Project Management Control     CONDITIONAL / STANDARD IN 1.2.0+
+92 Project Graph                  CONDITIONAL / STANDARD IN 1.6.0+
+93–99 Project-specific / Governance Extension
+```
+
+`92` is the canonical home of `REL-*`. It does not duplicate authoritative payloads owned by `DEP-*` in `91`, `DEC-*` in `04`, `REQ-*` in `05`, `ISS-* / DRIFT-* / CONFLICT-*` in `08`, or existing identity/lineage semantics.
+
+Relation endpoints use immutable `project_uuid`. Core relation types are exactly `PARENT_OF | CHILD_OF | PEER_OF | DEPENDS_ON | SUPPORTS | RELATED_TO`; namespaced extensions use `X-<PROJECT_OR_DOMAIN_NAMESPACE>:<RELATION_TOKEN>`. Assertion state is exactly `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`. `CORROBORATED` requires verified compatible authoritative assertions; a derived inverse edge or central confidence score is insufficient.
+
+A Project may begin without `92` and bind relations later. `PARENT_OF` / `CHILD_OF` is semantic Project topology and does not imply nested folders, repositories, workspaces, bindings, integration targets, implementation sources, or runtime locations. Merge/split/absorption preserve existing `project_uuid`/lineage rules and reassess relations rather than cloning edges blindly.
+
+AI-ControlTower owns cross-Project indexing/orchestration. OpenViking is `DERIVED_ONLY` and **REBUILDABLE** from current authoritative Project Sources. It may normalize/query/correlate/index and surface stale/orphan/conflicting derived state, but it must never overwrite Project Source, synthesize another Project's authoritative assertion, or become required to reconstruct current relation truth. Reuse existing `DRIFT-*`, `CONFLICT-*`, and `MIG-*`; do not create graph-specific parallel families.
+
+Brownfield Projects pinned before `1.6.0` may already occupy custom slot `92`. Never overwrite it: open/route `MIG-*`, preserve identity/history/references, relocate only through governed approval to a suitable free `93–99` or other semantic slot, then activate standard `92` only when applicable.
+
+This contract adds no OpenViking runtime, graph database, Graphify integration, crawler, watcher, scheduler, sync daemon, validator/CLI, MCP graph service, or automatic conflict resolution.
+
+## Framework 1.2.0 Namespace and Routing — Historical Base
 
 Mandatory core remains `00–05` and `09–17`; `06–08` remain conditional; `18–19` remain reserved.
 
@@ -220,11 +248,12 @@ Framework `1.2.0` standardizes:
 92–99 Project-specific / Governance Extension
 ```
 
-When active, route:
+Current routing on that historical base:
 
 ```text
 40 → Tech Stack / components / source structure / workspace / config / runtime / Source-Docker technical blueprint
 60 → installation / startup-shutdown / verification / diagnostics / runtime-persistence-recreation / upgrade-rollback / backup-restore / cleanup
+92 → REL-* current Project-relation assertions when active
 91 → RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*
 ```
 
@@ -374,7 +403,7 @@ Required behavior:
 
 Every referenced current Stable ID must resolve from Current Reconstructable Snapshot to current authoritative semantics without archive traversal. Archive is Historical Truth only. Delta-only shorthand cannot substitute for current payload.
 
-This applies equally to current `DEC-*`, `REQ-*`, and `RISK/ASM/MS/OUT/DEP/CR/GATE` records. Active `40`, `60`, `91` required to interpret current truth belong in `14 Manifest` and `CURRENT` export.
+This applies equally to current `DEC-*`, `REQ-*`, and `RISK/ASM/MS/OUT/DEP/CR/GATE` records. Active `40`, `60`, `91`, or `92` required to interpret current truth belong in `14 Manifest` and `CURRENT` export.
 
 ## Migration Safety
 
@@ -449,6 +478,7 @@ GitHub routing examples:
 10 → applied/observed historical change
 13 → material evidence references
 15 → ACT-* current action state
+92 → REL-* current Project-relation assertions when active
 91 → RISK-* / ASM-* / MS-* / OUT-* / DEP-* / CR-* / GATE-*
 ```
 
@@ -511,8 +541,8 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 12. Inspect accessible sources before asking; do not ask for facts that can be verified.
 13. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
 14. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.
-15. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`; keep `18–19` reserved.
-16. Route management objects to `91`; technical blueprint to `40`; install/operations to `60` when applicable.
+15. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`, `92`; keep `18–19` reserved.
+16. Route management objects to `91`; current Project relations (`REL-*`) to `92`; technical blueprint to `40`; install/operations to `60` when applicable.
 17. Pin imported Framework/Schema locally; upgrades use direct current→target assessment plus `MIG-*`/approval as required; classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; never invent repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
 18. When `[Project Upgrade]` reports `UPGRADE_AVAILABLE`, the report includes the target release's migration-notes pointer when notes exist (`MIGRATION-NOTES.md`) and states their absence explicitly when they do not; comparison vocabulary and approval boundaries are unchanged. Upgrade preparation uses `templates/upgrade-preview.md` as the standard Preview structure. FAST_PATH scope rule: when the exact target candidate tree already carries committed state-bound evidence (recorded tree SHA matches the observed target tree exactly), proportional resulting-state confirmation may replace rerunning one full verification; any post-evidence candidate change invalidates reuse and fails closed. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` keep the existing one-final-`RELEASE_FULL` requirement. Continuity rule: every Logical Checkpoint on Material work persists a Resume Block into `09 Handoff` (task ID, last completed step, next step, blockers, active `ENV-*`) so any fresh session resumes within one read; Material MCP mutations are idempotent where possible, and non-idempotent calls record pre-execution intent first. `[Session Envelope]` lets the user pre-approve a bounded operation scope (`ENV-*` in `15 Action Registry`, with expiry and prohibited zones); it never overrides fail-closed governance — location/binding changes, Root Governance, schema authority, secrets, and push keep their own approval gates. `[Project Upgrade]` remains read-only through comparison; `UPGRADE_AVAILABLE` may ask to prepare an upgrade, but upgrade-intent approval authorizes assessment/Preview only and is never mutation approval.
 19. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
@@ -528,6 +558,9 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 |---|---|
 | New Project | canonical main → Preview → approval → mandatory core; conditionals only when applicable |
 | Project-management control | use `91`; canonical `RISK/ASM/MS/OUT/DEP/CR/GATE` |
+| Project relations | use conditional `92`; canonical `REL-*` assertions keyed by `project_uuid`; late binding allowed |
+| Cross-Project OpenViking index | AI-ControlTower scope; `DERIVED_ONLY` / rebuildable; never Project authority |
+| Existing custom slot 92 | `MIG-*`; preserve identity/history/references; approved relocation before standard `92` |
 | Technical design | use `40` when deeper than `06`; include workspace contract when material; do not silently code |
 | Install/deployment | use `60`; document source/runtime/persistence/recreation and resulting-state verification when material |
 | Source + Docker | shared contract + explicit variance; unexpected mismatch = DRIFT |
@@ -573,13 +606,19 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 ## Red Flags
 
 - removing/bypassing/demoting `FRAMEWORK-001`;
-- creating empty conditional `06–08`, `40`, `60`, `91` merely for completeness;
+- creating empty conditional `06–08`, `40`, `60`, `91`, `92` merely for completeness;
 - materializing reserved `18–19`;
 - storing `RISK/ASM/MS/OUT/DEP/CR/GATE` as authoritative current truth outside `91`;
 - treating Action completion as Milestone/Outcome success;
 - treating responsibility as authority;
 - hiding material Knowledge Debt because runtime works;
 - overwriting a Brownfield custom slot `91`;
+- overwriting a Brownfield custom slot `92` instead of governed `MIG-*` relocation;
+- storing authoritative `REL-*` Project relation truth outside standard `92` when active;
+- treating OpenViking, graph ranking, recency, or confidence as authority over Project-local relation assertions;
+- synthesizing a reciprocal Project assertion from a derived inverse edge;
+- treating `PARENT_OF` / `CHILD_OF` as permission to rewrite repository/workspace/binding/runtime topology;
+- using unrestricted free-text relation types instead of core vocabulary or namespaced `X-<PROJECT_OR_DOMAIN_NAMESPACE>:<RELATION_TOKEN>` extensions;
 - auto-promoting old prose into Stable IDs;
 - Source/Docker divergence without declared variance or DRIFT;
 - turning Tech Stack/install/Docker/workspace/persistence planning into unrequested source code/Dockerfile/Compose/scripts/CI/automation;

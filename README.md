@@ -2,7 +2,7 @@
 
 ## TL;DR — What this is and how to use it
 
-ProjectFramework is a **documentation-first governance framework** for planning and running Projects with AI agents. It defines where current truth, decisions, requirements, risks, and continuation context live — in a `Project-Source/` folder of numbered Markdown documents (`00–17` mandatory core; `40`, `60`, `91` optional). It contains **no software**: rules are written contracts that humans/agents read and follow.
+ProjectFramework is a **documentation-first governance framework** for planning and running Projects with AI agents. It defines where current truth, decisions, requirements, risks, and continuation context live — in a `Project-Source/` folder of numbered Markdown documents (`00–17` mandatory core; `40`, `60`, `91`, `92` conditional). It contains **no software**: rules are written contracts that humans/agents read and follow.
 
 How to use it:
 
@@ -14,7 +14,7 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.5.0**
+- Project Source Framework: **1.6.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -42,6 +42,18 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.6.0 Federated Project Graph
+
+Framework `1.6.0` keeps Schema `1.0.0` and release format `3` while adding a federated cross-Project relation contract:
+
+- **`92 Project Graph`** — a new standard conditional Project Source document and canonical home for current `REL-*` Project-relation assertions. Generic extension space is now `93–99`; `18–19` remain RESERVED.
+- **Stable Project endpoints** — relations use immutable `project_uuid`, with core types `PARENT_OF | CHILD_OF | PEER_OF | DEPENDS_ON | SUPPORTS | RELATED_TO` and states `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`.
+- **Late binding and semantic nesting** — a Project may begin unrelated and materialize `92` only when relation truth becomes applicable. Parent/child topology does not imply nested folders, repositories, workspaces, or runtime locations.
+- **AI-ControlTower / OpenViking boundary** — AI-ControlTower owns cross-Project indexing/orchestration; OpenViking is `DERIVED_ONLY` and rebuildable from authoritative Project Sources. It never overrides Project-local relation truth or becomes required to reconstruct it.
+- **Brownfield safety** — an existing custom slot `92` is never overwritten. Upgrade uses `MIG-*` to preserve identity/history/references and relocate the custom document to a suitable free `93–99` or other semantic slot before standard `92` activation.
+
+This remains documentation/governance scope. Framework `1.6.0` adds no OpenViking runtime, graph database requirement, Graphify integration, crawler, watcher, scheduler, sync daemon, validator/CLI, or automatic conflict resolution.
 
 ## Framework 1.5.0 ChatGPT→MCP Continuity
 
@@ -264,8 +276,8 @@ For every NEW Project Source:
 6. Read `managing-project-source/templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, and `templates/project-source-mockup/README.md`.
 7. Preview the proposed Project Source, including proposed GitHub/Drive Project Location Binding states/identities, and obtain explicit user approval before writing.
 8. Create active `00-Project Source Framework` first with the approved Project Location Binding, then mandatory `01–05` and `09–17`.
-9. Evaluate `06–08`, `40`, `60`, and `91` by applicability; do not create empty conditional documents merely to make a tree look complete.
-10. Keep `18–19` reserved; use `92–99` as Project-specific/Governance Extension space unless a later Framework revision governs them otherwise.
+9. Evaluate `06–08`, `40`, `60`, `91`, and `92` by applicability; do not create empty conditional documents merely to make a tree look complete.
+10. Keep `18–19` reserved; `92` is standard conditional Project Graph in Framework `1.6.0+`; use `93–99` as Project-specific/Governance Extension space unless a later Framework revision governs them otherwise.
 11. Pin the imported Framework/Schema locally. The repository is not a live dependency after bootstrap.
 12. If exact Git tag/SHA provenance is actually observed and useful, record it. If unavailable, do not invent it and do not block otherwise valid bootstrap solely for that reason.
 
@@ -274,6 +286,8 @@ For every NEW Project Source:
 Existing Projects **do not auto-upgrade** when this repository changes. Their project-local approved Framework/Schema pins remain authoritative. Upgrade to a newer Framework uses governed `MIG-*` assessment, explicit approval, validation, promotion, supersede/archive, and postflight.
 
 A Brownfield Project may already use semantic slot `91` for a custom document. Framework `1.2.0` must not overwrite it: assess through `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` if applicable.
+
+A Project pinned before Framework `1.6.0` may likewise already use slot `92` as a custom extension. Framework `1.6.0` must not overwrite it: open/route `MIG-*`, preserve identity/history/references, relocate only with governed approval to a suitable free `93–99` or other semantic slot, then activate standard `92 Project Graph` only when applicable.
 
 Old free-text notes are not automatically converted into new `RISK-*`, `ASM-*`, `MS-*`, `OUT-*`, `DEP-*`, `CR-*`, or `GATE-*` objects. Promotion requires sufficient current semantics, ownership, status, and epistemic/evidence state.
 
@@ -287,9 +301,12 @@ At minimum, Framework integrity means:
 - semantic slots `00–17` retain their governed meanings;
 - `06–08` remain **CONDITIONAL**;
 - `18–19` remain **RESERVED**;
-- `40`, `60`, and `91` are applicability-driven conditional documents;
+- `40`, `60`, `91`, and `92` are applicability-driven conditional documents;
 - `91` owns `RISK / ASM / MS / OUT / DEP / CR / GATE` current records;
-- `92–99` remain extension space unless governed otherwise;
+- `92` owns current `REL-*` Project-relation assertions when active;
+- `93–99` remain extension space unless governed otherwise;
+- Project relations use immutable `project_uuid` endpoints and do not silently rewrite location/binding/runtime/integration/implementation authority;
+- AI-ControlTower/OpenViking cross-Project indexing is derived/rebuildable and never replaces Project Source authority;
 - ChatGPT and Claude shared governance semantics remain equivalent;
 - active/current Stable IDs resolve without archive dependency;
 - existing Projects never silently auto-upgrade;
@@ -308,7 +325,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17` and Framework `1.2.0` conditional starters for `40`, `60`, and `91`; current starter metadata is stamped to Framework `1.2.4` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.6.0` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
@@ -341,4 +358,4 @@ Use `managing-project-source/` as the reusable framework package. Files under `d
 
 ## Supersession Note
 
-Framework `1.2.4` extends the concept-first direction of earlier `1.2.x` releases. Git tags, exact commit provenance, branch protection, executable validators, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+Framework `1.6.0` extends the concept-first direction of earlier releases with federated Project relation governance while preserving Project-local authority. Git tags, exact commit provenance, branch protection, executable validators, graph/index runtimes, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.

@@ -84,7 +84,14 @@ Framework `1.2.0` standardizes these extended anchors:
 92–99 Project-specific / Governance Extension unless governed otherwise later
 ```
 
-`40`, `60`, and `91` do not join the mandatory `00–17` bootstrap set. They are materialized only when applicable.
+Framework `1.6.0` further standardizes:
+
+```text
+92 Project Graph                  CONDITIONAL / STANDARD IN 1.6.0+
+93–99 Project-specific / Governance Extension unless governed otherwise later
+```
+
+`40`, `60`, `91`, and `92` do not join the mandatory `00–17` bootstrap set. They are materialized only when applicable. The Framework `1.2.0` statement above is historical for that release; current generic extension space is `93–99`.
 
 Framework distribution artifacts exist outside the Project Source semantic namespace:
 
@@ -336,6 +343,67 @@ A one-off User Explicit Instruction naming an exact repository/workspace/storage
 
 Existing initialized Projects stay pinned to their approved local Framework and do not auto-upgrade to `1.2.6`. Migration MUST NOT invent provider applicability, repository/storage identities, local paths, mappings, branch state, runtime roles, or verification status. Framework `1.2.6` adds no semantic slot, Stable-ID family, lifecycle/Git-freshness/Epistemic state, authority family, executable validator, selector, sync service, credential mechanism, or runtime enforcement automation.
 
+### 2.7 Framework 1.6.0 Federated Project Graph
+
+Framework `1.6.0` standardizes conditional `92 Project Graph` as the canonical home of current `REL-*` Project-relation assertions. A Project with no material relation truth does not create an empty `92`; it may materialize the document later when relations become applicable.
+
+Relation endpoints use immutable `project_uuid` as authoritative Project identity. `project_id`, `project_name`, repository URL, local workspace path, MCP workspace ID, and OpenViking/index IDs remain labels or routing/index evidence only.
+
+Core relation vocabulary is exactly:
+
+```text
+PARENT_OF
+CHILD_OF
+PEER_OF
+DEPENDS_ON
+SUPPORTS
+RELATED_TO
+```
+
+Project/domain-specific relation types require the namespaced form `X-<PROJECT_OR_DOMAIN_NAMESPACE>:<RELATION_TOKEN>` and must not redefine a core type.
+
+Current `REL-*` assertion state is exactly:
+
+```text
+ASSERTED
+CORROBORATED
+CONFLICTED
+RETIRED
+```
+
+`ASSERTED` means the owning Project declares the relation. `CORROBORATED` requires verified compatible authoritative assertions with matching endpoint UUIDs; central index confidence or a derived inverse edge is not corroboration. `CONFLICTED` records irreconcilable authoritative Project assertions. `RETIRED` removes the relation from current topology while preserving its history.
+
+Reciprocal compatibility includes `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` are directional; a reciprocal record exists only when another Project independently asserts compatible truth. A derived inverse MAY be indexed for traversal but MUST NOT be written back as another Project's authoritative assertion.
+
+`92` contains graph linkage and evidence/source pointers only. Canonical payloads remain in their existing homes: `DEP-*` in `91`, `DEC-*` in `04`, `REQ-*` in `05`, `ISS-* / DRIFT-* / CONFLICT-*` in `08`, and identity/lineage under existing root/change semantics. `REL-*` graph linkage ≠ `DEP-*` dependency-management payload.
+
+Late binding is normal: Projects may begin independently, discover a relation later, create `92` when applicable, and add `REL-*` without reconstructing either Project or changing UUIDs. Relation topology change retires/supersedes relation records through normal history rather than rewriting the past.
+
+Semantic nesting is independent from location/implementation/runtime roles:
+
+```text
+Project Relation
+≠ Repository Location Binding
+≠ File Storage Binding
+≠ Local Workspace Binding
+≠ current branch/worktree
+≠ Canonical Integration Target
+≠ Canonical Implementation Source
+≠ Runtime Location
+```
+
+`PARENT_OF` / `CHILD_OF` therefore does not require nested folders or repositories and never silently rewrites a binding or runtime topology.
+
+Existing absorption/merge/split UUID and lineage rules remain authoritative. Relations of absorbed/predecessor Projects are reassessed for survivors/new descendants; they are not bulk-cloned. Material transformations use existing `MIG-*` and preserve history.
+
+Cross-Project indexing/orchestration belongs at **AI-ControlTower** scope. OpenViking is `DERIVED_ONLY` and **REBUILDABLE** from authoritative Project Sources. It MAY discover/read relation records, normalize inverse/symmetric views, correlate reciprocal assertions, query/traverse, update affected nodes/edges, surface stale/orphan/conflicting derived state, and perform a full rebuild. It MUST NOT overwrite Project Source, infer authority from ranking/recency/similarity/confidence, synthesize authoritative reciprocal assertions, or become required to reconstruct current Project relation truth.
+
+If Project Source and the derived index differ, Project Source remains authoritative. Reuse existing `DRIFT-*` for material stale/orphan projection mismatch and `CONFLICT-*` for managed authoritative disagreement; do not invent graph-specific parallel families. Timestamp/ranking/confidence never auto-resolves authoritative conflict.
+
+Framework `1.5.0` permitted custom slot `92`. Brownfield upgrade to `1.6.0` MUST inspect slot occupancy and fail closed against overwrite: route `MIG-*`, preserve custom document identity/history/references, relocate only with governed approval to a free `93–99` or other semantically correct slot, then activate standard `92` only when applicable. Existing initialized Projects remain pinned and do not auto-upgrade.
+
+This contract defines documentation/governance only and does not authorize OpenViking runtime/deployment, graph database selection, Graphify integration, crawler, watcher, webhook, scheduler, sync daemon, MCP graph service, validator/CLI, automatic discovery/promotion, or automatic conflict resolution.
+
 ## 3. Naming and Revision
 
 Governed Project Source documents, Handoff, evidence/schema artifacts, exports, and packages created as Project Source artifacts end with:
@@ -415,6 +483,7 @@ OUT-*       → 91-Project Management Control
 DEP-*       → 91-Project Management Control
 CR-*        → 91-Project Management Control
 GATE-*      → 91-Project Management Control
+REL-*       → 92-Project Graph
 ```
 
 One object type has one authoritative home. Other documents reference Stable IDs; they do not duplicate authoritative state. Detail documents may exist for large objects, but canonical status/identity stays in the canonical home.
@@ -429,7 +498,7 @@ Active canonical object homes are **materialized current projections, not delta 
 - `retain previous status`, `unchanged from rNNN`, `see archived revision`, or equivalent delta-only shorthand MUST NOT substitute for authoritative current payload;
 - any active Detail Document required to interpret a current Stable ID is part of Current Reconstructable Snapshot and must be included in `CURRENT` export scope when needed.
 
-This applies to `DEC-*`, `REQ-*`, and Framework `1.2.0` management-control objects in `91` equally. Failure to resolve a referenced current Stable ID without archive traversal is an integrity/readiness defect for the affected scope.
+This applies to `DEC-*`, `REQ-*`, Framework `1.2.0` management-control objects in `91`, and current `REL-*` records in active `92` equally. Failure to resolve a referenced current Stable ID without archive traversal is an integrity/readiness defect for the affected scope.
 
 Stable IDs and revision numbers are never recycled.
 
@@ -693,10 +762,11 @@ When active, route:
 ```text
 40 → Tech Stack / technical design / source/config/runtime blueprint
 60 → installation / deployment / operations blueprint
+92 → REL / Project relation assertions
 91 → RISK / ASM / MS / OUT / DEP / CR / GATE
 ```
 
-`14-Manifest` covers the Current Reconstructable Snapshot: active docs, continuation-relevant formal drafts, registered evidence, validation assets, necessary generated assets, and every active/current Detail Document required to interpret referenced current Stable IDs. If active `40`, `60`, or `91` is required to interpret current truth, it belongs in the Manifest and `CURRENT` export scope.
+`14-Manifest` covers the Current Reconstructable Snapshot: active docs, continuation-relevant formal drafts, registered evidence, validation assets, necessary generated assets, and every active/current Detail Document required to interpret referenced current Stable IDs. If active `40`, `60`, `91`, or `92` is required to interpret current truth, it belongs in the Manifest and `CURRENT` export scope.
 
 When Framework Source Provenance is tracked, `14` preserves the same observed state as active `00`. Missing optional exact Git provenance is not itself a Manifest defect; fabricated provenance is prohibited.
 
@@ -894,7 +964,7 @@ canonical Framework bootstrap read
 
 The Preview MUST classify each applicable system as `BOUND`, `NOT_APPLICABLE`, or `VERIFICATION_REQUIRED`. Insufficient routing identity remains `VERIFICATION_REQUIRED`; never invent repository identity, Drive folder/file ID, or canonical URL merely to complete the bootstrap. Material mutation through an unresolved system remains fail-closed.
 
-Create mandatory `00–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, and `91` by applicability. Keep `18–19` reserved. Do not create empty conditional files merely to look complete.
+Create mandatory `00–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, `91`, and `92` by applicability. Keep `18–19` reserved. Do not create empty conditional files merely to look complete.
 
 Exact Git tag/SHA provenance is optional assurance. If observed, record accurately; if unavailable, do not fabricate it and do not block otherwise valid bootstrap solely for that reason. If canonical Framework source itself is inaccessible, stop affected governance mutation instead of reconstructing Framework rules from memory.
 
@@ -961,7 +1031,7 @@ Migration MUST NOT overwrite it. Required flow:
 detect occupied 91
 → open MIG-* compatibility assessment
 → preserve custom document identity/history/references
-→ propose suitable free 92–99 or other semantically correct location
+→ propose suitable free 93–99 or other semantically correct location
 → obtain explicit approval
 → migrate/promote/archive through governed flow
 → only then activate standard 91 if applicable
@@ -1076,6 +1146,24 @@ A Project that does not use a connector may mark it `NOT_APPLICABLE`; a Project 
 ### 18.7 Framework 1.2.5 Agent Continuity / Local Workspace Migration
 
 Existing initialized Projects do not auto-upgrade. Migration to `1.2.5` MUST NOT invent local filesystem paths, environment-scope identity, completion-commit provenance, verification evidence, repository origins, or MCP workspace identifiers. For an applicable local environment: verified/user-confirmed path → `BOUND`; local execution applicable but unresolved → `VERIFICATION_REQUIRED`; local execution outside declared scope → `NOT_APPLICABLE`. Preserve Repository Location Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime Location as distinct semantics.
+
+### 18.8 Framework 1.6.0 Slot-92 Project Graph Migration Safety
+
+Framework releases before `1.6.0` allowed slot `92` inside Project-specific/Governance Extension space. A Brownfield Project may therefore already use `92` for a custom document.
+
+Migration MUST NOT overwrite it. Required flow:
+
+```text
+detect occupied custom 92
+→ open/route MIG-* compatibility assessment
+→ preserve custom document identity/history/references/current semantics
+→ propose suitable free 93–99 or another semantically correct location
+→ obtain the approval required by existing migration/root-governance rules
+→ migrate/promote/archive through governed flow
+→ only then activate standard 92 Project Graph if applicable
+```
+
+Migration does not invent `REL-*`, reciprocal assertions, relation applicability, OpenViking configuration, or relation evidence. Existing Projects that do not migrate remain unaffected.
 
 ## 19. Project Health and Review Cadence
 
@@ -1269,8 +1357,11 @@ Current Framework distribution integrity means at minimum:
 - `00–17` meanings remain intact;
 - `06–08` remain conditional;
 - `18–19` remain reserved;
-- `40`, `60`, and `91` remain conditional/applicability-driven;
-- `91` is standard Project Management Control in `1.2.0+` and `92–99` remain extension space unless governed otherwise;
+- `40`, `60`, `91`, and `92` remain conditional/applicability-driven;
+- `91` is standard Project Management Control in `1.2.0+`, `92` is standard Project Graph in `1.6.0+`, and `93–99` remain extension space unless governed otherwise;
+- current `REL-*` records resolve from active `92` without archive dependency and use immutable `project_uuid` endpoints;
+- AI-ControlTower/OpenViking indexing remains derived/rebuildable and never replaces Project Source authority;
+- Project relation topology remains distinct from repository/storage/local-workspace/integration/implementation/runtime authority;
 - canonical object homes remain consistent across Framework, Core Governance, skeletons, `templates/project-source-mockup/`, and platform launchers;
 - `templates/project-source-mockup/` is the single maintained concrete starter representation in the current distribution; a second full Project Source example/template tree is not maintained alongside it;
 - ChatGPT and Claude shared governance contracts remain byte-identical;
@@ -1304,7 +1395,7 @@ Package name:
 <Project-ID>-Project-Source-<PROFILE>-YYMMDD-HHMM.zip
 ```
 
-If active `40`, `60`, or `91` is needed to interpret current truth, it belongs in `CURRENT`. A `CURRENT` export is incomplete if omitted archive content is required to determine current semantics.
+If active `40`, `60`, `91`, or `92` is needed to interpret current truth, it belongs in `CURRENT`. A `CURRENT` export is incomplete if omitted archive content is required to determine current semantics.
 
 ## 24. Retention and Readiness
 
