@@ -130,3 +130,26 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes/commits there; implementation continued inline on local `main` under the user's explicit continuous approval. Remote publication was performed only after the user's separate explicit push approval.
 - **Completion criteria:** A user-approved design specifies relation ownership, canonical-vs-derived truth boundaries, Project Graph representation, AI-ControlTower/OpenViking integration contract, late-binding lifecycle, rebuild/re-index behavior, failure/drift handling, and affected Framework surfaces; implementation proceeds under the user's explicit continuous approval with proportional verification and a final unchanged-candidate `RELEASE_FULL` before completion.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #23 — Self-Bootstrapping Project Contract
+
+- **ID:** `TASK-023`
+- **Status:** `TODO`
+- **Type:** Framework architecture / vendor-neutral Project bootstrap
+- **Problem:** Framework bootstrap currently depends too heavily on vendor/product-specific Project Settings. Existing Projects may be used without those settings being configured, causing an LLM/agent to miss the intended bootstrap contract before reading authoritative Project Source.
+- **Approved direction:** Move bootstrap discovery into the Project itself through one stable vendor-neutral root entrypoint: `<Project-Root>/PROJECT-BOOTSTRAP.md`.
+- **Scope:**
+  1. Define `PROJECT-BOOTSTRAP.md` at Project root as the canonical discovery/locator entrypoint for Framework versions that adopt this feature.
+  2. Define one vendor-neutral read pattern beginning `PROJECT-BOOTSTRAP.md → 00 FRAMEWORK-001 → 01 Project Source Index → 03 Current State → task-specific routing`; continuation additionally resolves `09 Handoff` when relevant.
+  3. Make `PROJECT-BOOTSTRAP.md` mandatory for NEW Projects created under the adopting Framework release.
+  4. Existing initialized Projects receive the bootstrap file only through governed `[Project Upgrade]`; no automatic creation or automatic upgrade.
+  5. Reclassify ChatGPT Project Settings, `AGENTS.md`, `CLAUDE.md`, and other vendor-specific instruction surfaces as optional thin discovery adapters/pointers rather than canonical Framework authority.
+  6. Preserve `FRAMEWORK-001` as Project governance authority. `PROJECT-BOOTSTRAP.md` is a discovery/locator contract only and must never become a second source of Project truth.
+  7. Keep bootstrap discovery distinct from Repository/File Storage/Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime authority.
+  8. Keep the filename stable as `PROJECT-BOOTSTRAP.md`; do not use revision/date suffixes for the discovery entrypoint.
+- **Design constraints:** The Framework must not claim that every LLM can discover a Project without filesystem/repository access. The success boundary is: once an agent can access the Project root, Project contents alone are sufficient to discover and follow the canonical bootstrap path without requiring vendor-specific Project Settings.
+- **Implementation boundary:** Task registration only. Do not modify Framework semantics, root/template files, launchers, schema, runtime, MCP behavior, or existing Projects until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN` (architectural change; do not pre-assign release version before design review)
+- **Completion criteria:** User-approved design defines bootstrap file schema, authority boundary, discovery/read algorithm, vendor adapter rules, GREENFIELD behavior, Brownfield upgrade/migration behavior, failure handling, affected Framework surfaces, and verification strategy before any implementation begins.
+- **Exact Next Step:** Prepare the TASK-023 architectural design spec for `PROJECT-BOOTSTRAP.md`; do not implement until the written spec is reviewed and explicitly approved.
