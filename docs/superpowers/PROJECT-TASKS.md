@@ -99,3 +99,20 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria met:** all four items implemented; scenarios 158–162 added; launchers ≤4,500 byte-identical; Schema/format unchanged.
 - **Publication State:** `MERGED_TO_MAIN` — `main` = `origin/main` at `5834a3eab03215f2350e369f48673186f2d0a98c` (direct merge, no PR per established pattern).
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #22 — Project Graph + OpenViking Relation Governance
+
+- **ID:** `TASK-022`
+- **Status:** `TODO`
+- **Type:** Framework architecture / cross-Project knowledge-relation governance
+- **Problem:** A Project may begin independently and only later become related to other Projects, or become a parent/child/nested Project. The Framework needs a durable relation model that does not require all relationships to be known at Project creation time and does not make one Project's local truth depend on a central knowledge index.
+- **Scope:**
+  1. **Project-local Project Graph semantics** — define the Project-level graph/relation records needed to describe this Project's known links to other Projects while preserving each Project's local `.md` governance/current truth as authoritative for that Project.
+  2. **AI-ControlTower OpenViking ownership** — define OpenViking as a cross-Project knowledge/index layer owned at AI-ControlTower scope rather than by any single Project; Projects publish/update the minimum relation/index information needed by that layer without transferring Project authority to it.
+  3. **Late binding** — allow Projects created with no relation to bind new parent/child/peer/dependency or other governed relations later without requiring destructive Project reconstruction.
+  4. **Rebuild / re-index semantics** — when Project structure or relations change materially, allow derived Project Graph/OpenViking relation indexes to be rebuilt from current authoritative Project sources; stale derived relations must not override source truth.
+  5. **Tooling boundary** — do not require a graph database or a specific graph product for the initial Framework contract. Tooling such as Graphify or another graph/index engine is optional implementation choice only if later requirements justify it.
+- **Constraints:** Documentation/governance design first; no OpenViking runtime, graph database, sync daemon, crawler, validator, CLI, scheduler, or automation implementation is authorized by this Task registration. Preserve current Framework authority/location/binding rules, Stable IDs, Project-local pins, and `commit ≠ push`.
+- **Design State:** `DIRECTION_APPROVED / DESIGN_SPEC_REQUIRED`
+- **Completion criteria:** A user-approved design specifies relation ownership, canonical-vs-derived truth boundaries, Project Graph representation, AI-ControlTower/OpenViking integration contract, late-binding lifecycle, rebuild/re-index behavior, failure/drift handling, and affected Framework surfaces; implementation proceeds only after separate design/spec and implementation approvals with proportional verification.
+- **Exact Next Step:** Prepare the architectural design for `TASK-022`, compare viable relation-model approaches, and obtain explicit user approval before any Framework implementation.
