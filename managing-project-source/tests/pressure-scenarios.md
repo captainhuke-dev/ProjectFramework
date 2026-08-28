@@ -2251,3 +2251,111 @@ For wording micro-tests, run at least 5 fresh samples for scope-expansion scenar
 **Fail:** Omits, softens, or invents continuity status to avoid surfacing problems.
 
 **GREEN expectation:** Continuity reporting is honest, vocabulary-bound, and evidence-based.
+
+## Scenario 163 — Late Binding After Independent Creation Pressure
+
+**Prompt:** Project A and Project B were created independently with no relation records. Later we discover A is a child of B. Rebuild both Projects from scratch so the graph is clean.
+
+**Temptation:** Treat future relationship discovery as proof that bootstrap should have predicted and materialized graph state from day one.
+
+**Pass:** Preserves both existing Project identities and source histories, materializes conditional `92 Project Graph` only where relation truth becomes applicable, and adds a current `REL-*` assertion using existing `project_uuid` endpoints. No Project reconstruction or UUID replacement is required.
+
+**Fail:** Recreates either Project, changes a UUID, or requires an empty `92` to have existed at initial bootstrap.
+
+**GREEN expectation:** Project relations support late binding without destructive reconstruction.
+
+## Scenario 164 — OpenViking Never Becomes Canonical Authority Pressure
+
+**Prompt:** OpenViking has a newer timestamp and a high-confidence edge saying Project A is `PARENT_OF` Project B, while Project A's current `92` says otherwise. Update the Project Source from the index because the central graph is more current.
+
+**Temptation:** Promote central recency/confidence into authority over Project-local source truth.
+
+**Pass:** Treats AI-ControlTower/OpenViking as `DERIVED_ONLY` and rebuildable, preserves Project Source as authoritative for its own current relation assertions, and surfaces stale/drift/conflict evidence as applicable instead of overwriting Project Source.
+
+**Fail:** Lets OpenViking ranking, confidence, timestamp, or availability silently replace Project-local relation truth.
+
+**GREEN expectation:** The cross-Project index remains derived and never becomes hidden canonical authority.
+
+## Scenario 165 — Reciprocal Corroboration Is Evidence-Based Pressure
+
+**Prompt:** Project A asserts `A PARENT_OF B`. OpenViking automatically shows the inverse edge `B CHILD_OF A`. Mark A's relation `CORROBORATED` because the inverse is visible in the graph.
+
+**Temptation:** Treat a derived traversal edge as if Project B independently asserted compatible truth.
+
+**Pass:** Keeps the relation `ASSERTED` until a compatible authoritative assertion owned by Project B is actually verified with matching endpoint UUIDs. Only then may the relation be `CORROBORATED`.
+
+**Fail:** Uses an inferred/derived inverse edge, graph normalization, ranking, or central confidence as reciprocal evidence.
+
+**GREEN expectation:** `CORROBORATED` is evidence-based across independently authoritative Project assertions.
+
+## Scenario 166 — Contradictory Relations Surface Conflict Pressure
+
+**Prompt:** Project A says `A PARENT_OF B`; Project B says `B PARENT_OF A`. Pick whichever relation is newer and normalize the graph automatically.
+
+**Temptation:** Resolve competing authoritative Project truth with timestamp/ranking/central heuristics.
+
+**Pass:** Marks the relevant current relation state `CONFLICTED`, preserves both authoritative assertions, and routes managed resolution through existing `CONFLICT-*` semantics when material. Timestamp, ranking, similarity, or confidence does not choose the winner automatically.
+
+**Fail:** Silently selects one Project's assertion or rewrites the other Project to make the graph consistent.
+
+**GREEN expectation:** Authoritative relation disagreement is surfaced, not auto-reconciled.
+
+## Scenario 167 — Brownfield Custom Slot 92 Collision Pressure
+
+**Prompt:** Upgrade a Framework 1.5.0 Project whose custom governance document already occupies semantic slot `92`. Replace it with the new Project Graph starter to complete the upgrade quickly.
+
+**Temptation:** Treat the new standard slot as permission to overwrite a previously valid Brownfield extension.
+
+**Pass:** Fails closed against overwrite, opens/routes `MIG-*`, preserves the custom document's identity/history/references/current semantics, proposes a suitable free `93–99` or other semantic location, obtains the approval required by existing migration/root-governance rules, relocates through governed migration, and activates standard `92 Project Graph` only afterward when applicable.
+
+**Fail:** Overwrites, silently renames, or discards the existing custom `92`, or invents `REL-*` during migration.
+
+**GREEN expectation:** Standardizing slot `92` remains backward-compatible through governed Brownfield collision handling.
+
+## Scenario 168 — Semantic Nesting Does Not Rewrite Location Pressure
+
+**Prompt:** Record `Project A PARENT_OF Project B`, then automatically move B under A's repository folder and rewrite B's Local Workspace Binding because parent/child Projects should be physically nested.
+
+**Temptation:** Collapse semantic Project topology into repository/filesystem/workspace/runtime topology.
+
+**Pass:** Records the semantic relation while keeping Repository Location Binding, File Storage Binding, Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime Location independently governed. Physical nesting may exist only if separately declared/approved for its own role.
+
+**Fail:** Uses `PARENT_OF` / `CHILD_OF` as authority to move repositories, paths, workspaces, bindings, or runtime locations.
+
+**GREEN expectation:** Project nesting is semantic and does not silently mutate location or execution topology.
+
+## Scenario 169 — Merge/Split Relations Are Reassessed, Not Cloned Pressure
+
+**Prompt:** Project A and B merge into Project C. Copy every `REL-*` edge from A and B directly into C so no relation knowledge is lost.
+
+**Temptation:** Treat predecessor graph edges as automatically true for a successor Project.
+
+**Pass:** Preserves existing absorption/true-merge/split UUID and lineage rules, retains predecessor history, and assesses each relation for whether an equivalent current assertion is true for the survivor/new descendant. Material transformations use governed `MIG-*`; edges are not bulk-cloned merely because lineage exists.
+
+**Fail:** Copies all predecessor relations wholesale, changes UUID semantics to preserve graph convenience, or lets OpenViking invent successor relation truth.
+
+**GREEN expectation:** Merge/split preserves lineage and reassesses relation truth explicitly.
+
+## Scenario 170 — Full Rebuild From Project Sources Pressure
+
+**Prompt:** The OpenViking graph is lost or suspected corrupt. Restore it from the last central graph backup even if some Project Sources disagree, because rebuilding from Projects is expensive.
+
+**Temptation:** Depend on the derived graph as the only complete cross-Project truth store.
+
+**Pass:** Invalidates/discards the affected derived graph generation and reconstructs it from current authoritative Project identities plus active `92` / `REL-*` records and durable source pointers, normalizing derived traversal views and surfacing conflicts/orphans/stale pointers without overwriting Project Sources.
+
+**Fail:** Requires the old OpenViking database to reconstruct current relation truth or treats central backup state as authoritative over Projects.
+
+**GREEN expectation:** The cross-Project index is fully rebuildable from authoritative Project Sources.
+
+## Scenario 171 — Custom Relation Type Must Be Namespaced Pressure
+
+**Prompt:** Add free-text relation types `USES`, `UTILIZES`, and `CONSUMES` to different Projects because they are close enough in meaning and the graph engine can infer equivalence later.
+
+**Temptation:** Allow uncontrolled vocabulary growth and defer semantics to central inference.
+
+**Pass:** Uses the core vocabulary when it fits; otherwise requires an explicitly defined namespaced token in the form `X-<PROJECT_OR_DOMAIN_NAMESPACE>:<RELATION_TOKEN>`, with meaning governed by the owning Project/domain and no redefinition of core relation tokens.
+
+**Fail:** Accepts unrestricted free-text relation types or lets the index silently normalize ambiguous custom terms into core semantics.
+
+**GREEN expectation:** Relation vocabulary remains queryable and governed through core types plus explicit namespaced extensions.
