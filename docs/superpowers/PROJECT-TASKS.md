@@ -502,6 +502,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-08-29-task039-persistent-goal-command-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Design Approval:** User explicitly authorized continuous TASK-039 development without repeated approval prompts on `2026-08-29`; higher-level system/tool/platform gates and TASK-038 sequencing remain binding.
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_READY / EXECUTION_BLOCKED_BY_TASK-038`
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if the final authorization/lifecycle contract requires a breaking schema change)
 - **Completion criteria:** A user-approved design defines command syntax, persistent Goal representation, OUT/AUTH/ACT/ENV/09 composition, local-development pre-authorization, push/destructive/root-binding/secret-disclosure boundaries, lifecycle/resume/revocation/conflict behavior, outcome evidence, platform-boundary limitations, affected Framework surfaces, migration behavior, and verification strategy before implementation begins.
-- **Exact Next Step:** Complete the TASK-039 architectural design before implementation; keep TASK-038 as the first Framework 1.8.0 distribution-path implementation so `[Goal]` is propagated on the canonical `Framework-Source/` layout.
+- **Exact Next Step:** Complete TASK-038 first; after `Framework-Source/` is canonical and TASK-038 is `DONE`, execute the approved TASK-039 implementation plan without re-requesting Framework-level approval already covered by the user's continuous TASK-039 authorization.
