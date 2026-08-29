@@ -1,12 +1,16 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.7.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.8.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
 
 ## Framework 1.7.0 Self-Bootstrapping Project Semantics
+## Framework 1.8.0 Framework-Source Naming Semantics
+
+Framework `1.8.0` keeps Project Source Schema `1.0.0` and makes the reusable upstream distribution root `Framework-Source/`. This distribution root is distinct from a consuming Project's authoritative `Project-Source/`; root `PROJECT-BOOTSTRAP.md` continues to route into that consuming Project Source. The historical pre-1.8 name `managing-project-source/` is not maintained as a live alias.
+
 
 Framework `1.7.0` keeps Schema `1.0.0` and makes the resulting NEW Project self-discoverable from its root. `<Project-Root>/PROJECT-BOOTSTRAP.md` is mandatory for NEW `1.7.0+` Projects, stays outside `Project-Source/`, has no Stable ID, and routes `PROJECT-BOOTSTRAP.md → 00 → 01 → 03`, with `09` for continuation. Active `FRAMEWORK-001` remains authority. Existing Projects adopt the file only through governed `[Project Upgrade]`; `PROJECT-CONFIG.md` and vendor settings remain optional location/discovery adapters.
 
