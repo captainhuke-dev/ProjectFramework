@@ -134,7 +134,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #23 — Self-Bootstrapping Project Contract
 
 - **ID:** `TASK-023`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / vendor-neutral Project bootstrap
 - **Problem:** Framework bootstrap currently depends too heavily on vendor/product-specific Project Settings. Existing Projects may be used without those settings being configured, causing an LLM/agent to miss the intended bootstrap contract before reading authoritative Project Source.
 - **Approved direction:** Move bootstrap discovery into the Project itself through one stable vendor-neutral root entrypoint: `<Project-Root>/PROJECT-BOOTSTRAP.md`.
@@ -148,11 +148,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Keep bootstrap discovery distinct from Repository/File Storage/Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime authority.
   8. Keep the filename stable as `PROJECT-BOOTSTRAP.md`; do not use revision/date suffixes for the discovery entrypoint.
 - **Design constraints:** The Framework must not claim that every LLM can discover a Project without filesystem/repository access. The success boundary is: once an agent can access the Project root, Project contents alone are sufficient to discover and follow the canonical bootstrap path without requiring vendor-specific Project Settings.
-- **Implementation boundary:** Task registration only. Do not modify Framework semantics, root/template files, launchers, schema, runtime, MCP behavior, or existing Projects until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Implementation boundary:** Framework governance/documentation implementation only. Do not add filesystem watchers, discovery daemons, MCP runtime/tool routing, automatic Brownfield upgrades, secret storage, CI/CD, or deployment automation.
+- **Design Spec:** `docs/superpowers/specs/2026-08-29-task023-self-bootstrapping-project-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Implementation Release:** Framework `1.7.0` / Schema `1.0.0`
 - **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** User-approved design defines bootstrap file schema, authority boundary, discovery/read algorithm, vendor adapter rules, GREENFIELD behavior, Brownfield upgrade/migration behavior, failure handling, affected Framework surfaces, and verification strategy before any implementation begins.
-- **Exact Next Step:** Prepare the TASK-023 architectural design spec for `PROJECT-BOOTSTRAP.md`; do not implement until the written spec is reviewed and explicitly approved.
+- **Exact Next Step:** Create and execute the TASK-023 implementation plan through Framework `1.7.0` verification and release evidence under the user's explicit continuous approval.
 
 ## Task #24 — `[Meeting]` LLM Council Command
 
