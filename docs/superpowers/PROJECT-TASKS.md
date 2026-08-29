@@ -169,7 +169,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #24 — `[Meeting]` LLM Council Command
 
 - **ID:** `TASK-024`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework command / multi-model advisory council integration
 - **Source Repository:** `https://github.com/captainhuke-dev/llm-council`
 - **Problem:** ProjectFramework currently has no standard Project command for convening a multi-model LLM council when a decision benefits from independent perspectives, structured peer review, disagreement surfacing, and a synthesized recommendation.
@@ -192,6 +192,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`
 - **Plan State:** `IMPLEMENTATION_PLAN_READY / INLINE_CONTINUOUS_EXECUTION_APPROVED`
 - **Plan Self-Review:** `PASS 30/30` — spec coverage, scenario range `212–227`, provider snapshot, no-runtime boundary, starter/launcher/evidence surfaces, and AFFECTED/RELEASE_FULL lifecycle checked.
+- **Implementation Provider Freshness:** fork `master` freshly re-observed at `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131` / tree `221d8afb6eca87537282d509971c505119390e0b`; no material provider-profile drift before Task 1 mutation.
+- **Implementation Scenario Contract:** RED scenarios `212–227` added; Framework-wide numbering target `1–227` contiguous/unique.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
 - **Exact Next Step:** Execute Task 1 of `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`: fresh-check Project/Git/provider state, then add RED scenarios `212–227` and mark TASK-024 `IN_PROGRESS`.
