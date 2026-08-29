@@ -134,7 +134,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #23 — Self-Bootstrapping Project Contract
 
 - **ID:** `TASK-023`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / vendor-neutral Project bootstrap
 - **Problem:** Framework bootstrap currently depends too heavily on vendor/product-specific Project Settings. Existing Projects may be used without those settings being configured, causing an LLM/agent to miss the intended bootstrap contract before reading authoritative Project Source.
 - **Approved direction:** Move bootstrap discovery into the Project itself through one stable vendor-neutral root entrypoint: `<Project-Root>/PROJECT-BOOTSTRAP.md`.
@@ -152,11 +152,19 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-08-29-task023-self-bootstrapping-project-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task023-self-bootstrapping-project.md`
-- **Plan State:** `EXECUTION_IN_PROGRESS`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
 - **Implementation Release:** Framework `1.7.0` / Schema `1.0.0`
-- **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
-- **Completion criteria:** User-approved design defines bootstrap file schema, authority boundary, discovery/read algorithm, vendor adapter rules, GREENFIELD behavior, Brownfield upgrade/migration behavior, failure handling, affected Framework surfaces, and verification strategy before any implementation begins.
-- **Exact Next Step:** Create and execute the TASK-023 implementation plan through Framework `1.7.0` verification and release evidence under the user's explicit continuous approval.
+- **Target Release:** Framework `1.7.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `ee4b088`, `094e9a4`, `e67ac2f`, `c1496b0`, `e2caa5e`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-29-task-023-self-bootstrapping-project-release-full.md`
+- **Verification Result:** `RELEASE_FULL 146/146 PASS`
+- **Candidate Commit:** `e2caa5e68f037104cf7ca41756690daf03ede576`
+- **Candidate Distribution Tree:** `100338b4186e5ccbe0502b92a85e38555e40db3c`
+- **Completion criteria met:** stable vendor-neutral `PROJECT-BOOTSTRAP.md`; canonical `00 → 01 → 03` discovery with `09` continuation; active `FRAMEWORK-001` authority preserved; GREENFIELD mandatory root bootstrap; Brownfield governed adoption only; vendor adapters optional; `PROJECT-CONFIG.md` remains optional Bootstrap Location reference; volatile execution state excluded from bootstrap authority; 22 concrete starters aligned to 1.7.0; scenarios `1–180`; documentation-only scope.
+- **Publication State:** `NOT_PUSHED` — completion is committed locally first; remote publication is a separate resulting-state action.
+- **Completion Working Tree:** `CLEAN` after completion commit verification.
+- **Execution Note:** a linked TASK-023 worktree was prepared, but host Active Workspace mutation routing blocked writes there; implementation therefore continued inline on local `main` under the user's explicit continuous approval through Framework 1.7.0 completion.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #24 — `[Meeting]` LLM Council Command
 
