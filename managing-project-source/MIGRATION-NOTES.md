@@ -4,7 +4,31 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.5.0 → 1.6.0 (current)
+## 1.6.0 → 1.7.0 (current)
+
+### Affected distribution surfaces
+
+- `FRAMEWORK-RELEASE.yaml` — Framework version `1.7.0`; latest amendment pointer moves to TASK-023; root bootstrap template becomes a declared entrypoint
+- `references/framework-governance-amendment-260829-task023.md` / `core-governance-rules.md` / `SKILL.md` — vendor-neutral Project-root discovery contract and authority/failure boundaries
+- `templates/PROJECT-BOOTSTRAP.md`, `templates/project-location-bootstrap.md`, root/skeleton/mockup templates — GREENFIELD root bootstrap, legacy `PROJECT-CONFIG.md` separation, and canonical `00 → 01 → 03` routing with `09` continuation
+- `CHATGPT-PROJECT-INSTRUCTIONS.md` / `CLAUDE-PROJECT-INSTRUCTIONS.md` — optional thin adapters that prefer `PROJECT-BOOTSTRAP.md` when Project-root access exists
+- `tests/pressure-scenarios.md` — root discovery, authority, GREENFIELD/Brownfield, contradiction, no-filesystem, stable-filename, volatile-state, and vendor-independence coverage
+- `README.md` — current release identity and self-bootstrapping Project explanation
+
+### Upgrade checklist
+
+1. Run `[Project Upgrade]`; fresh-compare the active local pin with target `1.7.0` using Direct-to-Latest classification/Preview rules.
+2. Preserve Project-specific rules, bindings, Stable IDs, history, current semantic slots, existing optional `PROJECT-CONFIG.md`, and all current authority homes.
+3. Include creation of `<Project-Root>/PROJECT-BOOTSTRAP.md` in the upgrade Preview; do not create it merely because upstream `main` advanced.
+4. Apply only with the mutation authority required by the existing upgrade contract. Materialize the root file from the `1.7.0` template using the Project's real relative Project Source root.
+5. Verify the new root bootstrap resolves the existing active `00 / FRAMEWORK-001`, then `01`, then `03`; resolve `09 Handoff` for continuation when applicable.
+6. Treat `PROJECT-BOOTSTRAP.md` as discovery/locator only. It does not replace Project Location Binding, current branch/worktree, Integration Target, Implementation Source, Runtime authority, or `AUTH-*`/Risk authority.
+7. If root bootstrap, vendor adapter, `PROJECT-CONFIG.md`, or active root binding contradict materially, fail closed for affected mutation and route resolution through existing governance; do not choose by recency.
+8. Verify affected scope and run one final `RELEASE_FULL` on the unchanged target candidate; record material adoption in `16 Migration Registry` when applicable.
+
+---
+
+## 1.5.0 → 1.6.0
 
 ### Affected distribution surfaces
 
@@ -12,7 +36,7 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 - `references/framework-governance-amendment-260828-task022.md` / `core-governance-rules.md` / `SKILL.md` — standard conditional `92 Project Graph`, `REL-*`, late-binding and AI-ControlTower/OpenViking derived-index contract
 - `templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, `templates/project-source-mockup/` — Project Graph applicability/routing and new `92-Project-Graph.template.md`
 - `tests/pressure-scenarios.md` — relation authority, late-binding, rebuild, collision, merge/split, and extension-type pressure coverage
-- `README.md` — current release identity and Federated Project Graph explanation
+- `README.md` — release identity and Federated Project Graph explanation
 
 ### Upgrade checklist
 

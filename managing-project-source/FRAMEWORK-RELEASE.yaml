@@ -1,17 +1,18 @@
 release_format_version: 3
-framework_version: "1.6.0"
+framework_version: "1.7.0"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
 canonical_branch: "main"
 
 entrypoints:
+  project_bootstrap: "templates/PROJECT-BOOTSTRAP.md"
   chatgpt_project: "CHATGPT-PROJECT-INSTRUCTIONS.md"
   claude_project: "CLAUDE-PROJECT-INSTRUCTIONS.md"
   skill: "SKILL.md"
   project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260828-task022.md"
+latest_framework_amendment: "references/framework-governance-amendment-260829-task023.md"
 migration_notes: "MIGRATION-NOTES.md"
 upgrade_preview_template: "templates/upgrade-preview.md"
 core_governance: "references/core-governance-rules.md"
@@ -23,6 +24,10 @@ bootstrap_policy:
   canonical_bootstrap_ref: "main"
   local_project_source_authoritative_after_bootstrap: true
   exact_git_provenance_required_for_operational_use: false
+  project_root_bootstrap_filename: "PROJECT-BOOTSTRAP.md"
+  project_root_bootstrap_required_for_new_projects_from: "1.7.0"
+  brownfield_project_root_bootstrap_adoption: "PROJECT_UPGRADE_ONLY"
+  vendor_adapters_optional_after_project_root_access: true
 
 upgrade_policy:
   strategy: "DIRECT_TO_LATEST_CUMULATIVE"
