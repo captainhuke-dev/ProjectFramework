@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260829-task039.md` — latest amendment: Persistent `[Goal]` Continuous Execution Command (current authority)
+- `references/framework-governance-amendment-260829-task024.md` — latest amendment: `[Meeting]` LLM Council Advisory Command (current authority)
+- `references/framework-governance-amendment-260829-task039.md` — previous amendment: Persistent `[Goal]` Continuous Execution Command
 - `references/framework-governance-amendment-260829-task038.md` — previous amendment: Framework Source Distribution-Root Migration
 - `references/framework-governance-amendment-260829-task023.md` — previous amendment: Self-Bootstrapping Project Contract
 - `references/framework-governance-amendment-260828-task022.md` — previous amendment: Federated Project Graph + OpenViking relation governance
@@ -150,6 +151,7 @@ Registered Project command identity requires literal brackets; matching inside b
 [Project Path]   : show/verify configured bootstrap paths and route explicit path-change requests through existing governance
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
+[Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
 [Session Envelope] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 ```
 
@@ -193,6 +195,30 @@ Goal execution/resume order:
 ```
 
 Block only an unauthorized/blocked action when independent safe Goal work remains; use Goal `BLOCKED` only for a global blocker. Goals never silently rewrite `REQ-*`/`DEC-*`/accepted Risk/architecture to make completion easier and never resolve conflicts by recency. System/developer/product/MCP/tool/authentication controls remain higher-level gates and cannot be waived by `[Goal]`.
+## Framework 1.8.0 `[Meeting]` Advisory Council Command
+
+`[Meeting]` sends the explicit bracketed question as the default outbound payload to a verified Meeting-capable advisory provider. Extra Project context is added only when materially relevant, minimum necessary, and covered by applicable disclosure authority; actual secret values are never sent or persisted merely because they are relevant. `[Goal]`/`ENV-*` execution authority does not imply outbound disclosure authority.
+
+Current TASK-024 provider profile evidence is `captainhuke-dev/llm-council` at observed `master` commit `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131` / tree `221d8afb6eca87537282d509971c505119390e0b`, with FastAPI/OpenRouter Stage 1 independent responses → Stage 2 anonymized peer ranking → Stage 3 Chairman synthesis. Provider profile/version/availability is fresh evidence, not Project authority or a permanent Framework invariant.
+
+Operational flow:
+
+```text
+[Meeting] invocation
+→ resolve bracketed command + explicit question
+→ identify any additional Project context needed
+→ minimize + verify disclosure authority + remove secret values
+→ fresh-resolve provider profile/availability when material
+→ execute available council stages through runtime capability
+→ normalize COMPLETE/PARTIAL/FAILED/UNAVAILABLE
+→ preserve independent views/agreement/disagreement/peer signal/synthesis/limitations
+→ present advisory result
+→ persist EVD-* only when materially used by governed Project truth
+→ route any adopted recommendation through its normal owning governance
+```
+
+Council/majority/Chairman output is advisory only: it is not User Approval, `AUTH-*`, `DEC-*`, `REQ-*` change, Risk acceptance, or mutation permission. Missing Stage 2 leaves ranking incomplete; Chairman failure returns available material with `SYNTHESIS_UNAVAILABLE` rather than fabricated consensus; provider/auth/network failures remain provider failures. TASK-024 creates no `MEETING-*` family/slot and never treats provider `data/conversations/*.json` as Project history.
+
 
 ## Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
 
@@ -589,6 +615,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 17. Pin imported Framework/Schema locally; upgrades use direct current→target assessment plus `MIG-*`/approval as required; classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; never invent repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
 18. When `[Project Upgrade]` reports `UPGRADE_AVAILABLE`, the report includes the target release's migration-notes pointer when notes exist (`MIGRATION-NOTES.md`) and states their absence explicitly when they do not; comparison vocabulary and approval boundaries are unchanged. Upgrade preparation uses `templates/upgrade-preview.md` as the standard Preview structure. FAST_PATH scope rule: when the exact target candidate tree already carries committed state-bound evidence (recorded tree SHA matches the observed target tree exactly), proportional resulting-state confirmation may replace rerunning one full verification; any post-evidence candidate change invalidates reuse and fails closed. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` keep the existing one-final-`RELEASE_FULL` requirement. Continuity rule: every Logical Checkpoint on Material work persists a Resume Block into `09 Handoff` (task ID, last completed step, next step, blockers, active `ENV-*`) so any fresh session resumes within one read; Material MCP mutations are idempotent where possible, and non-idempotent calls record pre-execution intent first. `[Session Envelope]` lets the user pre-approve a bounded operation scope (`ENV-*` in `15 Action Registry`, with expiry and prohibited zones); it never overrides fail-closed governance — location/binding changes, Root Governance, schema authority, secrets, and push keep their own approval gates. `[Project Upgrade]` remains read-only through comparison; `UPGRADE_AVAILABLE` may ask to prepare an upgrade, but upgrade-intent approval authorizes assessment/Preview only and is never mutation approval.
     Persistent `[Goal]` rule: on invocation resolve intent → `OUT-* + AUTH-*` → `ACT-* / bounded ENV-*` → persist `03/09` pointers when material; on fresh-session resume read `PROJECT-BOOTSTRAP → 00 → 01 → 03 → 09 → OUT/AUTH/ACT/ENV`, fresh-check mutable prerequisites, continue the exact safe covered action without redundant Framework-level approval, then evaluate `OUT-*` success criteria separately from `ACT-*` completion. Push/destructive/Root-Binding/disclosure boundaries remain exact opt-ins and higher-level platform/tool gates still apply.
+    `[Meeting]` rule: explicit bracketed question is the default outbound payload; extra Project context is minimum-necessary + separately disclosure-authorized; secrets never leak; normalize partial/provider failures without false consensus; Council/majority/Chairman are advisory only; persist material use through `EVD-*`; Goal/ENV authority never implies external disclosure.
 
 19. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
 20. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.

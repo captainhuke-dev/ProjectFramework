@@ -889,6 +889,7 @@ Before emit, every Framework-governed assistant response MUST run a lightweight 
 
 Framework `1.3.1` extends the Framework `1.3.0` semantic command registry for common Project inspection and governed upgrade entry. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service, updater, or other executable runtime.
 Framework `1.8.0` TASK-039 further registers persistent `[Goal]` continuous-execution semantics by composing existing `OUT-* / AUTH-* / ACT-* / ENV-* / 09` homes; it adds no `GOAL-*` Stable-ID family or semantic slot.
+Framework `1.8.0` TASK-024 further registers `[Meeting]` as a multi-model advisory command using a Thin Council Provider Adapter boundary; it adds no `MEETING-*` Stable-ID family, semantic slot, or provider authority home.
 
 
 Initial registry:
@@ -899,6 +900,7 @@ Initial registry:
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
 [Session Envelope] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
+[Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
 ```
 
 Natural-language requests for available commands (for example “มีชุดคำสั่งอะไรบ้าง”, “command list”, or “available commands”) MUST list only commands registered by the active Framework/Project in `[XXX] : purpose` form. Do not invent commands merely because an Agent/tool could perform another action.
@@ -994,6 +996,30 @@ If one operation is blocked but independent safe Goal work remains, block only t
 ProjectFramework-level Goal authorization cannot override system/developer instructions, product safety policy, MCP/tool confirmation requirements, authentication/external-system authorization, platform capability limits, or mandatory controls imposed above ProjectFramework. Such controls are reported as platform/tool gates rather than as absence of Project-level Goal authority.
 
 GREENFIELD Framework `1.8.0` starters expose Goal semantics but do not synthesize an active Goal/`OUT-*`/Goal `AUTH-*`. Brownfield upgrade never creates a persistent Goal from old prose, backlog, Handoff, existing Outcomes, or prior “continue” text; persistent Goal authority begins only through explicit `[Goal]` invocation/adoption under the active contract.
+#### `[Meeting]`
+
+`[Meeting]` convenes a multi-model **advisory** council for an explicit question. Literal brackets are required and registered-name matching inside them is case-insensitive. Unbracketed meeting/council prose does not invoke the command. The explicit question supplied with `[Meeting]` is the default outbound payload.
+
+ProjectFramework owns the command, disclosure boundary, normalized result, evidence rules, and advisory-authority separation. The council runtime remains an external provider implementation. The verified TASK-024 provider profile is `captainhuke-dev/llm-council` (`master` commit `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131`, observed tree `221d8afb6eca87537282d509971c505119390e0b`) using FastAPI/OpenRouter and Stage 1 independent responses → Stage 2 anonymized peer review/ranking → Stage 3 Chairman synthesis. That snapshot is provider-profile evidence, not immutable Framework truth; material provider/interface drift fails closed for the affected integration. Provider UI, runtime, repository, OpenRouter state, and `data/conversations/*.json` never become Project authority.
+
+Additional Project context beyond the explicit Meeting question MUST be minimum necessary and covered by applicable outbound-disclosure authority. `[Meeting]`, `[Goal]`, `AUTH-*`, `ENV-*`, task scope, local access, or provider availability never imply blanket Project-context disclosure. Actual secret values remain prohibited; `SECRET-*` reference metadata is not permission to reveal a value. Unknown disclosure classification/authority blocks only the affected outbound context when other safe work can continue.
+
+Normalized results preserve, when available, Topic/Question, Context Scope, Provider/Model Provenance, Independent Views, Agreement, Disagreement, Blind Spots/Risks, Peer-Review/Ranking Signal, Chairman/Synthesis, Recommended Interpretation, Limitations/Failed Models/Missing Stages, and an Advisory Authority Notice. Preserve meaningful disagreement rather than manufacture consensus.
+
+Council output remains advisory:
+
+```text
+Council Recommendation ≠ User Approval ≠ AUTH-* ≠ DEC-* ≠ REQ-* change ≠ Project mutation permission
+```
+
+A majority is not a Decision; ranking is not a truth score; Chairman synthesis is not Project adjudication. Any adopted recommendation routes through the existing canonical owner and required authority.
+
+Meeting execution may report `COMPLETE | PARTIAL | FAILED | UNAVAILABLE` as presentation/workflow labels only. Partial Stage-1 participation remains `PARTIAL`; missing Stage 2 leaves peer ranking incomplete; Chairman failure surfaces `SYNTHESIS_UNAVAILABLE` (or equivalent) and never fabricates consensus; provider/auth/network/runtime failure is provider failure, not council disagreement.
+
+TASK-024 adds no `MEETING-*` family or semantic slot. Exploratory Meetings may remain transient. When materially used, persist minimum reconstructable advisory evidence through existing `EVD-*` / source-native evidence references in `13 Evidence Registry`; provider JSON storage is never canonical Project history.
+
+GREENFIELD does not auto-create a Meeting/conversation/evidence/provider credential/runtime/disclosure authority. Brownfield upgrade does not synthesize Meetings from prior discussion, AI transcripts, backlog, Handoff, `EVD-*`, or provider JSON and does not require provider runtime installation merely to adopt governance semantics.
+
 
 ### GREENFIELD
 
