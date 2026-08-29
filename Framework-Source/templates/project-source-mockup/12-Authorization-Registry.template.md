@@ -27,13 +27,21 @@ Canonical home of `AUTH-*` and `DEL-*`.
 ## AUTH-<NNN> — <TITLE>
 - **Grantor:** <ACTOR_REF>
 - **Grantee:** <ACTOR_REF>
+- **Related Goal Outcome:** <OUT-* or NOT_APPLICABLE>
 - **Allowed Actions:** <ACTIONS>
 - **Scope / Paths:** <SCOPE>
+- **Explicitly Included Shared / External Effects:** <PUSH_TARGET / DESTRUCTIVE_OPERATION+TARGET / ROOT_BINDING_MUTATION+TARGET / DISCLOSURE_SCOPE / NONE>
 - **Forbidden Actions / Effects:** <CONTENT>
 - **Risk Ceiling:** <R0_R1_R2_R3>
 - **Start:** <ISO8601>
 - **Expiry / Termination:** <CONTENT>
+- **Revocation Trigger:** <CONTENT>
 - **Status:** <STATUS>
+- **Evidence / User Approval Reference:** <EVD_OR_USER_APPROVAL_REF>
+
+For Goal-related authorization, the parent `OUT-*` terminal state `ACHIEVED | CANCELLED | SUPERSEDED` terminates or supersedes dependent Goal authority. A Goal `AUTH-*` is persistent Project Source truth; `09 Handoff` may reference it but `authority_transfer: false` remains binding.
+
+Unless explicitly narrowed, Goal `AUTH-*` may cover bounded local design/plan/edit/test/fix/verify/local-commit/checkpoint work. Push, destructive effects, Root/Binding mutation, and external disclosure require their exact opt-in semantics from current Root Governance. Actual secret values are never stored here.
 
 ## DEL-<NNN> — <TITLE>
 - **Parent Authorization:** <AUTH_REF>

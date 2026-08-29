@@ -55,6 +55,14 @@ External Working Source / Pointers
 Unpersisted Material State when applicable
 Required Read Order
 Authority References
+Active Goal: <OUT-* or none>
+Goal Status: <ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED | none>
+Goal Authorization: <AUTH-* or none>
+Current Goal Action: <ACT-* or none>
+Goal Envelope: <ENV-* or none>
+Last Verified Goal Authorization At: <ISO8601_OR_UNKNOWN>
+Next Safe Goal Action: <ACTION_OR_NONE>
+Goal Blocker: <BLOCKER_OR_NONE>
 authority_transfer: false
 Freshness Warnings
 Exact Next Action
@@ -81,3 +89,5 @@ Lifecycle: `DRAFT → OFFERED → ACKNOWLEDGED → ACCEPTED → SUPERSEDED`.
 ```text
 Task: <TASK/ACT id> | Done: <last completed step> | Next: <exact next step> | Blockers: <none or list> | Envelope: <ENV-* or none>
 ```
+
+Goal pointers are compact references only. Handoff never transfers Goal authority; a receiving Agent resolves current `OUT-* / AUTH-* / ACT-* / ENV-*` from their canonical homes before resuming.

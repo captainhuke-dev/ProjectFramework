@@ -21,6 +21,8 @@ Framework `1.3.1` adds registered `[Project Upgrade]` as a read-only fresh compa
 Framework `1.6.0` standardizes conditional `92 Project Graph` as the canonical home of current `REL-*` Project-relation assertions. Endpoints use immutable `project_uuid`; AI-ControlTower/OpenViking indexing is `DERIVED_ONLY` and rebuildable; relation topology remains distinct from Project Location Binding, Git integration, implementation, and runtime authority.
 
 Framework `1.7.0` standardizes root `PROJECT-BOOTSTRAP.md` for NEW Projects. It is outside Project Source, has no Stable ID, and routes `PROJECT-BOOTSTRAP.md → 00 → 01 → 03`, with `09` for continuation. Active `FRAMEWORK-001` remains authority; Brownfield adoption is `[Project Upgrade]`-only; vendor settings and `PROJECT-CONFIG.md` remain optional adapters/location references.
+
+Framework `1.8.0` registers persistent `[Goal]` without a `GOAL-*` family: Goal outcome uses `OUT-*` in conditional `91`, durable authority uses `AUTH-*` in `12`, execution uses `ACT-* / ENV-*` in `15`, `03` summarizes Goal state, and `09` carries references only with `authority_transfer: false`. No active Goal is synthesized during GREENFIELD initialization; `[Goal]` materializes `91` only when a persistent Goal becomes applicable.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -110,6 +112,16 @@ Current Blockers
 Freshness Warnings
 Exact Next Action
 Last Verified
+
+Persistent Goal view when applicable:
+  Active Goal OUT-*
+  Goal Status: ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED
+  Success Criteria Progress
+  Authorization AUTH-* validity
+  Current / Next ACT-*
+  Push / Destructive / Root-Binding / External-Disclosure inclusion flags
+  Current Goal Blocker
+  Continuation Freshness
 ```
 
 ### Project Health
@@ -292,6 +304,14 @@ External Working Source / Pointers
 Unpersisted Material State when applicable
 Required Read Order
 Authority References
+Active Goal: OUT-* when applicable
+Goal Status
+Goal Authorization: AUTH-*
+Current Goal Action: ACT-*
+Goal Envelope: ENV-* or none
+Last Verified Goal Authorization At
+Next Safe Goal Action
+Goal Blocker when applicable
 authority_transfer: false
 Freshness Warnings
 Exact Next Action
@@ -354,7 +374,9 @@ Informed
 
 Canonical home of `AUTH-*` and `DEL-*`.
 
-`AUTH-*` records grantor, grantee, actions, scope/paths, forbidden actions/effects, risk ceiling, start, expiry/termination, status.
+`AUTH-*` records grantor, grantee, actions, scope/paths, forbidden actions/effects, risk ceiling, start, expiry/termination, status. Goal-related `AUTH-*` additionally records related `OUT-*`, explicitly included shared/external effects, revocation trigger, and approval/evidence reference.
+
+For persistent `[Goal]`, terminal `OUT-*` state `ACHIEVED | CANCELLED | SUPERSEDED` terminates/supersedes dependent Goal authority. Handoff references never transfer that authority. Unless explicitly narrowed, Goal authority may cover bounded local development; push/destructive/Root-Binding/external-disclosure effects retain exact opt-in rules and actual secret values are forbidden.
 
 `DEL-*` references parent authorization and never exceeds parent scope/risk/actions/duration.
 
@@ -409,6 +431,10 @@ side states: BLOCKED / CANCELLED
 ```
 
 Each Action has an exact executable next step. For Material Git-backed mutation, record affected verification/completion criteria, verification result/evidence pointer, completion commit(s), and remaining working-tree state when relevant. `DONE` is prohibited while required completed state exists only uncommitted. Read-only/no-mutation Actions need no synthetic commit. `ACT DONE` does not automatically mean `MS REACHED` or `OUT ACHIEVED`.
+
+Goal-derived `ACT-*` records parent Goal `OUT-*` and parent `AUTH-*`. Goal-derived `ENV-*` records the same parent references and MUST remain equal to or narrower than current valid parent `AUTH-*`; it may be derived/refreshed without new user approval only inside that boundary. `ENV-*` never expands authority or waives higher-level controls.
+
+All linked Goal Actions becoming `DONE` still does not prove Goal `OUT-*` `ACHIEVED`; success criteria/evidence are evaluated separately.
 
 ## 16 — Migration Registry
 
@@ -624,6 +650,9 @@ DEP-*  Dependency
 CR-*   Change Request
 GATE-* Review / Phase Gate
 ```
+
+Persistent `[Goal]` specializes ordinary `OUT-*` rather than replacing it. A Goal `OUT-*` records Outcome Statement, Success Criteria/Measure, Evidence Required, Scope, Prohibited Zones, Owner, `ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED`, related `AUTH-*`, related `ACT-*`, applicable REQ/DEC/RISK/DEP/GATE refs, approval metadata, Last Evaluated, and Terminal Evidence. `[Goal]` makes conditional `91` applicable only when such Goal truth is material; initialization never fabricates one.
+
 
 ### RISK-* Recipe
 

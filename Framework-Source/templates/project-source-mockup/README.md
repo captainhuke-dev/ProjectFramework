@@ -6,6 +6,12 @@ This directory is the concrete starter representation of the Project Source sema
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
 
+## Framework 1.8.0 Persistent `[Goal]` Semantics
+
+`[Goal]` is a persistent command backed by existing canonical objects: Goal outcome `OUT-*` in conditional `91`, durable user authorization `AUTH-*` in `12`, execution `ACT-* / ENV-*` in `15`, status in `03`, and continuation pointers in `09` with `authority_transfer: false`. It creates no `GOAL-*` family.
+
+When the user does not narrow the Goal, bounded local design/plan/edit/test/fix/verify/commit/checkpoint work is pre-authorized. Push, destructive actions, Root/Binding mutation, and external disclosure remain explicit opt-ins under current governance. GREENFIELD starter materialization does not create an active Goal/`OUT-*`/Goal `AUTH-*`; `91` becomes applicable only when Goal/other management-control truth is actually material.
+
 ## Framework 1.7.0 Self-Bootstrapping Project Semantics
 ## Framework 1.8.0 Framework-Source Naming Semantics
 

@@ -302,9 +302,12 @@ Framework `1.3.1` registers bracketed Project inspection commands. Literal `[` a
 [Project Status]  : fresh read-only Project/Task/Git/verification/blocker dashboard
 [Project Path]    : show/verify configured Project path values and route explicit change requests through existing location governance
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 ```
 
 Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. `[Project Status]` fresh-observes Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers, reuses `GREEN | AMBER | RED | UNKNOWN`, and keeps Task count distinct from Git change count. `[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. `[Project Upgrade]` keeps the active local `FRAMEWORK-001` pin as current authority, fresh-resolves canonical upstream as target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and asks before preparing an upgrade when a verified difference exists. A positive answer authorizes assessment/Preview only, not Project mutation; persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
+
+`[Goal]` composes `OUT-*` (91) + persistent `AUTH-*` (12) + `ACT-* / ENV-*` (15) + `03/09` continuation/status. It creates no `GOAL-*` family. Unless the user narrows it, bounded local design/plan/edit/test/fix/verify/local-commit/checkpoint work is pre-authorized and should not be re-prompted solely for Framework approval. Push, destructive operation+target, Root/Binding mutation+target, and external disclosure remain exact opt-ins; secret values remain forbidden; `ENV-*` cannot exceed parent `AUTH-*`; Handoff keeps `authority_transfer: false`; higher-level system/tool/platform gates still apply; and `ACT DONE ≠ OUT ACHIEVED`.
 
 Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
 

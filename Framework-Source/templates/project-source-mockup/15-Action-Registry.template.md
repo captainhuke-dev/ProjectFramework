@@ -28,6 +28,8 @@ Canonical home of `ACT-*`.
 - **Status:** <TODO | IN_PROGRESS | DONE | BLOCKED | CANCELLED>
 - **Owner:** <ACTOR_REF>
 - **Scope:** <CONTENT>
+- **Parent Goal Outcome:** <OUT-* or NOT_APPLICABLE>
+- **Parent Authorization:** <AUTH-* or NOT_APPLICABLE>
 - **Related REQ / DEC / ISS:** <REFS>
 - **Exact Next Step:** <EXECUTABLE_ACTION>
 - **Affected Verification / Completion Criteria:** <CRITERIA>
@@ -37,4 +39,17 @@ Canonical home of `ACT-*`.
 
 For Material Git-backed mutation, `DONE` requires a Verified Task Completion Checkpoint; required completed state cannot remain only uncommitted. Read-only/no-mutation Actions require no synthetic commit; `WIP commit ≠ Task DONE`; `commit ≠ push`.
 
-**Session Envelope (`ENV-*`)** — pre-approved bounded operation scope: allowed operation types, target surfaces, expiry (session end / task completion / explicit time), prohibited zones. Envelopes never override fail-closed governance (location/binding changes, Root Governance, schema authority, secrets, push keep their own approval gates).
+**Session Envelope (`ENV-*`)** — pre-approved bounded operation scope. When Goal-derived, record:
+
+```text
+Parent Authorization: <AUTH-*>
+Related Goal Outcome: <OUT-*>
+Allowed Operation Types
+Target Surfaces
+Expiry
+Prohibited Zones
+```
+
+A Goal-derived `ENV-*` may be created/refreshed without new user approval only when it is equal to or narrower than current valid parent `AUTH-*`; it never expands parent authority or represents higher-level tool/platform confirmation as waived. Existing non-Goal Envelope semantics remain valid.
+
+Completing all Goal-linked `ACT-*` does not automatically make the parent `OUT-*` `ACHIEVED`; evaluate success criteria/evidence separately.

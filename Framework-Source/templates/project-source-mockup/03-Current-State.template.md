@@ -41,6 +41,21 @@ Exact Next Action: <NEXT_ACTION>
 Last Verified: <ISO8601>
 ```
 
+## Persistent Goal View — when `[Goal]` is active or blocked
+
+```text
+Active Goal: <OUT-* or none>
+Goal Status: <ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED>
+Success Criteria Progress: <SUMMARY>
+Authorization: <AUTH-* + VALID/INVALID/REVOKED/EXPIRED>
+Current / Next Action: <ACT-* or none>
+Boundary Inclusion: Push=<YES/NO> Destructive=<YES/NO> Root/Binding=<YES/NO> External Disclosure=<YES/NO>
+Current Goal Blocker: <BLOCKER_OR_NONE>
+Continuation Freshness: <FRESH | STALE | NONE>
+```
+
+Do not synthesize a Goal view from ordinary prose. Resolve the canonical `OUT-* / AUTH-* / ACT-*` records; status display is read-only and grants no authority.
+
 ## Project Health
 
 Use applicable dimensions with `GREEN / AMBER / RED / UNKNOWN`; omit non-applicable optional dimensions.

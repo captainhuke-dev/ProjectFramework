@@ -52,6 +52,28 @@ Milestone; Success/Exit Criteria; Target Window/Trigger; Owner; Status; Dependen
 ## OUT-<NNN> — <TITLE>
 Outcome Statement; Success Measure/Evidence; Baseline; Target; Measurement Method; Owner; Status; Related IDs; Last Evaluated.
 
+### Persistent `[Goal]` OUT-* specialization
+
+Ordinary `OUT-*` remains valid. When an `OUT-*` represents a persistent `[Goal]`, record at least:
+
+```text
+Outcome Statement
+Success Criteria / Success Measure
+Evidence Required
+Scope
+Prohibited Zones
+Owner
+Status: ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED
+Related AUTH-*
+Related ACT-*
+Related REQ / DEC / RISK / DEP / GATE when applicable
+Created / Approved By + At
+Last Evaluated
+Terminal Evidence when terminal
+```
+
+`[Goal]` makes conditional `91` applicable when no active `91` exists, but GREENFIELD initialization never creates an active Goal automatically. `ACT DONE ≠ OUT ACHIEVED`; every success criterion requires sufficient evidence before `ACHIEVED`.
+
 ## DEP-<NNN> — <TITLE>
 Dependency Type; Depends On; Required For; Owner; Expected Availability/Trigger; Current State; Fallback; Failure Impact; Related IDs; Status. `AVAILABLE ≠ SATISFIED`.
 
