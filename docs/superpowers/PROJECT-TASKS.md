@@ -469,7 +469,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Define verification for stale-path detection, current-reference alignment, historical provenance preservation, launcher constraints, release descriptor routing, and Direct-to-Latest migration guidance.
   8. Sequence this migration before other Framework `1.8.0` Tasks that would otherwise add new references to the old distribution-root name.
 - **Implementation boundary:** Task registration only. Do not rename/move `managing-project-source/`, rewrite current paths, alter historical evidence/specs, create compatibility aliases, or update external Projects until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design Spec:** `docs/superpowers/specs/2026-08-29-task038-framework-source-rename-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Design Approval:** User explicitly selected `Framework-Source/` vs `Project-Source/` naming and authorized continuous development without repeated approval prompts on `2026-08-29`; push/publication remains separately governed.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if repository-path compatibility requires a different release classification)
 - **Completion criteria:** A user-approved design defines canonical directory naming, Framework-vs-Project authority separation, current/historical path classification, migration/backward-compatibility behavior, affected surfaces, sequencing within 1.8.0, rollback, and verification strategy before any rename occurs.
 - **Exact Next Step:** Prepare the TASK-038 architectural migration design before starting other Framework 1.8.0 implementation that would create new `managing-project-source/` references.
