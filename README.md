@@ -6,7 +6,7 @@ ProjectFramework is a **documentation-first governance framework** for planning 
 
 How to use it:
 
-1. **New Project** — start from this repository's `main`: copy the platform launcher (ChatGPT/Claude) into your Project settings, then follow the Bootstrap Read Order below to create an approved, locally pinned `Project-Source/`.
+1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
 3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]` give you dashboards, path verification, and upgrade checks. Every governed response ends with a fixed close: `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
 
@@ -14,7 +14,7 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.6.0**
+- Project Source Framework: **1.7.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `managing-project-source/`
 - Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
@@ -42,6 +42,18 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.7.0 Self-Bootstrapping Project
+
+Framework `1.7.0` keeps Schema `1.0.0` and release format `3` while adding one stable vendor-neutral Project-root discovery contract:
+
+- **`<Project-Root>/PROJECT-BOOTSTRAP.md`** — mandatory for NEW `1.7.0+` Projects; maintained source template is `managing-project-source/templates/PROJECT-BOOTSTRAP.md`.
+- **Locator, not authority** — the root file has no semantic slot/Stable ID and routes `PROJECT-BOOTSTRAP.md → 00 / FRAMEWORK-001 → 01 → 03`, with `09 Handoff` for continuation. Active `FRAMEWORK-001` remains Project governance authority.
+- **Brownfield safety** — existing initialized Projects do not receive the file automatically. Adoption is governed `[Project Upgrade]`/migration work and preserves current truth, bindings, Stable IDs, and history.
+- **Vendor independence** — ChatGPT/Claude Project Settings, `AGENTS.md`, and `CLAUDE.md` are optional thin discovery adapters after Project-root access exists. Optional `PROJECT-CONFIG.md` remains a Bootstrap Location reference only.
+- **Fail closed** — missing targets or material contradiction among root bootstrap, active root/binding, vendor adapters, or optional location reference stop affected Material mutation; recency/ranking/workspace IDs never resolve authority.
+
+Framework `1.7.0` adds no watcher, discovery daemon, MCP routing runtime, automatic upgrade, secret store, CI/CD, or deployment automation.
 
 ## Framework 1.6.0 Federated Project Graph
 
