@@ -451,3 +451,25 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** When TASK-037 is selected, prepare its architectural design spec before implementation.
+
+## Task #38 — Framework Source Naming & Distribution-Root Migration
+
+- **ID:** `TASK-038`
+- **Status:** `TODO`
+- **Type:** Framework architecture / distribution-root naming and migration governance
+- **Problem:** The Framework distribution currently lives under `managing-project-source/`, while governed Project truth lives under `Project-Source/`. Once ProjectFramework itself adopts its own `Project-Source/`, those names are too easy for Humans/Agents to conflate, weakening the distinction between Framework distribution source and Project-specific governance source.
+- **Approved direction:** Rename the canonical Framework distribution root to `Framework-Source/` so the repository has an explicit paired distinction: `Framework-Source/` = reusable Framework distribution; `Project-Source/` = authoritative governance/current truth for one Project.
+- **Scope:**
+  1. Define exact canonical naming/casing as `Framework-Source/` and preserve `Project-Source/` for Project-specific governance.
+  2. Define the authority boundary: `Framework-Source/` is upstream/distribution source and does not become the consuming Project's Project Source or Root Governance; `Project-Source/00 / FRAMEWORK-001` remains Project authority after bootstrap.
+  3. Inventory current active references to `managing-project-source/` and classify which current distribution/bootstrap/documentation surfaces must move or be rewritten versus which historical specs/evidence/amendments must remain byte/provenance preserving.
+  4. Define repository-path migration for `FRAMEWORK-RELEASE.yaml`, launchers, templates, README/bootstrap instructions, migration notes, tests, and other current entrypoints without silently breaking deterministic discovery.
+  5. Define compatibility behavior for external/Brownfield consumers that still reference `managing-project-source/`; no automatic rewrite of initialized Projects, external repositories, local Project pins, or user environments.
+  6. Preserve `PROJECT-BOOTSTRAP.md` as the stable Project-root entrypoint introduced in Framework `1.7.0`; directory renaming must not create a second Project bootstrap or authority root.
+  7. Define verification for stale-path detection, current-reference alignment, historical provenance preservation, launcher constraints, release descriptor routing, and Direct-to-Latest migration guidance.
+  8. Sequence this migration before other Framework `1.8.0` Tasks that would otherwise add new references to the old distribution-root name.
+- **Implementation boundary:** Task registration only. Do not rename/move `managing-project-source/`, rewrite current paths, alter historical evidence/specs, create compatibility aliases, or update external Projects until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if repository-path compatibility requires a different release classification)
+- **Completion criteria:** A user-approved design defines canonical directory naming, Framework-vs-Project authority separation, current/historical path classification, migration/backward-compatibility behavior, affected surfaces, sequencing within 1.8.0, rollback, and verification strategy before any rename occurs.
+- **Exact Next Step:** Prepare the TASK-038 architectural migration design before starting other Framework 1.8.0 implementation that would create new `managing-project-source/` references.
