@@ -14,10 +14,10 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.7.0**
+- Project Source Framework: **1.8.0**
 - Project Source Schema: **1.0.0**
-- Distributable package root: `managing-project-source/`
-- Release descriptor: `managing-project-source/FRAMEWORK-RELEASE.yaml`
+- Distributable package root: `Framework-Source/`
+- Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
 
 ## Framework Intent
 
@@ -43,11 +43,22 @@ REPOSITORY_HARDENED
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
 
+## Framework 1.8.0 Framework-Source Naming
+
+Framework `1.8.0` keeps Schema `1.0.0` and release format `3` while renaming the single canonical reusable Framework distribution root:
+
+- **`Framework-Source/`** — reusable Framework distribution, templates, amendments, launchers, migration notes, and pressure scenarios.
+- **`Project-Source/`** — authoritative governance/current truth for one initialized Project; it remains distinct from Framework distribution.
+- **No live old-root alias** — `managing-project-source/` is historical pre-1.8.0 migration context, not a second canonical package root.
+- **Historical provenance preserved** — completed amendments/specs/plans/evidence keep old path text when that was true at capture time; current routing uses `Framework-Source/`.
+- **Brownfield safety** — initialized Projects are not automatically rewritten or upgraded by the upstream directory rename.
+- **Bootstrap authority unchanged** — deployed `PROJECT-BOOTSTRAP.md` still enters `Project-Source/00 → 01 → 03`, with `09` continuation; it never makes `Framework-Source/` Project authority.
+
 ## Framework 1.7.0 Self-Bootstrapping Project
 
 Framework `1.7.0` keeps Schema `1.0.0` and release format `3` while adding one stable vendor-neutral Project-root discovery contract:
 
-- **`<Project-Root>/PROJECT-BOOTSTRAP.md`** — mandatory for NEW `1.7.0+` Projects; maintained source template is `managing-project-source/templates/PROJECT-BOOTSTRAP.md`.
+- **`<Project-Root>/PROJECT-BOOTSTRAP.md`** — mandatory for NEW `1.7.0+` Projects; maintained source template is `Framework-Source/templates/PROJECT-BOOTSTRAP.md`.
 - **Locator, not authority** — the root file has no semantic slot/Stable ID and routes `PROJECT-BOOTSTRAP.md → 00 / FRAMEWORK-001 → 01 → 03`, with `09 Handoff` for continuation. Active `FRAMEWORK-001` remains Project governance authority.
 - **Brownfield safety** — existing initialized Projects do not receive the file automatically. Adoption is governed `[Project Upgrade]`/migration work and preserves current truth, bindings, Stable IDs, and history.
 - **Vendor independence** — ChatGPT/Claude Project Settings, `AGENTS.md`, and `CLAUDE.md` are optional thin discovery adapters after Project-root access exists. Optional `PROJECT-CONFIG.md` remains a Bootstrap Location reference only.
@@ -271,8 +282,8 @@ Framework `1.2.0` also adds:
 
 For a platform Project, use the matching canonical bootstrap instruction artifact:
 
-- **ChatGPT Projects:** copy `managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md` into **Project settings → Instructions**.
-- **Claude Projects:** copy `managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md` into **Set project instructions**.
+- **ChatGPT Projects:** copy `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` into **Project settings → Instructions**.
+- **Claude Projects:** copy `Framework-Source/CLAUDE-PROJECT-INSTRUCTIONS.md` into **Set project instructions**.
 
 The two platform files contain the same shared governance contract. They are **bootstrap/continuation launchers, not competing governance roots**. After a valid local `Project-Source/` is initialized, the locally pinned Project Source becomes authoritative for that Project.
 
@@ -282,10 +293,10 @@ For every NEW Project Source:
 
 1. Start from the matching platform Project instruction artifact when using ChatGPT Projects or Claude Projects.
 2. Read this `README.md` from canonical repository `main`.
-3. Read `managing-project-source/FRAMEWORK-RELEASE.yaml`.
-4. Read `managing-project-source/SKILL.md`.
-5. Read the latest Framework governance amendment and `managing-project-source/references/core-governance-rules.md`.
-6. Read `managing-project-source/templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, and `templates/project-source-mockup/README.md`.
+3. Read `Framework-Source/FRAMEWORK-RELEASE.yaml`.
+4. Read `Framework-Source/SKILL.md`.
+5. Read the latest Framework governance amendment and `Framework-Source/references/core-governance-rules.md`.
+6. Read `Framework-Source/templates/00-project-source-framework.md`, `templates/core-document-skeletons.md`, and `templates/project-source-mockup/README.md`.
 7. Preview the proposed Project Source, including proposed GitHub/Drive Project Location Binding states/identities, and obtain explicit user approval before writing.
 8. Create active `00-Project Source Framework` first with the approved Project Location Binding, then mandatory `01–05` and `09–17`.
 9. Evaluate `06–08`, `40`, `60`, `91`, and `92` by applicability; do not create empty conditional documents merely to make a tree look complete.
@@ -351,7 +362,7 @@ Active canonical registries are materialized current projections, not delta chai
 ProjectFramework/
 ├── README.md
 ├── LICENSE
-├── managing-project-source/
+├── Framework-Source/
 │   ├── FRAMEWORK-RELEASE.yaml
 │   ├── CHATGPT-PROJECT-INSTRUCTIONS.md
 │   ├── CLAUDE-PROJECT-INSTRUCTIONS.md
@@ -366,7 +377,7 @@ ProjectFramework/
         └── plans/
 ```
 
-Use `managing-project-source/` as the reusable framework package. Files under `docs/superpowers/` document development of this repository and are not automatically copied into each Project Source.
+Use `Framework-Source/` as the reusable framework package. Files under `docs/superpowers/` document development of this repository and are not automatically copied into each Project Source.
 
 ## Supersession Note
 

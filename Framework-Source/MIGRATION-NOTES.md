@@ -4,7 +4,31 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.6.0 → 1.7.0 (current)
+## 1.7.0 → 1.8.0 (current)
+
+### Affected distribution surfaces
+
+- repository package root — canonical upstream distribution path changes from `managing-project-source/` to `Framework-Source/`; no live old-root alias remains
+- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves to TASK-038
+- current Core Governance / SKILL / README / launcher and maintained starter routing — current reusable Framework path is `Framework-Source/`
+- historical amendments/specs/plans/evidence — old-path text remains historical provenance when it was true at capture time; do not globally rewrite it
+- ProjectFramework's own current Project Source — reconcile current distribution-location statements through governed revisions without auto-upgrading its local Framework pin
+- `tests/pressure-scenarios.md` — scenarios 181–188 cover root uniqueness, no alias, provenance, Brownfield safety, Project Source reconciliation, bootstrap routing, and authority separation
+
+### Upgrade checklist
+
+1. Run `[Project Upgrade]`; fresh-compare the initialized Project's local pin with target `1.8.0` using Direct-to-Latest assessment/Preview rules.
+2. Preserve local `FRAMEWORK-001`, Project-specific rules, bindings, Stable IDs, current truth, and history. The upstream directory rename does not itself rewrite an initialized Project.
+3. Treat `Framework-Source/` as the target release's canonical reusable upstream package root. Do not infer a live fallback at `managing-project-source/`.
+4. Update only current references that actually depend on the canonical upstream distribution path. Do not cosmetically rewrite historical amendments, completed evidence, or archived revisions.
+5. Keep deployed `<Project-Root>/PROJECT-BOOTSTRAP.md` routing to the Project's active `Project-Source/00 → 01 → 03`, with `09` continuation. The Framework distribution root is not Project authority.
+6. External scripts, bookmarks, deep links, or vendor configuration that hard-code `managing-project-source/...` require explicit update when applicable; the Framework does not mutate external consumers automatically.
+7. If the consuming Project maintains repository-local current provenance/routing that names the upstream package root, migrate that current truth through its normal governed revision/MIG/evidence flow.
+8. Verify affected scope and run one final `RELEASE_FULL` on the unchanged target candidate before promoting the upgrade.
+
+---
+
+## 1.6.0 → 1.7.0
 
 ### Affected distribution surfaces
 

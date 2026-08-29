@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.7.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.8.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260829-task023.md` — latest amendment: Self-Bootstrapping Project Contract (current authority)
+- `references/framework-governance-amendment-260829-task038.md` — latest amendment: Framework Source Distribution-Root Migration (current authority)
+- `references/framework-governance-amendment-260829-task023.md` — previous amendment: Self-Bootstrapping Project Contract
 - `references/framework-governance-amendment-260828-task022.md` — previous amendment: Federated Project Graph + OpenViking relation governance
 - `references/framework-governance-amendment-260825-task021.md` — previous amendment: ChatGPT→MCP Continuity
 - `references/framework-governance-amendment-260823-1439.md` — Direct-to-Latest upgrade semantics

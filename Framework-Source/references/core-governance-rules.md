@@ -96,10 +96,10 @@ Framework `1.6.0` further standardizes:
 Framework distribution artifacts exist outside the Project Source semantic namespace:
 
 ```text
-managing-project-source/FRAMEWORK-RELEASE.yaml
-managing-project-source/templates/PROJECT-BOOTSTRAP.md
-managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md
-managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
+Framework-Source/FRAMEWORK-RELEASE.yaml
+Framework-Source/templates/PROJECT-BOOTSTRAP.md
+Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md
+Framework-Source/CLAUDE-PROJECT-INSTRUCTIONS.md
 ```
 
 `FRAMEWORK-RELEASE.yaml` is distribution metadata, not Root Governance or a semantic slot. Platform instruction files are bootstrap/continuation launchers. Their shared governance contract MUST remain byte-identical and MUST NOT replace, weaken, bypass, or override active local `FRAMEWORK-001`.
