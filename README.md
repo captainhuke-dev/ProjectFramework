@@ -8,7 +8,7 @@ How to use it:
 
 1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
-3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session Envelope]`, and `[Goal]` cover status, paths, upgrades, bounded session work, and persistent cross-chat outcomes. Every governed response ends with a fixed close: `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session Envelope]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
 
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
@@ -52,6 +52,16 @@ A Framework may be operationally usable without an immutable tag, exact commit p
 - **Cross-chat resume** — a fresh Agent resolves `PROJECT-BOOTSTRAP → 00 → 01 → 03 → 09 → OUT/AUTH/ACT/ENV`, then fresh-checks mutable prerequisites before continuing.
 - **Authority stays canonical** — Handoff has `authority_transfer: false`; actual secret values remain forbidden; higher-level system/tool/platform gates still apply.
 - **Outcome evidence** — `ACT DONE ≠ OUT ACHIEVED`; every Goal success criterion needs sufficient evidence.
+
+## Framework 1.8.0 `[Meeting]` Advisory Council Command
+
+`[Meeting]` convenes a verified multi-model advisory council for an explicit question while keeping external-provider reasoning separate from Project authority.
+
+- **Minimum outbound context** — the explicit Meeting question is the default payload; additional Project context is minimum-necessary and separately disclosure-authorized; secret values remain prohibited.
+- **Preserve disagreement** — results keep independent views, agreement/disagreement, peer-review signal, synthesis, and limitations instead of manufacturing consensus.
+- **Advice, not authority** — council majority/ranking/Chairman output never becomes automatic User Approval, `AUTH-*`, `DEC-*`, `REQ-*`, Risk acceptance, or mutation permission.
+- **Partial truth** — missing models/stages, Chairman failure, and provider/auth/network failures remain explicit; no synthesis is fabricated.
+- **Material evidence only when needed** — material use may be preserved through existing `EVD-*`; no `MEETING-*` family exists and provider conversation JSON is not Project history.
 
 ## Framework 1.8.0 Framework-Source Naming
 

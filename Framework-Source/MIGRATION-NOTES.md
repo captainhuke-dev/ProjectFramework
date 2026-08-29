@@ -9,12 +9,13 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 ### Affected distribution surfaces
 
 - repository package root — canonical upstream distribution path changes from `managing-project-source/` to `Framework-Source/`; no live old-root alias remains
-- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves through TASK-038 distribution-root migration to TASK-039 persistent `[Goal]` command semantics
+- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves through TASK-038 distribution-root migration and TASK-039 persistent `[Goal]` semantics to TASK-024 `[Meeting]` advisory semantics
 - current Core Governance / SKILL / README / launcher and maintained starter routing — current reusable Framework path is `Framework-Source/`
 - `12 Authorization Registry`, `15 Action Registry`, conditional `91 Project Management Control`, `03 Current State`, and `09 Handoff` starters — persistent Goal uses `OUT-* / AUTH-* / ACT-* / ENV-*` with `authority_transfer: false`; no `GOAL-*` family
+- `13 Evidence Registry` and command/help surfaces — material Meeting use may persist as advisory `EVD-*`; no `MEETING-*` family, provider JSON authority, automatic conversation, credential, runtime, or disclosure authority is introduced
 - historical amendments/specs/plans/evidence — old-path text remains historical provenance when it was true at capture time; do not globally rewrite it
 - ProjectFramework's own current Project Source — reconcile current distribution-location statements through governed revisions without auto-upgrading its local Framework pin
-- `tests/pressure-scenarios.md` — scenarios 181–188 cover distribution-root migration; 189–211 cover persistent Goal syntax, resume, authority boundaries, conflicts, cancellation, evidence, and higher-level gates
+- `tests/pressure-scenarios.md` — scenarios 181–188 cover distribution-root migration; 189–211 cover persistent Goal; 212–227 cover `[Meeting]` brackets/context disclosure, advisory authority, partial failures, provider drift/evidence, Goal/ENV separation, Brownfield safety, and optional runtime semantics
 
 ### Upgrade checklist
 
@@ -29,6 +30,12 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 10. Preserve existing `OUT-*`, `AUTH-*`, `ACT-*`, and `ENV-*` records. TASK-039 adds composition semantics; it does not migrate them into a `GOAL-*` family.
 11. If `[Goal]` is explicitly adopted, materialize/resolve Goal `OUT-*` and `AUTH-*` through their canonical homes; conditional `91` becomes applicable only when Goal/outcome truth is material.
 12. Default local Goal authority may cover bounded local development unless narrowed; push, destructive actions, Root/Binding mutation, and external disclosure remain exact opt-ins and higher-level controls still apply.
+13. Do **not** synthesize a Meeting from prior AI transcripts, backlog, Handoff, existing `EVD-*`, or provider conversation JSON. `[Meeting]` begins only from an explicit bracketed invocation under the active contract.
+14. Treat the explicit Meeting question as the default outbound payload. Additional Project context remains minimum-necessary and separately disclosure-authorized; actual secret values remain prohibited.
+15. Preserve existing external-AI/evidence records. Material Meeting use may reference/persist advisory `EVD-*`; do not migrate provider JSON into Project Source or create `MEETING-*` records.
+16. Council majority/ranking/Chairman synthesis remains advisory and never becomes automatic approval, `AUTH-*`, `DEC-*`, `REQ-*`, Risk acceptance, or mutation authority.
+17. Governance adoption does not require installing/running llm-council, provisioning OpenRouter credentials, or creating conversations. Provider runtime remains optional/applicability-driven.
+18. `[Goal]` / `ENV-*` execution authority does not imply outbound Project-context disclosure authority for `[Meeting]`.
 8. Verify affected scope and run one final `RELEASE_FULL` on the unchanged target candidate before promoting the upgrade.
 
 ---
