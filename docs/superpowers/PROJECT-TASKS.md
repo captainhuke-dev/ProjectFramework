@@ -153,3 +153,25 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** `TBD_BY_DESIGN` (architectural change; do not pre-assign release version before design review)
 - **Completion criteria:** User-approved design defines bootstrap file schema, authority boundary, discovery/read algorithm, vendor adapter rules, GREENFIELD behavior, Brownfield upgrade/migration behavior, failure handling, affected Framework surfaces, and verification strategy before any implementation begins.
 - **Exact Next Step:** Prepare the TASK-023 architectural design spec for `PROJECT-BOOTSTRAP.md`; do not implement until the written spec is reviewed and explicitly approved.
+
+## Task #24 — `[Meeting]` LLM Council Command
+
+- **ID:** `TASK-024`
+- **Status:** `TODO`
+- **Type:** Framework command / multi-model advisory council integration
+- **Source Repository:** `https://github.com/captainhuke-dev/llm-council`
+- **Problem:** ProjectFramework currently has no standard Project command for convening a multi-model LLM council when a decision benefits from independent perspectives, structured peer review, disagreement surfacing, and a synthesized recommendation.
+- **Approved direction:** Register `[Meeting]` as the user-facing command for convening the LLM Council associated with the referenced repository.
+- **Scope:**
+  1. Define `[Meeting]` command semantics for providing a meeting topic/question plus the minimum relevant Project context.
+  2. Define the council workflow and result contract so outputs distinguish individual/independent views, areas of agreement, disagreements, blind spots/risks, and the final synthesized recommendation.
+  3. Treat council output as **ADVISORY evidence only**. A council recommendation does not become Project Authority, Decision, approval, or permission to mutate Project state automatically.
+  4. Preserve existing ProjectFramework governance: any recommendation that would change requirements, architecture, implementation, bindings, risk posture, or other governed truth still follows the applicable approval/Decision workflow.
+  5. Before implementation, inspect and verify the current `captainhuke-dev/llm-council` fork directly and bind the design to its observed interfaces/workflow; do not infer implementation details solely from upstream or prior knowledge.
+  6. Define failure behavior for unavailable council models/services, partial responses, disagreement, and inability to reach a synthesized recommendation without fabricating consensus.
+  7. Define what meeting artifacts, if any, should be persisted or referenced as evidence without duplicating canonical Project truth.
+- **Implementation boundary:** Task registration only. Do not add `[Meeting]` to Framework commands, launchers, templates, MCP/runtime integration, or automation until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN`
+- **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
+- **Exact Next Step:** Wait for further requirements; when TASK-024 is selected for development, inspect the referenced llm-council repository directly and prepare its architectural design spec before implementation.
