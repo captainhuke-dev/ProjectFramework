@@ -150,7 +150,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design constraints:** The Framework must not claim that every LLM can discover a Project without filesystem/repository access. The success boundary is: once an agent can access the Project root, Project contents alone are sufficient to discover and follow the canonical bootstrap path without requiring vendor-specific Project Settings.
 - **Implementation boundary:** Task registration only. Do not modify Framework semantics, root/template files, launchers, schema, runtime, MCP behavior, or existing Projects until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN` (architectural change; do not pre-assign release version before design review)
+- **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** User-approved design defines bootstrap file schema, authority boundary, discovery/read algorithm, vendor adapter rules, GREENFIELD behavior, Brownfield upgrade/migration behavior, failure handling, affected Framework surfaces, and verification strategy before any implementation begins.
 - **Exact Next Step:** Prepare the TASK-023 architectural design spec for `PROJECT-BOOTSTRAP.md`; do not implement until the written spec is reviewed and explicitly approved.
 
@@ -172,7 +172,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Define what meeting artifacts, if any, should be persisted or referenced as evidence without duplicating canonical Project truth.
 - **Implementation boundary:** Task registration only. Do not add `[Meeting]` to Framework commands, launchers, templates, MCP/runtime integration, or automation until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
 - **Exact Next Step:** Wait for further requirements; when TASK-024 is selected for development, inspect the referenced llm-council repository directly and prepare its architectural design spec before implementation.
 
@@ -195,7 +195,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   8. Preserve source-derived terminology and provenance from the `llm-wiki` concept where adopted, but do not copy its implementation assumptions blindly into ProjectFramework governance.
 - **Implementation boundary:** Task registration only. Do not create a wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, runtime automation, or Project Knowledge files until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN`
+- **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
 - **Exact Next Step:** Wait for further requirements; when TASK-025 is selected for development, prepare its architectural design spec before implementation.
 
@@ -215,7 +215,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Define failure behavior for unknown classification, mixed-sensitivity context, unavailable provider policy, and redaction uncertainty.
 - **Implementation boundary:** Task registration only. Do not add disclosure automation, provider routing, redaction runtime, external calls, or new secret storage until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** Wait for further requirements; when TASK-026 is selected for development, prepare its architectural design spec before implementation.
 
@@ -235,7 +235,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Preserve explicit user/shared-state gates such as push, destructive actions, secrets, and governed approvals regardless of tool profile.
 - **Implementation boundary:** Task registration only. Do not modify `.lnwjud`, MCP runtime, project profiles, tool routing, launchers, or existing Projects until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN`
+- **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** Wait for further requirements; when TASK-027 is selected for development, prepare its architectural design spec before implementation.
 
@@ -255,7 +255,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Define partial/unknown behavior when required sources or runtime evidence cannot be read.
 - **Implementation boundary:** Task registration only. Do not register `[Project Audit]`, add validators/CLI/runtime scanners, or mutate existing Framework surfaces until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN`
+- **Target Release:** Framework `1.10.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** Wait for further requirements; when TASK-028 is selected for development, prepare its command/design spec before implementation.
 
@@ -275,6 +275,167 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Define behavior for stale/orphan/conflicted relations, unavailable target Projects, merges/splits, and Brownfield Projects without `92`.
 - **Implementation boundary:** Task registration only. Do not add `[Impact]` or another command, graph traversal runtime, OpenViking automation, cross-Project mutation, or notification mechanism until a separate design spec is completed and explicitly approved.
 - **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** `TBD_BY_DESIGN`
+- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** Wait for further requirements; when TASK-029 is selected for development, prepare its architectural design spec before implementation.
+
+## Task #30 — Cross-Project Relation Reconciliation
+
+- **ID:** `TASK-030`
+- **Status:** `TODO`
+- **Type:** Framework architecture / federated Project-relation lifecycle governance
+- **Problem:** Framework 1.6.0 defines `REL-*` assertions and `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`, but it does not yet define a complete workflow for discovering, requesting, validating, and revalidating compatible reciprocal assertions across Projects.
+- **Approved direction:** Define a relation-reconciliation contract that preserves each Project's authority while allowing evidence-based corroboration and explicit conflict handling.
+- **Scope:**
+  1. Define counterpart discovery and reciprocal-compatibility checks for applicable core relation types.
+  2. Define corroboration request/review semantics without synthesizing another Project's authoritative assertion.
+  3. Define endpoint UUID, evidence, freshness, and review requirements for `CORROBORATED`.
+  4. Define `CONFLICTED` behavior when authoritative assertions cannot be reconciled.
+  5. Define stale/unavailable counterpart behavior without auto-retiring valid local assertions.
+  6. Preserve OpenViking/AI-ControlTower as `DERIVED_ONLY` traversal/index assistance, never relation authority.
+  7. Reuse existing `DRIFT-*`, `CONFLICT-*`, and `MIG-*` families when material.
+- **Implementation boundary:** Task registration only. Do not add reconciliation runtime, cross-Project writes, graph sync, notifications, or automatic reciprocal assertions until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines counterpart discovery, reciprocal compatibility, corroboration/conflict lifecycle, evidence/freshness, unavailable/stale handling, authority boundaries, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-030 is selected, prepare its architectural design spec before implementation.
+
+## Task #31 — Project Event & Notification Contract
+
+- **ID:** `TASK-031`
+- **Status:** `TODO`
+- **Type:** Framework architecture / governed Project event and notification semantics
+- **Problem:** Audit, impact analysis, dependency failures, relation changes, risks, and other material events may require attention, but ProjectFramework does not yet define when an event is notification-worthy, who should be informed, or how delivery/acknowledgement relates to Project authority.
+- **Approved direction:** Define a vendor-neutral event/notification governance contract while keeping notification delivery separate from approval and mutation authority.
+- **Scope:**
+  1. Define notification-worthy event categories and severity/urgency semantics.
+  2. Define recipient/owner resolution, acknowledgement, escalation, and deduplication behavior.
+  3. Define notification provenance/evidence sufficient to know what was signaled and why.
+  4. Define failure behavior for unresolved recipients, unavailable delivery channels, repeated events, and stale notifications.
+  5. Preserve `notification ≠ approval` and `notification ≠ authority`.
+  6. Define integration boundaries with TASK-028 Audit, TASK-029 Impact Analysis, TASK-030 Relation Reconciliation, and existing `RISK-* / ISS-* / DRIFT-* / CONFLICT-*` semantics.
+- **Implementation boundary:** Task registration only. Do not create email/Slack/webhook delivery, schedulers, watchers, or notification automation until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines event eligibility, severity, recipient/ack/escalation semantics, deduplication, failure handling, evidence, authority separation, integration boundaries, and verification strategy.
+- **Exact Next Step:** When TASK-031 is selected, prepare its architectural design spec before implementation.
+
+## Task #32 — Governed Project Repair / Remediation
+
+- **ID:** `TASK-032`
+- **Status:** `TODO`
+- **Type:** Framework workflow / integrity remediation governance
+- **Problem:** TASK-028 intentionally preserves `Audit finds ≠ Audit fixes`; ProjectFramework therefore needs a separate governed workflow for proposing and executing repairs after integrity, drift, stale-reference, binding, or continuity findings.
+- **Approved direction:** Define a repair/remediation contract that converts findings into bounded, reversible, authority-checked remediation work without automatic semantic repair.
+- **Scope:**
+  1. Define remediation proposal structure, affected scope, risk classification, prerequisites, and ownership.
+  2. Define authority/approval requirements and sequencing for repair actions.
+  3. Define rollback/reversibility and post-repair verification.
+  4. Define when semantic conflicts require explicit Decision/approval instead of repair automation.
+  5. Define post-remediation re-audit or resulting-state confirmation behavior.
+  6. Reuse existing `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, and `ACT-*` homes rather than creating parallel authoritative issue families.
+- **Implementation boundary:** Task registration only. Do not register a repair command, auto-fix Project Source, migrate automatically, push, or mutate external/shared state until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.10.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-032 is selected, prepare its workflow/design spec before implementation.
+
+## Task #33 — Task Dependency & Portfolio Planning
+
+- **ID:** `TASK-033`
+- **Status:** `TODO`
+- **Type:** Framework development workflow / backlog dependency and prioritization contract
+- **Problem:** The durable Task source records lifecycle state but does not yet provide a standard model for Task-to-Task dependencies, blockers, enablers, parallelism, priority, or readiness across the ProjectFramework roadmap.
+- **Approved direction:** Define a bounded Task planning contract so agents can determine sequencing and safe parallel work without conflating development-task relationships with Project Source `DEP-*` management objects.
+- **Scope:**
+  1. Define Task relationship semantics such as Depends On, Blocks, Enables, and Parallelizable With.
+  2. Define priority/readiness and dependency-resolution rules without inventing dependencies from proximity or numbering.
+  3. Distinguish Task/backlog dependency metadata from canonical Project-management `DEP-*` semantics.
+  4. Define behavior for circular, stale, cancelled, superseded, or unknown dependencies.
+  5. Define how planning should expose a recommended execution order while preserving user authority to reprioritize.
+  6. Keep scheduling/automation out of scope unless separately authorized.
+- **Implementation boundary:** Task registration only. Do not add schedulers, automatic task execution, agent orchestration, or rewrite existing Task history until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-033 is selected, prepare its workflow/design spec before implementation.
+
+## Task #34 — Agent / Model Capability Profile
+
+- **ID:** `TASK-034`
+- **Status:** `TODO`
+- **Type:** Framework architecture / agent and model capability governance
+- **Problem:** TASK-027 can govern which tools/MCPs a Project prefers, but ProjectFramework does not yet define which agent/model capability classes are appropriate for different work, context, disclosure, or review requirements.
+- **Approved direction:** Define a vendor-neutral Agent/Model Capability Profile while preserving the invariant `Capability ≠ Authority`.
+- **Scope:**
+  1. Define capability classes for reasoning, coding, research, review, council participation, and other applicable roles without binding to one vendor.
+  2. Define local/external provider distinctions and relevant context/tool/disclosure constraints.
+  3. Define capability eligibility and required review for sensitive or high-risk work.
+  4. Preserve `Capability ≠ Authority`: model fitness never grants mutation, approval, deployment, disclosure, or binding authority.
+  5. Define unavailable/degraded capability and fallback behavior.
+  6. Define integration boundaries with TASK-024 `[Meeting]`, TASK-026 Disclosure Governance, and TASK-027 Tool/MCP Execution Profile.
+- **Implementation boundary:** Task registration only. Do not add model routing, provider calls, automatic delegation, runtime selection, or permission grants until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-034 is selected, prepare its architectural design spec before implementation.
+
+## Task #35 — Project Release / Publication Contract
+
+- **ID:** `TASK-035`
+- **Status:** `TODO`
+- **Type:** Framework release / publication lifecycle governance
+- **Problem:** ProjectFramework distinguishes `commit ≠ push` and has verification/integration semantics, but it does not yet define one standard lifecycle separating implementation completion, merge, remote publication, release, artifact publication, and deployment.
+- **Approved direction:** Define a release/publication contract that makes each publication state explicit and evidence-backed without making immutable tags or deployment universal prerequisites.
+- **Scope:**
+  1. Define distinctions among Task DONE, MERGED, PUSHED/PUBLISHED, RELEASED, artifact publication, and DEPLOYED states.
+  2. Define Release Candidate identity, required evidence, approval, and resulting-state confirmation.
+  3. Define optional tag/artifact/repository assurance without fabricating provenance or making optional assurance mandatory.
+  4. Define release rollback, retraction/supersession, and failed/partial publication behavior.
+  5. Define relationship with `RELEASE_FULL`, `INTEGRATION_GATE`, Change Log, and Task completion evidence.
+  6. Preserve release/publication authority as separate from implementation authority.
+- **Implementation boundary:** Task registration only. Do not create CI/CD, release bots, package publishers, deployment automation, tags, or remote pushes until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.12.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-035 is selected, prepare its release/publication design spec before implementation.
+
+## Task #36 — Project Change/Event History Feed
+
+- **ID:** `TASK-036`
+- **Status:** `TODO`
+- **Type:** Framework architecture / bounded derived Project change projection
+- **Problem:** Cross-Project indexing, Project Knowledge, and impact reasoning should not need to rescan the entire Project to determine what changed since a prior observation, while `10 Change Log` and authoritative Git/Project Source must remain the real history sources.
+- **Approved direction:** Define a rebuildable bounded change/event feed as a derived projection with durable source pointers, never as a new authority.
+- **Scope:**
+  1. Define change-feed entries for changed Stable IDs, documents/surfaces, relation records, lifecycle state, and evidence pointers when material.
+  2. Define incremental `since`/checkpoint semantics and ordering without replacing authoritative history.
+  3. Define rebuildability from Project Source/history and behavior when feed state is stale, missing, or corrupted.
+  4. Define integration boundaries with TASK-025 Project Knowledge, AI-ControlTower/OpenViking, and TASK-029 Impact Analysis.
+  5. Preserve derived-feed data as non-authoritative routing/index evidence.
+  6. Define retention/bounding behavior sufficient for incremental consumers without creating an unbounded execution log.
+- **Implementation boundary:** Task registration only. Do not create watchers, crawlers, webhooks, change daemons, indexing runtimes, or background automation until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines feed identity/schema, delta/checkpoint semantics, rebuildability, stale/corrupt handling, bounded retention, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-036 is selected, prepare its architectural design spec before implementation.
+
+## Task #37 — Security & Trust Boundary Contract
+
+- **ID:** `TASK-037`
+- **Status:** `TODO`
+- **Type:** Framework architecture / Project security and trust-boundary governance
+- **Problem:** TASK-026 governs outbound AI disclosure, but Project security also spans repositories, runtimes, external services, MCPs, artifacts, code execution, supply-chain inputs, and privileged environments.
+- **Approved direction:** Define a Project-level Security & Trust Boundary contract that complements existing secret/disclosure/authority rules without introducing a security runtime by implication.
+- **Scope:**
+  1. Define trust-boundary vocabulary for trusted, limited-trust, untrusted, privileged, and external surfaces as appropriate to design review.
+  2. Define rules for data, code, artifacts, and execution crossing trust boundaries.
+  3. Define provenance, review, approval, and evidence expectations for material boundary crossings.
+  4. Preserve `17 Secret Reference Registry` and TASK-026 disclosure rules; do not duplicate secret values or disclosure authority.
+  5. Define integration with Repository/Local Workspace/Runtime authority, external services, MCP/tool profiles, and agent/model capability profiles.
+  6. Define unknown/unclassified trust behavior as fail-closed for materially sensitive actions.
+- **Implementation boundary:** Task registration only. Do not add scanners, sandbox enforcement, policy engines, supply-chain automation, runtime isolation, or external security services until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** When TASK-037 is selected, prepare its architectural design spec before implementation.
