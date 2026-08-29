@@ -97,6 +97,7 @@ Framework distribution artifacts exist outside the Project Source semantic names
 
 ```text
 managing-project-source/FRAMEWORK-RELEASE.yaml
+managing-project-source/templates/PROJECT-BOOTSTRAP.md
 managing-project-source/CHATGPT-PROJECT-INSTRUCTIONS.md
 managing-project-source/CLAUDE-PROJECT-INSTRUCTIONS.md
 ```
@@ -110,6 +111,33 @@ ProjectFramework is a **conceptual Project governance and planning framework fir
 A technical or integrity requirement does not implicitly authorize executable implementation. Unless the user explicitly requests a separate implementation scope, do not create application code, Dockerfile, Compose/Kubernetes/Helm runtime artifacts, installer scripts, validator, CLI, CI/CD, migration engine, scheduler, background automation, dashboard, or runtime enforcement merely because a rule can be checked or implemented mechanically.
 
 A real Project's current Project Source may document concrete verified commands, paths, ports, configuration keys, or operating procedures when those are actual Project truth. ProjectFramework itself does not invent executable commands for nonexistent software.
+
+### 2.1.1 Framework 1.7 Project Root Bootstrap Semantics
+
+Framework `1.7.0` standardizes `<Project-Root>/PROJECT-BOOTSTRAP.md` as the stable vendor-neutral discovery entrypoint for NEW Projects created under `1.7.0+`. The maintained distribution template is `templates/PROJECT-BOOTSTRAP.md`.
+
+`PROJECT-BOOTSTRAP.md` is a discovery/locator artifact outside the `00–99` semantic-slot namespace. It has no Stable ID, owns no Project truth, and never replaces or outranks active `Project-Source/00` / `FRAMEWORK-001`.
+
+Once Project-root access exists, the canonical route is:
+
+```text
+PROJECT-BOOTSTRAP.md
+→ 00 / FRAMEWORK-001
+→ 01 / Project Source Index
+→ 03 / Current State
+→ task-specific routing
+→ 09 / Handoff when continuation applies
+```
+
+Validate the referenced `00` as active `FRAMEWORK-001` before treating it as authority. `01`, `03`, and `09` retain their existing canonical homes; the root bootstrap never duplicates their current payloads.
+
+Keep bootstrap discovery separate from Project Location Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime Location, Authority, and Risk. Correct discovery location grants none of those permissions or authorities.
+
+For GREENFIELD `1.7.0+`, the resulting approved Project MUST contain the root bootstrap. Existing initialized Projects MUST NOT receive it automatically; adoption is through governed `[Project Upgrade]` or another explicitly authorized root migration/repair flow. A pre-1.7 Project without the file is not invalid merely because upstream has advanced.
+
+`PROJECT-CONFIG.md`, when present, remains an optional Bootstrap Location reference only. ChatGPT/Claude Project Settings, `AGENTS.md`, `CLAUDE.md`, and similar vendor surfaces are optional thin discovery adapters after Project-root access exists.
+
+A missing target, invalid referenced `FRAMEWORK-001`, multiple canonical root bootstrap claims, or material contradiction with active Root/Location Binding fails closed for affected Material mutation. Read-only discovery may continue far enough to diagnose, but recency, ranking, cached paths, workspace IDs, or similar-name heuristics never resolve the ambiguity. The Framework does not claim root discovery when the Agent has no filesystem/repository access.
 
 
 ### 2.2 Bootstrap Location Semantics

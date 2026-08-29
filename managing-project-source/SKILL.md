@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.6.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.7.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260828-task022.md` — latest amendment: Federated Project Graph + OpenViking relation governance (current authority)
+- `references/framework-governance-amendment-260829-task023.md` — latest amendment: Self-Bootstrapping Project Contract (current authority)
+- `references/framework-governance-amendment-260828-task022.md` — previous amendment: Federated Project Graph + OpenViking relation governance
 - `references/framework-governance-amendment-260825-task021.md` — previous amendment: ChatGPT→MCP Continuity
 - `references/framework-governance-amendment-260823-1439.md` — Direct-to-Latest upgrade semantics
 - `references/framework-governance-amendment-260823-0816.md` — Framework 1.3.0 command contract
@@ -36,6 +37,8 @@ Before creating or materially changing Project Source, read (each entry notes wh
 - `references/framework-governance-amendment-260814-0808.md` (historical approved amendment)
 - `references/core-governance-rules.md` — the full normative rulebook (deepest authority below amendments)
 - `MIGRATION-NOTES.md` — per-release upgrade guidance (routing aid, not normative authority)
+- `templates/PROJECT-BOOTSTRAP.md` — maintained Project-root discovery template for Framework `1.7.0+` GREENFIELD/adoption
+- `templates/project-location-bootstrap.md` — pre-authority environment/location locator template; distinct from Project-root bootstrap
 - `templates/00-project-source-framework.md` — root template for document `00`
 - `templates/core-document-skeletons.md` — skeletons for mandatory documents
 - `templates/project-source-mockup/README.md` — starter tree overview
@@ -43,16 +46,20 @@ Before creating or materially changing Project Source, read (each entry notes wh
 
 Historical spec/design files are rationale only. Latest Framework amendment wins on conflict.
 
-## Platform Project Bootstrap Entrypoints
+## Project Bootstrap Entrypoints
 
-Official platform launchers:
+Framework `1.7.0+` NEW Projects use stable `<Project-Root>/PROJECT-BOOTSTRAP.md` as the vendor-neutral discovery entrypoint. The Framework template is `templates/PROJECT-BOOTSTRAP.md`; it routes `PROJECT-BOOTSTRAP.md → 00 → 01 → 03`, then task-specific sources, and `09` when continuation applies. It is a locator only; valid active `FRAMEWORK-001` remains authority.
+
+Existing initialized Projects do not acquire the file automatically. Brownfield adoption is through governed `[Project Upgrade]`. Optional `PROJECT-CONFIG.md` remains a Bootstrap Location reference only.
+
+Official platform adapters are:
 
 - `CHATGPT-PROJECT-INSTRUCTIONS.md`
 - `CLAUDE-PROJECT-INSTRUCTIONS.md`
 
-Their text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` MUST remain byte-identical. Platform wrappers may differ only in placement instructions. Launcher compaction policy: each complete launcher stays `<=4,500` Unicode characters. Prose explanations may be compacted; canonical tokens, registered commands, lifecycle values, report labels, response-close fields, and marker identity must never be compacted, renamed, or dropped, and shared marker bodies remain byte-identical. Launchers are bootstrap/continuation helpers, never a competing governance root.
+Once Project-root access exists, platform Project Settings plus `AGENTS.md` / `CLAUDE.md` are optional thin discovery adapters. The official launchers retain legacy/pre-1.7 discovery compatibility. Text between `PROJECTFRAMEWORK-SHARED-CONTRACT:START` and `PROJECTFRAMEWORK-SHARED-CONTRACT:END` MUST remain byte-identical. Each complete launcher stays `<=4,500` Unicode characters; canonical tokens, registered commands, lifecycle values, report labels, response-close fields, and marker identity must never be renamed or dropped. Launchers never outrank Root Governance.
 
-If active local `FRAMEWORK-001` exists, local pinned Project Source is authoritative. NEW Project bootstrap begins from canonical repository `main`. Exact Git tag/SHA and branch protection are optional assurance, not normal-use prerequisites.
+If active local `FRAMEWORK-001` exists, local pinned Project Source is authoritative. NEW Project Framework bootstrap begins from canonical repository `main`, and the approved resulting `1.7.0+` Project materializes the root bootstrap. Exact Git tag/SHA and branch protection remain optional assurance.
 
 ## Framework 1.2.4 Project Location Binding
 

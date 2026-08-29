@@ -1,6 +1,6 @@
 # Project Location Bootstrap Preamble
 
-Use this copyable Project/environment configuration **before active `FRAMEWORK-001` authority is resolved** when deterministic discovery/routing locators are needed. This file is a distribution/bootstrap artifact outside the `00–99` Project Source semantic-slot namespace. It is **not** `FRAMEWORK-001`, Root Governance, or a second Project Location Binding.
+Use this copyable Project/environment configuration **before active `FRAMEWORK-001` authority is resolved** when deterministic environment/location discovery locators are needed. This distribution artifact is outside the `00–99` Project Source semantic-slot namespace. It is **not** `FRAMEWORK-001`, Root Governance, a second Project Location Binding, or the Framework `1.7.0+` Project-root `PROJECT-BOOTSTRAP.md` discovery entrypoint.
 
 ## Project Settings Representation
 
@@ -75,7 +75,7 @@ On `[Project Path]` (case-insensitive inside brackets):
 5. A Material mismatch fails closed for the affected mutation. Do not silently rewrite Project Settings, a repo reference, or `FRAMEWORK-001`.
 6. If the user explicitly requests a path change, distinguish one-off action targeting from persistent configuration/binding change; persistent governed changes retain explicit approval plus applicable `FRAMEWORK-001` revision/validate/promote/history flow.
 
-## Optional Repo-Native Reference
+## Optional / Legacy Repo-Native Location Reference
 
 For repo-native entry that does not begin in GPT/Claude Project Settings, the same configured values MAY be mirrored at:
 
@@ -83,7 +83,7 @@ For repo-native entry that does not begin in GPT/Claude Project Settings, the sa
 <repo-root>/PROJECT-CONFIG.md
 ```
 
-`PROJECT-CONFIG.md` is an optional portable bootstrap/reference representation only. It is not a semantic slot, not Root Governance, and never overrides active `FRAMEWORK-001`. Do not store secrets in it. When Project Settings and `PROJECT-CONFIG.md` disagree before active governance resolves, surface the mismatch rather than choosing by recency. After valid active `FRAMEWORK-001` resolves, its governed Project Location Binding remains authoritative.
+`PROJECT-CONFIG.md` is an optional/legacy portable **location-reference** representation only. It is not the canonical Project-root discovery entrypoint introduced in Framework `1.7.0`; that role belongs to `<Project-Root>/PROJECT-BOOTSTRAP.md`. `PROJECT-CONFIG.md` is not a semantic slot, not Root Governance, and never overrides active `FRAMEWORK-001`. Do not store secrets in it. When Project Settings, `PROJECT-CONFIG.md`, root bootstrap, and active governance disagree materially, surface the mismatch rather than choosing by recency. After valid active `FRAMEWORK-001` resolves, its governed Project Location Binding remains authoritative.
 
 ## Semantics
 
