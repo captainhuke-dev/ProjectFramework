@@ -455,7 +455,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
 - **ID:** `TASK-038`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / distribution-root naming and migration governance
 - **Problem:** The Framework distribution currently lives under `managing-project-source/`, while governed Project truth lives under `Project-Source/`. Once ProjectFramework itself adopts its own `Project-Source/`, those names are too easy for Humans/Agents to conflate, weakening the distinction between Framework distribution source and Project-specific governance source.
 - **Approved direction:** Rename the canonical Framework distribution root to `Framework-Source/` so the repository has an explicit paired distinction: `Framework-Source/` = reusable Framework distribution; `Project-Source/` = authoritative governance/current truth for one Project.
@@ -472,11 +472,20 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-08-29-task038-framework-source-rename-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task038-framework-source-rename.md`
-- **Plan State:** `IMPLEMENTATION_PLAN_READY / USER_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
 - **Design Approval:** User explicitly selected `Framework-Source/` vs `Project-Source/` naming and authorized continuous development without repeated approval prompts on `2026-08-29`; push/publication remains separately governed.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if repository-path compatibility requires a different release classification)
 - **Completion criteria:** A user-approved design defines canonical directory naming, Framework-vs-Project authority separation, current/historical path classification, migration/backward-compatibility behavior, affected surfaces, sequencing within 1.8.0, rollback, and verification strategy before any rename occurs.
-- **Exact Next Step:** Execute Task 1 of the approved TASK-038 implementation plan: fresh-check base state, capture historical hash baselines, and add RED scenarios 181–188.
+- **Implementation Release:** Framework `1.8.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `80ac496`, `fb24141`, `5757660`, `d068914`, `3c053be`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-29-task-038-framework-source-rename-release-full.md`
+- **Verification Result:** `AFFECTED 74/74 PASS; RELEASE_FULL 198/198 PASS`
+- **Candidate Commit:** `d068914e5fdc12eb9055ff5bae28cf57962495b4`
+- **Candidate Tree:** `f6c6bba9113308d60354112245f4d7574a350191`
+- **Framework-Source Tree:** `5e254140867195c37a2eef9ce6aadb03890af858`
+- **Completion criteria met:** one canonical `Framework-Source/`; no live old-root alias; current routes/starter/launcher surfaces aligned; historical path provenance preserved; ProjectFramework active Project Source reconciled without auto-upgrading its local Framework `1.7.0` pin; scenarios `1–188`; AFFECTED and final unchanged-candidate RELEASE_FULL passed.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #39 — `[Goal]` Persistent Continuous Goal Execution Command
 
@@ -507,7 +516,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Design Approval:** User explicitly authorized continuous TASK-039 development without repeated approval prompts on `2026-08-29`; higher-level system/tool/platform gates and TASK-038 sequencing remain binding.
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`
-- **Plan State:** `IMPLEMENTATION_PLAN_READY / EXECUTION_BLOCKED_BY_TASK-038`
+- **Plan State:** `IMPLEMENTATION_PLAN_READY / EXECUTION_UNBLOCKED_BY_TASK-038`
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if the final authorization/lifecycle contract requires a breaking schema change)
 - **Completion criteria:** A user-approved design defines command syntax, persistent Goal representation, OUT/AUTH/ACT/ENV/09 composition, local-development pre-authorization, push/destructive/root-binding/secret-disclosure boundaries, lifecycle/resume/revocation/conflict behavior, outcome evidence, platform-boundary limitations, affected Framework surfaces, migration behavior, and verification strategy before implementation begins.
-- **Exact Next Step:** Complete TASK-038 first; after `Framework-Source/` is canonical and TASK-038 is `DONE`, execute the approved TASK-039 implementation plan without re-requesting Framework-level approval already covered by the user's continuous TASK-039 authorization.
+- **Exact Next Step:** Execute Task 1 of `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`: verify TASK-038 DONE, `Framework-Source/` release identity, and fresh Git/base state; then add RED scenarios 189–211.
