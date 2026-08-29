@@ -8,7 +8,7 @@ It is a **discovery/locator artifact only**. It is not a Project Source semantic
 
 ```text
 Project Source Root: Project-Source/
-First Read: Project-Source/00-Project-Source-Framework-r001-260829-1707.md
+First Read: Project-Source/00-Project-Source-Framework-r002-260829-1901.md
 ```
 
 If this Project uses a different approved relative Project Source path, replace the two values above during governed creation/upgrade. Do not infer a different path from recency, search ranking, active workspace IDs, mounts, or similarly named directories.
@@ -16,10 +16,10 @@ If this Project uses a different approved relative Project Source path, replace 
 ## Active Project Source Files
 
 ```text
-00 / FRAMEWORK-001 -> Project-Source/00-Project-Source-Framework-r001-260829-1707.md
-01 / Project Source Index -> Project-Source/01-Project-Source-Index-r001-260829-1707.md
-03 / Current State -> Project-Source/03-Current-State-r001-260829-1707.md
-09 / Handoff -> Project-Source/09-Handoff-r001-260829-1707.md
+00 / FRAMEWORK-001 -> Project-Source/00-Project-Source-Framework-r002-260829-1901.md
+01 / Project Source Index -> Project-Source/01-Project-Source-Index-r002-260829-1901.md
+03 / Current State -> Project-Source/03-Current-State-r002-260829-1901.md
+09 / Handoff -> Project-Source/09-Handoff-r002-260829-1901.md
 ```
 
 ## Required Read Order
