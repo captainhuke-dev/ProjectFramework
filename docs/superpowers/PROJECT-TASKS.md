@@ -471,10 +471,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation boundary:** Task registration only. Do not rename/move `managing-project-source/`, rewrite current paths, alter historical evidence/specs, create compatibility aliases, or update external Projects until a separate design spec is completed and explicitly approved.
 - **Design Spec:** `docs/superpowers/specs/2026-08-29-task038-framework-source-rename-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task038-framework-source-rename.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_READY / USER_CONTINUOUS_EXECUTION_APPROVED`
 - **Design Approval:** User explicitly selected `Framework-Source/` vs `Project-Source/` naming and authorized continuous development without repeated approval prompts on `2026-08-29`; push/publication remains separately governed.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if repository-path compatibility requires a different release classification)
 - **Completion criteria:** A user-approved design defines canonical directory naming, Framework-vs-Project authority separation, current/historical path classification, migration/backward-compatibility behavior, affected surfaces, sequencing within 1.8.0, rollback, and verification strategy before any rename occurs.
-- **Exact Next Step:** Prepare the TASK-038 architectural migration design before starting other Framework 1.8.0 implementation that would create new `managing-project-source/` references.
+- **Exact Next Step:** Execute Task 1 of the approved TASK-038 implementation plan: fresh-check base state, capture historical hash baselines, and add RED scenarios 181–188.
 
 ## Task #39 — `[Goal]` Persistent Continuous Goal Execution Command
 
