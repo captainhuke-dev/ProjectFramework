@@ -888,6 +888,8 @@ Before emit, every Framework-governed assistant response MUST run a lightweight 
 ### 16.4 Registered Project Command Contract
 
 Framework `1.3.1` extends the Framework `1.3.0` semantic command registry for common Project inspection and governed upgrade entry. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service, updater, or other executable runtime.
+Framework `1.8.0` TASK-039 further registers persistent `[Goal]` continuous-execution semantics by composing existing `OUT-* / AUTH-* / ACT-* / ENV-* / 09` homes; it adds no `GOAL-*` Stable-ID family or semantic slot.
+
 
 Initial registry:
 
@@ -896,6 +898,7 @@ Initial registry:
 [Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
 [Session Envelope] : declare, show, or close the user-pre-approved scope of operations for the current session/task
+[Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 ```
 
 Natural-language requests for available commands (for example “มีชุดคำสั่งอะไรบ้าง”, “command list”, or “available commands”) MUST list only commands registered by the active Framework/Project in `[XXX] : purpose` form. Do not invent commands merely because an Agent/tool could perform another action.
@@ -961,6 +964,36 @@ Material MCP operations that mutate state SHOULD be structured as idempotent ste
 An Envelope never overrides fail-closed governance: location/binding changes, Root Governance mutation, schema/slot authority, secret handling, and push keep their own approval gates regardless of any Envelope. Ambiguous or out-of-scope operations fail closed to normal approval. One-off exact-target instructions remain action-specific as before. Envelopes are auditable records in `15`, not side-channel permissions.
 
 ## 17. Adoption Modes and Bootstrap
+#### `[Goal]`
+
+`[Goal]` creates, shows, changes, or cancels a **persistent** user-authorized outcome and its bounded continuous-execution authority. Literal brackets are required; registered-name matching inside them is case-insensitive. Unbracketed `goal` wording remains ordinary language and does not silently create persistent authority.
+
+Canonical composition is: Goal outcome = `OUT-*` in `91`; persistent Goal authority = `AUTH-*` in `12`; executable work = `ACT-*` in `15`; session/task envelope = `ENV-*` in `15`; `03` summarizes current Goal state; `09` carries continuation pointers only and retains `authority_transfer: false`. No canonical `GOAL-*` family exists. `Outcome ≠ Action ≠ Authority ≠ Handoff` and `ACT DONE ≠ OUT ACHIEVED` remain binding.
+
+Goal-specific `OUT-*` status is `ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED`. `BLOCKED` is non-terminal and is used only when a global blocker leaves no meaningful safe next action. `ACHIEVED` requires evidence for every declared success criterion; linked Actions being DONE is insufficient. `CANCELLED` or `SUPERSEDED` terminates/revokes dependent Goal `AUTH-*` prospectively while preserving completed history/evidence.
+
+Unless the user explicitly narrows the Goal, persistent Goal `AUTH-*` MUST by default cover the bounded normal local-development workflow required for the stated outcome: local read/inspection/research, architecture/design, implementation planning, non-destructive in-scope file create/edit/move, tests/lint/typecheck/build/validation, debugging/corrective edits, local Git add/commit, Logical Checkpoints, and required Project Source continuation/evidence updates. An operation clearly covered by current valid Goal authority MUST NOT be re-prompted solely for **Framework-level** approval; continue to the next safe in-scope action while preserving Scope, Risk, binding, Git integration, verification, and higher-level controls.
+
+The following effects are excluded by default and become Goal-authorized only through the exact stated opt-in boundary:
+
+```text
+push/publication       → explicit publish/push intent + governed target; fresh integration/target/evidence preflight still required
+destructive operation  → explicit operation + target (+ stated conditions when applicable); never generalized
+Root/Binding mutation  → explicit mutation + target; normal revision → validate → promote → supersede/archive → sync → verify lifecycle still required
+external disclosure    → separate applicable disclosure authorization; Goal local execution authority never implies outbound AI/provider disclosure
+```
+
+Actual secret values remain forbidden in Goal records, Project Source, Handoff, Evidence, plans, logs, and exports; use governed `SECRET-*` references/provider boundaries when otherwise authorized. `commit ≠ push` remains binding.
+
+An `ENV-*` derived from Goal authority may be created/refreshed without new user approval only when it is equal to or narrower than current valid parent `AUTH-*`, remains bounded by expiry and prohibited zones, and does not represent a mandatory platform/tool confirmation as waived. `ENV-*` never expands parent Goal authority.
+
+Cross-chat resume uses `PROJECT-BOOTSTRAP.md → 00 → 01 → 03 → 09 → OUT-* / AUTH-* / ACT-* / ENV-*`, then fresh-checks mutable prerequisites before continuing the exact safe next action. Handoff never transfers authority and chat memory never substitutes for current `AUTH-*`.
+
+If one operation is blocked but independent safe Goal work remains, block only that operation and continue the independent authorized work. Move the Goal to `BLOCKED` only when a global blocker prevents all meaningful safe progress. Goal authority never permits silent `REQ-*`, `DEC-*`, accepted-Risk, or architecture changes merely to make completion easier; route those changes through existing governance. Multiple Goals do not resolve by recency; incompatible scopes use explicit change/supersession or existing `CONFLICT-*` handling.
+
+ProjectFramework-level Goal authorization cannot override system/developer instructions, product safety policy, MCP/tool confirmation requirements, authentication/external-system authorization, platform capability limits, or mandatory controls imposed above ProjectFramework. Such controls are reported as platform/tool gates rather than as absence of Project-level Goal authority.
+
+GREENFIELD Framework `1.8.0` starters expose Goal semantics but do not synthesize an active Goal/`OUT-*`/Goal `AUTH-*`. Brownfield upgrade never creates a persistent Goal from old prose, backlog, Handoff, existing Outcomes, or prior “continue” text; persistent Goal authority begins only through explicit `[Goal]` invocation/adoption under the active contract.
 
 ### GREENFIELD
 

@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260829-task038.md` — latest amendment: Framework Source Distribution-Root Migration (current authority)
+- `references/framework-governance-amendment-260829-task039.md` — latest amendment: Persistent `[Goal]` Continuous Execution Command (current authority)
+- `references/framework-governance-amendment-260829-task038.md` — previous amendment: Framework Source Distribution-Root Migration
 - `references/framework-governance-amendment-260829-task023.md` — previous amendment: Self-Bootstrapping Project Contract
 - `references/framework-governance-amendment-260828-task022.md` — previous amendment: Federated Project Graph + OpenViking relation governance
 - `references/framework-governance-amendment-260825-task021.md` — previous amendment: ChatGPT→MCP Continuity
@@ -148,6 +149,7 @@ Registered Project command identity requires literal brackets; matching inside b
 [Project Status] : fresh Project/Task/Git/verification/blocker dashboard
 [Project Path]   : show/verify configured bootstrap paths and route explicit path-change requests through existing governance
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Session Envelope] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 ```
 
@@ -158,6 +160,39 @@ Natural-language command-help requests list only commands registered by the acti
 `[Project Path]` surfaces Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations. An explicit requested path may be used as action input, but persistent Bootstrap/Project Location changes retain existing approval and `FRAMEWORK-001` revision/validation/promotion/history rules.
 
 `[Project Upgrade]` is read-only through comparison. For an initialized Project, current Framework identity comes from the valid active local `FRAMEWORK-001` pin; canonical upstream is a freshly observed target candidate, never silent replacement authority. Compare Framework/Schema plus observable source identity/freshness and report `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED` as presentation-only labels. Equal version strings do not override material source divergence, and unresolved evidence fails closed. When `UPGRADE_AVAILABLE`, ask whether the user wants to **prepare** an upgrade. A positive answer starts cumulative current→target assessment/Preview only; mutation still requires separate explicit approval after `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` classification, preservation/rollback planning, affected verification, one final `RELEASE_FULL`, and governed promotion/history preservation. The command adds no path/binding, branch, implementation-source, runtime, or persistent-state authority.
+## Framework 1.8.0 Persistent `[Goal]` Command
+
+`[Goal]` is persistent across chats and composes existing Project Source homes rather than creating a `GOAL-*` family: `OUT-*` in `91` is the desired outcome/success evidence; `AUTH-*` in `12` is durable Goal authority; `ACT-* / ENV-*` in `15` are execution; `03` summarizes current status; `09` stores pointers only with `authority_transfer: false`.
+
+Goal `OUT-*` status is `ACTIVE | BLOCKED | ACHIEVED | CANCELLED | SUPERSEDED`. `ACT DONE ≠ OUT ACHIEVED`: evaluate all explicit success criteria/evidence separately before `ACHIEVED`. Cancellation/revocation/supersession stops future Goal-authorized work while preserving completed history.
+
+Unless explicitly narrowed, persistent Goal authority includes the normal bounded local development workflow: local read/inspect/research → design/architecture → plan → non-destructive in-scope edits/moves → tests/lint/typecheck/build/validation → debug/fix → local Git add/commit → Logical Checkpoints and required continuation/evidence updates. Do not ask again solely for Framework-level approval when the exact operation is already covered by current valid Goal `AUTH-*`.
+
+Opt-in boundaries remain exact:
+
+```text
+push/publication       → explicit Goal publish/push intent + governed target + fresh integration/evidence preflight
+destructive operation  → explicit operation + target/conditions only
+Root/Binding mutation  → explicit mutation + target; normal Root revision/validate/promote/archive/sync/verify lifecycle remains mandatory
+external disclosure    → separate disclosure authorization; Goal authority does not imply outbound AI/provider disclosure
+```
+
+Never store/reveal actual secret values; use `SECRET-*` references when otherwise authorized. `ENV-*` may be derived/refreshed without new approval only when equal to or narrower than valid parent Goal `AUTH-*`; it never expands authority.
+
+Goal execution/resume order:
+
+```text
+[Goal] invocation → resolve CREATE/SHOW/CHANGE/CANCEL intent
+→ materialize/resolve Goal OUT-* + Goal AUTH-*
+→ derive ACT-* / bounded ENV-*
+→ persist 03/09 pointers when material
+→ fresh chat: PROJECT-BOOTSTRAP → 00 → 01 → 03 → 09 → OUT/AUTH/ACT/ENV
+→ fresh-check mutable prerequisites/bindings/evidence
+→ continue exact safe next action without redundant Framework approval
+→ evaluate OUT success criteria separately from ACT completion
+```
+
+Block only an unauthorized/blocked action when independent safe Goal work remains; use Goal `BLOCKED` only for a global blocker. Goals never silently rewrite `REQ-*`/`DEC-*`/accepted Risk/architecture to make completion easier and never resolve conflicts by recency. System/developer/product/MCP/tool/authentication controls remain higher-level gates and cannot be waived by `[Goal]`.
 
 ## Framework 1.2.6 Bootstrap Location Semantics and File Storage Binding
 
@@ -553,6 +588,8 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 16. Route management objects to `91`; current Project relations (`REL-*`) to `92`; technical blueprint to `40`; install/operations to `60` when applicable.
 17. Pin imported Framework/Schema locally; upgrades use direct current→target assessment plus `MIG-*`/approval as required; classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; never invent repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
 18. When `[Project Upgrade]` reports `UPGRADE_AVAILABLE`, the report includes the target release's migration-notes pointer when notes exist (`MIGRATION-NOTES.md`) and states their absence explicitly when they do not; comparison vocabulary and approval boundaries are unchanged. Upgrade preparation uses `templates/upgrade-preview.md` as the standard Preview structure. FAST_PATH scope rule: when the exact target candidate tree already carries committed state-bound evidence (recorded tree SHA matches the observed target tree exactly), proportional resulting-state confirmation may replace rerunning one full verification; any post-evidence candidate change invalidates reuse and fails closed. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` keep the existing one-final-`RELEASE_FULL` requirement. Continuity rule: every Logical Checkpoint on Material work persists a Resume Block into `09 Handoff` (task ID, last completed step, next step, blockers, active `ENV-*`) so any fresh session resumes within one read; Material MCP mutations are idempotent where possible, and non-idempotent calls record pre-execution intent first. `[Session Envelope]` lets the user pre-approve a bounded operation scope (`ENV-*` in `15 Action Registry`, with expiry and prohibited zones); it never overrides fail-closed governance — location/binding changes, Root Governance, schema authority, secrets, and push keep their own approval gates. `[Project Upgrade]` remains read-only through comparison; `UPGRADE_AVAILABLE` may ask to prepare an upgrade, but upgrade-intent approval authorizes assessment/Preview only and is never mutation approval.
+    Persistent `[Goal]` rule: on invocation resolve intent → `OUT-* + AUTH-*` → `ACT-* / bounded ENV-*` → persist `03/09` pointers when material; on fresh-session resume read `PROJECT-BOOTSTRAP → 00 → 01 → 03 → 09 → OUT/AUTH/ACT/ENV`, fresh-check mutable prerequisites, continue the exact safe covered action without redundant Framework-level approval, then evaluate `OUT-*` success criteria separately from `ACT-*` completion. Push/destructive/Root-Binding/disclosure boundaries remain exact opt-ins and higher-level platform/tool gates still apply.
+
 19. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
 20. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
 21. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
