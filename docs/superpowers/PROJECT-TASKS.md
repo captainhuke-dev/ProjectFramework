@@ -151,6 +151,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation boundary:** Framework governance/documentation implementation only. Do not add filesystem watchers, discovery daemons, MCP runtime/tool routing, automatic Brownfield upgrades, secret storage, CI/CD, or deployment automation.
 - **Design Spec:** `docs/superpowers/specs/2026-08-29-task023-self-bootstrapping-project-design.md`
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task023-self-bootstrapping-project.md`
+- **Plan State:** `EXECUTION_IN_PROGRESS`
 - **Implementation Release:** Framework `1.7.0` / Schema `1.0.0`
 - **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** User-approved design defines bootstrap file schema, authority boundary, discovery/read algorithm, vendor adapter rules, GREENFIELD behavior, Brownfield upgrade/migration behavior, failure handling, affected Framework surfaces, and verification strategy before any implementation begins.
