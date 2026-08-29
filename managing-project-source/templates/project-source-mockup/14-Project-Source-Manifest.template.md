@@ -14,13 +14,15 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
 ---
 
 # 14 — Project Source Manifest
+
+For Framework `1.7.0+` GREENFIELD Projects, `<Project-Root>/PROJECT-BOOTSTRAP.md` is a required external bootstrap artifact outside the semantic-slot manifest. Do not assign it a fake `DOC-*`/slot identity; verify its pointer to active Project Source separately.
 
 Current Reconstructable Snapshot inventory.
 

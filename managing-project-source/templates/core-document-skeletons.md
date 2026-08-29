@@ -19,6 +19,8 @@ Framework `1.3.0` adds registered bracketed `[Project Status]` / `[Project Path]
 Framework `1.3.1` adds registered `[Project Upgrade]` as a read-only fresh comparator between the active local Framework pin and canonical upstream target evidence. It reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`; a detected difference asks whether to prepare an upgrade, and a positive answer authorizes assessment/Preview only—not mutation. Schema remains `1.0.0` and existing Direct-to-Latest approval/preservation rules remain unchanged.
 
 Framework `1.6.0` standardizes conditional `92 Project Graph` as the canonical home of current `REL-*` Project-relation assertions. Endpoints use immutable `project_uuid`; AI-ControlTower/OpenViking indexing is `DERIVED_ONLY` and rebuildable; relation topology remains distinct from Project Location Binding, Git integration, implementation, and runtime authority.
+
+Framework `1.7.0` standardizes root `PROJECT-BOOTSTRAP.md` for NEW Projects. It is outside Project Source, has no Stable ID, and routes `PROJECT-BOOTSTRAP.md → 00 → 01 → 03`, with `09` for continuation. Active `FRAMEWORK-001` remains authority; Brownfield adoption is `[Project Upgrade]`-only; vendor settings and `PROJECT-CONFIG.md` remain optional adapters/location references.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -39,7 +41,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"

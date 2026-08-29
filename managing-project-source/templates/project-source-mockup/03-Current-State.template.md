@@ -14,13 +14,15 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "CHANGEABLE"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
 ---
 
 # 03 — Current State
+
+Framework `1.7.0+` root `PROJECT-BOOTSTRAP.md` carries no current status. Current state remains here after `00 → 01 → 03` routing.
 
 Pure snapshot of now. No historical timeline.
 

@@ -1,10 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.6.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.7.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.7.0 Self-Bootstrapping Project Semantics
+
+Framework `1.7.0` keeps Schema `1.0.0` and makes the resulting NEW Project self-discoverable from its root. `<Project-Root>/PROJECT-BOOTSTRAP.md` is mandatory for NEW `1.7.0+` Projects, stays outside `Project-Source/`, has no Stable ID, and routes `PROJECT-BOOTSTRAP.md → 00 → 01 → 03`, with `09` for continuation. Active `FRAMEWORK-001` remains authority. Existing Projects adopt the file only through governed `[Project Upgrade]`; `PROJECT-CONFIG.md` and vendor settings remain optional location/discovery adapters.
 
 ## Framework 1.6.0 Federated Project Graph Semantics
 
@@ -133,22 +137,23 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 ## GREENFIELD Bootstrap Recipe
 
 ```text
-1. Start from canonical ChatGPT/Claude Project instruction artifact when applicable
+1. Start from canonical Framework repository `main`; vendor ChatGPT/Claude instructions are optional discovery adapters when applicable
 2. Read repository README.md on canonical main
 3. Read ../../FRAMEWORK-RELEASE.yaml
 4. Read SKILL.md + latest amendment + Core Governance
-5. Read 00 template + core-document-skeletons.md
+5. Read `../PROJECT-BOOTSTRAP.md`, 00 template, and core-document-skeletons.md
 6. Read this mockup mapping
 7. Read `../project-location-bootstrap.md` when Project/environment bootstrap configuration is being prepared; resolve Framework Source / Remote / Local / MCP / File Storage locators read-only as applicable
-8. Preview proposed Project Source, including governed GitHub/Drive/local-workspace/generic-file-storage states/identities → obtain explicit user approval
+8. Preview proposed Project Source plus resulting root `PROJECT-BOOTSTRAP.md`, including governed GitHub/Drive/local-workspace/generic-file-storage states/identities → obtain explicit user approval
 9. Create active 00 first with the approved Project Location Binding
 10. Create mandatory 01–05 and 09–17
 11. Evaluate 06–08, 40, 60, 91, 92; create only when applicable
 12. Keep 18–19 reserved
 13. Use 93–99 only for real Project-specific/governance-extension needs
 14. Build/verify Index + Manifest + readiness
-15. Pin Framework/Schema locally; do not auto-upgrade later
-16. Optionally record exact Git provenance only when actually observed/material
+15. Materialize `<Project-Root>/PROJECT-BOOTSTRAP.md` from the maintained template and verify `00 → 01 → 03` plus `09` continuation routing
+16. Pin Framework/Schema locally; do not auto-upgrade later
+17. Optionally record exact Git provenance only when actually observed/material
 ```
 
 When Git branch/worktree integration is later used inside an initialized Project, apply the locally pinned root `00` Base Freshness contract. Upstream Framework movement does not auto-upgrade that Project.

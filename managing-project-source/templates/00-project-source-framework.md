@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -71,6 +71,14 @@ Descendants may extend/specialize/add constraints แต่ห้ามลดท
 3. Canonical Project Source documents / Decisions / Requirements
 4. Task / Handoff / Prompt / Agent Instruction
 ```
+
+### 1.4 Framework 1.7 Project Root Bootstrap Boundary
+
+For a NEW Project created under Framework `1.7.0+`, the resulting Project root includes `<Project-Root>/PROJECT-BOOTSTRAP.md`, materialized from the Framework `templates/PROJECT-BOOTSTRAP.md` distribution template after governed creation. The file is a discovery/locator artifact only and is not a semantic slot or Stable-ID record.
+
+Canonical entry after Project-root access is `PROJECT-BOOTSTRAP.md → 00 / FRAMEWORK-001 → 01 → 03`; resolve `09 Handoff` for continuation. Once this active `FRAMEWORK-001` validates, it remains Project governance authority. Root bootstrap must not duplicate requirements, decisions, current state, handoff, bindings, current branch/worktree, integration/implementation/runtime authority, or secrets.
+
+Existing initialized Projects do not acquire the file automatically. Brownfield adoption is governed `[Project Upgrade]` / migration work. Optional `PROJECT-CONFIG.md` remains a Bootstrap Location reference only. A material contradiction between root bootstrap and active Root/Location Binding fails closed for affected mutation; do not choose by recency.
 
 ## 2. Project Identity
 

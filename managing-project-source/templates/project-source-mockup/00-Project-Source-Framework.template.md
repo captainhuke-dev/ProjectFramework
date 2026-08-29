@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -27,7 +27,7 @@ compatible_schema_range: ">=1.0,<2.0"
 
 ## Bootstrap Requirement
 
-Create this document first as active `FRAMEWORK-001`; descendants inherit from it. NEW Projects bootstrap from canonical repository `main`, then create mandatory `01–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, `91`, `92`; keep `18–19` reserved.
+Create this document first as active `FRAMEWORK-001`; descendants inherit from it. NEW Projects bootstrap from canonical repository `main`, then create mandatory `01–05` and `09–17`; evaluate conditional `06–08`, `40`, `60`, `91`, `92`; keep `18–19` reserved. For resulting Framework `1.7.0+` Projects, materialize `<Project-Root>/PROJECT-BOOTSTRAP.md` from `../PROJECT-BOOTSTRAP.md` and verify it routes back to this active root. The root file is a locator only.
 
 ## Project Location Binding Pointer
 

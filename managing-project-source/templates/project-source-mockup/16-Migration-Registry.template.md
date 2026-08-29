@@ -14,13 +14,15 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
 ---
 
 # 16 — Migration Registry
+
+Brownfield adoption of Framework `1.7.0` root `PROJECT-BOOTSTRAP.md` is governed upgrade/migration work. Preserve prior Project truth/bindings/history and record material adoption through `MIG-*`; never auto-create the root file merely because upstream advanced.
 
 Canonical home of `MIG-*`.
 

@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.6.0"
+project_source_framework_version: "1.7.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -22,7 +22,7 @@ compatible_schema_range: ">=1.0,<2.0"
 
 # 01 — Project Source Index
 
-Front Door + derived Active Document Registry + task routing.
+Inside-Project-Source front door + derived Active Document Registry + task routing. Framework `1.7.0+` root `PROJECT-BOOTSTRAP.md` reaches this document only after validating active `00 / FRAMEWORK-001`; `01` remains Project Source routing authority, not a second root bootstrap.
 
 ## Routing
 
