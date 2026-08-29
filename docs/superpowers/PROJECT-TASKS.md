@@ -455,7 +455,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
 - **ID:** `TASK-038`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / distribution-root naming and migration governance
 - **Problem:** The Framework distribution currently lives under `managing-project-source/`, while governed Project truth lives under `Project-Source/`. Once ProjectFramework itself adopts its own `Project-Source/`, those names are too easy for Humans/Agents to conflate, weakening the distinction between Framework distribution source and Project-specific governance source.
 - **Approved direction:** Rename the canonical Framework distribution root to `Framework-Source/` so the repository has an explicit paired distinction: `Framework-Source/` = reusable Framework distribution; `Project-Source/` = authoritative governance/current truth for one Project.
