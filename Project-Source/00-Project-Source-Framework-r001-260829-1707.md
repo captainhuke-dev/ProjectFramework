@@ -257,7 +257,7 @@ framework_source_provenance:
   source_ref: "<OBSERVED_REF_OR_MAIN>"
   release_tag: "<OPTIONAL_OBSERVED_TAG_OR_NONE>"
   resolved_commit_sha: "<OPTIONAL_OBSERVED_SHA_OR_UNKNOWN>"
-  framework_version: "1.3.1"
+  framework_version: "1.7.0"
   schema_version: "1.0.0"
   captured_at: "<ISO8601_WITH_TIMEZONE>"
   provenance_status: "<VERIFIED | PARTIAL | UNVERIFIED>"
@@ -862,14 +862,7 @@ COMPLETE PARTIAL BLOCKED FAILED
 
 > Child governance นี้ inherit จาก `FRAMEWORK-001`. ใช้เพิ่ม Project-specific constraint ได้ แต่ห้าม weaken/contradict Root Framework.
 
-## PSR-001 — <TITLE>
-
-- **Status:** `<ACTIVE / SUPERSEDED>`
-- **Rule:** <PROJECT-SPECIFIC RULE>
-- **Reason:** <WHY>
-- **Approved By:** <USER / AUTHORIZED DECISION OWNER>
-- **Approved At:** <ISO8601>
-- **Related:** <DEC-### / REQ-### / AUTH-### / etc.>
+No Project-Specific Rule is materialized at initialization. Add `PSR-*` only through a governed `FRAMEWORK-001` revision with the approval required by Root Governance.
 
 
 ## ProjectFramework Instantiation Record
