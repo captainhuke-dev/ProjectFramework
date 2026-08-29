@@ -175,3 +175,26 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** `TBD_BY_DESIGN`
 - **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
 - **Exact Next Step:** Wait for further requirements; when TASK-024 is selected for development, inspect the referenced llm-council repository directly and prepare its architectural design spec before implementation.
+
+## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
+
+- **ID:** `TASK-025`
+- **Status:** `TODO`
+- **Type:** Framework architecture / persistent LLM-maintained Project knowledge
+- **Source Concept:** `https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f` (`llm-wiki`)
+- **Problem:** ProjectFramework has strong governed current truth and continuity, but much research, synthesis, comparison, meeting insight, and learned context that should not become authoritative `REQ-*` / `DEC-*` / other Project Source records is otherwise likely to remain fragmented across chats or be recomputed repeatedly.
+- **Approved direction:** Adapt the compounding-knowledge pattern from `llm-wiki` into a distinct **Project Knowledge Layer** that is Markdown-first, vendor-neutral, provenance-aware, and explicitly separate from authoritative Project Source.
+- **Scope:**
+  1. Define the boundary `Project Knowledge ≠ Project Authority`. LLMs may maintain/synthesize knowledge, but may not automatically promote knowledge into governed Project truth.
+  2. Define the relationship among raw sources/evidence, synthesized knowledge pages, governed Project Source, and explicit Knowledge→Governance promotion gates.
+  3. Define knowledge identity/indexing, cross-links, chronological ingest/query/maintenance log behavior, provenance/source pointers, staleness/review state, contradiction handling, and knowledge-lint expectations.
+  4. Reuse existing ProjectFramework governance when knowledge becomes materially governance-relevant; do not create parallel authoritative families that duplicate `REQ-*`, `DEC-*`, `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `RISK-*`, or other canonical homes.
+  5. Define integration boundaries with TASK-023 bootstrap discovery, TASK-024 `[Meeting]` council outputs, `13 Evidence`, `03 Current State`, `09 Handoff`, and `92 Project Graph` without merging their authorities or purposes.
+  6. Define the AI-ControlTower/OpenViking boundary so cross-Project indexing can distinguish authoritative Project Source from advisory/derived Project Knowledge and never rank or retrieve knowledge as if it were Project authority.
+  7. Define GREENFIELD and Brownfield applicability/migration behavior, including whether a physical `Project-Knowledge/` directory or another representation is appropriate; do not lock physical layout before design review.
+  8. Preserve source-derived terminology and provenance from the `llm-wiki` concept where adopted, but do not copy its implementation assumptions blindly into ProjectFramework governance.
+- **Implementation boundary:** Task registration only. Do not create a wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, runtime automation, or Project Knowledge files until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN`
+- **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
+- **Exact Next Step:** Wait for further requirements; when TASK-025 is selected for development, prepare its architectural design spec before implementation.
