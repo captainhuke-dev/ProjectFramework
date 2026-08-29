@@ -86,4 +86,4 @@ No filesystem watcher/daemon, automatic discovery service, MCP runtime/tool rout
 
 ## Publication state
 
-`commit ≠ push` remains binding. At evidence creation, the candidate is committed locally and remote publication has not yet been recorded in this evidence.
+`commit ≠ push` remains binding. At evidence creation, the candidate was committed locally and had not yet been published. Under the user's explicit continuous completion approval, verified Framework 1.7.0 implementation and completion through commit `94661bb71f223a7e4e86045c7737ccb0d792f91f` were subsequently pushed to `origin/main` on `2026-08-29`. A separate publication-state reconciliation commit records the observed remote state without modifying the verified `managing-project-source` candidate tree.

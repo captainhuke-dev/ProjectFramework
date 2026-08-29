@@ -161,7 +161,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Candidate Commit:** `e2caa5e68f037104cf7ca41756690daf03ede576`
 - **Candidate Distribution Tree:** `100338b4186e5ccbe0502b92a85e38555e40db3c`
 - **Completion criteria met:** stable vendor-neutral `PROJECT-BOOTSTRAP.md`; canonical `00 → 01 → 03` discovery with `09` continuation; active `FRAMEWORK-001` authority preserved; GREENFIELD mandatory root bootstrap; Brownfield governed adoption only; vendor adapters optional; `PROJECT-CONFIG.md` remains optional Bootstrap Location reference; volatile execution state excluded from bootstrap authority; 22 concrete starters aligned to 1.7.0; scenarios `1–180`; documentation-only scope.
-- **Publication State:** `NOT_PUSHED` — completion is committed locally first; remote publication is a separate resulting-state action.
+- **Publication State:** `PUBLISHED_TO_ORIGIN_MAIN` — verified Framework 1.7.0 implementation and completion through `94661bb` were pushed to `origin/main` on `2026-08-29` under the user's explicit continuous completion approval; this publication-state reconciliation record is committed and published in the same approved release sequence.
 - **Completion Working Tree:** `CLEAN` after completion commit verification.
 - **Execution Note:** a linked TASK-023 worktree was prepared, but host Active Workspace mutation routing blocked writes there; implementation therefore continued inline on local `main` under the user's explicit continuous approval through Framework 1.7.0 completion.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
