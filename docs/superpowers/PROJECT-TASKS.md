@@ -490,7 +490,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #39 — `[Goal]` Persistent Continuous Goal Execution Command
 
 - **ID:** `TASK-039`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework command / persistent goal authorization and continuous execution governance
 - **Problem:** GPT-Web/Agents can repeatedly stop for approval even after the user has clearly asked for continuous work. `[Session Envelope]` pre-approves bounded operations only for a session and intentionally keeps several fail-closed gates. ProjectFramework needs a durable Project-level command that captures one user-authorized outcome and the exact authorization boundary needed to resume across chats without re-requesting approval for already-authorized work.
 - **Approved direction:** Register `[Goal]` as a **PERSISTENT** goal command. A Goal persists in Project Source across chats until terminal state and allows continuous in-scope execution without repeated Framework-level approval prompts. Goal authorization is bounded user authorization, never Agent self-approval and never a bypass of higher-level platform/tool/safety confirmation requirements.
@@ -516,7 +516,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Design Approval:** User explicitly authorized continuous TASK-039 development without repeated approval prompts on `2026-08-29`; higher-level system/tool/platform gates and TASK-038 sequencing remain binding.
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`
-- **Plan State:** `IMPLEMENTATION_PLAN_READY / EXECUTION_UNBLOCKED_BY_TASK-038`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / USER_CONTINUOUS_EXECUTION_APPROVED`
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if the final authorization/lifecycle contract requires a breaking schema change)
 - **Completion criteria:** A user-approved design defines command syntax, persistent Goal representation, OUT/AUTH/ACT/ENV/09 composition, local-development pre-authorization, push/destructive/root-binding/secret-disclosure boundaries, lifecycle/resume/revocation/conflict behavior, outcome evidence, platform-boundary limitations, affected Framework surfaces, migration behavior, and verification strategy before implementation begins.
-- **Exact Next Step:** Execute Task 1 of `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`: verify TASK-038 DONE, `Framework-Source/` release identity, and fresh Git/base state; then add RED scenarios 189–211.
+- **Exact Next Step:** Execute Task 3 of `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`: create the TASK-039 Framework 1.8.0 amendment and propagate the normative `[Goal]` contract into `FRAMEWORK-RELEASE.yaml`, Core Governance, and `SKILL.md`.
