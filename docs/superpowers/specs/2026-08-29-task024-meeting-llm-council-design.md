@@ -2,8 +2,8 @@
 
 Date: `2026-08-29` (Asia/Bangkok)
 Task: `TASK-024`
-Design state: `USER_APPROVED_DESIGN / WRITTEN_SPEC_REVIEW_REQUIRED`
-Approval basis: after the proposed architecture and boundaries were presented, the user instructed the Agent to continue without further approval prompts on `2026-08-29`. This approves the presented TASK-024 design direction and permits materializing/self-reviewing this spec. The written-spec review gate remains required before implementation planning.
+Design state: `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+Approval basis: after the proposed architecture and boundaries were presented, the user approved continuous progress on `2026-08-29`; after this written spec was materialized and committed, the user again explicitly instructed continuous execution, approving the written spec and releasing the implementation-planning gate. Higher-level system/tool/platform gates remain binding.
 Target release: Framework `1.8.0` / Schema `1.0.0` / release format `3`
 
 ## 1. Purpose

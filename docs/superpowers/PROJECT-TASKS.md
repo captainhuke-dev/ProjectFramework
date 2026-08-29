@@ -184,14 +184,17 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Define what meeting artifacts, if any, should be persisted or referenced as evidence without duplicating canonical Project truth.
 - **Implementation boundary:** Task registration only. Do not add `[Meeting]` to Framework commands, launchers, templates, MCP/runtime integration, or automation until a separate design spec is completed and explicitly approved.
 - **Design Spec:** `docs/superpowers/specs/2026-08-29-task024-meeting-llm-council-design.md`
-- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_REVIEW_REQUIRED`
-- **Design Approval:** User approved the presented Thin Council Provider Adapter architecture and instructed continuous progress without repeated approval prompts on `2026-08-29`; the written-spec review gate remains required before implementation planning.
+- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Design Approval:** User approved the presented Thin Council Provider Adapter architecture and, after the written spec was committed, explicitly approved continued execution on `2026-08-29`; implementation planning is now authorized while higher-level system/tool/platform gates remain binding.
 - **Verified Provider Snapshot:** `captainhuke-dev/llm-council` public fork, `master` commit `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131`, tree `221d8afb6eca87537282d509971c505119390e0b`; compared parent `karpathy/llm-council` master was the same commit at design capture.
 - **Chosen Architecture:** Thin Council Provider Adapter — ProjectFramework owns `[Meeting]` semantics and advisory/evidence boundaries; llm-council remains an external provider/runtime whose UI/JSON storage never becomes Project authority.
 - **Spec Self-Review:** `PASS 18/18` — provider provenance, advisory-authority separation, disclosure/secret boundaries, partial-failure semantics, no `MEETING-*`, release classification, and verification scope checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_READY / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan Self-Review:** `PASS 30/30` — spec coverage, scenario range `212–227`, provider snapshot, no-runtime boundary, starter/launcher/evidence surfaces, and AFFECTED/RELEASE_FULL lifecycle checked.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
-- **Exact Next Step:** Review the written TASK-024 design spec; after explicit written-spec approval, invoke `superpowers:writing-plans` to prepare the implementation plan before any Framework `[Meeting]` implementation mutation.
+- **Exact Next Step:** Execute Task 1 of `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`: fresh-check Project/Git/provider state, then add RED scenarios `212–227` and mark TASK-024 `IN_PROGRESS`.
 
 ## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
 
