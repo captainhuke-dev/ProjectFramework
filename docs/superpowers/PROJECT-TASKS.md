@@ -198,3 +198,83 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** `TBD_BY_DESIGN`
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
 - **Exact Next Step:** Wait for further requirements; when TASK-025 is selected for development, prepare its architectural design spec before implementation.
+
+## Task #26 — External AI Context & Disclosure Governance
+
+- **ID:** `TASK-026`
+- **Status:** `TODO`
+- **Type:** Framework architecture / outbound AI-context governance
+- **Problem:** TASK-024 `[Meeting]`, TASK-025 Project Knowledge, and other future external-model workflows may send Project context outside the local authority boundary. ProjectFramework needs a governed rule for what context may be disclosed, minimized, redacted, provider-scoped, or prohibited before any external AI call occurs.
+- **Approved direction:** Define an outbound AI Context/Disclosure contract that classifies Project information by disclosure eligibility, applies minimum-necessary context and redaction, and fails closed when classification or permission is unresolved.
+- **Scope:**
+  1. Define disclosure classes and provider/tool eligibility without weakening `17 Secret Reference Registry` or existing secret handling.
+  2. Define context minimization, redaction, secret-reference-only behavior, and `DO_NOT_DISCLOSE`-equivalent policy semantics.
+  3. Define how `[Meeting]`, Project Knowledge, OpenViking, and other external-model consumers request context through the disclosure boundary rather than reading/sending unrestricted Project content.
+  4. Preserve Authority: permission to disclose context does not grant Decision, mutation, binding, runtime, or implementation authority.
+  5. Define provenance/evidence sufficient to know what category of information was disclosed and under which rule without persisting secrets unnecessarily.
+  6. Define failure behavior for unknown classification, mixed-sensitivity context, unavailable provider policy, and redaction uncertainty.
+- **Implementation boundary:** Task registration only. Do not add disclosure automation, provider routing, redaction runtime, external calls, or new secret storage until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN`
+- **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** Wait for further requirements; when TASK-026 is selected for development, prepare its architectural design spec before implementation.
+
+## Task #27 — Project Tool / MCP Execution Profile
+
+- **ID:** `TASK-027`
+- **Status:** `TODO`
+- **Type:** Framework architecture / Project-scoped execution-tool governance
+- **Problem:** Project tool/MCP preferences such as `CEO-only` can currently exist only as transient chat instructions or product-specific configuration. The Project needs a durable vendor-neutral contract declaring which execution tools are primary, allowed, disallowed, or eligible as fallback.
+- **Approved direction:** Define a Project Tool / MCP Execution Profile that can express a primary MCP/tool, fallback policy, fail-closed behavior, and allowed/disallowed execution capabilities without depending on a vendor UI setting.
+- **Scope:**
+  1. Define durable Project-scoped execution-tool selection semantics including `PRIMARY`, allowed alternatives, `FALLBACK_NONE`-equivalent behavior, and failure policy.
+  2. Keep Tool/MCP Execution Profile distinct from MCP Location Binding, Project authority, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, and Runtime authority.
+  3. Define how TASK-023 `PROJECT-BOOTSTRAP.md` discovers or routes to the active execution profile without making bootstrap a second authority.
+  4. Define behavior when the preferred MCP/tool is unavailable, unauthenticated, stale, renamed, or cannot prove it is operating on the bound Project.
+  5. Define GREENFIELD defaults and Brownfield migration so existing Projects do not silently acquire restrictive or permissive tool policy.
+  6. Preserve explicit user/shared-state gates such as push, destructive actions, secrets, and governed approvals regardless of tool profile.
+- **Implementation boundary:** Task registration only. Do not modify `.lnwjud`, MCP runtime, project profiles, tool routing, launchers, or existing Projects until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN`
+- **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** Wait for further requirements; when TASK-027 is selected for development, prepare its architectural design spec before implementation.
+
+## Task #28 — `[Project Audit]` Integrity & Drift Command
+
+- **ID:** `TASK-028`
+- **Status:** `TODO`
+- **Type:** Framework command / Project integrity assessment
+- **Problem:** `[Project Status]` is a current dashboard, but ProjectFramework lacks one standard read-only command for deeper integrity, consistency, stale-reference, drift, and governance-health assessment across Project surfaces.
+- **Approved direction:** Define `[Project Audit]` as a read-only integrity command that evaluates Project Source, bootstrap, continuity, Git/binding evidence, Stable-ID routing, Project Graph, migration/drift/conflict state, and future Knowledge/Tool-profile surfaces when applicable.
+- **Scope:**
+  1. Define audit categories, severity/health vocabulary, evidence requirements, and bounded output suitable for human review.
+  2. Check cross-surface consistency such as `00 / 01 / 03 / 09 / 14`, current Stable-ID resolvability, stale evidence, broken references, binding/freshness problems, and active conditional documents.
+  3. Include `REL-*`/Project Graph consistency and future TASK-023/025/027 surfaces only when applicable under their adopted contracts.
+  4. Reuse existing `ISS-*`, `DRIFT-*`, `CONFLICT-*`, and `MIG-*` rather than inventing parallel authoritative issue families.
+  5. Preserve `Audit finds ≠ Audit fixes`: default audit is read-only and cannot mutate Project truth, resolve conflicts, migrate, push, or repair automatically.
+  6. Define partial/unknown behavior when required sources or runtime evidence cannot be read.
+- **Implementation boundary:** Task registration only. Do not register `[Project Audit]`, add validators/CLI/runtime scanners, or mutate existing Framework surfaces until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN`
+- **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** Wait for further requirements; when TASK-028 is selected for development, prepare its command/design spec before implementation.
+
+## Task #29 — Cross-Project Impact Analysis
+
+- **ID:** `TASK-029`
+- **Status:** `TODO`
+- **Type:** Framework architecture / federated Project-change impact reasoning
+- **Problem:** Framework 1.6.0 can represent Project relations through `92 Project Graph` / `REL-*`, but the Framework does not yet define how to reason about which other Projects may require review when one Project changes materially.
+- **Approved direction:** Define a cross-Project impact-analysis contract that uses authoritative Project relation assertions plus relevant governed dependency/requirement/evidence pointers to surface direct and potential impacts without propagating changes automatically.
+- **Scope:**
+  1. Define direct versus potential/indirect impact semantics and the minimum evidence/provenance needed to report each.
+  2. Use `REL-*` as Project relation input while preserving canonical homes such as `DEP-*`, `REQ-*`, `DEC-*`, and other relevant records; do not duplicate their payload into the graph.
+  3. Define review-required outputs for affected Projects, reasons/pointers, unresolved/unknown impact state, and conflict behavior.
+  4. Keep impact analysis **ADVISORY**: a change in Project A must never auto-edit, auto-upgrade, approve, or mutate Project B/C.
+  5. Define AI-ControlTower/OpenViking use as derived traversal/index assistance only; Project-local authoritative sources remain the basis for material impact claims.
+  6. Define behavior for stale/orphan/conflicted relations, unavailable target Projects, merges/splits, and Brownfield Projects without `92`.
+- **Implementation boundary:** Task registration only. Do not add `[Impact]` or another command, graph traversal runtime, OpenViking automation, cross-Project mutation, or notification mechanism until a separate design spec is completed and explicitly approved.
+- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Target Release:** `TBD_BY_DESIGN`
+- **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
+- **Exact Next Step:** Wait for further requirements; when TASK-029 is selected for development, prepare its architectural design spec before implementation.
