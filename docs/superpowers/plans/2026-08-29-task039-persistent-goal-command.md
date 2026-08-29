@@ -79,7 +79,7 @@ No commit for a read-only successful prerequisite check. If a material blocker m
 
 ---
 
-### Task 2: Add RED-first `[Goal]` pressure scenarios 181–203
+### Task 2: Add RED-first `[Goal]` pressure scenarios 189–211
 
 **Files:**
 - Modify: `Framework-Source/tests/pressure-scenarios.md`
@@ -88,41 +88,41 @@ No commit for a read-only successful prerequisite check. If a material blocker m
 - Consumes: approved TASK-039 spec.
 - Produces: executable semantic acceptance contract for all later implementation tasks.
 
-- [ ] **Step 1: Append scenarios 181–203 with unique numbering**
+- [ ] **Step 1: Append scenarios 189–211 with unique numbering**
 
 Add exactly these scenario contracts using the repository's existing `Prompt / Pass / Fail / GREEN expectation` format:
 
 ```text
-181 Goal Brackets Required
-182 Goal Matching Is Case-Insensitive
-183 Persistent Goal Resumes In New Chat
-184 Revoked Or Stale Goal AUTH Blocks Execution
-185 Authorized Local Edit And Commit Need No Repeat Approval
-186 Push Is Denied By Default
-187 Explicit Goal Push Authorization Is Reusable
-188 Changed Remote Target Invalidates Goal Push Authority
-189 Destructive Operation Is Denied By Default
-190 Exact Destructive Operation And Target May Be Pre-Authorized
-191 Root Or Binding Mutation Is Denied By Default
-192 Explicit Root Or Binding Mutation Still Uses Governed Revision Lifecycle
-193 Goal Never Stores Or Reveals Secret Values
-194 External AI Disclosure Is Not Implicitly Authorized
-195 ENV May Be Derived Narrower Than Goal AUTH
-196 ENV Cannot Expand Parent Goal AUTH
-197 Partial Blocker Does Not Stop Independent Safe Goal Work
-198 Global Blocker Moves Goal To BLOCKED
-199 Goal Cancellation Revokes Future Goal Execution
-200 Conflicting Active Goals Do Not Resolve By Recency
-201 Goal Cannot Rewrite REQ Or DEC To Make Completion Easier
-202 All ACT Done Does Not Prove OUT Achieved
-203 Higher-Level Tool Confirmation Still Applies
+189 Goal Brackets Required
+190 Goal Matching Is Case-Insensitive
+191 Persistent Goal Resumes In New Chat
+192 Revoked Or Stale Goal AUTH Blocks Execution
+193 Authorized Local Edit And Commit Need No Repeat Approval
+194 Push Is Denied By Default
+195 Explicit Goal Push Authorization Is Reusable
+196 Changed Remote Target Invalidates Goal Push Authority
+197 Destructive Operation Is Denied By Default
+198 Exact Destructive Operation And Target May Be Pre-Authorized
+199 Root Or Binding Mutation Is Denied By Default
+200 Explicit Root Or Binding Mutation Still Uses Governed Revision Lifecycle
+201 Goal Never Stores Or Reveals Secret Values
+202 External AI Disclosure Is Not Implicitly Authorized
+203 ENV May Be Derived Narrower Than Goal AUTH
+204 ENV Cannot Expand Parent Goal AUTH
+205 Partial Blocker Does Not Stop Independent Safe Goal Work
+206 Global Blocker Moves Goal To BLOCKED
+207 Goal Cancellation Revokes Future Goal Execution
+208 Conflicting Active Goals Do Not Resolve By Recency
+209 Goal Cannot Rewrite REQ Or DEC To Make Completion Easier
+210 All ACT Done Does Not Prove OUT Achieved
+211 Higher-Level Tool Confirmation Still Applies
 ```
 
 Each PASS assertion must encode the corresponding exact design rule; each FAIL assertion must describe the overreach; each GREEN expectation must name the invariant being protected.
 
 - [ ] **Step 2: Verify numbering and RED state**
 
-Run a Python structural check that asserts scenarios `1–203` are unique and contiguous, then assert current normative Framework sources do not yet register `[Goal]` everywhere. The second assertion must fail before implementation and pass only after later tasks.
+Run a Python structural check that asserts scenarios `1–211` are unique and contiguous, then assert current normative Framework sources do not yet register `[Goal]` everywhere. The second assertion must fail before implementation and pass only after later tasks.
 
 Example test logic:
 
@@ -132,7 +132,7 @@ import re
 p = Path('Framework-Source/tests/pressure-scenarios.md')
 t = p.read_text(encoding='utf-8')
 nums = [int(x) for x in re.findall(r'^## Scenario (\d+) —', t, re.M)]
-assert nums[-23:] == list(range(181, 204))
+assert nums[-23:] == list(range(189, 212))
 assert len(nums) == len(set(nums))
 ```
 
@@ -154,7 +154,7 @@ git commit -m "test: define persistent Goal command pressure scenarios"
 - Modify: `Framework-Source/SKILL.md`
 
 **Interfaces:**
-- Consumes: scenarios 181–203 and TASK-039 design.
+- Consumes: scenarios 189–211 and TASK-039 design.
 - Produces: canonical `[Goal]` semantics used by starters, launchers, README, and tests.
 
 - [ ] **Step 1: Create TASK-039 amendment**
@@ -412,7 +412,7 @@ git commit -m "docs: expose persistent Goal command"
 - Consumes: implemented TASK-039 candidate.
 - Produces: affected verification evidence sufficient to proceed to final candidate verification.
 
-- [ ] **Step 1: Run scenarios 181–203 structural/semantic assertions**
+- [ ] **Step 1: Run scenarios 189–211 structural/semantic assertions**
 
 Verify every pressure scenario's PASS condition is represented by current normative/starter/launcher semantics.
 
@@ -483,7 +483,7 @@ The working tree must be clean before the final release verification candidate i
 
 - [ ] **Step 2: Run one `RELEASE_FULL` on the unchanged candidate**
 
-Use the current Framework release verifier after TASK-038. It must include scenarios `1–203`, release identity, amendments, Core Governance, SKILL, starters, migration notes, README, launchers, Task state, and historical-integrity checks.
+Use the current Framework release verifier after TASK-038. It must include scenarios `1–211`, release identity, amendments, Core Governance, SKILL, starters, migration notes, README, launchers, Task state, and historical-integrity checks.
 
 - [ ] **Step 3: Write release evidence**
 
@@ -496,7 +496,7 @@ implementation-plan path
 candidate commit and tree SHA
 AFFECTED verification result
 RELEASE_FULL result
-scenario range 1–203
+scenario range 1–211
 launcher character counts + shared-body parity
 no GOAL-* family
 OUT/AUTH/ACT/ENV/Handoff composition
