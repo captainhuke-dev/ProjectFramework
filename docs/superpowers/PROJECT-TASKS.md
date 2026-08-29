@@ -169,7 +169,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #24 — `[Meeting]` LLM Council Command
 
 - **ID:** `TASK-024`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework command / multi-model advisory council integration
 - **Source Repository:** `https://github.com/captainhuke-dev/llm-council`
 - **Problem:** ProjectFramework currently has no standard Project command for convening a multi-model LLM council when a decision benefits from independent perspectives, structured peer review, disagreement surfacing, and a synthesized recommendation.
@@ -190,14 +190,23 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Chosen Architecture:** Thin Council Provider Adapter — ProjectFramework owns `[Meeting]` semantics and advisory/evidence boundaries; llm-council remains an external provider/runtime whose UI/JSON storage never becomes Project authority.
 - **Spec Self-Review:** `PASS 18/18` — provider provenance, advisory-authority separation, disclosure/secret boundaries, partial-failure semantics, no `MEETING-*`, release classification, and verification scope checked.
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`
-- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED / INLINE_CONTINUOUS_EXECUTION_APPROVED`
 - **Plan Self-Review:** `PASS 30/30` — spec coverage, scenario range `212–227`, provider snapshot, no-runtime boundary, starter/launcher/evidence surfaces, and AFFECTED/RELEASE_FULL lifecycle checked.
 - **Implementation Provider Freshness:** fork `master` freshly re-observed at `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131` / tree `221d8afb6eca87537282d509971c505119390e0b`; no material provider-profile drift before Task 1 mutation.
 - **Implementation Scenario Contract:** RED scenarios `212–227` added; Framework-wide numbering target `1–227` contiguous/unique.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
-- **Exact Next Step:** Execute Task 5 of `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`: run TASK-024 AFFECTED verification for scenarios `212–227` and all current advisory/disclosure/provider/starter/launcher boundaries before freezing the release candidate.
+- **Implementation Release:** Framework `1.8.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `d5a0b21`, `c396588`, `c5b21ec`, `ff74ab8`, `e1c8ba0`, `a4ab736`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-29-task-024-meeting-llm-council-release-full.md`
+- **Verification Result:** `AFFECTED 55/55 PASS; RELEASE_FULL 314/314 PASS`
+- **Candidate Commit:** `e1c8ba0ad40fe956911043ff98239b7682a3d23e`
+- **Candidate Tree:** `3cae37a05c97a3efa66ffb6f2e1cf941579187aa`
+- **Framework-Source Tree:** `9a959e20723c28c58e7b37be7fd52aef8501d8f1`
+- **Completion criteria met:** `[Meeting]` registered with literal brackets/case-insensitive matching; Thin Council Provider Adapter separation; minimum-authorized outbound context; secret-value prohibition; independent views/disagreement/peer signal/Chairman synthesis/limitations; Council/majority/Chairman advisory-only boundary; `COMPLETE | PARTIAL | FAILED | UNAVAILABLE`; material `EVD-*` persistence; no `MEETING-*` family/provider JSON authority/runtime implementation; Goal/ENV disclosure separation; Brownfield no-auto-Meeting; scenarios 1–227; launcher parity/size; final verification PASS.
+- **Publication State:** `NOT_PUSHED`
 
+- **Exact Next Step:** Prepare TASK-026 External AI Context & Disclosure Governance architectural design before implementation.
 ## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
 
 - **ID:** `TASK-025`
