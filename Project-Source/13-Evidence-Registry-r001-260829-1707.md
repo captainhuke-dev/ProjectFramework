@@ -9,7 +9,7 @@ revision: 1
 document_status: "ACTIVE"
 inherits_from: ["FRAMEWORK-001"]
 created_at: "2026-08-29T17:07:00+07:00"
-updated_at: "2026-08-29T17:07:00+07:00"
+updated_at: "2026-08-29T17:19:13+07:00"
 created_by: "ACTOR-001"
 created_by_instance: "INST-001"
 epistemic_status: "USER_CONFIRMED"
@@ -52,3 +52,21 @@ Pre-write Git: main at 128057da827b2b32098a7ba2b4d70376ad47486f; origin/main d60
 ```
 
 Never store actual secrets as evidence.
+
+## EVD-002 — Initialization Verification and Completion Commits
+
+- **Evidence Type:** STRUCTURAL_VALIDATION + GIT_COMMIT_OBSERVATION
+- **Captured At:** 2026-08-29T17:19:13+07:00
+- **Captured By Actor / Instance:** ACTOR-002 / INST-001
+- **Source Reference:** maintained Framework 1.7.0 templates plus fresh post-write validation/Git observations
+- **Artifact Path:** `PROJECT-BOOTSTRAP.md`, `Project-Source/`
+- **Artifact Hash:** completion payload represented by observed Git commits below
+- **Supports:** FRAMEWORK-001, ACT-001, CHG-002
+- **Epistemic Status:** VERIFIED
+
+```text
+Project Source structural validation: PASS 163/163
+Initialization payload commit: 06bb77a6db61c01a3ed8a78a23b2fc588a3431ce
+Root-governance cleanup commit: 01ef9e5e60d28cc0efcc0c231601c46064467f84
+Remote publication: NOT_PERFORMED
+```
