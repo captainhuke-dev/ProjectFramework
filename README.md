@@ -8,7 +8,7 @@ How to use it:
 
 1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
-3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]` give you dashboards, path verification, and upgrade checks. Every governed response ends with a fixed close: `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session Envelope]`, and `[Goal]` cover status, paths, upgrades, bounded session work, and persistent cross-chat outcomes. Every governed response ends with a fixed close: `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
 
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
@@ -42,6 +42,16 @@ REPOSITORY_HARDENED
 - **REPOSITORY_HARDENED** — optional assurance such as branch protection or repository rulesets.
 
 A Framework may be operationally usable without an immutable tag, exact commit provenance, or branch protection. Those assurance gaps are not prerequisites for normal bootstrap unless a Project-Specific Rule explicitly requires them.
+
+## Framework 1.8.0 Persistent `[Goal]` Command
+
+`[Goal]` keeps one explicitly adopted outcome and its bounded execution authority in Project Source so a fresh Agent can resume without asking for the same Framework-level approval again. It composes existing `OUT-*` (outcome), `AUTH-*` (persistent authority), `ACT-* / ENV-*` (execution), and `03/09` status/continuation; it creates no `GOAL-*` family.
+
+- **Default local workflow** — unless narrowed, bounded local design, planning, edits, tests, fixes, verification, commits, and Logical Checkpoints are covered.
+- **Explicit opt-ins** — push/publication, destructive operation+target, Root/Binding mutation+target, and external disclosure are not included by default.
+- **Cross-chat resume** — a fresh Agent resolves `PROJECT-BOOTSTRAP → 00 → 01 → 03 → 09 → OUT/AUTH/ACT/ENV`, then fresh-checks mutable prerequisites before continuing.
+- **Authority stays canonical** — Handoff has `authority_transfer: false`; actual secret values remain forbidden; higher-level system/tool/platform gates still apply.
+- **Outcome evidence** — `ACT DONE ≠ OUT ACHIEVED`; every Goal success criterion needs sufficient evidence.
 
 ## Framework 1.8.0 Framework-Source Naming
 

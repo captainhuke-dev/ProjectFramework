@@ -9,11 +9,12 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 ### Affected distribution surfaces
 
 - repository package root — canonical upstream distribution path changes from `managing-project-source/` to `Framework-Source/`; no live old-root alias remains
-- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves to TASK-038
+- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves through TASK-038 distribution-root migration to TASK-039 persistent `[Goal]` command semantics
 - current Core Governance / SKILL / README / launcher and maintained starter routing — current reusable Framework path is `Framework-Source/`
+- `12 Authorization Registry`, `15 Action Registry`, conditional `91 Project Management Control`, `03 Current State`, and `09 Handoff` starters — persistent Goal uses `OUT-* / AUTH-* / ACT-* / ENV-*` with `authority_transfer: false`; no `GOAL-*` family
 - historical amendments/specs/plans/evidence — old-path text remains historical provenance when it was true at capture time; do not globally rewrite it
 - ProjectFramework's own current Project Source — reconcile current distribution-location statements through governed revisions without auto-upgrading its local Framework pin
-- `tests/pressure-scenarios.md` — scenarios 181–188 cover root uniqueness, no alias, provenance, Brownfield safety, Project Source reconciliation, bootstrap routing, and authority separation
+- `tests/pressure-scenarios.md` — scenarios 181–188 cover distribution-root migration; 189–211 cover persistent Goal syntax, resume, authority boundaries, conflicts, cancellation, evidence, and higher-level gates
 
 ### Upgrade checklist
 
@@ -24,6 +25,10 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 5. Keep deployed `<Project-Root>/PROJECT-BOOTSTRAP.md` routing to the Project's active `Project-Source/00 → 01 → 03`, with `09` continuation. The Framework distribution root is not Project authority.
 6. External scripts, bookmarks, deep links, or vendor configuration that hard-code `managing-project-source/...` require explicit update when applicable; the Framework does not mutate external consumers automatically.
 7. If the consuming Project maintains repository-local current provenance/routing that names the upstream package root, migrate that current truth through its normal governed revision/MIG/evidence flow.
+9. Do **not** synthesize a persistent Goal from old free-text goals, backlog items, Handoff prose, an existing `OUT-*`, or prior “continue” messages. A persistent Goal exists only after explicit `[Goal]` invocation/adoption under the active contract.
+10. Preserve existing `OUT-*`, `AUTH-*`, `ACT-*`, and `ENV-*` records. TASK-039 adds composition semantics; it does not migrate them into a `GOAL-*` family.
+11. If `[Goal]` is explicitly adopted, materialize/resolve Goal `OUT-*` and `AUTH-*` through their canonical homes; conditional `91` becomes applicable only when Goal/outcome truth is material.
+12. Default local Goal authority may cover bounded local development unless narrowed; push, destructive actions, Root/Binding mutation, and external disclosure remain exact opt-ins and higher-level controls still apply.
 8. Verify affected scope and run one final `RELEASE_FULL` on the unchanged target candidate before promoting the upgrade.
 
 ---
