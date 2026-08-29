@@ -12,6 +12,12 @@ This directory is the concrete starter representation of the Project Source sema
 
 When the user does not narrow the Goal, bounded local design/plan/edit/test/fix/verify/commit/checkpoint work is pre-authorized. Push, destructive actions, Root/Binding mutation, and external disclosure remain explicit opt-ins under current governance. GREENFIELD starter materialization does not create an active Goal/`OUT-*`/Goal `AUTH-*`; `91` becomes applicable only when Goal/other management-control truth is actually material.
 
+## Framework 1.8.0 `[Meeting]` Advisory Council Semantics
+
+`[Meeting]` sends the explicit question as the default payload to a verified multi-model advisory provider. Extra Project context is minimum-necessary and separately disclosure-authorized; secret values remain prohibited. Council/majority/Chairman output is advice/evidence only and never automatic `AUTH-*`, `DEC-*`, `REQ-*`, Risk acceptance, or mutation permission.
+
+Material Meeting use may be preserved as `EVD-*` in `13 Evidence Registry`; transient exploratory Meetings need no synthetic record. No `MEETING-*` family exists, provider JSON is not Project history, and GREENFIELD creates no council conversation, provider credential/runtime, Meeting evidence, or disclosure authority automatically.
+
 ## Framework 1.7.0 Self-Bootstrapping Project Semantics
 ## Framework 1.8.0 Framework-Source Naming Semantics
 

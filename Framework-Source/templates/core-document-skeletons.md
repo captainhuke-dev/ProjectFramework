@@ -398,6 +398,26 @@ Epistemic Status
 
 Never store actual secrets as evidence.
 
+### External AI Council / `[Meeting]` Evidence Specialization
+
+When a Meeting materially informs governed Project truth, use existing `EVD-*` rather than a new Meeting family. Record only minimum reconstructable advisory evidence:
+
+```text
+Evidence Type: EXTERNAL_AI_COUNCIL / ADVISORY
+Meeting Question
+Context Scope / Disclosure Basis
+Provider/Profile + observed version when material
+Participating models / Chairman when reported
+Stage completeness
+Independent views / disagreement / synthesis bounded summary or source-native pointer
+Provider/runtime failures
+Supports
+Epistemic Status
+Advisory-only notice
+```
+
+Transient exploratory Meetings require no synthetic evidence record. Provider conversation JSON is provider-local state and never canonical Project history or authority.
+
 ## 14 — Project Source Manifest
 
 Current Reconstructable Snapshot inventory.

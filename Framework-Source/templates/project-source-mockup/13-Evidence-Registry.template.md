@@ -35,3 +35,23 @@ Canonical home of `EVD-*`.
 - **Epistemic Status:** <STATUS>
 
 Never store actual secrets as evidence.
+
+### Optional `[Meeting]` Advisory Evidence (`EVD-*`)
+
+Material use of a council result may specialize an existing `EVD-*` with:
+
+```text
+Evidence Type: EXTERNAL_AI_COUNCIL / ADVISORY
+Meeting Question
+Context Scope / Disclosure Basis
+Provider/Profile + observed version when material
+Participating models / Chairman when reported
+Stage completeness
+Independent views / disagreement / synthesis bounded summary or source-native pointer
+Provider/runtime failures
+Supports
+Epistemic Status
+Advisory-only notice
+```
+
+Exploratory Meetings may remain transient; do not create synthetic evidence merely because `[Meeting]` was invoked. Provider `data/conversations/*.json` remains provider-local state, never canonical Project history. No `MEETING-*` family is introduced.
