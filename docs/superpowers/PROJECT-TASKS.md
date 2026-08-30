@@ -268,8 +268,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication Branch:** `task026-external-ai-disclosure`
 - **Published Implementation Head at PR Creation:** `ab43da5295ff571c641ed82c2e49bd3e0aa202ce`; later publication-reconciliation metadata commits may advance the remote feature-branch head and must be fresh-checked before integration
 - **Pull Request:** `#21` OPEN — `https://github.com/captainhuke-dev/ProjectFramework/pull/21` — base `main`
-- **Main Integration State:** `NOT_MERGED`; `origin/main` observed `eb231ee2d1d83b42455ab2f3cab250d4d442fda0` at publication reconciliation
-- **Exact Next Step:** Review Pull Request #21 and resolve integration disposition; TASK-025 remains the next architectural action after integration.
+- **Main Integration State:** `NOT_MERGED`; PR #21 technical integration gate `PASS 32/32`; GitHub `MERGEABLE / CLEAN`; fresh `origin/main` and merge-base `eb231ee2d1d83b42455ab2f3cab250d4d442fda0`
+- **Independent Review State:** `BLOCKED / NOT_RUN` — @CEO subagent reviewer adapters unavailable; fallback hzmcp read-only delegate remained queued and was cancelled; this is a tool-capability blocker, not a repository defect
+- **Integration Evidence:** `EVD-009`; head `8cb0d2fcea0dc67fb9de0f707deedf0e2b1ecde1`; Framework-Source tree remains `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`
+- **Exact Next Step:** Run an independent read-only review of Pull Request #21; if there are no Critical/Important findings and base/evidence remain fresh, merge to main and reconcile merged state; TASK-025 remains the next architectural action after integration.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
