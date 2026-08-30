@@ -233,7 +233,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / outbound AI-context governance
 - **Problem:** TASK-024 `[Meeting]`, TASK-025 Project Knowledge, and other future external-model workflows may send Project context outside the local authority boundary. ProjectFramework needs a governed rule for what context may be disclosed, minimized, redacted, provider-scoped, or prohibited before any external AI call occurs.
 - **Approved direction:** Define an outbound AI Context/Disclosure contract that classifies Project information by disclosure eligibility, applies minimum-necessary context and redaction, and fails closed when classification or permission is unresolved.
@@ -251,12 +251,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Chosen Architecture:** Compositional Disclosure Boundary — reuse `AUTH-*`, `EVD-*`, and `SECRET-*`; classify outbound context as `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility remains independent; no `DISC-*` family or new semantic slot.
 - **Spec Self-Review:** `PASS 21/21` — classification/authorization separation, provider eligibility, minimum-context/redaction, mixed-sensitivity behavior, secret/EVD boundaries, Meeting/Knowledge/OpenViking/Goal integration, Brownfield/GREENFIELD behavior, release classification, and no-runtime scope checked.
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`
-- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED / INLINE_CONTINUOUS_EXECUTION_APPROVED`
 - **Plan Self-Review:** `PASS` — six task checkpoints cover scenarios `228–245`, normative contract, starters, user-facing migration/launcher surfaces, AFFECTED verification, RELEASE_FULL evidence, and final lifecycle reconciliation; placeholder scan and canonical vocabulary checks passed.
 - **Implementation Scenario Contract:** RED scenarios `228–245` added; Framework-wide numbering target `1–245` contiguous/unique.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Execute Task 2 of `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`: add the TASK-026 Framework amendment and normative disclosure contract to release/Core/SKILL surfaces.
+- **Implementation Release:** Framework `1.8.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `723ecb1`, `4ad2cef`, `33aad00`, `4c3103d`, `fda8300`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-30-task-026-external-ai-context-disclosure-release-full.md`
+- **Verification Result:** `AFFECTED 144/144 PASS; RELEASE_FULL 243/243 PASS`
+- **Candidate Commit:** `4c3103dfcf8e454555d234d6b3acc3571c7c2483`
+- **Candidate Tree:** `c8d589722a3e404c54f0c5e2351e412712b3927a`
+- **Framework-Source Tree:** `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`
+- **Completion criteria met:** Compositional Disclosure Boundary implemented with exact disclosure/provider vocabularies; `Classification ≠ Authorization`; standing `AUTH-*` + action-scoped one-off disclosure; minimum-context/redaction/mixed-sensitivity/fail-closed rules; `SECRET-*` reference-only boundary; bounded material `EVD-*`; Meeting/Knowledge/OpenViking/Goal/ENV/tool/model separation; GREENFIELD/Brownfield safety; scenarios 1–245; no `DISC-*` family/slot/runtime disclosure system; launcher change skipped under size gate while parity/ceiling preserved; final verification PASS.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** Prepare TASK-025 Project Knowledge Layer / Compounding Knowledge Contract architectural design before implementation.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
