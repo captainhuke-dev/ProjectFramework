@@ -245,10 +245,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define provenance/evidence sufficient to know what category of information was disclosed and under which rule without persisting secrets unnecessarily.
   6. Define failure behavior for unknown classification, mixed-sensitivity context, unavailable provider policy, and redaction uncertainty.
 - **Implementation boundary:** Task registration only. Do not add disclosure automation, provider routing, redaction runtime, external calls, or new secret storage until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design Spec:** `docs/superpowers/specs/2026-08-30-task026-external-ai-context-disclosure-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_REVIEW_REQUIRED`
+- **Design Approval:** User explicitly approved the presented Compositional Disclosure Boundary architecture and instructed continuous execution on `2026-08-30`; the written-spec review gate remains required before implementation planning.
+- **Chosen Architecture:** Compositional Disclosure Boundary — reuse `AUTH-*`, `EVD-*`, and `SECRET-*`; classify outbound context as `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility remains independent; no `DISC-*` family or new semantic slot.
+- **Spec Self-Review:** `PASS 21/21` — classification/authorization separation, provider eligibility, minimum-context/redaction, mixed-sensitivity behavior, secret/EVD boundaries, Meeting/Knowledge/OpenViking/Goal integration, Brownfield/GREENFIELD behavior, release classification, and no-runtime scope checked.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-026 is selected for development, prepare its architectural design spec before implementation.
+- **Exact Next Step:** Review and explicitly approve the written TASK-026 design spec; after written-spec approval, invoke `superpowers:writing-plans` before any disclosure-governance implementation mutation.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
