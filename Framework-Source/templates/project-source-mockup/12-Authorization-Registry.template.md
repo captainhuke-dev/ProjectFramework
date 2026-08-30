@@ -43,6 +43,25 @@ For Goal-related authorization, the parent `OUT-*` terminal state `ACHIEVED | CA
 
 Unless explicitly narrowed, Goal `AUTH-*` may cover bounded local design/plan/edit/test/fix/verify/local-commit/checkpoint work. Push, destructive effects, Root/Binding mutation, and external disclosure require their exact opt-in semantics from current Root Governance. Actual secret values are never stored here.
 
+### Optional Standing External-AI Disclosure `AUTH-*` Fields
+
+```text
+Consumer / Grantee
+Provider / Tool / Provider Class
+Allowed Content / Source Scope
+Allowed Disclosure Classes
+Purpose
+Minimum-context / Redaction Conditions
+Forbidden Content / Effects
+Start
+Expiry / Termination / Revocation
+Risk Ceiling when applicable
+Evidence / Approval Reference
+Status
+```
+
+Standing disclosure authority is provider/purpose/content scoped. `EXTERNAL_OK` classification or provider eligibility is not authorization. An exact one-off User Explicit Instruction may authorize one bounded disclosure action without materializing synthetic standing `AUTH-*`.
+
 ## DEL-<NNN> — <TITLE>
 - **Parent Authorization:** <AUTH_REF>
 - **Delegated Scope:** <MUST_NOT_EXCEED_PARENT>

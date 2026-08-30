@@ -18,6 +18,12 @@ When the user does not narrow the Goal, bounded local design/plan/edit/test/fix/
 
 Material Meeting use may be preserved as `EVD-*` in `13 Evidence Registry`; transient exploratory Meetings need no synthetic record. No `MEETING-*` family exists, provider JSON is not Project history, and GREENFIELD creates no council conversation, provider credential/runtime, Meeting evidence, or disclosure authority automatically.
 
+## Framework 1.8.0 External AI Context & Disclosure Semantics
+
+Outbound Project context uses `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility is separately `ELIGIBLE | LIMITED | INELIGIBLE | VERIFICATION_REQUIRED`. `Classification ≠ Authorization`, provider eligibility is not Project authority, and unknown/protected context fails closed for automatic external use. Standing disclosure permission reuses bounded `AUTH-*`; exact one-off instructions remain action-scoped; material disclosure evidence uses `EVD-*`; `SECRET-*` remains reference-only.
+
+Minimum-necessary context, mixed-sensitivity partitioning, and redaction adequacy apply to `[Meeting]`, Project Knowledge, OpenViking and other external-AI consumers. GREENFIELD creates no standing disclosure grant, provider eligibility grant, credential, blanket `EXTERNAL_OK`, `DISC-*` family/slot, or runtime redactor/router/proxy. Brownfield does not retroactively classify historical content safe or synthesize disclosure authority from prior AI use.
+
 ## Framework 1.7.0 Self-Bootstrapping Project Semantics
 ## Framework 1.8.0 Framework-Source Naming Semantics
 

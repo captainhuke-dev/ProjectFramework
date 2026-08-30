@@ -34,3 +34,5 @@ Canonical home of `SECRET-*` metadata only. Actual secret values are forbidden.
 ```yaml
 secret_value_present: false
 ```
+
+For external-AI disclosure, actual secret values remain effectively `DO_NOT_DISCLOSE`. A `SECRET-*` reference is metadata only and never permission to reveal the referenced value. Secret-bearing source text must be excluded or sufficiently redacted before any external AI use; do not persist secret values in prompts, disclosure evidence, Handoff, logs, or exports.

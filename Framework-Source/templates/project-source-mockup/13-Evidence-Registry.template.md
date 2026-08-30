@@ -55,3 +55,22 @@ Advisory-only notice
 ```
 
 Exploratory Meetings may remain transient; do not create synthetic evidence merely because `[Meeting]` was invoked. Provider `data/conversations/*.json` remains provider-local state, never canonical Project history. No `MEETING-*` family is introduced.
+
+### Optional External-AI Disclosure Evidence (`EVD-*`)
+
+```text
+Evidence Type: EXTERNAL_AI_DISCLOSURE / ADVISORY_CONTEXT
+Consumer / Workflow
+Purpose
+Provider / Tool
+Provider Eligibility State / Evidence
+Source Pointers / Bounded Context Scope
+Disclosure Classes
+Authorization Basis
+Minimization / Redaction Performed
+Blocked / Omitted Portions when material
+Result / Artifact Pointer
+Epistemic Status
+```
+
+Persist only the minimum reconstructable boundary evidence. Never duplicate full sensitive payload merely for audit or evidence convenience.

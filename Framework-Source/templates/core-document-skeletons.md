@@ -376,6 +376,8 @@ Canonical home of `AUTH-*` and `DEL-*`.
 
 `AUTH-*` records grantor, grantee, actions, scope/paths, forbidden actions/effects, risk ceiling, start, expiry/termination, status. Goal-related `AUTH-*` additionally records related `OUT-*`, explicitly included shared/external effects, revocation trigger, and approval/evidence reference.
 
+For standing external-AI disclosure authority, reuse `AUTH-*` and additionally resolve Consumer/Grantee, Provider/Tool/Provider Class, Allowed Content/Source Scope, Allowed Disclosure Classes, Purpose, Minimum-context/Redaction Conditions, Forbidden Content/Effects, Start, Expiry/Termination/Revocation, Risk Ceiling when applicable, Evidence/Approval Reference, and Status. Exact one-off disclosure instructions remain action-scoped and need no synthetic standing `AUTH-*`. Classification/provider eligibility never substitutes for authorization.
+
 For persistent `[Goal]`, terminal `OUT-*` state `ACHIEVED | CANCELLED | SUPERSEDED` terminates/supersedes dependent Goal authority. Handoff references never transfer that authority. Unless explicitly narrowed, Goal authority may cover bounded local development; push/destructive/Root-Binding/external-disclosure effects retain exact opt-in rules and actual secret values are forbidden.
 
 `DEL-*` references parent authorization and never exceeds parent scope/risk/actions/duration.
@@ -417,6 +419,10 @@ Advisory-only notice
 ```
 
 Transient exploratory Meetings require no synthetic evidence record. Provider conversation JSON is provider-local state and never canonical Project history or authority.
+
+### External AI Disclosure Evidence Specialization
+
+When disclosure materially informs governed Project truth, reuse `EVD-*` and record only minimum reconstructable boundary evidence: Consumer/Workflow, Purpose, Provider/Tool, Provider Eligibility State/Evidence, Source Pointers/Bounded Context Scope, Disclosure Classes, Authorization Basis, Minimization/Redaction Performed, Blocked/Omitted Portions when material, Result/Artifact Pointer, and Epistemic Status. Do not duplicate full sensitive payload merely to prove disclosure occurred.
 
 ## 14 — Project Source Manifest
 

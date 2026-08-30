@@ -312,6 +312,8 @@ Natural-language command-help requests list only registered commands as `[XXX] :
 
 `[Meeting]` sends the explicit question as the default outbound payload to a verified advisory council provider. Extra Project context must be minimum necessary and separately disclosure-authorized; actual secret values remain prohibited. Council/majority/Chairman output is advisory only and grants no `AUTH-*`, `DEC-*`, `REQ-*`, mutation, push, or whole-Project disclosure authority. Material Meeting use persists, when needed, through existing `EVD-*`; no `MEETING-*` family/provider credential/runtime/conversation is created by GREENFIELD starter materialization.
 
+Framework `1.8.0` external-AI disclosure uses `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED` plus provider/tool eligibility `ELIGIBLE | LIMITED | INELIGIBLE | VERIFICATION_REQUIRED`. `Classification ≠ Authorization`; provider eligibility and disclosure permission never grant Project mutation/Decision authority. Standing disclosure permission reuses bounded `AUTH-*`; exact one-off user instruction stays action-scoped. Minimum necessary context, mixed-sensitivity partitioning, fail-closed redaction uncertainty, `SECRET-*` reference-only handling, and material `EVD-*` evidence apply to `[Meeting]`, Project Knowledge, OpenViking, Goal/ENV, and other external-AI consumers. GREENFIELD creates no standing disclosure grant, provider credential, blanket `EXTERNAL_OK`, `DISC-*` family/slot, or runtime disclosure system.
+
 
 Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
 
