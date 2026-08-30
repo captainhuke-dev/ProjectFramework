@@ -264,8 +264,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Candidate Tree:** `c8d589722a3e404c54f0c5e2351e412712b3927a`
 - **Framework-Source Tree:** `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`
 - **Completion criteria met:** Compositional Disclosure Boundary implemented with exact disclosure/provider vocabularies; `Classification ≠ Authorization`; standing `AUTH-*` + action-scoped one-off disclosure; minimum-context/redaction/mixed-sensitivity/fail-closed rules; `SECRET-*` reference-only boundary; bounded material `EVD-*`; Meeting/Knowledge/OpenViking/Goal/ENV/tool/model separation; GREENFIELD/Brownfield safety; scenarios 1–245; no `DISC-*` family/slot/runtime disclosure system; launcher change skipped under size gate while parity/ceiling preserved; final verification PASS.
-- **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** Prepare TASK-025 Project Knowledge Layer / Compounding Knowledge Contract architectural design before implementation.
+- **Publication State:** `REMOTE_BRANCH_PUSHED / PR_CREATED`
+- **Publication Branch:** `task026-external-ai-disclosure`
+- **Published Implementation Head at PR Creation:** `ab43da5295ff571c641ed82c2e49bd3e0aa202ce`; later publication-reconciliation metadata commits may advance the remote feature-branch head and must be fresh-checked before integration
+- **Pull Request:** `#21` OPEN — `https://github.com/captainhuke-dev/ProjectFramework/pull/21` — base `main`
+- **Main Integration State:** `NOT_MERGED`; `origin/main` observed `eb231ee2d1d83b42455ab2f3cab250d4d442fda0` at publication reconciliation
+- **Exact Next Step:** Review Pull Request #21 and resolve integration disposition; TASK-025 remains the next architectural action after integration.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
