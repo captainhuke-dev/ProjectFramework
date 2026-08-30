@@ -233,7 +233,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / outbound AI-context governance
 - **Problem:** TASK-024 `[Meeting]`, TASK-025 Project Knowledge, and other future external-model workflows may send Project context outside the local authority boundary. ProjectFramework needs a governed rule for what context may be disclosed, minimized, redacted, provider-scoped, or prohibited before any external AI call occurs.
 - **Approved direction:** Define an outbound AI Context/Disclosure contract that classifies Project information by disclosure eligibility, applies minimum-necessary context and redaction, and fails closed when classification or permission is unresolved.
@@ -251,11 +251,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Chosen Architecture:** Compositional Disclosure Boundary — reuse `AUTH-*`, `EVD-*`, and `SECRET-*`; classify outbound context as `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility remains independent; no `DISC-*` family or new semantic slot.
 - **Spec Self-Review:** `PASS 21/21` — classification/authorization separation, provider eligibility, minimum-context/redaction, mixed-sensitivity behavior, secret/EVD boundaries, Meeting/Knowledge/OpenViking/Goal integration, Brownfield/GREENFIELD behavior, release classification, and no-runtime scope checked.
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`
-- **Plan State:** `IMPLEMENTATION_PLAN_READY / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_CONTINUOUS_EXECUTION_APPROVED`
 - **Plan Self-Review:** `PASS` — six task checkpoints cover scenarios `228–245`, normative contract, starters, user-facing migration/launcher surfaces, AFFECTED verification, RELEASE_FULL evidence, and final lifecycle reconciliation; placeholder scan and canonical vocabulary checks passed.
+- **Implementation Scenario Contract:** RED scenarios `228–245` added; Framework-wide numbering target `1–245` contiguous/unique.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Execute Task 1 of `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`: fresh-check Project/Git state, add RED scenarios `228–245`, and mark TASK-026 `IN_PROGRESS`.
+- **Exact Next Step:** Execute Task 2 of `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`: add the TASK-026 Framework amendment and normative disclosure contract to release/Core/SKILL surfaces.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
