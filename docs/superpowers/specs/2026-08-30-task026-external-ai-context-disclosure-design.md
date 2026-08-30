@@ -2,8 +2,8 @@
 
 Date: `2026-08-30` (Asia/Bangkok)
 Task: `TASK-026`
-Design state: `USER_APPROVED_DESIGN / WRITTEN_SPEC_REVIEW_REQUIRED`
-Approval basis: the Compositional Disclosure Boundary architecture was presented after TASK-024 completion, and the user explicitly instructed continuous execution without further approval prompts. That instruction approves the presented design direction and permits materializing/self-reviewing this written spec. The written-spec review gate remains required before implementation planning.
+Design state: `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+Approval basis: the Compositional Disclosure Boundary architecture was presented after TASK-024 completion and approved for continuous execution; after the written spec was materialized, self-reviewed, committed, and persisted, the user again explicitly instructed continued execution on `2026-08-30`, approving the written spec and releasing the implementation-planning gate. Higher-level system/tool/platform gates remain binding.
 Target release: Framework `1.8.0` / Schema `1.0.0` / release format `3`
 
 ## 1. Purpose

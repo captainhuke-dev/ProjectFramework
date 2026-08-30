@@ -246,13 +246,16 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Define failure behavior for unknown classification, mixed-sensitivity context, unavailable provider policy, and redaction uncertainty.
 - **Implementation boundary:** Task registration only. Do not add disclosure automation, provider routing, redaction runtime, external calls, or new secret storage until a separate design spec is completed and explicitly approved.
 - **Design Spec:** `docs/superpowers/specs/2026-08-30-task026-external-ai-context-disclosure-design.md`
-- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_REVIEW_REQUIRED`
-- **Design Approval:** User explicitly approved the presented Compositional Disclosure Boundary architecture and instructed continuous execution on `2026-08-30`; the written-spec review gate remains required before implementation planning.
+- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Design Approval:** User explicitly approved the presented Compositional Disclosure Boundary architecture and, after the written spec was committed/persisted, explicitly approved continued execution on `2026-08-30`; implementation planning is authorized while higher-level system/tool/platform gates remain binding.
 - **Chosen Architecture:** Compositional Disclosure Boundary — reuse `AUTH-*`, `EVD-*`, and `SECRET-*`; classify outbound context as `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility remains independent; no `DISC-*` family or new semantic slot.
 - **Spec Self-Review:** `PASS 21/21` — classification/authorization separation, provider eligibility, minimum-context/redaction, mixed-sensitivity behavior, secret/EVD boundaries, Meeting/Knowledge/OpenViking/Goal integration, Brownfield/GREENFIELD behavior, release classification, and no-runtime scope checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_READY / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan Self-Review:** `PASS` — six task checkpoints cover scenarios `228–245`, normative contract, starters, user-facing migration/launcher surfaces, AFFECTED verification, RELEASE_FULL evidence, and final lifecycle reconciliation; placeholder scan and canonical vocabulary checks passed.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Review and explicitly approve the written TASK-026 design spec; after written-spec approval, invoke `superpowers:writing-plans` before any disclosure-governance implementation mutation.
+- **Exact Next Step:** Execute Task 1 of `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`: fresh-check Project/Git state, add RED scenarios `228–245`, and mark TASK-026 `IN_PROGRESS`.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
