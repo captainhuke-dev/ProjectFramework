@@ -890,6 +890,7 @@ Before emit, every Framework-governed assistant response MUST run a lightweight 
 Framework `1.3.1` extends the Framework `1.3.0` semantic command registry for common Project inspection and governed upgrade entry. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service, updater, or other executable runtime.
 Framework `1.8.0` TASK-039 further registers persistent `[Goal]` continuous-execution semantics by composing existing `OUT-* / AUTH-* / ACT-* / ENV-* / 09` homes; it adds no `GOAL-*` Stable-ID family or semantic slot.
 Framework `1.8.0` TASK-024 further registers `[Meeting]` as a multi-model advisory command using a Thin Council Provider Adapter boundary; it adds no `MEETING-*` Stable-ID family, semantic slot, or provider authority home.
+Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary for external-AI Project context using existing `AUTH-* / EVD-* / SECRET-*` homes; it adds no `DISC-*` Stable-ID family, semantic slot, mandatory per-object classification field, or runtime disclosure system.
 
 
 Initial registry:
@@ -1019,6 +1020,36 @@ Meeting execution may report `COMPLETE | PARTIAL | FAILED | UNAVAILABLE` as pres
 TASK-024 adds no `MEETING-*` family or semantic slot. Exploratory Meetings may remain transient. When materially used, persist minimum reconstructable advisory evidence through existing `EVD-*` / source-native evidence references in `13 Evidence Registry`; provider JSON storage is never canonical Project history.
 
 GREENFIELD does not auto-create a Meeting/conversation/evidence/provider credential/runtime/disclosure authority. Brownfield upgrade does not synthesize Meetings from prior discussion, AI transcripts, backlog, Handoff, `EVD-*`, or provider JSON and does not require provider runtime installation merely to adopt governance semantics.
+
+#### TASK-026 External AI Context & Disclosure Governance
+
+TASK-026 defines one compositional disclosure boundary for Project context sent to external AI/model/provider/tool consumers. Canonical disclosure classes are exactly `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility labels are exactly `ELIGIBLE | LIMITED | INELIGIBLE | VERIFICATION_REQUIRED`. These are workflow semantics, not new Stable-ID or lifecycle families.
+
+```text
+Classification ≠ Authorization
+Provider Eligibility ≠ Authority
+Disclosure Permission ≠ Decision Authority ≠ Mutation Authority ≠ Binding Authority ≠ Runtime Authority
+Secret Reference ≠ Secret Value Disclosure Permission
+Unknown ≠ Safe
+```
+
+`EXTERNAL_OK` is eligibility under otherwise-valid provider/purpose/minimization/authorization conditions, not permission by itself. `EXTERNAL_REVIEW` requires current bounded disclosure authority. `DO_NOT_DISCLOSE` is excluded from ordinary external-AI workflows. `UNCLASSIFIED` fails closed for automatic protected outbound Project context while independent safe local work may continue. Actual secret values are effectively `DO_NOT_DISCLOSE`; a `SECRET-*` reference never authorizes value disclosure.
+
+Standing disclosure permission reuses `AUTH-*` in `12`: provider/tool or provider class, content/source scope, allowed disclosure classes, purpose, minimum-context/redaction conditions, forbidden content/effects, validity/termination, risk ceiling when applicable, and evidence/approval reference remain bounded. An exact User Explicit Instruction may authorize one sufficiently identified provider/content/purpose disclosure action when otherwise allowed; it does not silently create standing authority or generalize to later calls.
+
+Provider/tool eligibility is evaluated independently of classification and Project authority. Provider availability/model capability never proves eligibility. `VERIFICATION_REQUIRED` or `INELIGIBLE` blocks protected outbound context; provider identity/policy drift invalidates the affected provider-scoped basis until re-resolved.
+
+Every external-AI consumer follows: identify purpose/provider → identify candidate context → classify each portion → remove secrets/`DO_NOT_DISCLOSE` → minimize → redact/generalize only when sufficient → resolve provider eligibility → resolve `AUTH-*` or exact one-off basis → partition mixed sensitivity → send only authorized + eligible subset → surface material omissions → persist `EVD-*` only when governance-relevant. Whole-repository/Project export is exceptional exact scope, never the convenience default.
+
+Mixed-sensitivity context is partitioned, not promoted wholesale. Redaction uncertainty fails closed for the affected portion and must not leak through metadata, filenames, hashes, examples, attachments, prompts, or logs. If omitted context makes the external task materially misleading or unusable, fail closed rather than silently expanding disclosure.
+
+Material disclosure evidence uses minimum reconstructable `EVD-*` / source-native pointers: consumer, purpose, provider/tool, eligibility evidence, bounded source/context scope, disclosure classes, authorization basis, minimization/redaction, blocked portions when material, result pointer, and epistemic status. Do not duplicate full sensitive payload merely for audit.
+
+`[Meeting]` extra Project context routes through this boundary while the explicit user-supplied Meeting question remains its default action-specific input. Project Knowledge advisory status, OpenViking/`REL-*` visibility, `[Goal]`, `ENV-*`, Tool/MCP access, model capability, repository/workspace access, and provider availability never create or transfer disclosure authority. Cross-Project disclosure is evaluated under each source Project.
+
+GREENFIELD creates no standing disclosure `AUTH-*`, provider eligibility grant, provider credential/account, redaction runtime, disclosure log, or blanket `EXTERNAL_OK`. Brownfield does not mass-classify historical content safe, synthesize disclosure authority from prior AI use/Meeting/Goal/chats/credentials, migrate actual secret values into Project Source/Evidence, or assume prior provider integrations are eligible.
+
+TASK-026 remains documentation/governance-only: no `DISC-*` family/slot, runtime redactor, provider router/proxy, MCP disclosure gateway, interception layer, secret manager, DLP scanner, classification database, watcher/crawler, automatic outbound call, credential provisioning, or CI/CD/deployment automation is introduced.
 
 
 ### GREENFIELD
