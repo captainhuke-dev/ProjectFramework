@@ -63,6 +63,18 @@ A Framework may be operationally usable without an immutable tag, exact commit p
 - **Partial truth** — missing models/stages, Chairman failure, and provider/auth/network failures remain explicit; no synthesis is fabricated.
 - **Material evidence only when needed** — material use may be preserved through existing `EVD-*`; no `MEETING-*` family exists and provider conversation JSON is not Project history.
 
+## Framework 1.8.0 External AI Context & Disclosure Governance
+
+External AI workflows use the smallest necessary Project context and fail closed when disclosure safety is unresolved.
+
+- **Classification** — `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; unknown is not safe.
+- **Provider eligibility** — `ELIGIBLE | LIMITED | INELIGIBLE | VERIFICATION_REQUIRED` is evaluated separately from classification and authority.
+- **Authorization** — `EXTERNAL_REVIEW` requires bounded disclosure authority; standing grants reuse `AUTH-*`, while an exact one-off instruction stays action-scoped.
+- **Secrets** — `SECRET-*` is reference metadata only and never authorizes the underlying value; actual secret values remain excluded.
+- **Minimum context** — mixed-sensitivity payloads are partitioned and uncertain redaction fails closed; whole-repository export is never the convenience default.
+- **Authority boundary** — disclosure permission does not grant Decision, mutation, binding, runtime, publication, or Risk authority.
+- **Evidence** — material disclosure may use bounded `EVD-*` evidence without duplicating sensitive payload. No `DISC-*` family/slot or runtime redactor/router/proxy is introduced.
+
 ## Framework 1.8.0 Framework-Source Naming
 
 Framework `1.8.0` keeps Schema `1.0.0` and release format `3` while renaming the single canonical reusable Framework distribution root:
