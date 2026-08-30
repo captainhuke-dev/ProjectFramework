@@ -17,9 +17,9 @@ If this Project uses a different approved relative Project Source path, replace 
 
 ```text
 00 / FRAMEWORK-001 -> Project-Source/00-Project-Source-Framework-r002-260829-1901.md
-01 / Project Source Index -> Project-Source/01-Project-Source-Index-r010-260830-2201.md
-03 / Current State -> Project-Source/03-Current-State-r010-260830-2201.md
-09 / Handoff -> Project-Source/09-Handoff-r010-260830-2201.md
+01 / Project Source Index -> Project-Source/01-Project-Source-Index-r011-260831-0034.md
+03 / Current State -> Project-Source/03-Current-State-r011-260831-0034.md
+09 / Handoff -> Project-Source/09-Handoff-r011-260831-0034.md
 ```
 
 ## Required Read Order
