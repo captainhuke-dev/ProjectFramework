@@ -8,7 +8,7 @@ How to use it:
 
 1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
-3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session Envelope]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
 
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
@@ -115,7 +115,7 @@ This remains documentation/governance scope. Framework `1.6.0` adds no OpenVikin
 Framework `1.5.0` keeps Schema `1.0.0` and makes agent-driven system management run continuously instead of stopping:
 
 - **Resume Blocks** — every Logical Checkpoint writes resume state into `09 Handoff` (task, last step, next step, blockers, active envelope) so any fresh session continues within one read.
-- **`[Session Envelope]`** — pre-approve a bounded operation scope once per session (`ENV-*` entries in `15 Action Registry`, with expiry and prohibited zones); fail-closed gates for location/binding/root/secret/push never lift.
+- **`[Session]`** — pre-approve a bounded operation scope once per session (`ENV-*` entries in `15 Action Registry`, with expiry and prohibited zones); fail-closed gates for location/binding/root/secret/push never lift. The shorter current command name preserves the original Framework 1.5.0 envelope semantics.
 - **MCP Resume Semantics** — mutations should be idempotent; non-idempotent calls record intent first; after a drop, work resumes from the last checkpoint, not from memory.
 - **`[Project Status]` Continuity dimension** — shows Resume Block freshness (`FRESH | STALE | NONE`), the active Envelope, and repeated handoff breaks.
 

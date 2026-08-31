@@ -9,8 +9,8 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 ### Affected distribution surfaces
 
 - repository package root — canonical upstream distribution path changes from `managing-project-source/` to `Framework-Source/`; no live old-root alias remains
-- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves through TASK-038 distribution-root migration, TASK-039 persistent `[Goal]`, TASK-024 `[Meeting]`, and TASK-026 External AI Context & Disclosure Governance semantics
-- current Core Governance / SKILL / README / launcher and maintained starter routing — current reusable Framework path is `Framework-Source/`
+- `FRAMEWORK-RELEASE.yaml` — Framework version `1.8.0`; latest amendment pointer moves through TASK-038 distribution-root migration, TASK-039 persistent `[Goal]`, TASK-024 `[Meeting]`, TASK-026 External AI Context & Disclosure Governance, and TASK-040 canonical `[Session]` command naming
+- current Core Governance / SKILL / README / launcher and maintained starter routing — current reusable Framework path is `Framework-Source/`; bounded session/task pre-approval uses canonical command `[Session]` backed by unchanged `ENV-*` semantics
 - `12 Authorization Registry`, `15 Action Registry`, conditional `91 Project Management Control`, `03 Current State`, and `09 Handoff` starters — persistent Goal uses `OUT-* / AUTH-* / ACT-* / ENV-*` with `authority_transfer: false`; no `GOAL-*` family
 - `13 Evidence Registry` and command/help surfaces — material Meeting use may persist as advisory `EVD-*`; no `MEETING-*` family, provider JSON authority, automatic conversation, credential, runtime, or disclosure authority is introduced
 - `12 Authorization Registry`, `13 Evidence Registry`, and `17 Secret Reference Registry` starter guidance — external-AI disclosure reuses bounded `AUTH-* / EVD-* / SECRET-*`; classes are `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider eligibility is separate; no `DISC-*` family/slot is introduced
@@ -38,6 +38,7 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 17. Governance adoption does not require installing/running llm-council, provisioning OpenRouter credentials, or creating conversations. Provider runtime remains optional/applicability-driven.
 18. `[Goal]` / `ENV-*` execution authority does not imply outbound Project-context disclosure authority for `[Meeting]`.
 19. Preserve existing `AUTH-*`, `EVD-*`, and `SECRET-*`; do not create `DISC-*`, mass-classify historical content as `EXTERNAL_OK`, or synthesize standing disclosure authority from prior AI usage, credentials, chats, Meetings, Goals, or “continue” wording.
+20. Use `[Session]` as the current registered command for bounded session/task `ENV-*` scope. The older longer command name is historical provenance only and is not a current registered alias.
 20. Reassess external provider/tool eligibility prospectively when next used. `UNCLASSIFIED` protected Project context and materially unresolved provider policy/identity fail closed for automatic external disclosure.
 21. Governance adoption does not require a runtime redactor/router/proxy, DLP scanner, disclosure gateway, provider credential setup, or automatic outbound calls.
 8. Verify affected scope and run one final `RELEASE_FULL` on the unchanged target candidate before promoting the upgrade.

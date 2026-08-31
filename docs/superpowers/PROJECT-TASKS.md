@@ -574,3 +574,22 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ProjectFramework active Goal record:** `NOT_MATERIALIZED` — ordinary continuous-work wording was not retroactively converted into `[Goal]` authority.
 - **Publication State:** `NOT_PUSHED`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #40 — Rename `[Session Envelope]` Command to `[Session]`
+
+- **ID:** `TASK-040`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework command surface / bounded terminology simplification
+- **Problem:** The registered bounded session/task command name `[Session Envelope]` is unnecessarily long for routine use even though its underlying `ENV-*` semantics are already stable.
+- **User Instruction:** On `2026-08-31`, user explicitly instructed: rename the command to `[Session]` and make this change first.
+- **Approved direction:** Canonical current command becomes exactly `[Session]`; retain `declare | show | close`, `ENV-*` ownership in `15 Action Registry`, expiry/prohibited-zone semantics, Goal-derived narrowing rules, and all fail-closed gates. The historical longer spelling is not a current registered alias.
+- **Scope:** current Core Governance, SKILL, ChatGPT/Claude launchers, README/help, maintained starter surfaces, migration guidance, pressure scenarios, release latest-amendment routing, and bounded Project/Task lifecycle evidence. Historical amendments/specs/plans/evidence remain unchanged when their old spelling was true at capture time.
+- **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0`; command-name-only amendment, no version/schema bump.
+- **Implementation Boundary:** documentation/governance only; no parser/runtime/CLI/alias layer/automation.
+- **Verification Contract:** RED first; scenarios `246–248`; current command surfaces contain `[Session]`; historical TASK-021 amendment/evidence preserve the old spelling; launchers remain byte-identical in shared body and `<=4,500`; `ENV-*` semantics/fail-closed boundaries unchanged; `git diff --check`; AFFECTED verification; one final `RELEASE_FULL` on unchanged candidate.
+- **Implementation Commit(s):** PENDING
+- **Release Evidence:** PENDING
+- **Verification Result:** RED observed before implementation; GREEN/RELEASE_FULL pending
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** complete current-surface rename, run AFFECTED verification, then final unchanged-candidate RELEASE_FULL and lifecycle reconciliation.
