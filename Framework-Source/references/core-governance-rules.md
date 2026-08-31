@@ -891,6 +891,7 @@ Framework `1.3.1` extends the Framework `1.3.0` semantic command registry for co
 Framework `1.8.0` TASK-039 further registers persistent `[Goal]` continuous-execution semantics by composing existing `OUT-* / AUTH-* / ACT-* / ENV-* / 09` homes; it adds no `GOAL-*` Stable-ID family or semantic slot.
 Framework `1.8.0` TASK-024 further registers `[Meeting]` as a multi-model advisory command using a Thin Council Provider Adapter boundary; it adds no `MEETING-*` Stable-ID family, semantic slot, or provider authority home.
 Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary for external-AI Project context using existing `AUTH-* / EVD-* / SECRET-*` homes; it adds no `DISC-*` Stable-ID family, semantic slot, mandatory per-object classification field, or runtime disclosure system.
+Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Project Settings Handoff: current vendor Project Settings use a two-binding thin adapter while existing internal location semantics remain governed; root README gains a managed fallback; active local `FRAMEWORK-001` remains authority.
 
 
 Initial registry:
@@ -923,7 +924,7 @@ Unavailable dimensions remain explicit `UNKNOWN` / `VERIFICATION_REQUIRED`; neve
 
 #### `[Project Path]`
 
-`[Project Path]` reads and verifies the configured Project Settings/bootstrap values for Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Any value still syntactically represented by an angle-bracket placeholder such as `<FRAMEWORK_REMOTE>`, `<STORAGE>`, `<MCP_PATH>`, or `<WS>` means **unset / not configured**, not a literal path. Missing/unset values never authorize fallback to recent, active, mounted, cached, search-ranked, or similarly named locations.
+`[Project Path]` reads and verifies the applicable Framework/Git/Storage/MCP/Workspace location semantics from current Project Settings/bootstrap/internal location sources and active Project Location Binding. Framework `1.9.0` does not require the legacy five labels as current vendor Project Settings fields; their underlying roles remain governed. Any configured angle-bracket placeholder means **unset / not configured**, not a literal path. Missing/unset values never authorize fallback to recent, active, mounted, cached, search-ranked, or similarly named locations.
 
 The command may include an explicit request to change one or more path values, but it grants no new mutation authority. A one-off exact target remains action-specific. Persistent Bootstrap Location or active Project Location Binding changes still require applicable User Explicit Approval and, when Root Governance is affected, the normal `FRAMEWORK-001` revision → validate → promote → supersede/archive flow.
 
@@ -951,6 +952,53 @@ When the command reports `UPGRADE_AVAILABLE`, its report includes the target rel
 `[Project Upgrade]` grants no Bootstrap/Project Location mutation authority and no branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime, or Persistent-State authority.
 
 `MIGRATION-NOTES.md` documents per-release upgrade guidance (affected surfaces, checklist). It is a routing/documentation aid — never normative authority — and Core Governance plus the latest amendment win on any conflict. Missing notes for a transition remain an explicit `UNKNOWN`; they are never invented retroactively.
+
+### 16.5 Portable Installation Bootstrap & Project Settings Handoff
+
+Framework `1.9.0` standardizes the target user-facing Project Settings adapter as:
+
+```text
+ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
+Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
+
+ProjectFramework Bootstrap Rule:
+Read Project Bootstrap before Material Project work.
+If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
+ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
+```
+
+`ProjectFramework Upstream` is Framework read-through/current-target evidence only; it is never the consuming Project repository, Integration Target, Implementation Source, Runtime Location, or Project authority. `Project Bootstrap` is environment-specific and MUST be verified before being presented as ready to paste. Unknown path = `VERIFICATION_REQUIRED`; memory, recent workspaces, editor/MCP handles, mounts, ranking, and lookalikes never fill it.
+
+GREENFIELD Framework `1.9.0` resulting state includes root `PROJECT-BOOTSTRAP.md` plus exactly one valid consuming `README.md` managed fallback:
+
+```md
+<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->
+## ProjectFramework Bootstrap
+
+ProjectFramework Upstream:
+https://github.com/captainhuke-dev/ProjectFramework
+
+Project Bootstrap:
+./PROJECT-BOOTSTRAP.md
+
+AI / Agent:
+Read `PROJECT-BOOTSTRAP.md` before Material Project work.
+<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->
+```
+
+If README is absent, create it with the block. If README exists without the block, append the block while preserving existing content. With exactly one valid block, update only its managed body when required. Duplicate or malformed marker structures fail closed for automatic rewrite and require governed repair; never select by recency/position/similarity. ProjectFramework owns only bytes inside the marker pair for bootstrap maintenance.
+
+Bootstrap resolution is: usable Project Settings Project Bootstrap → otherwise root README managed fallback → `PROJECT-BOOTSTRAP.md` → validate active `FRAMEWORK-001` → `01 → 03` and `09` when continuation applies. Settings, README, upstream, and root bootstrap are discovery/locator layers; active local `FRAMEWORK-001` is Project governance authority. A stale absolute Settings path after clone/move may use the relative README fallback; successful discovery does not rewrite Local Workspace Binding.
+
+GREENFIELD installation uses fresh canonical upstream → required bootstrap sources → read-only Project/environment resolution → one Preview → explicit approval → active `00` first → mandatory `01–05` + `09–17` → applicable conditional docs → root bootstrap + managed README → local Framework/Schema pin → resulting-state verification → **Core Installation DONE** → mandatory copy-ready `Project Settings — Required User Handoff`. The approved Preview covers ordinary resulting files in the approved scope; do not re-prompt per file unless scope changes or a higher-level gate applies.
+
+Core installation completion is distinct from external vendor-settings mutation/confirmation. Do not create a `PROJECT_SETTINGS_*` lifecycle family and do not claim vendor settings were changed without independent execution evidence.
+
+The simplified adapter removes no internal capability: `framework_source`, `remote_location`, `file_storage_locations`, `mcp_location`, `local_workspace`, dynamic `current_branch_worktree`, `[Project Path]`, and active Project Location Binding semantics remain available. The legacy five Project Settings labels are no longer mandatory current adapter fields.
+
+If valid active Project Source already exists, never perform GREENFIELD recreation. Brownfield adoption uses governed `[Project Upgrade]`, preserves local pin/truth/Stable IDs/bindings/history, Previews root/README/adapter effects, and returns a refreshed absolute Project Settings block without claiming UI mutation.
+
+Neither bootstrap adapter, README fallback, root bootstrap, nor installation handoff stores actual secret values or grants disclosure/authorization. Installation does not synthesize Goal/Auth/ENV/Meeting/provider/disclosure/runtime/daemon state merely because ProjectFramework is installed.
 
 ### Continuation Contract and Resume Blocks
 
