@@ -39,7 +39,7 @@ Canonical home of `ACT-*`.
 
 For Material Git-backed mutation, `DONE` requires a Verified Task Completion Checkpoint; required completed state cannot remain only uncommitted. Read-only/no-mutation Actions require no synthetic commit; `WIP commit ≠ Task DONE`; `commit ≠ push`.
 
-**Session Envelope (`ENV-*`)** — pre-approved bounded operation scope. When Goal-derived, record:
+**Session (`ENV-*`)** — pre-approved bounded operation scope. When Goal-derived, record:
 
 ```text
 Parent Authorization: <AUTH-*>

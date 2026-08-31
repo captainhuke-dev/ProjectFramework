@@ -899,7 +899,7 @@ Initial registry:
 [Project Status] : fresh-read Project identity, Task state, Git sync/working-tree state, verification, blockers, and health
 [Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
-[Session Envelope] : declare, show, or close the user-pre-approved scope of operations for the current session/task
+[Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
 ```
@@ -960,9 +960,9 @@ At every Logical Checkpoint on Material work, persist a **Resume Block** into `0
 
 Material MCP operations that mutate state SHOULD be structured as idempotent steps: re-executing an already-applied step produces no duplicate effect. Non-idempotent operations MUST record pre-execution intent in the current Checkpoint before the call, so a connection drop cannot cause silent double-execution without evidence. After any drop, resume from the last persisted Resume Block/Logical Checkpoint — never from memory of the dropped session. This is a contract for runtime implementations; this Framework defines it and implements none of it.
 
-#### `[Session Envelope]`
+#### `[Session]`
 
-`[Session Envelope]` declares (`declare`), displays (`show`), or ends early (`close`) a user-pre-approved scope of operations for the current session/task. `declare` records an explicit Envelope as an `ENV-*` entry in `15 Action Registry`: allowed operation types, target surfaces, expiry (session end / task completion / explicit time), and prohibited zones.
+`[Session]` declares (`declare`), displays (`show`), or ends early (`close`) a user-pre-approved scope of operations for the current session/task. `declare` records an explicit Envelope as an `ENV-*` entry in `15 Action Registry`: allowed operation types, target surfaces, expiry (session end / task completion / explicit time), and prohibited zones.
 
 An Envelope never overrides fail-closed governance: location/binding changes, Root Governance mutation, schema/slot authority, secret handling, and push keep their own approval gates regardless of any Envelope. Ambiguous or out-of-scope operations fail closed to normal approval. One-off exact-target instructions remain action-specific as before. Envelopes are auditable records in `15`, not side-channel permissions.
 
