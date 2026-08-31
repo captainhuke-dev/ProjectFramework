@@ -610,6 +610,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Authority boundary:** Project Settings / README / `PROJECT-BOOTSTRAP.md` are discovery only; active local `00 / FRAMEWORK-001` remains Project governance authority. Framework upstream is upgrade/discovery source only and never the consuming Project repository or authority.
 - **Design Spec:** `docs/superpowers/specs/2026-08-31-task041-portable-installation-bootstrap-design.md`
 - **Design State:** `USER_APPROVED_ARCHITECTURE / WRITTEN_SPEC_PENDING_USER_REVIEW`
+- **Design Commit:** `da1d2201eead976c4e4ad10e97afb244664dc571`
+- **Spec Self-Review:** `PASS 30/30` — placeholders, internal consistency, scope, authority/path lifecycle, approved choices, Task registry alignment, and diff hygiene checked.
 - **Target Release:** Framework `1.9.0` / Schema `1.0.0` (minor Framework interface evolution; no semantic-slot or Stable-ID-family change)
 - **Implementation Boundary:** design/spec only until written-spec user review is approved; no launcher/Core/README/template/runtime implementation and no implementation plan before that gate.
 - **Verification/Acceptance direction:** managed README marker integrity/content preservation; resolved absolute Project Settings path; README relative fallback; upstream-vs-Project authority separation; retained internal Git/Drive/File Storage/MCP/Workspace semantics; thin launcher parity; exact upstream README response-close pattern; GREENFIELD/Brownfield fail-closed behavior; no runtime/CLI/automation; affected verification and one final unchanged-candidate `RELEASE_FULL` during implementation.
