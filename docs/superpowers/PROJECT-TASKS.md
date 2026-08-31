@@ -596,5 +596,23 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Release Evidence:** `docs/superpowers/evidence/2026-08-31-task-040-session-command-rename-release-full.md`
 - **Verification Result:** RED `10/26 FAIL` observed before implementation; GREEN `26/26 PASS`; AFFECTED `54/54 PASS`; RELEASE_FULL `160/160 PASS`
 - **Completion criteria met:** canonical current command is `[Session]`; no current legacy alias; declare/show/close and `ENV-*` semantics unchanged; historical provenance preserved; scenarios 1–248; launcher parity/ceiling; AFFECTED and RELEASE_FULL PASS; evidence committed.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `MERGED_TO_MAIN` — Pull Request `#24` merged exact branch head `8622ef5ebfb38596ceedddd7dd668f8d9ba48bae` to `main` at merge commit `5a51b105ff4430c04605dcb254d41a8e80faad8b` on `2026-08-31T16:23:57+07:00`; merged Framework-Source tree remained `36804c105604fe8da492a9d71a1f0270e5e035ee`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #41 — Portable Installation Bootstrap & Project Settings Handoff
+
+- **ID:** `TASK-041`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework bootstrap architecture / vendor-neutral installation UX and discovery contract
+- **Problem:** GREENFIELD installation can create local Project Source and `PROJECT-BOOTSTRAP.md`, but post-install Project Settings handoff is not canonical, current vendor launchers duplicate a large governance payload, consuming Projects lack a mandatory managed README bootstrap fallback, and upstream README does not display the full mandatory response-close pattern.
+- **User-approved direction:** installation completes with a fixed `ProjectFramework Upstream` (`https://github.com/captainhuke-dev/ProjectFramework`) plus a verified absolute `Project Bootstrap` path for Project Settings; consuming README carries a managed relative `./PROJECT-BOOTSTRAP.md` fallback; target vendor launchers are thin adapters; core installation completion is independent from later user copy/paste confirmation.
+- **Approved choices:** fallback in both upstream + consuming README (`C`); existing README managed-marker update (`1`); absolute Project Settings path + relative README path (`C`); Thin Bootstrap Block (`A`); core install DONE separate from vendor handoff confirmation (`A`); Design Sections 1–3 explicitly approved on `2026-08-31`.
+- **Authority boundary:** Project Settings / README / `PROJECT-BOOTSTRAP.md` are discovery only; active local `00 / FRAMEWORK-001` remains Project governance authority. Framework upstream is upgrade/discovery source only and never the consuming Project repository or authority.
+- **Design Spec:** `docs/superpowers/specs/2026-08-31-task041-portable-installation-bootstrap-design.md`
+- **Design State:** `USER_APPROVED_ARCHITECTURE / WRITTEN_SPEC_PENDING_USER_REVIEW`
+- **Target Release:** Framework `1.9.0` / Schema `1.0.0` (minor Framework interface evolution; no semantic-slot or Stable-ID-family change)
+- **Implementation Boundary:** design/spec only until written-spec user review is approved; no launcher/Core/README/template/runtime implementation and no implementation plan before that gate.
+- **Verification/Acceptance direction:** managed README marker integrity/content preservation; resolved absolute Project Settings path; README relative fallback; upstream-vs-Project authority separation; retained internal Git/Drive/File Storage/MCP/Workspace semantics; thin launcher parity; exact upstream README response-close pattern; GREENFIELD/Brownfield fail-closed behavior; no runtime/CLI/automation; affected verification and one final unchanged-candidate `RELEASE_FULL` during implementation.
+- **Current Sequencing:** TASK-041 is the user-selected current architectural improvement; TASK-025 remains TODO and is not implemented by this design checkpoint.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** user reviews the committed TASK-041 written design spec; implementation planning begins only after explicit written-spec approval.
