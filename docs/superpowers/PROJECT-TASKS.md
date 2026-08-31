@@ -169,7 +169,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #24 — `[Meeting]` LLM Council Command
 
 - **ID:** `TASK-024`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework command / multi-model advisory council integration
 - **Source Repository:** `https://github.com/captainhuke-dev/llm-council`
 - **Problem:** ProjectFramework currently has no standard Project command for convening a multi-model LLM council when a decision benefits from independent perspectives, structured peer review, disagreement surfacing, and a synthesized recommendation.
@@ -183,11 +183,30 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Define failure behavior for unavailable council models/services, partial responses, disagreement, and inability to reach a synthesized recommendation without fabricating consensus.
   7. Define what meeting artifacts, if any, should be persisted or referenced as evidence without duplicating canonical Project truth.
 - **Implementation boundary:** Task registration only. Do not add `[Meeting]` to Framework commands, launchers, templates, MCP/runtime integration, or automation until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design Spec:** `docs/superpowers/specs/2026-08-29-task024-meeting-llm-council-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Design Approval:** User approved the presented Thin Council Provider Adapter architecture and, after the written spec was committed, explicitly approved continued execution on `2026-08-29`; implementation planning is now authorized while higher-level system/tool/platform gates remain binding.
+- **Verified Provider Snapshot:** `captainhuke-dev/llm-council` public fork, `master` commit `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131`, tree `221d8afb6eca87537282d509971c505119390e0b`; compared parent `karpathy/llm-council` master was the same commit at design capture.
+- **Chosen Architecture:** Thin Council Provider Adapter — ProjectFramework owns `[Meeting]` semantics and advisory/evidence boundaries; llm-council remains an external provider/runtime whose UI/JSON storage never becomes Project authority.
+- **Spec Self-Review:** `PASS 18/18` — provider provenance, advisory-authority separation, disclosure/secret boundaries, partial-failure semantics, no `MEETING-*`, release classification, and verification scope checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task024-meeting-llm-council.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan Self-Review:** `PASS 30/30` — spec coverage, scenario range `212–227`, provider snapshot, no-runtime boundary, starter/launcher/evidence surfaces, and AFFECTED/RELEASE_FULL lifecycle checked.
+- **Implementation Provider Freshness:** fork `master` freshly re-observed at `92e1fccb1bdcf1bab7221aa9ed90f9dc72529131` / tree `221d8afb6eca87537282d509971c505119390e0b`; no material provider-profile drift before Task 1 mutation.
+- **Implementation Scenario Contract:** RED scenarios `212–227` added; Framework-wide numbering target `1–227` contiguous/unique.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines command syntax, council input/context boundary, verified llm-council integration contract, advisory-authority separation, result structure, failure/partial-response behavior, persistence/evidence rules, affected Framework surfaces, and verification strategy before implementation begins.
-- **Exact Next Step:** Wait for further requirements; when TASK-024 is selected for development, inspect the referenced llm-council repository directly and prepare its architectural design spec before implementation.
+- **Implementation Release:** Framework `1.8.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `d5a0b21`, `c396588`, `c5b21ec`, `ff74ab8`, `e1c8ba0`, `a4ab736`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-29-task-024-meeting-llm-council-release-full.md`
+- **Verification Result:** `AFFECTED 55/55 PASS; RELEASE_FULL 314/314 PASS`
+- **Candidate Commit:** `e1c8ba0ad40fe956911043ff98239b7682a3d23e`
+- **Candidate Tree:** `3cae37a05c97a3efa66ffb6f2e1cf941579187aa`
+- **Framework-Source Tree:** `9a959e20723c28c58e7b37be7fd52aef8501d8f1`
+- **Completion criteria met:** `[Meeting]` registered with literal brackets/case-insensitive matching; Thin Council Provider Adapter separation; minimum-authorized outbound context; secret-value prohibition; independent views/disagreement/peer signal/Chairman synthesis/limitations; Council/majority/Chairman advisory-only boundary; `COMPLETE | PARTIAL | FAILED | UNAVAILABLE`; material `EVD-*` persistence; no `MEETING-*` family/provider JSON authority/runtime implementation; Goal/ENV disclosure separation; Brownfield no-auto-Meeting; scenarios 1–227; launcher parity/size; final verification PASS.
+- **Publication State:** `NOT_PUSHED`
 
+- **Exact Next Step:** Prepare TASK-026 External AI Context & Disclosure Governance architectural design before implementation.
 ## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
 
 - **ID:** `TASK-025`
@@ -214,7 +233,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / outbound AI-context governance
 - **Problem:** TASK-024 `[Meeting]`, TASK-025 Project Knowledge, and other future external-model workflows may send Project context outside the local authority boundary. ProjectFramework needs a governed rule for what context may be disclosed, minimized, redacted, provider-scoped, or prohibited before any external AI call occurs.
 - **Approved direction:** Define an outbound AI Context/Disclosure contract that classifies Project information by disclosure eligibility, applies minimum-necessary context and redaction, and fails closed when classification or permission is unresolved.
@@ -226,10 +245,33 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define provenance/evidence sufficient to know what category of information was disclosed and under which rule without persisting secrets unnecessarily.
   6. Define failure behavior for unknown classification, mixed-sensitivity context, unavailable provider policy, and redaction uncertainty.
 - **Implementation boundary:** Task registration only. Do not add disclosure automation, provider routing, redaction runtime, external calls, or new secret storage until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design Spec:** `docs/superpowers/specs/2026-08-30-task026-external-ai-context-disclosure-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Design Approval:** User explicitly approved the presented Compositional Disclosure Boundary architecture and, after the written spec was committed/persisted, explicitly approved continued execution on `2026-08-30`; implementation planning is authorized while higher-level system/tool/platform gates remain binding.
+- **Chosen Architecture:** Compositional Disclosure Boundary — reuse `AUTH-*`, `EVD-*`, and `SECRET-*`; classify outbound context as `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED`; provider/tool eligibility remains independent; no `DISC-*` family or new semantic slot.
+- **Spec Self-Review:** `PASS 21/21` — classification/authorization separation, provider eligibility, minimum-context/redaction, mixed-sensitivity behavior, secret/EVD boundaries, Meeting/Knowledge/OpenViking/Goal integration, Brownfield/GREENFIELD behavior, release classification, and no-runtime scope checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-30-task026-external-ai-context-disclosure.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED / INLINE_CONTINUOUS_EXECUTION_APPROVED`
+- **Plan Self-Review:** `PASS` — six task checkpoints cover scenarios `228–245`, normative contract, starters, user-facing migration/launcher surfaces, AFFECTED verification, RELEASE_FULL evidence, and final lifecycle reconciliation; placeholder scan and canonical vocabulary checks passed.
+- **Implementation Scenario Contract:** RED scenarios `228–245` added; Framework-wide numbering target `1–245` contiguous/unique.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines disclosure vocabulary, context-minimization/redaction rules, provider/tool eligibility, integration boundaries, fail-closed behavior, provenance/evidence requirements, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-026 is selected for development, prepare its architectural design spec before implementation.
+- **Implementation Release:** Framework `1.8.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `723ecb1`, `4ad2cef`, `33aad00`, `4c3103d`, `fda8300`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-30-task-026-external-ai-context-disclosure-release-full.md`
+- **Verification Result:** `AFFECTED 144/144 PASS; RELEASE_FULL 243/243 PASS`
+- **Candidate Commit:** `4c3103dfcf8e454555d234d6b3acc3571c7c2483`
+- **Candidate Tree:** `c8d589722a3e404c54f0c5e2351e412712b3927a`
+- **Framework-Source Tree:** `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`
+- **Completion criteria met:** Compositional Disclosure Boundary implemented with exact disclosure/provider vocabularies; `Classification ≠ Authorization`; standing `AUTH-*` + action-scoped one-off disclosure; minimum-context/redaction/mixed-sensitivity/fail-closed rules; `SECRET-*` reference-only boundary; bounded material `EVD-*`; Meeting/Knowledge/OpenViking/Goal/ENV/tool/model separation; GREENFIELD/Brownfield safety; scenarios 1–245; no `DISC-*` family/slot/runtime disclosure system; launcher change skipped under size gate while parity/ceiling preserved; final verification PASS.
+- **Publication State:** `REMOTE_BRANCH_PUSHED / PR_CREATED`
+- **Publication Branch:** `task026-external-ai-disclosure`
+- **Published Implementation Head at PR Creation:** `ab43da5295ff571c641ed82c2e49bd3e0aa202ce`; later publication-reconciliation metadata commits may advance the remote feature-branch head and must be fresh-checked before integration
+- **Pull Request:** `#21` OPEN — `https://github.com/captainhuke-dev/ProjectFramework/pull/21` — base `main`
+- **Main Integration State:** `NOT_MERGED`; PR #21 technical integration gate `PASS 32/32`; GitHub `MERGEABLE / CLEAN`; fresh `origin/main` and merge-base `eb231ee2d1d83b42455ab2f3cab250d4d442fda0`
+- **Independent Review State:** `BLOCKED / NOT_RUN` — @CEO subagent reviewer adapters unavailable; fallback hzmcp read-only delegate remained queued and was cancelled; this is a tool-capability blocker, not a repository defect
+- **Integration Evidence:** `EVD-009`; head `8cb0d2fcea0dc67fb9de0f707deedf0e2b1ecde1`; Framework-Source tree remains `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`
+- **Exact Next Step:** Run an independent read-only review of Pull Request #21; if there are no Critical/Important findings and base/evidence remain fresh, merge to main and reconcile merged state; TASK-025 remains the next architectural action after integration.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
@@ -455,7 +497,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
 - **ID:** `TASK-038`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / distribution-root naming and migration governance
 - **Problem:** The Framework distribution currently lives under `managing-project-source/`, while governed Project truth lives under `Project-Source/`. Once ProjectFramework itself adopts its own `Project-Source/`, those names are too easy for Humans/Agents to conflate, weakening the distinction between Framework distribution source and Project-specific governance source.
 - **Approved direction:** Rename the canonical Framework distribution root to `Framework-Source/` so the repository has an explicit paired distinction: `Framework-Source/` = reusable Framework distribution; `Project-Source/` = authoritative governance/current truth for one Project.
@@ -469,7 +511,63 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Define verification for stale-path detection, current-reference alignment, historical provenance preservation, launcher constraints, release descriptor routing, and Direct-to-Latest migration guidance.
   8. Sequence this migration before other Framework `1.8.0` Tasks that would otherwise add new references to the old distribution-root name.
 - **Implementation boundary:** Task registration only. Do not rename/move `managing-project-source/`, rewrite current paths, alter historical evidence/specs, create compatibility aliases, or update external Projects until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design Spec:** `docs/superpowers/specs/2026-08-29-task038-framework-source-rename-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task038-framework-source-rename.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Design Approval:** User explicitly selected `Framework-Source/` vs `Project-Source/` naming and authorized continuous development without repeated approval prompts on `2026-08-29`; push/publication remains separately governed.
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if repository-path compatibility requires a different release classification)
 - **Completion criteria:** A user-approved design defines canonical directory naming, Framework-vs-Project authority separation, current/historical path classification, migration/backward-compatibility behavior, affected surfaces, sequencing within 1.8.0, rollback, and verification strategy before any rename occurs.
-- **Exact Next Step:** Prepare the TASK-038 architectural migration design before starting other Framework 1.8.0 implementation that would create new `managing-project-source/` references.
+- **Implementation Release:** Framework `1.8.0` / Schema `1.0.0` / release format `3`
+- **Implementation Commit(s):** `80ac496`, `fb24141`, `5757660`, `d068914`, `3c053be`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-29-task-038-framework-source-rename-release-full.md`
+- **Verification Result:** `AFFECTED 74/74 PASS; RELEASE_FULL 198/198 PASS`
+- **Candidate Commit:** `d068914e5fdc12eb9055ff5bae28cf57962495b4`
+- **Candidate Tree:** `f6c6bba9113308d60354112245f4d7574a350191`
+- **Framework-Source Tree:** `5e254140867195c37a2eef9ce6aadb03890af858`
+- **Completion criteria met:** one canonical `Framework-Source/`; no live old-root alias; current routes/starter/launcher surfaces aligned; historical path provenance preserved; ProjectFramework active Project Source reconciled without auto-upgrading its local Framework `1.7.0` pin; scenarios `1–188`; AFFECTED and final unchanged-candidate RELEASE_FULL passed.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #39 — `[Goal]` Persistent Continuous Goal Execution Command
+
+- **ID:** `TASK-039`
+- **Status:** `DONE`
+- **Type:** Framework command / persistent goal authorization and continuous execution governance
+- **Problem:** GPT-Web/Agents can repeatedly stop for approval even after the user has clearly asked for continuous work. `[Session Envelope]` pre-approves bounded operations only for a session and intentionally keeps several fail-closed gates. ProjectFramework needs a durable Project-level command that captures one user-authorized outcome and the exact authorization boundary needed to resume across chats without re-requesting approval for already-authorized work.
+- **Approved direction:** Register `[Goal]` as a **PERSISTENT** goal command. A Goal persists in Project Source across chats until terminal state and allows continuous in-scope execution without repeated Framework-level approval prompts. Goal authorization is bounded user authorization, never Agent self-approval and never a bypass of higher-level platform/tool/safety confirmation requirements.
+- **Canonical composition:** Do not create a parallel `GOAL-*` Stable-ID family. Represent the Goal's intended result as `OUT-*` in `91 Project Management Control`; persist user-granted execution authority as `AUTH-*` in `12 Authorization Registry`; decompose execution into `ACT-*` plus session-bounded `ENV-*` in `15 Action Registry`; persist continuation pointers in `09 Handoff` with `authority_transfer: false`.
+- **Scope:**
+  1. Define literal bracketed `[Goal]` command syntax, case-insensitive registered-name matching, goal statement parsing, bounded scope, success criteria, prohibited zones, and terminal behavior.
+  2. Define persistent lifecycle/resume semantics so a new chat can bootstrap `PROJECT-BOOTSTRAP.md → 00 → 01 → 03 → 09`, resolve the active `OUT-* / AUTH-* / ACT-*`, fresh-check mutable prerequisites, and continue without asking the user to re-authorize already-covered work.
+  3. Pre-authorize normal **local development workflow** within the Goal scope: design, planning, file edits, tests, debugging/fixes, local verification, commits, and Logical Checkpoints. Framework-level approval must not be requested again solely for an operation already covered by the active Goal authorization.
+  4. Keep `ACT DONE ≠ OUT ACHIEVED`. Goal completion requires explicit success criteria plus sufficient evidence before the related `OUT-*` is marked achieved; completing implementation Tasks alone does not prove the Goal outcome.
+  5. **Push/publication policy:** push is not included by default. It may be pre-authorized only when the Goal explicitly includes publish/push and identifies the intended governed target. Target mismatch, changed/unresolved binding, or stale integration evidence fails closed. `commit ≠ push` remains true.
+  6. **Destructive-action policy:** destructive actions are not included by default. They may be pre-authorized only when the Goal explicitly names the destructive operation and target. Authorization must not be generalized to other destructive effects.
+  7. **Root Governance / Project Location Binding policy:** Root/binding mutation is not included by default. It may be pre-authorized only when the Goal explicitly identifies the intended governance/location change and target; normal revision/validate/promote/supersede/archive and resulting-state verification still apply.
+  8. **Secrets / disclosure policy:** a Goal may authorize use of governed secret references when otherwise allowed, but never storage or disclosure of actual secret values in Project Source. External AI/provider disclosure remains subject to TASK-026 disclosure governance or equivalent explicit authorization; `[Goal]` does not create blanket outbound-disclosure authority.
+  9. Define out-of-scope behavior: block only the affected unauthorized action when independent in-scope work can safely continue; stop the whole Goal only when the blocker is global, authority is unresolved, required evidence conflicts, success criteria require material requirement change, or safe continuation is impossible.
+  10. Define conflict behavior for multiple active Goals/authorizations. A later Goal must not silently override another active Goal, `REQ-*`, `DEC-*`, `AUTH-*`, Root Governance, or Project Location Binding; material semantic conflicts use existing `CONFLICT-*` handling and fail closed for affected work.
+  11. Define cancellation/supersession/revocation so user withdrawal immediately prevents future execution under the revoked Goal while preserving history and completed evidence.
+  12. Compose with `[Session Envelope]`: persistent `AUTH-*` is the durable cross-chat authority basis; session/task `ENV-*` may be created/refreshed from that authority without new user approval, but must remain within the Goal and parent authorization scope.
+  13. Preserve higher-level constraints: ProjectFramework may remove redundant **Framework-level** approval prompts, but `[Goal]` cannot override system/developer instructions, product safety policy, MCP/tool confirmation rules, authentication requirements, or other mandatory platform controls.
+  14. Define command help/discovery, Project Status visibility, Handoff representation, launcher compaction, GREENFIELD/Brownfield behavior, migration compatibility, and pressure scenarios covering overreach, stale authority, new-chat resume, push/destructive/root/secret boundaries, conflict, cancellation, and outcome verification.
+  15. Sequence implementation after TASK-038 distribution-root migration so new Framework `1.8.0` command surfaces are authored against canonical `Framework-Source/` rather than adding new current references to `managing-project-source/`. Design work may proceed before TASK-038 implementation when it does not create current distribution-path dependencies.
+- **Implementation boundary:** Task registration/design only. Do not register `[Goal]` in current Framework commands, create active Goal/OUT/AUTH records for ordinary work, weaken current approval gates, alter `[Session Envelope]`, or implement launcher/template/runtime behavior until a separate architectural design spec is completed and explicitly approved.
+- **Design Spec:** `docs/superpowers/specs/2026-08-29-task039-persistent-goal-command-design.md`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
+- **Design Approval:** User explicitly authorized continuous TASK-039 development without repeated approval prompts on `2026-08-29`; higher-level system/tool/platform gates and TASK-038 sequencing remain binding.
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-29-task039-persistent-goal-command.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if the final authorization/lifecycle contract requires a breaking schema change)
+- **Completion criteria:** A user-approved design defines command syntax, persistent Goal representation, OUT/AUTH/ACT/ENV/09 composition, local-development pre-authorization, push/destructive/root-binding/secret-disclosure boundaries, lifecycle/resume/revocation/conflict behavior, outcome evidence, platform-boundary limitations, affected Framework surfaces, migration behavior, and verification strategy before implementation begins.
+- **Implementation Commit(s):** `47aadac`, `25b335d`, `4b3ce45`, `0f2ecfd`, `b7f63bb`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-29-task-039-persistent-goal-command-release-full.md`
+- **Verification Result:** `AFFECTED 43/43 PASS; RELEASE_FULL 220/220 PASS`
+- **Candidate Commit:** `0f2ecfde7112a7d7d101e316fc0c3069c8ece5db`
+- **Candidate Tree:** `a3adaeef91d3a729f9d14d570400ed73b47ee3a2`
+- **Framework-Source Tree:** `2101c2d22b9d23d0bae3517a6462c4895edecf15`
+- **Completion criteria met:** `[Goal]` registered with literal brackets/case-insensitive matching; persistent OUT/AUTH/ACT/ENV/09 composition; default bounded local development authority; exact push/destructive/Root-Binding/disclosure opt-ins; cancellation/conflict/outcome-evidence semantics; Brownfield no-auto-Goal; scenarios 1–211; launcher parity/size; historical integrity; final verification PASS.
+- **ProjectFramework active Goal record:** `NOT_MATERIALIZED` — ordinary continuous-work wording was not retroactively converted into `[Goal]` authority.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
