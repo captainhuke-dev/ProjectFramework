@@ -267,11 +267,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication State:** `REMOTE_BRANCH_PUSHED / PR_CREATED`
 - **Publication Branch:** `task026-external-ai-disclosure`
 - **Published Implementation Head at PR Creation:** `ab43da5295ff571c641ed82c2e49bd3e0aa202ce`; later publication-reconciliation metadata commits may advance the remote feature-branch head and must be fresh-checked before integration
-- **Pull Request:** `#21` OPEN — `https://github.com/captainhuke-dev/ProjectFramework/pull/21` — base `main`
-- **Main Integration State:** `NOT_MERGED`; PR #21 technical integration gate `PASS 32/32`; GitHub `MERGEABLE / CLEAN`; fresh `origin/main` and merge-base `eb231ee2d1d83b42455ab2f3cab250d4d442fda0`
-- **Second-AI Review State:** `WAIVED_BY_USER / NOT_REQUIRED_FOR_PR_21` — User Explicit Instruction on 2026-08-31 states that a second AI is not required for this review; action-specific only and not a Framework-wide policy or merge authorization
-- **Integration Evidence:** `EVD-009`, `EVD-010`, `EVD-011`; published PR head `714108a526db1a492d980690e50b1b484b88f6a1`; Framework-Source tree remains `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`; local governance checkpoints remain unpushed unless separately authorized
-- **Exact Next Step:** Obtain explicit merge disposition for PR #21; if merge is selected, fresh-check PR head/base/mergeability/evidence, merge to main, verify merged result, and reconcile merged state; TASK-025 remains the next architectural action after integration.
+- **Pull Request:** `#21` MERGED — `https://github.com/captainhuke-dev/ProjectFramework/pull/21` — base `main`
+- **Main Integration State:** `MERGED`; exact pre-merge gate `PASS 21/21`; GitHub merge commit `c729a7b19b7cdc6d4dfdd211437d4a0b2f685da7`; prior base `eb231ee2d1d83b42455ab2f3cab250d4d442fda0`; PR head `714108a526db1a492d980690e50b1b484b88f6a1`; merged Framework-Source tree `d66803fc41c540efcf072e9e45eb98c83d1f1bb5`
+- **Second-AI Review State:** `WAIVED_BY_USER / NOT_REQUIRED_FOR_PR_21` — action-specific user waiver preserved in `EVD-011`
+- **Integration Evidence:** `EVD-009`, `EVD-010`, `EVD-011`, `EVD-012`; post-merge origin/main `c729a7b19b7cdc6d4dfdd211437d4a0b2f685da7`
+- **Post-Merge Reconciliation:** local Project Source revision prepared/committed after merge; remote publication remains separate and is not inferred from the merge instruction
+- **Exact Next Step:** Publish post-merge Project Source reconciliation to canonical GitHub state under separate authorization; then begin TASK-025 design.
 
 ## Task #27 — Project Tool / MCP Execution Profile
 
