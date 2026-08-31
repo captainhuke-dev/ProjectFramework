@@ -609,12 +609,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Approved choices:** fallback in both upstream + consuming README (`C`); existing README managed-marker update (`1`); absolute Project Settings path + relative README path (`C`); Thin Bootstrap Block (`A`); core install DONE separate from vendor handoff confirmation (`A`); Design Sections 1–3 explicitly approved on `2026-08-31`.
 - **Authority boundary:** Project Settings / README / `PROJECT-BOOTSTRAP.md` are discovery only; active local `00 / FRAMEWORK-001` remains Project governance authority. Framework upstream is upgrade/discovery source only and never the consuming Project repository or authority.
 - **Design Spec:** `docs/superpowers/specs/2026-08-31-task041-portable-installation-bootstrap-design.md`
-- **Design State:** `USER_APPROVED_ARCHITECTURE / WRITTEN_SPEC_PENDING_USER_REVIEW`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Design Commit:** `da1d2201eead976c4e4ad10e97afb244664dc571`
 - **Spec Self-Review:** `PASS 30/30` — placeholders, internal consistency, scope, authority/path lifecycle, approved choices, Task registry alignment, and diff hygiene checked.
 - **Target Release:** Framework `1.9.0` / Schema `1.0.0` (minor Framework interface evolution; no semantic-slot or Stable-ID-family change)
-- **Implementation Boundary:** design/spec only until written-spec user review is approved; no launcher/Core/README/template/runtime implementation and no implementation plan before that gate.
+- **Implementation Boundary:** approved design is implementation-authorized under persistent `AUTH-001`; implementation remains documentation/governance only and excludes runtime/CLI/bot/hook/CI/watcher/scheduler/daemon scope.
 - **Verification/Acceptance direction:** managed README marker integrity/content preservation; resolved absolute Project Settings path; README relative fallback; upstream-vs-Project authority separation; retained internal Git/Drive/File Storage/MCP/Workspace semantics; thin launcher parity; exact upstream README response-close pattern; GREENFIELD/Brownfield fail-closed behavior; no runtime/CLI/automation; affected verification and one final unchanged-candidate `RELEASE_FULL` during implementation.
 - **Current Sequencing:** TASK-041 is the user-selected current architectural improvement; TASK-025 remains TODO and is not implemented by this design checkpoint.
+- **Goal State:** `OUT-001 ACTIVE / AUTH-001 ACTIVE / ENV-001 ACTIVE`; current `[Goal]` authorizes bounded local TASK-041 work through verified completion without redundant Framework-level approval; push/publication remains excluded.
+- **Plan State:** `NOT_CREATED / NEXT_ACTION`
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** user reviews the committed TASK-041 written design spec; implementation planning begins only after explicit written-spec approval.
+- **Exact Next Step:** write/self-review/commit `docs/superpowers/plans/2026-08-31-task041-portable-installation-bootstrap.md`, then execute inline under the persistent Goal.
