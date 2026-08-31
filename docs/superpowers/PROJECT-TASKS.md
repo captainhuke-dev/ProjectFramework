@@ -621,5 +621,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `d45949498a6f2b1b5f9af8b3fee5cc4a516a222b`
 - **Plan Self-Review:** `PASS 52/52`
 - **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
+- **Execution Progress:** Task 1 RED contract complete — scenarios `249–268`, `TASK041_RED 40/97 FAIL` expected, commit `a14eeb2c476f6de812bd8b3bcd69a551814b3448`; Task 2 normative implementation next.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** execute Task 1 RED contract: scenarios `249–268` + failing structural verifier, then continue plan inline.
+- **Exact Next Step:** execute Task 2 normative Framework 1.9.0 amendment/release/Core/SKILL implementation, rerun RED, then continue inline.
