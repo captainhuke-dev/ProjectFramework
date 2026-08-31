@@ -1,10 +1,16 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.8.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.9.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.9.0 Portable Installation Bootstrap Semantics
+
+GREENFIELD installation materializes active `00` first, mandatory Project Source, root `PROJECT-BOOTSTRAP.md`, and exactly one valid consuming README `PROJECTFRAMEWORK-BOOTSTRAP` managed fallback using relative `./PROJECT-BOOTSTRAP.md`. The installing Agent verifies the locator chain, declares Core Installation DONE when local state is durable, then emits the resolved two-binding Project Settings handoff: fixed `ProjectFramework Upstream` plus verified absolute `Project Bootstrap` and the canonical Bootstrap Rule.
+
+Project Settings / consuming README / root bootstrap remain discovery or locator layers; active local `FRAMEWORK-001` is authority. Duplicate/malformed README markers fail closed; existing Project README content outside the managed pair is preserved. Internal Git/Drive/File Storage/MCP/Local Workspace semantics remain governed even though current vendor Project Settings are thinner.
 
 ## Framework 1.8.0 Persistent `[Goal]` Semantics
 
@@ -173,9 +179,12 @@ Framework `1.2.1` adds **Externalized Working Memory and Chat Lifecycle** govern
 12. Keep 18–19 reserved
 13. Use 93–99 only for real Project-specific/governance-extension needs
 14. Build/verify Index + Manifest + readiness
-15. Materialize `<Project-Root>/PROJECT-BOOTSTRAP.md` from the maintained template and verify `00 → 01 → 03` plus `09` continuation routing
-16. Pin Framework/Schema locally; do not auto-upgrade later
-17. Optionally record exact Git provenance only when actually observed/material
+15. Materialize `<Project-Root>/PROJECT-BOOTSTRAP.md` from the maintained template
+16. Create/update exactly one consuming README `PROJECTFRAMEWORK-BOOTSTRAP` managed block; preserve content outside markers and fail closed on duplicate/malformed markers
+17. Verify Project Settings/README → `PROJECT-BOOTSTRAP.md → 00 → 01 → 03` plus `09` continuation routing
+18. Pin Framework/Schema locally; do not auto-upgrade later
+19. After durable verification declare Core Installation DONE and emit `Project Settings — Required User Handoff` with fixed upstream + verified absolute Project Bootstrap path
+20. Optionally record exact Git provenance only when actually observed/material
 ```
 
 When Git branch/worktree integration is later used inside an initialized Project, apply the locally pinned root `00` Base Freshness contract. Upstream Framework movement does not auto-upgrade that Project.

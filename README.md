@@ -1,5 +1,18 @@
 # ProjectFramework
 
+<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->
+## ProjectFramework Bootstrap
+
+ProjectFramework Upstream:
+https://github.com/captainhuke-dev/ProjectFramework
+
+Project Bootstrap:
+./PROJECT-BOOTSTRAP.md
+
+AI / Agent:
+Read `PROJECT-BOOTSTRAP.md` before Material Project work.
+<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->
+
 ## TL;DR — What this is and how to use it
 
 ProjectFramework is a **documentation-first governance framework** for planning and running Projects with AI agents. It defines where current truth, decisions, requirements, risks, and continuation context live — in a `Project-Source/` folder of numbered Markdown documents (`00–17` mandatory core; `40`, `60`, `91`, `92` conditional). It contains **no software**: rules are written contracts that humans/agents read and follow.
@@ -14,10 +27,94 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.8.0**
+- Project Source Framework: **1.9.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.9.0 Portable Installation Bootstrap
+
+Framework `1.9.0` keeps Project Source Schema `1.0.0` and release format `3` while making GREENFIELD installation portable across GPT, Claude, Hermes, Codex, and other capable Agents.
+
+An instruction such as “install `captainhuke-dev/ProjectFramework` in this Project” means **bootstrap ProjectFramework governance into the consuming Project**. It does not mean clone the ProjectFramework repository into that Project or make the Framework upstream the consuming Project repository.
+
+GREENFIELD installation follows:
+
+```text
+fresh ProjectFramework upstream main
+→ README → release descriptor → SKILL → latest amendment → Core Governance
+→ root/bootstrap/templates/mockup/location references
+→ read-only Project/environment resolution
+→ one GREENFIELD Preview
+→ explicit user approval
+→ active 00 / FRAMEWORK-001 first
+→ mandatory Project Source + applicable conditionals
+→ PROJECT-BOOTSTRAP.md + managed consuming README fallback
+→ local Framework/Schema pin
+→ resulting-state verification
+→ Core Installation DONE
+→ Project Settings — Required User Handoff
+```
+
+The approved GREENFIELD Preview covers the ordinary resulting bootstrap files in its bounded scope; the Agent does not ask for redundant Framework-level approval per file unless scope changes or a higher-level gate applies.
+
+### Project Settings — Thin Bootstrap Adapter
+
+After successful installation, the Agent returns a copy-ready block with the actual verified absolute bootstrap path:
+
+```text
+ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
+Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
+
+ProjectFramework Bootstrap Rule:
+Read Project Bootstrap before Material Project work.
+If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
+ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
+```
+
+`ProjectFramework Upstream` is fixed Framework discovery/upgrade input only. `Project Bootstrap` is environment-specific and must be verified before it is presented as ready to paste. The Project Settings block may be placed anywhere in the vendor's Project Settings / Project Instructions surface.
+
+Core installation completion and external vendor-setting copy/paste are separate facts. Once Project Source, root bootstrap, README fallback, and required verification are durable, core installation is DONE; the Agent still MUST emit the handoff block and MUST NOT claim vendor settings were modified without execution evidence.
+
+### Consuming README Portable Fallback
+
+Every adopting GREENFIELD Project has exactly one managed block using `PROJECTFRAMEWORK-BOOTSTRAP:START/END` markers and relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`. If README is absent, create it; if it exists without the block, append the block while preserving existing Project content; with one valid block, update only the managed body. Duplicate or malformed markers fail closed to governed repair.
+
+Bootstrap resolution is:
+
+```text
+usable Project Settings absolute Project Bootstrap
+→ otherwise root README managed ./PROJECT-BOOTSTRAP.md fallback
+→ PROJECT-BOOTSTRAP.md
+→ active Project-Source/00 / FRAMEWORK-001
+→ 01 → 03 → task routing → 09 when continuation applies
+```
+
+Project Settings, README, the fixed upstream, and `PROJECT-BOOTSTRAP.md` are discovery/locator surfaces only. Active local `FRAMEWORK-001` remains Project governance authority. Successful README discovery at a moved/cloned path does not silently rewrite Local Workspace Binding.
+
+Existing initialized Projects remain locally pinned and adopt this behavior only through governed `[Project Upgrade]`; upstream movement never silently rewrites Brownfield README, Project Settings, root governance, or bindings.
+
+### Mandatory Response Close
+
+Every response MUST end with:
+
+```text
+### ทำอะไรไป?
+
+### และถัดไปคืออะไร?
+
+**[Next Action]:** <one exact next action or ไม่มีขั้นตอนถัดไป>
+
+**[Chat]:** CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+
+**[Reason]:** <concise reason>
+
+**[Required Read]:** <canonical locations or ไม่มี>
+```
+
+Separate paragraphs; tokens unescaped.
+
+Lifecycle coupling is mandatory: `ไม่มีขั้นตอนถัดไป → START_NEW_CHAT`; `CONTINUE_CURRENT_CHAT` requires one concrete Next Action; `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus a concrete persistence/recovery action; nothing follows `[Required Read]`.
 
 ## Framework Intent
 
@@ -312,18 +409,19 @@ Framework `1.2.0` also adds:
 
 ## Platform Project Instructions
 
-For a platform Project, use the matching canonical bootstrap instruction artifact:
+Current Framework `1.9.0` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
 
-- **ChatGPT Projects:** copy `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` into **Project settings → Instructions**.
-- **Claude Projects:** copy `Framework-Source/CLAUDE-PROJECT-INSTRUCTIONS.md` into **Set project instructions**.
+- **ChatGPT Projects:** copy the resolved thin block (or maintained `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` after replacing the Project Bootstrap placeholder with the verified absolute path) into **Project settings → Instructions**.
+- **Claude Projects:** use the equivalent maintained thin adapter in **Set project instructions**.
+- **Hermes / Codex / other Agents:** use the same generic two-binding block in the platform's applicable Project Instructions/settings surface when one exists.
 
-The two platform files contain the same shared governance contract. They are **bootstrap/continuation launchers, not competing governance roots**. After a valid local `Project-Source/` is initialized, the locally pinned Project Source becomes authoritative for that Project.
+Vendor settings remain optional discovery adapters and never become a competing governance root. After a valid local Project Source resolves, active local `FRAMEWORK-001` is authoritative.
 
 ## New-Project Bootstrap Read Order
 
 For every NEW Project Source:
 
-1. Start from the matching platform Project instruction artifact when using ChatGPT Projects or Claude Projects.
+1. When vendor Project Settings are available, use the resolved two-binding Thin Bootstrap Adapter; otherwise start from the Project root README fallback or canonical upstream for genuine GREENFIELD discovery.
 2. Read this `README.md` from canonical repository `main`.
 3. Read `Framework-Source/FRAMEWORK-RELEASE.yaml`.
 4. Read `Framework-Source/SKILL.md`.
@@ -380,7 +478,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.6.0` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.9.0` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
