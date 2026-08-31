@@ -617,6 +617,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Verification/Acceptance direction:** managed README marker integrity/content preservation; resolved absolute Project Settings path; README relative fallback; upstream-vs-Project authority separation; retained internal Git/Drive/File Storage/MCP/Workspace semantics; thin launcher parity; exact upstream README response-close pattern; GREENFIELD/Brownfield fail-closed behavior; no runtime/CLI/automation; affected verification and one final unchanged-candidate `RELEASE_FULL` during implementation.
 - **Current Sequencing:** TASK-041 is the user-selected current architectural improvement; TASK-025 remains TODO and is not implemented by this design checkpoint.
 - **Goal State:** `OUT-001 ACTIVE / AUTH-001 ACTIVE / ENV-001 ACTIVE`; current `[Goal]` authorizes bounded local TASK-041 work through verified completion without redundant Framework-level approval; push/publication remains excluded.
-- **Plan State:** `NOT_CREATED / NEXT_ACTION`
+- **Implementation Plan:** `docs/superpowers/plans/2026-08-31-task041-portable-installation-bootstrap.md`
+- **Plan Commit:** `d45949498a6f2b1b5f9af8b3fee5cc4a516a222b`
+- **Plan Self-Review:** `PASS 52/52`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** write/self-review/commit `docs/superpowers/plans/2026-08-31-task041-portable-installation-bootstrap.md`, then execute inline under the persistent Goal.
+- **Exact Next Step:** execute Task 1 RED contract: scenarios `249–268` + failing structural verifier, then continue plan inline.
