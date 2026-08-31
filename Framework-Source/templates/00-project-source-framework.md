@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.8.0"
+project_source_framework_version: "1.9.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -319,6 +319,14 @@ Framework `1.8.0` external-AI disclosure uses `EXTERNAL_OK | EXTERNAL_REVIEW | D
 
 
 Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
+
+### 5.4 Framework 1.9 Portable Installation Result
+
+GREENFIELD Framework `1.9.0` resulting state includes both root `PROJECT-BOOTSTRAP.md` and exactly one valid consuming README managed fallback delimited by `<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->` / `<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->`. The README block uses fixed `ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework`, relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`, and directs the Agent to read Project Bootstrap before Material Project work.
+
+After resulting-state verification, Core Installation may be DONE before the user confirms external Project Settings copy/paste. The installing Agent still emits a mandatory `Project Settings — Required User Handoff` containing the fixed upstream plus the **verified absolute** Project Bootstrap path and canonical Bootstrap Rule. Unresolved absolute path remains `VERIFICATION_REQUIRED`; never fabricate it.
+
+Project Settings and README are discovery layers only; `PROJECT-BOOTSTRAP.md` is locator-only; active local `FRAMEWORK-001` remains Project governance authority. Managed README maintenance owns only bytes inside the marker pair; duplicate/malformed markers fail closed. Installation does not synthesize Goal/OUT/AUTH/ENV/Meeting/disclosure/secret-value/runtime state merely because ProjectFramework was installed.
 
 ## 6. Truth and Uncertainty
 
@@ -772,7 +780,7 @@ Install/start command success ไม่เท่ากับ operational readine
 GREENFIELD BROWNFIELD IMPORT
 ```
 
-- GREENFIELD → canonical main bootstrap → Preview → approval → create mandatory core → evaluate conditional docs → pin Framework/Schema
+- GREENFIELD → canonical main bootstrap → read-only Project/environment resolution → one Preview → approval → active 00 first → mandatory core → evaluate conditional docs → root PROJECT-BOOTSTRAP + managed README fallback → pin Framework/Schema → verify → Core Installation DONE → resolved Project Settings handoff
 - BROWNFIELD → preserve-first; ห้าม move/rename/delete legacy source อัตโนมัติ
 - IMPORT → quarantine `import-staging/` ก่อน promotion
 

@@ -4,7 +4,49 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.7.0 → 1.8.0 (current)
+## 1.8.0 → 1.9.0 (current)
+
+### Affected distribution surfaces
+
+- `FRAMEWORK-RELEASE.yaml` — Framework version becomes `1.9.0`; latest amendment points to TASK-041 Portable Installation Bootstrap & Project Settings Handoff; Schema remains `1.0.0` and release format remains `3`
+- `CHATGPT-PROJECT-INSTRUCTIONS.md` / `CLAUDE-PROJECT-INSTRUCTIONS.md` — current maintained vendor launchers become thin two-binding adapters instead of five-field/full-governance copies
+- `templates/project-location-bootstrap.md` — user-facing Project Settings layer becomes `ProjectFramework Upstream` + verified absolute `Project Bootstrap`; internal `framework_source`, `remote_location`, `file_storage_locations`, `mcp_location`, `local_workspace`, and dynamic branch/worktree semantics remain available
+- `templates/PROJECT-BOOTSTRAP.md` — documents Project Settings primary entry plus consuming README managed fallback and preserves locator-only / active-`FRAMEWORK-001` authority boundary
+- upstream `README.md` — canonical GREENFIELD installation documentation, exact response-close pattern, and one repository-local managed bootstrap fallback
+- consuming Project root `README.md` — governed adoption creates or maintains exactly one `PROJECTFRAMEWORK-BOOTSTRAP` managed block with relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`; Project content outside markers remains Project-owned
+- root/skeleton/mockup starters — Framework `1.9.0` GREENFIELD resulting state, descriptive Project Settings handoff guidance, and current starter stamps
+- `tests/pressure-scenarios.md` — scenarios `249–268` cover install intent, two-binding handoff, absolute-path verification, README marker integrity, fallback portability, authority separation, thin launchers, Brownfield safety, and no-runtime/no-authority synthesis
+- historical 1.8.0 amendments/specs/plans/evidence/full launcher captures remain provenance and are not globally rewritten
+
+### Upgrade checklist
+
+1. Run `[Project Upgrade]`; fresh-compare the initialized Project's valid local `FRAMEWORK-001` pin with target Framework `1.9.0`. `ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework` is upstream discovery/upgrade input only, not consuming Project repository or authority.
+2. Preserve current truth, Stable IDs, Project-specific rules, Project Location Binding, Local Workspace Binding, history, authorization, and local Framework/Schema pin until governed promotion. Upstream movement never auto-adopts 1.9.0.
+3. Preview the portable-bootstrap adoption effects: thin vendor adapter, root `PROJECT-BOOTSTRAP.md` relationship, and consuming managed README block. Existing README content outside the managed marker pair must be preserved.
+4. For a consuming README with no managed block, append exactly one block; for exactly one valid block, update only the managed body. Duplicate or malformed marker structures fail closed to repair; never choose by recency/position/similarity.
+5. Project Settings uses a **verified absolute** `Project Bootstrap` path for the current environment. The consuming README uses portable relative `./PROJECT-BOOTSTRAP.md`. If the absolute path cannot be verified, report `VERIFICATION_REQUIRED`; do not fabricate a copy-ready value.
+6. Preserve internal Git/Drive/File Storage/MCP/Workspace semantics and `[Project Path]`. Thin Project Settings removes legacy five labels only as mandatory current vendor fields; it does not delete location governance.
+7. Apply local Project Source/root/README mutations only after the applicable upgrade Preview and approval. Do not claim GPT/Claude/Hermes/other vendor settings were changed unless an external settings action was actually executed and verified.
+8. After governed adoption, regenerate and present the copy-ready Project Settings block:
+
+```text
+ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
+Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
+
+ProjectFramework Bootstrap Rule:
+Read Project Bootstrap before Material Project work.
+If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
+ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
+```
+
+9. Keep active local `FRAMEWORK-001` as Project governance authority. Settings, managed README, fixed upstream, and root bootstrap remain discovery/locator surfaces and never transfer `AUTH-*`, Risk, branch/integration, implementation, runtime, publication, secret, or disclosure authority.
+10. Do not synthesize Goal/OUT/AUTH/ENV/Meeting/provider/disclosure/secret-value/runtime/daemon state from adoption. Actual secret values remain forbidden.
+11. Verify README marker integrity, locator chain, local pin/promotion result, maintained adapter semantics, and affected Project truth. Use one final `RELEASE_FULL` on the unchanged target candidate per existing evidence rules.
+12. Direct-to-Latest remains valid; Projects pinned before 1.8.0 assess cumulative current→1.9.0 target state without mandatory intermediate replay while preserving applicable migration constraints/history.
+
+---
+
+## 1.7.0 → 1.8.0
 
 ### Affected distribution surfaces
 

@@ -2,31 +2,25 @@
 
 Use this copyable Project/environment configuration **before active `FRAMEWORK-001` authority is resolved** when deterministic environment/location discovery locators are needed. This distribution artifact is outside the `00–99` Project Source semantic-slot namespace. It is **not** `FRAMEWORK-001`, Root Governance, a second Project Location Binding, or the Framework `1.7.0+` Project-root `PROJECT-BOOTSTRAP.md` discovery entrypoint.
 
-## Project Settings Representation
+## Project Settings Representation — Thin Bootstrap Adapter
 
-When installing the launcher into Project Settings, fill this compact block directly. These labels are a human-facing representation of the existing Bootstrap Location semantics; they do not create new location authority or state families.
-
-```text
-Framework Remote Path: <FRAMEWORK_REMOTE>
-Git Remote Path: <GIT_REMOTE>
-Storage Path: <STORAGE>
-MCP Path: <MCP_PATH>
-Workspace Path: <WS>
-Git state: DYNAMIC / VERIFY_EACH_SESSION
-```
-
-Mapping to canonical Bootstrap Location fields:
+Framework `1.9.0` current vendor-facing Project Settings / Project Instructions use exactly two bootstrap locators plus one rule:
 
 ```text
-Framework Remote Path → framework_source
-Git Remote Path       → remote_location
-Storage Path          → file_storage_locations
-MCP Path              → mcp_location
-Workspace Path        → local_workspace
-Git state             → current_branch_worktree
+ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
+Project Bootstrap: <PROJECT_BOOTSTRAP_ABSOLUTE_PATH>
+
+ProjectFramework Bootstrap Rule:
+Read Project Bootstrap before Material Project work.
+If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
+ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
 ```
 
-`Storage Path` may represent zero, one, or multiple durable external/non-repository storage targets. Use `NONE` only when external storage is genuinely not applicable; do not use it to hide an unresolved applicable location.
+`ProjectFramework Upstream` maps to canonical `framework_source` read-through/upgrade discovery. `Project Bootstrap` is the verified absolute path to the consuming Project's root `PROJECT-BOOTSTRAP.md`; it is an environment-specific locator and not Project authority. The Project README managed block provides the portable relative fallback `./PROJECT-BOOTSTRAP.md`.
+
+A ready-to-paste Project Bootstrap path MUST be verified. When unresolved, report `VERIFICATION_REQUIRED`; never fill it from recency, editor/MCP handles, mounts, search ranking, memory, or similarly named folders.
+
+The detailed Git/Storage/MCP/Workspace concepts below remain the **internal/pre-authority discovery representation**. They are not removed merely because current vendor Project Settings are thinner.
 
 ## Canonical Bootstrap Representation
 
@@ -64,12 +58,12 @@ current_branch_worktree:
 
 `[Project Path]` is a registered read/verify command over location semantics that already exist. Literal brackets are required for registered-command identity; matching inside brackets is case-insensitive. The command may carry an explicit path-change request, but it creates no new authority.
 
-Any configured value still written as an angle-bracket placeholder such as `<FRAMEWORK_REMOTE>`, `<GIT_REMOTE>`, `<STORAGE>`, `<MCP_PATH>`, or `<WS>` means **unset / not configured**. Never treat the placeholder as a literal path and never infer a fallback from recent/active/mounted/search-ranked locations.
+Current Framework `1.9.0` vendor settings do not require the legacy five labels. When legacy/Brownfield settings or internal bootstrap representations contain angle-bracket placeholders, those values remain **unset / not configured** and never authorize fallback.
 
 On `[Project Path]` (case-insensitive inside brackets):
 
-1. Read the Project Settings values for Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path.
-2. Surface the saved values before Material work.
+1. Read applicable current location semantics from the thin Project Settings adapter, root bootstrap/README fallback, internal Bootstrap Location representation, and active `FRAMEWORK-001` Project Location Binding as available.
+2. Surface Framework/Git/Storage/MCP/Workspace semantics from their applicable canonical/discovery sources before Material work.
 3. Verify available repository identity/remote, MCP target, local workspace, storage locator/reachability as applicable, and active `FRAMEWORK-001` Project Location Binding when present.
 4. Report each comparison as `MATCH`, `MISMATCH`, or `NOT_VERIFIED`. These are diagnostic display labels, not Framework lifecycle, epistemic, binding, or authority states.
 5. A Material mismatch fails closed for the affected mutation. Do not silently rewrite Project Settings, a repo reference, or `FRAMEWORK-001`.

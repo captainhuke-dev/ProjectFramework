@@ -23,6 +23,8 @@ Framework `1.6.0` standardizes conditional `92 Project Graph` as the canonical h
 Framework `1.7.0` standardizes root `PROJECT-BOOTSTRAP.md` for NEW Projects. It is outside Project Source, has no Stable ID, and routes `PROJECT-BOOTSTRAP.md → 00 → 01 → 03`, with `09` for continuation. Active `FRAMEWORK-001` remains authority; Brownfield adoption is `[Project Upgrade]`-only; vendor settings and `PROJECT-CONFIG.md` remain optional adapters/location references.
 
 Framework `1.8.0` registers persistent `[Goal]` without a `GOAL-*` family: Goal outcome uses `OUT-*` in conditional `91`, durable authority uses `AUTH-*` in `12`, execution uses `ACT-* / ENV-*` in `15`, `03` summarizes Goal state, and `09` carries references only with `authority_transfer: false`. No active Goal is synthesized during GREENFIELD initialization; `[Goal]` materializes `91` only when a persistent Goal becomes applicable.
+
+Framework `1.9.0` adds portable installation bootstrap: current Project Settings use `ProjectFramework Upstream` + verified absolute `Project Bootstrap`; every adopting GREENFIELD Project has exactly one managed `PROJECTFRAMEWORK-BOOTSTRAP` README fallback using `./PROJECT-BOOTSTRAP.md`; both route to locator-only root bootstrap and active `FRAMEWORK-001` authority. Core installation completion is separate from vendor-settings confirmation.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -43,7 +45,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.8.0"
+project_source_framework_version: "1.9.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -103,6 +105,8 @@ Current Phase
 Current Scope
 Current Owner/Actor
 Current Source-of-Truth references
+Project Settings Adapter / Required User Handoff status when materially useful (descriptive only; no new lifecycle family)
+Project Bootstrap / README fallback status when materially useful
 
 Project Location Binding Reference (FRAMEWORK-001; includes applicable Local Workspace Binding; no duplicate authority)
 Active Actions (ACT refs)
@@ -300,6 +304,8 @@ Knowledge Debt affecting continuation
 Material Persistence State: PERSISTED | PERSISTENCE_PENDING | NOT_APPLICABLE
 
 Project Location Binding Reference / Pointers (FRAMEWORK-001; no independent binding copy)
+Project Settings Adapter / Required User Handoff when materially useful (discovery only)
+Project Bootstrap / README managed fallback pointer when materially useful
 External Working Source / Pointers
 Unpersisted Material State when applicable
 Required Read Order
@@ -427,6 +433,8 @@ When disclosure materially informs governed Project truth, reuse `EVD-*` and rec
 ## 14 — Project Source Manifest
 
 Current Reconstructable Snapshot inventory.
+
+Framework `1.9.0` may also describe required Project-root discovery artifacts `PROJECT-BOOTSTRAP.md` and consuming `README.md` managed bootstrap fallback as external artifacts. Do not assign either a fake Project Source semantic slot or Stable ID.
 
 Track active documents, continuation-relevant formal drafts, registered evidence, pinned schema/validation assets, required generated assets, and every active/current Detail Document required to interpret referenced current Stable IDs.
 

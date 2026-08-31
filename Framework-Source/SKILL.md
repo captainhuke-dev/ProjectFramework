@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.8.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.9.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260831-task040.md` — latest amendment: canonical `[Session]` command rename (current authority)
+- `references/framework-governance-amendment-260831-task041.md` — latest amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
+- `references/framework-governance-amendment-260831-task040.md` — previous amendment: canonical `[Session]` command rename
 - `references/framework-governance-amendment-260830-task026.md` — previous amendment: External AI Context & Disclosure Governance
 - `references/framework-governance-amendment-260829-task024.md` — previous amendment: `[Meeting]` LLM Council Advisory Command
 - `references/framework-governance-amendment-260829-task039.md` — previous amendment: Persistent `[Goal]` Continuous Execution Command
@@ -143,6 +144,33 @@ These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope be
 ### Response Close Completeness Gate
 
 Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` field as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. For Markdown output, render the labels safely, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`, so a bare reference-definition-like line cannot disappear. Bold/wrapping is presentation-only; semantic labels and canonical lifecycle tokens remain unchanged. Missing/duplicate/malformed/hidden/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
+
+
+## Framework 1.9.0 Portable Installation Bootstrap & Project Settings Handoff
+
+The target Project Settings / Project Instructions adapter is a **thin discovery wrapper**. Its canonical copy-ready form is:
+
+```text
+ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
+Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
+
+ProjectFramework Bootstrap Rule:
+Read Project Bootstrap before Material Project work.
+If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
+ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
+```
+
+`ProjectFramework Upstream` is fixed Framework read-through/upgrade source only. `Project Bootstrap` is the verified absolute environment-specific path to the consuming Project's root `PROJECT-BOOTSTRAP.md`. Never emit an unresolved/guessed path as ready to paste.
+
+A Framework `1.9.0` GREENFIELD resulting Project has exactly one valid root README managed fallback block using markers `<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->` / `<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->` and relative `./PROJECT-BOOTSTRAP.md`. Create README when absent; append/update only the managed body when exactly one valid block exists; duplicate/malformed markers fail closed to repair. Content outside markers is Project-owned and is not rewritten merely for bootstrap maintenance.
+
+Bootstrap resolution is Project Settings → root README managed fallback when Settings are unusable → `PROJECT-BOOTSTRAP.md` → active `00 / FRAMEWORK-001` → `01 → 03`, with `09` for continuation. Project Settings, README, upstream, and root bootstrap remain locator/discovery surfaces; active local `FRAMEWORK-001` remains Project governance authority.
+
+GREENFIELD install flow is canonical upstream read-through → environment discovery → one Preview → explicit approval → active `00` first → mandatory Project Source → applicable conditionals → root bootstrap + README fallback → verify → **Core Installation DONE** → mandatory `Project Settings — Required User Handoff`. Core completion does not depend on later external vendor copy/paste confirmation, and no `PROJECT_SETTINGS_*` lifecycle family is created.
+
+The thin user-facing adapter does not remove internal `framework_source`, `remote_location`, `file_storage_locations`, `mcp_location`, `local_workspace`, dynamic branch/worktree, Project Location Binding, or `[Project Path]` semantics. Existing initialized Projects remain pinned and adopt this contract only through governed `[Project Upgrade]`.
+
+Framework installation never synthesizes Goal/Auth/ENV/Meeting/disclosure/secret-value/runtime state merely for convenience and never claims vendor settings were mutated without observation.
 
 ## Framework 1.3.1 Registered Project Commands
 
@@ -625,7 +653,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 ## Workflow
 
 1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT` and detect whether valid local Project Source already exists.
-2. NEW Project: read canonical `main` in governed order: README → descriptor → SKILL → latest amendment → Core Governance → Framework template → skeletons → mockup.
+2. NEW Project: read canonical `main` in governed order: README → descriptor → SKILL → latest amendment → Core Governance → `templates/PROJECT-BOOTSTRAP.md` → Framework template → skeletons → mockup → project-location bootstrap when applicable; resolve the actual Project root before presenting any absolute Project Bootstrap handoff path.
 3. Resolve explicit `FAST/GRILL`; otherwise `ADAPTIVE`.
 4. Confirm active `FRAMEWORK-001`; if missing in an existing Project, stop affected work and propose governed repair.
 5. Existing Project: read `00 → 01 → 03`, follow `01` routing, preserve local pin.
@@ -638,7 +666,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 12. Inspect accessible sources before asking; do not ask for facts that can be verified.
 13. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
 14. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.
-15. For GREENFIELD create mandatory `00–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`, `92`; keep `18–19` reserved.
+15. For GREENFIELD create active `00` first, then mandatory `01–05`, `09–17`; evaluate `06–08`, `40`, `60`, `91`, `92`; keep `18–19` reserved; then materialize root `PROJECT-BOOTSTRAP.md` plus exactly one valid consuming README managed fallback, verify the resulting locator chain, declare Core Installation DONE, and emit the resolved two-binding Project Settings user handoff.
 16. Route management objects to `91`; current Project relations (`REL-*`) to `92`; technical blueprint to `40`; install/operations to `60` when applicable.
 17. Pin imported Framework/Schema locally; upgrades use direct current→target assessment plus `MIG-*`/approval as required; classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; never invent repository/Drive/local-workspace identities, commit provenance, verification evidence, or `canonical_branch`.
 18. When `[Project Upgrade]` reports `UPGRADE_AVAILABLE`, the report includes the target release's migration-notes pointer when notes exist (`MIGRATION-NOTES.md`) and states their absence explicitly when they do not; comparison vocabulary and approval boundaries are unchanged. Upgrade preparation uses `templates/upgrade-preview.md` as the standard Preview structure. FAST_PATH scope rule: when the exact target candidate tree already carries committed state-bound evidence (recorded tree SHA matches the observed target tree exactly), proportional resulting-state confirmation may replace rerunning one full verification; any post-evidence candidate change invalidates reuse and fails closed. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` keep the existing one-final-`RELEASE_FULL` requirement. Continuity rule: every Logical Checkpoint on Material work persists a Resume Block into `09 Handoff` (task ID, last completed step, next step, blockers, active `ENV-*`) so any fresh session resumes within one read; Material MCP mutations are idempotent where possible, and non-idempotent calls record pre-execution intent first. `[Session]` lets the user pre-approve a bounded operation scope (`ENV-*` in `15 Action Registry`, with expiry and prohibited zones); it never overrides fail-closed governance — location/binding changes, Root Governance, schema authority, secrets, and push keep their own approval gates. `[Project Upgrade]` remains read-only through comparison; `UPGRADE_AVAILABLE` may ask to prepare an upgrade, but upgrade-intent approval authorizes assessment/Preview only and is never mutation approval.
