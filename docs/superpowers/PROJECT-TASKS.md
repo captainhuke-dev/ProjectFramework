@@ -602,7 +602,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #41 — Portable Installation Bootstrap & Project Settings Handoff
 
 - **ID:** `TASK-041`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework bootstrap architecture / vendor-neutral installation UX and discovery contract
 - **Problem:** GREENFIELD installation can create local Project Source and `PROJECT-BOOTSTRAP.md`, but post-install Project Settings handoff is not canonical, current vendor launchers duplicate a large governance payload, consuming Projects lack a mandatory managed README bootstrap fallback, and upstream README does not display the full mandatory response-close pattern.
 - **User-approved direction:** installation completes with a fixed `ProjectFramework Upstream` (`https://github.com/captainhuke-dev/ProjectFramework`) plus a verified absolute `Project Bootstrap` path for Project Settings; consuming README carries a managed relative `./PROJECT-BOOTSTRAP.md` fallback; target vendor launchers are thin adapters; core installation completion is independent from later user copy/paste confirmation.
@@ -616,13 +616,20 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Boundary:** approved design is implementation-authorized under persistent `AUTH-001`; implementation remains documentation/governance only and excludes runtime/CLI/bot/hook/CI/watcher/scheduler/daemon scope.
 - **Verification/Acceptance direction:** managed README marker integrity/content preservation; resolved absolute Project Settings path; README relative fallback; upstream-vs-Project authority separation; retained internal Git/Drive/File Storage/MCP/Workspace semantics; thin launcher parity; exact upstream README response-close pattern; GREENFIELD/Brownfield fail-closed behavior; no runtime/CLI/automation; affected verification and one final unchanged-candidate `RELEASE_FULL` during implementation.
 - **Current Sequencing:** TASK-041 is the user-selected current architectural improvement; TASK-025 remains TODO and is not implemented by this design checkpoint.
-- **Goal State:** `OUT-001 ACTIVE / AUTH-001 ACTIVE / ENV-001 ACTIVE`; current `[Goal]` authorizes bounded local TASK-041 work through verified completion without redundant Framework-level approval; push/publication remains excluded.
+- **Goal State:** `OUT-001 ACHIEVED / AUTH-001 TERMINATED / ENV-001 EXPIRED`; persistent Goal completed locally; no future execution authority remains; push/publication was never included.
 - **Implementation Plan:** `docs/superpowers/plans/2026-08-31-task041-portable-installation-bootstrap.md`
 - **Plan Commit:** `d45949498a6f2b1b5f9af8b3fee5cc4a516a222b`
 - **Plan Self-Review:** `PASS 52/52`
-- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
-- **Execution Progress:** Task 1 RED contract complete — scenarios `249–268`, `TASK041_RED 40/97 FAIL` expected, commit `a14eeb2c476f6de812bd8b3bcd69a551814b3448`; Task 2 normative implementation next. Task 2 normative contract PASS `51/51`, commit `61bfb3724347a4cba988d987604ade92f66cc45d`, RED reduced to `50/97 FAIL`; Task 3 next. Task 3 thin adapters PASS `42/42`, commit `062c20a8bedc002650dd059e65b1fa792db6dd8c`, RED reduced to `73/97 FAIL`; Task 4 next. Task 4 README/starter PASS `53/53`, 24 stamps at 1.9.0, commit `5d2349ab2e89091e7bbf31c5ae2d9a76e7fc1e6e`, RED `93/97 FAIL` migration-only; Task 5 next. Task 5 migration added; structural RED contract GREEN `97/97`; comprehensive AFFECTED `273/273 PASS`; final implementation candidate commit is next.
-- **Implementation Commit(s):** `a14eeb2c476f6de812bd8b3bcd69a551814b3448`, `61bfb3724347a4cba988d987604ade92f66cc45d`, `062c20a8bedc002650dd059e65b1fa792db6dd8c`, `5d2349ab2e89091e7bbf31c5ae2d9a76e7fc1e6e` plus the Task-5 candidate commit to be bound immediately after commit creation
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Execution Progress:** Task 1 RED contract complete — scenarios `249–268`, `TASK041_RED 40/97 FAIL` expected, commit `a14eeb2c476f6de812bd8b3bcd69a551814b3448`; Task 2 normative implementation next. Task 2 normative contract PASS `51/51`, commit `61bfb3724347a4cba988d987604ade92f66cc45d`, RED reduced to `50/97 FAIL`; Task 3 next. Task 3 thin adapters PASS `42/42`, commit `062c20a8bedc002650dd059e65b1fa792db6dd8c`, RED reduced to `73/97 FAIL`; Task 4 next. Task 4 README/starter PASS `53/53`, 24 stamps at 1.9.0, commit `5d2349ab2e89091e7bbf31c5ae2d9a76e7fc1e6e`, RED `93/97 FAIL` migration-only; Task 5 next. Task 5 migration added; structural RED contract GREEN `97/97`; comprehensive AFFECTED `273/273 PASS`; final implementation candidate commit is next. Task 5 candidate `f5cee5fb2f3cb4da7967f56dcb294ce2a1703530`; AFFECTED `273/273 PASS`; RELEASE_FULL `248/248 PASS`; evidence commit `06fe0c0a06d1c6c6a1abcf3c5cb9052471c5d8ef`; Task 6 terminal reconciliation prepared.
+- **Implementation Commit(s):** `a14eeb2c476f6de812bd8b3bcd69a551814b3448`, `61bfb3724347a4cba988d987604ade92f66cc45d`, `062c20a8bedc002650dd059e65b1fa792db6dd8c`, `5d2349ab2e89091e7bbf31c5ae2d9a76e7fc1e6e`, candidate `f5cee5fb2f3cb4da7967f56dcb294ce2a1703530`
 - **Affected Verification:** `TASK041_AFFECTED 273/273 PASS`; scenarios `1–268`; 24 maintained template stamps at Framework 1.9.0 / Schema 1.0.0; thin launcher lengths 513/512
+- **Candidate Commit:** `f5cee5fb2f3cb4da7967f56dcb294ce2a1703530`
+- **Candidate Tree:** `71756d53cbbcff54883915f24ef353e40b37bda6`
+- **Framework-Source Tree:** `06ce4013473ec014e70d8d3233f6132aa90339fd`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-31-task-041-portable-installation-bootstrap-release-full.md`
+- **Release Evidence Commit:** `06fe0c0a06d1c6c6a1abcf3c5cb9052471c5d8ef`
+- **Verification Result:** AFFECTED `273/273 PASS`; RELEASE_FULL `248/248 PASS`; scenarios `1–268`; launcher lengths `513/512`; 24 maintained template stamps at Framework 1.9.0 / Schema 1.0.0
+- **Completion Criteria Met:** approved spec/plan; portable two-binding adapter; managed README fallback; verified-absolute-path fail-closed behavior; retained internal location semantics; thin launchers; exact upstream response-close; GREENFIELD/Brownfield safety; no runtime/CLI/state-family expansion; affected and final RELEASE_FULL PASS; release evidence committed; terminal Goal reconciliation committed/observed before external completion claim.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** commit migration + Task metadata as the final implementation candidate; capture candidate/tree/Framework-Source identities; rerun AFFECTED on the exact commit; run one final unchanged-candidate RELEASE_FULL.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
