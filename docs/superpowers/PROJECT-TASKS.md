@@ -588,8 +588,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0`; command-name-only amendment, no version/schema bump.
 - **Implementation Boundary:** documentation/governance only; no parser/runtime/CLI/alias layer/automation.
 - **Verification Contract:** RED first; scenarios `246–248`; current command surfaces contain `[Session]`; historical TASK-021 amendment/evidence preserve the old spelling; launchers remain byte-identical in shared body and `<=4,500`; `ENV-*` semantics/fail-closed boundaries unchanged; `git diff --check`; AFFECTED verification; one final `RELEASE_FULL` on unchanged candidate.
-- **Implementation Commit(s):** PENDING
-- **Release Evidence:** PENDING
-- **Verification Result:** RED observed before implementation; GREEN/RELEASE_FULL pending
+- **Implementation Commit(s):** `5b3d4e309976a88e1e57495b6fdaa049fabb6247`
+- **Candidate Commit:** `5b3d4e309976a88e1e57495b6fdaa049fabb6247`
+- **Candidate Tree:** `9fcdb6b3f0dc8c43f35865ee9155c0521c4e64fc`
+- **Framework-Source Tree:** `36804c105604fe8da492a9d71a1f0270e5e035ee`
+- **Release Evidence:** `docs/superpowers/evidence/2026-08-31-task-040-session-command-rename-release-full.md`
+- **Verification Result:** RED `10/26 FAIL` observed before implementation; GREEN `26/26 PASS`; AFFECTED `54/54 PASS`; RELEASE_FULL `160/160 PASS`
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** complete current-surface rename, run AFFECTED verification, then final unchanged-candidate RELEASE_FULL and lifecycle reconciliation.
+- **Exact Next Step:** persist release evidence, reconcile Project Source/Task lifecycle to DONE, and keep publication separate unless explicitly authorized.
