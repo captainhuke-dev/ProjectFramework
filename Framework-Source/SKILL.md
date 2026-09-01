@@ -817,3 +817,11 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 - archive-dependent Current Truth;
 - guessing facts/secrets/provenance;
 - claiming completion without risk-appropriate verification.
+
+## Framework 1.12.0 Task Dependency & Portfolio Planning
+
+When a durable Task source declares planning metadata, use exactly `depends_on`, `blocks`, `enables`, `parallelizable_with`, `priority`, and `readiness`. Binding invariants: `Task readiness ≠ Task lifecycle status`; `Recommended order ≠ execution authority`. Priority vocabulary is `CRITICAL | HIGH | NORMAL | LOW | UNSET`; readiness vocabulary is `READY | WAITING | BLOCKED | UNKNOWN`.
+
+Never infer dependency from Task number/proximity. Readiness is separate from lifecycle (`TODO | IN_PROGRESS | DONE`) and authority. `Task dependency metadata ≠ Project-management DEP-* objects`; do not mirror Task edges into `91` automatically. Cycles, unknown references, stale/superseded dependency targets, contradictory parallel declarations, or unsupported READY claims fail closed to explicit review. Recommended order is advisory and never auto-starts work.
+
+TASK-033 adds no scheduler, queue daemon, agent orchestrator, or background executor.

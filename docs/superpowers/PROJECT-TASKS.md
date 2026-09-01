@@ -305,6 +305,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-027`
 - **Status:** `TODO`
 - **Type:** Framework architecture / Project-scoped execution-tool governance
+- **depends_on:** `[TASK-033]`
+- **blocks:** `[TASK-034]`
+- **enables:** `[TASK-034]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** Project tool/MCP preferences such as `CEO-only` can currently exist only as transient chat instructions or product-specific configuration. The Project needs a durable vendor-neutral contract declaring which execution tools are primary, allowed, disallowed, or eligible as fallback.
 - **Approved direction:** Define a Project Tool / MCP Execution Profile that can express a primary MCP/tool, fallback policy, fail-closed behavior, and allowed/disallowed execution capabilities without depending on a vendor UI setting.
 - **Scope:**
@@ -433,6 +439,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-033`
 - **Status:** `IN_PROGRESS`
 - **Type:** Framework development workflow / backlog dependency and prioritization contract
+- **depends_on:** `[]`
+- **blocks:** `[TASK-027]`
+- **enables:** `[TASK-027]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** The durable Task source records lifecycle state but does not yet provide a standard model for Task-to-Task dependencies, blockers, enablers, parallelism, priority, or readiness across the ProjectFramework roadmap.
 - **Approved direction:** Define a bounded Task planning contract so agents can determine sequencing and safe parallel work without conflating development-task relationships with Project Source `DEP-*` management objects.
 - **Scope:**
@@ -461,6 +473,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-034`
 - **Status:** `TODO`
 - **Type:** Framework architecture / agent and model capability governance
+- **depends_on:** `[TASK-027]`
+- **blocks:** `[TASK-035]`
+- **enables:** `[TASK-035, TASK-037]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** TASK-027 can govern which tools/MCPs a Project prefers, but ProjectFramework does not yet define which agent/model capability classes are appropriate for different work, context, disclosure, or review requirements.
 - **Approved direction:** Define a vendor-neutral Agent/Model Capability Profile while preserving the invariant `Capability ≠ Authority`.
 - **Scope:**
@@ -488,6 +506,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-035`
 - **Status:** `TODO`
 - **Type:** Framework release / publication lifecycle governance
+- **depends_on:** `[TASK-034]`
+- **blocks:** `[TASK-037]`
+- **enables:** `[TASK-037]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** ProjectFramework distinguishes `commit ≠ push` and has verification/integration semantics, but it does not yet define one standard lifecycle separating implementation completion, merge, remote publication, release, artifact publication, and deployment.
 - **Approved direction:** Define a release/publication contract that makes each publication state explicit and evidence-backed without making immutable tags or deployment universal prerequisites.
 - **Scope:**
@@ -535,6 +559,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-037`
 - **Status:** `TODO`
 - **Type:** Framework architecture / Project security and trust-boundary governance
+- **depends_on:** `[TASK-035]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** TASK-026 governs outbound AI disclosure, but Project security also spans repositories, runtimes, external services, MCPs, artifacts, code execution, supply-chain inputs, and privileged environments.
 - **Approved direction:** Define a Project-level Security & Trust Boundary contract that complements existing secret/disclosure/authority rules without introducing a security runtime by implication.
 - **Scope:**

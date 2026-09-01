@@ -27,7 +27,7 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.10.0**
+- Project Source Framework: **1.12.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
@@ -523,3 +523,10 @@ Use `Framework-Source/` as the reusable framework package. Files under `docs/sup
 ## Supersession Note
 
 Framework `1.6.0` extends the concept-first direction of earlier releases with federated Project relation governance while preserving Project-local authority. Git tags, exact commit provenance, branch protection, executable validators, graph/index runtimes, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+
+
+## Framework 1.12.0 Task Dependency Planning
+
+Framework 1.12.0 Set 1 starts with explicit Task dependency/readiness metadata so execution order is never inferred from Task number. Durable Task sources may declare `depends_on`, `blocks`, `enables`, `parallelizable_with`, `priority: CRITICAL | HIGH | NORMAL | LOW | UNSET`, and `readiness: READY | WAITING | BLOCKED | UNKNOWN`.
+
+Task readiness is not Task lifecycle, and Task planning metadata is not `DEP-*` Project-management authority. Recommended order remains advisory; no scheduler or automatic Task execution is introduced.

@@ -1664,3 +1664,26 @@ COMPLETE PARTIAL BLOCKED FAILED
 ```
 
 Do not claim `DONE`, `DEPLOYED`, `PUSHED`, `MIGRATED`, or `VALID` unless verification appropriate to the risk has passed.
+
+## Framework 1.12.0 Set 1 Foundation Contracts
+
+### Task Dependency & Portfolio Planning (TASK-033)
+
+Development/backlog Task sequencing uses explicit Task-source planning metadata when applicable:
+
+```text
+depends_on
+blocks
+enables
+parallelizable_with
+priority: CRITICAL | HIGH | NORMAL | LOW | UNSET
+readiness: READY | WAITING | BLOCKED | UNKNOWN
+```
+
+`Task dependency metadata ≠ Project-management DEP-* objects`; `Task readiness ≠ Task lifecycle status`; `Recommended order ≠ execution authority`; Task number/proximity never establishes dependency evidence.
+
+`READY` means declared required Task dependencies are satisfied and no known blocker prevents start. `WAITING` means an explicit sequencing prerequisite remains. `BLOCKED` means a material blocker prevents work. `UNKNOWN` means dependency/readiness evidence is unresolved, contradictory, cyclic, stale, or references unknown Tasks. A Task may be `TODO + READY`; `READY` never means `DONE`.
+
+Priority is advisory after dependency/safety constraints and never bypasses `depends_on`, authority, binding, Risk, review, or user decisions. Validation surfaces self-dependency, cycles, unknown references, stale/superseded targets, contradictory `parallelizable_with`, and unsupported READY claims; it never auto-repairs the graph.
+
+`DEP-*` in `91` remains the canonical Project-management dependency object family and is never synthesized merely from Task planning edges. Agents may present recommended ordering/parallel groups, but TASK-033 creates no scheduler, queue daemon, automatic task executor, or agent orchestrator.
