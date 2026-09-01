@@ -639,14 +639,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #42 — Response Finalization Hardening
 
 - **ID:** `TASK-042`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework bootstrap/final-response reliability hardening
 - **Problem:** A user-supplied diagnostic response omitted the mandatory response-close even though Core Governance already requires it. Current Framework 1.9.0 thin Project Settings launchers bootstrap only `before Material Project work`, so read-only/status/diagnostic/early-return paths may answer before local governance is resolved; pressure scenarios do not currently force response-close preservation across exceptional finalization paths.
 - **Root Cause:** bootstrap timing gap + missing exceptional/early-return regression coverage. The canonical close-format rule itself already exists and is not the missing component.
 - **User-approved direction:** three layers: (1) resolve Project Bootstrap before the first Project-governed response in each chat, with read-only/status/diagnostic work not exempt; (2) make Response Close Completeness Gate unskippable for every Project-governed final response, including early-return/tool failure/timeout/connector error/refusal/partial result/exception recovery; (3) add pressure scenarios for exceptional paths.
 - **Target Release:** Framework `1.9.1` / Schema `1.0.0` / release format `3` (patch-level hardening; no semantic slot, Stable-ID family, lifecycle family, runtime enforcement, parser, CLI, or automation).
 - **Authority Boundary:** first-response bootstrap discovers local governance; it grants no mutation/Root/Binding/secret/disclosure/push authority. A close gate formats/validates final responses only and does not claim transport/UI control.
-- **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-012 IN_PROGRESS / ENV-003 ACTIVE`; bounded local work authorized until verified local completion; push/publication excluded.
+- **Goal State:** `OUT-003 ACHIEVED / AUTH-003 TERMINATED / ACT-012 DONE / ENV-003 EXPIRED`; persistent Goal completed locally; no future execution authority remains; push/publication was never included.
 - **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task042-response-finalization-hardening-design.md`
 - **Design Commit:** `c4c163a`
@@ -654,12 +654,18 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-01-task042-response-finalization-hardening.md`
 - **Plan Commit:** `1a25c29`
 - **Plan Self-Review:** `PASS 34/34`
-- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
-- **Execution Progress:** Task 1 RED scenarios `269–280` committed at `985e84b` with expected `TASK042_RED 47/74 FAIL`; Task 2 normative hardening `TASK042_TASK2 52/52 PASS`, commit `1c25a96`; Task 3 propagation `TASK042_TASK3 40/40 PASS`, commit `8f740dd`; structural contract GREEN `TASK042_RED 74/74 PASS`; comprehensive AFFECTED `110/110 PASS`; first frozen candidate `6d38ad5` was invalidated after RELEASE_FULL `168/171 FAIL` found four trailing-whitespace lines in the TASK-042 amendment; whitespace-only correction applied and AFFECTED returned `110/110 PASS`; corrected candidate commit is next.
-- **Implementation Commit(s):** scenario contract `985e84b`; normative implementation `1c25a96`; propagation `8f740dd`.
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Execution Progress:** Tasks 1–3 executed; TDD RED `47/74 FAIL` expected → structural GREEN `74/74 PASS`; Task 2 `52/52 PASS`; Task 3 `40/40 PASS`; AFFECTED `110/110 PASS`; invalidated candidate `6d38ad5` corrected; final candidate `d698ee25f4337535c1c991721c617ee7f7cf9de2`; RELEASE_FULL `171/171 PASS`; evidence committed; terminal reconciliation prepared.
+- **Implementation Commit(s):** scenario `985e84b`; normative `1c25a96`; propagation `8f740dd`; corrected candidate `d698ee25f4337535c1c991721c617ee7f7cf9de2`.
 - **Structural GREEN:** `TASK042_RED 74/74 PASS`; scenarios `1–280` contiguous/unique.
 - **Affected Verification:** `TASK042_AFFECTED 110/110 PASS`; 24 maintained starter stamps at Framework `1.9.1` / Schema `1.0.0`; thin launcher lengths `716/715`; changed scope documentation/YAML only.
 - **Implementation Boundary:** documentation/governance only. No runtime interceptors, UI hooks, middleware, validators/CLI, transport enforcement, MCP daemon changes, or vendor-specific execution code were added.
-- **Verification Direction:** the failed `6d38ad5` candidate is invalidated and must not be reused; create a corrected candidate, freeze new identities, then run one final unchanged-candidate `RELEASE_FULL` on that corrected candidate and persist evidence/terminal reconciliation.
+- **Candidate Commit:** `d698ee25f4337535c1c991721c617ee7f7cf9de2`
+- **Candidate Tree:** `4a8546f38d1c4ff223620924fa477c1f3a723c58`
+- **Framework-Source Tree:** `9f8bac7fd32a21af6244a9723739a2f747810f70`
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-01-task-042-response-finalization-hardening-release-full.md`
+- **Release Evidence Commit:** `6547769876af52a0c3ff196cad434cd083f5fd53`
+- **Verification Result:** structural GREEN `74/74 PASS`; AFFECTED `110/110 PASS`; RELEASE_FULL `171/171 PASS`; scenarios `1–280`; launcher lengths `716/715`; 24 maintained template stamps at Framework `1.9.1` / Schema `1.0.0`.
+- **Completion Criteria Met:** first-response bootstrap timing hardened; diagnostic/read-only/status non-exemption; exceptional/early-return no-bypass response-close contract; pressure scenarios 269–280; exact response-close format preserved; no runtime/CLI/state-family expansion; affected and final RELEASE_FULL PASS; release evidence committed; terminal Goal reconciliation prepared for observed completion commit.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** commit the whitespace-corrected final implementation candidate, freeze new candidate identities, then run one final unchanged-candidate RELEASE_FULL.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
