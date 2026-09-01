@@ -227,6 +227,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation boundary:** Task registration only. Do not create a wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, runtime automation, or Project Knowledge files until a separate design spec is completed and explicitly approved.
 - **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
 - **Design Approval:** User explicitly invoked `[Goal] ทำจนจบ task` on 2026-09-01; committed written spec approved to proceed without changes.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-01-task025-project-knowledge-layer.md`
+- **Plan Commit:** `187c802`
+- **Plan Self-Review:** `PASS 43/43`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`
 - **Spec Self-Review:** `TASK025_SPEC_SELF_REVIEW 42/42 PASS`
 - **Source Concept Freshness:** `llm-wiki` gist freshly read on `2026-09-01`; adopted concepts are raw sources / LLM-maintained Markdown wiki / schema layer, `index.md`, chronological `log.md`, and ingest/query/lint; implementation assumptions remain non-binding.
@@ -235,7 +239,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.10.0` / Schema `1.0.0` / release format `3` — reclassified from the original 1.9.0 roadmap placeholder because the 1.9.0 line is already released and TASK-025 adds a new optional additive Framework interface; no Project Source schema/slot change.
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
 - **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-013 IN_PROGRESS / ENV-003 ACTIVE`; push/publication excluded.
-- **Exact Next Step:** write/self-review/commit implementation plan, then execute under persistent Goal.
+- **Exact Next Step:** execute Task 1 TDD RED scenarios 269–288 and failing structural verifier.
 
 ## Task #26 — External AI Context & Disclosure Governance
 
