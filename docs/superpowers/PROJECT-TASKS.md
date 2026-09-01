@@ -591,6 +591,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** implement the approved TASK-037 Security & Trust Boundary contract and final 1.12.0 propagation under Set 1 plan.
+- **Set 1 Implementation State:** `COMPLETE_PENDING_CUMULATIVE_ACCEPTANCE`
+- **Focused Verification:** `123/123 PASS`
+- **Implementation Commit:** `9c7045c`
+- **Structural GREEN:** `SET1_RED 159/159 PASS`; scenarios `1–338`.
+- **Exact Next Step:** run cumulative Set 1 AFFECTED/candidate acceptance; Task becomes DONE only at terminal suite reconciliation.
 
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
