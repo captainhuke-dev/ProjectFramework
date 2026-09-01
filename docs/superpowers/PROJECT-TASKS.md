@@ -210,7 +210,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
 
 - **ID:** `TASK-025`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / persistent LLM-maintained Project knowledge
 - **Source Concept:** `https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f` (`llm-wiki`)
 - **Problem:** ProjectFramework has strong governed current truth and continuity, but much research, synthesis, comparison, meeting insight, and learned context that should not become authoritative `REQ-*` / `DEC-*` / other Project Source records is otherwise likely to remain fragmented across chats or be recomputed repeatedly.
@@ -225,10 +225,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Define GREENFIELD and Brownfield applicability/migration behavior, including whether a physical `Project-Knowledge/` directory or another representation is appropriate; do not lock physical layout before design review.
   8. Preserve source-derived terminology and provenance from the `llm-wiki` concept where adopted, but do not copy its implementation assumptions blindly into ProjectFramework governance.
 - **Implementation boundary:** Task registration only. Do not create a wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, runtime automation, or Project Knowledge files until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `WRITTEN_SPEC_READY_FOR_USER_REVIEW`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`
+- **Spec Self-Review:** `TASK025_SPEC_SELF_REVIEW 42/42 PASS`
+- **Source Concept Freshness:** `llm-wiki` gist freshly read on `2026-09-01`; adopted concepts are raw sources / LLM-maintained Markdown wiki / schema layer, `index.md`, chronological `log.md`, and ingest/query/lint; implementation assumptions remain non-binding.
+- **Chosen Architecture:** `Derived Markdown Knowledge Layer` — optional root `Project-Knowledge/` with `README.md`, `index.md`, `log.md`, and `pages/`; raw/source material remains source-native by default; Knowledge is advisory/derived and cannot auto-promote into Project Source.
+- **Design Gate:** implementation remains `NOT_STARTED`; written spec requires explicit user review/approval before implementation planning/Framework mutation.
+- **Target Release:** Framework `1.10.0` / Schema `1.0.0` / release format `3` — reclassified from the original 1.9.0 roadmap placeholder because the 1.9.0 line is already released and TASK-025 adds a new optional additive Framework interface; no Project Source schema/slot change.
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
-- **Exact Next Step:** Wait for further requirements; when TASK-025 is selected for development, prepare its architectural design spec before implementation.
+- **Exact Next Step:** User reviews `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`; implementation planning remains gated until explicit written-spec approval.
 
 ## Task #26 — External AI Context & Disclosure Governance
 
