@@ -596,6 +596,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Commit:** `9c7045c`
 - **Structural GREEN:** `SET1_RED 159/159 PASS`; scenarios `1–338`.
 - **Exact Next Step:** run cumulative Set 1 AFFECTED/candidate acceptance; Task becomes DONE only at terminal suite reconciliation.
+- **Cumulative AFFECTED:** `SET1_AFFECTED 75/75 PASS`
+- **Candidate State:** `READY_FOR_FINAL_CANDIDATE_COMMIT_AND_FREEZE`
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** commit/freeze final Set 1 candidate, then run final cumulative RELEASE_FULL.
 
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
