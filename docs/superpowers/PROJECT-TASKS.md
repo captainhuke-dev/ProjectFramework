@@ -210,7 +210,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
 
 - **ID:** `TASK-025`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / persistent LLM-maintained Project knowledge
 - **Source Concept:** `https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f` (`llm-wiki`)
 - **Problem:** ProjectFramework has strong governed current truth and continuity, but much research, synthesis, comparison, meeting insight, and learned context that should not become authoritative `REQ-*` / `DEC-*` / other Project Source records is otherwise likely to remain fragmented across chats or be recomputed repeatedly.
@@ -230,22 +230,30 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-01-task025-project-knowledge-layer.md`
 - **Plan Commit:** `187c802`
 - **Plan Self-Review:** `PASS 43/43`
-- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
-- **Execution Progress:** Task 1 RED `33/68 FAIL` expected commit `64823a9`; Task 2 normative `62/62 PASS` commit `1c7be78`; Task 3 templates/propagation `77/77 PASS` commit `ed5aa4d`; structural GREEN `68/68 PASS`; AFFECTED `175/175 PASS`; candidate commit/freeze next.
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Execution Progress:** Tasks 1–4 executed; RED `33/68 FAIL` expected → structural GREEN `68/68 PASS`; Task 2 `62/62 PASS`; Task 3 `77/77 PASS`; AFFECTED `175/175 PASS`; invalidated candidate `2688c995448131b2154b3fa505acaef6352389d3`; corrected candidate `99c2f5a90e0c8f02dd68001d0e22b5362cd45a03`; final RELEASE_FULL `120/120 PASS`; release evidence committed; terminal Goal reconciliation completed locally.
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`
 - **Spec Self-Review:** `TASK025_SPEC_SELF_REVIEW 42/42 PASS`
 - **Source Concept Freshness:** `llm-wiki` gist freshly read on `2026-09-01`; adopted concepts are raw sources / LLM-maintained Markdown wiki / schema layer, `index.md`, chronological `log.md`, and ingest/query/lint; implementation assumptions remain non-binding.
 - **Chosen Architecture:** `Derived Markdown Knowledge Layer` — optional root `Project-Knowledge/` with `README.md`, `index.md`, `log.md`, and `pages/`; raw/source material remains source-native by default; Knowledge is advisory/derived and cannot auto-promote into Project Source.
-- **Design Gate:** implementation remains `NOT_STARTED`; written spec requires explicit user review/approval before implementation planning/Framework mutation.
+- **Design Gate:** SATISFIED — written spec explicitly approved by user `[Goal]`; implementation completed under AUTH-003.
 - **Target Release:** Framework `1.10.0` / Schema `1.0.0` / release format `3` — reclassified from the original 1.9.0 roadmap placeholder because the 1.9.0 line is already released and TASK-025 adds a new optional additive Framework interface; no Project Source schema/slot change.
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
-- **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-013 IN_PROGRESS / ENV-003 ACTIVE`; push/publication excluded.
-- **Exact Next Step:** commit corrected implementation candidate after hygiene repair, freeze new identities, then run final RELEASE_FULL on that unchanged candidate.
+- **Goal State:** `OUT-003 ACHIEVED / AUTH-003 TERMINATED / ACT-013 DONE / ENV-003 EXPIRED`; no future TASK-025 execution authority remains.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
-- **Implementation Commit(s):** RED `64823a9`; normative `1c7be78`; templates/propagation `ed5aa4d`.
+- **Implementation Commit(s):** RED `64823a9`; normative `1c7be78`; templates/propagation `ed5aa4d`; corrected candidate `99c2f5a90e0c8f02dd68001d0e22b5362cd45a03`.
 - **Structural GREEN:** `TASK025_RED 68/68 PASS`; scenarios `1–288` contiguous/unique.
 - **Affected Verification:** `TASK025_AFFECTED 175/175 PASS`; 4 Knowledge starter files; 22 maintained Project Source starter stamps at Framework `1.10.0` / Schema `1.0.0`; launchers unchanged; documentation/YAML only.
 - **Invalidated Candidate:** `2688c995448131b2154b3fa505acaef6352389d3` — RELEASE_FULL `119/120 FAIL` solely because `git diff --check` found extra EOF blank lines in three branch-created archived Project Source revisions; semantic/AFFECTED checks remained PASS; candidate invalidated before evidence reuse.
+- **Candidate Commit:** `99c2f5a90e0c8f02dd68001d0e22b5362cd45a03`
+- **Candidate Tree:** `26d1f5354ab0a59616b9fbca28d25c74ac6746ca`
+- **Framework-Source Tree:** `d39c4550a4272e3ae2c5f957ec444f93bd514485`
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-01-task-025-project-knowledge-release-full.md`
+- **Release Evidence Commit:** `e428eaa52de64546138fc4ca46fe84f1aa697e7f`
+- **Verification Result:** structural GREEN `68/68 PASS`; Task 2 `62/62 PASS`; Task 3 `77/77 PASS`; AFFECTED `175/175 PASS`; RELEASE_FULL `120/120 PASS`; scenarios `1–288`; 4 Knowledge templates; 22 maintained starter stamps at Framework `1.10.0` / Schema `1.0.0`.
+- **Completion Criteria Met:** optional Derived Markdown Project Knowledge layer; Knowledge≠Authority; provenance/index/log/page/lifecycle/promotion contracts; Meeting/EVD/TASK-026/03/09/92/OpenViking boundaries; GREENFIELD optionality/Brownfield safety; no runtime/CLI/vector/wiki/MCP service; final state-bound evidence committed; Goal terminalized locally.
+- **Publication State:** `NOT_PUSHED`
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
