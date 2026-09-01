@@ -508,7 +508,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #35 — Project Release / Publication Contract
 
 - **ID:** `TASK-035`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework release / publication lifecycle governance
 - **depends_on:** `[TASK-034]`
 - **blocks:** `[TASK-037]`
@@ -536,7 +536,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Suite:** QUEUED / sequence position 4 of 5 / starts after TASK-034 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** implement the approved TASK-035 Project Release / Publication Contract under Set 1 plan.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `66/66 PASS`; implementation commit `9a6ac1c`; completed under OUT-004/AUTH-004.
 
 ## Task #36 — Project Change/Event History Feed
 
@@ -561,14 +562,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #37 — Security & Trust Boundary Contract
 
 - **ID:** `TASK-037`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / Project security and trust-boundary governance
 - **depends_on:** `[TASK-035]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** TASK-026 governs outbound AI disclosure, but Project security also spans repositories, runtimes, external services, MCPs, artifacts, code execution, supply-chain inputs, and privileged environments.
 - **Approved direction:** Define a Project-level Security & Trust Boundary contract that complements existing secret/disclosure/authority rules without introducing a security runtime by implication.
 - **Scope:**
@@ -589,7 +590,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Suite:** QUEUED / sequence position 5 of 5 / starts after TASK-035 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Remain queued under Set 1 until declared predecessor checkpoint is complete; implementation is governed by the suite plan.
+- **Exact Next Step:** implement the approved TASK-037 Security & Trust Boundary contract and final 1.12.0 propagation under Set 1 plan.
 
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
