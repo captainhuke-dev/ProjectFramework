@@ -892,6 +892,7 @@ Framework `1.8.0` TASK-039 further registers persistent `[Goal]` continuous-exec
 Framework `1.8.0` TASK-024 further registers `[Meeting]` as a multi-model advisory command using a Thin Council Provider Adapter boundary; it adds no `MEETING-*` Stable-ID family, semantic slot, or provider authority home.
 Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary for external-AI Project context using existing `AUTH-* / EVD-* / SECRET-*` homes; it adds no `DISC-*` Stable-ID family, semantic slot, mandatory per-object classification field, or runtime disclosure system.
 Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Project Settings Handoff: current vendor Project Settings use a two-binding thin adapter while existing internal location semantics remain governed; root README gains a managed fallback; active local `FRAMEWORK-001` remains authority.
+Framework `1.10.0` TASK-025 further defines the optional Project Knowledge Layer as derived/advisory Markdown outside Project Source authority, with provenance, maintenance-state, promotion, disclosure, and OpenViking content-class boundaries.
 
 
 Initial registry:
@@ -999,6 +1000,62 @@ The simplified adapter removes no internal capability: `framework_source`, `remo
 If valid active Project Source already exists, never perform GREENFIELD recreation. Brownfield adoption uses governed `[Project Upgrade]`, preserves local pin/truth/Stable IDs/bindings/history, Previews root/README/adapter effects, and returns a refreshed absolute Project Settings block without claiming UI mutation.
 
 Neither bootstrap adapter, README fallback, root bootstrap, nor installation handoff stores actual secret values or grants disclosure/authorization. Installation does not synthesize Goal/Auth/ENV/Meeting/provider/disclosure/runtime/daemon state merely because ProjectFramework is installed.
+
+### 16.6 Framework 1.10.0 Project Knowledge Layer
+
+Framework `1.10.0` adds an optional Markdown-first **Project Knowledge Layer** for reusable synthesis while preserving the invariant `Project Knowledge ≠ Project Authority`. When applicable, a consuming Project may materialize root-level `Project-Knowledge/` outside the `Project-Source/00–99` semantic namespace. It is neither a semantic slot nor Root Governance and never precedes `PROJECT-BOOTSTRAP.md → active FRAMEWORK-001 → 01 → 03` authority resolution.
+
+Canonical maintained layout is:
+
+```text
+Project-Knowledge/
+├── README.md
+├── index.md
+├── log.md
+└── pages/
+```
+
+A maintained Knowledge page uses compact YAML fields including `knowledge_page_id`, `title`, `knowledge_state`, `created_at`, `updated_at`, `source_refs`, `related_project_source_refs`, `related_knowledge`, and `review_trigger`. `knowledge_page_id` is Knowledge-layer identity only and does not become Project Source authority.
+
+Exact maintenance state vocabulary is:
+
+```text
+CURRENT | REVIEW_DUE | STALE | CONTRADICTED | SUPERSEDED | RETIRED
+```
+
+Knowledge state describes maintenance/navigation state, not claim truth certainty. Material claim uncertainty remains explicit in prose and provenance.
+
+Material synthesized claims require reconstructable `source_refs`. Raw/source material remains in its authoritative or source-native location by default; Knowledge references rather than obligatorily duplicates it. Any deliberate retained copy gains no authority merely from location.
+
+`index.md` is navigation metadata, never truth ranking. `log.md` is chronological append-only history for material Knowledge operations using `ingest`, `query-file`, `lint`, or `maintain`; it is not an MCP/tool transcript, raw search dump, or private chain-of-thought store.
+
+Knowledge operations are:
+
+```text
+ingest     → source/provenance → compare → page/link/index/log update → surface contradictions/promotion candidates
+query-file → file reusable synthesis using the same provenance/link/index/log contract
+lint       → advisory checks for staleness, contradiction, broken/orphan links, weak provenance, superseded sources, and unreviewed promotion candidates
+```
+
+No operation promotes Knowledge into Project Source automatically. Knowledge contradiction does not automatically create Project Source `CONFLICT-*`; authoritative `DRIFT-* / CONFLICT-*` semantics apply only when their existing threshold is met.
+
+**Knowledge→Governance promotion gate:** identify the target canonical Project Source home → verify evidence → assess affected governed objects → obtain applicable authority/approval → mutate only the canonical owner through its normal revision/validation/promotion flow → preserve minimum evidence/linkage → update Knowledge to reference the governed result. A Knowledge page is never approval by itself and is not copied wholesale into Evidence by default.
+
+Integration boundaries remain distinct:
+
+- TASK-023/bootstrap resolves Project authority before Knowledge discovery/use.
+- TASK-024 `[Meeting]` output remains advisory; material Meeting results may feed Knowledge only with provenance/limitations preserved.
+- `EVD-*` remains reconstructable evidence basis; Project Knowledge remains derived/advisory synthesis.
+- `03` / `09` may point to Knowledge only when material to current work; they do not mirror its content.
+- Knowledge cross-links are advisory content links, not `REL-*`; Project Graph assertions remain canonical in `92`.
+- TASK-026 disclosure still applies independently to external use of Knowledge; advisory/local status never grants outbound permission.
+- AI-ControlTower/OpenViking indexing preserves explicit content classes `PROJECT_SOURCE_AUTHORITY` and `PROJECT_KNOWLEDGE_ADVISORY`; OpenViking remains `DERIVED_ONLY` and rebuildable. Retrieval rank, vector similarity, recency, graph centrality, or combined search never transfers authority.
+
+GREENFIELD Project Knowledge is optional/applicability-driven and is created only when useful and approved after active `FRAMEWORK-001` exists. Brownfield Projects remain pinned; adoption is governed and never bulk-imports historical notes/chats/files as accepted Knowledge or Project truth without provenance review.
+
+Actual secret values remain forbidden. Knowledge maintenance authority does not imply Project Source mutation, external disclosure, push/publication, Root/Binding, Decision, Risk acceptance, or runtime authority.
+
+Framework `1.10.0` defines documentation/governance/templates only and creates no wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, validator/CLI, scheduler, or runtime automation.
 
 ### Continuation Contract and Resume Blocks
 
