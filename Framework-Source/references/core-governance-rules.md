@@ -1762,3 +1762,27 @@ Material facts reuse `10`/`13 EVD-*`/`03`/`09`/`15`/`91` as applicable. Reposito
 Partial publication reports each dimension. External success followed by failed required local reconciliation uses `PERSISTENCE_PENDING` while retaining the observed external truth. Rollback, retraction, and supersession preserve history; unsupported retraction is recorded rather than fabricated. Immutable tags/signatures/checksums/attestations/protected branches are optional assurance unless Project requirements make them mandatory.
 
 TASK-035 creates no CI/CD, release bot, tag/package publisher, deployment automation, or remote push.
+
+### Security & Trust Boundary Contract (TASK-037)
+
+Framework `1.12.0` completes optional `Project-Execution/` with `trust.md` and canonical trust classes `TRUSTED | LIMITED_TRUST | UNTRUSTED | PRIVILEGED | EXTERNAL | UNKNOWN`.
+
+```text
+Trust classification ≠ Authority
+Trusted surface ≠ permission to disclose secrets
+Tool eligibility ≠ trust equivalence
+Capability ≠ trust ≠ authority
+UNKNOWN trust for materially sensitive action → VERIFICATION_REQUIRED / fail closed
+```
+
+`trust.md` declares surface type, trust class, source-native pointer, allowed crossings, and review trigger. Crossing types include `DATA_READ`, `DATA_WRITE`, `CODE_EXECUTION`, `ARTIFACT_TRANSFER`, `EXTERNAL_DISCLOSURE`, and `PRIVILEGED_OPERATION`.
+
+Material crossing resolution composes source/destination trust, crossing type, provenance/classification, TASK-027 Tool/MCP eligibility, TASK-034 capability eligibility, TASK-026 disclosure/secret rules when external context is involved, then existing AUTH/Risk/Decision/shared-state gates. No component subsumes another.
+
+`PRIVILEGED` means elevated consequence, not more authority/trust. Material `PRIVILEGED_OPERATION` requires explicit authority plus applicable risk/review/evidence. `EXTERNAL` stays outside Project-local control and requires purpose-specific disclosure/authority review. `UNKNOWN` or materially contradictory trust for sensitive actions fails closed; recency/ranking/similarity never resolves trust.
+
+Actual secret values remain prohibited; `17 Secret Reference Registry` stays reference-only. Code/artifacts/dependencies from `UNTRUSTED`, `LIMITED_TRUST`, `EXTERNAL`, or `UNKNOWN` do not become trusted because they exist in the workspace. Provenance/review remains proportional to impact.
+
+TASK-035 publication dimensions remain factual lifecycle state: `PUSHED`, `PUBLISHED`, or `DEPLOYED` never prove trust/authority/provenance sufficiency. Signatures/tags may increase optional assurance but do not replace trust/authority evaluation.
+
+`PROJECT-BOOTSTRAP.md` resolves Project authority first; Project-Execution policy is read afterward when applicable. GREENFIELD/Brownfield never invent trust from prior successful use. TASK-037 adds no scanner, sandbox enforcement, policy engine, runtime isolation, supply-chain automation, external security service, secret store, or privileged-operation executor.

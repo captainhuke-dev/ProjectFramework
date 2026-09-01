@@ -12,7 +12,7 @@ entrypoints:
   skill: "SKILL.md"
   project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260901-task035.md"
+latest_framework_amendment: "references/framework-governance-amendment-260901-task037.md"
 migration_notes: "MIGRATION-NOTES.md"
 upgrade_preview_template: "templates/upgrade-preview.md"
 core_governance: "references/core-governance-rules.md"

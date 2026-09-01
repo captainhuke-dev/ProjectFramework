@@ -10,7 +10,8 @@ Current maintained files:
 Project-Execution/
 ├── README.md
 ├── tools.md
-└── capabilities.md
+├── capabilities.md
+└── trust.md
 ```
 
 Later Framework contracts may extend this directory with additional single-responsibility policy files. Every file remains subordinate to active `FRAMEWORK-001` and existing authority/risk/disclosure/secret rules.
@@ -29,3 +30,5 @@ Tool/MCP profile ≠ permission to mutate
 ```
 
 TASK-034 adds `capabilities.md` for agent/model work eligibility. `Capability ≠ Authority`; capability eligibility never overrides tool, disclosure, Risk, or authority gates.
+
+TASK-037 adds `trust.md` for security/trust crossing constraints. `Trust classification ≠ Authority`; UNKNOWN sensitive crossings fail closed.

@@ -1,6 +1,6 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.10.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.12.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
@@ -228,3 +228,7 @@ Framework `1.12.0` optional Project Execution Profile: when applicable, `Project
 Framework `1.12.0` Agent / Model Capability Profile: optional `Project-Execution/capabilities.md` constrains required reasoning/coding/research/review/council capability and local/external/review eligibility after authority resolution. Capability ≠ Authority; Brownfield never infers policy from prior model use and no model router/runtime is created.
 
 Framework `1.12.0` Release / Publication Contract: current reporting keeps Implementation/Integration/Repository Publication/Release/Artifact Publication/Deployment orthogonal; Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED. RC evidence is state-bound; RELEASE_FULL verifies candidates and INTEGRATION_GATE checks mutable targets. Publication authority remains separate and no CI/CD is created.
+
+## Framework 1.12.0 Set 1 Foundation Semantics
+
+Set 1 adds explicit Task dependency/readiness metadata, optional `Project-Execution/tools.md` + `capabilities.md` + `trust.md`, and orthogonal release/publication dimensions. These policies remain outside Project Source authority; capability/tool/trust/publication state never grants authority. Brownfield adoption is governed and no runtime router/scheduler/CI/security engine is implied.

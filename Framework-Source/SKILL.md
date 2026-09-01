@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.10.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.12.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -855,3 +855,13 @@ A Release Candidate is state-bound to source/repository identity, commit/ref whe
 Report partial states dimension-by-dimension. External publication followed by failed required Project reconciliation is `PERSISTENCE_PENDING`, not false local completion. Preserve rollback/retraction/supersession history; never silently delete/overwrite tags/artifacts to clean history. Optional assurance stays optional unless Project requirements say otherwise.
 
 Implementation authority ≠ publication authority. TASK-035 adds no CI/CD, release bot, package publisher, deployment automation, tag automation, or remote push.
+
+## Framework 1.12.0 Security & Trust Boundary Contract
+
+`Project-Execution/trust.md` uses `TRUSTED | LIMITED_TRUST | UNTRUSTED | PRIVILEGED | EXTERNAL | UNKNOWN`. `Trust classification ≠ Authority`; trusted ≠ secret disclosure permission; Tool eligibility ≠ trust equivalence; Capability ≠ trust ≠ authority.
+
+Crossing types include `DATA_READ`, `DATA_WRITE`, `CODE_EXECUTION`, `ARTIFACT_TRANSFER`, `EXTERNAL_DISCLOSURE`, and `PRIVILEGED_OPERATION`. Evaluate source/destination trust + provenance/classification + TASK-027 tool eligibility + TASK-034 capability eligibility + TASK-026 disclosure/secret rules + AUTH/Risk/Decision/shared-state gates. `UNKNOWN` for materially sensitive actions is `VERIFICATION_REQUIRED` / fail closed.
+
+`PRIVILEGED` means elevated consequence, not broader permission. Material `PRIVILEGED_OPERATION` needs explicit authority and applicable review/risk/evidence. External/untrusted/limited/unknown code or artifacts do not become trusted by workspace presence. `17 Secret Reference Registry` remains reference-only; actual secret values never belong in trust policy.
+
+TASK-035 publication truth remains factual: PUSHED/PUBLISHED/DEPLOYED never proves trust or grants Runtime authority. Brownfield never infers trust from successful prior use. No scanner, sandbox, policy engine, runtime isolation, supply-chain service, secret store, or automatic privileged executor is created.
