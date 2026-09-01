@@ -224,3 +224,5 @@ Template placeholders are not Project facts. Replace them only with verified/use
 A pre-1.2.0 Project may already use slot `91`. Never overwrite it. Use `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` if applicable. Old prose is not automatically promoted into new management Stable IDs.
 
 Framework `1.12.0` optional Project Execution Profile: when applicable, `Project-Execution/` is a governed root-level policy surface outside Project Source slots. TASK-027 `tools.md` declares eligible execution tools/fallback/failure behavior only after active Project authority resolves; Tool policy ≠ Location ≠ Authority and Brownfield never auto-adopts. No credentials or runtime router are created.
+
+Framework `1.12.0` Agent / Model Capability Profile: optional `Project-Execution/capabilities.md` constrains required reasoning/coding/research/review/council capability and local/external/review eligibility after authority resolution. Capability ≠ Authority; Brownfield never infers policy from prior model use and no model router/runtime is created.

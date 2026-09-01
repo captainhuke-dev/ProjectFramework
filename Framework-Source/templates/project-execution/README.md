@@ -9,7 +9,8 @@ Current maintained files:
 ```text
 Project-Execution/
 ├── README.md
-└── tools.md
+├── tools.md
+└── capabilities.md
 ```
 
 Later Framework contracts may extend this directory with additional single-responsibility policy files. Every file remains subordinate to active `FRAMEWORK-001` and existing authority/risk/disclosure/secret rules.
@@ -26,3 +27,5 @@ Core invariants:
 Tool selection policy ≠ Tool availability ≠ Location ≠ Authority
 Tool/MCP profile ≠ permission to mutate
 ```
+
+TASK-034 adds `capabilities.md` for agent/model work eligibility. `Capability ≠ Authority`; capability eligibility never overrides tool, disclosure, Risk, or authority gates.

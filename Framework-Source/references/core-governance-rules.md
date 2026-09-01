@@ -1706,3 +1706,24 @@ Execution resolution is Project authority/location/binding → applicable tool p
 `PROJECT-BOOTSTRAP.md` resolves active Project authority first; it does not embed full tool policy. `01`/task routing may point to `Project-Execution/tools.md` after authority resolves. The profile stores no credentials/secret values and creates no MCP router, automatic failover, `.lnwjud` mutation, daemon, vendor tool routing, or authority.
 
 GREENFIELD/Brownfield adoption is applicability-driven and governed; prior tool use/vendor settings never auto-create restrictive/permissive policy.
+
+### Agent / Model Capability Profile (TASK-034)
+
+Framework `1.12.0` extends optional `Project-Execution/` with `capabilities.md`. Canonical capability classes are `REASONING | CODING | RESEARCH | REVIEW | COUNCIL`; execution-time capability availability is `FULL | DEGRADED | UNAVAILABLE | UNKNOWN`.
+
+```text
+Capability ≠ Authority
+Capability eligibility ≠ Tool eligibility
+Provider availability ≠ Disclosure permission
+Model quality/ranking ≠ Project truth
+```
+
+A capability profile declares work-class `required_capabilities`, `preferred_capabilities`, `provider_scope: LOCAL_ONLY | LOCAL_OR_EXTERNAL | EXTERNAL_ALLOWED`, `independent_review: REQUIRED | OPTIONAL | NOT_REQUIRED`, `tool_profile_ref`, and `failure_mode: FAIL_CLOSED | DEGRADED_ALLOWED`.
+
+`DEGRADED_ALLOWED` permits only the genuinely supported bounded subset; required review, Risk, authority, trust, tool, and disclosure gates remain. `UNKNOWN` fails closed for materially sensitive capability requirements. An allowed tool never proves model capability, and a capable model is not executable without an eligible tool path.
+
+External provider use continues through TASK-026 disclosure/provider eligibility/minimization/redaction/secret rules. `[Meeting]` remains TASK-024 advisory behavior even when a `MEETING_COUNCIL` work class requires `COUNCIL + REASONING`.
+
+`independent_review: REQUIRED` keeps a completion/integration gate until an eligible reviewer distinct from the primary producing instance is observed where practicable. Reviewer capability, availability, and independence are never fabricated; an allowed user waiver is action-specific evidence rather than a silent standing-profile rewrite.
+
+The profile is optional/applicability-driven for GREENFIELD/Brownfield and adds no model router, provider API integration, benchmark runner, automatic delegation, council runtime, or permission engine.

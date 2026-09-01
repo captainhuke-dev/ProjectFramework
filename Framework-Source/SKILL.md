@@ -835,3 +835,11 @@ Canonical tool selection policy: `PRIMARY`/`primary_tool`, `allowed_tools`, `dis
 Resolve authority/location first, then tool policy, then actual availability/authentication/bound-target identity, then normal AUTH/Risk/shared-state/platform gates. `ORDERED_ALLOW_LIST` is deterministic; `NONE` means no substitute. `READ_ONLY_DIAGNOSTIC_ONLY` permits bounded diagnostics only. Connected/recent tools, MCP workspace IDs, UI handles, and ranking do not create eligibility or authority.
 
 `PROJECT-BOOTSTRAP.md` remains authority discovery; Project-Execution policy is routed only after active `FRAMEWORK-001` resolves. Credentials/secret values are prohibited. Brownfield never auto-adopts policy. TASK-027 adds no MCP router, automatic failover, `.lnwjud` mutation, daemon, or runtime tool selection system.
+
+## Framework 1.12.0 Agent / Model Capability Profile
+
+`Project-Execution/capabilities.md` defines vendor-neutral work eligibility using `REASONING | CODING | RESEARCH | REVIEW | COUNCIL`, availability `FULL | DEGRADED | UNAVAILABLE | UNKNOWN`, provider scope `LOCAL_ONLY | LOCAL_OR_EXTERNAL | EXTERNAL_ALLOWED`, and `independent_review: REQUIRED | OPTIONAL | NOT_REQUIRED`.
+
+`Capability ≠ Authority`; Capability eligibility ≠ Tool eligibility; provider availability ≠ disclosure permission. Compose capability rules with TASK-027 tool eligibility, TASK-026 external disclosure/provider rules, and existing AUTH/Risk/shared-state gates. `DEGRADED` with `DEGRADED_ALLOWED` narrows scope only; `UNKNOWN` fails closed for materially sensitive required capability.
+
+Independent review is evidence-backed: never fabricate reviewer capability/availability/independence or silently waive a REQUIRED review. `[Meeting]` remains TASK-024 advisory behavior. Brownfield never infers capability rules from prior model usage. TASK-034 adds no model router, provider integration, benchmark runner, auto-delegation, or permission engine.

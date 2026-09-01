@@ -536,3 +536,9 @@ Task readiness is not Task lifecycle, and Task planning metadata is not `DEP-*` 
 Projects may adopt optional root `Project-Execution/` policy after Project authority resolves. TASK-027 adds `README.md` + `tools.md` to declare a PRIMARY tool/MCP, allow/disallow lists, deterministic `NONE | ORDERED_ALLOW_LIST` fallback, and `FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY` failure policy.
 
 The profile constrains eligible execution routes; it does not grant authority, change Project Location Binding, identify the current branch/worktree, store credentials, or bypass push/destructive/secret/disclosure gates. GREENFIELD/Brownfield adoption is explicit/applicability-driven. No runtime MCP router or automatic tool switcher is introduced.
+
+## Framework 1.12.0 Agent / Model Capability Profile
+
+Optional `Project-Execution/capabilities.md` defines vendor-neutral capability requirements (`REASONING`, `CODING`, `RESEARCH`, `REVIEW`, `COUNCIL`), execution availability (`FULL | DEGRADED | UNAVAILABLE | UNKNOWN`), local/external provider scope, and independent-review requirements.
+
+Capability eligibility is separate from Tool/MCP eligibility and never grants authority. External providers still follow TASK-026; `[Meeting]` remains advisory. No model router/provider runtime or automatic delegation is introduced.
