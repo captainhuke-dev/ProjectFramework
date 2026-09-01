@@ -328,11 +328,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
 - **Plan Commit:** `8555e09`
 - **Plan Self-Review:** `PASS 38/38`
-- **Set 1 Suite:** QUEUED / sequence position 2 of 5 / starts after TASK-033 completion checkpoint / cumulative target proposed Framework 1.12.0
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `69/69 PASS`; implementation commit `3231695`; completed under OUT-004/AUTH-004.
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
@@ -464,11 +467,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `8555e09`
 - **Plan Self-Review:** `PASS 38/38`
 - **TDD RED:** `SET1_RED 77/159 FAIL` expected; scenarios `1–338`; RED commit `404a75f`
-- **Set 1 Suite:** ACTIVE / sequence position 1 of 5 / parent OUT-004 / ACT-014 / cumulative target proposed Framework 1.12.0
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Implement TASK-033 dependency/readiness/priority contract and run focused verification.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `54/54 PASS`; implementation commit `7da7e69`; completed under OUT-004/AUTH-004.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #34 — Agent / Model Capability Profile
@@ -499,11 +505,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
 - **Plan Commit:** `8555e09`
 - **Plan Self-Review:** `PASS 38/38`
-- **Set 1 Suite:** QUEUED / sequence position 3 of 5 / starts after TASK-027 completion checkpoint / cumulative target proposed Framework 1.12.0
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `75/75 PASS`; implementation commit `c5a3003`; completed under OUT-004/AUTH-004.
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #35 — Project Release / Publication Contract
 
@@ -533,11 +542,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
 - **Plan Commit:** `8555e09`
 - **Plan Self-Review:** `PASS 38/38`
-- **Set 1 Suite:** QUEUED / sequence position 4 of 5 / starts after TASK-034 completion checkpoint / cumulative target proposed Framework 1.12.0
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `66/66 PASS`; implementation commit `9a6ac1c`; completed under OUT-004/AUTH-004.
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #36 — Project Change/Event History Feed
 
@@ -562,7 +574,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #37 — Security & Trust Boundary Contract
 
 - **ID:** `TASK-037`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / Project security and trust-boundary governance
 - **depends_on:** `[TASK-035]`
 - **blocks:** `[]`
@@ -587,19 +599,22 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
 - **Plan Commit:** `8555e09`
 - **Plan Self-Review:** `PASS 38/38`
-- **Set 1 Suite:** QUEUED / sequence position 5 of 5 / starts after TASK-035 completion checkpoint / cumulative target proposed Framework 1.12.0
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** implement the approved TASK-037 Security & Trust Boundary contract and final 1.12.0 propagation under Set 1 plan.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Implementation State:** `COMPLETE_PENDING_CUMULATIVE_ACCEPTANCE`
 - **Focused Verification:** `123/123 PASS`
 - **Implementation Commit:** `9c7045c`
 - **Structural GREEN:** `SET1_RED 159/159 PASS`; scenarios `1–338`.
-- **Exact Next Step:** run cumulative Set 1 AFFECTED/candidate acceptance; Task becomes DONE only at terminal suite reconciliation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Cumulative AFFECTED:** `SET1_AFFECTED 75/75 PASS`
 - **Candidate State:** `READY_FOR_FINAL_CANDIDATE_COMMIT_AND_FREEZE`
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** commit/freeze final Set 1 candidate, then run final cumulative RELEASE_FULL.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
