@@ -655,8 +655,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `1a25c29`
 - **Plan Self-Review:** `PASS 34/34`
 - **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
-- **Execution Progress:** Task 1 RED complete — scenarios `269–280`, `TASK042_RED 47/74 FAIL` expected, scenario commit `985e84b`; Task 2 normative hardening next.
-- **Implementation Boundary:** documentation/governance only. Do not add runtime interceptors, UI hooks, middleware, validators/CLI, transport enforcement, MCP daemon changes, or vendor-specific execution code.
-- **Verification Direction:** TDD RED first; exceptional scenarios follow scenario 268; launcher/README/bootstrap/Core/SKILL/amendment/migration/starter semantics aligned; exact mandatory close preserved; no exceptional bypass; no auto-upgrade of initialized Projects; local Project Source pin remains 1.7.0; AFFECTED then one final RELEASE_FULL on unchanged candidate.
+- **Execution Progress:** Task 1 RED scenarios `269–280` committed at `985e84b` with expected `TASK042_RED 47/74 FAIL`; Task 2 normative hardening `TASK042_TASK2 52/52 PASS`, commit `1c25a96`; Task 3 propagation `TASK042_TASK3 40/40 PASS`, commit `8f740dd`; structural contract GREEN `TASK042_RED 74/74 PASS`; comprehensive AFFECTED `110/110 PASS`; final implementation candidate commit is next.
+- **Implementation Commit(s):** scenario contract `985e84b`; normative implementation `1c25a96`; propagation `8f740dd`.
+- **Structural GREEN:** `TASK042_RED 74/74 PASS`; scenarios `1–280` contiguous/unique.
+- **Affected Verification:** `TASK042_AFFECTED 110/110 PASS`; 24 maintained starter stamps at Framework `1.9.1` / Schema `1.0.0`; thin launcher lengths `716/715`; changed scope documentation/YAML only.
+- **Implementation Boundary:** documentation/governance only. No runtime interceptors, UI hooks, middleware, validators/CLI, transport enforcement, MCP daemon changes, or vendor-specific execution code were added.
+- **Verification Direction:** one final unchanged-candidate `RELEASE_FULL` remains; bind evidence to exact candidate HEAD/tree/Framework-Source tree, then persist evidence and terminal local Goal reconciliation.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** implement Task 2 normative Framework `1.9.1` release/amendment/Core/SKILL/thin-launcher hardening and run focused verification.
+- **Exact Next Step:** commit final implementation candidate, freeze candidate identities, then run one final unchanged-candidate RELEASE_FULL.
