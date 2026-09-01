@@ -825,3 +825,13 @@ When a durable Task source declares planning metadata, use exactly `depends_on`,
 Never infer dependency from Task number/proximity. Readiness is separate from lifecycle (`TODO | IN_PROGRESS | DONE`) and authority. `Task dependency metadata ≠ Project-management DEP-* objects`; do not mirror Task edges into `91` automatically. Cycles, unknown references, stale/superseded dependency targets, contradictory parallel declarations, or unsupported READY claims fail closed to explicit review. Recommended order is advisory and never auto-starts work.
 
 TASK-033 adds no scheduler, queue daemon, agent orchestrator, or background executor.
+
+## Framework 1.12.0 Project Tool / MCP Execution Profile
+
+`Project-Execution/` is optional/applicability-driven and outside Project Source semantic slots. TASK-027 maintains `README.md` + `tools.md` under `templates/project-execution/`.
+
+Canonical tool selection policy: `PRIMARY`/`primary_tool`, `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, `fallback_order`, `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`. Tool selection policy ≠ Tool availability ≠ Location ≠ Authority; Tool/MCP profile ≠ permission to mutate.
+
+Resolve authority/location first, then tool policy, then actual availability/authentication/bound-target identity, then normal AUTH/Risk/shared-state/platform gates. `ORDERED_ALLOW_LIST` is deterministic; `NONE` means no substitute. `READ_ONLY_DIAGNOSTIC_ONLY` permits bounded diagnostics only. Connected/recent tools, MCP workspace IDs, UI handles, and ranking do not create eligibility or authority.
+
+`PROJECT-BOOTSTRAP.md` remains authority discovery; Project-Execution policy is routed only after active `FRAMEWORK-001` resolves. Credentials/secret values are prohibited. Brownfield never auto-adopts policy. TASK-027 adds no MCP router, automatic failover, `.lnwjud` mutation, daemon, or runtime tool selection system.

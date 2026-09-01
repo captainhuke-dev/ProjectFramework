@@ -530,3 +530,9 @@ Framework `1.6.0` extends the concept-first direction of earlier releases with f
 Framework 1.12.0 Set 1 starts with explicit Task dependency/readiness metadata so execution order is never inferred from Task number. Durable Task sources may declare `depends_on`, `blocks`, `enables`, `parallelizable_with`, `priority: CRITICAL | HIGH | NORMAL | LOW | UNSET`, and `readiness: READY | WAITING | BLOCKED | UNKNOWN`.
 
 Task readiness is not Task lifecycle, and Task planning metadata is not `DEP-*` Project-management authority. Recommended order remains advisory; no scheduler or automatic Task execution is introduced.
+
+## Framework 1.12.0 Project Tool / MCP Execution Profile
+
+Projects may adopt optional root `Project-Execution/` policy after Project authority resolves. TASK-027 adds `README.md` + `tools.md` to declare a PRIMARY tool/MCP, allow/disallow lists, deterministic `NONE | ORDERED_ALLOW_LIST` fallback, and `FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY` failure policy.
+
+The profile constrains eligible execution routes; it does not grant authority, change Project Location Binding, identify the current branch/worktree, store credentials, or bypass push/destructive/secret/disclosure gates. GREENFIELD/Brownfield adoption is explicit/applicability-driven. No runtime MCP router or automatic tool switcher is introduced.

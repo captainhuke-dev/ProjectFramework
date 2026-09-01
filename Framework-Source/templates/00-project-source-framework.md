@@ -905,3 +905,5 @@ COMPLETE PARTIAL BLOCKED FAILED
 - **Approved By:** <USER / AUTHORIZED DECISION OWNER>
 - **Approved At:** <ISO8601>
 - **Related:** <DEC-### / REQ-### / AUTH-### / etc.>
+
+Framework `1.12.0` optional Project Execution Profile: when applicable, `Project-Execution/` is a governed root-level policy surface outside Project Source slots. TASK-027 `tools.md` declares eligible execution tools/fallback/failure behavior only after active Project authority resolves; Tool policy ≠ Location ≠ Authority and Brownfield never auto-adopts. No credentials or runtime router are created.

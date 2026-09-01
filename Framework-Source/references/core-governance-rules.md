@@ -1687,3 +1687,22 @@ readiness: READY | WAITING | BLOCKED | UNKNOWN
 Priority is advisory after dependency/safety constraints and never bypasses `depends_on`, authority, binding, Risk, review, or user decisions. Validation surfaces self-dependency, cycles, unknown references, stale/superseded targets, contradictory `parallelizable_with`, and unsupported READY claims; it never auto-repairs the graph.
 
 `DEP-*` in `91` remains the canonical Project-management dependency object family and is never synthesized merely from Task planning edges. Agents may present recommended ordering/parallel groups, but TASK-033 creates no scheduler, queue daemon, automatic task executor, or agent orchestrator.
+
+### Project Tool / MCP Execution Profile (TASK-027)
+
+When applicable, Framework `1.12.0` supports optional `<Project-Root>/Project-Execution/` outside Project Source semantic slots. TASK-027 owns the initial `Project-Execution/README.md` and `tools.md` contract.
+
+```text
+Tool selection policy ≠ Tool availability ≠ Location ≠ Authority
+Tool/MCP profile ≠ permission to mutate
+```
+
+`tools.md` declares `primary_tool` (`PRIMARY`), `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, deterministic `fallback_order`, and `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`. `disallowed_tools` wins. `NONE` permits no automatic substitute. `ORDERED_ALLOW_LIST` never expands from recency/ranking/connected status.
+
+Execution resolution is Project authority/location/binding → applicable tool profile → action/tool eligibility → availability/authentication/bound-target verification → PRIMARY or declared fallback → ordinary AUTH/Risk/shared-state/platform gates. An allowed tool cannot override a wrong/unverified Project target; a correctly connected but disallowed tool is not eligible.
+
+`READ_ONLY_DIAGNOSTIC_ONLY` permits only bounded read-only diagnosis needed to explain or repair availability/identity; it never permits Material mutation through an undeclared substitute. Unavailable, unauthenticated, stale, renamed, or target-unverified tools use the declared fallback/failure policy and `VERIFICATION_REQUIRED` where identity cannot be proven.
+
+`PROJECT-BOOTSTRAP.md` resolves active Project authority first; it does not embed full tool policy. `01`/task routing may point to `Project-Execution/tools.md` after authority resolves. The profile stores no credentials/secret values and creates no MCP router, automatic failover, `.lnwjud` mutation, daemon, vendor tool routing, or authority.
+
+GREENFIELD/Brownfield adoption is applicability-driven and governed; prior tool use/vendor settings never auto-create restrictive/permissive policy.

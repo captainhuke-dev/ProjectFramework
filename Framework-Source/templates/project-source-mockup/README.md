@@ -222,3 +222,5 @@ Template placeholders are not Project facts. Replace them only with verified/use
 ## Brownfield Slot 91 Safety
 
 A pre-1.2.0 Project may already use slot `91`. Never overwrite it. Use `MIG-*`, preserve identity/history/references, relocate only with approval, then activate standard `91` if applicable. Old prose is not automatically promoted into new management Stable IDs.
+
+Framework `1.12.0` optional Project Execution Profile: when applicable, `Project-Execution/` is a governed root-level policy surface outside Project Source slots. TASK-027 `tools.md` declares eligible execution tools/fallback/failure behavior only after active Project authority resolves; Tool policy ≠ Location ≠ Authority and Brownfield never auto-adopts. No credentials or runtime router are created.
