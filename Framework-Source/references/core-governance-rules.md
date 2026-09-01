@@ -885,6 +885,10 @@ The four semantic fields remain separate Markdown paragraphs. Bold or equivalent
 
 Before emit, every Framework-governed assistant response MUST run a lightweight **Response Close Completeness Gate** on the assistant final-response representation: exactly the two mandatory headings in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` field in separate paragraphs and in that order; one canonical lifecycle token in `[Chat]`; valid Chat Closure Consistency; and nothing after `[Required Read]`. Presentation wrappers are ignored for semantic field identity. Missing, duplicate, malformed, hidden/non-visible, out-of-order, or contradictory close content must be corrected before emit. The gate does not claim visibility into downstream transport/UI rendering; user-reported rendered omissions are regression evidence while the exact loss layer remains unverified unless independently observed.
 
+Framework `1.9.1` TASK-042 makes this gate an explicit **unskippable final-response control-flow invariant**. Before the first Project-governed response in each chat/session, resolve the applicable Project Bootstrap when it is accessible so local governance is loaded before response generation; read-only, status, diagnostic, explanatory, and failure-report responses are not exempt merely because no Material mutation is planned. Before Material Project work, all existing binding, authority, Risk, and mutation gates still apply independently.
+
+Every Project-governed final response MUST pass the Response Close Completeness Gate immediately before emit. **No early-return path may bypass it.** This includes ordinary success, read-only/status/diagnostic paths, tool/MCP failure or exception, connector unavailable/disconnected handling, timeout, partial-result/degraded-mode response, refusal or blocked-action response, persistence failure / `PERSISTENCE_PENDING`, exception-recovery, and bootstrap repair/verification-required responses when a Project-governed final response is being produced. Intermediate tool output/error payloads are not final responses. A tool/MCP or connector failure alone does not imply `PERSISTENCE_PENDING`; use that state only when required durable continuation state is actually unpersisted.
+
 ### 16.4 Registered Project Command Contract
 
 Framework `1.3.1` extends the Framework `1.3.0` semantic command registry for common Project inspection and governed upgrade entry. Registered command identity includes literal `[` and `]` delimiters. Matching of the registered name inside the brackets is case-insensitive; missing brackets do not invoke the registered command token. This is a governance/interface contract, not authorization to create a parser service, updater, or other executable runtime.
@@ -892,6 +896,7 @@ Framework `1.8.0` TASK-039 further registers persistent `[Goal]` continuous-exec
 Framework `1.8.0` TASK-024 further registers `[Meeting]` as a multi-model advisory command using a Thin Council Provider Adapter boundary; it adds no `MEETING-*` Stable-ID family, semantic slot, or provider authority home.
 Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary for external-AI Project context using existing `AUTH-* / EVD-* / SECRET-*` homes; it adds no `DISC-*` Stable-ID family, semantic slot, mandatory per-object classification field, or runtime disclosure system.
 Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Project Settings Handoff: current vendor Project Settings use a two-binding thin adapter while existing internal location semantics remain governed; root README gains a managed fallback; active local `FRAMEWORK-001` remains authority.
+Framework `1.9.1` TASK-042 further hardens response bootstrap/finalization: first Project-governed response resolves Project Bootstrap when accessible, non-Material diagnostics are not exempt, and no early-return/exception path may bypass the pre-emit Response Close Completeness Gate.
 
 
 Initial registry:
@@ -955,17 +960,21 @@ When the command reports `UPGRADE_AVAILABLE`, its report includes the target rel
 
 ### 16.5 Portable Installation Bootstrap & Project Settings Handoff
 
-Framework `1.9.0` standardizes the target user-facing Project Settings adapter as:
+Framework `1.9.0` standardized the two-binding adapter; Framework `1.9.1` hardens its bootstrap timing. The current target user-facing Project Settings adapter is:
 
 ```text
 ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
 Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
 
 ProjectFramework Bootstrap Rule:
-Read Project Bootstrap before Material Project work.
+Read Project Bootstrap before the first Project-governed response in each chat.
+Read-only, status, diagnostic, and failure-report responses are not exempt.
+Before Material Project work, also apply all existing binding, authority, risk, and mutation gates.
 If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
 ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
 ```
+
+Before the first Project-governed response in each chat/session, use the adapter/root README fallback to resolve Project Bootstrap when safely accessible. Read-only, `[Project Status]`, troubleshooting, diagnostic, and failure-report responses are not exempt. This first-response bootstrap is discovery/governance loading only; it grants no mutation authority.
 
 `ProjectFramework Upstream` is Framework read-through/current-target evidence only; it is never the consuming Project repository, Integration Target, Implementation Source, Runtime Location, or Project authority. `Project Bootstrap` is environment-specific and MUST be verified before being presented as ready to paste. Unknown path = `VERIFICATION_REQUIRED`; memory, recent workspaces, editor/MCP handles, mounts, ranking, and lookalikes never fill it.
 
