@@ -1,9 +1,9 @@
 # Framework Governance Amendment — TASK-042 Response Finalization Hardening
 
-**Framework:** 1.9.1  
-**Schema:** 1.0.0  
-**Release format:** 3  
-**Status:** CURRENT / APPROVED  
+**Framework:** 1.9.1
+**Schema:** 1.0.0
+**Release format:** 3
+**Status:** CURRENT / APPROVED
 **Task:** TASK-042 — Response Finalization Hardening
 
 ## 1. Purpose
