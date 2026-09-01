@@ -303,7 +303,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #27 — Project Tool / MCP Execution Profile
 
 - **ID:** `TASK-027`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / Project-scoped execution-tool governance
 - **depends_on:** `[TASK-033]`
 - **blocks:** `[TASK-034]`
@@ -331,7 +331,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Suite:** QUEUED / sequence position 2 of 5 / starts after TASK-033 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Remain queued under Set 1 until declared predecessor checkpoint is complete; implementation is governed by the suite plan.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `69/69 PASS`; implementation commit `3231695`; completed under OUT-004/AUTH-004.
 
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
@@ -473,14 +474,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #34 — Agent / Model Capability Profile
 
 - **ID:** `TASK-034`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / agent and model capability governance
 - **depends_on:** `[TASK-027]`
 - **blocks:** `[TASK-035]`
 - **enables:** `[TASK-035, TASK-037]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** TASK-027 can govern which tools/MCPs a Project prefers, but ProjectFramework does not yet define which agent/model capability classes are appropriate for different work, context, disclosure, or review requirements.
 - **Approved direction:** Define a vendor-neutral Agent/Model Capability Profile while preserving the invariant `Capability ≠ Authority`.
 - **Scope:**
@@ -501,7 +502,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Suite:** QUEUED / sequence position 3 of 5 / starts after TASK-027 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Remain queued under Set 1 until declared predecessor checkpoint is complete; implementation is governed by the suite plan.
+- **Exact Next Step:** implement the approved TASK-034 Agent / Model Capability Profile contract under Set 1 plan.
 
 ## Task #35 — Project Release / Publication Contract
 
