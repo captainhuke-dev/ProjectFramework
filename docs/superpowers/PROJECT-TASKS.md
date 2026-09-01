@@ -655,7 +655,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `1a25c29`
 - **Plan Self-Review:** `PASS 34/34`
 - **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
+- **Execution Progress:** Task 1 RED complete — scenarios `269–280`, `TASK042_RED 47/74 FAIL` expected, scenario commit `985e84b`; Task 2 normative hardening next.
 - **Implementation Boundary:** documentation/governance only. Do not add runtime interceptors, UI hooks, middleware, validators/CLI, transport enforcement, MCP daemon changes, or vendor-specific execution code.
 - **Verification Direction:** TDD RED first; exceptional scenarios follow scenario 268; launcher/README/bootstrap/Core/SKILL/amendment/migration/starter semantics aligned; exact mandatory close preserved; no exceptional bypass; no auto-upgrade of initialized Projects; local Project Source pin remains 1.7.0; AFFECTED then one final RELEASE_FULL on unchanged candidate.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** execute Task 1 TDD RED contract: scenarios `269–280` + failing structural verifier before production Framework changes.
+- **Exact Next Step:** implement Task 2 normative Framework `1.9.1` release/amendment/Core/SKILL/thin-launcher hardening and run focused verification.
