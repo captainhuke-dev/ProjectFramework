@@ -303,14 +303,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #27 — Project Tool / MCP Execution Profile
 
 - **ID:** `TASK-027`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / Project-scoped execution-tool governance
 - **depends_on:** `[TASK-033]`
 - **blocks:** `[TASK-034]`
 - **enables:** `[TASK-034]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** Project tool/MCP preferences such as `CEO-only` can currently exist only as transient chat instructions or product-specific configuration. The Project needs a durable vendor-neutral contract declaring which execution tools are primary, allowed, disallowed, or eligible as fallback.
 - **Approved direction:** Define a Project Tool / MCP Execution Profile that can express a primary MCP/tool, fallback policy, fail-closed behavior, and allowed/disallowed execution capabilities without depending on a vendor UI setting.
 - **Scope:**
@@ -437,7 +437,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #33 — Task Dependency & Portfolio Planning
 
 - **ID:** `TASK-033`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework development workflow / backlog dependency and prioritization contract
 - **depends_on:** `[]`
 - **blocks:** `[TASK-027]`
@@ -467,6 +467,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** Implement TASK-033 dependency/readiness/priority contract and run focused verification.
+- **Set 1 Completion:** focused `54/54 PASS`; implementation commit `7da7e69`; completed under OUT-004/AUTH-004.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #34 — Agent / Model Capability Profile
 
