@@ -319,6 +319,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task027-project-tool-execution-profile-design.md`
 - **Design Commit:** `9b0078e`
 - **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
 - **Set 1 Suite:** QUEUED / sequence position 2 of 5 / starts after TASK-033 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
@@ -444,10 +447,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task033-task-dependency-portfolio-design.md`
 - **Design Commit:** `9b0078e`
 - **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
 - **Set 1 Suite:** ACTIVE / sequence position 1 of 5 / parent OUT-004 / ACT-014 / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Create/self-review Set 1 suite implementation plan, then begin TASK-033 TDD RED.
+- **Exact Next Step:** Execute Set 1 Task 1 TDD RED scenarios 289–338, then implement TASK-033.
 
 ## Task #34 — Agent / Model Capability Profile
 
@@ -468,6 +474,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task034-agent-model-capability-profile-design.md`
 - **Design Commit:** `9b0078e`
 - **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
 - **Set 1 Suite:** QUEUED / sequence position 3 of 5 / starts after TASK-027 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
@@ -492,6 +501,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task035-release-publication-contract-design.md`
 - **Design Commit:** `9b0078e`
 - **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
 - **Set 1 Suite:** QUEUED / sequence position 4 of 5 / starts after TASK-034 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
@@ -536,6 +548,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task037-security-trust-boundary-design.md`
 - **Design Commit:** `9b0078e`
 - **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
 - **Set 1 Suite:** QUEUED / sequence position 5 of 5 / starts after TASK-035 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
