@@ -634,3 +634,22 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication State:** `MERGED_TO_MAIN` — Pull Request `#26` merged exact head `7d93dab849435c3cc4132af4c8be5fa72d0bbb7b` to `main` at merge commit `2bfe5efbb24480bc44dbd8e949ed632af4d759ee`; merged Framework-Source tree remains `06ce4013473ec014e70d8d3233f6132aa90339fd`.
 - **Publication Reconciliation:** `PERSISTED / NOT_PENDING`; `OUT-002 ACHIEVED / AUTH-002 TERMINATED / ACT-011 DONE / ENV-002 EXPIRED`; active checkpoint `c5741ab56799d44cefa39f30da55bd23bf85bf03`; terminal reconciliation `d650513fe01726238f6e59cde1ed7a70b28ae0e4` observed on `origin/main`; remote validation `41/41 PASS`; Framework-Source tree unchanged `06ce4013473ec014e70d8d3233f6132aa90339fd`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+
+## Task #42 — Response Finalization Hardening
+
+- **ID:** `TASK-042`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework bootstrap/final-response reliability hardening
+- **Problem:** A user-supplied diagnostic response omitted the mandatory response-close even though Core Governance already requires it. Current Framework 1.9.0 thin Project Settings launchers bootstrap only `before Material Project work`, so read-only/status/diagnostic/early-return paths may answer before local governance is resolved; pressure scenarios do not currently force response-close preservation across exceptional finalization paths.
+- **Root Cause:** bootstrap timing gap + missing exceptional/early-return regression coverage. The canonical close-format rule itself already exists and is not the missing component.
+- **User-approved direction:** three layers: (1) resolve Project Bootstrap before the first Project-governed response in each chat, with read-only/status/diagnostic work not exempt; (2) make Response Close Completeness Gate unskippable for every Project-governed final response, including early-return/tool failure/timeout/connector error/refusal/partial result/exception recovery; (3) add pressure scenarios for exceptional paths.
+- **Target Release:** Framework `1.9.1` / Schema `1.0.0` / release format `3` (patch-level hardening; no semantic slot, Stable-ID family, lifecycle family, runtime enforcement, parser, CLI, or automation).
+- **Authority Boundary:** first-response bootstrap discovers local governance; it grants no mutation/Root/Binding/secret/disclosure/push authority. A close gate formats/validates final responses only and does not claim transport/UI control.
+- **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-012 IN_PROGRESS / ENV-003 ACTIVE`; bounded local work authorized until verified local completion; push/publication excluded.
+- **Design State:** `USER_APPROVED_ARCHITECTURE / WRITTEN_SPEC_NEXT`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task042-response-finalization-hardening-design.md`
+- **Implementation Boundary:** documentation/governance only. Do not add runtime interceptors, UI hooks, middleware, validators/CLI, transport enforcement, MCP daemon changes, or vendor-specific execution code.
+- **Verification Direction:** TDD RED first; exceptional scenarios follow scenario 268; launcher/README/bootstrap/Core/SKILL/amendment/migration/starter semantics aligned; exact mandatory close preserved; no exceptional bypass; no auto-upgrade of initialized Projects; local Project Source pin remains 1.7.0; AFFECTED then one final RELEASE_FULL on unchanged candidate.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** write/self-review/commit the approved written design spec, then create the implementation plan and execute under OUT-003/AUTH-003/ENV-003.
