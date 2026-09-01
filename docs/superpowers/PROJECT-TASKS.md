@@ -231,7 +231,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `187c802`
 - **Plan Self-Review:** `PASS 43/43`
 - **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
-- **Execution Progress:** Task 1 RED complete — scenarios `269–288`, `TASK025_RED 33/68 FAIL` expected, scenario commit `64823a9`; Task 2 normative hardening next.
+- **Execution Progress:** Task 1 RED `33/68 FAIL` expected commit `64823a9`; Task 2 normative `62/62 PASS` commit `1c7be78`; Task 3 templates/propagation `77/77 PASS` commit `ed5aa4d`; structural GREEN `68/68 PASS`; AFFECTED `175/175 PASS`; candidate commit/freeze next.
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`
 - **Spec Self-Review:** `TASK025_SPEC_SELF_REVIEW 42/42 PASS`
 - **Source Concept Freshness:** `llm-wiki` gist freshly read on `2026-09-01`; adopted concepts are raw sources / LLM-maintained Markdown wiki / schema layer, `index.md`, chronological `log.md`, and ingest/query/lint; implementation assumptions remain non-binding.
@@ -240,8 +240,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.10.0` / Schema `1.0.0` / release format `3` — reclassified from the original 1.9.0 roadmap placeholder because the 1.9.0 line is already released and TASK-025 adds a new optional additive Framework interface; no Project Source schema/slot change.
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
 - **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-013 IN_PROGRESS / ENV-003 ACTIVE`; push/publication excluded.
-- **Exact Next Step:** implement Task 2 normative Framework `1.10.0` release/amendment/Core/SKILL contract and run focused verification.
+- **Exact Next Step:** commit/freeze final implementation candidate identities, then run one final unchanged-candidate RELEASE_FULL.
 
+- **Implementation Commit(s):** RED `64823a9`; normative `1c7be78`; templates/propagation `ed5aa4d`.
+- **Structural GREEN:** `TASK025_RED 68/68 PASS`; scenarios `1–288` contiguous/unique.
+- **Affected Verification:** `TASK025_AFFECTED 175/175 PASS`; 4 Knowledge starter files; 22 maintained Project Source starter stamps at Framework `1.10.0` / Schema `1.0.0`; launchers unchanged; documentation/YAML only.
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
