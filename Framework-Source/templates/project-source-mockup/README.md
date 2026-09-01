@@ -1,10 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.9.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.9.1 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.9.1 Response Finalization Hardening
+
+Current Project Settings/Project Instructions resolve Project Bootstrap before the first Project-governed response in each chat when available. Read-only, status, diagnostic, and failure-report responses are not exempt. Material Project work additionally retains all binding, authority, risk, and mutation gates. Every Project-governed final response, including early-return, tool/MCP failure, connector-unavailable, timeout, partial-result, refusal/blocked-action, persistence-failure, exception-recovery, and bootstrap-repair paths, still runs the Response Close Completeness Gate immediately before emit.
 
 ## Framework 1.9.0 Portable Installation Bootstrap Semantics
 

@@ -67,12 +67,14 @@ ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
 Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
 
 ProjectFramework Bootstrap Rule:
-Read Project Bootstrap before Material Project work.
+Read Project Bootstrap before the first Project-governed response in each chat.
+Read-only, status, diagnostic, and failure-report responses are not exempt.
+Before Material Project work, also apply all existing binding, authority, risk, and mutation gates.
 If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
 ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
 ```
 
-`ProjectFramework Upstream` is fixed Framework discovery/upgrade input only. `Project Bootstrap` is environment-specific and must be verified before it is presented as ready to paste. The Project Settings block may be placed anywhere in the vendor's Project Settings / Project Instructions surface.
+`ProjectFramework Upstream` is fixed Framework discovery/upgrade input only. `Project Bootstrap` is environment-specific and must be verified before it is presented as ready to paste. Resolve it before the first Project-governed response in each chat when available; read-only/status/diagnostic responses are not exempt, while Material work still retains all additional mutation gates. The Project Settings block may be placed anywhere in the vendor's Project Settings / Project Instructions surface.
 
 Core installation completion and external vendor-setting copy/paste are separate facts. Once Project Source, root bootstrap, README fallback, and required verification are durable, core installation is DONE; the Agent still MUST emit the handoff block and MUST NOT claim vendor settings were modified without execution evidence.
 

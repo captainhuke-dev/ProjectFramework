@@ -4,7 +4,31 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.8.0 → 1.9.0 (current)
+## 1.9.0 → 1.9.1 (current)
+
+### Affected distribution surfaces
+
+- `FRAMEWORK-RELEASE.yaml` — Framework version `1.9.1`; Schema `1.0.0`; latest amendment TASK-042 Response Finalization Hardening
+- ChatGPT/Claude thin launchers — bootstrap before the first Project-governed response in each chat; read-only/status/diagnostic/failure-report responses are not exempt; full response-close block is not duplicated into launchers
+- Core Governance / SKILL — exceptional and early-return paths cannot bypass Response Close Completeness Gate
+- README / root bootstrap / location-bootstrap / maintained starter guidance — current first-response semantics aligned; Material Project work retains all additional mutation gates
+- `tests/pressure-scenarios.md` — scenarios `269–280` cover read-only/status/diagnostic and exceptional finalization paths
+- maintained starter stamps — Framework `1.9.1` / Schema `1.0.0`
+
+### Upgrade checklist
+
+1. Run `[Project Upgrade]` and preserve the initialized Project's valid local pin until governed promotion. Upstream movement does not auto-upgrade Brownfield Projects.
+2. Update current thin Project Settings/Project Instructions wording so Project Bootstrap resolves before the first Project-governed response in each chat when available. Read-only/status/diagnostic/failure-report responses are not exempt.
+3. Preserve the exact mandatory response-close headings, semantic field labels, order, lifecycle tokens, and lifecycle coupling; TASK-042 changes timing/control-flow coverage, not the close format.
+4. Preserve all existing binding/authority/risk/mutation gates for Material Project work. First-response bootstrap grants no mutation, Root/Binding, push, disclosure, or secret authority.
+5. Ensure early-return, tool/MCP failure, connector-unavailable, timeout, partial-result, refusal/blocked-action, persistence-failure, exception-recovery, and bootstrap-repair responses cannot bypass the Response Close Completeness Gate.
+6. No runtime middleware/interceptor, transport hook, validator service/CLI, daemon, scheduler, watcher, UI automation, or vendor runtime component is required or introduced by this patch.
+7. Direct-to-Latest remains valid. Projects upgrading from before 1.9.0 assess cumulative current→1.9.1 target semantics while preserving applicable prior migration constraints.
+8. Verify affected current surfaces and use one final `RELEASE_FULL` on the unchanged target candidate per existing evidence rules.
+
+---
+
+## 1.8.0 → 1.9.0
 
 ### Affected distribution surfaces
 
