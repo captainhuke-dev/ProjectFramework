@@ -315,10 +315,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define GREENFIELD defaults and Brownfield migration so existing Projects do not silently acquire restrictive or permissive tool policy.
   6. Preserve explicit user/shared-state gates such as push, destructive actions, secrets, and governed approvals regardless of tool profile.
 - **Implementation boundary:** Task registration only. Do not modify `.lnwjud`, MCP runtime, project profiles, tool routing, launchers, or existing Projects until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `SET1_GOAL_QUEUED / DESIGN_SPEC_REQUIRED`
+- **Set 1 Suite:** QUEUED / sequence position 2 of 5 / starts after TASK-033 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-027 is selected for development, prepare its architectural design spec before implementation.
+- **Exact Next Step:** Await TASK-033 Set 1 checkpoint, then prepare this Task design spec.
 
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
@@ -424,7 +425,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #33 — Task Dependency & Portfolio Planning
 
 - **ID:** `TASK-033`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework development workflow / backlog dependency and prioritization contract
 - **Problem:** The durable Task source records lifecycle state but does not yet provide a standard model for Task-to-Task dependencies, blockers, enablers, parallelism, priority, or readiness across the ProjectFramework roadmap.
 - **Approved direction:** Define a bounded Task planning contract so agents can determine sequencing and safe parallel work without conflating development-task relationships with Project Source `DEP-*` management objects.
@@ -436,10 +437,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define how planning should expose a recommended execution order while preserving user authority to reprioritize.
   6. Keep scheduling/automation out of scope unless separately authorized.
 - **Implementation boundary:** Task registration only. Do not add schedulers, automatic task execution, agent orchestration, or rewrite existing Task history until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `SET1_GOAL_SELECTED / DESIGN_SPEC_REQUIRED`
+- **Set 1 Suite:** ACTIVE / sequence position 1 of 5 / parent OUT-004 / ACT-014 / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-033 is selected, prepare its workflow/design spec before implementation.
+- **Exact Next Step:** Prepare and self-review TASK-033 architectural design spec as the first Set 1 task.
 
 ## Task #34 — Agent / Model Capability Profile
 
@@ -456,10 +458,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define unavailable/degraded capability and fallback behavior.
   6. Define integration boundaries with TASK-024 `[Meeting]`, TASK-026 Disclosure Governance, and TASK-027 Tool/MCP Execution Profile.
 - **Implementation boundary:** Task registration only. Do not add model routing, provider calls, automatic delegation, runtime selection, or permission grants until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `SET1_GOAL_QUEUED / DESIGN_SPEC_REQUIRED`
+- **Set 1 Suite:** QUEUED / sequence position 3 of 5 / starts after TASK-027 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-034 is selected, prepare its architectural design spec before implementation.
+- **Exact Next Step:** Await TASK-027 Set 1 checkpoint, then prepare this Task design spec.
 
 ## Task #35 — Project Release / Publication Contract
 
@@ -476,10 +479,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define relationship with `RELEASE_FULL`, `INTEGRATION_GATE`, Change Log, and Task completion evidence.
   6. Preserve release/publication authority as separate from implementation authority.
 - **Implementation boundary:** Task registration only. Do not create CI/CD, release bots, package publishers, deployment automation, tags, or remote pushes until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `SET1_GOAL_QUEUED / DESIGN_SPEC_REQUIRED`
+- **Set 1 Suite:** QUEUED / sequence position 4 of 5 / starts after TASK-034 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-035 is selected, prepare its release/publication design spec before implementation.
+- **Exact Next Step:** Await TASK-034 Set 1 checkpoint, then prepare this Task design spec.
 
 ## Task #36 — Project Change/Event History Feed
 
@@ -516,10 +520,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define integration with Repository/Local Workspace/Runtime authority, external services, MCP/tool profiles, and agent/model capability profiles.
   6. Define unknown/unclassified trust behavior as fail-closed for materially sensitive actions.
 - **Implementation boundary:** Task registration only. Do not add scanners, sandbox enforcement, policy engines, supply-chain automation, runtime isolation, or external security services until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `SET1_GOAL_QUEUED / DESIGN_SPEC_REQUIRED`
+- **Set 1 Suite:** QUEUED / sequence position 5 of 5 / starts after TASK-035 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-037 is selected, prepare its architectural design spec before implementation.
+- **Exact Next Step:** Await TASK-035 Set 1 checkpoint, then prepare this Task design spec.
 
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
