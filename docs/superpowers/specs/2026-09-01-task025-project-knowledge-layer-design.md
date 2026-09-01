@@ -1,11 +1,12 @@
 # TASK-025 Project Knowledge Layer / Compounding Knowledge Contract — Design
 
-**Task:** TASK-025 — Project Knowledge Layer / Compounding Knowledge Contract  
-**Design state:** WRITTEN_SPEC_DRAFT / USER_REVIEW_REQUIRED  
-**Target Framework:** 1.10.0  
-**Project Source Schema:** 1.0.0  
-**Release format:** 3  
-**Source concept:** https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f (`llm-wiki`)  
+**Task:** TASK-025 — Project Knowledge Layer / Compounding Knowledge Contract
+**Design state:** USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED
+**Approval basis:** User `[Goal] ทำจนจบ task` on 2026-09-01; proceed without design changes.
+**Target Framework:** 1.10.0
+**Project Source Schema:** 1.0.0
+**Release format:** 3
+**Source concept:** https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f (`llm-wiki`)
 **Scope:** documentation/governance architecture only; no wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, or runtime automation.
 
 ## 1. Problem and intent

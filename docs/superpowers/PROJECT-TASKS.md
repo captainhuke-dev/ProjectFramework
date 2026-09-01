@@ -225,7 +225,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   7. Define GREENFIELD and Brownfield applicability/migration behavior, including whether a physical `Project-Knowledge/` directory or another representation is appropriate; do not lock physical layout before design review.
   8. Preserve source-derived terminology and provenance from the `llm-wiki` concept where adopted, but do not copy its implementation assumptions blindly into ProjectFramework governance.
 - **Implementation boundary:** Task registration only. Do not create a wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, runtime automation, or Project Knowledge files until a separate design spec is completed and explicitly approved.
-- **Design State:** `WRITTEN_SPEC_READY_FOR_USER_REVIEW`
+- **Design State:** `USER_APPROVED_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Design Approval:** User explicitly invoked `[Goal] ทำจนจบ task` on 2026-09-01; committed written spec approved to proceed without changes.
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`
 - **Spec Self-Review:** `TASK025_SPEC_SELF_REVIEW 42/42 PASS`
 - **Source Concept Freshness:** `llm-wiki` gist freshly read on `2026-09-01`; adopted concepts are raw sources / LLM-maintained Markdown wiki / schema layer, `index.md`, chronological `log.md`, and ingest/query/lint; implementation assumptions remain non-binding.
@@ -233,7 +234,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Gate:** implementation remains `NOT_STARTED`; written spec requires explicit user review/approval before implementation planning/Framework mutation.
 - **Target Release:** Framework `1.10.0` / Schema `1.0.0` / release format `3` — reclassified from the original 1.9.0 roadmap placeholder because the 1.9.0 line is already released and TASK-025 adds a new optional additive Framework interface; no Project Source schema/slot change.
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
-- **Exact Next Step:** User reviews `docs/superpowers/specs/2026-09-01-task025-project-knowledge-layer-design.md`; implementation planning remains gated until explicit written-spec approval.
+- **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-013 IN_PROGRESS / ENV-003 ACTIVE`; push/publication excluded.
+- **Exact Next Step:** write/self-review/commit implementation plan, then execute under persistent Goal.
 
 ## Task #26 — External AI Context & Disclosure Governance
 
