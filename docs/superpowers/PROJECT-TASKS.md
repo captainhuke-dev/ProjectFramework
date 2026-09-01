@@ -474,7 +474,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #34 — Agent / Model Capability Profile
 
 - **ID:** `TASK-034`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / agent and model capability governance
 - **depends_on:** `[TASK-027]`
 - **blocks:** `[TASK-035]`
@@ -502,19 +502,20 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Suite:** QUEUED / sequence position 3 of 5 / starts after TASK-027 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** implement the approved TASK-034 Agent / Model Capability Profile contract under Set 1 plan.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `75/75 PASS`; implementation commit `c5a3003`; completed under OUT-004/AUTH-004.
 
 ## Task #35 — Project Release / Publication Contract
 
 - **ID:** `TASK-035`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework release / publication lifecycle governance
 - **depends_on:** `[TASK-034]`
 - **blocks:** `[TASK-037]`
 - **enables:** `[TASK-037]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** ProjectFramework distinguishes `commit ≠ push` and has verification/integration semantics, but it does not yet define one standard lifecycle separating implementation completion, merge, remote publication, release, artifact publication, and deployment.
 - **Approved direction:** Define a release/publication contract that makes each publication state explicit and evidence-backed without making immutable tags or deployment universal prerequisites.
 - **Scope:**
@@ -535,7 +536,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Suite:** QUEUED / sequence position 4 of 5 / starts after TASK-034 completion checkpoint / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Remain queued under Set 1 until declared predecessor checkpoint is complete; implementation is governed by the suite plan.
+- **Exact Next Step:** implement the approved TASK-035 Project Release / Publication Contract under Set 1 plan.
 
 ## Task #36 — Project Change/Event History Feed
 
