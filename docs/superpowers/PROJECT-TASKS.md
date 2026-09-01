@@ -240,11 +240,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.10.0` / Schema `1.0.0` / release format `3` — reclassified from the original 1.9.0 roadmap placeholder because the 1.9.0 line is already released and TASK-025 adds a new optional additive Framework interface; no Project Source schema/slot change.
 - **Completion criteria:** A user-approved design defines authority separation, knowledge schema/lifecycle, provenance, indexing/log/lint behavior, contradiction/staleness handling, promotion gates, TASK-023/TASK-024/OpenViking integration boundaries, Brownfield behavior, affected Framework surfaces, and verification strategy before implementation begins.
 - **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-013 IN_PROGRESS / ENV-003 ACTIVE`; push/publication excluded.
-- **Exact Next Step:** commit/freeze final implementation candidate identities, then run one final unchanged-candidate RELEASE_FULL.
+- **Exact Next Step:** commit corrected implementation candidate after hygiene repair, freeze new identities, then run final RELEASE_FULL on that unchanged candidate.
 
 - **Implementation Commit(s):** RED `64823a9`; normative `1c7be78`; templates/propagation `ed5aa4d`.
 - **Structural GREEN:** `TASK025_RED 68/68 PASS`; scenarios `1–288` contiguous/unique.
 - **Affected Verification:** `TASK025_AFFECTED 175/175 PASS`; 4 Knowledge starter files; 22 maintained Project Source starter stamps at Framework `1.10.0` / Schema `1.0.0`; launchers unchanged; documentation/YAML only.
+- **Invalidated Candidate:** `2688c995448131b2154b3fa505acaef6352389d3` — RELEASE_FULL `119/120 FAIL` solely because `git diff --check` found extra EOF blank lines in three branch-created archived Project Source revisions; semantic/AFFECTED checks remained PASS; candidate invalidated before evidence reuse.
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
