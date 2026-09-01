@@ -647,9 +647,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.9.1` / Schema `1.0.0` / release format `3` (patch-level hardening; no semantic slot, Stable-ID family, lifecycle family, runtime enforcement, parser, CLI, or automation).
 - **Authority Boundary:** first-response bootstrap discovers local governance; it grants no mutation/Root/Binding/secret/disclosure/push authority. A close gate formats/validates final responses only and does not claim transport/UI control.
 - **Goal State:** `OUT-003 ACTIVE / AUTH-003 ACTIVE / ACT-012 IN_PROGRESS / ENV-003 ACTIVE`; bounded local work authorized until verified local completion; push/publication excluded.
-- **Design State:** `USER_APPROVED_ARCHITECTURE / WRITTEN_SPEC_NEXT`
+- **Design State:** `USER_APPROVED_DESIGN / SPEC_APPROVED`
 - **Design Spec:** `docs/superpowers/specs/2026-09-01-task042-response-finalization-hardening-design.md`
+- **Design Commit:** `c4c163a`
+- **Spec Self-Review:** `PASS 31/31`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-01-task042-response-finalization-hardening.md`
+- **Plan Commit:** `1a25c29`
+- **Plan Self-Review:** `PASS 34/34`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTING / INLINE_UNDER_GOAL`
 - **Implementation Boundary:** documentation/governance only. Do not add runtime interceptors, UI hooks, middleware, validators/CLI, transport enforcement, MCP daemon changes, or vendor-specific execution code.
 - **Verification Direction:** TDD RED first; exceptional scenarios follow scenario 268; launcher/README/bootstrap/Core/SKILL/amendment/migration/starter semantics aligned; exact mandatory close preserved; no exceptional bypass; no auto-upgrade of initialized Projects; local Project Source pin remains 1.7.0; AFFECTED then one final RELEASE_FULL on unchanged candidate.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** write/self-review/commit the approved written design spec, then create the implementation plan and execute under OUT-003/AUTH-003/ENV-003.
+- **Exact Next Step:** execute Task 1 TDD RED contract: scenarios `269–280` + failing structural verifier before production Framework changes.
