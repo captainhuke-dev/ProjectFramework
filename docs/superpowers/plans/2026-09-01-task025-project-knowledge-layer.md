@@ -26,6 +26,7 @@
 - Actual secret values remain forbidden.
 - No wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, validator/CLI, scheduler, or runtime automation.
 - No vendor launcher expansion unless a verified implementation need emerges; current plan expects no launcher changes.
+- Observed repository correction: fresh `origin/main` contains 22 maintained Project Source mockup template files (`00–17` + `40/60/91/92`), not 24; verification uses the observed 22-file set.
 - ProjectFramework local Project Source pin remains Framework `1.7.0` / Schema `1.0.0`.
 - Push/publication is not authorized by `AUTH-003`.
 - Use TDD: pressure scenarios/verifier first, observe RED before Framework contract mutation.
@@ -241,7 +242,7 @@ Cover optional adoption, Preview/approval, no bulk migration of notes/chats, pro
 
 - [ ] **Step 7: Run Task-3 verifier**
 
-Verify templates, page schema, exact states/log headings, 24 maintained starter stamps, current docs, Brownfield/authority/no-runtime rules, no launcher changes, and historical preservation.
+Verify templates, page schema, exact states/log headings, 22 maintained starter stamps, current docs, Brownfield/authority/no-runtime rules, no launcher changes, and historical preservation.
 
 - [ ] **Step 8: Commit templates/propagation**
 
@@ -281,7 +282,7 @@ PROJECT_SOURCE_AUTHORITY vs PROJECT_KNOWLEDGE_ADVISORY
 GREENFIELD optionality / Brownfield no-auto-adoption
 actual secret values forbidden
 4 maintained Project Knowledge template files
-24 Project Source starter stamps at 1.10.0/1.0.0
+22 Project Source starter stamps at 1.10.0/1.0.0
 vendor launchers unchanged from branch base
 no executable/runtime/CI/CLI/vector/wiki/MCP artifacts
 historical prior amendments/specs/evidence preserved

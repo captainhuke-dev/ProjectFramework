@@ -4,7 +4,34 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.8.0 → 1.9.0 (current)
+## 1.9.0 → 1.10.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.10.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-025 Project Knowledge Layer.
+- Core Governance / SKILL / README define optional `Project-Knowledge/` outside Project Source authority, exact maintenance states, provenance, index/log operations, promotion gate, disclosure/Meeting/Evidence/Project Graph/OpenViking boundaries.
+- `templates/project-knowledge/` adds maintained starter source for Knowledge README/index/log/page representation.
+- Project Source starter templates remain semantic-slot starters but their current Framework stamps become 1.10.0; no new semantic slot is added.
+- scenarios `269–288` cover authority separation, provenance, maintenance operations/states, promotion, integration boundaries, optionality, and no-runtime/no-secret behavior.
+- ChatGPT/Claude thin vendor launchers are unchanged by TASK-025.
+
+### Upgrade checklist
+
+1. Run `[Project Upgrade]`; preserve the initialized Project's local Framework pin and current Project Source until governed promotion.
+2. Evaluate whether a Project Knowledge layer is actually useful. Absence remains valid; do not create it merely because target 1.10.0 supports it.
+3. If adoption is desired, Preview root `Project-Knowledge/` creation and any Project Source routing pointer after active authority resolution.
+4. Do not bulk-migrate historical notes, chats, Meeting transcripts, or files as accepted Knowledge. Candidate material requires provenance review and may remain source-native.
+5. Maintain `Project Knowledge ≠ Project Authority`. Knowledge page state, retrieval rank, model consensus, or recency never changes Requirements/Decisions/Risks/Relations automatically.
+6. Knowledge→Governance promotion identifies the canonical Project Source owner, verifies evidence, obtains applicable authority, then mutates only that owner.
+7. External use of Knowledge still follows TASK-026 disclosure/provider/minimization/secret rules. Project Knowledge maintenance authority grants no external disclosure.
+8. Knowledge cross-links do not create `REL-*`; OpenViking keeps `PROJECT_SOURCE_AUTHORITY` separate from `PROJECT_KNOWLEDGE_ADVISORY` and remains derived/rebuildable.
+9. No wiki engine, vector DB, embedding service, watcher, crawler, MCP wiki service, validator/CLI, scheduler, or runtime daemon is required or authorized by this migration.
+10. Verify Knowledge template integrity, optionality, local pin/promotion result, current starter stamps, pressure scenarios, and affected current Framework surfaces; run one final unchanged-candidate `RELEASE_FULL` under existing evidence rules.
+11. Direct-to-Latest remains valid: older Projects assess cumulative current→1.10.0 target semantics without mandatory replay of intermediate releases while preserving applicable migration constraints/history.
+
+---
+
+## 1.8.0 → 1.9.0
 
 ### Affected distribution surfaces
 
