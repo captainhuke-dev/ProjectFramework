@@ -450,10 +450,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
 - **Plan Commit:** `8555e09`
 - **Plan Self-Review:** `PASS 38/38`
+- **TDD RED:** `SET1_RED 77/159 FAIL` expected; scenarios `1–338`; RED commit `404a75f`
 - **Set 1 Suite:** ACTIVE / sequence position 1 of 5 / parent OUT-004 / ACT-014 / cumulative target proposed Framework 1.12.0
 - **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Execute Set 1 Task 1 TDD RED scenarios 289–338, then implement TASK-033.
+- **Exact Next Step:** Implement TASK-033 dependency/readiness/priority contract and run focused verification.
 
 ## Task #34 — Agent / Model Capability Profile
 
