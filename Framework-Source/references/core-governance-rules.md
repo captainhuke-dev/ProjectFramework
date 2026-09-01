@@ -1727,3 +1727,38 @@ External provider use continues through TASK-026 disclosure/provider eligibility
 `independent_review: REQUIRED` keeps a completion/integration gate until an eligible reviewer distinct from the primary producing instance is observed where practicable. Reviewer capability, availability, and independence are never fabricated; an allowed user waiver is action-specific evidence rather than a silent standing-profile rewrite.
 
 The profile is optional/applicability-driven for GREENFIELD/Brownfield and adds no model router, provider API integration, benchmark runner, automatic delegation, council runtime, or permission engine.
+
+### Project Release / Publication Contract (TASK-035)
+
+Framework `1.12.0` reports publication truth through orthogonal dimensions rather than one linear lifecycle.
+
+```text
+Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED
+Implementation authority ≠ publication authority
+Release evidence ≠ deployment evidence
+```
+
+When material, dimensions are:
+
+```text
+Implementation: NOT_DONE | DONE
+Integration: NOT_APPLICABLE | NOT_MERGED | MERGED
+Repository Publication: NOT_APPLICABLE | NOT_PUSHED | PUSHED
+Release: NOT_APPLICABLE | NOT_RELEASED | RELEASED
+Artifact Publication: NOT_APPLICABLE | NOT_PUBLISHED | PUBLISHED
+Deployment: NOT_APPLICABLE | NOT_DEPLOYED | DEPLOYED
+```
+
+These values create no new Stable-ID family. `PUSHED` does not imply `MERGED`; `MERGED` does not imply `RELEASED`; release/artifact/deployment truth stays independent.
+
+A material Release Candidate is evidence-bound to source/repository identity, candidate commit/ref for Git-backed work, candidate tree/content digest when material, version/release identifier, schema compatibility where applicable, verification evidence, and material assumptions. Candidate/source/tree/material-assumption change invalidates prior evidence selectively under progressive verification rules; exact Git/tag provenance is never fabricated.
+
+`RELEASE_FULL` verifies the candidate/distribution and performs no shared-state publication. `INTEGRATION_GATE` immediately precedes integration/publication dependent on a mutable target and re-resolves Base Freshness/evidence validity. Exact verified transport may use resulting-state confirmation without unconditional full rerun when candidate evidence remains valid.
+
+Local implementation/commit authority never implies push; push never implies merge; merge never implies release/artifact publication; release never implies deployment. `[Goal]` includes publication only when explicitly scoped; `commit ≠ push` remains binding.
+
+Material facts reuse `10`/`13 EVD-*`/`03`/`09`/`15`/`91` as applicable. Repository-native releases/tags/registries/deployments are source-native evidence, not Project authority by themselves.
+
+Partial publication reports each dimension. External success followed by failed required local reconciliation uses `PERSISTENCE_PENDING` while retaining the observed external truth. Rollback, retraction, and supersession preserve history; unsupported retraction is recorded rather than fabricated. Immutable tags/signatures/checksums/attestations/protected branches are optional assurance unless Project requirements make them mandatory.
+
+TASK-035 creates no CI/CD, release bot, tag/package publisher, deployment automation, or remote push.

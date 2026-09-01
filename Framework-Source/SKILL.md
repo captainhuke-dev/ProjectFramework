@@ -843,3 +843,15 @@ Resolve authority/location first, then tool policy, then actual availability/aut
 `Capability ≠ Authority`; Capability eligibility ≠ Tool eligibility; provider availability ≠ disclosure permission. Compose capability rules with TASK-027 tool eligibility, TASK-026 external disclosure/provider rules, and existing AUTH/Risk/shared-state gates. `DEGRADED` with `DEGRADED_ALLOWED` narrows scope only; `UNKNOWN` fails closed for materially sensitive required capability.
 
 Independent review is evidence-backed: never fabricate reviewer capability/availability/independence or silently waive a REQUIRED review. `[Meeting]` remains TASK-024 advisory behavior. Brownfield never infers capability rules from prior model usage. TASK-034 adds no model router, provider integration, benchmark runner, auto-delegation, or permission engine.
+
+## Framework 1.12.0 Project Release / Publication Contract
+
+Use orthogonal publication dimensions and preserve `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED`. Canonical values include `Implementation: NOT_DONE | DONE`, `Integration: NOT_APPLICABLE | NOT_MERGED | MERGED`, `Repository Publication: NOT_APPLICABLE | NOT_PUSHED | PUSHED`, `Release: NOT_APPLICABLE | NOT_RELEASED | RELEASED`, `Artifact Publication: NOT_APPLICABLE | NOT_PUBLISHED | PUBLISHED`, and `Deployment: NOT_APPLICABLE | NOT_DEPLOYED | DEPLOYED`.
+
+A Release Candidate is state-bound to source/repository identity, commit/ref when Git-backed, tree/content digest when material, version/schema and verification evidence/prerequisites. Candidate/material-assumption change selectively invalidates evidence. Never fabricate tag/SHA identity.
+
+`RELEASE_FULL` verifies the candidate and publishes nothing. `INTEGRATION_GATE` re-resolves Base Freshness/evidence immediately before shared-state integration/publication. Still-valid evidence may be reused after exact verified transport; `commit ≠ push` remains binding.
+
+Report partial states dimension-by-dimension. External publication followed by failed required Project reconciliation is `PERSISTENCE_PENDING`, not false local completion. Preserve rollback/retraction/supersession history; never silently delete/overwrite tags/artifacts to clean history. Optional assurance stays optional unless Project requirements say otherwise.
+
+Implementation authority ≠ publication authority. TASK-035 adds no CI/CD, release bot, package publisher, deployment automation, tag automation, or remote push.

@@ -542,3 +542,9 @@ The profile constrains eligible execution routes; it does not grant authority, c
 Optional `Project-Execution/capabilities.md` defines vendor-neutral capability requirements (`REASONING`, `CODING`, `RESEARCH`, `REVIEW`, `COUNCIL`), execution availability (`FULL | DEGRADED | UNAVAILABLE | UNKNOWN`), local/external provider scope, and independent-review requirements.
 
 Capability eligibility is separate from Tool/MCP eligibility and never grants authority. External providers still follow TASK-026; `[Meeting]` remains advisory. No model router/provider runtime or automatic delegation is introduced.
+
+## Framework 1.12.0 Release / Publication Contract
+
+ProjectFramework now distinguishes implementation, integration, repository publication, release, artifact publication, and deployment as independent facts. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED`; local implementation authority never grants publication/deployment authority.
+
+Release Candidate evidence is bound to actual source/tree/prerequisites. `RELEASE_FULL` verifies candidates; `INTEGRATION_GATE` checks mutable target freshness before shared-state actions. Partial publication and `PERSISTENCE_PENDING` are reported without rewriting observed external truth. No CI/CD or publication automation is introduced.
