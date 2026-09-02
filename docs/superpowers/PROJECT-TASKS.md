@@ -468,8 +468,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
 - **Dependency State:** `TASK-028 SATISFIED` via implementation `a38d514` + focused `23/23 PASS` + `EVD-057`.
-- **Implementation State:** TASK-032 normative remediation semantics implemented in working tree; focused verification pending before implementation commit.
-- **Exact Next Step:** run TASK-032 focused verification; commit only after focused GREEN.
+- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / AFFECTED_VERIFIED / CANDIDATE_FREEZE_PENDING` — remediation workflow `dd20987`; focused `23/23 PASS`; structural `40/40 PASS`; cumulative `TASK028032_AFFECTED 58/58 PASS`; 22/22 starter stamps at Framework 1.13.0.
+- **Implementation Commit:** `dd20987`
+- **Focused Verification:** `TASK032_FOCUSED 23/23 PASS`
+- **Structural Verification:** `TASK028032_STRUCTURAL_CURRENT 40/40 PASS`
+- **Cumulative Affected Verification:** `TASK028032_AFFECTED 58/58 PASS` / `EVD-058`
+- **Exact Next Step:** freeze the final Framework 1.13.0 implementation candidate, capture candidate/tree/Framework-Source tree, then run one state-bound RELEASE_FULL.
 
 ## Task #33 — Task Dependency & Portfolio Planning
 

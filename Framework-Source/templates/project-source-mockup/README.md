@@ -1,6 +1,6 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.12.2 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.13.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
@@ -237,6 +237,12 @@ Set 1 adds explicit Task dependency/readiness metadata, optional `Project-Execut
 ## Framework 1.12.1 Response Finalization Hardening
 
 Current Project Settings/Project Instructions resolve Project Bootstrap before the first Project-governed response in each chat when available. Read-only, status, diagnostic, and failure-report responses are not exempt. Material Project work additionally retains all binding, authority, risk, and mutation gates. Every Project-governed final response, including early-return, tool/MCP failure, connector-unavailable, timeout, partial-result, refusal/blocked-action, persistence-failure, exception-recovery, and bootstrap-repair paths, still runs the Response Close Completeness Gate immediately before emit.
+
+## Framework 1.13.0 Project Audit + Integrity Remediation
+
+`[Project Audit]` is a strict read-only command with exact top-level order `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; health reuses `GREEN | AMBER | RED | UNKNOWN`. Findings are presentation/evidence routing only and preserve `Audit finds ≠ Audit fixes`; no audit/finding records are synthesized by starter materialization.
+
+TASK-032 remediation is a separate governed workflow rather than a command. It resolves canonical owner/home, Risk `R0–R3`, applicable authority/approval, freshness prerequisites, ordered actions, rollback/reversibility, direct resulting-state verification, and affected re-audit/result confirmation using existing governance homes. GREENFIELD starters create no repair action, repair authority, remediation Stable-ID family, audit finding, validator/scanner, repair bot, or auto-fix runtime.
 
 ## Framework 1.12.2 Registered Command Strict-Interface Hardening
 
