@@ -404,6 +404,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / waits for both foundation checkpoints before activation
@@ -438,6 +439,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines counterpart discovery, reciprocal compatibility, corroboration/conflict lifecycle, evidence/freshness, unavailable/stale handling, authority boundaries, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream B / cumulative target Framework 1.14.0
@@ -471,6 +473,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines event eligibility, severity, recipient/ack/escalation semantics, deduplication, failure handling, evidence, authority separation, integration boundaries, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / downstream notification-governance stage; TASK-028 already DONE prerequisite context
@@ -668,6 +671,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
 - **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines feed identity/schema, delta/checkpoint semantics, rebuildability, stale/corrupt handling, bounded retention, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream A / cumulative target Framework 1.14.0
