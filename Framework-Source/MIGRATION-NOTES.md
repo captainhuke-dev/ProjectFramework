@@ -4,7 +4,31 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.12.0 → 1.12.1 (current)
+## 1.12.1 → 1.12.2 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.12.2`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening.
+- Core Governance and SKILL define recognized Registered Commands as Strict Governed Interfaces: semantic equivalence alone does not satisfy governed structure/order/tokens/freshness/fail-closed representation.
+- A new semantic Command Contract Completeness Gate validates recognized-command bodies before the existing TASK-042 Response Close Completeness Gate; TASK-042 remains the final global pre-emit close validation.
+- Current `[Project Status]` Core/SKILL/root-template summaries align on `Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity`.
+- Scenarios `351–356` cover correct-information/wrong-protocol, narrative replacement, missing evidence, style conflict, ordered gates, and Core/SKILL alignment.
+- No command identity, semantic slot, Stable-ID family, lifecycle/authority family, parser, runtime interceptor/middleware, validator/CLI, hook, bot, scheduler, watcher, or daemon is introduced.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's valid local Framework pin until governed `[Project Upgrade]` promotion; upstream movement does not silently harden Brownfield command behavior.
+2. Adopt the Strict Governed Interface rule for commands registered by the selected target Framework; do not promote unbracketed ordinary language into command identity.
+3. Preserve governed command dimensions/order/tokens/freshness and explicit `UNKNOWN` / `VERIFICATION_REQUIRED` representation when evidence is unavailable.
+4. Run Command Contract Completeness Gate before TASK-042 Response Close Completeness Gate; preserve the existing mandatory close format and exceptional-path invariant.
+5. Align current `[Project Status]` summaries through `Continuity`; preserve historical older wording as provenance rather than rewriting archives.
+6. Keep prose flexibility only where the active command contract does not define stricter structure.
+7. Verify scenarios `1–356`, current starter stamps, unchanged command registry, TASK-042 preservation, local-pin/history preservation, no-runtime expansion, affected checks, and one final unchanged-candidate `RELEASE_FULL`.
+8. Direct-to-Latest remains valid.
+
+---
+
+## 1.12.0 → 1.12.1
 
 ### Affected distribution surfaces
 
