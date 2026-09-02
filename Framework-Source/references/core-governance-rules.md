@@ -897,7 +897,19 @@ Framework `1.8.0` TASK-024 further registers `[Meeting]` as a multi-model adviso
 Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary for external-AI Project context using existing `AUTH-* / EVD-* / SECRET-*` homes; it adds no `DISC-*` Stable-ID family, semantic slot, mandatory per-object classification field, or runtime disclosure system.
 Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Project Settings Handoff: current vendor Project Settings use a two-binding thin adapter while existing internal location semantics remain governed; root README gains a managed fallback; active local `FRAMEWORK-001` remains authority.
 Framework `1.10.0` TASK-025 further defines the optional Project Knowledge Layer as derived/advisory Markdown outside Project Source authority, with provenance, maintenance-state, promotion, disclosure, and OpenViking content-class boundaries.
+Framework `1.12.2` TASK-043 makes every recognized Registered Command a **Strict Governed Interface** and adds a command-body completeness gate before TASK-042 final-response validation.
 
+#### Registered Command Strict-Interface Contract
+
+A recognized Registered Command is a **Strict Governed Interface**, not merely a natural-language request for equivalent information. Once command identity is resolved, the Agent MUST execute the active local command contract. When that contract governs structure, order, tokens/vocabulary, freshness, fail-closed representation, or authority boundaries, those elements are non-discretionary. Semantic equivalence alone is insufficient: the Agent MUST NOT replace the governed command response with an equivalent narrative, renamed/reordered dashboard, omitted required dimension, unsupported inference, or stale-memory reconstruction unless the active command contract explicitly permits that variation.
+
+Missing required evidence does not authorize structural omission. Preserve the governed field/dimension and use the applicable `UNKNOWN`, `VERIFICATION_REQUIRED`, or command-specific fail-closed state. Explanatory prose, language, sentence length, concise rationale, optional notes, and table/key-value rendering remain flexible only when the active command contract does not govern them and they do not displace required structure. When uncertain whether an element is structural or stylistic, preserve the canonical structure.
+
+#### Command Contract Completeness Gate
+
+Every recognized Registered Command MUST pass a lightweight **Command Contract Completeness Gate** on the command-body representation before TASK-042's global Response Close Completeness Gate. Verify at minimum: command identity resolved; active local command contract resolved; all required dimensions/sections present; governed order preserved; required fresh observations satisfied or unavailable evidence explicit; canonical tokens/vocabulary preserved; unsupported inference/stale-memory substitution absent; and command-specific authority boundaries preserved. A failing check must be corrected before emit. If the active local contract cannot be resolved safely, do not downgrade the invocation into an ordinary summary and do not reconstruct missing rules from memory.
+
+For a recognized Registered Command, the finalization order is: **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. The first gate validates command body/interface compliance; TASK-042 remains the final global pre-emit validation of the mandatory response close. A correct response close cannot make an incomplete command body compliant, and a command-complete body still must pass the global close gate.
 
 Initial registry:
 
@@ -1797,3 +1809,4 @@ TASK-035 publication dimensions remain factual lifecycle state: `PUSHED`, `PUBLI
 
 
 Framework `1.12.1` TASK-042 further hardens response bootstrap/finalization: first Project-governed response resolves Project Bootstrap when accessible, non-Material diagnostics are not exempt, and no early-return/exception path may bypass the pre-emit Response Close Completeness Gate.
+Framework `1.12.2` TASK-043 further hardens Registered Command execution: command bodies are Strict Governed Interfaces, pass the Command Contract Completeness Gate before TASK-042 final-response validation, and current `[Project Status]` summaries align through `Continuity`.

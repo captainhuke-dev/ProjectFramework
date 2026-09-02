@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.12.1"
+project_source_framework_version: "1.12.2"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -62,7 +62,7 @@ project_location_binding:
 Use the full root contract for Bootstrap Location precedence, minimum durable identity, generic non-Drive File Storage Binding, dedicated non-duplicated Google Drive authority, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and environment-scoped local routing, MCP/tool IDs as evidence only, and separation from current branch/worktree / Canonical Integration Target / Canonical Implementation Source / Runtime Location. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
 ## Framework 1.3.1 Command / Direct Upgrade Pointer
 
-The full root template carries registered `[Project Status]` / `[Project Path]` / `[Project Upgrade]` semantics, Markdown-safe mandatory response-close presentation, and Direct-to-Latest cumulative upgrade governance. `[Project Upgrade]` fresh-compares the active local pin with canonical upstream target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and treats a positive upgrade choice as assessment/Preview authorization only—not mutation. Brackets are required and command-name matching inside them is case-insensitive. `<...>` Project Path placeholders mean unset. Initialized Projects remain pinned and, when explicitly upgraded, classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; direct current→target migration preserves Stable IDs, Project-Specific Rules, bindings, current truth, and history without mandatory intermediate-release execution.
+The full root template carries registered `[Project Status]` / `[Project Path]` / `[Project Upgrade]` semantics, Markdown-safe mandatory response-close presentation, and Direct-to-Latest cumulative upgrade governance. Framework `1.12.2` additionally treats recognized Registered Commands as Strict Governed Interfaces and runs Command Contract Completeness Gate before TASK-042 Response Close Completeness Gate; current `[Project Status]` includes `Continuity`. `[Project Upgrade]` fresh-compares the active local pin with canonical upstream target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and treats a positive upgrade choice as assessment/Preview authorization only—not mutation. Brackets are required and command-name matching inside them is case-insensitive. `<...>` Project Path placeholders mean unset. Initialized Projects remain pinned and, when explicitly upgraded, classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; direct current→target migration preserves Stable IDs, Project-Specific Rules, bindings, current truth, and history without mandatory intermediate-release execution.
 
 ## Framework 1.2.0 Extended Semantics
 

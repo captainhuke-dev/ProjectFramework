@@ -4,7 +4,7 @@ Use this copyable Project/environment configuration **before active `FRAMEWORK-0
 
 ## Project Settings Representation — Thin Bootstrap Adapter
 
-Framework `1.12.1` current vendor-facing Project Settings / Project Instructions use exactly two bootstrap locators plus one rule:
+Framework `1.12.2` current vendor-facing Project Settings / Project Instructions use exactly two bootstrap locators plus one rule:
 
 ```text
 ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework

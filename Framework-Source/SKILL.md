@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.12.1 / Schema 1.0.0**.
+Current distribution: **Framework 1.12.2 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260902-task042-forward-port.md` — latest amendment: TASK-042 Response Finalization Hardening forward-port (current authority)
+- `references/framework-governance-amendment-260902-task043.md` — latest amendment: TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening (current authority)
+- `references/framework-governance-amendment-260902-task042-forward-port.md` — previous amendment: TASK-042 Response Finalization Hardening forward-port
 - `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
 - `references/framework-governance-amendment-260831-task041.md` — previous amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
 - `references/framework-governance-amendment-260831-task040.md` — previous amendment: canonical `[Session]` command rename
@@ -156,6 +157,10 @@ Before the first Project-governed response in each chat/session, resolve the app
 
 TASK-042 is forward-ported onto the cumulative Framework 1.12.0 base. Resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; no early-return/exception path bypasses the Response Close Completeness Gate. The response-close format, Project authority model, TASK-025 Project Knowledge semantics, and Set 1 execution/capability/publication/trust contracts remain unchanged.
 
+## Framework 1.12.2 Registered Command Strict-Interface Hardening
+
+TASK-043 makes recognized Registered Commands Strict Governed Interfaces. Required command structure/order/tokens/freshness/fail-closed representation are preserved; equivalent narrative replacement is noncompliant when it bypasses the active contract. For recognized commands, run **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. Current `[Project Status]` summaries include `Continuity`; no command identity, authority family, schema, or runtime enforcement is added.
+
 ## Framework 1.9.0 Portable Installation Bootstrap & Project Settings Handoff
 
 The target Project Settings / Project Instructions adapter is a **thin discovery wrapper**. Its canonical copy-ready form is:
@@ -233,7 +238,22 @@ Registered Project command identity requires literal brackets; matching inside b
 
 Natural-language command-help requests list only commands registered by the active Framework/Project as `[XXX] : purpose`; do not invent commands.
 
-`[Project Status]` is read-only and fresh-observation driven. Report applicable dimensions in order: Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers. Health reuses `GREEN | AMBER | RED | UNKNOWN`. Read Task count from the Task source; never infer Tasks from changed-file count. Working Tree reports Waiting Commit Yes/No plus changed/staged/unstaged/untracked counts. A verified remote-sync claim requires fresh remote evidence; unavailable dimensions stay `UNKNOWN / VERIFICATION_REQUIRED`.
+Framework `1.12.2` treats each recognized Registered Command as a **Strict Governed Interface**. Semantic equivalence alone is not command compliance when the active contract governs dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; missing evidence keeps the field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible prose may vary only inside elements whose presentation is not otherwise governed.
+
+Registered Command execution pipeline:
+
+```text
+Recognize
+→ Resolve Contract
+→ Fresh Observe
+→ Materialize Governed Structure
+→ Populate
+→ Command Contract Completeness Gate → Response Close Completeness Gate → Emit
+```
+
+The **Command Contract Completeness Gate** validates the command body before TASK-042's global response-close gate: command identity/active local contract resolved; required dimensions present in governed order; freshness satisfied or unavailable evidence explicit; canonical tokens preserved; unsupported inference absent; authority boundaries preserved. If the command contract cannot be resolved safely, do not downgrade into an ordinary summary or reconstruct missing rules from memory.
+
+`[Project Status]` is read-only and fresh-observation driven. Report applicable dimensions in order: Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity. Health reuses `GREEN | AMBER | RED | UNKNOWN`. Read Task count from the Task source; never infer Tasks from changed-file count. Working Tree reports Waiting Commit Yes/No plus changed/staged/unstaged/untracked counts. A verified remote-sync claim requires fresh remote evidence; unavailable dimensions stay `UNKNOWN / VERIFICATION_REQUIRED`.
 
 `[Project Path]` surfaces Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations. An explicit requested path may be used as action input, but persistent Bootstrap/Project Location changes retain existing approval and `FRAMEWORK-001` revision/validation/promotion/history rules.
 
@@ -761,7 +781,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 | One-off exact target instruction | may govern that action only; never silently persist as new binding authority |
 | Persistent binding change | User Explicit Approval + governed `FRAMEWORK-001` revision/promotion |
 | Repository binding | never substitute for current branch/worktree, Canonical Integration Target, or Canonical Implementation Source |
-| `[Project Status]` | fresh read-only Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers; Task count ≠ Git change count |
+| `[Project Status]` | fresh read-only Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity; Task count ≠ Git change count |
 | `[Project Path]` | show/verify configured path values; `<...>` means unset; persistent changes keep existing approval/root-governance rules |
 | `[Project Upgrade]` | fresh local-pin vs canonical-upstream comparison; report `UP_TO_DATE/UPGRADE_AVAILABLE/SOURCE_DIVERGENCE/VERIFICATION_REQUIRED`; yes to upgrade = prepare Preview, not mutation approval |
 | Command discovery | list registered commands only as `[XXX] : purpose`; bracketed command matching is case-insensitive and brackets are required |

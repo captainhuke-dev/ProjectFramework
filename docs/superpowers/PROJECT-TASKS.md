@@ -781,3 +781,37 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
+
+## Task #43 — Registered Command Strict-Interface & Contract Completeness Hardening
+
+- **ID:** `TASK-043`
+- **Status:** `DONE`
+- **Type:** Framework command / protocol-compliance reliability hardening
+- **depends_on:** `[TASK-042]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
+- **Problem:** Registered Commands could return semantically correct information while replacing/omitting governed command structure; Framework 1.12.1 also had Core/SKILL `[Project Status]` `Continuity` drift.
+- **Implemented direction:** Registered Commands are Strict Governed Interfaces. Required structure/order/tokens/freshness/fail-closed representation are contract elements; flexible prose remains allowed only where the active command contract leaves presentation open. The Command Contract Completeness Gate runs before TASK-042's Response Close Completeness Gate.
+- **Target / Implementation Release:** Framework `1.12.2` / Schema `1.0.0` / release format `3`.
+- **Design Spec:** `docs/superpowers/specs/2026-09-02-task043-registered-command-strict-interface-design.md`
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task043-registered-command-strict-interface.md`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Implementation Commit(s):** registration `5401fe4`; design `f740d16`; Goal checkpoint `53e80f7`; plan `29e63fe`; RED `8584951`; normative `ed9da17`; propagation `c7a7ef4`; candidate `a4a2712ba41c35275401b31ac49b75d45eec8643`.
+- **TDD Result:** scenarios `351–356`; RED `TASK043_STRUCTURAL 7/18 PASS` with 11 expected missing-contract failures → GREEN `18/18 PASS`; cumulative scenarios `1–356` contiguous/unique.
+- **Affected Verification:** `TASK043_AFFECTED 37/37 PASS`.
+- **Release Candidate:** `a4a2712ba41c35275401b31ac49b75d45eec8643` / tree `259db179349e1cdae3b8b6df0a4bec0a947b7fec` / Framework-Source tree `7417f06000e03a4e897e9d812fb0274544777a00`.
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-02-task-043-registered-command-strict-interface-release-full.md`.
+- **Release Evidence Commit:** `2b7a23e8c5b06a1b9f37f8f2097b06223f5fbd18`.
+- **Verification Result:** structural `18/18 PASS`; AFFECTED `37/37 PASS`; final unchanged-candidate RELEASE_FULL `25/25 PASS`; maintained Project Source starter stamps `22/22` at Framework 1.12.2; TASK-042 preserved; Registered Command set unchanged; local Project Source pin remains 1.7.0; no runtime expansion.
+- **Completion Criteria Met:** Strict-Interface normative contract; Command Contract Completeness Gate; explicit command-gate → response-close-gate ordering; Core/SKILL/quick-reference/root-template `[Project Status]` `Continuity` alignment; correct-info/wrong-protocol and style/freshness/alignment pressure scenarios; release/migration/starter propagation; backward-compatible patch classification; no new command/slot/state/authority/runtime; release evidence committed and terminal Goal reconciliation prepared.
+- **Goal State:** `OUT-005 ACHIEVED / AUTH-005 TERMINATED / ACT-016 DONE / ENV-005 EXPIRED`.
+- **Publication State:** `PUBLISHED_BRANCH / PR_OPEN` — feature branch published under explicit user `push + PR` instruction; merge not performed.
+- **Publication Branch:** `task043-registered-command-strict-interface`
+- **Published Head at PR Creation:** `5561ffa987ae62f24458e90f27e84d7ccc1a6a89`
+- **Pull Request #27:** `OPEN / MERGEABLE / CLEAN` — `https://github.com/captainhuke-dev/ProjectFramework/pull/27`; base `main` at `40257f7dc97219715070b3764423c17118ecc51b`.
+- **Publication Evidence:** `EVD-049` / `ACT-017`; no merge authority inferred.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
