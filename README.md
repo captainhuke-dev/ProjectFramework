@@ -21,16 +21,22 @@ How to use it:
 
 1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
-3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Project Audit]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, integrity audits, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
 
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
 ## Current Release
 
-- Project Source Framework: **1.12.2**
+- Project Source Framework: **1.13.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.13.0 Project Audit + Integrity Remediation Suite
+
+Framework `1.13.0` adds `[Project Audit]` as a fresh read-only integrity/drift command and preserves TASK-043 Strict Governed Interface semantics. Its exact top-level order is `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; audit category health reuses `GREEN | AMBER | RED | UNKNOWN`. Findings are presentation/evidence routing only: **Audit finds ≠ Audit fixes**. Audit never creates issue/drift/conflict/migration records or grants repair authority. TASK-032 remediation semantics remain dependency-gated until TASK-028 focused completion.
+
+This cumulative minor release is documentation/governance only: no validator/scanner/CLI, audit daemon, repair bot, auto-fix, new audit/finding/remediation Stable-ID family, or repair command is introduced. Existing initialized Projects adopt the command only through governed Direct-to-Latest upgrade.
 
 ## Framework 1.12.2 Registered Command Strict-Interface Hardening
 
@@ -256,7 +262,7 @@ When `UPGRADE_AVAILABLE` is verified, the command asks whether the user wants to
 
 Framework `1.3.0` adds a small registered bracketed Project command contract, Markdown-safe mandatory response-close rendering, and **Direct-to-Latest / Cumulative Target-State Upgrade** semantics while keeping Project Source Schema `1.0.0`, semantic slots, Stable-ID families, initialized-Project local pinning, and existing authority systems unchanged.
 
-Registered commands require literal brackets and match case-insensitively inside them. `[Project Status]` fresh-observes Project/Task/Git/verification/blocker state as a read-only dashboard; `[Project Path]` shows/validates configured bootstrap path values and routes explicit change requests through existing location governance. Angle-bracket values such as `<STORAGE>` or `<WS>` mean unset, not literal paths. Natural-language command-help requests list only registered commands as `[XXX] : purpose`.
+Registered commands require literal brackets and match case-insensitively inside them. `[Project Status]` fresh-observes Project/Task/Git/verification/blocker state as a read-only dashboard; `[Project Audit]` fresh-observes integrity/drift with exact governed dimensions and never auto-fixes Project truth; `[Project Path]` shows/validates configured bootstrap path values and routes explicit change requests through existing location governance. Angle-bracket values such as `<STORAGE>` or `<WS>` mean unset, not literal paths. Natural-language command-help requests list only registered commands as `[XXX] : purpose`.
 
 Mandatory response-close semantic labels remain `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:`, but Framework `1.3.0` recommends Markdown-safe presentation such as `**[Chat]:** CONTINUE_CURRENT_CHAT` so a renderer cannot hide the field as reference-definition syntax. Lifecycle vocabulary and Chat Closure Consistency are unchanged.
 

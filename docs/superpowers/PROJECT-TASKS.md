@@ -370,7 +370,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** implement `[Project Audit]` normative command/release surfaces, then run focused TASK-028 verification.
+- **Implementation State:** TASK-028 normative command/release surfaces implemented in working tree; focused verification pending before completion commit.
+- **Exact Next Step:** run focused TASK-028 verification; commit only after TASK-028 focused GREEN.
 
 ## Task #29 — Cross-Project Impact Analysis
 

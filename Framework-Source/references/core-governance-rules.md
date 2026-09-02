@@ -898,6 +898,7 @@ Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary f
 Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Project Settings Handoff: current vendor Project Settings use a two-binding thin adapter while existing internal location semantics remain governed; root README gains a managed fallback; active local `FRAMEWORK-001` remains authority.
 Framework `1.10.0` TASK-025 further defines the optional Project Knowledge Layer as derived/advisory Markdown outside Project Source authority, with provenance, maintenance-state, promotion, disclosure, and OpenViking content-class boundaries.
 Framework `1.12.2` TASK-043 makes every recognized Registered Command a **Strict Governed Interface** and adds a command-body completeness gate before TASK-042 final-response validation.
+Framework `1.13.0` TASK-028 further registers read-only `[Project Audit]` integrity/drift assessment; audit findings are presentation/evidence routing only and never self-authorize repair.
 
 #### Registered Command Strict-Interface Contract
 
@@ -920,6 +921,7 @@ Initial registry:
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
+[Project Audit] : fresh read-only integrity/drift audit with evidence, unknowns, and governed repair routes; never auto-fixes Project truth
 ```
 
 Natural-language requests for available commands (for example “มีชุดคำสั่งอะไรบ้าง”, “command list”, or “available commands”) MUST list only commands registered by the active Framework/Project in `[XXX] : purpose` form. Do not invent commands merely because an Agent/tool could perform another action.
@@ -938,6 +940,22 @@ Natural-language requests for available commands (for example “มีชุด
 - Blockers report material blockers or `None` only when absence is actually supported.
 
 Unavailable dimensions remain explicit `UNKNOWN` / `VERIFICATION_REQUIRED`; never fabricate status from memory, old tool output, search ranking, or an unverified remote ref.
+
+#### `[Project Audit]`
+
+`[Project Audit]` is read-only and fresh-observation driven. It MUST preserve this exact top-level order: **Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity**. Every dimension remains present; empty dimensions use an explicit none/empty representation, and unavailable evidence remains `UNKNOWN / VERIFICATION_REQUIRED`.
+
+Audit category health reuses exactly `GREEN | AMBER | RED | UNKNOWN`; no numeric aggregate score is introduced. Evaluate applicable categories in this order: **Bootstrap & Identity → Routing & Current State → Canonical Records & Stable IDs → Bindings & Git Freshness → Continuity & Persistence → Conditional Surfaces & Migration → Relations, Knowledge & Execution Profiles**.
+
+The audit checks current `00 / 01 / 03 / 09 / 14` consistency, Stable-ID resolvability/canonical homes, bindings and volatile Git freshness when material, persistence/continuation, applicable conditional documents, and applicable `REL-*` / Project Knowledge / Execution Profile surfaces. Optional surfaces are applicability-driven and are never fabricated.
+
+An audit finding is bounded presentation, not a Stable ID or authority. Do not create `AUDIT-*`, `FINDING-*`, or another audit/finding family. Findings reference current source/evidence and route separately authorized remediation through existing canonical homes such as `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, `ACT-* / ENV-* / AUTH-*`, or Root/Binding revision flow as applicable.
+
+Preserve exact invariant **`Audit finds ≠ Audit fixes`**. The command MUST NOT mutate Project truth, materialize/close issue records, repair, migrate, resolve conflicts, change bindings, push, or infer authority from severity. `Repair Routes` is advisory only.
+
+Bounding may aggregate repetitive findings only when count and affected scope remain visible. Material `RED`, `AMBER`, and `UNKNOWN` findings MUST NOT be silently suppressed. A partial source/tool failure preserves other results and records unresolved evidence explicitly instead of reconstructing it from memory.
+
+TASK-043's Command Contract Completeness Gate applies to this strict command body before TASK-042's Response Close Completeness Gate.
 
 #### `[Project Path]`
 

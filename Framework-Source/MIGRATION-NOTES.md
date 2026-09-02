@@ -4,7 +4,29 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.12.1 → 1.12.2 (current)
+## 1.12.2 → 1.13.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.13.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-028 + TASK-032 Integrity & Remediation Suite.
+- `[Project Audit]` is added as a Registered Command and Strict Governed Interface with exact top-level order `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`.
+- Audit health reuses `GREEN | AMBER | RED | UNKNOWN`; current/volatile evidence follows existing freshness rules and unresolved evidence remains `UNKNOWN / VERIFICATION_REQUIRED`.
+- Audit findings are presentation only and reuse existing canonical homes/routes; no `AUDIT-*` / `FINDING-*` family is created and `Audit finds ≠ Audit fixes`.
+- TASK-032 remediation workflow is dependency-ordered after TASK-028 and is not auto-activated merely by upgrade/audit findings.
+- No issue/repair object, validator/scanner/CLI, daemon, repair bot, auto-fix, or runtime enforcement is generated.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's valid local pin and current truth; adopt 1.13.0 only through governed `[Project Upgrade]` / Direct-to-Latest promotion.
+2. Add `[Project Audit]` to current command discovery and preserve the exact strict dimension order and read-only/no-auto-fix boundary.
+3. Keep optional audit categories applicability-driven; do not synthesize missing `92`, Project Knowledge, or Execution-profile surfaces solely for audit completeness.
+4. Treat findings as bounded command results; durable issues/drift/conflicts/migrations/changes use their existing canonical homes only through separately authorized work.
+5. Preserve TASK-042 response-close and TASK-043 command-gate semantics unchanged.
+6. Verify scenarios `1–380`, current starter stamps, command registry, historical TASK-042/TASK-043 artifacts, local-pin/history preservation, no-runtime expansion, cumulative AFFECTED, and one final unchanged-candidate `RELEASE_FULL`.
+
+---
+
+## 1.12.1 → 1.12.2
 
 ### Affected distribution surfaces
 

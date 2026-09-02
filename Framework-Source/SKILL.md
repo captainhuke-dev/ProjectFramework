@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.12.2 / Schema 1.0.0**.
+Current distribution: **Framework 1.13.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260902-task043.md` — latest amendment: TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening (current authority)
+- `references/framework-governance-amendment-260902-task028-task032.md` — latest amendment: TASK-028 + TASK-032 Integrity & Remediation Suite (current authority)
+- `references/framework-governance-amendment-260902-task043.md` — TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening
 - `references/framework-governance-amendment-260902-task042-forward-port.md` — previous amendment: TASK-042 Response Finalization Hardening forward-port
 - `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
 - `references/framework-governance-amendment-260831-task041.md` — previous amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
@@ -157,6 +158,10 @@ Before the first Project-governed response in each chat/session, resolve the app
 
 TASK-042 is forward-ported onto the cumulative Framework 1.12.0 base. Resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; no early-return/exception path bypasses the Response Close Completeness Gate. The response-close format, Project authority model, TASK-025 Project Knowledge semantics, and Set 1 execution/capability/publication/trust contracts remain unchanged.
 
+## Framework 1.13.0 Project Audit + Integrity Remediation Suite
+
+TASK-028 registers read-only `[Project Audit]` as a Strict Governed Interface. Exact dimensions are `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; category health reuses `GREEN | AMBER | RED | UNKNOWN`; findings are presentation, not Stable IDs; and `Audit finds ≠ Audit fixes`. TASK-032 remains dependency-gated until TASK-028 focused completion. No runtime validator/scanner/auto-fix is added.
+
 ## Framework 1.12.2 Registered Command Strict-Interface Hardening
 
 TASK-043 makes recognized Registered Commands Strict Governed Interfaces. Required command structure/order/tokens/freshness/fail-closed representation are preserved; equivalent narrative replacement is noncompliant when it bypasses the active contract. For recognized commands, run **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. Current `[Project Status]` summaries include `Continuity`; no command identity, authority family, schema, or runtime enforcement is added.
@@ -234,6 +239,7 @@ Registered Project command identity requires literal brackets; matching inside b
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
+[Project Audit] : fresh read-only integrity/drift audit with evidence, unknowns, and governed repair routes; never auto-fixes Project truth
 ```
 
 Natural-language command-help requests list only commands registered by the active Framework/Project as `[XXX] : purpose`; do not invent commands.
@@ -254,6 +260,8 @@ Recognize
 The **Command Contract Completeness Gate** validates the command body before TASK-042's global response-close gate: command identity/active local contract resolved; required dimensions present in governed order; freshness satisfied or unavailable evidence explicit; canonical tokens preserved; unsupported inference absent; authority boundaries preserved. If the command contract cannot be resolved safely, do not downgrade into an ordinary summary or reconstruct missing rules from memory.
 
 `[Project Status]` is read-only and fresh-observation driven. Report applicable dimensions in order: Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity. Health reuses `GREEN | AMBER | RED | UNKNOWN`. Read Task count from the Task source; never infer Tasks from changed-file count. Working Tree reports Waiting Commit Yes/No plus changed/staged/unstaged/untracked counts. A verified remote-sync claim requires fresh remote evidence; unavailable dimensions stay `UNKNOWN / VERIFICATION_REQUIRED`.
+
+`[Project Audit]` is read-only and fresh-observation driven. Preserve exact dimensions `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`. Category health is exactly `GREEN | AMBER | RED | UNKNOWN`. Evaluate applicable categories in order: Bootstrap & Identity → Routing & Current State → Canonical Records & Stable IDs → Bindings & Git Freshness → Continuity & Persistence → Conditional Surfaces & Migration → Relations, Knowledge & Execution Profiles. Findings are presentation, not Stable IDs; do not create `AUDIT-*` / `FINDING-*`. Preserve `Audit finds ≠ Audit fixes`: audit never mutates Project truth or materializes issue/drift/conflict/migration records. Bound repetitive findings only without hiding material RED/AMBER/UNKNOWN results. Unavailable evidence stays explicit. `Repair Routes` names existing canonical homes/gates only and grants no authority.
 
 `[Project Path]` surfaces Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations. An explicit requested path may be used as action input, but persistent Bootstrap/Project Location changes retain existing approval and `FRAMEWORK-001` revision/validation/promotion/history rules.
 
@@ -782,6 +790,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 | Persistent binding change | User Explicit Approval + governed `FRAMEWORK-001` revision/promotion |
 | Repository binding | never substitute for current branch/worktree, Canonical Integration Target, or Canonical Implementation Source |
 | `[Project Status]` | fresh read-only Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity; Task count ≠ Git change count |
+| `[Project Audit]` | fresh read-only Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity; `Audit finds ≠ Audit fixes` |
 | `[Project Path]` | show/verify configured path values; `<...>` means unset; persistent changes keep existing approval/root-governance rules |
 | `[Project Upgrade]` | fresh local-pin vs canonical-upstream comparison; report `UP_TO_DATE/UPGRADE_AVAILABLE/SOURCE_DIVERGENCE/VERIFICATION_REQUIRED`; yes to upgrade = prepare Preview, not mutation approval |
 | Command discovery | list registered commands only as `[XXX] : purpose`; bracketed command matching is case-insensitive and brackets are required |
