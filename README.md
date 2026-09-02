@@ -77,12 +77,14 @@ ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
 Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
 
 ProjectFramework Bootstrap Rule:
-Read Project Bootstrap before Material Project work.
+Read Project Bootstrap before the first Project-governed response in each chat.
+Read-only, status, diagnostic, and failure-report responses are not exempt.
+Before Material Project work, also apply all existing binding, authority, risk, and mutation gates.
 If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
 ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
 ```
 
-`ProjectFramework Upstream` is fixed Framework discovery/upgrade input only. `Project Bootstrap` is environment-specific and must be verified before it is presented as ready to paste. The Project Settings block may be placed anywhere in the vendor's Project Settings / Project Instructions surface.
+`ProjectFramework Upstream` is fixed Framework discovery/upgrade input only. `Project Bootstrap` is environment-specific and must be verified before it is presented as ready to paste. Resolve it before the first Project-governed response in each chat when available; read-only/status/diagnostic responses are not exempt, while Material work still retains all additional mutation gates. The Project Settings block may be placed anywhere in the vendor's Project Settings / Project Instructions surface.
 
 Core installation completion and external vendor-setting copy/paste are separate facts. Once Project Source, root bootstrap, README fallback, and required verification are durable, core installation is DONE; the Agent still MUST emit the handoff block and MUST NOT claim vendor settings were modified without execution evidence.
 
@@ -419,7 +421,7 @@ Framework `1.2.0` also adds:
 
 ## Platform Project Instructions
 
-Current Framework `1.12.0` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
+Current Framework `1.12.1` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
 
 - **ChatGPT Projects:** copy the resolved thin block (or maintained `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` after replacing the Project Bootstrap placeholder with the verified absolute path) into **Project settings → Instructions**.
 - **Claude Projects:** use the equivalent maintained thin adapter in **Set project instructions**.
@@ -488,7 +490,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.12.0` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.12.1` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 

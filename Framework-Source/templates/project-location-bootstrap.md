@@ -4,21 +4,23 @@ Use this copyable Project/environment configuration **before active `FRAMEWORK-0
 
 ## Project Settings Representation — Thin Bootstrap Adapter
 
-Framework `1.9.0` current vendor-facing Project Settings / Project Instructions use exactly two bootstrap locators plus one rule:
+Framework `1.12.1` current vendor-facing Project Settings / Project Instructions use exactly two bootstrap locators plus one rule:
 
 ```text
 ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
 Project Bootstrap: <PROJECT_BOOTSTRAP_ABSOLUTE_PATH>
 
 ProjectFramework Bootstrap Rule:
-Read Project Bootstrap before Material Project work.
+Read Project Bootstrap before the first Project-governed response in each chat.
+Read-only, status, diagnostic, and failure-report responses are not exempt.
+Before Material Project work, also apply all existing binding, authority, risk, and mutation gates.
 If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
 ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
 ```
 
 `ProjectFramework Upstream` maps to canonical `framework_source` read-through/upgrade discovery. `Project Bootstrap` is the verified absolute path to the consuming Project's root `PROJECT-BOOTSTRAP.md`; it is an environment-specific locator and not Project authority. The Project README managed block provides the portable relative fallback `./PROJECT-BOOTSTRAP.md`.
 
-A ready-to-paste Project Bootstrap path MUST be verified. When unresolved, report `VERIFICATION_REQUIRED`; never fill it from recency, editor/MCP handles, mounts, search ranking, memory, or similarly named folders.
+A ready-to-paste Project Bootstrap path MUST be verified. First-response bootstrap is discovery/governance loading only; it grants no mutation authority, and Material work keeps its additional gates. When unresolved, report `VERIFICATION_REQUIRED`; never fill it from recency, editor/MCP handles, mounts, search ranking, memory, or similarly named folders.
 
 The detailed Git/Storage/MCP/Workspace concepts below remain the **internal/pre-authority discovery representation**. They are not removed merely because current vendor Project Settings are thinner.
 
@@ -58,7 +60,7 @@ current_branch_worktree:
 
 `[Project Path]` is a registered read/verify command over location semantics that already exist. Literal brackets are required for registered-command identity; matching inside brackets is case-insensitive. The command may carry an explicit path-change request, but it creates no new authority.
 
-Current Framework `1.9.0` vendor settings do not require the legacy five labels. When legacy/Brownfield settings or internal bootstrap representations contain angle-bracket placeholders, those values remain **unset / not configured** and never authorize fallback.
+Current Framework `1.12.1` vendor settings do not require the legacy five labels. When legacy/Brownfield settings or internal bootstrap representations contain angle-bracket placeholders, those values remain **unset / not configured** and never authorize fallback.
 
 On `[Project Path]` (case-insensitive inside brackets):
 

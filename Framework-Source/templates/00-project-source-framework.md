@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.12.0"
+project_source_framework_version: "1.12.1"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -913,3 +913,6 @@ Framework `1.12.0` Agent / Model Capability Profile: optional `Project-Execution
 Framework `1.12.0` Release / Publication Contract: current reporting keeps Implementation/Integration/Repository Publication/Release/Artifact Publication/Deployment orthogonal; Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED. RC evidence is state-bound; RELEASE_FULL verifies candidates and INTEGRATION_GATE checks mutable targets. Publication authority remains separate and no CI/CD is created.
 
 Framework `1.12.0` Security & Trust Boundary Contract: optional `Project-Execution/trust.md` constrains trusted/limited/untrusted/privileged/external/unknown crossings after authority resolution. Trust classification ≠ Authority; UNKNOWN sensitive actions fail closed; no security runtime is created.
+
+
+Framework `1.12.1` Response Finalization Hardening: resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; every Project-governed final response, including exceptional/early-return paths, runs the Response Close Completeness Gate immediately before emit. This adds no mutation authority and preserves all Framework 1.12.0 Project Execution / release / trust semantics.

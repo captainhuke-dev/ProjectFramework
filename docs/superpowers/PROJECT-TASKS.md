@@ -753,3 +753,22 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication State:** `MERGED_TO_MAIN` — Pull Request `#26` merged exact head `7d93dab849435c3cc4132af4c8be5fa72d0bbb7b` to `main` at merge commit `2bfe5efbb24480bc44dbd8e949ed632af4d759ee`; merged Framework-Source tree remains `06ce4013473ec014e70d8d3233f6132aa90339fd`.
 - **Publication Reconciliation:** `PERSISTED / NOT_PENDING`; `OUT-002 ACHIEVED / AUTH-002 TERMINATED / ACT-011 DONE / ENV-002 EXPIRED`; active checkpoint `c5741ab56799d44cefa39f30da55bd23bf85bf03`; terminal reconciliation `d650513fe01726238f6e59cde1ed7a70b28ae0e4` observed on `origin/main`; remote validation `41/41 PASS`; Framework-Source tree unchanged `06ce4013473ec014e70d8d3233f6132aa90339fd`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #42 — Response Finalization Hardening
+
+- **ID:** `TASK-042`
+- **Status:** `DONE`
+- **Type:** Framework bootstrap/final-response reliability hardening
+- **Problem:** Project-governed read-only/status/diagnostic and exceptional early-return paths could respond before local governance was resolved or bypass the mandatory Response Close Completeness Gate.
+- **Approved direction:** First Project-governed response resolves Project Bootstrap when accessible; non-Material diagnostics are not exempt; every final path converges on the pre-emit Response Close Completeness Gate.
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task042-response-finalization-hardening-design.md`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-01-task042-response-finalization-hardening.md`
+- **Original Release Evidence:** `docs/superpowers/evidence/2026-09-01-task-042-response-finalization-hardening-release-full.md` — original Framework `1.9.1` branch candidate, AFFECTED `110/110 PASS`, RELEASE_FULL `171/171 PASS`.
+- **Original Branch Head:** `c12a1383849bf638df9745111d54958581b22838`
+- **Forward-Port Classification:** `STALE_SEMANTIC / FORWARD_PORT_REQUIRED` against cumulative Framework `1.12.0`; direct merge rejected because it would downgrade current release/starter state and collide with existing scenario numbers.
+- **Integrated Target Release:** Framework `1.12.1` / Schema `1.0.0` / release format `3`.
+- **Integrated Scenario Contract:** original semantics renumbered to scenarios `339–350`; cumulative scenario range `1–350`.
+- **Implementation Boundary:** documentation/governance only; no runtime interceptor, UI hook, middleware, validator/CLI, transport enforcement, MCP daemon change, or vendor execution code.
+- **Integration State:** `FORWARD_PORTED_TO_MAIN_CANDIDATE / VERIFICATION_PENDING`
+- **Publication State:** `FEATURE_BRANCH_PUSHED / MAIN_PUSH_PENDING`
+- **Exact Next Step:** run cumulative integration verification and publish validated `main`.

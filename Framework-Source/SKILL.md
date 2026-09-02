@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.12.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.12.1 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,6 +18,7 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
+- `references/framework-governance-amendment-260902-task042-forward-port.md` — latest amendment: TASK-042 Response Finalization Hardening forward-port (current authority)
 - `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
 - `references/framework-governance-amendment-260831-task041.md` — previous amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
 - `references/framework-governance-amendment-260831-task040.md` — previous amendment: canonical `[Session]` command rename
@@ -146,6 +147,14 @@ These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope be
 
 Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` field as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. For Markdown output, render the labels safely, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`, so a bare reference-definition-like line cannot disappear. Bold/wrapping is presentation-only; semantic labels and canonical lifecycle tokens remain unchanged. Missing/duplicate/malformed/hidden/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
 
+Framework `1.12.1` makes the pre-emit gate unskippable: every Project-governed final response passes it immediately before emit, and no early-return, read-only/status/diagnostic, tool/MCP failure, connector unavailable/disconnected, timeout, partial-result, refusal/blocked-action, `PERSISTENCE_PENDING`, exception-recovery, or bootstrap-repair path may bypass it. A tool/MCP failure does not automatically mean `PERSISTENCE_PENDING`; use that state only when required durable continuation state is unpersisted.
+
+Before the first Project-governed response in each chat/session, resolve the applicable Project Bootstrap when accessible. Read-only, status, diagnostic, explanatory, and failure-report responses are not exempt. Before Material Project work, continue to apply all existing binding, authority, Risk, and mutation gates independently.
+
+
+## Framework 1.12.1 Response Finalization Hardening
+
+TASK-042 is forward-ported onto the cumulative Framework 1.12.0 base. Resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; no early-return/exception path bypasses the Response Close Completeness Gate. The response-close format, Project authority model, TASK-025 Project Knowledge semantics, and Set 1 execution/capability/publication/trust contracts remain unchanged.
 
 ## Framework 1.9.0 Portable Installation Bootstrap & Project Settings Handoff
 
@@ -156,7 +165,9 @@ ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework
 Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>
 
 ProjectFramework Bootstrap Rule:
-Read Project Bootstrap before Material Project work.
+Read Project Bootstrap before the first Project-governed response in each chat.
+Read-only, status, diagnostic, and failure-report responses are not exempt.
+Before Material Project work, also apply all existing binding, authority, risk, and mutation gates.
 If Project Bootstrap cannot be resolved, use the Project README managed bootstrap block as fallback.
 ProjectFramework Upstream is for Framework discovery/upgrade only; it never replaces local Project Source authority.
 ```
@@ -687,6 +698,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 
 ## Workflow
 
+0. **First Project Response Bootstrap:** before the first Project-governed response in each chat/session, resolve Project Bootstrap/local governance when accessible. Read-only, status, diagnostic, explanatory, and failure-report responses are not exempt. This is governance loading, not mutation authority.
 1. Classify `GREENFIELD`, `BROWNFIELD`, or `IMPORT` and detect whether valid local Project Source already exists.
 2. NEW Project: read canonical `main` in governed order: README → descriptor → SKILL → latest amendment → Core Governance → `templates/PROJECT-BOOTSTRAP.md` → Framework template → skeletons → mockup → project-location bootstrap when applicable; resolve the actual Project root before presenting any absolute Project Bootstrap handoff path.
 3. Resolve explicit `FAST/GRILL`; otherwise `ADAPTIVE`.
@@ -697,7 +709,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 8. For each Material Task, derive minimum sufficient verification from affected scope/dependencies/risk; a Git-backed Material Task becomes durably DONE only after a Verified Task Completion Checkpoint.
 9. At Logical Checkpoints use CHECKPOINT_INTEGRITY, not RELEASE_FULL by default; run RELEASE_FULL once on a completed release/candidate and reuse valid state-bound evidence until invalidated.
 10. Before integration run INTEGRATION_GATE with current Base Freshness + evidence-validity review.
-11. Before every governed response emit run Response Close Completeness Gate.
+11. Immediately before every Project-governed final response emit, run Response Close Completeness Gate. No early-return, tool/MCP failure, connector unavailable/disconnected, timeout, partial-result, refusal/blocked-action, persistence-failure, exception-recovery, or bootstrap-repair path may bypass it.
 12. Inspect accessible sources before asking; do not ask for facts that can be verified.
 13. Classify material claims by Truth Domain, Epistemic Status, Freshness; use DRIFT/CONFLICT instead of silent reconciliation.
 14. Initial creation/major structural migration requires Preview → explicit user approval → write; GREENFIELD Preview includes proposed Project Location Binding states/identities.

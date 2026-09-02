@@ -47,7 +47,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.12.0"
+project_source_framework_version: "1.12.1"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -858,3 +858,6 @@ Framework `1.12.0` Agent / Model Capability Profile: optional `Project-Execution
 Framework `1.12.0` Release / Publication Contract: current reporting keeps Implementation/Integration/Repository Publication/Release/Artifact Publication/Deployment orthogonal; Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED. RC evidence is state-bound; RELEASE_FULL verifies candidates and INTEGRATION_GATE checks mutable targets. Publication authority remains separate and no CI/CD is created.
 
 Framework `1.12.0` Security & Trust Boundary Contract adds optional `Project-Execution/trust.md` after tools/capabilities. Trust classification ≠ Authority; UNKNOWN materially sensitive crossings fail closed; secrets/disclosure remain TASK-026/17-owned.
+
+
+Framework `1.12.1` Response Finalization Hardening: first Project-governed response resolves Project Bootstrap when accessible; non-Material diagnostics are not exempt; no early-return/tool-failure/timeout/partial/refusal/exception-recovery path bypasses the Response Close Completeness Gate. Material mutation gates remain independent.

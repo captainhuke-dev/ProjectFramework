@@ -4,7 +4,29 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.10.0 → 1.12.0 (current)
+## 1.12.0 → 1.12.1 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.12.1`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-042 Response Finalization Hardening forward-port.
+- ChatGPT/Claude thin launchers bootstrap before the first Project-governed response in each chat; read-only/status/diagnostic/failure-report responses are not exempt; full Core Governance is not duplicated into launchers.
+- Core Governance / SKILL make Response Close Completeness Gate an unskippable final-response control-flow invariant across early-return, tool/MCP failure, connector unavailable, timeout, partial-result, refusal/blocked action, persistence failure, and exception-recovery paths.
+- Original TASK-042 scenarios `269–280` are historical to the 1.9.x branch; cumulative 1.12.x integration uses scenarios `339–350` to avoid collision with TASK-025/Set 1 scenarios `269–338`.
+- Maintained Project Source starter stamps become Framework `1.12.1` / Schema `1.0.0`; TASK-025 Project Knowledge and Set 1 Project Execution / release / trust semantics remain intact.
+- No runtime middleware/interceptor, transport hook, validator service/CLI, daemon, scheduler, watcher, UI automation, or vendor runtime component is introduced.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's valid local pin until governed `[Project Upgrade]` promotion; upstream movement never auto-upgrades Brownfield Projects.
+2. Update thin adapter wording so Project Bootstrap resolves before the first Project-governed response when available; non-Material diagnostics are not exempt.
+3. Preserve exact mandatory response-close headings, fields, order, lifecycle tokens, and coupling; TASK-042 changes timing/control-flow coverage, not the close format.
+4. Preserve all Framework 1.12.0 Task dependency, Tool/MCP, capability, publication, trust, Project Knowledge, disclosure, secret, and authority boundaries.
+5. Verify cumulative scenarios `1–350`, current starter stamps, launcher parity/size, historical evidence, and one final unchanged-candidate `RELEASE_FULL`.
+6. Direct-to-Latest remains valid.
+
+---
+
+## 1.10.0 → 1.12.0
 
 ### Affected distribution surfaces
 
