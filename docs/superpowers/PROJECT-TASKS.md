@@ -807,5 +807,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-02-task043-registered-command-strict-interface-design.md`
 - **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
 - **Spec Self-Review:** `PASS` — scope, strict-vs-flexible boundary, gate ordering, Core/SKILL drift, release classification, scenario range `351–356`, no-runtime boundary, and backward compatibility checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task043-registered-command-strict-interface.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan Self-Review:** `PASS` — TDD RED ordering, exact affected surfaces, gate composition, candidate freeze, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
 - **Completion criteria:** A user-approved TASK-043 design defines the Strict-Interface normative rule, Command Contract Completeness Gate, composition/order with TASK-042, verified Core/SKILL drift-repair scope, no-discretion versus flexible presentation boundaries, fail-closed behavior, affected Framework surfaces, pressure scenarios, migration/backward-compatibility treatment, and proportional verification strategy before implementation begins.
-- **Exact Next Step:** Write and self-review the TASK-043 implementation plan, then begin TDD RED scenarios `351–356` before Framework production-document changes.
+- **Exact Next Step:** Append TDD RED scenarios `351–356`, run the structural verifier against the 1.12.1 baseline, and persist the RED checkpoint before production Framework changes.
