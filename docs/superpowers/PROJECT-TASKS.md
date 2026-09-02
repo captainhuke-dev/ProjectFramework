@@ -440,7 +440,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #32 — Governed Project Repair / Remediation
 
 - **ID:** `TASK-032`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework workflow / integrity remediation governance
 - **depends_on:** `[TASK-028]`
 - **blocks:** `[]`
@@ -468,14 +468,22 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
 - **Dependency State:** `TASK-028 SATISFIED` via implementation `a38d514` + focused `23/23 PASS` + `EVD-057`.
-- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / AFFECTED_REVERIFIED / CANDIDATE_FREEZE_PENDING` — Project Source EOF hygiene corrected; prospective full branch diff check PASS; corrected cumulative `TASK028032_AFFECTED 59/59 PASS`; Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585` remains unchanged.
+- **Implementation State:** `DONE / LOCAL_VERIFIED / RELEASE_EVIDENCE_COMMITTED` — TASK-032 remediation semantics implemented and verified within cumulative Framework 1.13.0; no repair command/runtime/new remediation family introduced.
 - **Implementation Commit:** `dd20987`
 - **Focused Verification:** `TASK032_FOCUSED 23/23 PASS`
 - **Prior Structural Verification:** `40/40 PASS`
 - **Prior Cumulative Affected Verification:** `58/58 PASS` / `EVD-058`; candidate `5991c9f` later invalidated before RELEASE_FULL for Project Source EOF hygiene.
 - **Corrected Cumulative Affected Verification:** `59/59 PASS` / `EVD-060`, including prospective full branch `git diff --check origin/main` PASS.
 - **Invalidated Candidate:** `5991c9fe133942703c93a579be26ecafc7c7d59e` / tree `160a36ffe552e2a10cdc98413c2994acc580c856` / Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585` / RELEASE_FULL NOT_RUN.
-- **Exact Next Step:** freeze corrected Framework 1.13.0 candidate; capture candidate HEAD/tree/Framework-Source tree before the single final RELEASE_FULL.
+- **Final Candidate:** `089fc186275b303440b3be236c5e29b39f552cd5`
+- **Final Candidate Tree:** `ec50f32ef2d8f063afe98b2c6e07568c3004dd66`
+- **Final Framework-Source Tree:** `61c27afad2bb794e54561e422b928fc777186585`
+- **Final RELEASE_FULL:** `TASK028032_RELEASE_FULL 49/49 PASS` — exactly one run on the unchanged corrected candidate.
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-02-task-028-task-032-integrity-remediation-release-full.md`
+- **Release Evidence Commit:** `950bff9`
+- **Publication State:** `NOT_PUSHED`
+- **Completion State:** `DONE / LOCAL_VERIFIED`; terminal reconciliation commit must be freshly observed before external completion claim.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #33 — Task Dependency & Portfolio Planning
 
