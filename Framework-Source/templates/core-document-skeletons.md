@@ -47,7 +47,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.12.1"
+project_source_framework_version: "1.12.2"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -861,3 +861,5 @@ Framework `1.12.0` Security & Trust Boundary Contract adds optional `Project-Exe
 
 
 Framework `1.12.1` Response Finalization Hardening: first Project-governed response resolves Project Bootstrap when accessible; non-Material diagnostics are not exempt; no early-return/tool-failure/timeout/partial/refusal/exception-recovery path bypasses the Response Close Completeness Gate. Material mutation gates remain independent.
+
+Framework `1.12.2` Registered Command Strict-Interface Hardening: recognized command bodies preserve governed structure/order/tokens/freshness/fail-closed representation and pass Command Contract Completeness Gate before TASK-042 Response Close Completeness Gate; current `[Project Status]` includes `Continuity`.

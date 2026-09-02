@@ -27,10 +27,16 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.12.0**
+- Project Source Framework: **1.12.2**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.12.2 Registered Command Strict-Interface Hardening
+
+Framework `1.12.2` makes recognized Registered Commands **Strict Governed Interfaces**. When a command governs dimensions/order/tokens/freshness/fail-closed representation, equivalent narrative information is not enough: the governed command body must remain structurally complete. Missing evidence stays explicit as `UNKNOWN` / `VERIFICATION_REQUIRED` where applicable.
+
+For a recognized command, **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. The first gate validates the command body; TASK-042 remains the final global close gate. Current `[Project Status]` summaries align through `Continuity`. This is documentation/governance hardening only—no parser, validator/CLI, middleware, runtime interceptor, new command, or new authority/state family is added.
 
 ## Framework 1.10.0 Project Knowledge Layer
 
@@ -421,7 +427,7 @@ Framework `1.2.0` also adds:
 
 ## Platform Project Instructions
 
-Current Framework `1.12.1` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
+Current Framework `1.12.2` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
 
 - **ChatGPT Projects:** copy the resolved thin block (or maintained `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` after replacing the Project Bootstrap placeholder with the verified absolute path) into **Project settings → Instructions**.
 - **Claude Projects:** use the equivalent maintained thin adapter in **Set project instructions**.
@@ -490,7 +496,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.12.1` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.12.2` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 

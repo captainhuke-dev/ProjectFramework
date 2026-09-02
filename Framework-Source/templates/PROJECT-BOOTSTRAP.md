@@ -15,7 +15,7 @@ If this Project uses a different approved relative Project Source path, replace 
 
 ## Project Settings and README Entry
 
-Framework `1.12.1` current Project Settings / Project Instructions use `Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>` to reach this file. When that environment-specific path is missing or stale, a consuming Project's root `README.md` managed `PROJECTFRAMEWORK-BOOTSTRAP` block provides the portable fallback `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`.
+Framework `1.12.2` current Project Settings / Project Instructions use `Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>` to reach this file. When that environment-specific path is missing or stale, a consuming Project's root `README.md` managed `PROJECTFRAMEWORK-BOOTSTRAP` block provides the portable fallback `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`.
 
 Project Settings and README are discovery adapters only. They never replace this file, active `FRAMEWORK-001`, Project Location Binding, branch/integration/implementation/runtime authority, or `AUTH-*`. A valid bootstrap chain converges on `PROJECT-BOOTSTRAP.md → active 00 / FRAMEWORK-001` before the first Project-governed response in each chat when available. Read-only, status, diagnostic, and failure-report responses are not exempt from that first-response bootstrap; Material Project work additionally retains all existing binding, authority, risk, and mutation gates.
 
