@@ -381,6 +381,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-029`
 - **Status:** `TODO`
 - **Type:** Framework architecture / federated Project-change impact reasoning
+- **depends_on:** `[TASK-036, TASK-030]`
+- **blocks:** `[TASK-031]`
+- **enables:** `[TASK-031]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** Framework 1.6.0 can represent Project relations through `92 Project Graph` / `REL-*`, but the Framework does not yet define how to reason about which other Projects may require review when one Project changes materially.
 - **Approved direction:** Define a cross-Project impact-analysis contract that uses authoritative Project relation assertions plus relevant governed dependency/requirement/evidence pointers to surface direct and potential impacts without propagating changes automatically.
 - **Scope:**
@@ -391,16 +397,23 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define AI-ControlTower/OpenViking use as derived traversal/index assistance only; Project-local authoritative sources remain the basis for material impact claims.
   6. Define behavior for stale/orphan/conflicted relations, unavailable target Projects, merges/splits, and Brownfield Projects without `92`.
 - **Implementation boundary:** Task registration only. Do not add `[Impact]` or another command, graph traversal runtime, OpenViking automation, cross-Project mutation, or notification mechanism until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `USER_APPROVED_DIRECTION / CUMULATIVE_SPEC_PENDING_BY_GOAL`
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
+- **Suite:** `OUT-008 Federated Change Intelligence` / waits for both foundation checkpoints before activation
 - **Exact Next Step:** Wait for further requirements; when TASK-029 is selected for development, prepare its architectural design spec before implementation.
 
 ## Task #30 — Cross-Project Relation Reconciliation
 
 - **ID:** `TASK-030`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / federated Project-relation lifecycle governance
+- **depends_on:** `[]`
+- **blocks:** `[TASK-029]`
+- **enables:** `[TASK-029]`
+- **parallelizable_with:** `[TASK-036]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Framework 1.6.0 defines `REL-*` assertions and `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`, but it does not yet define a complete workflow for discovering, requesting, validating, and revalidating compatible reciprocal assertions across Projects.
 - **Approved direction:** Define a relation-reconciliation contract that preserves each Project's authority while allowing evidence-based corroboration and explicit conflict handling.
 - **Scope:**
@@ -412,9 +425,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Preserve OpenViking/AI-ControlTower as `DERIVED_ONLY` traversal/index assistance, never relation authority.
   7. Reuse existing `DRIFT-*`, `CONFLICT-*`, and `MIG-*` families when material.
 - **Implementation boundary:** Task registration only. Do not add reconciliation runtime, cross-Project writes, graph sync, notifications, or automatic reciprocal assertions until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `USER_APPROVED_DIRECTION / CUMULATIVE_SPEC_PENDING_BY_GOAL`
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines counterpart discovery, reciprocal compatibility, corroboration/conflict lifecycle, evidence/freshness, unavailable/stale handling, authority boundaries, affected Framework surfaces, and verification strategy.
+- **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream B / cumulative target Framework 1.14.0
 - **Exact Next Step:** When TASK-030 is selected, prepare its architectural design spec before implementation.
 
 ## Task #31 — Project Event & Notification Contract
@@ -422,6 +436,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-031`
 - **Status:** `TODO`
 - **Type:** Framework architecture / governed Project event and notification semantics
+- **depends_on:** `[TASK-029, TASK-030]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** Audit, impact analysis, dependency failures, relation changes, risks, and other material events may require attention, but ProjectFramework does not yet define when an event is notification-worthy, who should be informed, or how delivery/acknowledgement relates to Project authority.
 - **Approved direction:** Define a vendor-neutral event/notification governance contract while keeping notification delivery separate from approval and mutation authority.
 - **Scope:**
@@ -432,9 +452,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve `notification ≠ approval` and `notification ≠ authority`.
   6. Define integration boundaries with TASK-028 Audit, TASK-029 Impact Analysis, TASK-030 Relation Reconciliation, and existing `RISK-* / ISS-* / DRIFT-* / CONFLICT-*` semantics.
 - **Implementation boundary:** Task registration only. Do not create email/Slack/webhook delivery, schedulers, watchers, or notification automation until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `USER_APPROVED_DIRECTION / CUMULATIVE_SPEC_PENDING_BY_GOAL`
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines event eligibility, severity, recipient/ack/escalation semantics, deduplication, failure handling, evidence, authority separation, integration boundaries, and verification strategy.
+- **Suite:** `OUT-008 Federated Change Intelligence` / downstream notification-governance stage; TASK-028 already DONE prerequisite context
 - **Exact Next Step:** When TASK-031 is selected, prepare its architectural design spec before implementation.
 
 ## Task #32 — Governed Project Repair / Remediation
@@ -604,8 +625,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #36 — Project Change/Event History Feed
 
 - **ID:** `TASK-036`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / bounded derived Project change projection
+- **depends_on:** `[]`
+- **blocks:** `[TASK-029]`
+- **enables:** `[TASK-029]`
+- **parallelizable_with:** `[TASK-030]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Cross-Project indexing, Project Knowledge, and impact reasoning should not need to rescan the entire Project to determine what changed since a prior observation, while `10 Change Log` and authoritative Git/Project Source must remain the real history sources.
 - **Approved direction:** Define a rebuildable bounded change/event feed as a derived projection with durable source pointers, never as a new authority.
 - **Scope:**
@@ -616,9 +643,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve derived-feed data as non-authoritative routing/index evidence.
   6. Define retention/bounding behavior sufficient for incremental consumers without creating an unbounded execution log.
 - **Implementation boundary:** Task registration only. Do not create watchers, crawlers, webhooks, change daemons, indexing runtimes, or background automation until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
+- **Design State:** `USER_APPROVED_DIRECTION / CUMULATIVE_SPEC_PENDING_BY_GOAL`
 - **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines feed identity/schema, delta/checkpoint semantics, rebuildability, stale/corrupt handling, bounded retention, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
+- **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream A / cumulative target Framework 1.14.0
 - **Exact Next Step:** When TASK-036 is selected, prepare its architectural design spec before implementation.
 
 ## Task #37 — Security & Trust Boundary Contract
