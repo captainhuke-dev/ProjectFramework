@@ -364,9 +364,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
 - **Design Spec:** `docs/superpowers/specs/2026-09-02-task028-task032-integrity-remediation-design.md`
 - **Spec Self-Review:** `PASS 12/12` — release classification, dependency order, strict audit interface, no-auto-fix boundary, canonical repair routing, Risk/AUTH/rollback/re-audit, scenario range `357–380`, no-runtime/no-new-ID boundaries checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan Self-Review:** `PASS 13/13` — TDD RED ordering, TASK-028→TASK-032 completion gate, exact affected surfaces, cumulative AFFECTED, frozen candidate, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** write and self-review the cumulative implementation plan, then establish TDD RED scenarios 357–380 before production Framework changes.
+- **Exact Next Step:** add pressure scenarios 357–380 and run the structural verifier to observe TDD RED before production Framework changes.
 
 ## Task #29 — Cross-Project Impact Analysis
 
@@ -453,9 +456,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
 - **Design Spec:** `docs/superpowers/specs/2026-09-02-task028-task032-integrity-remediation-design.md`
 - **Spec Self-Review:** `PASS 12/12` — release classification, dependency order, strict audit interface, no-auto-fix boundary, canonical repair routing, Risk/AUTH/rollback/re-audit, scenario range `357–380`, no-runtime/no-new-ID boundaries checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan Self-Review:** `PASS 13/13` — TDD RED ordering, TASK-028→TASK-032 completion gate, exact affected surfaces, cumulative AFFECTED, frozen candidate, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** WAITING on TASK-028 implementation completion checkpoint; shared suite plan may be prepared now.
+- **Exact Next Step:** WAITING on TASK-028 focused completion checkpoint; implementation plan is ready.
 
 ## Task #33 — Task Dependency & Portfolio Planning
 
