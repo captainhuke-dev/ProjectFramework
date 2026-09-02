@@ -343,8 +343,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
 - **ID:** `TASK-028`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework command / Project integrity assessment
+- **depends_on:** `[]`
+- **blocks:** `[TASK-032]`
+- **enables:** `[TASK-032]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** `[Project Status]` is a current dashboard, but ProjectFramework lacks one standard read-only command for deeper integrity, consistency, stale-reference, drift, and governance-health assessment across Project surfaces.
 - **Approved direction:** Define `[Project Audit]` as a read-only integrity command that evaluates Project Source, bootstrap, continuity, Git/binding evidence, Stable-ID routing, Project Graph, migration/drift/conflict state, and future Knowledge/Tool-profile surfaces when applicable.
 - **Scope:**
@@ -355,10 +361,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve `Audit finds ≠ Audit fixes`: default audit is read-only and cannot mutate Project truth, resolve conflicts, migrate, push, or repair automatically.
   6. Define partial/unknown behavior when required sources or runtime evidence cannot be read.
 - **Implementation boundary:** Task registration only. Do not register `[Project Audit]`, add validators/CLI/runtime scanners, or mutate existing Framework surfaces until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.10.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `APPROVED_DIRECTION / GOAL_SELECTED / WRITTEN_SPEC_PENDING`
+- **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-028 is selected for development, prepare its command/design spec before implementation.
+- **Exact Next Step:** write and self-review the cumulative TASK-028/TASK-032 Integrity & Remediation design spec under OUT-007/AUTH-007.
 
 ## Task #29 — Cross-Project Impact Analysis
 
@@ -426,6 +432,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-032`
 - **Status:** `TODO`
 - **Type:** Framework workflow / integrity remediation governance
+- **depends_on:** `[TASK-028]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `WAITING`
 - **Problem:** TASK-028 intentionally preserves `Audit finds ≠ Audit fixes`; ProjectFramework therefore needs a separate governed workflow for proposing and executing repairs after integrity, drift, stale-reference, binding, or continuity findings.
 - **Approved direction:** Define a repair/remediation contract that converts findings into bounded, reversible, authority-checked remediation work without automatic semantic repair.
 - **Scope:**
@@ -436,10 +448,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define post-remediation re-audit or resulting-state confirmation behavior.
   6. Reuse existing `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, and `ACT-*` homes rather than creating parallel authoritative issue families.
 - **Implementation boundary:** Task registration only. Do not register a repair command, auto-fix Project Source, migrate automatically, push, or mutate external/shared state until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.10.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `APPROVED_DIRECTION / GOAL_SELECTED / WRITTEN_SPEC_PENDING`
+- **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-032 is selected, prepare its workflow/design spec before implementation.
+- **Exact Next Step:** WAITING on TASK-028 design/implementation contract; then implement remediation semantics in the same suite plan.
 
 ## Task #33 — Task Dependency & Portfolio Planning
 
