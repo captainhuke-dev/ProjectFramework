@@ -809,9 +809,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Verification Result:** structural `18/18 PASS`; AFFECTED `37/37 PASS`; final unchanged-candidate RELEASE_FULL `25/25 PASS`; maintained Project Source starter stamps `22/22` at Framework 1.12.2; TASK-042 preserved; Registered Command set unchanged; local Project Source pin remains 1.7.0; no runtime expansion.
 - **Completion Criteria Met:** Strict-Interface normative contract; Command Contract Completeness Gate; explicit command-gate → response-close-gate ordering; Core/SKILL/quick-reference/root-template `[Project Status]` `Continuity` alignment; correct-info/wrong-protocol and style/freshness/alignment pressure scenarios; release/migration/starter propagation; backward-compatible patch classification; no new command/slot/state/authority/runtime; release evidence committed and terminal Goal reconciliation prepared.
 - **Goal State:** `OUT-005 ACHIEVED / AUTH-005 TERMINATED / ACT-016 DONE / ENV-005 EXPIRED`.
-- **Publication State:** `MERGED_TO_MAIN / PERSISTED` — PR #27 merge is canonical; reconciliation checkpoint `9ba7ea520b5237307ef0b0cd806154cf7cbfe7e4` verified on `origin/main`; terminal Goal state `OUT-006 ACHIEVED / AUTH-006 TERMINATED / ACT-018 DONE / ENV-006 EXPIRED`; final terminal reconciliation commit publication remains.
+- **Publication State:** `MERGED_TO_MAIN / PERSISTED / NOT_PENDING` — PR #27 merge is canonical; terminal reconciliation `2da8fcbd2b11121db72599d1a6b3d33157619e17` freshly verified on `origin/main`; `OUT-006 ACHIEVED / AUTH-006 TERMINATED / ACT-018 DONE / ENV-006 EXPIRED`.
 - **Publication Branch:** `task043-registered-command-strict-interface`
 - **Published Head at PR Creation:** `5561ffa987ae62f24458e90f27e84d7ccc1a6a89`
 - **Pull Request #27:** `MERGED` — `https://github.com/captainhuke-dev/ProjectFramework/pull/27`; merge `bdae13896ebec08235d5ef7101f189fa6861d801`; parents `40257f7dc97219715070b3764423c17118ecc51b` + `b45a9eaefc44da3f0526a4e865cf2c1c468d9da4`; Framework-Source tree unchanged `7417f06000e03a4e897e9d812fb0274544777a00`.
-- **Publication Evidence:** `EVD-049` / `ACT-017`; post-merge reconciliation tracked by `EVD-050 / EVD-051 / OUT-006 / AUTH-006 / ACT-018 / ENV-006`.
-- **Exact Next Step:** Push terminal PR #27 reconciliation commit to canonical `main`, fresh-verify remote, then no action remains.
+- **Publication Evidence:** `EVD-049` / `ACT-017`; post-merge reconciliation verified by `EVD-050 / EVD-051 / EVD-052 / OUT-006 / AUTH-006 / ACT-018 / ENV-006`.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
