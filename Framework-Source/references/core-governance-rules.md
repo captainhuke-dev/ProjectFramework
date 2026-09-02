@@ -898,7 +898,7 @@ Framework `1.8.0` TASK-026 further defines a Compositional Disclosure Boundary f
 Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Project Settings Handoff: current vendor Project Settings use a two-binding thin adapter while existing internal location semantics remain governed; root README gains a managed fallback; active local `FRAMEWORK-001` remains authority.
 Framework `1.10.0` TASK-025 further defines the optional Project Knowledge Layer as derived/advisory Markdown outside Project Source authority, with provenance, maintenance-state, promotion, disclosure, and OpenViking content-class boundaries.
 Framework `1.12.2` TASK-043 makes every recognized Registered Command a **Strict Governed Interface** and adds a command-body completeness gate before TASK-042 final-response validation.
-Framework `1.13.0` TASK-028 further registers read-only `[Project Audit]` integrity/drift assessment; audit findings are presentation/evidence routing only and never self-authorize repair.
+Framework `1.13.0` TASK-028 further registers read-only `[Project Audit]` integrity/drift assessment; audit findings are presentation/evidence routing only and never self-authorize repair. TASK-032 further defines governed repair/remediation through existing canonical homes, Risk/AUTH gates, rollback, resulting-state verification, and affected re-audit; it adds no repair command or remediation Stable-ID family.
 
 #### Registered Command Strict-Interface Contract
 
@@ -956,6 +956,20 @@ Preserve exact invariant **`Audit finds ≠ Audit fixes`**. The command MUST NOT
 Bounding may aggregate repetitive findings only when count and affected scope remain visible. Material `RED`, `AMBER`, and `UNKNOWN` findings MUST NOT be silently suppressed. A partial source/tool failure preserves other results and records unresolved evidence explicitly instead of reconstructing it from memory.
 
 TASK-043's Command Contract Completeness Gate applies to this strict command body before TASK-042's Response Close Completeness Gate.
+
+#### Governed Project Repair / Remediation
+
+TASK-032 is a workflow, not a Registered Command. A repair begins only from an explicit remediation request/Goal or other valid authorization; an audit finding by itself grants no mutation permission. Resolve at least: **Source finding / evidence → Affected scope → Canonical owner/home → Desired resulting state → Risk class R0–R3 → Applicable authority / approval → Prerequisites and freshness checks → Ordered repair actions → Reversibility / rollback → Verification of resulting state → Affected re-audit / resulting-state confirmation → Evidence and lifecycle updates**.
+
+Classify and mutate only the canonical owner. Reuse `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, `ACT-* / AUTH-* / ENV-*`, Decisions/Requirements, and existing document owners; do not create `REPAIR-*`, `REM-*`, or another remediation family. `Finding ≠ repair authority`; `Repair proposal ≠ Repair authority`.
+
+Risk remains exact: `R0 READ_ONLY | R1 REVERSIBLE_LOCAL | R2 SHARED_STATE | R3 EXTERNAL_OR_IRREVERSIBLE`. Existing Goal/ENV scope applies only when it already covers the exact repair. Push/publication, destructive action+target, Root/Binding mutation+target, external disclosure, and R2/R3 gates remain independent.
+
+Semantic disagreements over requirements, Decisions, architecture, authority, Risk acceptance, relation truth, or policy are Decision/Change/Conflict work, not auto-repair. Preserve competing truth and obtain applicable authority; never choose by recency/ranking/confidence/tool success.
+
+Every repair declares reversibility/rollback or an explicit limitation. R1 repairs identify a prior durable state; Git-backed repair preserves history rather than normalizing completion through destructive reset. R2/R3 or materially irreversible repairs retain their explicit authority gates.
+
+Completion sequence is **execute authorized repair → verify direct resulting state → verify affected references/dependencies → affected re-audit or equivalent resulting-state confirmation → evidence/lifecycle update → close only when justified**. **ACT DONE ≠ repair outcome verified**. Re-audit remains read-only and new findings never self-authorize further repair.
 
 #### `[Project Path]`
 

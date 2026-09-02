@@ -10,7 +10,7 @@ compatibility: "BACKWARD_COMPATIBLE_INTEGRITY_REMEDIATION_SUITE"
 
 # Framework 1.13.0 Amendment — Project Audit + Integrity Remediation Suite
 
-Framework `1.13.0` preserves Framework `1.12.2` unless refined here. Project Source Schema remains `1.0.0`; release format remains `3`. TASK-028 adds one Registered Command, `[Project Audit]`. TASK-032 is part of the same cumulative release but its repair/remediation workflow remains non-normative until TASK-028 reaches its focused completion checkpoint.
+Framework `1.13.0` preserves Framework `1.12.2` unless refined here. Project Source Schema remains `1.0.0`; release format remains `3`. TASK-028 adds one Registered Command, `[Project Audit]`. TASK-028 focused completion is satisfied by implementation `a38d514` with `TASK028_FOCUSED 23/23 PASS`; TASK-032 therefore activates the governed repair/remediation workflow defined below without adding another Registered Command.
 
 ## 1. `[Project Audit]` Registered Command
 
@@ -102,12 +102,73 @@ shared/external mutation           → applicable R2/R3 authority and target che
 
 Naming a route never creates the object and never grants mutation authority.
 
-## 7. TASK-032 suite boundary
+## 7. TASK-032 Governed Project Repair / Remediation
 
-TASK-032 Governed Project Repair / Remediation is dependency-ordered after TASK-028. Until TASK-028 focused implementation is committed and observed, this amendment creates no repair command, no remediation Stable-ID family, and no normative repair workflow beyond preserving the separation `Audit finds ≠ Audit fixes`.
+TASK-032 begins only after TASK-028 focused completion is committed and observed. A finding, severity, tool capability, repository access, Project Graph visibility, or successful audit does not grant repair authority. A repair begins only from an explicit remediation request/Goal or other valid authorization covering the exact affected scope and operation.
+
+A remediation proposal resolves at least:
+
+```text
+Source finding / evidence
+Affected scope
+Canonical owner/home
+Desired resulting state
+Risk class R0–R3
+Applicable authority / approval
+Prerequisites and freshness checks
+Ordered repair actions
+Reversibility / rollback
+Verification of resulting state
+Affected re-audit / resulting-state confirmation
+Evidence and lifecycle updates
+```
+
+No `REPAIR-*`, `REM-*`, or parallel remediation Stable-ID family is created. Use existing `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, `ACT-*`, `AUTH-*`, `ENV-*`, `DEC-*`, `REQ-*`, and canonical document owners as applicable.
+
+## 8. Canonical owner and classification
+
+Before mutation, classify the defect and resolve the current canonical owner/home. Stale derived/current routing metadata is repaired through its current owning document and normal revision/promotion/history flow. Material truth mismatch reuses `DRIFT-*`; competing authoritative semantics reuse `CONFLICT-*`; migration/slot collision reuses `MIG-*`; proposed material scope/behavior change uses `CR-*`/Decision flow when applicable; a plain execution defect with an already-approved intended state may use bounded `ACT-*` under valid `AUTH-*`.
+
+Repair MUST NOT move authoritative payload into a convenient but incorrect home. **Finding ≠ repair authority** and **Repair proposal ≠ Repair authority**.
+
+## 9. Risk and authority remain independent
+
+TASK-032 reuses the existing Risk classes exactly:
+
+```text
+R0 READ_ONLY
+R1 REVERSIBLE_LOCAL
+R2 SHARED_STATE
+R3 EXTERNAL_OR_IRREVERSIBLE
+```
+
+The applicable `AUTH-*`/user approval must cover the exact scope and operation. Goal/ENV authority is usable only when already equal to or broader than the bounded repair operation. Push/publication, destructive operation+target, Root/Binding mutation+target, external disclosure, and R2/R3 shared or irreversible effects retain their independent gates. Diagnosis, audit health, Tool/MCP capability, Knowledge content, Git access, or an existing relation never grants those permissions.
+
+## 10. Semantic conflict is Decision work
+
+A genuine disagreement over intended requirements, accepted Decisions, architecture, authority, Risk acceptance, relation truth, or other semantic policy is not housekeeping and MUST NOT be auto-repaired. Route it through the existing `CONFLICT-*` plus Decision/Change/approval path as applicable. Recency, ranking, confidence, tool success, or audit severity never silently chooses the winner.
+
+## 11. Reversibility and rollback
+
+Every repair proposal states reversibility/rollback or explicitly states why meaningful rollback is unavailable. R1/local reversible work identifies the prior durable revision/state that can be restored. Git-backed repair preserves commits/history rather than using destructive reset as the normal completion path. R2/R3 or materially irreversible repairs require their applicable explicit authority before execution. Rollback is a recovery boundary, not a substitute for correcting canonical truth.
+
+## 12. Resulting-state verification and affected re-audit
+
+Repair completion requires this sequence:
+
+```text
+execute authorized repair
+→ verify direct resulting state
+→ verify affected references/dependencies
+→ re-audit affected category/categories or perform equivalent resulting-state confirmation
+→ update evidence/current lifecycle records
+→ close the repair action/route only when justified
+```
+
+**ACT DONE ≠ repair outcome verified.** A command/tool success is insufficient when the intended current truth has not been freshly confirmed. Re-audit is read-only and does not self-authorize subsequent fixes; new findings require their own classification and authority.
 
 TASK-042 Response Close Completeness Gate and TASK-043 Registered Command Strict-Interface / Command Contract Completeness Gate remain unchanged.
 
-## 8. Non-goals
+## 13. Non-goals
 
-Framework 1.13.0 TASK-028 creates no validator, scanner, linter executable, CLI, audit daemon, watcher, scheduler, background agent, repair bot, automatic issue materialization, auto-migration, auto-fix, or automatic conflict resolution. Existing initialized Projects remain locally pinned and adopt this contract only through governed `[Project Upgrade]` / Direct-to-Latest flow.
+Framework 1.13.0 creates no validator, scanner, linter executable, CLI, audit daemon, watcher, scheduler, background agent, repair bot, automatic issue materialization, auto-migration, auto-fix, automatic conflict resolution, repair command, or remediation Stable-ID family. Existing initialized Projects remain locally pinned and adopt this contract only through governed `[Project Upgrade]` / Direct-to-Latest flow.

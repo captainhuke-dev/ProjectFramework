@@ -34,9 +34,11 @@ How to use it:
 
 ## Framework 1.13.0 Project Audit + Integrity Remediation Suite
 
-Framework `1.13.0` adds `[Project Audit]` as a fresh read-only integrity/drift command and preserves TASK-043 Strict Governed Interface semantics. Its exact top-level order is `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; audit category health reuses `GREEN | AMBER | RED | UNKNOWN`. Findings are presentation/evidence routing only: **Audit finds ≠ Audit fixes**. Audit never creates issue/drift/conflict/migration records or grants repair authority. TASK-032 remediation semantics remain dependency-gated until TASK-028 focused completion.
+Framework `1.13.0` adds `[Project Audit]` as a fresh read-only integrity/drift command and preserves TASK-043 Strict Governed Interface semantics. Its exact top-level order is `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; audit category health reuses `GREEN | AMBER | RED | UNKNOWN`. Findings are presentation/evidence routing only: **Audit finds ≠ Audit fixes**. Audit never creates issue/drift/conflict/migration records or grants repair authority.
 
-This cumulative minor release is documentation/governance only: no validator/scanner/CLI, audit daemon, repair bot, auto-fix, new audit/finding/remediation Stable-ID family, or repair command is introduced. Existing initialized Projects adopt the command only through governed Direct-to-Latest upgrade.
+TASK-032 completes the suite with a separate governed remediation workflow: selected defects resolve their canonical owner/home, `R0–R3`, exact authority/approval, prerequisites, ordered actions, rollback/reversibility, direct resulting-state verification, and affected re-audit/result confirmation. It reuses existing `ISS-* / DRIFT-* / CONFLICT-* / MIG-* / CR-* / ACT-* / AUTH-* / ENV-*` and Decision/Requirement homes. Semantic conflict is Decision/Change/Conflict work, not auto-repair; R2/R3 and other explicit gates remain independent; **ACT DONE ≠ repair outcome verified**.
+
+This cumulative minor release is documentation/governance only: no validator/scanner/CLI, audit daemon, repair bot, auto-fix, new audit/finding/remediation Stable-ID family, or repair command is introduced. Existing initialized Projects adopt the suite only through governed Direct-to-Latest upgrade.
 
 ## Framework 1.12.2 Registered Command Strict-Interface Hardening
 

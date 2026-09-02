@@ -12,8 +12,10 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 - `[Project Audit]` is added as a Registered Command and Strict Governed Interface with exact top-level order `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`.
 - Audit health reuses `GREEN | AMBER | RED | UNKNOWN`; current/volatile evidence follows existing freshness rules and unresolved evidence remains `UNKNOWN / VERIFICATION_REQUIRED`.
 - Audit findings are presentation only and reuse existing canonical homes/routes; no `AUDIT-*` / `FINDING-*` family is created and `Audit finds ≠ Audit fixes`.
-- TASK-032 remediation workflow is dependency-ordered after TASK-028 and is not auto-activated merely by upgrade/audit findings.
-- No issue/repair object, validator/scanner/CLI, daemon, repair bot, auto-fix, or runtime enforcement is generated.
+- TASK-032 remediation workflow is dependency-ordered after TASK-028 and requires an explicit remediation request/Goal or other applicable authorization; audit findings alone do not activate mutation.
+- Remediation resolves canonical owner/home, `R0–R3`, applicable authority, prerequisites/freshness, ordered actions, rollback/reversibility, direct resulting-state verification, affected re-audit/result confirmation, and evidence/lifecycle updates. Existing `ISS/DRIFT/CONFLICT/MIG/CR/ACT/AUTH/ENV/DEC/REQ` homes are reused.
+- Semantic conflicts are routed to Decision/Change/Conflict governance rather than auto-repaired; `ACT DONE ≠ repair outcome verified`; R2/R3 and other explicit gates remain independent.
+- No issue/repair object, remediation ID family, repair command, validator/scanner/CLI, daemon, repair bot, auto-fix, or runtime enforcement is generated.
 
 ### Upgrade checklist
 
@@ -21,8 +23,9 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 2. Add `[Project Audit]` to current command discovery and preserve the exact strict dimension order and read-only/no-auto-fix boundary.
 3. Keep optional audit categories applicability-driven; do not synthesize missing `92`, Project Knowledge, or Execution-profile surfaces solely for audit completeness.
 4. Treat findings as bounded command results; durable issues/drift/conflicts/migrations/changes use their existing canonical homes only through separately authorized work.
-5. Preserve TASK-042 response-close and TASK-043 command-gate semantics unchanged.
-6. Verify scenarios `1–380`, current starter stamps, command registry, historical TASK-042/TASK-043 artifacts, local-pin/history preservation, no-runtime expansion, cumulative AFFECTED, and one final unchanged-candidate `RELEASE_FULL`.
+5. For an authorized repair, classify the canonical owner and Risk before mutation; declare rollback/reversibility; verify direct resulting state plus affected references; then re-audit/confirm the affected category before closure.
+6. Preserve TASK-042 response-close and TASK-043 command-gate semantics unchanged.
+7. Verify scenarios `1–380`, current starter stamps, command registry, historical TASK-042/TASK-043 artifacts, local-pin/history preservation, no-runtime expansion, cumulative AFFECTED, and one final unchanged-candidate `RELEASE_FULL`.
 
 ---
 
