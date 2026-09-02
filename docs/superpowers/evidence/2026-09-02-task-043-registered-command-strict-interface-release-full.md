@@ -1,8 +1,8 @@
 # TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening — Release Evidence
 
-**Captured:** 2026-09-02T13:12:00+07:00  
-**Task:** `TASK-043`  
-**Target release:** Project Source Framework `1.12.2` / Schema `1.0.0` / release format `3`  
+**Captured:** 2026-09-02T13:12:00+07:00
+**Task:** `TASK-043`
+**Target release:** Project Source Framework `1.12.2` / Schema `1.0.0` / release format `3`
 **Publication:** `NOT_PUSHED`
 
 ## Scope
