@@ -785,7 +785,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #43 — Registered Command Strict-Interface & Contract Completeness Hardening
 
 - **ID:** `TASK-043`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework command / protocol-compliance reliability hardening
 - **depends_on:** `[TASK-042]`
 - **blocks:** `[]`
@@ -793,26 +793,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
 - **readiness:** `READY`
-- **Source Proposal:** user-supplied `ProjectFramework-Registered-Command-Semantic-Compliance-Hardening-Proposal.md`; the Task entry captures the approved bounded scope and does not make the external attachment a continuing authority dependency.
-- **Problem:** ProjectFramework already registers bracketed command identities, command-specific freshness/output semantics, and TASK-042's unskippable Response Close Completeness Gate, but a recognized Registered Command can still be answered with semantically equivalent information while the Agent replaces or omits the governed command structure. Framework `1.12.1` also contains current Core/SKILL drift for `[Project Status]`: Core Governance requires `Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity`, while current SKILL command summaries omit `Continuity`.
-- **Approved direction:** Treat every recognized Registered Command as a **Strict Governed Interface**. Add a command-body completeness gate that verifies the active command contract before the existing TASK-042 Response Close Completeness Gate, and repair current Core/SKILL command-contract drift without broadening the command registry or changing command meaning beyond alignment.
-- **Scope:**
-  1. **Registered Command Strict-Interface Contract** — define that semantic equivalence is insufficient when a Registered Command governs required dimensions/order/tokens/freshness/fail-closed representation; an Agent must not replace the governed interface with a narrative equivalent, renamed/reordered structure, omitted required dimension, or stale-memory shortcut unless the active command contract explicitly permits that variation.
-  2. **Command Contract Completeness Gate** — define a lightweight pre-emit command-body check for recognized Registered Commands: command identity resolved; active local contract resolved; required dimensions present in governed order; required fresh observations satisfied or explicitly represented as `UNKNOWN` / `VERIFICATION_REQUIRED`; canonical tokens/vocabulary preserved; unsupported inference absent. This gate runs before, and composes with rather than replaces, TASK-042's Response Close Completeness Gate.
-  3. **Core/SKILL Drift Repair** — reconcile current Registered Command summaries so `Framework-Source/references/core-governance-rules.md` and `Framework-Source/SKILL.md` express the same active command contract, beginning with the known `[Project Status]` `Continuity` omission; identify and correct only verified current-surface drift, preserving historical source text when it was true at capture time.
-- **Pressure-test direction:** Add scenarios for `correct information / wrong protocol`, narrative replacement of a Registered Command, missing fresh evidence that must remain explicit rather than remove a governed dimension, style/conversational instructions that cannot weaken required command structure, and Core/SKILL contract-alignment regression.
-- **Implementation boundary:** Task registration only. Do not modify Core Governance, SKILL, README, launchers, templates, amendments, migration notes, pressure scenarios, release identity, runtime/parser/interceptor/middleware/validator/CLI/tool code, or consuming Projects until a separate TASK-043 design spec is completed and explicitly approved. No new Registered Command, Stable-ID family, semantic slot, lifecycle state, authority family, parser service, response middleware, or runtime enforcement is authorized by this Task.
-- **TASK-042 relationship:** TASK-042 is completed prerequisite context, not duplicate scope. TASK-042 guarantees that final responses reach the existing Response Close Completeness Gate; TASK-043 governs command-body contract compliance before that global response-close gate.
-- **Target Release:** Framework `1.12.2` / Schema `1.0.0` / release format `3` — patch-level backward-compatible command-protocol reliability hardening; no new command/slot/state/authority family.
+- **Problem:** Registered Commands could return semantically correct information while replacing/omitting governed command structure; Framework 1.12.1 also had Core/SKILL `[Project Status]` `Continuity` drift.
+- **Implemented direction:** Registered Commands are Strict Governed Interfaces. Required structure/order/tokens/freshness/fail-closed representation are contract elements; flexible prose remains allowed only where the active command contract leaves presentation open. The Command Contract Completeness Gate runs before TASK-042's Response Close Completeness Gate.
+- **Target / Implementation Release:** Framework `1.12.2` / Schema `1.0.0` / release format `3`.
 - **Design Spec:** `docs/superpowers/specs/2026-09-02-task043-registered-command-strict-interface-design.md`
 - **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
-- **Spec Self-Review:** `PASS` — scope, strict-vs-flexible boundary, gate ordering, Core/SKILL drift, release classification, scenario range `351–356`, no-runtime boundary, and backward compatibility checked.
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task043-registered-command-strict-interface.md`
-- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
-- **Plan Self-Review:** `PASS` — TDD RED ordering, exact affected surfaces, gate composition, candidate freeze, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
-- **TDD RED:** scenarios `351–356` appended; cumulative numbering `1–356`; structural verifier `7/18 PASS` / expected `11` semantic failures on Framework `1.12.1`; no verifier/runtime error.
-- **Completion criteria:** A user-approved TASK-043 design defines the Strict-Interface normative rule, Command Contract Completeness Gate, composition/order with TASK-042, verified Core/SKILL drift-repair scope, no-discretion versus flexible presentation boundaries, fail-closed behavior, affected Framework surfaces, pressure scenarios, migration/backward-compatibility treatment, and proportional verification strategy before implementation begins.
-- **Implementation Commit(s):** RED `8584951`; normative `ed9da17`; propagation `c7a7ef4`.
-- **Structural GREEN:** `TASK043_STRUCTURAL 18/18 PASS`; scenarios `1–356` contiguous/unique.
-- **Affected Verification:** `TASK043_AFFECTED 37/37 PASS`; 22/22 maintained mockup starter stamps at Framework `1.12.2`; TASK-042 preserved; command registry unchanged; local Project Source pin remains `1.7.0`; no runtime expansion.
-- **Exact Next Step:** Commit/freeze the final Framework 1.12.2 candidate, capture candidate/tree identities, then run exactly one final unchanged-candidate `RELEASE_FULL`.
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED`
+- **Implementation Commit(s):** registration `5401fe4`; design `f740d16`; Goal checkpoint `53e80f7`; plan `29e63fe`; RED `8584951`; normative `ed9da17`; propagation `c7a7ef4`; candidate `a4a2712ba41c35275401b31ac49b75d45eec8643`.
+- **TDD Result:** scenarios `351–356`; RED `TASK043_STRUCTURAL 7/18 PASS` with 11 expected missing-contract failures → GREEN `18/18 PASS`; cumulative scenarios `1–356` contiguous/unique.
+- **Affected Verification:** `TASK043_AFFECTED 37/37 PASS`.
+- **Release Candidate:** `a4a2712ba41c35275401b31ac49b75d45eec8643` / tree `259db179349e1cdae3b8b6df0a4bec0a947b7fec` / Framework-Source tree `7417f06000e03a4e897e9d812fb0274544777a00`.
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-02-task-043-registered-command-strict-interface-release-full.md`.
+- **Release Evidence Commit:** `2b7a23e8c5b06a1b9f37f8f2097b06223f5fbd18`.
+- **Verification Result:** structural `18/18 PASS`; AFFECTED `37/37 PASS`; final unchanged-candidate RELEASE_FULL `25/25 PASS`; maintained Project Source starter stamps `22/22` at Framework 1.12.2; TASK-042 preserved; Registered Command set unchanged; local Project Source pin remains 1.7.0; no runtime expansion.
+- **Completion Criteria Met:** Strict-Interface normative contract; Command Contract Completeness Gate; explicit command-gate → response-close-gate ordering; Core/SKILL/quick-reference/root-template `[Project Status]` `Continuity` alignment; correct-info/wrong-protocol and style/freshness/alignment pressure scenarios; release/migration/starter propagation; backward-compatible patch classification; no new command/slot/state/authority/runtime; release evidence committed and terminal Goal reconciliation prepared.
+- **Goal State:** `OUT-005 ACHIEVED / AUTH-005 TERMINATED / ACT-016 DONE / ENV-005 EXPIRED`.
+- **Publication State:** `NOT_PUSHED` — push/publication was excluded from AUTH-005 and was not performed.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
