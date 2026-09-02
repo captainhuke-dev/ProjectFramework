@@ -1387,4 +1387,3 @@ TDD RED next: scenarios 357–380 before production Framework semantics
 Final acceptance: cumulative AFFECTED + one RELEASE_FULL on unchanged Framework 1.13.0 candidate
 Publication authority: NOT_GRANTED
 ```
-

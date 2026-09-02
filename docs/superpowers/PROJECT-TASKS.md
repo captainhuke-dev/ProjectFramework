@@ -468,12 +468,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
 - **Dependency State:** `TASK-028 SATISFIED` via implementation `a38d514` + focused `23/23 PASS` + `EVD-057`.
-- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / AFFECTED_VERIFIED / CANDIDATE_FREEZE_PENDING` — remediation workflow `dd20987`; focused `23/23 PASS`; structural `40/40 PASS`; cumulative `TASK028032_AFFECTED 58/58 PASS`; 22/22 starter stamps at Framework 1.13.0.
+- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / AFFECTED_REVERIFIED / CANDIDATE_FREEZE_PENDING` — Project Source EOF hygiene corrected; prospective full branch diff check PASS; corrected cumulative `TASK028032_AFFECTED 59/59 PASS`; Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585` remains unchanged.
 - **Implementation Commit:** `dd20987`
 - **Focused Verification:** `TASK032_FOCUSED 23/23 PASS`
-- **Structural Verification:** `TASK028032_STRUCTURAL_CURRENT 40/40 PASS`
-- **Cumulative Affected Verification:** `TASK028032_AFFECTED 58/58 PASS` / `EVD-058`
-- **Exact Next Step:** freeze the final Framework 1.13.0 implementation candidate, capture candidate/tree/Framework-Source tree, then run one state-bound RELEASE_FULL.
+- **Prior Structural Verification:** `40/40 PASS`
+- **Prior Cumulative Affected Verification:** `58/58 PASS` / `EVD-058`; candidate `5991c9f` later invalidated before RELEASE_FULL for Project Source EOF hygiene.
+- **Corrected Cumulative Affected Verification:** `59/59 PASS` / `EVD-060`, including prospective full branch `git diff --check origin/main` PASS.
+- **Invalidated Candidate:** `5991c9fe133942703c93a579be26ecafc7c7d59e` / tree `160a36ffe552e2a10cdc98413c2994acc580c856` / Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585` / RELEASE_FULL NOT_RUN.
+- **Exact Next Step:** freeze corrected Framework 1.13.0 candidate; capture candidate HEAD/tree/Framework-Source tree before the single final RELEASE_FULL.
 
 ## Task #33 — Task Dependency & Portfolio Planning
 

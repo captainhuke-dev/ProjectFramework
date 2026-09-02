@@ -154,4 +154,3 @@ No `DEL-*` record is created. `commit ≠ push`; AUTH-006 includes only the boun
 - **Evidence:** `EVD-053` plus subsequent suite evidence
 
 No `DEL-*` record is created. `commit ≠ push`; publication is not included in AUTH-007.
-

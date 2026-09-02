@@ -157,4 +157,3 @@ TASK-033 EVD-034; TASK-027 EVD-035; TASK-034 EVD-036; TASK-035 EVD-037; TASK-037
 - **Current Evidence:** `EVD-053`
 
 `ACT DONE ≠ OUT ACHIEVED`; all declared suite success criteria require evidence before terminalization.
-

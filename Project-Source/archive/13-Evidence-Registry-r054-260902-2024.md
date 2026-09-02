@@ -1407,4 +1407,3 @@ Baseline invariants PASS: task dependency states; TASK-043 command-gate order; n
 Verifier/runtime error: NONE
 Production suite semantic change before RED: NO
 ```
-

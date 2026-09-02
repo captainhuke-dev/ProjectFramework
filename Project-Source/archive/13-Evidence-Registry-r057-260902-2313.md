@@ -5,11 +5,11 @@ project_name: "ProjectFramework"
 document_id: "EVIDENCE-REGISTRY-001"
 document_type: "EVIDENCE_REGISTRY"
 semantic_slot: "13"
-revision: 52
+revision: 57
 document_status: "ACTIVE"
 inherits_from: ["FRAMEWORK-001"]
 created_at: "2026-08-29T17:07:00+07:00"
-updated_at: "2026-09-02T20:14:00+07:00"
+updated_at: "2026-09-02T23:13:29+07:00"
 created_by: "ACTOR-001"
 created_by_instance: "INST-001"
 epistemic_status: "VERIFIED"
@@ -1366,4 +1366,124 @@ Task order: TASK-028 → TASK-032
 Scenario reservation: 357–380
 Implementation: NOT_STARTED
 Publication: NOT_AUTHORIZED
+```
+
+## EVD-055 — TASK-028/TASK-032 implementation-plan checkpoint
+
+- **Evidence Type:** IMPLEMENTATION_PLAN_SELF_REVIEW + GIT_COMMIT_OBSERVATION
+- **Captured At:** 2026-09-02T20:19:00+07:00
+- **Captured By Actor / Instance:** ACTOR-002 / INST-001
+- **Source Reference:** approved suite design; implementation plan; plan self-review
+- **Artifact Path:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
+- **Artifact Hash:** plan commit `7ec4d1b`; design `181c715`; Goal checkpoint `b3cdac1`
+- **Supports:** `CHG-055`, `ACT-019`, `OUT-007`, `AUTH-007`, `ENV-007`
+- **Epistemic Status:** VERIFIED
+
+```text
+Plan self-review: 13/13 PASS
+Execution mode: INLINE / executing-plans under persistent Goal
+Task order: TASK-028 → TASK-032
+TDD RED next: scenarios 357–380 before production Framework semantics
+Final acceptance: cumulative AFFECTED + one RELEASE_FULL on unchanged Framework 1.13.0 candidate
+Publication authority: NOT_GRANTED
+```
+
+## EVD-056 — TASK-028/TASK-032 TDD RED regression contract
+
+- **Evidence Type:** TDD_RED + PRESSURE_SCENARIO_CONTRACT + STRUCTURAL_BASELINE
+- **Captured At:** 2026-09-02T20:24:00+07:00
+- **Captured By Actor / Instance:** ACTOR-002 / INST-001
+- **Source Reference:** approved suite spec/plan; `Framework-Source/tests/pressure-scenarios.md`; scratch structural verifier `.worktrees/.task028032-scratch/task028032_structural.py`
+- **Artifact Path:** scenarios `357–380`; suite structural verifier output
+- **Supports:** `CHG-056`, `ACT-019`, `OUT-007`, `AUTH-007`, `ENV-007`
+- **Epistemic Status:** VERIFIED
+
+```text
+Scenario numbering: 1–380 contiguous/unique
+Suite scenarios: 357–380 present
+RED result: TASK028032_STRUCTURAL 14/40 PASS / 26 expected failures
+Expected failures: Framework 1.13.0 identity/amendment; [Project Audit] registry/order/read-only/health/categories/bounded-output/finding routing; TASK-032 repair contract/Risk-AUTH/rollback/re-audit; starter/skeleton/migration propagation
+Baseline invariants PASS: task dependency states; TASK-043 command-gate order; no repair command; no runtime artifacts; mockup count 22; TASK-042/TASK-043 amendments unchanged; launchers unchanged; local Project Source pin 1.7.0; git diff hygiene
+Verifier/runtime error: NONE
+Production suite semantic change before RED: NO
+```
+
+## EVD-057 — TASK-028 focused completion and TASK-032 activation
+
+- **Evidence Type:** IMPLEMENTATION_COMMIT_OBSERVATION + FOCUSED_VERIFICATION + DEPENDENCY_GATE_TRANSITION
+- **Captured At:** 2026-09-02T22:49:48+07:00
+- **Captured By Actor / Instance:** ACTOR-002 / INST-001
+- **Source Reference:** commit `a38d514`; scratch `task028_focused.py`; suite structural verifier; clean worktree observation after MCP recovery
+- **Artifact Path:** Framework 1.13.0 TASK-028 normative surfaces; `docs/superpowers/PROJECT-TASKS.md`; active Project Source checkpoint
+- **Artifact Hash:** TASK-028 implementation `a38d514`
+- **Supports:** `CHG-057`, TASK-028 DONE, TASK-032 READY/IN_PROGRESS, ACT-019 continuation
+- **Epistemic Status:** VERIFIED
+
+```text
+TASK-028 implementation commit: a38d514
+TASK028_FOCUSED: 23/23 PASS
+Suite structural after TASK-028: 32/40 PASS
+Remaining structural failures: 6 TASK-032 contract checks + 2 final starter/skeleton propagation checks
+[Project Audit] Registered Command: PRESENT / strict order verified
+Audit mutation boundary: READ_ONLY / NO_AUTO_FIX
+TASK-042/TASK-043 preservation: PASS
+Runtime/CLI artifacts: NONE
+TASK-032 before checkpoint: TODO / WAITING
+TASK-032 after checkpoint: IN_PROGRESS / READY / TASK-028 dependency SATISFIED
+OUT-007 / AUTH-007 / ACT-019 / ENV-007: ACTIVE
+Publication: NOT_AUTHORIZED / NOT_PUSHED
+```
+
+## EVD-058 — Framework 1.13.0 cumulative AFFECTED verification
+
+- **Evidence Type:** CUMULATIVE_AFFECTED + STARTER_PROPAGATION + HISTORICAL_GIT_OBJECT_PRESERVATION
+- **Captured At:** 2026-09-02T23:08:30+07:00
+- **Captured By Actor / Instance:** ACTOR-002 / INST-001
+- **Source Reference:** TASK-028 focused verifier; TASK-032 focused verifier; structural-current verifier; cumulative AFFECTED verifier; Git object comparisons against `origin/main`
+- **Artifact Path:** current Framework 1.13.0 distribution; 22 maintained Project Source starters; skeleton/mockup/README; Task/Project Source lifecycle
+- **Supports:** `CHG-058`, ACT-019 final candidate freeze, TASK-032 cumulative acceptance checkpoint
+- **Epistemic Status:** VERIFIED
+
+```text
+TASK-028 implementation: a38d514
+TASK028_FOCUSED: 23/23 PASS
+TASK-028 lifecycle checkpoint: 90d0d84
+TASK-032 implementation: dd20987
+TASK032_FOCUSED: 23/23 PASS
+TASK028032_STRUCTURAL_CURRENT: 40/40 PASS
+TASK028032_AFFECTED: 58/58 PASS
+Scenarios: 1–380 contiguous/unique
+Registered Commands: exactly 7; existing six preserved + [Project Audit]
+Starter stamps: 22/22 at Framework 1.13.0 / Schema 1.0.0
+Historical amendments: committed Git objects unchanged from origin/main except new current suite amendment
+TASK-042/TASK-043 amendments: unchanged
+Launchers: unchanged / shared-body parity / <=4500
+ProjectFramework local Project Source pin: Framework 1.7.0 / Schema 1.0.0
+Runtime/CLI/repair command/new remediation family: NONE
+Publication: NOT_AUTHORIZED / NOT_PUSHED
+Verifier correction: working-tree CRLF/LF comparison replaced by Git-object HEAD↔origin/main comparison; no production source changed for that correction
+```
+
+## EVD-059 — Pre-release candidate hygiene invalidation and correction
+
+- **Evidence Type:** CANDIDATE_PREFLIGHT + GIT_DIFF_HYGIENE + CANDIDATE_INVALIDATION_BEFORE_RELEASE_FULL
+- **Captured At:** 2026-09-02T23:13:29+07:00
+- **Captured By Actor / Instance:** ACTOR-002 / INST-001
+- **Source Reference:** clean candidate `5991c9f`; `git diff --check origin/main...HEAD`; current/archived Project Source inspection
+- **Artifact Path:** Project Source revisions and archives only; Framework-Source unchanged
+- **Artifact Hash:** invalidated candidate `5991c9fe133942703c93a579be26ecafc7c7d59e`; tree `160a36ffe552e2a10cdc98413c2994acc580c856`; Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585`
+- **Supports:** `CHG-059`; ACT-019 corrected-candidate gate
+- **Epistemic Status:** VERIFIED
+
+```text
+Candidate 5991c9f: INVALIDATED_BEFORE_RELEASE_FULL
+RELEASE_FULL on 5991c9f: NOT_RUN
+Defect class: Project Source diff hygiene only / extra EOF blank lines
+Framework-Source tree mutation: NONE
+Framework-Source tree: 61c27afad2bb794e54561e422b928fc777186585
+Affected active pre-correction: 12 r016, 15 r058, 91 r032
+Affected historical branch revisions: archived 10 r051-r054, 13 r051-r054, 15 r053-r057
+Correction: trim extra EOF blank lines; promote new active 01/03/09/10/12/13/14/15/91 revisions; preserve semantic payload/history
+Next gate: prospective full branch diff hygiene + cumulative AFFECTED reverify
+Publication: NOT_AUTHORIZED / NOT_PUSHED
 ```

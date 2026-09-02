@@ -1343,4 +1343,3 @@ Goal scope: bounded local design/plan/docs/templates/tests/verification/commit/P
 Push/publication: NOT_AUTHORIZED
 Runtime validator/scanner/auto-fix/repair bot: OUT_OF_SCOPE
 ```
-
