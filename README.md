@@ -27,10 +27,20 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.9.0**
+- Project Source Framework: **1.10.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.10.0 Project Knowledge Layer
+
+Framework `1.10.0` adds an optional Markdown-first `Project-Knowledge/` layer for reusable research synthesis and learned context while preserving `Project Knowledge ≠ Project Authority`. It lives outside `Project-Source/00–99`, is materialized only when useful/approved, and never precedes active `FRAMEWORK-001` authority resolution.
+
+Maintained Knowledge uses `README.md`, `index.md`, append-only `log.md`, and pages under `pages/`. Material synthesis requires provenance through `source_refs`; raw/source material remains source-native by default. Exact maintenance states are `CURRENT | REVIEW_DUE | STALE | CONTRADICTED | SUPERSEDED | RETIRED`.
+
+Knowledge→Governance promotion always resolves the existing canonical Project Source owner, verifies evidence, obtains applicable authority, and mutates only that owner. Meeting output remains advisory, Evidence remains distinct, TASK-026 disclosure still governs external use, Knowledge cross-links are not `REL-*`, and OpenViking preserves `PROJECT_SOURCE_AUTHORITY` versus `PROJECT_KNOWLEDGE_ADVISORY` while remaining `DERIVED_ONLY`.
+
+GREENFIELD adoption is optional/applicability-driven; Brownfield adoption is governed and never bulk-imports historical notes/chats as accepted Knowledge. Framework 1.10.0 creates no wiki/vector/runtime/MCP service or secret-value store. Maintained starter source is `Framework-Source/templates/project-knowledge/`.
 
 ## Framework 1.9.0 Portable Installation Bootstrap
 
@@ -409,7 +419,7 @@ Framework `1.2.0` also adds:
 
 ## Platform Project Instructions
 
-Current Framework `1.9.0` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
+Current Framework `1.10.0` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
 
 - **ChatGPT Projects:** copy the resolved thin block (or maintained `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` after replacing the Project Bootstrap placeholder with the verified absolute path) into **Project settings → Instructions**.
 - **Claude Projects:** use the equivalent maintained thin adapter in **Set project instructions**.
@@ -478,7 +488,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.9.0` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.10.0` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
@@ -499,7 +509,8 @@ ProjectFramework/
 │   ├── SKILL.md
 │   ├── references/
 │   ├── templates/
-│   │   └── project-source-mockup/
+│   │   ├── project-source-mockup/
+│   │   └── project-knowledge/
 │   └── tests/
 └── docs/
     └── superpowers/

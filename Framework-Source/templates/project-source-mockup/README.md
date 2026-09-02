@@ -1,10 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.9.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.10.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.10.0 Project Knowledge Semantics
+
+Optional consuming-Project `Project-Knowledge/` is maintained outside Project Source semantic slots and never becomes Project authority. When applicable/approved after `FRAMEWORK-001` resolves, use the separate `../project-knowledge/` starter source for Knowledge `README.md`, `index.md`, `log.md`, and page template. Material synthesis requires provenance; Knowledge states are maintenance states; promotion into governance requires canonical-owner evidence/authority. Knowledge links are not `REL-*`, external use follows TASK-026, and OpenViking preserves `PROJECT_SOURCE_AUTHORITY` vs `PROJECT_KNOWLEDGE_ADVISORY` while remaining `DERIVED_ONLY`.
 
 ## Framework 1.9.0 Portable Installation Bootstrap Semantics
 

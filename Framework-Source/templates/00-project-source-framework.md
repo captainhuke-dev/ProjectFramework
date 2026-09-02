@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.9.0"
+project_source_framework_version: "1.10.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -327,6 +327,13 @@ GREENFIELD Framework `1.9.0` resulting state includes both root `PROJECT-BOOTSTR
 After resulting-state verification, Core Installation may be DONE before the user confirms external Project Settings copy/paste. The installing Agent still emits a mandatory `Project Settings — Required User Handoff` containing the fixed upstream plus the **verified absolute** Project Bootstrap path and canonical Bootstrap Rule. Unresolved absolute path remains `VERIFICATION_REQUIRED`; never fabricate it.
 
 Project Settings and README are discovery layers only; `PROJECT-BOOTSTRAP.md` is locator-only; active local `FRAMEWORK-001` remains Project governance authority. Managed README maintenance owns only bytes inside the marker pair; duplicate/malformed markers fail closed. Installation does not synthesize Goal/OUT/AUTH/ENV/Meeting/disclosure/secret-value/runtime state merely because ProjectFramework was installed.
+
+
+### 5.5 Framework 1.10 Optional Project Knowledge Result
+
+After active `FRAMEWORK-001` resolves, GREENFIELD Preview MAY mark optional root `Project-Knowledge/` applicable. If approved, materialize it from maintained `templates/project-knowledge/`; if not applicable, create nothing. `Project Knowledge ≠ Project Authority`: it is outside semantic slots, requires source provenance, and never auto-promotes into canonical Project Source. Brownfield adoption is governed and never automatic.
+
+Knowledge maintenance uses exact states `CURRENT | REVIEW_DUE | STALE | CONTRADICTED | SUPERSEDED | RETIRED`, content-oriented `index.md`, append-only material-operation `log.md`, and page `source_refs`. Knowledge→Governance promotion resolves the canonical Project Source owner plus evidence/authority before mutation. TASK-026 disclosure remains independently binding; Knowledge links are not `REL-*`; OpenViking preserves `PROJECT_SOURCE_AUTHORITY` vs `PROJECT_KNOWLEDGE_ADVISORY` and stays `DERIVED_ONLY`. No secret values or wiki/vector/runtime service is introduced by this starter contract.
 
 ## 6. Truth and Uncertainty
 

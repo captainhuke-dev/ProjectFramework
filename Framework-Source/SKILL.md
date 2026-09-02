@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.9.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.10.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260831-task041.md` — latest amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
+- `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
+- `references/framework-governance-amendment-260831-task041.md` — previous amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
 - `references/framework-governance-amendment-260831-task040.md` — previous amendment: canonical `[Session]` command rename
 - `references/framework-governance-amendment-260830-task026.md` — previous amendment: External AI Context & Disclosure Governance
 - `references/framework-governance-amendment-260829-task024.md` — previous amendment: `[Meeting]` LLM Council Advisory Command
@@ -171,6 +172,40 @@ GREENFIELD install flow is canonical upstream read-through → environment disco
 The thin user-facing adapter does not remove internal `framework_source`, `remote_location`, `file_storage_locations`, `mcp_location`, `local_workspace`, dynamic branch/worktree, Project Location Binding, or `[Project Path]` semantics. Existing initialized Projects remain pinned and adopt this contract only through governed `[Project Upgrade]`.
 
 Framework installation never synthesizes Goal/Auth/ENV/Meeting/disclosure/secret-value/runtime state merely for convenience and never claims vendor settings were mutated without observation.
+
+## Framework 1.10.0 Project Knowledge Layer
+
+Framework `1.10.0` adds optional root-level `Project-Knowledge/` only when materially useful and approved. Resolve active Project authority first; Knowledge is advisory/derived and never replaces Project Source.
+
+```text
+Project Knowledge ≠ Project Authority
+Derived synthesis ≠ Evidence ≠ Governed Project truth
+```
+
+Maintained Project Knowledge uses `README.md`, `index.md`, append-only `log.md`, and pages under `pages/`. Page frontmatter includes `knowledge_page_id`, `knowledge_state`, `source_refs`, `related_project_source_refs`, `related_knowledge`, and `review_trigger`. Exact maintenance states are `CURRENT | REVIEW_DUE | STALE | CONTRADICTED | SUPERSEDED | RETIRED`; state is maintenance status, not claim truth certainty.
+
+Material synthesis requires source provenance. Raw/source material remains source-native by default. `index.md` is navigation, not ranking authority. `log.md` records bounded material `ingest | query-file | lint | maintain` operations and never becomes a raw MCP/tool transcript or private reasoning store.
+
+Knowledge operations:
+
+```text
+ingest     → source/provenance → page/link/index/log maintenance
+query-file → file reusable synthesis with the same provenance/index/log contract
+lint       → advisory maintenance findings only
+```
+
+Knowledge→Governance promotion always resolves the existing canonical Project Source home, verifies evidence, obtains applicable authority, mutates only that owner through normal governed flow, then links the governed result back to Knowledge. No automatic promotion is permitted.
+
+Integration boundaries:
+
+- `[Meeting]` output remains advisory and needs provenance/limitations before Knowledge filing.
+- `EVD-*` remains evidence; Knowledge remains reusable synthesis.
+- TASK-026 disclosure applies independently before external model/provider use of Knowledge.
+- `03` / `09` carry pointers only when Knowledge is material to current work.
+- Knowledge cross-links are not `REL-*`; Project Graph remains canonical in `92`.
+- OpenViking keeps `PROJECT_SOURCE_AUTHORITY` separate from `PROJECT_KNOWLEDGE_ADVISORY`, remains `DERIVED_ONLY` and rebuildable, and never promotes content by retrieval rank/similarity/recency/centrality.
+
+GREENFIELD Project Knowledge is optional/applicability-driven; Brownfield adoption is governed and never automatic. Actual secret values remain forbidden. This Framework contract creates no wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, validator/CLI, scheduler, or runtime automation.
 
 ## Framework 1.3.1 Registered Project Commands
 
@@ -673,6 +708,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
     Persistent `[Goal]` rule: on invocation resolve intent → `OUT-* + AUTH-*` → `ACT-* / bounded ENV-*` → persist `03/09` pointers when material; on fresh-session resume read `PROJECT-BOOTSTRAP → 00 → 01 → 03 → 09 → OUT/AUTH/ACT/ENV`, fresh-check mutable prerequisites, continue the exact safe covered action without redundant Framework-level approval, then evaluate `OUT-*` success criteria separately from `ACT-*` completion. Push/destructive/Root-Binding/disclosure boundaries remain exact opt-ins and higher-level platform/tool gates still apply.
     `[Meeting]` rule: explicit bracketed question is the default outbound payload; extra Project context is minimum-necessary + separately disclosure-authorized; secrets never leak; normalize partial/provider failures without false consensus; Council/majority/Chairman are advisory only; persist material use through `EVD-*`; Goal/ENV authority never implies external disclosure.
     External-AI disclosure rule: purpose/provider → candidate context → classify portions as `EXTERNAL_OK|EXTERNAL_REVIEW|DO_NOT_DISCLOSE|UNCLASSIFIED` → remove secrets/restricted material → minimize/redact → resolve `ELIGIBLE|LIMITED|INELIGIBLE|VERIFICATION_REQUIRED` provider eligibility → resolve bounded `AUTH-*` or exact one-off instruction → partition mixed sensitivity → send only authorized eligible subset; uncertainty fails closed and material disclosure evidence uses bounded `EVD-*` without duplicating sensitive payload.
+    Project Knowledge rule: after active Project authority resolves, use optional `Project-Knowledge/` only when applicable; maintain provenance/index/log/page state; keep Knowledge advisory; route promotion through canonical Project Source + authority; external use still follows TASK-026; OpenViking preserves `PROJECT_SOURCE_AUTHORITY` vs `PROJECT_KNOWLEDGE_ADVISORY` and remains `DERIVED_ONLY`.
 
 19. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
 20. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
@@ -689,6 +725,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 | Project-management control | use `91`; canonical `RISK/ASM/MS/OUT/DEP/CR/GATE` |
 | Project relations | use conditional `92`; canonical `REL-*` assertions keyed by `project_uuid`; late binding allowed |
 | Cross-Project OpenViking index | AI-ControlTower scope; `DERIVED_ONLY` / rebuildable; never Project authority |
+| Project Knowledge | optional Markdown-first advisory layer; provenance required; promotion uses canonical governance; never Project authority |
 | Existing custom slot 92 | `MIG-*`; preserve identity/history/references; approved relocation before standard `92` |
 | Technical design | use `40` when deeper than `06`; include workspace contract when material; do not silently code |
 | Install/deployment | use `60`; document source/runtime/persistence/recreation and resulting-state verification when material |

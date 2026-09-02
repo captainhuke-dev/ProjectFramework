@@ -25,6 +25,8 @@ Framework `1.7.0` standardizes root `PROJECT-BOOTSTRAP.md` for NEW Projects. It 
 Framework `1.8.0` registers persistent `[Goal]` without a `GOAL-*` family: Goal outcome uses `OUT-*` in conditional `91`, durable authority uses `AUTH-*` in `12`, execution uses `ACT-* / ENV-*` in `15`, `03` summarizes Goal state, and `09` carries references only with `authority_transfer: false`. No active Goal is synthesized during GREENFIELD initialization; `[Goal]` materializes `91` only when a persistent Goal becomes applicable.
 
 Framework `1.9.0` adds portable installation bootstrap: current Project Settings use `ProjectFramework Upstream` + verified absolute `Project Bootstrap`; every adopting GREENFIELD Project has exactly one managed `PROJECTFRAMEWORK-BOOTSTRAP` README fallback using `./PROJECT-BOOTSTRAP.md`; both route to locator-only root bootstrap and active `FRAMEWORK-001` authority. Core installation completion is separate from vendor-settings confirmation.
+Framework `1.10.0` adds optional root `Project-Knowledge/` outside Project Source slots for advisory/provenance-aware reusable synthesis. It is applicability-driven, never Project authority, and is created only after active `FRAMEWORK-001` plus approval; Knowledge→Governance promotion reuses canonical owners/authority and external use still follows TASK-026.
+
 ## Common YAML Header Pattern
 
 ```yaml
@@ -45,7 +47,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.9.0"
+project_source_framework_version: "1.10.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
