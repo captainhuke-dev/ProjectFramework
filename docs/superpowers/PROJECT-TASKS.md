@@ -785,7 +785,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #43 — Registered Command Strict-Interface & Contract Completeness Hardening
 
 - **ID:** `TASK-043`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework command / protocol-compliance reliability hardening
 - **depends_on:** `[TASK-042]`
 - **blocks:** `[]`
@@ -812,4 +812,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Self-Review:** `PASS` — TDD RED ordering, exact affected surfaces, gate composition, candidate freeze, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
 - **TDD RED:** scenarios `351–356` appended; cumulative numbering `1–356`; structural verifier `7/18 PASS` / expected `11` semantic failures on Framework `1.12.1`; no verifier/runtime error.
 - **Completion criteria:** A user-approved TASK-043 design defines the Strict-Interface normative rule, Command Contract Completeness Gate, composition/order with TASK-042, verified Core/SKILL drift-repair scope, no-discretion versus flexible presentation boundaries, fail-closed behavior, affected Framework surfaces, pressure scenarios, migration/backward-compatibility treatment, and proportional verification strategy before implementation begins.
-- **Exact Next Step:** Implement TASK-043 normative Strict-Interface + Command Contract Completeness Gate in Core/SKILL/amendment/release/migration, then rerun the structural verifier.
+- **Implementation Commit(s):** RED `8584951`; normative `ed9da17`; propagation `c7a7ef4`.
+- **Structural GREEN:** `TASK043_STRUCTURAL 18/18 PASS`; scenarios `1–356` contiguous/unique.
+- **Affected Verification:** `TASK043_AFFECTED 37/37 PASS`; 22/22 maintained mockup starter stamps at Framework `1.12.2`; TASK-042 preserved; command registry unchanged; local Project Source pin remains `1.7.0`; no runtime expansion.
+- **Exact Next Step:** Commit/freeze the final Framework 1.12.2 candidate, capture candidate/tree identities, then run exactly one final unchanged-candidate `RELEASE_FULL`.
