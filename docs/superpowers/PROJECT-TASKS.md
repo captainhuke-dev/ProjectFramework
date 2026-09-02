@@ -343,7 +343,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
 - **ID:** `TASK-028`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework command / Project integrity assessment
 - **depends_on:** `[]`
 - **blocks:** `[TASK-032]`
@@ -370,8 +370,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Implementation State:** TASK-028 normative command/release surfaces implemented in working tree; focused verification pending before completion commit.
-- **Exact Next Step:** run focused TASK-028 verification; commit only after TASK-028 focused GREEN.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — normative command/release surfaces committed at `a38d514`; `[Project Audit]` focused verifier `23/23 PASS`; suite structural state `32/40 PASS` with only TASK-032/final-propagation checks remaining.
+- **Implementation Commit:** `a38d514`
+- **Focused Verification:** `TASK028_FOCUSED 23/23 PASS`
+- **Completion Checkpoint Evidence:** `EVD-057 / CHG-057`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #29 — Cross-Project Impact Analysis
 
@@ -437,14 +440,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #32 — Governed Project Repair / Remediation
 
 - **ID:** `TASK-032`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework workflow / integrity remediation governance
 - **depends_on:** `[TASK-028]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** TASK-028 intentionally preserves `Audit finds ≠ Audit fixes`; ProjectFramework therefore needs a separate governed workflow for proposing and executing repairs after integrity, drift, stale-reference, binding, or continuity findings.
 - **Approved direction:** Define a repair/remediation contract that converts findings into bounded, reversible, authority-checked remediation work without automatic semantic repair.
 - **Scope:**
@@ -464,7 +467,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** WAITING on TASK-028 focused completion checkpoint; implementation plan is ready.
+- **Dependency State:** `TASK-028 SATISFIED` via implementation `a38d514` + focused `23/23 PASS` + `EVD-057`.
+- **Exact Next Step:** implement TASK-032 governed remediation semantics and run focused verification.
 
 ## Task #33 — Task Dependency & Portfolio Planning
 
