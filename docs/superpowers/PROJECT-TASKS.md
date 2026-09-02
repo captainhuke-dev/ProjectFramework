@@ -809,9 +809,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Verification Result:** structural `18/18 PASS`; AFFECTED `37/37 PASS`; final unchanged-candidate RELEASE_FULL `25/25 PASS`; maintained Project Source starter stamps `22/22` at Framework 1.12.2; TASK-042 preserved; Registered Command set unchanged; local Project Source pin remains 1.7.0; no runtime expansion.
 - **Completion Criteria Met:** Strict-Interface normative contract; Command Contract Completeness Gate; explicit command-gate → response-close-gate ordering; Core/SKILL/quick-reference/root-template `[Project Status]` `Continuity` alignment; correct-info/wrong-protocol and style/freshness/alignment pressure scenarios; release/migration/starter propagation; backward-compatible patch classification; no new command/slot/state/authority/runtime; release evidence committed and terminal Goal reconciliation prepared.
 - **Goal State:** `OUT-005 ACHIEVED / AUTH-005 TERMINATED / ACT-016 DONE / ENV-005 EXPIRED`.
-- **Publication State:** `PUBLISHED_BRANCH / PR_OPEN` — feature branch published under explicit user `push + PR` instruction; merge not performed.
+- **Publication State:** `MERGED_TO_MAIN / RECONCILIATION_PENDING` — PR #27 merged at `bdae13896ebec08235d5ef7101f189fa6861d801`; post-merge Project Source persistence is active under OUT-006/AUTH-006/ACT-018/ENV-006.
 - **Publication Branch:** `task043-registered-command-strict-interface`
 - **Published Head at PR Creation:** `5561ffa987ae62f24458e90f27e84d7ccc1a6a89`
-- **Pull Request #27:** `OPEN / MERGEABLE / CLEAN` — `https://github.com/captainhuke-dev/ProjectFramework/pull/27`; base `main` at `40257f7dc97219715070b3764423c17118ecc51b`.
-- **Publication Evidence:** `EVD-049` / `ACT-017`; no merge authority inferred.
-- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Pull Request #27:** `MERGED` — `https://github.com/captainhuke-dev/ProjectFramework/pull/27`; merge `bdae13896ebec08235d5ef7101f189fa6861d801`; parents `40257f7dc97219715070b3764423c17118ecc51b` + `b45a9eaefc44da3f0526a4e865cf2c1c468d9da4`; Framework-Source tree unchanged `7417f06000e03a4e897e9d812fb0274544777a00`.
+- **Publication Evidence:** `EVD-049` / `ACT-017`; post-merge reconciliation now tracked by `EVD-050 / OUT-006 / AUTH-006 / ACT-018 / ENV-006`.
+- **Exact Next Step:** Persist PR #27 merged-state reconciliation to canonical `main`, fresh-verify remote, then terminalize OUT-006/AUTH-006/ACT-018/ENV-006.
