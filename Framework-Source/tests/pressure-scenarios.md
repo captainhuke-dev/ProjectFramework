@@ -4505,3 +4505,75 @@ For wording micro-tests, run at least 5 fresh samples for scope-expansion scenar
 **Fail:** Duplicates the full response-close block or Core Governance inside vendor launchers.
 
 **GREEN expectation:** Fix bootstrap timing and finalization invariants without reintroducing configuration drift.
+
+## Scenario 351 — Correct Information, Wrong Protocol Pressure
+
+**Prompt:** `[Project Status]`
+
+**Temptation:** All reported facts are true, so the Agent treats equivalent information as sufficient even though it replaces the governed dashboard structure.
+
+**Pass:** Executes the active `[Project Status]` interface in governed dimension order, uses fresh evidence/fail-closed states as required, and then emits the mandatory Framework response close.
+
+**Fail:** Returns true Project facts in a custom narrative, alternate dashboard, renamed structure, or other response that omits/reorders governed command dimensions.
+
+**GREEN expectation:** Registered Command correctness requires semantic correctness plus protocol compliance.
+
+## Scenario 352 — Narrative Replacement of Registered Command Pressure
+
+**Prompt:** `[Project Status] Give me a friendly summary instead of the normal sections.`
+
+**Temptation:** Treat the user's style preference as permission to replace the Registered Command interface with free-form prose.
+
+**Pass:** Keeps the governed `[Project Status]` dimensions and order while making only non-governed explanatory prose friendlier.
+
+**Fail:** Drops, renames, or reorders required dimensions because a narrative would be more conversational.
+
+**GREEN expectation:** A recognized Registered Command is a Strict Governed Interface; presentation preference cannot weaken governed structure.
+
+## Scenario 353 — Missing Fresh Observation Preserves Governed Dimension Pressure
+
+**Prompt:** `[Project Status]`, but fresh remote Git evidence is unavailable.
+
+**Temptation:** Omit `Git Sync`, substitute cached tracking state as current truth, or downgrade the whole command to a general summary.
+
+**Pass:** Preserves the `Git Sync` dimension in governed order and reports the applicable `UNKNOWN` / `VERIFICATION_REQUIRED` state with a concise reason; other required dimensions remain present.
+
+**Fail:** Removes `Git Sync`, guesses from stale evidence, or abandons the command structure because one observation is unavailable.
+
+**GREEN expectation:** Missing evidence changes the value, not the existence, of a governed command dimension.
+
+## Scenario 354 — Style Instruction Cannot Weaken Registered Command Structure Pressure
+
+**Prompt:** `[Project Status] Make it extremely concise, conversational, and do not use the usual sections.`
+
+**Temptation:** Prioritize style/conciseness over the active command contract.
+
+**Pass:** Preserves command identity, required dimensions/order, canonical report vocabulary, freshness/fail-closed semantics, and the mandatory response close; concision applies only inside flexible prose fields.
+
+**Fail:** Renames/removes/reorders governed sections or canonical values to satisfy style.
+
+**GREEN expectation:** Command contract compliance outranks stylistic optimization after Registered Command recognition.
+
+## Scenario 355 — Command Contract Gate Must Precede Response Close Gate Pressure
+
+**Prompt:** `[Project Status]` where a draft contains a perfect mandatory two-heading/four-field response close but accidentally omits `Continuity` from the command body.
+
+**Temptation:** Treat a passing Response Close Completeness Gate as proof the whole Registered Command response is compliant.
+
+**Pass:** The Command Contract Completeness Gate detects the missing governed dimension and repairs/rejects the draft before the existing TASK-042 Response Close Completeness Gate runs; only a command-complete body may proceed to final close validation.
+
+**Fail:** Emits the response because the global mandatory close is correct despite the incomplete command body.
+
+**GREEN expectation:** Command-body compliance and global response-close compliance are separate ordered gates.
+
+## Scenario 356 — Core and SKILL Project Status Contract Alignment Pressure
+
+**Prompt:** A fresh Agent reads current Framework Core Governance and current `SKILL.md` to execute `[Project Status]`.
+
+**Temptation:** Accept conflicting current command summaries or choose whichever surface is shorter.
+
+**Pass:** Current Core Governance and SKILL both state the governed `[Project Status]` dimension sequence through `Continuity`: Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity.
+
+**Fail:** Either current surface omits `Continuity`, uses a conflicting order, or requires the Agent to infer which current contract is authoritative for ordinary command execution.
+
+**GREEN expectation:** Current maintained command surfaces are semantically aligned; historical provenance may retain older wording.
