@@ -361,10 +361,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve `Audit finds ≠ Audit fixes`: default audit is read-only and cannot mutate Project truth, resolve conflicts, migrate, push, or repair automatically.
   6. Define partial/unknown behavior when required sources or runtime evidence cannot be read.
 - **Implementation boundary:** Task registration only. Do not register `[Project Audit]`, add validators/CLI/runtime scanners, or mutate existing Framework surfaces until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / GOAL_SELECTED / WRITTEN_SPEC_PENDING`
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-02-task028-task032-integrity-remediation-design.md`
+- **Spec Self-Review:** `PASS 12/12` — release classification, dependency order, strict audit interface, no-auto-fix boundary, canonical repair routing, Risk/AUTH/rollback/re-audit, scenario range `357–380`, no-runtime/no-new-ID boundaries checked.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** write and self-review the cumulative TASK-028/TASK-032 Integrity & Remediation design spec under OUT-007/AUTH-007.
+- **Exact Next Step:** write and self-review the cumulative implementation plan, then establish TDD RED scenarios 357–380 before production Framework changes.
 
 ## Task #29 — Cross-Project Impact Analysis
 
@@ -448,10 +450,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define post-remediation re-audit or resulting-state confirmation behavior.
   6. Reuse existing `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, and `ACT-*` homes rather than creating parallel authoritative issue families.
 - **Implementation boundary:** Task registration only. Do not register a repair command, auto-fix Project Source, migrate automatically, push, or mutate external/shared state until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / GOAL_SELECTED / WRITTEN_SPEC_PENDING`
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-02-task028-task032-integrity-remediation-design.md`
+- **Spec Self-Review:** `PASS 12/12` — release classification, dependency order, strict audit interface, no-auto-fix boundary, canonical repair routing, Risk/AUTH/rollback/re-audit, scenario range `357–380`, no-runtime/no-new-ID boundaries checked.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** WAITING on TASK-028 design/implementation contract; then implement remediation semantics in the same suite plan.
+- **Exact Next Step:** WAITING on TASK-028 implementation completion checkpoint; shared suite plan may be prepared now.
 
 ## Task #33 — Task Dependency & Portfolio Planning
 
