@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.10.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.12.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -817,3 +817,51 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 - archive-dependent Current Truth;
 - guessing facts/secrets/provenance;
 - claiming completion without risk-appropriate verification.
+
+## Framework 1.12.0 Task Dependency & Portfolio Planning
+
+When a durable Task source declares planning metadata, use exactly `depends_on`, `blocks`, `enables`, `parallelizable_with`, `priority`, and `readiness`. Binding invariants: `Task readiness ≠ Task lifecycle status`; `Recommended order ≠ execution authority`. Priority vocabulary is `CRITICAL | HIGH | NORMAL | LOW | UNSET`; readiness vocabulary is `READY | WAITING | BLOCKED | UNKNOWN`.
+
+Never infer dependency from Task number/proximity. Readiness is separate from lifecycle (`TODO | IN_PROGRESS | DONE`) and authority. `Task dependency metadata ≠ Project-management DEP-* objects`; do not mirror Task edges into `91` automatically. Cycles, unknown references, stale/superseded dependency targets, contradictory parallel declarations, or unsupported READY claims fail closed to explicit review. Recommended order is advisory and never auto-starts work.
+
+TASK-033 adds no scheduler, queue daemon, agent orchestrator, or background executor.
+
+## Framework 1.12.0 Project Tool / MCP Execution Profile
+
+`Project-Execution/` is optional/applicability-driven and outside Project Source semantic slots. TASK-027 maintains `README.md` + `tools.md` under `templates/project-execution/`.
+
+Canonical tool selection policy: `PRIMARY`/`primary_tool`, `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, `fallback_order`, `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`. Tool selection policy ≠ Tool availability ≠ Location ≠ Authority; Tool/MCP profile ≠ permission to mutate.
+
+Resolve authority/location first, then tool policy, then actual availability/authentication/bound-target identity, then normal AUTH/Risk/shared-state/platform gates. `ORDERED_ALLOW_LIST` is deterministic; `NONE` means no substitute. `READ_ONLY_DIAGNOSTIC_ONLY` permits bounded diagnostics only. Connected/recent tools, MCP workspace IDs, UI handles, and ranking do not create eligibility or authority.
+
+`PROJECT-BOOTSTRAP.md` remains authority discovery; Project-Execution policy is routed only after active `FRAMEWORK-001` resolves. Credentials/secret values are prohibited. Brownfield never auto-adopts policy. TASK-027 adds no MCP router, automatic failover, `.lnwjud` mutation, daemon, or runtime tool selection system.
+
+## Framework 1.12.0 Agent / Model Capability Profile
+
+`Project-Execution/capabilities.md` defines vendor-neutral work eligibility using `REASONING | CODING | RESEARCH | REVIEW | COUNCIL`, availability `FULL | DEGRADED | UNAVAILABLE | UNKNOWN`, provider scope `LOCAL_ONLY | LOCAL_OR_EXTERNAL | EXTERNAL_ALLOWED`, and `independent_review: REQUIRED | OPTIONAL | NOT_REQUIRED`.
+
+`Capability ≠ Authority`; Capability eligibility ≠ Tool eligibility; provider availability ≠ disclosure permission. Compose capability rules with TASK-027 tool eligibility, TASK-026 external disclosure/provider rules, and existing AUTH/Risk/shared-state gates. `DEGRADED` with `DEGRADED_ALLOWED` narrows scope only; `UNKNOWN` fails closed for materially sensitive required capability.
+
+Independent review is evidence-backed: never fabricate reviewer capability/availability/independence or silently waive a REQUIRED review. `[Meeting]` remains TASK-024 advisory behavior. Brownfield never infers capability rules from prior model usage. TASK-034 adds no model router, provider integration, benchmark runner, auto-delegation, or permission engine.
+
+## Framework 1.12.0 Project Release / Publication Contract
+
+Use orthogonal publication dimensions and preserve `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED`. Canonical values include `Implementation: NOT_DONE | DONE`, `Integration: NOT_APPLICABLE | NOT_MERGED | MERGED`, `Repository Publication: NOT_APPLICABLE | NOT_PUSHED | PUSHED`, `Release: NOT_APPLICABLE | NOT_RELEASED | RELEASED`, `Artifact Publication: NOT_APPLICABLE | NOT_PUBLISHED | PUBLISHED`, and `Deployment: NOT_APPLICABLE | NOT_DEPLOYED | DEPLOYED`.
+
+A Release Candidate is state-bound to source/repository identity, commit/ref when Git-backed, tree/content digest when material, version/schema and verification evidence/prerequisites. Candidate/material-assumption change selectively invalidates evidence. Never fabricate tag/SHA identity.
+
+`RELEASE_FULL` verifies the candidate and publishes nothing. `INTEGRATION_GATE` re-resolves Base Freshness/evidence immediately before shared-state integration/publication. Still-valid evidence may be reused after exact verified transport; `commit ≠ push` remains binding.
+
+Report partial states dimension-by-dimension. External publication followed by failed required Project reconciliation is `PERSISTENCE_PENDING`, not false local completion. Preserve rollback/retraction/supersession history; never silently delete/overwrite tags/artifacts to clean history. Optional assurance stays optional unless Project requirements say otherwise.
+
+Implementation authority ≠ publication authority. TASK-035 adds no CI/CD, release bot, package publisher, deployment automation, tag automation, or remote push.
+
+## Framework 1.12.0 Security & Trust Boundary Contract
+
+`Project-Execution/trust.md` uses `TRUSTED | LIMITED_TRUST | UNTRUSTED | PRIVILEGED | EXTERNAL | UNKNOWN`. `Trust classification ≠ Authority`; trusted ≠ secret disclosure permission; Tool eligibility ≠ trust equivalence; Capability ≠ trust ≠ authority.
+
+Crossing types include `DATA_READ`, `DATA_WRITE`, `CODE_EXECUTION`, `ARTIFACT_TRANSFER`, `EXTERNAL_DISCLOSURE`, and `PRIVILEGED_OPERATION`. Evaluate source/destination trust + provenance/classification + TASK-027 tool eligibility + TASK-034 capability eligibility + TASK-026 disclosure/secret rules + AUTH/Risk/Decision/shared-state gates. `UNKNOWN` for materially sensitive actions is `VERIFICATION_REQUIRED` / fail closed.
+
+`PRIVILEGED` means elevated consequence, not broader permission. Material `PRIVILEGED_OPERATION` needs explicit authority and applicable review/risk/evidence. External/untrusted/limited/unknown code or artifacts do not become trusted by workspace presence. `17 Secret Reference Registry` remains reference-only; actual secret values never belong in trust policy.
+
+TASK-035 publication truth remains factual: PUSHED/PUBLISHED/DEPLOYED never proves trust or grants Runtime authority. Brownfield never infers trust from successful prior use. No scanner, sandbox, policy engine, runtime isolation, supply-chain service, secret store, or automatic privileged executor is created.

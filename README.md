@@ -27,7 +27,7 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.10.0**
+- Project Source Framework: **1.12.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
@@ -419,7 +419,7 @@ Framework `1.2.0` also adds:
 
 ## Platform Project Instructions
 
-Current Framework `1.10.0` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
+Current Framework `1.12.0` maintained ChatGPT/Claude instruction artifacts are **thin vendor bootstrap adapters**. They carry the same two-binding semantics and route into `PROJECT-BOOTSTRAP.md`; they do not duplicate Core Governance.
 
 - **ChatGPT Projects:** copy the resolved thin block (or maintained `Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md` after replacing the Project Bootstrap placeholder with the verified absolute path) into **Project settings → Instructions**.
 - **Claude Projects:** use the equivalent maintained thin adapter in **Set project instructions**.
@@ -488,7 +488,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.10.0` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.12.0` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
@@ -523,3 +523,34 @@ Use `Framework-Source/` as the reusable framework package. Files under `docs/sup
 ## Supersession Note
 
 Framework `1.6.0` extends the concept-first direction of earlier releases with federated Project relation governance while preserving Project-local authority. Git tags, exact commit provenance, branch protection, executable validators, graph/index runtimes, CI enforcement, container/runtime enforcement, and other automation remain optional assurance or separate explicitly requested implementation scope rather than prerequisites for normal Framework usability.
+
+
+## Framework 1.12.0 Task Dependency Planning
+
+Framework 1.12.0 Set 1 starts with explicit Task dependency/readiness metadata so execution order is never inferred from Task number. Durable Task sources may declare `depends_on`, `blocks`, `enables`, `parallelizable_with`, `priority: CRITICAL | HIGH | NORMAL | LOW | UNSET`, and `readiness: READY | WAITING | BLOCKED | UNKNOWN`.
+
+Task readiness is not Task lifecycle, and Task planning metadata is not `DEP-*` Project-management authority. Recommended order remains advisory; no scheduler or automatic Task execution is introduced.
+
+## Framework 1.12.0 Project Tool / MCP Execution Profile
+
+Projects may adopt optional root `Project-Execution/` policy after Project authority resolves. TASK-027 adds `README.md` + `tools.md` to declare a PRIMARY tool/MCP, allow/disallow lists, deterministic `NONE | ORDERED_ALLOW_LIST` fallback, and `FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY` failure policy.
+
+The profile constrains eligible execution routes; it does not grant authority, change Project Location Binding, identify the current branch/worktree, store credentials, or bypass push/destructive/secret/disclosure gates. GREENFIELD/Brownfield adoption is explicit/applicability-driven. No runtime MCP router or automatic tool switcher is introduced.
+
+## Framework 1.12.0 Agent / Model Capability Profile
+
+Optional `Project-Execution/capabilities.md` defines vendor-neutral capability requirements (`REASONING`, `CODING`, `RESEARCH`, `REVIEW`, `COUNCIL`), execution availability (`FULL | DEGRADED | UNAVAILABLE | UNKNOWN`), local/external provider scope, and independent-review requirements.
+
+Capability eligibility is separate from Tool/MCP eligibility and never grants authority. External providers still follow TASK-026; `[Meeting]` remains advisory. No model router/provider runtime or automatic delegation is introduced.
+
+## Framework 1.12.0 Release / Publication Contract
+
+ProjectFramework now distinguishes implementation, integration, repository publication, release, artifact publication, and deployment as independent facts. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED`; local implementation authority never grants publication/deployment authority.
+
+Release Candidate evidence is bound to actual source/tree/prerequisites. `RELEASE_FULL` verifies candidates; `INTEGRATION_GATE` checks mutable target freshness before shared-state actions. Partial publication and `PERSISTENCE_PENDING` are reported without rewriting observed external truth. No CI/CD or publication automation is introduced.
+
+## Framework 1.12.0 Security & Trust Boundary Contract
+
+Optional `Project-Execution/trust.md` classifies applicable surfaces as `TRUSTED | LIMITED_TRUST | UNTRUSTED | PRIVILEGED | EXTERNAL | UNKNOWN` and constrains data/code/artifact/execution crossings. Trust classification never grants authority or secret disclosure; UNKNOWN materially sensitive crossings fail closed.
+
+Trust policy composes with TASK-027 tools, TASK-034 capabilities, TASK-026 disclosure/secrets, and TASK-035 publication truth. No scanner, sandbox, policy engine, runtime isolation, secret store, or privileged-operation automation is introduced.

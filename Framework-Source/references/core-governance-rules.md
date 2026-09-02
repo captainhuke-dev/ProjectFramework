@@ -1664,3 +1664,125 @@ COMPLETE PARTIAL BLOCKED FAILED
 ```
 
 Do not claim `DONE`, `DEPLOYED`, `PUSHED`, `MIGRATED`, or `VALID` unless verification appropriate to the risk has passed.
+
+## Framework 1.12.0 Set 1 Foundation Contracts
+
+### Task Dependency & Portfolio Planning (TASK-033)
+
+Development/backlog Task sequencing uses explicit Task-source planning metadata when applicable:
+
+```text
+depends_on
+blocks
+enables
+parallelizable_with
+priority: CRITICAL | HIGH | NORMAL | LOW | UNSET
+readiness: READY | WAITING | BLOCKED | UNKNOWN
+```
+
+`Task dependency metadata ≠ Project-management DEP-* objects`; `Task readiness ≠ Task lifecycle status`; `Recommended order ≠ execution authority`; Task number/proximity never establishes dependency evidence.
+
+`READY` means declared required Task dependencies are satisfied and no known blocker prevents start. `WAITING` means an explicit sequencing prerequisite remains. `BLOCKED` means a material blocker prevents work. `UNKNOWN` means dependency/readiness evidence is unresolved, contradictory, cyclic, stale, or references unknown Tasks. A Task may be `TODO + READY`; `READY` never means `DONE`.
+
+Priority is advisory after dependency/safety constraints and never bypasses `depends_on`, authority, binding, Risk, review, or user decisions. Validation surfaces self-dependency, cycles, unknown references, stale/superseded targets, contradictory `parallelizable_with`, and unsupported READY claims; it never auto-repairs the graph.
+
+`DEP-*` in `91` remains the canonical Project-management dependency object family and is never synthesized merely from Task planning edges. Agents may present recommended ordering/parallel groups, but TASK-033 creates no scheduler, queue daemon, automatic task executor, or agent orchestrator.
+
+### Project Tool / MCP Execution Profile (TASK-027)
+
+When applicable, Framework `1.12.0` supports optional `<Project-Root>/Project-Execution/` outside Project Source semantic slots. TASK-027 owns the initial `Project-Execution/README.md` and `tools.md` contract.
+
+```text
+Tool selection policy ≠ Tool availability ≠ Location ≠ Authority
+Tool/MCP profile ≠ permission to mutate
+```
+
+`tools.md` declares `primary_tool` (`PRIMARY`), `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, deterministic `fallback_order`, and `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`. `disallowed_tools` wins. `NONE` permits no automatic substitute. `ORDERED_ALLOW_LIST` never expands from recency/ranking/connected status.
+
+Execution resolution is Project authority/location/binding → applicable tool profile → action/tool eligibility → availability/authentication/bound-target verification → PRIMARY or declared fallback → ordinary AUTH/Risk/shared-state/platform gates. An allowed tool cannot override a wrong/unverified Project target; a correctly connected but disallowed tool is not eligible.
+
+`READ_ONLY_DIAGNOSTIC_ONLY` permits only bounded read-only diagnosis needed to explain or repair availability/identity; it never permits Material mutation through an undeclared substitute. Unavailable, unauthenticated, stale, renamed, or target-unverified tools use the declared fallback/failure policy and `VERIFICATION_REQUIRED` where identity cannot be proven.
+
+`PROJECT-BOOTSTRAP.md` resolves active Project authority first; it does not embed full tool policy. `01`/task routing may point to `Project-Execution/tools.md` after authority resolves. The profile stores no credentials/secret values and creates no MCP router, automatic failover, `.lnwjud` mutation, daemon, vendor tool routing, or authority.
+
+GREENFIELD/Brownfield adoption is applicability-driven and governed; prior tool use/vendor settings never auto-create restrictive/permissive policy.
+
+### Agent / Model Capability Profile (TASK-034)
+
+Framework `1.12.0` extends optional `Project-Execution/` with `capabilities.md`. Canonical capability classes are `REASONING | CODING | RESEARCH | REVIEW | COUNCIL`; execution-time capability availability is `FULL | DEGRADED | UNAVAILABLE | UNKNOWN`.
+
+```text
+Capability ≠ Authority
+Capability eligibility ≠ Tool eligibility
+Provider availability ≠ Disclosure permission
+Model quality/ranking ≠ Project truth
+```
+
+A capability profile declares work-class `required_capabilities`, `preferred_capabilities`, `provider_scope: LOCAL_ONLY | LOCAL_OR_EXTERNAL | EXTERNAL_ALLOWED`, `independent_review: REQUIRED | OPTIONAL | NOT_REQUIRED`, `tool_profile_ref`, and `failure_mode: FAIL_CLOSED | DEGRADED_ALLOWED`.
+
+`DEGRADED_ALLOWED` permits only the genuinely supported bounded subset; required review, Risk, authority, trust, tool, and disclosure gates remain. `UNKNOWN` fails closed for materially sensitive capability requirements. An allowed tool never proves model capability, and a capable model is not executable without an eligible tool path.
+
+External provider use continues through TASK-026 disclosure/provider eligibility/minimization/redaction/secret rules. `[Meeting]` remains TASK-024 advisory behavior even when a `MEETING_COUNCIL` work class requires `COUNCIL + REASONING`.
+
+`independent_review: REQUIRED` keeps a completion/integration gate until an eligible reviewer distinct from the primary producing instance is observed where practicable. Reviewer capability, availability, and independence are never fabricated; an allowed user waiver is action-specific evidence rather than a silent standing-profile rewrite.
+
+The profile is optional/applicability-driven for GREENFIELD/Brownfield and adds no model router, provider API integration, benchmark runner, automatic delegation, council runtime, or permission engine.
+
+### Project Release / Publication Contract (TASK-035)
+
+Framework `1.12.0` reports publication truth through orthogonal dimensions rather than one linear lifecycle.
+
+```text
+Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED
+Implementation authority ≠ publication authority
+Release evidence ≠ deployment evidence
+```
+
+When material, dimensions are:
+
+```text
+Implementation: NOT_DONE | DONE
+Integration: NOT_APPLICABLE | NOT_MERGED | MERGED
+Repository Publication: NOT_APPLICABLE | NOT_PUSHED | PUSHED
+Release: NOT_APPLICABLE | NOT_RELEASED | RELEASED
+Artifact Publication: NOT_APPLICABLE | NOT_PUBLISHED | PUBLISHED
+Deployment: NOT_APPLICABLE | NOT_DEPLOYED | DEPLOYED
+```
+
+These values create no new Stable-ID family. `PUSHED` does not imply `MERGED`; `MERGED` does not imply `RELEASED`; release/artifact/deployment truth stays independent.
+
+A material Release Candidate is evidence-bound to source/repository identity, candidate commit/ref for Git-backed work, candidate tree/content digest when material, version/release identifier, schema compatibility where applicable, verification evidence, and material assumptions. Candidate/source/tree/material-assumption change invalidates prior evidence selectively under progressive verification rules; exact Git/tag provenance is never fabricated.
+
+`RELEASE_FULL` verifies the candidate/distribution and performs no shared-state publication. `INTEGRATION_GATE` immediately precedes integration/publication dependent on a mutable target and re-resolves Base Freshness/evidence validity. Exact verified transport may use resulting-state confirmation without unconditional full rerun when candidate evidence remains valid.
+
+Local implementation/commit authority never implies push; push never implies merge; merge never implies release/artifact publication; release never implies deployment. `[Goal]` includes publication only when explicitly scoped; `commit ≠ push` remains binding.
+
+Material facts reuse `10`/`13 EVD-*`/`03`/`09`/`15`/`91` as applicable. Repository-native releases/tags/registries/deployments are source-native evidence, not Project authority by themselves.
+
+Partial publication reports each dimension. External success followed by failed required local reconciliation uses `PERSISTENCE_PENDING` while retaining the observed external truth. Rollback, retraction, and supersession preserve history; unsupported retraction is recorded rather than fabricated. Immutable tags/signatures/checksums/attestations/protected branches are optional assurance unless Project requirements make them mandatory.
+
+TASK-035 creates no CI/CD, release bot, tag/package publisher, deployment automation, or remote push.
+
+### Security & Trust Boundary Contract (TASK-037)
+
+Framework `1.12.0` completes optional `Project-Execution/` with `trust.md` and canonical trust classes `TRUSTED | LIMITED_TRUST | UNTRUSTED | PRIVILEGED | EXTERNAL | UNKNOWN`.
+
+```text
+Trust classification ≠ Authority
+Trusted surface ≠ permission to disclose secrets
+Tool eligibility ≠ trust equivalence
+Capability ≠ trust ≠ authority
+UNKNOWN trust for materially sensitive action → VERIFICATION_REQUIRED / fail closed
+```
+
+`trust.md` declares surface type, trust class, source-native pointer, allowed crossings, and review trigger. Crossing types include `DATA_READ`, `DATA_WRITE`, `CODE_EXECUTION`, `ARTIFACT_TRANSFER`, `EXTERNAL_DISCLOSURE`, and `PRIVILEGED_OPERATION`.
+
+Material crossing resolution composes source/destination trust, crossing type, provenance/classification, TASK-027 Tool/MCP eligibility, TASK-034 capability eligibility, TASK-026 disclosure/secret rules when external context is involved, then existing AUTH/Risk/Decision/shared-state gates. No component subsumes another.
+
+`PRIVILEGED` means elevated consequence, not more authority/trust. Material `PRIVILEGED_OPERATION` requires explicit authority plus applicable risk/review/evidence. `EXTERNAL` stays outside Project-local control and requires purpose-specific disclosure/authority review. `UNKNOWN` or materially contradictory trust for sensitive actions fails closed; recency/ranking/similarity never resolves trust.
+
+Actual secret values remain prohibited; `17 Secret Reference Registry` stays reference-only. Code/artifacts/dependencies from `UNTRUSTED`, `LIMITED_TRUST`, `EXTERNAL`, or `UNKNOWN` do not become trusted because they exist in the workspace. Provenance/review remains proportional to impact.
+
+TASK-035 publication dimensions remain factual lifecycle state: `PUSHED`, `PUBLISHED`, or `DEPLOYED` never prove trust/authority/provenance sufficiency. Signatures/tags may increase optional assurance but do not replace trust/authority evaluation.
+
+`PROJECT-BOOTSTRAP.md` resolves Project authority first; Project-Execution policy is read afterward when applicable. GREENFIELD/Brownfield never invent trust from prior successful use. TASK-037 adds no scanner, sandbox enforcement, policy engine, runtime isolation, supply-chain automation, external security service, secret store, or privileged-operation executor.

@@ -47,7 +47,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.10.0"
+project_source_framework_version: "1.12.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -850,3 +850,11 @@ Assertion state is exactly `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`. Rec
 Project relation endpoints use immutable `project_uuid`. `PARENT_OF` / `CHILD_OF` is semantic topology and does not imply nested folders/repositories/workspaces or transfer Repository/File Storage/Local Workspace Binding, current branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime Location, Authority, or Risk approval.
 
 AI-ControlTower owns cross-Project indexing/orchestration. OpenViking is `DERIVED_ONLY` and `REBUILDABLE`; it may normalize/query/correlate/index and surface stale/orphan/conflicting derived state, but Project Source wins on disagreement. Reuse existing `DRIFT-*`, `CONFLICT-*`, and `MIG-*` families. No OpenViking credentials/runtime configuration belongs in this document.
+
+Framework `1.12.0` optional Project Execution Profile: when applicable, `Project-Execution/` is a governed root-level policy surface outside Project Source slots. TASK-027 `tools.md` declares eligible execution tools/fallback/failure behavior only after active Project authority resolves; Tool policy ≠ Location ≠ Authority and Brownfield never auto-adopts. No credentials or runtime router are created.
+
+Framework `1.12.0` Agent / Model Capability Profile: optional `Project-Execution/capabilities.md` constrains required reasoning/coding/research/review/council capability and local/external/review eligibility after authority resolution. Capability ≠ Authority; Brownfield never infers policy from prior model use and no model router/runtime is created.
+
+Framework `1.12.0` Release / Publication Contract: current reporting keeps Implementation/Integration/Repository Publication/Release/Artifact Publication/Deployment orthogonal; Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED. RC evidence is state-bound; RELEASE_FULL verifies candidates and INTEGRATION_GATE checks mutable targets. Publication authority remains separate and no CI/CD is created.
+
+Framework `1.12.0` Security & Trust Boundary Contract adds optional `Project-Execution/trust.md` after tools/capabilities. Trust classification ≠ Authority; UNKNOWN materially sensitive crossings fail closed; secrets/disclosure remain TASK-026/17-owned.

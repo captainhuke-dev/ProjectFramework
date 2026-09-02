@@ -4,7 +4,36 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.9.0 → 1.10.0 (current)
+## 1.10.0 → 1.12.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.12.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-037 Security & Trust Boundary Contract.
+- TASK-033 adds explicit Task dependency/readiness/priority metadata without creating Project-management `DEP-*`, scheduling, or execution authority.
+- TASK-027 adds optional `Project-Execution/README.md` + `tools.md` for deterministic Tool/MCP eligibility/fallback/failure policy; Tool policy ≠ Location ≠ Authority.
+- TASK-034 adds optional `Project-Execution/capabilities.md` for vendor-neutral capability/provider/review eligibility; Capability ≠ Authority and external use still follows TASK-026.
+- TASK-035 adds orthogonal Implementation/Integration/Repository Publication/Release/Artifact Publication/Deployment dimensions plus RC/evidence/integration semantics; `commit ≠ push` and publication authority remains separate.
+- TASK-037 adds optional `Project-Execution/trust.md` for trust/crossing/privileged/UNKNOWN fail-closed governance; TASK-026 and `17 Secret Reference Registry` remain canonical for disclosure/secrets.
+- Scenarios `289–338` cover Set 1 behavior; maintained Project Source starter stamps become Framework `1.12.0` / Schema `1.0.0`.
+- ChatGPT/Claude thin launchers remain unchanged; no scheduler/router/provider/CI-CD/scanner/policy-engine/runtime enforcement is added.
+
+### Upgrade checklist
+
+1. Run `[Project Upgrade]`; preserve the initialized Project's local Framework/Schema pin until governed promotion.
+2. Assess Task dependency metadata separately from Project-management `DEP-*`; do not infer Task edges from numbering/proximity.
+3. Evaluate whether `Project-Execution/` is applicable. Do not create default allow-all/restrictive tools, model capability, or trust profiles without approved facts.
+4. If tool policy is adopted, verify Project authority/location first; then apply deterministic PRIMARY/allow/disallow/fallback/failure behavior. Store no credentials/secrets.
+5. If capability policy is adopted, keep Tool eligibility, model capability, provider/disclosure eligibility, and authority separate. Required independent review remains evidence-backed.
+6. Map existing release practices to orthogonal publication dimensions without rewriting historical facts or inventing RC identities/tags/approvals.
+7. If trust policy is adopted, classify only evidenced surfaces; UNKNOWN sensitive crossings fail closed. Prior successful use never proves trust.
+8. Preserve TASK-026 disclosure/minimization/secret prohibitions and `17 Secret Reference Registry` reference-only semantics across external/tool/model/trust flows.
+9. Do not auto-create routers, schedulers, CI/CD, release bots, deployment automation, scanners, policy engines, secret stores, or runtime enforcement.
+10. Verify current starter stamps, Project-Execution templates, scenario coverage, local pin/history preservation, and affected Framework surfaces; run one final unchanged-candidate `RELEASE_FULL`.
+11. Direct-to-Latest remains valid: older Projects assess cumulative current→1.12.0 semantics without mandatory replay of intermediate releases.
+
+---
+
+## 1.9.0 → 1.10.0
 
 ### Affected distribution surfaces
 

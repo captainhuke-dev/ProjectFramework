@@ -303,8 +303,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #27 — Project Tool / MCP Execution Profile
 
 - **ID:** `TASK-027`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / Project-scoped execution-tool governance
+- **depends_on:** `[TASK-033]`
+- **blocks:** `[TASK-034]`
+- **enables:** `[TASK-034]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Project tool/MCP preferences such as `CEO-only` can currently exist only as transient chat instructions or product-specific configuration. The Project needs a durable vendor-neutral contract declaring which execution tools are primary, allowed, disallowed, or eligible as fallback.
 - **Approved direction:** Define a Project Tool / MCP Execution Profile that can express a primary MCP/tool, fallback policy, fail-closed behavior, and allowed/disallowed execution capabilities without depending on a vendor UI setting.
 - **Scope:**
@@ -315,10 +321,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define GREENFIELD defaults and Brownfield migration so existing Projects do not silently acquire restrictive or permissive tool policy.
   6. Preserve explicit user/shared-state gates such as push, destructive actions, secrets, and governed approvals regardless of tool profile.
 - **Implementation boundary:** Task registration only. Do not modify `.lnwjud`, MCP runtime, project profiles, tool routing, launchers, or existing Projects until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_SET1_DIRECTION / WRITTEN_SPEC_APPROVED`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task027-project-tool-execution-profile-design.md`
+- **Design Commit:** `9b0078e`
+- **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
+- **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines execution-profile schema, authority/location separation, primary/fallback/fail behavior, bootstrap integration, Brownfield rules, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-027 is selected for development, prepare its architectural design spec before implementation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `69/69 PASS`; implementation commit `3231695`; completed under OUT-004/AUTH-004.
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
@@ -424,8 +441,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #33 — Task Dependency & Portfolio Planning
 
 - **ID:** `TASK-033`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework development workflow / backlog dependency and prioritization contract
+- **depends_on:** `[]`
+- **blocks:** `[TASK-027]`
+- **enables:** `[TASK-027]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** The durable Task source records lifecycle state but does not yet provide a standard model for Task-to-Task dependencies, blockers, enablers, parallelism, priority, or readiness across the ProjectFramework roadmap.
 - **Approved direction:** Define a bounded Task planning contract so agents can determine sequencing and safe parallel work without conflating development-task relationships with Project Source `DEP-*` management objects.
 - **Scope:**
@@ -436,16 +459,35 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define how planning should expose a recommended execution order while preserving user authority to reprioritize.
   6. Keep scheduling/automation out of scope unless separately authorized.
 - **Implementation boundary:** Task registration only. Do not add schedulers, automatic task execution, agent orchestration, or rewrite existing Task history until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.7.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_SET1_DIRECTION / WRITTEN_SPEC_APPROVED`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task033-task-dependency-portfolio-design.md`
+- **Design Commit:** `9b0078e`
+- **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
+- **TDD RED:** `SET1_RED 77/159 FAIL` expected; scenarios `1–338`; RED commit `404a75f`
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
+- **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines Task relationship vocabulary, priority/readiness, dependency validation, parallelism, stale/cycle handling, `DEP-*` separation, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-033 is selected, prepare its workflow/design spec before implementation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `54/54 PASS`; implementation commit `7da7e69`; completed under OUT-004/AUTH-004.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #34 — Agent / Model Capability Profile
 
 - **ID:** `TASK-034`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / agent and model capability governance
+- **depends_on:** `[TASK-027]`
+- **blocks:** `[TASK-035]`
+- **enables:** `[TASK-035, TASK-037]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** TASK-027 can govern which tools/MCPs a Project prefers, but ProjectFramework does not yet define which agent/model capability classes are appropriate for different work, context, disclosure, or review requirements.
 - **Approved direction:** Define a vendor-neutral Agent/Model Capability Profile while preserving the invariant `Capability ≠ Authority`.
 - **Scope:**
@@ -456,16 +498,33 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define unavailable/degraded capability and fallback behavior.
   6. Define integration boundaries with TASK-024 `[Meeting]`, TASK-026 Disclosure Governance, and TASK-027 Tool/MCP Execution Profile.
 - **Implementation boundary:** Task registration only. Do not add model routing, provider calls, automatic delegation, runtime selection, or permission grants until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_SET1_DIRECTION / WRITTEN_SPEC_APPROVED`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task034-agent-model-capability-profile-design.md`
+- **Design Commit:** `9b0078e`
+- **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
+- **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines capability vocabulary, eligibility/review rules, local/external distinctions, fallback/degraded behavior, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-034 is selected, prepare its architectural design spec before implementation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `75/75 PASS`; implementation commit `c5a3003`; completed under OUT-004/AUTH-004.
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #35 — Project Release / Publication Contract
 
 - **ID:** `TASK-035`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework release / publication lifecycle governance
+- **depends_on:** `[TASK-034]`
+- **blocks:** `[TASK-037]`
+- **enables:** `[TASK-037]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** ProjectFramework distinguishes `commit ≠ push` and has verification/integration semantics, but it does not yet define one standard lifecycle separating implementation completion, merge, remote publication, release, artifact publication, and deployment.
 - **Approved direction:** Define a release/publication contract that makes each publication state explicit and evidence-backed without making immutable tags or deployment universal prerequisites.
 - **Scope:**
@@ -476,10 +535,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define relationship with `RELEASE_FULL`, `INTEGRATION_GATE`, Change Log, and Task completion evidence.
   6. Preserve release/publication authority as separate from implementation authority.
 - **Implementation boundary:** Task registration only. Do not create CI/CD, release bots, package publishers, deployment automation, tags, or remote pushes until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.12.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_SET1_DIRECTION / WRITTEN_SPEC_APPROVED`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task035-release-publication-contract-design.md`
+- **Design Commit:** `9b0078e`
+- **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
+- **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines release/publication states, candidate identity, evidence/approval, assurance, partial/failure/rollback behavior, verification integration, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-035 is selected, prepare its release/publication design spec before implementation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Completion:** focused `66/66 PASS`; implementation commit `9a6ac1c`; completed under OUT-004/AUTH-004.
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #36 — Project Change/Event History Feed
 
@@ -504,8 +574,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #37 — Security & Trust Boundary Contract
 
 - **ID:** `TASK-037`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / Project security and trust-boundary governance
+- **depends_on:** `[TASK-035]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** TASK-026 governs outbound AI disclosure, but Project security also spans repositories, runtimes, external services, MCPs, artifacts, code execution, supply-chain inputs, and privileged environments.
 - **Approved direction:** Define a Project-level Security & Trust Boundary contract that complements existing secret/disclosure/authority rules without introducing a security runtime by implication.
 - **Scope:**
@@ -516,10 +592,29 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define integration with Repository/Local Workspace/Runtime authority, external services, MCP/tool profiles, and agent/model capability profiles.
   6. Define unknown/unclassified trust behavior as fail-closed for materially sensitive actions.
 - **Implementation boundary:** Task registration only. Do not add scanners, sandbox enforcement, policy engines, supply-chain automation, runtime isolation, or external security services until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.8.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_SET1_DIRECTION / WRITTEN_SPEC_APPROVED`
+- **Design Spec:** `docs/superpowers/specs/2026-09-01-task037-security-trust-boundary-design.md`
+- **Design Commit:** `9b0078e`
+- **Spec Suite Self-Review:** `PASS 130/130`
+- **Suite Implementation Plan:** `docs/superpowers/plans/2026-09-01-set1-foundation-suite.md`
+- **Plan Commit:** `8555e09`
+- **Plan Self-Review:** `PASS 38/38`
+- **Set 1 Suite:** `COMPLETED / OUT-004 ACHIEVED / LOCAL_VERIFIED / PUBLICATION_NOT_PUSHED`
+- **Target Release:** Framework `1.12.0` / Schema `1.0.0` / release format `3` — cumulative Set 1 target approved by suite design
 - **Completion criteria:** A user-approved design defines trust vocabulary, crossing rules, provenance/evidence, approval/fail-closed behavior, secret/disclosure separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-037 is selected, prepare its architectural design spec before implementation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Implementation State:** `COMPLETE_PENDING_CUMULATIVE_ACCEPTANCE`
+- **Focused Verification:** `123/123 PASS`
+- **Implementation Commit:** `9c7045c`
+- **Structural GREEN:** `SET1_RED 159/159 PASS`; scenarios `1–338`.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Cumulative AFFECTED:** `SET1_AFFECTED 75/75 PASS`
+- **Candidate State:** `READY_FOR_FINAL_CANDIDATE_COMMIT_AND_FREEZE`
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+- **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
+- **Publication State:** `NOT_PUSHED`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
