@@ -367,9 +367,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
 - **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
 - **Plan Self-Review:** `PASS 13/13` — TDD RED ordering, TASK-028→TASK-032 completion gate, exact affected surfaces, cumulative AFFECTED, frozen candidate, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
+- **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** add pressure scenarios 357–380 and run the structural verifier to observe TDD RED before production Framework changes.
+- **Exact Next Step:** implement `[Project Audit]` normative command/release surfaces, then run focused TASK-028 verification.
 
 ## Task #29 — Cross-Project Impact Analysis
 
@@ -459,6 +460,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
 - **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
 - **Plan Self-Review:** `PASS 13/13` — TDD RED ordering, TASK-028→TASK-032 completion gate, exact affected surfaces, cumulative AFFECTED, frozen candidate, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
+- **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
 - **Exact Next Step:** WAITING on TASK-028 focused completion checkpoint; implementation plan is ready.
