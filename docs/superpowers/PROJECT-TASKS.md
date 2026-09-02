@@ -253,7 +253,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Release Evidence Commit:** `e428eaa52de64546138fc4ca46fe84f1aa697e7f`
 - **Verification Result:** structural GREEN `68/68 PASS`; Task 2 `62/62 PASS`; Task 3 `77/77 PASS`; AFFECTED `175/175 PASS`; RELEASE_FULL `120/120 PASS`; scenarios `1–288`; 4 Knowledge templates; 22 maintained starter stamps at Framework `1.10.0` / Schema `1.0.0`.
 - **Completion Criteria Met:** optional Derived Markdown Project Knowledge layer; Knowledge≠Authority; provenance/index/log/page/lifecycle/promotion contracts; Meeting/EVD/TASK-026/03/09/92/OpenViking boundaries; GREENFIELD optionality/Brownfield safety; no runtime/CLI/vector/wiki/MCP service; final state-bound evidence committed; Goal terminalized locally.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
@@ -334,9 +335,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `69/69 PASS`; implementation commit `3231695`; completed under OUT-004/AUTH-004.
 - **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
-
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
 - **ID:** `TASK-028`
@@ -474,9 +475,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Set 1 Completion:** focused `54/54 PASS`; implementation commit `7da7e69`; completed under OUT-004/AUTH-004.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
-
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 ## Task #34 — Agent / Model Capability Profile
 
 - **ID:** `TASK-034`
@@ -511,9 +512,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `75/75 PASS`; implementation commit `c5a3003`; completed under OUT-004/AUTH-004.
 - **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
-
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 ## Task #35 — Project Release / Publication Contract
 
 - **ID:** `TASK-035`
@@ -548,9 +549,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Completion:** focused `66/66 PASS`; implementation commit `9a6ac1c`; completed under OUT-004/AUTH-004.
 - **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
-
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 ## Task #36 — Project Change/Event History Feed
 
 - **ID:** `TASK-036`
@@ -610,12 +611,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Cumulative AFFECTED:** `SET1_AFFECTED 75/75 PASS`
 - **Candidate State:** `READY_FOR_FINAL_CANDIDATE_COMMIT_AND_FREEZE`
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Set 1 Final Acceptance:** structural `159/159 PASS`; cumulative AFFECTED `75/75 PASS`; RELEASE_FULL `108/108 PASS`; candidate `125e10f1d00263ddda0031e02383b179ecd12699`; Framework-Source tree `ce68037371568f98786b62f9afefc47907a91cc6`; evidence `f37a7474235d847f14dca77d54f9c3b217eed11f`.
-- **Publication State:** `NOT_PUSHED`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
-
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
 - **ID:** `TASK-038`
@@ -769,6 +770,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Integrated Target Release:** Framework `1.12.1` / Schema `1.0.0` / release format `3`.
 - **Integrated Scenario Contract:** original semantics renumbered to scenarios `339–350`; cumulative scenario range `1–350`.
 - **Implementation Boundary:** documentation/governance only; no runtime interceptor, UI hook, middleware, validator/CLI, transport enforcement, MCP daemon change, or vendor execution code.
-- **Integration State:** `FORWARD_PORTED_TO_MAIN_CANDIDATE / VERIFICATION_PENDING`
-- **Publication State:** `FEATURE_BRANCH_PUSHED / MAIN_PUSH_PENDING`
-- **Exact Next Step:** run cumulative integration verification and publish validated `main`.
+- **Integration State:** `FORWARD_PORTED_TO_LOCAL_MAIN / VERIFIED / MAIN_PUSH_PENDING`
+- **Publication State:** `INTEGRATED_LOCAL_MAIN / MAIN_PUSH_PENDING`
+- **Exact Next Step:** publish validated local `main` and fresh-verify canonical remote state.
+- **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
