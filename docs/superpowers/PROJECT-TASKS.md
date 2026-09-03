@@ -370,10 +370,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Implementation State:** `DONE / FOCUSED_VERIFIED` — normative command/release surfaces committed at `a38d514`; `[Project Audit]` focused verifier `23/23 PASS`; suite structural state `32/40 PASS` with only TASK-032/final-propagation checks remaining.
-- **Implementation Commit:** `a38d514`
-- **Focused Verification:** `TASK028_FOCUSED 23/23 PASS`
-- **Completion Checkpoint Evidence:** `EVD-057 / CHG-057`
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — optional derived Project Change Feed contract implemented with no executable verifier/runtime/new command/new Stable-ID family.
+- **Implementation Commit:** `5c9ed7c`
+- **Focused Verification:** `TASK036_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #29 — Cross-Project Impact Analysis
@@ -646,7 +645,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #36 — Project Change/Event History Feed
 
 - **ID:** `TASK-036`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / bounded derived Project change projection
 - **depends_on:** `[]`
 - **blocks:** `[TASK-029]`
@@ -675,9 +674,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines feed identity/schema, delta/checkpoint semantics, rebuildability, stale/corrupt handling, bounded retention, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream A / cumulative target Framework 1.14.0
-- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — feed amendment/current surfaces/templates implemented; TASK-036 focused text verification `30/30 PASS`; TASK-030/TASK-029/TASK-031 remain dependency-gated.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — optional derived Project Change Feed contract implemented with no executable verifier/runtime/new command/new Stable-ID family.
+- **Implementation Commit:** `5c9ed7c`
 - **Focused Verification:** `TASK036_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
-- **Exact Next Step:** commit TASK-036 implementation, fresh-observe completion commit, then persist TASK-036 DONE foundation checkpoint.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #37 — Security & Trust Boundary Contract
 
