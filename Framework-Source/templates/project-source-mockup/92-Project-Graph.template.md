@@ -73,6 +73,9 @@ identify local REL-* candidate
 `CORROBORATED` additionally requires both current authoritative relation pointers, matching endpoint UUIDs, compatible type/direction, and sufficient freshness/review evidence. OpenViking/inverse traversal/ranking/similarity/recency alone is insufficient.
 
 `DEPENDS_ON` and `SUPPORTS` remain directional; there is no universal `DEPENDS_ON ↔ SUPPORTS` inverse. Counterpart unavailability/staleness uses `VERIFICATION_REQUIRED` for corroboration-sensitive claims and does not auto-retire valid local truth. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*` when material.
+## Impact Analysis Consumer Boundary
+
+`REL-*` may be traversed as one input to TASK-029 impact analysis, but the graph does not own `DEP-*`, `REQ-*`, `DEC-*`, Risk, Issue, or Evidence payloads. A `DIRECT` impact claim requires authoritative/current evidence beyond derived feed/index traversal. Impact analysis is advisory and grants no authority to mutate the target Project.
 ## External Derived Index Status / Pointers
 
 ```text

@@ -344,6 +344,11 @@ Framework `1.14.0` reconciles existing `REL-*` only through evidence-based Proje
 Guaranteed reciprocal-compatible pairs remain exactly `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` remain directional with no universal inverse. `CORROBORATED` requires current authoritative compatible assertions from both Projects; derived inverse/index/ranking/similarity evidence is insufficient.
 
 Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED` for corroboration-sensitive claims without automatic retirement. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; `DRIFT-*` and `MIG-*` retain their existing roles. No graph sync, reconciliation bot, automatic reciprocal assertion, or cross-Project mutation runtime is created.
+### 5.3C Cross-Project Impact Analysis
+
+Framework `1.14.0` impact analysis is advisory with exact `DIRECT | POTENTIAL | UNKNOWN` classes. Material results include changed refs, affected Project UUID/scope when resolvable, governed reasoning path, authoritative/current evidence refs, limitations, and review-required disposition. `NO_MATERIAL_IMPACT_FOUND` is a scoped conclusion only.
+
+Project-Change-Feed/OpenViking/Knowledge may assist routing/traversal but never alone prove `DIRECT`. `REL-*`, `DEP-*`, `REQ-*`, `DEC-*`, Risk/Issue/Evidence remain in their canonical homes. Impact in one Project never grants authority to edit/upgrade/approve/publish another Project. No `[Impact]`, `IMPACT-*`, traversal runtime, cross-Project mutation, auto-upgrade, or notification delivery is created.
 ### 5.4 Framework 1.9 Portable Installation Result
 
 GREENFIELD Framework `1.9.0` resulting state includes both root `PROJECT-BOOTSTRAP.md` and exactly one valid consuming README managed fallback delimited by `<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->` / `<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->`. The README block uses fixed `ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework`, relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`, and directs the Agent to read Project Bootstrap before Material Project work.

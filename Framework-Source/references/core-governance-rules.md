@@ -1053,6 +1053,19 @@ Retention is bounded but Project-specific. Trimming feed entries never deletes a
 
 Framework 1.14.0 feed support creates no watcher, crawler, webhook, daemon, scheduler, background agent, event bus, queue, CDC mechanism, Git hook, runtime indexer, or cross-Project mutation. Adoption is separately applicability/approval governed; Direct-to-Latest upgrade never auto-materializes feed content.
 
+### 16.4B Cross-Project Impact Analysis (TASK-029)
+
+TASK-029 is advisory analysis over changed subjects plus current governed relation/dependency/requirement/decision/evidence context. It creates no `[Impact]` command, `IMPACT-*` family, or cross-Project mutation authority.
+
+Exact impact classification is `DIRECT | POTENTIAL | UNKNOWN`. `DIRECT` requires an explicit authoritative path from the changed source/subject to the affected Project/scope. `POTENTIAL` means a plausible governed path exists but evidence is incomplete, indirect, conditional, stale, or awaits target review. `UNKNOWN` means required evidence cannot be resolved sufficiently. `NO_MATERIAL_IMPACT_FOUND` may be a bounded report conclusion after assessed scope/evidence are explicit; it is not a fourth classification.
+
+Each material result preserves changed refs, affected `project_uuid`/scope when resolvable, classification, reasoning path through governed pointers, authoritative/current evidence refs, limitations, and review-required disposition. A `DIRECT` claim never rests solely on Project-Change-Feed, Project Knowledge, OpenViking/AI-ControlTower, search/rank/similarity/recency, or another derived traversal surface.
+
+`REL-*` remains relation input in `92`; `DEP-*` remains canonical dependency payload in `91`; `REQ-*`, `DEC-*`, Risk, Issue, Evidence, release/publication and other objects remain in their existing homes. Impact analysis does not duplicate their canonical payloads.
+
+Impact detected in one Project grants no permission to edit, upgrade, approve, create/close records, publish, deploy, or otherwise mutate another Project. Target mutation always requires the target Project's own binding/authority/Risk/approval/freshness/verification flow.
+
+Stale/orphan/conflicted relation input, unavailable targets, missing Brownfield `92`, and merge/split/retired relation cases remain explicit limitations under existing identity/lineage/`MIG-*` semantics. TASK-029 adds no traversal runtime, auto-edit, auto-upgrade, cross-Project mutation service, or notification delivery.
 ### 16.5 Portable Installation Bootstrap & Project Settings Handoff
 
 Framework `1.9.0` standardizes the target user-facing Project Settings adapter as:

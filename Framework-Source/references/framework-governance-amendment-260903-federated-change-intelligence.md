@@ -12,7 +12,7 @@ compatibility: "BACKWARD_COMPATIBLE_FEDERATED_CHANGE_INTELLIGENCE_SUITE"
 
 Framework `1.14.0` preserves Framework `1.13.0` unless refined here. Project Source Schema remains `1.0.0`; release format remains `3`; the Registered Command set remains unchanged. This cumulative suite is dependency-ordered `TASK-036 + TASK-030 → TASK-029 → TASK-031`.
 
-At this foundation checkpoint, TASK-036 Project Change/Event History Feed and TASK-030 Cross-Project Relation Reconciliation are normative from this amendment. TASK-029 and TASK-031 remain dependency-gated and non-normative until their focused implementation checkpoints are completed.
+At this impact checkpoint, TASK-036 Project Change/Event History Feed, TASK-030 Cross-Project Relation Reconciliation, and TASK-029 Cross-Project Impact Analysis are normative from this amendment. TASK-031 remains dependency-gated and non-normative until its focused implementation checkpoint is completed.
 
 ## 1. TASK-036 Project Change/Event History Feed
 
@@ -191,8 +191,63 @@ A counterpart that is unavailable, inaccessible, unbound, stale, or unresolved p
 
 Reconciliation may mutate only the owning Project's canonical `REL-*` under applicable local authority. It MUST NOT write, create, retire, corroborate, or repair another Project's `REL-*` on that Project's behalf merely because the counterpart was discovered or inspected.
 
-## 12. Suite dependency boundary
+## 12. TASK-029 Cross-Project Impact Analysis
 
-TASK-036 and TASK-030 focused completion are the two foundation gates. TASK-029 may activate only after both are complete; TASK-031 remains downstream of TASK-029/TASK-030. This amendment does not pre-implement TASK-029 or TASK-031.
+Impact analysis consumes changed subjects plus governed relation/dependency/requirement/decision/evidence context to identify Projects or scopes requiring review. It is advisory and creates no `[Impact]` command, `IMPACT-*` Stable-ID family, or cross-Project mutation authority.
+
+Exact impact classification is:
+
+```text
+DIRECT
+POTENTIAL
+UNKNOWN
+```
+
+`DIRECT` requires authoritative evidence explicitly connecting the changed source/subject to an affected Project/scope through current governed relation, dependency, requirement, decision, or equivalent canonical pointer.
+
+`POTENTIAL` means a plausible governed traversal/path exists but evidence is incomplete, indirect, conditional, stale, or requires target review before direct impact can be confirmed.
+
+`UNKNOWN` means required relation/source/counterpart evidence cannot be resolved sufficiently.
+
+`NO_MATERIAL_IMPACT_FOUND` is allowed only as a report conclusion after the assessed scope and evidence are explicit. It is not a fourth impact class and never proves universal absence outside the assessed scope.
+
+## 13. Impact provenance and review disposition
+
+Each material impact result reports at least:
+
+```text
+Changed source/subject refs
+Affected Project UUID / scope when resolvable
+Impact classification
+Reasoning path using governed relation/dependency/requirement/decision pointers
+Authoritative/current evidence refs
+Unknown/stale/conflict limitations
+Review-required disposition
+```
+
+A `DIRECT` claim MUST NOT rest solely on `Project-Change-Feed/`, Project Knowledge, OpenViking, AI-ControlTower, central graph traversal, search rank, similarity, or recency. The feed is incremental routing evidence; OpenViking/AI-ControlTower are traversal/index assistance. Material impact claims trace back to authoritative/source-native Project evidence.
+
+Canonical ownership stays unchanged: `REL-*` in `92` is relation input; `DEP-*` remains dependency-management payload in `91`; `REQ-*`, `DEC-*`, Risk, Issue, Evidence, release/publication and other records remain in their current homes. Impact analysis does not duplicate those payloads.
+
+Stale/orphan/conflicted relations, unavailable target Projects, missing Brownfield `92`, and merge/split/retired relation cases remain explicit limitations. Existing identity/lineage/`MIG-*` rules apply; predecessor edges are never blindly inherited.
+
+## 14. Advisory authority boundary
+
+```text
+Impact detected in Project A
+≠ permission to edit Project B
+≠ permission to upgrade Project B
+≠ approval in Project B
+≠ authority to create/close Project B records
+≠ publication/deployment authority
+```
+
+Impact analysis may recommend review, identify a target canonical home, and preserve bounded evidence. Any target-Project mutation requires that Project's own binding, authority, Risk, approval, freshness, and verification flow.
+
+Framework 1.14.0 adds no impact command, impact Stable-ID family, graph traversal runtime, cross-Project mutation service, auto-upgrade, auto-edit, auto-approval, or notification delivery through TASK-029.
+
+## 15. Suite dependency boundary
+
+TASK-036 and TASK-030 foundation gates are complete and TASK-029 is now normative. TASK-031 remains downstream of TASK-029/TASK-030 and is not pre-implemented by this impact checkpoint.
 
 Existing TASK-022 Project Graph, TASK-025 Project Knowledge, TASK-026 disclosure, TASK-028 Project Audit, TASK-032 remediation, TASK-042 response-close, and TASK-043 strict-command contracts remain unchanged.

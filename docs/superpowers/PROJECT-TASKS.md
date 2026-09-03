@@ -409,8 +409,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / waits for both foundation checkpoints before activation
 - **Dependency State:** `TASK-036 + TASK-030 SATISFIED` via `5c9ed7c / EVD-066` and `360a1ad / EVD-067`.
-- **Implementation State:** `READY_FOR_IMPLEMENTATION / FOUNDATIONS_SATISFIED`.
-- **Exact Next Step:** implement TASK-029 Cross-Project Impact Analysis contract and run focused text verification.
+- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — impact amendment/current surfaces/feed+92 consumer boundaries implemented; TASK-029 focused text verification passed; TASK-031 remains dependency-gated.
+- **Focused Verification:** `TASK029_FOCUSED_TEXT 34/34 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
+- **Exact Next Step:** commit TASK-029 implementation, fresh-observe completion commit, then persist TASK-029 DONE checkpoint.
 
 ## Task #30 — Cross-Project Relation Reconciliation
 

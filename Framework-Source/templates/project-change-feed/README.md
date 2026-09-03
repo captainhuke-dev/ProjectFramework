@@ -43,6 +43,8 @@ Retention is bounded but Project-specific; Framework 1.14.0 mandates no universa
 
 Project Knowledge and AI-ControlTower/OpenViking may assist discovery but never become history/feed authority.
 
+For TASK-029 consumers, feed entries are candidate routing only. A feed entry never proves `DIRECT` impact by itself; material impact classification must trace back to authoritative/current Project evidence.
+
 ## Runtime Non-Goal
 
 This starter creates no watcher, crawler, webhook, daemon, scheduler, event bus, queue, CDC runtime, Git hook, background agent, or automatic feed maintenance. It is a documentation/governance starter only.

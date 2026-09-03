@@ -16,6 +16,8 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 - TASK-030 adds evidence-based relation reconciliation over existing `92 / REL-*`; counterpart discovery never grants cross-Project write authority.
 - Reciprocal compatibility remains TASK-022 exact; `DEPENDS_ON` and `SUPPORTS` remain directional with no universal inverse; `CORROBORATED` requires authoritative current evidence from both Projects.
 - Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED`; incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; TASK-029/TASK-031 remain dependency-gated.
+- TASK-029 adds advisory impact classification `DIRECT | POTENTIAL | UNKNOWN`; a `DIRECT` claim requires authoritative/current evidence and cannot rest solely on feed/OpenViking/Knowledge/derived traversal.
+- Impact analysis preserves canonical `REL-* / DEP-* / REQ-* / DEC-* / EVD-*` homes and never grants cross-Project mutation/upgrade/approval/publication authority; TASK-031 remains dependency-gated.
 - No watcher, crawler, webhook, daemon, scheduler, event bus, queue, CDC, Git hook, background agent, new command, new Stable-ID family, or cross-Project mutation runtime is introduced.
 
 ### Upgrade checklist
