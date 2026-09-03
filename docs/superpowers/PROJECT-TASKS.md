@@ -370,22 +370,23 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
 - **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Implementation State:** `DONE / FOCUSED_VERIFIED` — optional derived Project Change Feed contract implemented with no executable verifier/runtime/new command/new Stable-ID family.
-- **Implementation Commit:** `5c9ed7c`
-- **Focused Verification:** `TASK036_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — normative command/release surfaces committed at `a38d514`; `[Project Audit]` focused verifier `23/23 PASS`; suite structural state `32/40 PASS` with only TASK-032/final-propagation checks remaining.
+- **Implementation Commit:** `a38d514`
+- **Focused Verification:** `TASK028_FOCUSED 23/23 PASS`
+- **Completion Checkpoint Evidence:** `EVD-057 / CHG-057`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #29 — Cross-Project Impact Analysis
 
 - **ID:** `TASK-029`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / federated Project-change impact reasoning
 - **depends_on:** `[TASK-036, TASK-030]`
 - **blocks:** `[TASK-031]`
 - **enables:** `[TASK-031]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** Framework 1.6.0 can represent Project relations through `92 Project Graph` / `REL-*`, but the Framework does not yet define how to reason about which other Projects may require review when one Project changes materially.
 - **Approved direction:** Define a cross-Project impact-analysis contract that uses authoritative Project relation assertions plus relevant governed dependency/requirement/evidence pointers to surface direct and potential impacts without propagating changes automatically.
 - **Scope:**
@@ -404,15 +405,17 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
 - **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
-- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / waits for both foundation checkpoints before activation
-- **Exact Next Step:** Wait for further requirements; when TASK-029 is selected for development, prepare its architectural design spec before implementation.
+- **Dependency State:** `TASK-036 + TASK-030 SATISFIED` via `5c9ed7c / EVD-066` and `360a1ad / EVD-067`.
+- **Implementation State:** `READY_FOR_IMPLEMENTATION / FOUNDATIONS_SATISFIED`.
+- **Exact Next Step:** implement TASK-029 Cross-Project Impact Analysis contract and run focused text verification.
 
 ## Task #30 — Cross-Project Relation Reconciliation
 
 - **ID:** `TASK-030`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / federated Project-relation lifecycle governance
 - **depends_on:** `[]`
 - **blocks:** `[TASK-029]`
@@ -442,9 +445,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines counterpart discovery, reciprocal compatibility, corroboration/conflict lifecycle, evidence/freshness, unavailable/stale handling, authority boundaries, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream B / cumulative target Framework 1.14.0
-- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — relation reconciliation amendment/current surfaces/92 starter implemented; TASK-030 focused text verification `30/30 PASS`; TASK-029/TASK-031 remain dependency-gated.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — relation reconciliation workflow implemented over existing REL-* with no cross-Project write/runtime/new family.
+- **Implementation Commit:** `360a1ad`
 - **Focused Verification:** `TASK030_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
-- **Exact Next Step:** commit TASK-030 implementation, fresh-observe completion commit, then persist foundation completion checkpoint.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #31 — Project Event & Notification Contract
 
