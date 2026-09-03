@@ -32,7 +32,7 @@ How to use it:
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
 
-## Framework 1.14.0 Federated Change Intelligence — Foundation Contracts
+## Framework 1.14.0 Federated Change Intelligence — Suite Contracts
 
 Framework `1.14.0` begins the Federated Change Intelligence suite with TASK-036 Project Change/Event History Feed. An optional root `Project-Change-Feed/` provides a **derived, non-authoritative, bounded, rebuildable** projection for incremental consumers; authoritative/current history remains Project Source, `10 Change Log`, Git/source-native history, relation history, and durable evidence as applicable.
 
@@ -42,7 +42,8 @@ Maintained starters live in `Framework-Source/templates/project-change-feed/`. E
 
 TASK-030 adds evidence-based relation reconciliation over existing `92 / REL-*`. Counterparts are resolved by immutable `project_uuid`; `CORROBORATED` requires current compatible authoritative assertions from both Projects with matching endpoints/source pointers/freshness. Guaranteed reciprocal pairs remain TASK-022 exact; `DEPENDS_ON` and `SUPPORTS` stay directional with no universal inverse. Unavailable counterpart evidence yields `VERIFICATION_REQUIRED`; conflicts reuse `CONFLICT-*`; reconciliation mutates only the owning Project and never writes another Project on its behalf. TASK-029/TASK-031 remain dependency-gated.
 
-TASK-029 adds advisory cross-Project impact analysis with exact `DIRECT | POTENTIAL | UNKNOWN` classification. Material results trace changed refs through governed relation/dependency/requirement/decision pointers to authoritative evidence and a review-required disposition. Project-Change-Feed/OpenViking/Knowledge may route or assist traversal but cannot alone prove `DIRECT`. Impact never grants target-Project edit/upgrade/approval/publication authority, and no `[Impact]`, `IMPACT-*`, traversal runtime, cross-Project mutation, or notification delivery is introduced. TASK-031 remains dependency-gated.
+TASK-029 adds advisory cross-Project impact analysis with exact `DIRECT | POTENTIAL | UNKNOWN` classification. Material results trace changed refs through governed relation/dependency/requirement/decision pointers to authoritative evidence and a review-required disposition. Project-Change-Feed/OpenViking/Knowledge may route or assist traversal but cannot alone prove `DIRECT`. Impact never grants target-Project edit/upgrade/approval/publication authority, and no `[Impact]`, `IMPACT-*`, traversal runtime, cross-Project mutation, or notification delivery is introduced.
+TASK-031 adds vendor-neutral event/notification governance. Candidate events are filtered by materiality, owner/recipient relevance, required review/action, evidence freshness, outstanding-equivalent state, and declared Project policy. Urgency is exactly `ROUTINE | ATTENTION | URGENT` and is presentation-only. Recipient resolution uses governed ownership/responsibility evidence; unresolved recipients remain `VERIFICATION_REQUIRED`. Acknowledgement, escalation, and dedup preserve `notification ≠ approval ≠ authority`, and no delivery runtime, channel integration, scheduler, watcher, webhook, queue, or notification Stable-ID family is created.
 
 ## Framework 1.13.0 Project Audit + Integrity Remediation Suite
 

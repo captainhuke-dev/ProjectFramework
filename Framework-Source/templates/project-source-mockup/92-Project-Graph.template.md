@@ -76,6 +76,9 @@ identify local REL-* candidate
 ## Impact Analysis Consumer Boundary
 
 `REL-*` may be traversed as one input to TASK-029 impact analysis, but the graph does not own `DEP-*`, `REQ-*`, `DEC-*`, Risk, Issue, or Evidence payloads. A `DIRECT` impact claim requires authoritative/current evidence beyond derived feed/index traversal. Impact analysis is advisory and grants no authority to mutate the target Project.
+## Notification Consumer Boundary
+
+A `REL-*` reconciliation conflict or material corroboration change may be a TASK-031 notification candidate, but relation state alone does not authorize delivery. Notification eligibility, recipient resolution, urgency, acknowledgement, escalation, deduplication, disclosure, and delivery authority remain governed outside `92`. No notification record or delivery runtime is synthesized from a relation assertion.
 ## External Derived Index Status / Pointers
 
 ```text

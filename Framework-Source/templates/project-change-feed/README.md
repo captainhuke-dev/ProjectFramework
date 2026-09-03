@@ -44,6 +44,7 @@ Retention is bounded but Project-specific; Framework 1.14.0 mandates no universa
 Project Knowledge and AI-ControlTower/OpenViking may assist discovery but never become history/feed authority.
 
 For TASK-029 consumers, feed entries are candidate routing only. A feed entry never proves `DIRECT` impact by itself; material impact classification must trace back to authoritative/current Project evidence.
+For TASK-031 consumers, feed entries are notification-candidate routing only. Notification eligibility still resolves the authoritative source event, materiality, recipient relevance, freshness, outstanding-equivalent state, and declared policy; a feed entry never makes an event notification-worthy by itself.
 
 ## Runtime Non-Goal
 

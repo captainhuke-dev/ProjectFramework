@@ -1066,6 +1066,23 @@ Each material result preserves changed refs, affected `project_uuid`/scope when 
 Impact detected in one Project grants no permission to edit, upgrade, approve, create/close records, publish, deploy, or otherwise mutate another Project. Target mutation always requires the target Project's own binding/authority/Risk/approval/freshness/verification flow.
 
 Stale/orphan/conflicted relation input, unavailable targets, missing Brownfield `92`, and merge/split/retired relation cases remain explicit limitations under existing identity/lineage/`MIG-*` semantics. TASK-029 adds no traversal runtime, auto-edit, auto-upgrade, cross-Project mutation service, or notification delivery.
+### 16.4C Project Event & Notification Contract (TASK-031)
+
+TASK-031 governs notification-worthiness and routing semantics for material Project events; it creates no Registered Command, no mandatory notification Stable-ID family, and no delivery runtime.
+
+Candidate events include material Project Audit `RED/AMBER/UNKNOWN` findings, `DIRECT/POTENTIAL/UNKNOWN` impacts requiring review, `REL-*` reconciliation conflicts or material corroboration changes, `RISK / DEP / ISS / DRIFT / CONFLICT` transitions, Goal/Action blockers, release/publication/deployment transitions, and other events explicitly declared notification-worthy. A Project-Change-Feed entry is candidate routing only and never establishes eligibility by itself.
+
+Notification eligibility considers source-event materiality, current owner/recipient relevance, required action/review, source-evidence freshness, equivalent outstanding notification state, and declared Project notification policy when present. Urgency is presentation-only and exactly `ROUTINE | ATTENTION | URGENT`; it does not replace Risk `R0–R3`, audit health, issue severity, lifecycle, authority, or provider priority.
+
+Recipient resolution prefers governed/current ownership or responsibility evidence such as canonical object owner, `11 Actor Registry`, Goal/Action owner, or exact user-selected recipient. Unresolved recipient = `VERIFICATION_REQUIRED`; never guess from email-like strings, Git authorship, chat participants, recency, or activity ranking. **Responsibility ≠ Authority** and recipient status grants no permission.
+
+Acknowledgement evidence, when material, identifies source event, recipient, channel/provider-native pointer when applicable, acknowledgement time, and limitations. **Acknowledgement ≠ acceptance ≠ approval ≠ authority.** Escalation is policy-driven when a material event remains unacknowledged or urgency rises; **Escalation ≠ authority** and never broadens disclosure scope.
+
+Deduplication is source-based using source event identity/pointers + affected scope + recipient context. Free-text similarity alone is insufficient, and a materially changed source event is never suppressed merely because wording is similar.
+
+Unresolved recipient, unavailable delivery channel, provider failure, repeated-delivery uncertainty, and stale source evidence remain explicit. Notification failure never erases the source event; delivery success never proves the underlying Project issue/impact/risk/outcome is resolved. If actual external delivery succeeds but required durable Project reconciliation fails, use existing `PERSISTENCE_PENDING`; do not use it merely because delivery was unavailable or unauthorized.
+
+External delivery/disclosure remains separately governed by TASK-026, trust/tool eligibility, applicable authority/Risk, channel/provider policy, and secret handling. TASK-031 itself adds no email/Slack/webhook sender, watcher, scheduler, daemon, queue, bot, delivery service, recipient resolver, automatic escalation, or dedup runtime.
 ### 16.5 Portable Installation Bootstrap & Project Settings Handoff
 
 Framework `1.9.0` standardizes the target user-facing Project Settings adapter as:

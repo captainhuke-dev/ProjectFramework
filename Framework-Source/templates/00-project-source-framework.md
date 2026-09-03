@@ -349,6 +349,13 @@ Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED` for corrobor
 Framework `1.14.0` impact analysis is advisory with exact `DIRECT | POTENTIAL | UNKNOWN` classes. Material results include changed refs, affected Project UUID/scope when resolvable, governed reasoning path, authoritative/current evidence refs, limitations, and review-required disposition. `NO_MATERIAL_IMPACT_FOUND` is a scoped conclusion only.
 
 Project-Change-Feed/OpenViking/Knowledge may assist routing/traversal but never alone prove `DIRECT`. `REL-*`, `DEP-*`, `REQ-*`, `DEC-*`, Risk/Issue/Evidence remain in their canonical homes. Impact in one Project never grants authority to edit/upgrade/approve/publish another Project. No `[Impact]`, `IMPACT-*`, traversal runtime, cross-Project mutation, auto-upgrade, or notification delivery is created.
+### 5.3D Project Event & Notification Governance
+
+Framework `1.14.0` treats material audit findings, impact results requiring review, relation reconciliation changes/conflicts, management-object transitions, Goal/Action blockers, release/publication/deployment transitions, and explicitly declared events as notification candidates. Feed entries only route candidates.
+
+Notification urgency is exactly `ROUTINE | ATTENTION | URGENT` and is communication priority only. Recipient resolution uses governed owner/responsibility evidence; unresolved recipient is `VERIFICATION_REQUIRED`. `Responsibility ≠ Authority`; `Acknowledgement ≠ acceptance ≠ approval ≠ authority`; `Escalation ≠ authority` and never widens disclosure scope. Dedup uses source event pointers + affected scope + recipient context, not free-text similarity alone.
+
+Delivery failure does not erase source truth and delivery success does not prove resolution. External delivery remains separately authorized under TASK-026/trust/tool/AUTH/Risk/channel policy. No notification command, mandatory notification Stable-ID family, sender, webhook, scheduler, watcher, queue, daemon, bot, recipient resolver, or automatic escalation/dedup runtime is created.
 ### 5.4 Framework 1.9 Portable Installation Result
 
 GREENFIELD Framework `1.9.0` resulting state includes both root `PROJECT-BOOTSTRAP.md` and exactly one valid consuming README managed fallback delimited by `<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->` / `<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->`. The README block uses fixed `ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework`, relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`, and directs the Agent to read Project Bootstrap before Material Project work.

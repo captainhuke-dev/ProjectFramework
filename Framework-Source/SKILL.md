@@ -182,7 +182,19 @@ Impact analysis is advisory and uses exact classification `DIRECT | POTENTIAL | 
 
 Material output preserves changed refs, affected Project UUID/scope when resolvable, classification, governed reasoning path, authoritative evidence refs, limitations, and review-required disposition. Project-Change-Feed/OpenViking/Knowledge may route or assist traversal but cannot alone support a `DIRECT` claim. Canonical `REL-* / DEP-* / REQ-* / DEC-* / EVD-*` homes remain unchanged.
 
-Impact in Project A never authorizes mutation/upgrade/approval/publication in Project B. No `[Impact]`, `IMPACT-*`, graph traversal runtime, cross-Project mutation, auto-upgrade, or notification delivery is created. TASK-031 remains dependency-gated until TASK-029 focused completion.
+Impact in Project A never authorizes mutation/upgrade/approval/publication in Project B. No `[Impact]`, `IMPACT-*`, graph traversal runtime, cross-Project mutation, auto-upgrade, or notification delivery is created.
+
+### TASK-031 Project Event & Notification Governance
+
+Notification candidate events include material Project Audit `RED/AMBER/UNKNOWN` findings, `DIRECT/POTENTIAL/UNKNOWN` impacts requiring review, `REL-*` reconciliation conflicts or material corroboration changes, `RISK / DEP / ISS / DRIFT / CONFLICT` transitions, Goal/Action blockers, release/publication/deployment transitions, and other governed events explicitly declared notification-worthy. Feed entries route candidates only; they do not establish notification eligibility.
+
+Eligibility considers source-event materiality, current owner/recipient relevance, required action/review, source-evidence freshness, equivalent outstanding notification state, and declared Project policy. Urgency is presentation-only and exactly `ROUTINE | ATTENTION | URGENT`; it never replaces Risk, audit health, issue severity, lifecycle, authority, or provider priority.
+
+Resolve recipients from governed/current ownership or responsibility evidence such as canonical owner, `11 Actor Registry`, Goal/Action owner, or exact user-selected recipient. Unresolved recipient = `VERIFICATION_REQUIRED`; do not guess from email-like strings, Git authorship, chat participants, recency, or activity ranking. `Responsibility ≠ Authority` and recipient status grants no permission.
+
+Acknowledgement records receipt/review only: `Acknowledgement ≠ acceptance ≠ approval ≠ authority`. Escalation is policy-driven and `Escalation ≠ authority`; it never broadens disclosure scope. Deduplication is source-based using source event identity/pointers + affected scope + recipient context; free-text similarity alone is insufficient and materially changed events are not suppressed.
+
+Notification failure never erases the source event; delivery success never proves the underlying issue/impact/risk/outcome resolved. Use `PERSISTENCE_PENDING` only when an actual external delivery succeeded but required durable Project reconciliation failed. External delivery remains separately governed by TASK-026, trust/tool eligibility, authority/Risk, channel/provider policy, and secret handling. No email/Slack/webhook sender, watcher, scheduler, daemon, queue, bot, delivery service, recipient resolver, automatic escalation, or dedup runtime is created.
 ## Framework 1.13.0 Project Audit + Integrity Remediation Suite
 
 TASK-028 registers read-only `[Project Audit]` as a Strict Governed Interface. Exact dimensions are `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; category health reuses `GREEN | AMBER | RED | UNKNOWN`; findings are presentation, not Stable IDs; and `Audit finds ≠ Audit fixes`. TASK-032 is now dependency-satisfied and defines workflow-only remediation through canonical owner/home, `R0–R3`, applicable `AUTH-*`, rollback, direct resulting-state verification, and affected re-audit. No repair command, remediation ID family, runtime validator/scanner, or auto-fix is added.

@@ -456,7 +456,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #31 — Project Event & Notification Contract
 
 - **ID:** `TASK-031`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / governed Project event and notification semantics
 - **depends_on:** `[TASK-029, TASK-030]`
 - **blocks:** `[]`
@@ -482,11 +482,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
 - **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
-- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines event eligibility, severity, recipient/ack/escalation semantics, deduplication, failure handling, evidence, authority separation, integration boundaries, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / downstream notification-governance stage; TASK-028 already DONE prerequisite context
-- **Dependency State:** `TASK-029 + TASK-030 SATISFIED` via `daf01eb / EVD-068` and `360a1ad / EVD-067`; implementation remains NOT_STARTED.
-- **Exact Next Step:** await a new explicit continuation/Goal before implementation; do not auto-start from TASK-029 completion.
+- **Dependency State:** `TASK-029 + TASK-030 SATISFIED` via `daf01eb / EVD-068` and `360a1ad / EVD-067`.
+- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — notification governance current surfaces/starters implemented; no delivery runtime/new command/new Stable-ID family.
+- **Focused Verification:** `TASK031_FOCUSED_TEXT 33/33 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
+- **Exact Next Step:** commit TASK-031 implementation, fresh-observe completion commit, then persist completion checkpoint.
 
 ## Task #32 — Governed Project Repair / Remediation
 

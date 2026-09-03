@@ -12,7 +12,7 @@ compatibility: "BACKWARD_COMPATIBLE_FEDERATED_CHANGE_INTELLIGENCE_SUITE"
 
 Framework `1.14.0` preserves Framework `1.13.0` unless refined here. Project Source Schema remains `1.0.0`; release format remains `3`; the Registered Command set remains unchanged. This cumulative suite is dependency-ordered `TASK-036 + TASK-030 → TASK-029 → TASK-031`.
 
-At this impact checkpoint, TASK-036 Project Change/Event History Feed, TASK-030 Cross-Project Relation Reconciliation, and TASK-029 Cross-Project Impact Analysis are normative from this amendment. TASK-031 remains dependency-gated and non-normative until its focused implementation checkpoint is completed.
+At this notification checkpoint, TASK-036 Project Change/Event History Feed, TASK-030 Cross-Project Relation Reconciliation, TASK-029 Cross-Project Impact Analysis, and TASK-031 Project Event & Notification Contract are normative from this amendment.
 
 ## 1. TASK-036 Project Change/Event History Feed
 
@@ -246,8 +246,60 @@ Impact analysis may recommend review, identify a target canonical home, and pres
 
 Framework 1.14.0 adds no impact command, impact Stable-ID family, graph traversal runtime, cross-Project mutation service, auto-upgrade, auto-edit, auto-approval, or notification delivery through TASK-029.
 
-## 15. Suite dependency boundary
+## 15. TASK-031 Project Event & Notification Contract
 
-TASK-036 and TASK-030 foundation gates are complete and TASK-029 is now normative. TASK-031 remains downstream of TASK-029/TASK-030 and is not pre-implemented by this impact checkpoint.
+TASK-031 defines when a material governed Project event is notification-worthy and how routing, acknowledgement, escalation, deduplication, and failure evidence are represented. It creates no Registered Command, no mandatory notification Stable-ID family, and no delivery runtime.
+
+Candidate source events include, when material:
+
+```text
+Project Audit RED/AMBER/UNKNOWN finding
+DIRECT/POTENTIAL/UNKNOWN impact requiring review
+REL-* reconciliation conflict or material corroboration change
+RISK / DEP / ISS / DRIFT / CONFLICT material transition
+Goal/Action blocker requiring owner attention
+release/publication/deployment material transition
+other governed event explicitly declared notification-worthy
+```
+
+A Project-Change-Feed entry may route a candidate but does not itself make an event notification-worthy.
+
+## 16. Notification eligibility and urgency
+
+Notification eligibility considers materiality, current owner/recipient relevance, required action/review, source-evidence freshness, equivalent outstanding notification state, and declared Project notification policy when present.
+
+Notification urgency is presentation-only and exactly:
+
+```text
+ROUTINE | ATTENTION | URGENT
+```
+
+Urgency never replaces or rewrites Risk `R0–R3`, audit health, issue severity, lifecycle state, authority, or provider priority. Source severity/risk remains in its canonical source record.
+
+## 17. Recipient, acknowledgement, escalation, and deduplication
+
+Recipient resolution prefers governed/current ownership and responsibility evidence such as canonical object owner, `11 Actor Registry`, explicit Goal/Action owner, or an exact user-selected recipient. `Responsibility ≠ Authority`; being a notification recipient grants no permission.
+
+If recipient identity cannot be resolved safely, report `VERIFICATION_REQUIRED`; never guess from email-like strings, Git authorship, chat participants, recency, or activity ranking.
+
+When material, acknowledgement evidence identifies the source event, recipient, channel/provider-native pointer if applicable, acknowledgement time, and limitations. **Acknowledgement ≠ acceptance ≠ approval ≠ authority.**
+
+Escalation is policy-driven when a material event remains unacknowledged or urgency rises. **Escalation ≠ authority** and never broadens disclosure scope.
+
+Deduplication is source-based: use source event identity/pointers + affected scope + recipient context. Free-text similarity alone is insufficient. A materially changed source event is not suppressed merely because wording resembles an earlier notification.
+
+## 18. Failure, stale state, and delivery boundary
+
+Unresolved recipient, unavailable delivery channel, provider failure, repeated-delivery uncertainty, and stale source evidence remain explicit. Notification failure never erases the source event; delivery success never proves the underlying Issue/Risk/Impact/Outcome is resolved.
+
+If an actual external delivery succeeds but required durable Project reconciliation fails, existing `PERSISTENCE_PENDING` semantics apply. Do not use `PERSISTENCE_PENDING` merely because delivery itself is unavailable or was not authorized.
+
+External delivery/disclosure remains separately governed by TASK-026, trust/tool eligibility, applicable `AUTH-*`, Risk, provider/channel policy, and secret handling. This contract itself performs no outbound action.
+
+Framework 1.14.0 adds no email/Slack/webhook sender, watcher, scheduler, daemon, queue, notification bot, delivery service, recipient resolver runtime, or automatic escalation/dedup engine.
+
+## 19. Suite dependency boundary
+
+TASK-036, TASK-030, TASK-029, and TASK-031 focused contracts are now normative in Framework 1.14.0. Cumulative propagation/AFFECTED, final candidate verification, release evidence, and suite terminal reconciliation remain separate release-acceptance work.
 
 Existing TASK-022 Project Graph, TASK-025 Project Knowledge, TASK-026 disclosure, TASK-028 Project Audit, TASK-032 remediation, TASK-042 response-close, and TASK-043 strict-command contracts remain unchanged.

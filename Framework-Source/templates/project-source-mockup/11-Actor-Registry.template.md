@@ -37,3 +37,7 @@ Informed
 ```
 
 **Responsibility ≠ Authority.** Mapping does not grant approval/mutation permission.
+
+## Notification Recipient Routing
+
+TASK-031 may use current governed owner/responsibility evidence in this registry to resolve a notification recipient. `Responsibility ≠ Authority`; recipient status grants no approval or mutation permission. If a recipient cannot be resolved safely from governed/current evidence or exact user selection, use `VERIFICATION_REQUIRED` rather than guessing from email-like strings, Git authorship, chat participation, recency, or activity ranking.
