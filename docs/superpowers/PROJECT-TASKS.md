@@ -379,7 +379,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #29 — Cross-Project Impact Analysis
 
 - **ID:** `TASK-029`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / federated Project-change impact reasoning
 - **depends_on:** `[TASK-036, TASK-030]`
 - **blocks:** `[TASK-031]`
@@ -409,9 +409,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / waits for both foundation checkpoints before activation
 - **Dependency State:** `TASK-036 + TASK-030 SATISFIED` via `5c9ed7c / EVD-066` and `360a1ad / EVD-067`.
-- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — impact amendment/current surfaces/feed+92 consumer boundaries implemented; TASK-029 focused text verification passed; TASK-031 remains dependency-gated.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — advisory impact contract implemented without new command/Stable-ID family/runtime; completion commit observed at `daf01eb`.
+- **Implementation Commit:** `daf01eb`
 - **Focused Verification:** `TASK029_FOCUSED_TEXT 34/34 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
-- **Exact Next Step:** commit TASK-029 implementation, fresh-observe completion commit, then persist TASK-029 DONE checkpoint.
+- **Completion Checkpoint Evidence:** `EVD-068 / CHG-068`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #30 — Cross-Project Relation Reconciliation
 
@@ -461,7 +463,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WAITING`
+- **readiness:** `READY`
 - **Problem:** Audit, impact analysis, dependency failures, relation changes, risks, and other material events may require attention, but ProjectFramework does not yet define when an event is notification-worthy, who should be informed, or how delivery/acknowledgement relates to Project authority.
 - **Approved direction:** Define a vendor-neutral event/notification governance contract while keeping notification delivery separate from approval and mutation authority.
 - **Scope:**
@@ -483,7 +485,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
 - **Completion criteria:** A user-approved design defines event eligibility, severity, recipient/ack/escalation semantics, deduplication, failure handling, evidence, authority separation, integration boundaries, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / downstream notification-governance stage; TASK-028 already DONE prerequisite context
-- **Exact Next Step:** When TASK-031 is selected, prepare its architectural design spec before implementation.
+- **Dependency State:** `TASK-029 + TASK-030 SATISFIED` via `daf01eb / EVD-068` and `360a1ad / EVD-067`; implementation remains NOT_STARTED.
+- **Exact Next Step:** await a new explicit continuation/Goal before implementation; do not auto-start from TASK-029 completion.
 
 ## Task #32 — Governed Project Repair / Remediation
 
