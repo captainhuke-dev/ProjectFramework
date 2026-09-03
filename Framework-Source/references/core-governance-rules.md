@@ -899,6 +899,7 @@ Framework `1.9.0` TASK-041 further defines Portable Installation Bootstrap & Pro
 Framework `1.10.0` TASK-025 further defines the optional Project Knowledge Layer as derived/advisory Markdown outside Project Source authority, with provenance, maintenance-state, promotion, disclosure, and OpenViking content-class boundaries.
 Framework `1.12.2` TASK-043 makes every recognized Registered Command a **Strict Governed Interface** and adds a command-body completeness gate before TASK-042 final-response validation.
 Framework `1.13.0` TASK-028 further registers read-only `[Project Audit]` integrity/drift assessment; audit findings are presentation/evidence routing only and never self-authorize repair. TASK-032 further defines governed repair/remediation through existing canonical homes, Risk/AUTH gates, rollback, resulting-state verification, and affected re-audit; it adds no repair command or remediation Stable-ID family.
+Framework `1.14.0` TASK-036 further defines optional derived `Project-Change-Feed/` for bounded incremental change routing; it remains non-authoritative/rebuildable and adds no command, Project Source Stable-ID family, or runtime watcher/crawler.
 
 #### Registered Command Strict-Interface Contract
 
@@ -1001,6 +1002,32 @@ When the command reports `UPGRADE_AVAILABLE`, its report includes the target rel
 `[Project Upgrade]` grants no Bootstrap/Project Location mutation authority and no branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime, or Persistent-State authority.
 
 `MIGRATION-NOTES.md` documents per-release upgrade guidance (affected surfaces, checklist). It is a routing/documentation aid — never normative authority — and Core Governance plus the latest amendment win on any conflict. Missing notes for a transition remain an explicit `UNKNOWN`; they are never invented retroactively.
+
+### 16.4A Project Change/Event History Feed (TASK-036)
+
+`Project-Change-Feed/` is an optional derived surface outside `Project-Source/00–99`. **Project-Change-Feed ≠ Project Source ≠ 10 Change Log ≠ Git/source-native history ≠ Evidence.** It is non-authoritative, bounded, rebuildable, and disposable. Missing feed state is valid when not applicable/adopted.
+
+Projection maintenance state is exactly `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`. A projection MAY carry `feed_projection_id`, `project_uuid`, a source checkpoint, generated time, and bounded retention policy. `feed_projection_id` is derived-layer identity only and MUST NOT become a Stable ID, Evidence ID, authorization, or cross-Project authority token.
+
+Feed entries record projection-local sequence, source checkpoint/source-native ordering pointer, change kind, subject refs, authoritative/source refs, concise changed-state summary, and observed/materialized time when known. Exact change kinds are:
+
+```text
+STABLE_ID_CHANGE
+DOCUMENT_CHANGE
+RELATION_CHANGE
+LIFECYCLE_CHANGE
+EVIDENCE_CHANGE
+RELEASE_PUBLICATION_CHANGE
+OTHER_MATERIAL_CHANGE
+```
+
+A feed entry is routing/index evidence only — not canonical event truth, not `EVD-*`, not impact classification, and not mutation authority. Do not create `EVENT-*`, `FEED-*`, or `CHANGE-EVENT-*` Project Source families.
+
+A consumer may request changes `since` a source checkpoint. Source checkpoint is a bundle of current/source-native pointers such as repository ref + active `14` Manifest + active `10` Change Log; it is not authority. Source-native ordering (Git ancestry/revision/current routing) outranks wall-clock guessing. If requested coverage falls outside retained projection state, rebuild the interval from authoritative/source-native history or return the unavailable portion `UNKNOWN / VERIFICATION_REQUIRED`; never silently treat the retained tail as complete.
+
+Retention is bounded but Project-specific. Trimming feed entries never deletes authoritative history. Broken checkpoint continuity or known corruption means `REBUILD_REQUIRED`; rebuild from current/history Project Source, Change Log, Git/source-native history, relation history, durable Evidence pointers, and release/publication evidence as applicable. Project Knowledge and AI-ControlTower/OpenViking may help discover inputs but never become feed authority.
+
+Framework 1.14.0 feed support creates no watcher, crawler, webhook, daemon, scheduler, background agent, event bus, queue, CDC mechanism, Git hook, runtime indexer, or cross-Project mutation. Adoption is separately applicability/approval governed; Direct-to-Latest upgrade never auto-materializes feed content.
 
 ### 16.5 Portable Installation Bootstrap & Project Settings Handoff
 

@@ -1,0 +1,51 @@
+# Project Change Feed
+
+> Derived/bounded/rebuildable projection only. This file is not Project Source, canonical history, Evidence, authority, or an impact/notification decision.
+
+## Projection Context
+
+```yaml
+feed_projection_id: "<UUID_OR_STABLE_OPAQUE_DERIVED_ID>"
+project_uuid: "<PROJECT_UUID>"
+projection_state: "CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE"
+source_checkpoint:
+  repository_ref: "<COMMIT_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+  project_source_manifest_ref: "<ACTIVE_14_POINTER_OR_UNKNOWN>"
+  change_log_ref: "<ACTIVE_10_POINTER_OR_UNKNOWN>"
+generated_at: "<ISO8601_OR_UNKNOWN>"
+retention_policy: "<BOUNDED_POLICY_DESCRIPTION>"
+```
+
+## Entry Template
+
+```markdown
+### <PROJECTION_SEQUENCE> — <CHANGE_KIND>
+
+- Source checkpoint / source-native ordering pointer: `<SOURCE_POINTER>`
+- Subject refs: `<STABLE_IDS_DOCUMENT_REFS_OR_SOURCE_OBJECTS>`
+- Authoritative/source refs: `<CURRENT_OR_SOURCE_NATIVE_POINTERS>`
+- Changed-state summary: `<CONCISE_DELTA>`
+- Observed/materialized at: `<ISO8601_OR_UNKNOWN>`
+```
+
+Allowed change kinds:
+
+```text
+STABLE_ID_CHANGE
+DOCUMENT_CHANGE
+RELATION_CHANGE
+LIFECYCLE_CHANGE
+EVIDENCE_CHANGE
+RELEASE_PUBLICATION_CHANGE
+OTHER_MATERIAL_CHANGE
+```
+
+The projection sequence is local to this feed generation. Do not promote it into `EVENT-*`, `FEED-*`, `EVD-*`, or another canonical identity. Do not copy whole authoritative objects into the feed merely for convenience.
+
+## Bounding Rule
+
+Retain only the declared bounded window. When a consumer requests an older `since` interval, rebuild from authoritative/source-native history or report the unavailable portion `UNKNOWN / VERIFICATION_REQUIRED`; never silently truncate.
+
+## Rebuild Rule
+
+When `REBUILD_REQUIRED`, reconstruct from authoritative/source-native pointers. Never repair Project Source, Git history, Change Log, or relation truth to match this derived projection.

@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.13.0"
+project_source_framework_version: "1.14.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -308,7 +308,7 @@ Framework `1.3.1` registers bracketed Project inspection commands. Literal `[` a
 [Project Audit] : fresh read-only integrity/drift audit with evidence, unknowns, and governed repair routes; never auto-fixes Project truth
 ```
 
-Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. Framework `1.13.0` preserves the Framework `1.12.2` rule that a recognized Registered Command is a **Strict Governed Interface**: semantic equivalence alone is insufficient when the active command contract governs required dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; unavailable evidence keeps the governed field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible explanatory prose remains allowed only where the command contract does not define stricter presentation.
+Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. Framework `1.14.0` preserves the Framework `1.12.2` rule that a recognized Registered Command is a **Strict Governed Interface**: semantic equivalence alone is insufficient when the active command contract governs required dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; unavailable evidence keeps the governed field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible explanatory prose remains allowed only where the command contract does not define stricter presentation.
 
 For recognized commands, run **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. The command gate validates command identity/active local contract, required dimensions and governed order, freshness or explicit unavailable evidence, canonical tokens, absence of unsupported stale-memory inference, and command-specific authority boundaries. It does not replace TASK-042's final global response-close gate.
 
@@ -328,6 +328,14 @@ Framework `1.8.0` external-AI disclosure uses `EXTERNAL_OK | EXTERNAL_REVIEW | D
 
 
 Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
+
+### 5.3A Optional Project Change Feed
+
+Framework `1.14.0` MAY materialize optional root `Project-Change-Feed/` from `templates/project-change-feed/` when an incremental consumer is applicable and approved. The feed is **derived, non-authoritative, bounded, rebuildable** and remains outside Project Source semantic slots.
+
+Exact projection states are `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`; exact change kinds are `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`. Source checkpoints support `since` routing and use source-native order before timestamp inference. Retention gaps rebuild from authoritative/source-native history or remain `UNKNOWN / VERIFICATION_REQUIRED`.
+
+Do not synthesize `EVENT-*`/`FEED-*` identities, feed content, watchers, crawlers, webhooks, daemons, schedulers, queues, event buses, graph sync, notification delivery, cross-Project mutation, or publication authority merely because the starter supports this surface. Feed absence remains valid when not applicable.
 
 ### 5.4 Framework 1.9 Portable Installation Result
 
@@ -925,5 +933,7 @@ Framework `1.12.0` Security & Trust Boundary Contract: optional `Project-Executi
 
 
 Framework `1.12.1` Response Finalization Hardening: resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; every Project-governed final response, including exceptional/early-return paths, runs the Response Close Completeness Gate immediately before emit. This adds no mutation authority and preserves all Framework 1.12.0 Project Execution / release / trust semantics.
+
+Framework `1.14.0` TASK-036 Change Feed Foundation: optional `Project-Change-Feed/` is derived/non-authoritative/bounded/rebuildable with source checkpoints, bounded retention, exact projection states/change kinds, no new Stable-ID family, and no watcher/crawler/runtime implication.
 
 Framework `1.13.0` Integrity & Remediation Suite: `[Project Audit]` is a read-only Strict Governed Interface with exact dimensions `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`, existing health vocabulary, explicit unknowns, and advisory repair routing. TASK-032 remains dependency-gated until TASK-028 focused completion; no runtime audit/repair implementation or audit/finding/remediation Stable-ID family is added.

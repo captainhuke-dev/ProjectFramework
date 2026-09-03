@@ -672,10 +672,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
 - **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
-- **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines feed identity/schema, delta/checkpoint semantics, rebuildability, stale/corrupt handling, bounded retention, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream A / cumulative target Framework 1.14.0
-- **Exact Next Step:** When TASK-036 is selected, prepare its architectural design spec before implementation.
+- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — feed amendment/current surfaces/templates implemented; TASK-036 focused text verification `30/30 PASS`; TASK-030/TASK-029/TASK-031 remain dependency-gated.
+- **Focused Verification:** `TASK036_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
+- **Exact Next Step:** commit TASK-036 implementation, fresh-observe completion commit, then persist TASK-036 DONE foundation checkpoint.
 
 ## Task #37 — Security & Trust Boundary Contract
 

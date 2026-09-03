@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.13.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.14.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260902-task028-task032.md` — latest amendment: TASK-028 + TASK-032 Integrity & Remediation Suite (current authority)
+- `references/framework-governance-amendment-260903-federated-change-intelligence.md` — latest amendment: Federated Change Intelligence Suite (TASK-036 foundation active)
+- `references/framework-governance-amendment-260902-task028-task032.md` — previous amendment: TASK-028 + TASK-032 Integrity & Remediation Suite
 - `references/framework-governance-amendment-260902-task043.md` — TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening
 - `references/framework-governance-amendment-260902-task042-forward-port.md` — previous amendment: TASK-042 Response Finalization Hardening forward-port
 - `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
@@ -157,6 +158,16 @@ Before the first Project-governed response in each chat/session, resolve the app
 ## Framework 1.12.1 Response Finalization Hardening
 
 TASK-042 is forward-ported onto the cumulative Framework 1.12.0 base. Resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; no early-return/exception path bypasses the Response Close Completeness Gate. The response-close format, Project authority model, TASK-025 Project Knowledge semantics, and Set 1 execution/capability/publication/trust contracts remain unchanged.
+
+## Framework 1.14.0 Federated Change Intelligence — TASK-036 Foundation
+
+TASK-036 defines optional root `Project-Change-Feed/` as a **derived, non-authoritative, bounded, rebuildable** change projection. It is outside Project Source and never replaces `10 Change Log`, Git/source-native history, `EVD-*`, Project Knowledge, or OpenViking authority.
+
+Projection maintenance states are exactly `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`. Entries use exact change kinds `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`. Projection sequence is local-only identity and creates no Event/Feed Stable-ID family.
+
+Incremental consumers resolve a source checkpoint and may ask for changes `since` that checkpoint. Source-native ordering outranks timestamp inference. Retention is explicitly bounded; when requested coverage is outside the retained window, rebuild from authoritative/source-native history or report the missing portion `UNKNOWN / VERIFICATION_REQUIRED`. Corrupt checkpoint continuity becomes `REBUILD_REQUIRED`.
+
+GREENFIELD/Brownfield feed adoption is optional/applicability-driven. No watcher, crawler, webhook, daemon, scheduler, background agent, event bus, queue, CDC/Git-hook runtime, cross-Project mutation, publication authority, or notification delivery is created. TASK-030/TASK-029/TASK-031 remain dependency-gated until their own focused checkpoints.
 
 ## Framework 1.13.0 Project Audit + Integrity Remediation Suite
 

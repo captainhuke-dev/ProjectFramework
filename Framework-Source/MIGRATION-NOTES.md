@@ -4,7 +4,31 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.12.2 → 1.13.0 (current)
+## 1.13.0 → 1.14.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.14.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is the Federated Change Intelligence Suite.
+- TASK-036 defines optional root `Project-Change-Feed/` as a derived, non-authoritative, bounded, rebuildable projection with maintained starter templates.
+- Projection states are exactly `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`; feed change kinds are `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`.
+- A source checkpoint supports incremental `since` routing; source-native ordering outranks timestamp guessing. Retention is bounded; gaps rebuild from authoritative/source-native history or remain `UNKNOWN / VERIFICATION_REQUIRED`.
+- Existing initialized Projects do not auto-create `Project-Change-Feed/`; adoption is applicability-driven and separately governed.
+- TASK-030/TASK-029/TASK-031 remain dependency-gated at the TASK-036 checkpoint and are not pre-implemented by feed adoption.
+- No watcher, crawler, webhook, daemon, scheduler, event bus, queue, CDC, Git hook, background agent, new command, new Stable-ID family, or cross-Project mutation runtime is introduced.
+
+### Upgrade checklist
+
+1. Preserve active local Framework pin/current truth until governed Direct-to-Latest promotion.
+2. Treat `Project-Change-Feed/` as optional derived routing only; never replace `10 Change Log`, Project Source, Git/source-native history, or `EVD-*`.
+3. If adopting the feed, declare projection checkpoint/retention and rebuild from authoritative/source-native pointers; corrupt state becomes `REBUILD_REQUIRED` rather than authority repair.
+4. Do not infer full historical coverage when a requested `since` checkpoint falls outside retention; rebuild or report the unavailable portion explicitly.
+5. Preserve the exact seven-command registry and existing TASK-022/TASK-028/TASK-032 authority boundaries.
+6. Do not synthesize feed content, runtime automation, notification delivery, impact records, relation corroboration, or cross-Project changes during upgrade.
+7. Direct-to-Latest remains valid; final cumulative suite verification still requires affected checks and one unchanged-candidate `RELEASE_FULL`.
+
+---
+
+## 1.12.2 → 1.13.0
 
 ### Affected distribution surfaces
 
