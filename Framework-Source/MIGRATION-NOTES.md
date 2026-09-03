@@ -13,7 +13,9 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 - Projection states are exactly `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`; feed change kinds are `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`.
 - A source checkpoint supports incremental `since` routing; source-native ordering outranks timestamp guessing. Retention is bounded; gaps rebuild from authoritative/source-native history or remain `UNKNOWN / VERIFICATION_REQUIRED`.
 - Existing initialized Projects do not auto-create `Project-Change-Feed/`; adoption is applicability-driven and separately governed.
-- TASK-030/TASK-029/TASK-031 remain dependency-gated at the TASK-036 checkpoint and are not pre-implemented by feed adoption.
+- TASK-030 adds evidence-based relation reconciliation over existing `92 / REL-*`; counterpart discovery never grants cross-Project write authority.
+- Reciprocal compatibility remains TASK-022 exact; `DEPENDS_ON` and `SUPPORTS` remain directional with no universal inverse; `CORROBORATED` requires authoritative current evidence from both Projects.
+- Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED`; incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; TASK-029/TASK-031 remain dependency-gated.
 - No watcher, crawler, webhook, daemon, scheduler, event bus, queue, CDC, Git hook, background agent, new command, new Stable-ID family, or cross-Project mutation runtime is introduced.
 
 ### Upgrade checklist
@@ -23,7 +25,7 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 3. If adopting the feed, declare projection checkpoint/retention and rebuild from authoritative/source-native pointers; corrupt state becomes `REBUILD_REQUIRED` rather than authority repair.
 4. Do not infer full historical coverage when a requested `since` checkpoint falls outside retention; rebuild or report the unavailable portion explicitly.
 5. Preserve the exact seven-command registry and existing TASK-022/TASK-028/TASK-032 authority boundaries.
-6. Do not synthesize feed content, runtime automation, notification delivery, impact records, relation corroboration, or cross-Project changes during upgrade.
+6. Do not synthesize feed content, runtime automation, notification delivery, impact records, reciprocal relation assertions, or cross-Project changes during upgrade. Relation reconciliation only changes an owning Project under its applicable authority.
 7. Direct-to-Latest remains valid; final cumulative suite verification still requires affected checks and one unchanged-candidate `RELEASE_FULL`.
 
 ---

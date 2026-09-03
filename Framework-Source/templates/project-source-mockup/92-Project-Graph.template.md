@@ -56,6 +56,23 @@ A RELATED_TO B ↔ B RELATED_TO A
 
 `DEPENDS_ON` and `SUPPORTS` are directional and do not require an inverse record unless the other Project independently asserts compatible truth. A derived inverse edge from an external index is not reciprocal Project evidence and never becomes another Project's assertion.
 
+## Relation Reconciliation Workflow
+
+When reconciliation is applicable:
+
+```text
+identify local REL-* candidate
+→ discover counterpart by immutable project_uuid
+→ resolve counterpart authoritative current 92 / REL-* when available
+→ verify endpoint UUIDs + source pointers + freshness
+→ evaluate existing reciprocal/directional semantics
+→ update only this Project's REL-* under applicable authority
+→ never synthesize/write the counterpart Project's assertion
+```
+
+`CORROBORATED` additionally requires both current authoritative relation pointers, matching endpoint UUIDs, compatible type/direction, and sufficient freshness/review evidence. OpenViking/inverse traversal/ranking/similarity/recency alone is insufficient.
+
+`DEPENDS_ON` and `SUPPORTS` remain directional; there is no universal `DEPENDS_ON ↔ SUPPORTS` inverse. Counterpart unavailability/staleness uses `VERIFICATION_REQUIRED` for corroboration-sensitive claims and does not auto-retire valid local truth. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*` when material.
 ## External Derived Index Status / Pointers
 
 ```text

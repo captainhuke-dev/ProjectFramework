@@ -432,6 +432,30 @@ Framework `1.5.0` permitted custom slot `92`. Brownfield upgrade to `1.6.0` MUST
 
 This contract defines documentation/governance only and does not authorize OpenViking runtime/deployment, graph database selection, Graphify integration, crawler, watcher, webhook, scheduler, sync daemon, MCP graph service, validator/CLI, automatic discovery/promotion, or automatic conflict resolution.
 
+### 2.8 Framework 1.14 Cross-Project Relation Reconciliation
+
+TASK-030 adds a governed reconciliation workflow over existing `92 / REL-*`; no new relation family or cross-Project mutation authority is created.
+
+```text
+identify local REL-* candidate
+→ discover counterpart by immutable project_uuid
+→ resolve counterpart authoritative 92 / REL-* when available
+→ verify endpoint UUIDs + current source pointers + evidence freshness
+→ evaluate compatibility under existing relation semantics
+→ classify the owning Project's relation using ASSERTED | CORROBORATED | CONFLICTED | RETIRED
+→ persist only under applicable local authority
+→ never synthesize/write the counterpart Project's assertion
+```
+
+Guaranteed reciprocal-compatible core pairs remain exactly `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` remain directional; there is no universal `DEPENDS_ON ↔ SUPPORTS` inverse. Namespaced relation types require their own governed semantics.
+
+`CORROBORATED` requires current authoritative assertions from both Projects with matching endpoint UUIDs, compatible type/direction, current source pointers, and sufficient freshness/review evidence. Derived inverse edges, OpenViking normalization, search rank, similarity, central confidence, repository/name proximity, or timestamp recency alone never satisfy corroboration.
+
+Counterpart unavailability/inaccessibility/unbound/stale/unresolved state produces `VERIFICATION_REQUIRED` for corroboration-sensitive claims and does not auto-retire otherwise valid local truth. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*` when material; stale/orphan derived state reuses `DRIFT-*`; migration/lineage/slot changes reuse `MIG-*`.
+
+Reconciliation changes only the owning Project's canonical `REL-*` under its applicable authority. Discovery/inspection of Project B never authorizes Project A or a central index to create, corroborate, retire, repair, or otherwise mutate Project B's relation records.
+
+Framework 1.14.0 adds no graph-sync service, reconciliation bot, watcher, crawler, webhook, scheduler, background agent, automatic reciprocal assertion, or cross-Project write runtime.
 ## 3. Naming and Revision
 
 Governed Project Source documents, Handoff, evidence/schema artifacts, exports, and packages created as Project Source artifacts end with:

@@ -167,8 +167,15 @@ Projection maintenance states are exactly `CURRENT | STALE | REBUILD_REQUIRED | 
 
 Incremental consumers resolve a source checkpoint and may ask for changes `since` that checkpoint. Source-native ordering outranks timestamp inference. Retention is explicitly bounded; when requested coverage is outside the retained window, rebuild from authoritative/source-native history or report the missing portion `UNKNOWN / VERIFICATION_REQUIRED`. Corrupt checkpoint continuity becomes `REBUILD_REQUIRED`.
 
-GREENFIELD/Brownfield feed adoption is optional/applicability-driven. No watcher, crawler, webhook, daemon, scheduler, background agent, event bus, queue, CDC/Git-hook runtime, cross-Project mutation, publication authority, or notification delivery is created. TASK-030/TASK-029/TASK-031 remain dependency-gated until their own focused checkpoints.
+GREENFIELD/Brownfield feed adoption is optional/applicability-driven. No watcher, crawler, webhook, daemon, scheduler, background agent, event bus, queue, CDC/Git-hook runtime, cross-Project mutation, publication authority, or notification delivery is created. TASK-030 is now the second normative foundation; TASK-029/TASK-031 remain dependency-gated until their own focused checkpoints.
 
+### TASK-030 Relation Reconciliation
+
+TASK-030 reconciles existing `92 / REL-*` assertions without creating a new family or cross-Project write authority. Reconciliation discovers the counterpart by `project_uuid`, resolves authoritative current `REL-*` evidence when available, verifies endpoint UUIDs/source pointers/freshness, applies the existing compatibility semantics, and mutates only the owning Project under applicable local authority.
+
+Guaranteed reciprocal pairs remain only `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` remain directional; no universal inverse is inferred. `CORROBORATED` requires current authoritative assertions from both Projects with matching endpoints, compatible semantics, source pointers, and sufficient freshness/review evidence. Derived inverse edges/ranking/similarity/central confidence never qualify.
+
+Unavailable/stale/unresolved counterpart evidence yields `VERIFICATION_REQUIRED` for corroboration-sensitive claims without auto-retiring local truth. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; derived drift reuses `DRIFT-*`; migration/lineage/slot changes reuse `MIG-*`. Never write the counterpart Project's relation on its behalf. No graph-sync/reconciliation runtime is implied.
 ## Framework 1.13.0 Project Audit + Integrity Remediation Suite
 
 TASK-028 registers read-only `[Project Audit]` as a Strict Governed Interface. Exact dimensions are `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; category health reuses `GREEN | AMBER | RED | UNKNOWN`; findings are presentation, not Stable IDs; and `Audit finds ≠ Audit fixes`. TASK-032 is now dependency-satisfied and defines workflow-only remediation through canonical owner/home, `R0–R3`, applicable `AUTH-*`, rollback, direct resulting-state verification, and affected re-audit. No repair command, remediation ID family, runtime validator/scanner, or auto-fix is added.

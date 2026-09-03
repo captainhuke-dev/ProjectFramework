@@ -32,13 +32,15 @@ How to use it:
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
 
-## Framework 1.14.0 Federated Change Intelligence — TASK-036 Foundation
+## Framework 1.14.0 Federated Change Intelligence — Foundation Contracts
 
 Framework `1.14.0` begins the Federated Change Intelligence suite with TASK-036 Project Change/Event History Feed. An optional root `Project-Change-Feed/` provides a **derived, non-authoritative, bounded, rebuildable** projection for incremental consumers; authoritative/current history remains Project Source, `10 Change Log`, Git/source-native history, relation history, and durable evidence as applicable.
 
 The feed uses projection maintenance states `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`, source checkpoints for `since` queries, and bounded retention. Source-native ordering outranks timestamp guessing. A request outside retained coverage rebuilds from authoritative history when possible or reports the unavailable portion `UNKNOWN / VERIFICATION_REQUIRED`; it never silently truncates.
 
-Maintained starters live in `Framework-Source/templates/project-change-feed/`. Existing Projects do not auto-adopt the feed, and feed support creates no `EVENT-*`/`FEED-*` Stable-ID family, watcher, crawler, webhook, daemon, scheduler, event bus, queue, notification delivery, or cross-Project mutation runtime. TASK-030/TASK-029/TASK-031 remain dependency-gated after this foundation checkpoint.
+Maintained starters live in `Framework-Source/templates/project-change-feed/`. Existing Projects do not auto-adopt the feed, and feed support creates no `EVENT-*`/`FEED-*` Stable-ID family, watcher, crawler, webhook, daemon, scheduler, event bus, queue, notification delivery, or cross-Project mutation runtime.
+
+TASK-030 adds evidence-based relation reconciliation over existing `92 / REL-*`. Counterparts are resolved by immutable `project_uuid`; `CORROBORATED` requires current compatible authoritative assertions from both Projects with matching endpoints/source pointers/freshness. Guaranteed reciprocal pairs remain TASK-022 exact; `DEPENDS_ON` and `SUPPORTS` stay directional with no universal inverse. Unavailable counterpart evidence yields `VERIFICATION_REQUIRED`; conflicts reuse `CONFLICT-*`; reconciliation mutates only the owning Project and never writes another Project on its behalf. TASK-029/TASK-031 remain dependency-gated.
 
 ## Framework 1.13.0 Project Audit + Integrity Remediation Suite
 

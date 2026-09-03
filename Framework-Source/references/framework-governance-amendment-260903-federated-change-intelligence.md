@@ -12,7 +12,7 @@ compatibility: "BACKWARD_COMPATIBLE_FEDERATED_CHANGE_INTELLIGENCE_SUITE"
 
 Framework `1.14.0` preserves Framework `1.13.0` unless refined here. Project Source Schema remains `1.0.0`; release format remains `3`; the Registered Command set remains unchanged. This cumulative suite is dependency-ordered `TASK-036 + TASK-030 → TASK-029 → TASK-031`.
 
-At this TASK-036 checkpoint, only the Project Change/Event History Feed contract below is normative from this amendment. TASK-030, TASK-029, and TASK-031 remain dependency-gated and non-normative until their focused implementation checkpoints are completed.
+At this foundation checkpoint, TASK-036 Project Change/Event History Feed and TASK-030 Cross-Project Relation Reconciliation are normative from this amendment. TASK-029 and TASK-031 remain dependency-gated and non-normative until their focused implementation checkpoints are completed.
 
 ## 1. TASK-036 Project Change/Event History Feed
 
@@ -132,8 +132,67 @@ This contract creates no watcher, crawler, webhook, daemon, scheduler, backgroun
 
 The feed grants no mutation, push/publication, cross-Project access, disclosure, Decision, Risk acceptance, or notification authority.
 
-## 8. Suite dependency boundary
+## 8. TASK-030 Cross-Project Relation Reconciliation
 
-TASK-036 focused completion is one of two foundation gates. TASK-030 remains a separate foundation. TASK-029 cannot activate until both foundations are complete; TASK-031 remains downstream. This amendment section does not pre-implement the still-gated contracts.
+Relation reconciliation is a governance workflow over existing `92 Project Graph` / `REL-*`; it creates no new relation family and grants no cross-Project write authority.
+
+Canonical workflow:
+
+```text
+identify local REL-* candidate
+→ discover counterpart Project by immutable project_uuid
+→ resolve counterpart authoritative 92 / REL-* when available
+→ verify endpoint UUIDs + current source pointers + evidence freshness
+→ evaluate compatibility under existing relation semantics
+→ classify local assertion disposition using ASSERTED | CORROBORATED | CONFLICTED | RETIRED
+→ persist local change only with applicable local authority
+→ never synthesize/write the counterpart Project's assertion
+```
+
+Discovery may use AI-ControlTower/OpenViking, Project Graph indexes, Project Knowledge, repositories, or configured connectors as routing assistance only. Material reconciliation claims require authoritative Project-local evidence. Counterpart discoverability, central index visibility, repository proximity, or name similarity never establishes relation authority.
+
+## 9. Reciprocal compatibility
+
+Framework 1.14.0 preserves TASK-022 exactly. Guaranteed reciprocal-compatible core pairs are only:
+
+```text
+A PARENT_OF B  ↔ B CHILD_OF A
+A CHILD_OF B   ↔ B PARENT_OF A
+A PEER_OF B    ↔ B PEER_OF A
+A RELATED_TO B ↔ B RELATED_TO A
+```
+
+`DEPENDS_ON` and `SUPPORTS` remain directional. Framework 1.14.0 defines no universal `DEPENDS_ON ↔ SUPPORTS` inverse. A derived inverse/index traversal edge never becomes reciprocal authoritative evidence automatically. Namespaced relation types require their owning Project/domain semantics; central similarity/ranking cannot infer reciprocal compatibility.
+
+## 10. CORROBORATED evidence gate
+
+A local `REL-*` may move to `CORROBORATED` only when evidence resolves at least:
+
+```text
+local Project UUID + current local REL-* pointer
+counterpart Project UUID + current counterpart REL-* pointer
+matching endpoint UUIDs
+compatible relation type/direction under governed semantics
+authoritative/current source references for both assertions
+freshness/review evidence sufficient for the claim
+```
+
+Derived inverse edges, OpenViking normalization, search rank, similarity, central confidence, repository proximity, naming similarity, or timestamp recency alone are insufficient.
+
+Temporary counterpart unavailability never auto-retires a valid local assertion. If corroboration cannot be freshly revalidated, preserve current local truth and report `VERIFICATION_REQUIRED` for the corroboration-sensitive claim rather than fabricating freshness or silently rewriting assertion state.
+
+## 11. Conflict, drift, migration, and authority
+
+Incompatible authoritative assertions preserve both Projects' truth and use `CONFLICTED` plus existing `CONFLICT-*` when managed resolution is material. Do not choose by recency, ranking, confidence, central index, or which Project is easier to mutate.
+
+Stale/orphan derived state may use existing `DRIFT-*`. Migration/lineage/slot changes reuse `MIG-*`. Reconciliation creates no graph-specific conflict/drift/migration family.
+
+A counterpart that is unavailable, inaccessible, unbound, stale, or unresolved produces explicit `VERIFICATION_REQUIRED` for corroboration-sensitive claims while preserving what is still known locally.
+
+Reconciliation may mutate only the owning Project's canonical `REL-*` under applicable local authority. It MUST NOT write, create, retire, corroborate, or repair another Project's `REL-*` on that Project's behalf merely because the counterpart was discovered or inspected.
+
+## 12. Suite dependency boundary
+
+TASK-036 and TASK-030 focused completion are the two foundation gates. TASK-029 may activate only after both are complete; TASK-031 remains downstream of TASK-029/TASK-030. This amendment does not pre-implement TASK-029 or TASK-031.
 
 Existing TASK-022 Project Graph, TASK-025 Project Knowledge, TASK-026 disclosure, TASK-028 Project Audit, TASK-032 remediation, TASK-042 response-close, and TASK-043 strict-command contracts remain unchanged.

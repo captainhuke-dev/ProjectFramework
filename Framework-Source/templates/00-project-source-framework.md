@@ -337,6 +337,13 @@ Exact projection states are `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`; 
 
 Do not synthesize `EVENT-*`/`FEED-*` identities, feed content, watchers, crawlers, webhooks, daemons, schedulers, queues, event buses, graph sync, notification delivery, cross-Project mutation, or publication authority merely because the starter supports this surface. Feed absence remains valid when not applicable.
 
+### 5.3B Cross-Project Relation Reconciliation
+
+Framework `1.14.0` reconciles existing `REL-*` only through evidence-based Project-local assertions. Discover counterpart by immutable `project_uuid`; resolve authoritative current `92 / REL-*`; verify matching endpoints/source pointers/freshness; apply existing relation semantics; persist only the owning Project under applicable authority; never synthesize/write the counterpart Project's assertion.
+
+Guaranteed reciprocal-compatible pairs remain exactly `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` remain directional with no universal inverse. `CORROBORATED` requires current authoritative compatible assertions from both Projects; derived inverse/index/ranking/similarity evidence is insufficient.
+
+Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED` for corroboration-sensitive claims without automatic retirement. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; `DRIFT-*` and `MIG-*` retain their existing roles. No graph sync, reconciliation bot, automatic reciprocal assertion, or cross-Project mutation runtime is created.
 ### 5.4 Framework 1.9 Portable Installation Result
 
 GREENFIELD Framework `1.9.0` resulting state includes both root `PROJECT-BOOTSTRAP.md` and exactly one valid consuming README managed fallback delimited by `<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->` / `<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->`. The README block uses fixed `ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework`, relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`, and directs the Agent to read Project Bootstrap before Material Project work.

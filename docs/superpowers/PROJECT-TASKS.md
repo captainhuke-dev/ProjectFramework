@@ -439,10 +439,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan Commit:** `95c1ca3`
 - **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
 - **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
-- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines counterpart discovery, reciprocal compatibility, corroboration/conflict lifecycle, evidence/freshness, unavailable/stale handling, authority boundaries, affected Framework surfaces, and verification strategy.
 - **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream B / cumulative target Framework 1.14.0
-- **Exact Next Step:** When TASK-030 is selected, prepare its architectural design spec before implementation.
+- **Implementation State:** `IMPLEMENTED / FOCUSED_VERIFIED / COMPLETION_COMMIT_PENDING` — relation reconciliation amendment/current surfaces/92 starter implemented; TASK-030 focused text verification `30/30 PASS`; TASK-029/TASK-031 remain dependency-gated.
+- **Focused Verification:** `TASK030_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
+- **Exact Next Step:** commit TASK-030 implementation, fresh-observe completion commit, then persist foundation completion checkpoint.
 
 ## Task #31 — Project Event & Notification Contract
 
