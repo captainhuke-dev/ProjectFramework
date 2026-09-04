@@ -489,6 +489,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation State:** `DONE / FOCUSED_VERIFIED` — notification governance current surfaces/starters implemented; no delivery runtime/new command/new Stable-ID family.
 - **Implementation Commit:** `e58c7a0`
 - **Focused Verification:** `TASK031_FOCUSED_TEXT 33/33 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
+- **Suite Cumulative AFFECTED:** `FEDERATED_AFFECTED 33/33 PASS` / `EVD-071`; 22/22 maintained starter stamps at Framework 1.14.0; final RELEASE_FULL pending.
 - **Completion Checkpoint Evidence:** `EVD-070 / CHG-070`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
