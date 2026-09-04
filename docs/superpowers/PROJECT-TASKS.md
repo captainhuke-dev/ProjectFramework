@@ -489,7 +489,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation State:** `DONE / FOCUSED_VERIFIED` — notification governance current surfaces/starters implemented; no delivery runtime/new command/new Stable-ID family.
 - **Implementation Commit:** `e58c7a0`
 - **Focused Verification:** `TASK031_FOCUSED_TEXT 33/33 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
-- **Suite Cumulative AFFECTED:** `FEDERATED_AFFECTED 33/33 PASS` / `EVD-071`; 22/22 maintained starter stamps at Framework 1.14.0; final RELEASE_FULL pending.
+- **Suite Cumulative AFFECTED:** `FEDERATED_AFFECTED 33/33 PASS` / `EVD-071`; 22/22 maintained starter stamps at Framework 1.14.0.
+- **Suite Final Candidate:** `6a9ef8c3439e270c3c02e0721aa416a9b20c305d` / tree `f107e3841e73cc1ff1b147cb753ef9cec28a2f37` / Framework-Source tree `d5d04e4563157246872b1e02c791b94a6c564d95`.
+- **Suite Final RELEASE_FULL:** `FEDERATED_RELEASE_FULL 33/33 PASS_RUN_1` — exactly one executed run on the unchanged final candidate.
+- **Suite Release Evidence:** `docs/superpowers/evidence/2026-09-03-federated-change-intelligence-suite-release-full.md` / commit `e0646c9` / `EVD-072`.
+- **Version 1 Closure:** Framework 1.14.0 verified local Last Stable 1.x Baseline; OUT-008 ACHIEVED / AUTH-008 TERMINATED / ACT-020 DONE / ENV-008 EXPIRED; publication `NOT_PUSHED / NOT_MERGED`.
 - **Completion Checkpoint Evidence:** `EVD-070 / CHG-070`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
