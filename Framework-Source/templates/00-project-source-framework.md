@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.12.2"
+project_source_framework_version: "1.14.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -305,13 +305,18 @@ Framework `1.3.1` registers bracketed Project inspection commands. Literal `[` a
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
+[Project Audit] : fresh read-only integrity/drift audit with evidence, unknowns, and governed repair routes; never auto-fixes Project truth
 ```
 
-Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. Framework `1.12.2` treats a recognized Registered Command as a **Strict Governed Interface**: semantic equivalence alone is insufficient when the active command contract governs required dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; unavailable evidence keeps the governed field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible explanatory prose remains allowed only where the command contract does not define stricter presentation.
+Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. Framework `1.14.0` preserves the Framework `1.12.2` rule that a recognized Registered Command is a **Strict Governed Interface**: semantic equivalence alone is insufficient when the active command contract governs required dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; unavailable evidence keeps the governed field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible explanatory prose remains allowed only where the command contract does not define stricter presentation.
 
 For recognized commands, run **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. The command gate validates command identity/active local contract, required dimensions and governed order, freshness or explicit unavailable evidence, canonical tokens, absence of unsupported stale-memory inference, and command-specific authority boundaries. It does not replace TASK-042's final global response-close gate.
 
-`[Project Status]` fresh-observes Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity, reuses `GREEN | AMBER | RED | UNKNOWN`, and keeps Task count distinct from Git change count. `[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. `[Project Upgrade]` keeps the active local `FRAMEWORK-001` pin as current authority, fresh-resolves canonical upstream as target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and asks before preparing an upgrade when a verified difference exists. A positive answer authorizes assessment/Preview only, not Project mutation; persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
+`[Project Status]` fresh-observes Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity, reuses `GREEN | AMBER | RED | UNKNOWN`, and keeps Task count distinct from Git change count. `[Project Audit]` is read-only and preserves exact dimensions Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity. Its applicable category order is Bootstrap & Identity → Routing & Current State → Canonical Records & Stable IDs → Bindings & Git Freshness → Continuity & Persistence → Conditional Surfaces & Migration → Relations, Knowledge & Execution Profiles. Audit health is exactly `GREEN | AMBER | RED | UNKNOWN`; findings are presentation rather than Stable IDs; unavailable evidence stays `UNKNOWN / VERIFICATION_REQUIRED`; bounded aggregation cannot hide material findings; `Repair Routes` is advisory-only and `Audit finds ≠ Audit fixes`.
+
+TASK-032 remediation is a governed workflow, not a command. A repair proposal resolves source finding/evidence, affected scope, canonical owner/home, desired state, `R0–R3`, applicable authority/approval, freshness prerequisites, ordered actions, rollback/reversibility, direct result verification, affected re-audit/result confirmation, and evidence/lifecycle updates. Reuse existing `ISS-* / DRIFT-* / CONFLICT-* / MIG-* / CR-* / ACT-* / AUTH-* / ENV-*` and Decision/Requirement homes. Semantic conflict cannot be auto-repaired; R2/R3 and other explicit gates remain independent; `ACT DONE ≠ repair outcome verified`; re-audit never self-authorizes further mutation. No repair command or remediation Stable-ID family is created.
+
+`[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. `[Project Upgrade]` keeps the active local `FRAMEWORK-001` pin as current authority, fresh-resolves canonical upstream as target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and asks before preparing an upgrade when a verified difference exists. A positive answer authorizes assessment/Preview only, not Project mutation; persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
 
 `[Session]` uses bounded `ENV-*` records in `15 Action Registry` for declare/show/close session/task scope; it never lifts fail-closed gates.
 
@@ -324,6 +329,33 @@ Framework `1.8.0` external-AI disclosure uses `EXTERNAL_OK | EXTERNAL_REVIEW | D
 
 Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
 
+### 5.3A Optional Project Change Feed
+
+Framework `1.14.0` MAY materialize optional root `Project-Change-Feed/` from `templates/project-change-feed/` when an incremental consumer is applicable and approved. The feed is **derived, non-authoritative, bounded, rebuildable** and remains outside Project Source semantic slots.
+
+Exact projection states are `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`; exact change kinds are `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`. Source checkpoints support `since` routing and use source-native order before timestamp inference. Retention gaps rebuild from authoritative/source-native history or remain `UNKNOWN / VERIFICATION_REQUIRED`.
+
+Do not synthesize `EVENT-*`/`FEED-*` identities, feed content, watchers, crawlers, webhooks, daemons, schedulers, queues, event buses, graph sync, notification delivery, cross-Project mutation, or publication authority merely because the starter supports this surface. Feed absence remains valid when not applicable.
+
+### 5.3B Cross-Project Relation Reconciliation
+
+Framework `1.14.0` reconciles existing `REL-*` only through evidence-based Project-local assertions. Discover counterpart by immutable `project_uuid`; resolve authoritative current `92 / REL-*`; verify matching endpoints/source pointers/freshness; apply existing relation semantics; persist only the owning Project under applicable authority; never synthesize/write the counterpart Project's assertion.
+
+Guaranteed reciprocal-compatible pairs remain exactly `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` remain directional with no universal inverse. `CORROBORATED` requires current authoritative compatible assertions from both Projects; derived inverse/index/ranking/similarity evidence is insufficient.
+
+Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED` for corroboration-sensitive claims without automatic retirement. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; `DRIFT-*` and `MIG-*` retain their existing roles. No graph sync, reconciliation bot, automatic reciprocal assertion, or cross-Project mutation runtime is created.
+### 5.3C Cross-Project Impact Analysis
+
+Framework `1.14.0` impact analysis is advisory with exact `DIRECT | POTENTIAL | UNKNOWN` classes. Material results include changed refs, affected Project UUID/scope when resolvable, governed reasoning path, authoritative/current evidence refs, limitations, and review-required disposition. `NO_MATERIAL_IMPACT_FOUND` is a scoped conclusion only.
+
+Project-Change-Feed/OpenViking/Knowledge may assist routing/traversal but never alone prove `DIRECT`. `REL-*`, `DEP-*`, `REQ-*`, `DEC-*`, Risk/Issue/Evidence remain in their canonical homes. Impact in one Project never grants authority to edit/upgrade/approve/publish another Project. No `[Impact]`, `IMPACT-*`, traversal runtime, cross-Project mutation, auto-upgrade, or notification delivery is created.
+### 5.3D Project Event & Notification Governance
+
+Framework `1.14.0` treats material audit findings, impact results requiring review, relation reconciliation changes/conflicts, management-object transitions, Goal/Action blockers, release/publication/deployment transitions, and explicitly declared events as notification candidates. Feed entries only route candidates.
+
+Notification urgency is exactly `ROUTINE | ATTENTION | URGENT` and is communication priority only. Recipient resolution uses governed owner/responsibility evidence; unresolved recipient is `VERIFICATION_REQUIRED`. `Responsibility ≠ Authority`; `Acknowledgement ≠ acceptance ≠ approval ≠ authority`; `Escalation ≠ authority` and never widens disclosure scope. Dedup uses source event pointers + affected scope + recipient context, not free-text similarity alone.
+
+Delivery failure does not erase source truth and delivery success does not prove resolution. External delivery remains separately authorized under TASK-026/trust/tool/AUTH/Risk/channel policy. No notification command, mandatory notification Stable-ID family, sender, webhook, scheduler, watcher, queue, daemon, bot, recipient resolver, or automatic escalation/dedup runtime is created.
 ### 5.4 Framework 1.9 Portable Installation Result
 
 GREENFIELD Framework `1.9.0` resulting state includes both root `PROJECT-BOOTSTRAP.md` and exactly one valid consuming README managed fallback delimited by `<!-- PROJECTFRAMEWORK-BOOTSTRAP:START -->` / `<!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->`. The README block uses fixed `ProjectFramework Upstream: https://github.com/captainhuke-dev/ProjectFramework`, relative `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`, and directs the Agent to read Project Bootstrap before Material Project work.
@@ -921,4 +953,6 @@ Framework `1.12.0` Security & Trust Boundary Contract: optional `Project-Executi
 
 Framework `1.12.1` Response Finalization Hardening: resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; every Project-governed final response, including exceptional/early-return paths, runs the Response Close Completeness Gate immediately before emit. This adds no mutation authority and preserves all Framework 1.12.0 Project Execution / release / trust semantics.
 
-Framework `1.12.2` Registered Command Strict-Interface Hardening: recognized Registered Commands preserve governed dimensions/order/tokens/freshness/fail-closed representation and pass Command Contract Completeness Gate before the existing TASK-042 Response Close Completeness Gate. Current `[Project Status]` includes `Continuity`; no command/state/authority/runtime family is added.
+Framework `1.14.0` TASK-036 Change Feed Foundation: optional `Project-Change-Feed/` is derived/non-authoritative/bounded/rebuildable with source checkpoints, bounded retention, exact projection states/change kinds, no new Stable-ID family, and no watcher/crawler/runtime implication.
+
+Framework `1.13.0` Integrity & Remediation Suite: `[Project Audit]` is a read-only Strict Governed Interface with exact dimensions `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`, existing health vocabulary, explicit unknowns, and advisory repair routing. TASK-032 remains dependency-gated until TASK-028 focused completion; no runtime audit/repair implementation or audit/finding/remediation Stable-ID family is added.

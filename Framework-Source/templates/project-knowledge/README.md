@@ -43,3 +43,6 @@ Knowledge→Governance promotion identifies the existing canonical Project Sourc
 `[Meeting]` output remains advisory before filing. `EVD-*` remains evidence, not Knowledge. TASK-026 disclosure applies independently before external use. Knowledge cross-links are not `REL-*`; Project Graph stays canonical in `92`. OpenViking keeps `PROJECT_SOURCE_AUTHORITY` separate from `PROJECT_KNOWLEDGE_ADVISORY`, remains `DERIVED_ONLY` / rebuildable, and never promotes content by retrieval rank.
 
 Actual secret values are forbidden. This starter creates no wiki engine, vector database, UI, watcher, crawler, auto-ingest daemon, embedding pipeline, MCP wiki service, validator/CLI, scheduler, or runtime automation.
+## Framework 1.14.0 Federated Change Intelligence integration
+
+Project-Change-Feed may route changed-source candidates into Knowledge maintenance, but a feed entry is not Knowledge truth and never proves `DIRECT` impact. Reconciled relations and impact/notification results remain governed by their canonical owners; Knowledge may synthesize them only with provenance and never gains cross-Project mutation, relation, notification, or approval authority. OpenViking/AI-ControlTower remain derived indexing/context layers.

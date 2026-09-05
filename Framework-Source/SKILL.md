@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.12.2 / Schema 1.0.0**.
+Current distribution: **Framework 1.14.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,9 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260902-task043.md` — latest amendment: TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening (current authority)
+- `references/framework-governance-amendment-260903-federated-change-intelligence.md` — latest amendment: Federated Change Intelligence Suite (TASK-036 foundation active)
+- `references/framework-governance-amendment-260902-task028-task032.md` — previous amendment: TASK-028 + TASK-032 Integrity & Remediation Suite
+- `references/framework-governance-amendment-260902-task043.md` — TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening
 - `references/framework-governance-amendment-260902-task042-forward-port.md` — previous amendment: TASK-042 Response Finalization Hardening forward-port
 - `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
 - `references/framework-governance-amendment-260831-task041.md` — previous amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
@@ -157,6 +159,46 @@ Before the first Project-governed response in each chat/session, resolve the app
 
 TASK-042 is forward-ported onto the cumulative Framework 1.12.0 base. Resolve Project Bootstrap before the first Project-governed response when accessible; read-only/status/diagnostic/failure-report responses are not exempt; no early-return/exception path bypasses the Response Close Completeness Gate. The response-close format, Project authority model, TASK-025 Project Knowledge semantics, and Set 1 execution/capability/publication/trust contracts remain unchanged.
 
+## Framework 1.14.0 Federated Change Intelligence — TASK-036 Foundation
+
+TASK-036 defines optional root `Project-Change-Feed/` as a **derived, non-authoritative, bounded, rebuildable** change projection. It is outside Project Source and never replaces `10 Change Log`, Git/source-native history, `EVD-*`, Project Knowledge, or OpenViking authority.
+
+Projection maintenance states are exactly `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`. Entries use exact change kinds `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`. Projection sequence is local-only identity and creates no Event/Feed Stable-ID family.
+
+Incremental consumers resolve a source checkpoint and may ask for changes `since` that checkpoint. Source-native ordering outranks timestamp inference. Retention is explicitly bounded; when requested coverage is outside the retained window, rebuild from authoritative/source-native history or report the missing portion `UNKNOWN / VERIFICATION_REQUIRED`. Corrupt checkpoint continuity becomes `REBUILD_REQUIRED`.
+
+GREENFIELD/Brownfield feed adoption is optional/applicability-driven. No watcher, crawler, webhook, daemon, scheduler, background agent, event bus, queue, CDC/Git-hook runtime, cross-Project mutation, publication authority, or notification delivery is created. TASK-030 is now the second normative foundation; TASK-029/TASK-031 remain dependency-gated until their own focused checkpoints.
+
+### TASK-030 Relation Reconciliation
+
+TASK-030 reconciles existing `92 / REL-*` assertions without creating a new family or cross-Project write authority. Reconciliation discovers the counterpart by `project_uuid`, resolves authoritative current `REL-*` evidence when available, verifies endpoint UUIDs/source pointers/freshness, applies the existing compatibility semantics, and mutates only the owning Project under applicable local authority.
+
+Guaranteed reciprocal pairs remain only `PARENT_OF ↔ CHILD_OF`, `CHILD_OF ↔ PARENT_OF`, `PEER_OF ↔ PEER_OF`, and `RELATED_TO ↔ RELATED_TO`. `DEPENDS_ON` and `SUPPORTS` remain directional; no universal inverse is inferred. `CORROBORATED` requires current authoritative assertions from both Projects with matching endpoints, compatible semantics, source pointers, and sufficient freshness/review evidence. Derived inverse edges/ranking/similarity/central confidence never qualify.
+
+Unavailable/stale/unresolved counterpart evidence yields `VERIFICATION_REQUIRED` for corroboration-sensitive claims without auto-retiring local truth. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; derived drift reuses `DRIFT-*`; migration/lineage/slot changes reuse `MIG-*`. Never write the counterpart Project's relation on its behalf. No graph-sync/reconciliation runtime is implied.
+### TASK-029 Cross-Project Impact Analysis
+
+Impact analysis is advisory and uses exact classification `DIRECT | POTENTIAL | UNKNOWN`. `DIRECT` needs authoritative/current evidence connecting the changed subject to the affected Project/scope; `POTENTIAL` is an incomplete/indirect/conditional/stale governed path; `UNKNOWN` means the required evidence cannot be resolved. `NO_MATERIAL_IMPACT_FOUND` is only a bounded report conclusion, not a fourth class.
+
+Material output preserves changed refs, affected Project UUID/scope when resolvable, classification, governed reasoning path, authoritative evidence refs, limitations, and review-required disposition. Project-Change-Feed/OpenViking/Knowledge may route or assist traversal but cannot alone support a `DIRECT` claim. Canonical `REL-* / DEP-* / REQ-* / DEC-* / EVD-*` homes remain unchanged.
+
+Impact in Project A never authorizes mutation/upgrade/approval/publication in Project B. No `[Impact]`, `IMPACT-*`, graph traversal runtime, cross-Project mutation, auto-upgrade, or notification delivery is created.
+
+### TASK-031 Project Event & Notification Governance
+
+Notification candidate events include material Project Audit `RED/AMBER/UNKNOWN` findings, `DIRECT/POTENTIAL/UNKNOWN` impacts requiring review, `REL-*` reconciliation conflicts or material corroboration changes, `RISK / DEP / ISS / DRIFT / CONFLICT` transitions, Goal/Action blockers, release/publication/deployment transitions, and other governed events explicitly declared notification-worthy. Feed entries route candidates only; they do not establish notification eligibility.
+
+Eligibility considers source-event materiality, current owner/recipient relevance, required action/review, source-evidence freshness, equivalent outstanding notification state, and declared Project policy. Urgency is presentation-only and exactly `ROUTINE | ATTENTION | URGENT`; it never replaces Risk, audit health, issue severity, lifecycle, authority, or provider priority.
+
+Resolve recipients from governed/current ownership or responsibility evidence such as canonical owner, `11 Actor Registry`, Goal/Action owner, or exact user-selected recipient. Unresolved recipient = `VERIFICATION_REQUIRED`; do not guess from email-like strings, Git authorship, chat participants, recency, or activity ranking. `Responsibility ≠ Authority` and recipient status grants no permission.
+
+Acknowledgement records receipt/review only: `Acknowledgement ≠ acceptance ≠ approval ≠ authority`. Escalation is policy-driven and `Escalation ≠ authority`; it never broadens disclosure scope. Deduplication is source-based using source event identity/pointers + affected scope + recipient context; free-text similarity alone is insufficient and materially changed events are not suppressed.
+
+Notification failure never erases the source event; delivery success never proves the underlying issue/impact/risk/outcome resolved. Use `PERSISTENCE_PENDING` only when an actual external delivery succeeded but required durable Project reconciliation failed. External delivery remains separately governed by TASK-026, trust/tool eligibility, authority/Risk, channel/provider policy, and secret handling. No email/Slack/webhook sender, watcher, scheduler, daemon, queue, bot, delivery service, recipient resolver, automatic escalation, or dedup runtime is created.
+## Framework 1.13.0 Project Audit + Integrity Remediation Suite
+
+TASK-028 registers read-only `[Project Audit]` as a Strict Governed Interface. Exact dimensions are `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; category health reuses `GREEN | AMBER | RED | UNKNOWN`; findings are presentation, not Stable IDs; and `Audit finds ≠ Audit fixes`. TASK-032 is now dependency-satisfied and defines workflow-only remediation through canonical owner/home, `R0–R3`, applicable `AUTH-*`, rollback, direct resulting-state verification, and affected re-audit. No repair command, remediation ID family, runtime validator/scanner, or auto-fix is added.
+
 ## Framework 1.12.2 Registered Command Strict-Interface Hardening
 
 TASK-043 makes recognized Registered Commands Strict Governed Interfaces. Required command structure/order/tokens/freshness/fail-closed representation are preserved; equivalent narrative replacement is noncompliant when it bypasses the active contract. For recognized commands, run **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. Current `[Project Status]` summaries include `Continuity`; no command identity, authority family, schema, or runtime enforcement is added.
@@ -234,6 +276,7 @@ Registered Project command identity requires literal brackets; matching inside b
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
+[Project Audit] : fresh read-only integrity/drift audit with evidence, unknowns, and governed repair routes; never auto-fixes Project truth
 ```
 
 Natural-language command-help requests list only commands registered by the active Framework/Project as `[XXX] : purpose`; do not invent commands.
@@ -254,6 +297,10 @@ Recognize
 The **Command Contract Completeness Gate** validates the command body before TASK-042's global response-close gate: command identity/active local contract resolved; required dimensions present in governed order; freshness satisfied or unavailable evidence explicit; canonical tokens preserved; unsupported inference absent; authority boundaries preserved. If the command contract cannot be resolved safely, do not downgrade into an ordinary summary or reconstruct missing rules from memory.
 
 `[Project Status]` is read-only and fresh-observation driven. Report applicable dimensions in order: Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity. Health reuses `GREEN | AMBER | RED | UNKNOWN`. Read Task count from the Task source; never infer Tasks from changed-file count. Working Tree reports Waiting Commit Yes/No plus changed/staged/unstaged/untracked counts. A verified remote-sync claim requires fresh remote evidence; unavailable dimensions stay `UNKNOWN / VERIFICATION_REQUIRED`.
+
+`[Project Audit]` is read-only and fresh-observation driven. Preserve exact dimensions `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`. Category health is exactly `GREEN | AMBER | RED | UNKNOWN`. Evaluate applicable categories in order: Bootstrap & Identity → Routing & Current State → Canonical Records & Stable IDs → Bindings & Git Freshness → Continuity & Persistence → Conditional Surfaces & Migration → Relations, Knowledge & Execution Profiles. Findings are presentation, not Stable IDs; do not create `AUDIT-*` / `FINDING-*`. Preserve `Audit finds ≠ Audit fixes`: audit never mutates Project truth or materializes issue/drift/conflict/migration records. Bound repetitive findings only without hiding material RED/AMBER/UNKNOWN results. Unavailable evidence stays explicit. `Repair Routes` names existing canonical homes/gates only and grants no authority.
+
+TASK-032 remediation is workflow-only. Resolve `Source finding/evidence → affected scope → canonical owner/home → desired resulting state → R0–R3 → applicable authority/approval → prerequisites/freshness → ordered actions → reversibility/rollback → direct resulting-state verification → affected re-audit/result confirmation → evidence/lifecycle`. Reuse existing `ISS/DRIFT/CONFLICT/MIG/CR/ACT/AUTH/ENV/DEC/REQ` homes; no `REPAIR-*` / `REM-*`. Semantic conflict requires Decision/Change/Conflict authority rather than auto-repair. R2/R3, push, destructive, Root/Binding, and disclosure gates remain independent. `ACT DONE ≠ repair outcome verified`; re-audit is read-only and cannot self-authorize the next fix.
 
 `[Project Path]` surfaces Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations. An explicit requested path may be used as action input, but persistent Bootstrap/Project Location changes retain existing approval and `FRAMEWORK-001` revision/validation/promotion/history rules.
 
@@ -782,6 +829,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 | Persistent binding change | User Explicit Approval + governed `FRAMEWORK-001` revision/promotion |
 | Repository binding | never substitute for current branch/worktree, Canonical Integration Target, or Canonical Implementation Source |
 | `[Project Status]` | fresh read-only Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity; Task count ≠ Git change count |
+| `[Project Audit]` | fresh read-only Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity; `Audit finds ≠ Audit fixes` |
 | `[Project Path]` | show/verify configured path values; `<...>` means unset; persistent changes keep existing approval/root-governance rules |
 | `[Project Upgrade]` | fresh local-pin vs canonical-upstream comparison; report `UP_TO_DATE/UPGRADE_AVAILABLE/SOURCE_DIVERGENCE/VERIFICATION_REQUIRED`; yes to upgrade = prepare Preview, not mutation approval |
 | Command discovery | list registered commands only as `[XXX] : purpose`; bracketed command matching is case-insensitive and brackets are required |

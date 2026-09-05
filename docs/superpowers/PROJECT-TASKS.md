@@ -343,8 +343,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
 - **ID:** `TASK-028`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework command / Project integrity assessment
+- **depends_on:** `[]`
+- **blocks:** `[TASK-032]`
+- **enables:** `[TASK-032]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** `[Project Status]` is a current dashboard, but ProjectFramework lacks one standard read-only command for deeper integrity, consistency, stale-reference, drift, and governance-health assessment across Project surfaces.
 - **Approved direction:** Define `[Project Audit]` as a read-only integrity command that evaluates Project Source, bootstrap, continuity, Git/binding evidence, Stable-ID routing, Project Graph, migration/drift/conflict state, and future Knowledge/Tool-profile surfaces when applicable.
 - **Scope:**
@@ -355,16 +361,32 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve `Audit finds ≠ Audit fixes`: default audit is read-only and cannot mutate Project truth, resolve conflicts, migrate, push, or repair automatically.
   6. Define partial/unknown behavior when required sources or runtime evidence cannot be read.
 - **Implementation boundary:** Task registration only. Do not register `[Project Audit]`, add validators/CLI/runtime scanners, or mutate existing Framework surfaces until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.10.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-02-task028-task032-integrity-remediation-design.md`
+- **Spec Self-Review:** `PASS 12/12` — release classification, dependency order, strict audit interface, no-auto-fix boundary, canonical repair routing, Risk/AUTH/rollback/re-audit, scenario range `357–380`, no-runtime/no-new-ID boundaries checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan Self-Review:** `PASS 13/13` — TDD RED ordering, TASK-028→TASK-032 completion gate, exact affected surfaces, cumulative AFFECTED, frozen candidate, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
+- **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
+- **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative Integrity & Remediation Suite target reclassified from the older roadmap placeholder because current canonical Framework is 1.12.2 and TASK-028 adds a Registered Command.
 - **Completion criteria:** A user-approved design defines command syntax, audit scope/categories, health vocabulary, evidence/unknown handling, no-auto-fix boundary, integration with existing governance families, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-028 is selected for development, prepare its command/design spec before implementation.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — normative command/release surfaces committed at `a38d514`; `[Project Audit]` focused verifier `23/23 PASS`; suite structural state `32/40 PASS` with only TASK-032/final-propagation checks remaining.
+- **Implementation Commit:** `a38d514`
+- **Focused Verification:** `TASK028_FOCUSED 23/23 PASS`
+- **Completion Checkpoint Evidence:** `EVD-057 / CHG-057`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #29 — Cross-Project Impact Analysis
 
 - **ID:** `TASK-029`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / federated Project-change impact reasoning
+- **depends_on:** `[TASK-036, TASK-030]`
+- **blocks:** `[TASK-031]`
+- **enables:** `[TASK-031]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Framework 1.6.0 can represent Project relations through `92 Project Graph` / `REL-*`, but the Framework does not yet define how to reason about which other Projects may require review when one Project changes materially.
 - **Approved direction:** Define a cross-Project impact-analysis contract that uses authoritative Project relation assertions plus relevant governed dependency/requirement/evidence pointers to surface direct and potential impacts without propagating changes automatically.
 - **Scope:**
@@ -375,16 +397,35 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define AI-ControlTower/OpenViking use as derived traversal/index assistance only; Project-local authoritative sources remain the basis for material impact claims.
   6. Define behavior for stale/orphan/conflicted relations, unavailable target Projects, merges/splits, and Brownfield Projects without `92`.
 - **Implementation boundary:** Task registration only. Do not add `[Impact]` or another command, graph traversal runtime, OpenViking automation, cross-Project mutation, or notification mechanism until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-03-federated-change-intelligence-suite-design.md`
+- **Design Commit:** `d061f1f`
+- **Spec Self-Review:** `FEDERATED_SPEC_SELF_REVIEW 27/27 PASS`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
+- **Plan Commit:** `95c1ca3`
+- **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines impact vocabulary, evidence/provenance, direct/indirect reasoning, advisory boundary, Project Graph/OpenViking integration, stale/conflict/unknown behavior, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** Wait for further requirements; when TASK-029 is selected for development, prepare its architectural design spec before implementation.
+- **Suite:** `OUT-008 Federated Change Intelligence` / waits for both foundation checkpoints before activation
+- **Dependency State:** `TASK-036 + TASK-030 SATISFIED` via `5c9ed7c / EVD-066` and `360a1ad / EVD-067`.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — advisory impact contract implemented without new command/Stable-ID family/runtime; completion commit observed at `daf01eb`.
+- **Implementation Commit:** `daf01eb`
+- **Focused Verification:** `TASK029_FOCUSED_TEXT 34/34 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
+- **Completion Checkpoint Evidence:** `EVD-068 / CHG-068`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #30 — Cross-Project Relation Reconciliation
 
 - **ID:** `TASK-030`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / federated Project-relation lifecycle governance
+- **depends_on:** `[]`
+- **blocks:** `[TASK-029]`
+- **enables:** `[TASK-029]`
+- **parallelizable_with:** `[TASK-036]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Framework 1.6.0 defines `REL-*` assertions and `ASSERTED | CORROBORATED | CONFLICTED | RETIRED`, but it does not yet define a complete workflow for discovering, requesting, validating, and revalidating compatible reciprocal assertions across Projects.
 - **Approved direction:** Define a relation-reconciliation contract that preserves each Project's authority while allowing evidence-based corroboration and explicit conflict handling.
 - **Scope:**
@@ -396,16 +437,33 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   6. Preserve OpenViking/AI-ControlTower as `DERIVED_ONLY` traversal/index assistance, never relation authority.
   7. Reuse existing `DRIFT-*`, `CONFLICT-*`, and `MIG-*` families when material.
 - **Implementation boundary:** Task registration only. Do not add reconciliation runtime, cross-Project writes, graph sync, notifications, or automatic reciprocal assertions until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-03-federated-change-intelligence-suite-design.md`
+- **Design Commit:** `d061f1f`
+- **Spec Self-Review:** `FEDERATED_SPEC_SELF_REVIEW 27/27 PASS`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
+- **Plan Commit:** `95c1ca3`
+- **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines counterpart discovery, reciprocal compatibility, corroboration/conflict lifecycle, evidence/freshness, unavailable/stale handling, authority boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-030 is selected, prepare its architectural design spec before implementation.
+- **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream B / cumulative target Framework 1.14.0
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — relation reconciliation workflow implemented over existing REL-* with no cross-Project write/runtime/new family.
+- **Implementation Commit:** `360a1ad`
+- **Focused Verification:** `TASK030_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #31 — Project Event & Notification Contract
 
 - **ID:** `TASK-031`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / governed Project event and notification semantics
+- **depends_on:** `[TASK-029, TASK-030]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Audit, impact analysis, dependency failures, relation changes, risks, and other material events may require attention, but ProjectFramework does not yet define when an event is notification-worthy, who should be informed, or how delivery/acknowledgement relates to Project authority.
 - **Approved direction:** Define a vendor-neutral event/notification governance contract while keeping notification delivery separate from approval and mutation authority.
 - **Scope:**
@@ -416,16 +474,40 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve `notification ≠ approval` and `notification ≠ authority`.
   6. Define integration boundaries with TASK-028 Audit, TASK-029 Impact Analysis, TASK-030 Relation Reconciliation, and existing `RISK-* / ISS-* / DRIFT-* / CONFLICT-*` semantics.
 - **Implementation boundary:** Task registration only. Do not create email/Slack/webhook delivery, schedulers, watchers, or notification automation until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.11.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-03-federated-change-intelligence-suite-design.md`
+- **Design Commit:** `d061f1f`
+- **Spec Self-Review:** `FEDERATED_SPEC_SELF_REVIEW 27/27 PASS`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
+- **Plan Commit:** `95c1ca3`
+- **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines event eligibility, severity, recipient/ack/escalation semantics, deduplication, failure handling, evidence, authority separation, integration boundaries, and verification strategy.
-- **Exact Next Step:** When TASK-031 is selected, prepare its architectural design spec before implementation.
+- **Suite:** `OUT-008 Federated Change Intelligence` / downstream notification-governance stage; TASK-028 already DONE prerequisite context
+- **Dependency State:** `TASK-029 + TASK-030 SATISFIED` via `daf01eb / EVD-068` and `360a1ad / EVD-067`.
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — notification governance current surfaces/starters implemented; no delivery runtime/new command/new Stable-ID family.
+- **Implementation Commit:** `e58c7a0`
+- **Focused Verification:** `TASK031_FOCUSED_TEXT 33/33 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
+- **Suite Cumulative AFFECTED:** `FEDERATED_AFFECTED 33/33 PASS` / `EVD-071`; 22/22 maintained starter stamps at Framework 1.14.0.
+- **Suite Final Candidate:** `6a9ef8c3439e270c3c02e0721aa416a9b20c305d` / tree `f107e3841e73cc1ff1b147cb753ef9cec28a2f37` / Framework-Source tree `d5d04e4563157246872b1e02c791b94a6c564d95`.
+- **Suite Final RELEASE_FULL:** `FEDERATED_RELEASE_FULL 33/33 PASS_RUN_1` — exactly one executed run on the unchanged final candidate.
+- **Suite Release Evidence:** `docs/superpowers/evidence/2026-09-03-federated-change-intelligence-suite-release-full.md` / commit `e0646c9` / `EVD-072`.
+- **Version 1 Closure:** Framework 1.14.0 verified local Last Stable 1.x Baseline; OUT-008 ACHIEVED / AUTH-008 TERMINATED / ACT-020 DONE / ENV-008 EXPIRED; publication `NOT_PUSHED / NOT_MERGED`.
+- **Completion Checkpoint Evidence:** `EVD-070 / CHG-070`
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #32 — Governed Project Repair / Remediation
 
 - **ID:** `TASK-032`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework workflow / integrity remediation governance
+- **depends_on:** `[TASK-028]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** TASK-028 intentionally preserves `Audit finds ≠ Audit fixes`; ProjectFramework therefore needs a separate governed workflow for proposing and executing repairs after integrity, drift, stale-reference, binding, or continuity findings.
 - **Approved direction:** Define a repair/remediation contract that converts findings into bounded, reversible, authority-checked remediation work without automatic semantic repair.
 - **Scope:**
@@ -436,10 +518,32 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Define post-remediation re-audit or resulting-state confirmation behavior.
   6. Reuse existing `ISS-*`, `DRIFT-*`, `CONFLICT-*`, `MIG-*`, `CR-*`, and `ACT-*` homes rather than creating parallel authoritative issue families.
 - **Implementation boundary:** Task registration only. Do not register a repair command, auto-fix Project Source, migrate automatically, push, or mutate external/shared state until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.10.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-02-task028-task032-integrity-remediation-design.md`
+- **Spec Self-Review:** `PASS 12/12` — release classification, dependency order, strict audit interface, no-auto-fix boundary, canonical repair routing, Risk/AUTH/rollback/re-audit, scenario range `357–380`, no-runtime/no-new-ID boundaries checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-02-task028-task032-integrity-remediation.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan Self-Review:** `PASS 13/13` — TDD RED ordering, TASK-028→TASK-032 completion gate, exact affected surfaces, cumulative AFFECTED, frozen candidate, one-final-RELEASE_FULL, evidence and terminal reconciliation covered.
+- **TDD RED:** scenarios `357–380`; cumulative numbering `1–380`; `TASK028032_STRUCTURAL 14/40 PASS` / expected `26` missing-contract failures on Framework `1.12.2`; no verifier/runtime error.
+- **Target Release:** Framework `1.13.0` / Schema `1.0.0` / release format `3` — cumulative suite target shared with TASK-028; implementation waits for TASK-028 contract completion.
 - **Completion criteria:** A user-approved design defines repair proposal/lifecycle, authority/risk gates, sequencing, rollback, semantic-conflict boundaries, post-repair verification, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-032 is selected, prepare its workflow/design spec before implementation.
+- **Dependency State:** `TASK-028 SATISFIED` via implementation `a38d514` + focused `23/23 PASS` + `EVD-057`.
+- **Implementation State:** `DONE / LOCAL_VERIFIED / RELEASE_EVIDENCE_COMMITTED` — TASK-032 remediation semantics implemented and verified within cumulative Framework 1.13.0; no repair command/runtime/new remediation family introduced.
+- **Implementation Commit:** `dd20987`
+- **Focused Verification:** `TASK032_FOCUSED 23/23 PASS`
+- **Prior Structural Verification:** `40/40 PASS`
+- **Prior Cumulative Affected Verification:** `58/58 PASS` / `EVD-058`; candidate `5991c9f` later invalidated before RELEASE_FULL for Project Source EOF hygiene.
+- **Corrected Cumulative Affected Verification:** `59/59 PASS` / `EVD-060`, including prospective full branch `git diff --check origin/main` PASS.
+- **Invalidated Candidate:** `5991c9fe133942703c93a579be26ecafc7c7d59e` / tree `160a36ffe552e2a10cdc98413c2994acc580c856` / Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585` / RELEASE_FULL NOT_RUN.
+- **Final Candidate:** `089fc186275b303440b3be236c5e29b39f552cd5`
+- **Final Candidate Tree:** `ec50f32ef2d8f063afe98b2c6e07568c3004dd66`
+- **Final Framework-Source Tree:** `61c27afad2bb794e54561e422b928fc777186585`
+- **Final RELEASE_FULL:** `TASK028032_RELEASE_FULL 49/49 PASS` — exactly one run on the unchanged corrected candidate.
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-02-task-028-task-032-integrity-remediation-release-full.md`
+- **Release Evidence Commit:** `950bff9`
+- **Publication State:** `NOT_PUSHED`
+- **Completion State:** `DONE / LOCAL_VERIFIED`; terminal reconciliation commit must be freshly observed before external completion claim.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #33 — Task Dependency & Portfolio Planning
 
@@ -560,8 +664,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #36 — Project Change/Event History Feed
 
 - **ID:** `TASK-036`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Type:** Framework architecture / bounded derived Project change projection
+- **depends_on:** `[]`
+- **blocks:** `[TASK-029]`
+- **enables:** `[TASK-029]`
+- **parallelizable_with:** `[TASK-030]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
 - **Problem:** Cross-Project indexing, Project Knowledge, and impact reasoning should not need to rescan the entire Project to determine what changed since a prior observation, while `10 Change Log` and authoritative Git/Project Source must remain the real history sources.
 - **Approved direction:** Define a rebuildable bounded change/event feed as a derived projection with durable source pointers, never as a new authority.
 - **Scope:**
@@ -572,10 +682,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   5. Preserve derived-feed data as non-authoritative routing/index evidence.
   6. Define retention/bounding behavior sufficient for incremental consumers without creating an unbounded execution log.
 - **Implementation boundary:** Task registration only. Do not create watchers, crawlers, webhooks, change daemons, indexing runtimes, or background automation until a separate design spec is completed and explicitly approved.
-- **Design State:** `APPROVED_DIRECTION / DESIGN_SPEC_REQUIRED`
-- **Target Release:** Framework `1.9.0` / Schema `1.0.0` (user-approved roadmap target; design must reclassify if a breaking change is explicitly identified and approved)
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`
+- **Design Spec:** `docs/superpowers/specs/2026-09-03-federated-change-intelligence-suite-design.md`
+- **Design Commit:** `d061f1f`
+- **Spec Self-Review:** `FEDERATED_SPEC_SELF_REVIEW 27/27 PASS`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-03-federated-change-intelligence-suite.md`
+- **Plan Commit:** `95c1ca3`
+- **Plan Self-Review:** `FEDERATED_PLAN_SELF_REVIEW 23/23 PASS`
+- **TDD RED:** scenarios `381–420`; cumulative numbering `1–420`; `FEDERATED_STRUCTURAL 23/40 PASS` / expected `17` missing-contract failures on Framework `1.13.0`; baseline invariants GREEN.
+- **Target Release:** Framework `1.14.0` / Schema `1.0.0` / release format `3` — cumulative OUT-008 target reclassified by approved suite design
 - **Completion criteria:** A user-approved design defines feed identity/schema, delta/checkpoint semantics, rebuildability, stale/corrupt handling, bounded retention, authority separation, integration boundaries, affected Framework surfaces, and verification strategy.
-- **Exact Next Step:** When TASK-036 is selected, prepare its architectural design spec before implementation.
+- **Suite:** `OUT-008 Federated Change Intelligence` / foundation stream A / cumulative target Framework 1.14.0
+- **Implementation State:** `DONE / FOCUSED_VERIFIED` — optional derived Project Change Feed contract implemented with no executable verifier/runtime/new command/new Stable-ID family.
+- **Implementation Commit:** `5c9ed7c`
+- **Focused Verification:** `TASK036_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #37 — Security & Trust Boundary Contract
 

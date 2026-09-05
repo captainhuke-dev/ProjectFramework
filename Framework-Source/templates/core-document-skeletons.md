@@ -27,6 +27,9 @@ Framework `1.8.0` registers persistent `[Goal]` without a `GOAL-*` family: Goal 
 Framework `1.9.0` adds portable installation bootstrap: current Project Settings use `ProjectFramework Upstream` + verified absolute `Project Bootstrap`; every adopting GREENFIELD Project has exactly one managed `PROJECTFRAMEWORK-BOOTSTRAP` README fallback using `./PROJECT-BOOTSTRAP.md`; both route to locator-only root bootstrap and active `FRAMEWORK-001` authority. Core installation completion is separate from vendor-settings confirmation.
 Framework `1.10.0` adds optional root `Project-Knowledge/` outside Project Source slots for advisory/provenance-aware reusable synthesis. It is applicability-driven, never Project authority, and is created only after active `FRAMEWORK-001` plus approval; Knowledge→Governance promotion reuses canonical owners/authority and external use still follows TASK-026.
 
+## Framework 1.14.0 Federated Change Intelligence Semantics
+
+Framework `1.14.0` completes the documentation/governance-only Federated Change Intelligence suite: optional derived `Project-Change-Feed/`; evidence-based `REL-*` reconciliation; advisory cross-Project impact classification `DIRECT | POTENTIAL | UNKNOWN`; and notification governance with exact urgency `ROUTINE | ATTENTION | URGENT`. Feed/Knowledge/OpenViking remain derived routing/context only; counterpart Projects retain local authority; notification/acknowledgement never grant approval or mutation authority. No watcher, scheduler, delivery runtime, graph-sync service, cross-Project mutation runtime, new semantic slot, or new Stable-ID family is introduced.
 ## Common YAML Header Pattern
 
 ```yaml
@@ -47,7 +50,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.12.2"
+project_source_framework_version: "1.14.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -863,3 +866,5 @@ Framework `1.12.0` Security & Trust Boundary Contract adds optional `Project-Exe
 Framework `1.12.1` Response Finalization Hardening: first Project-governed response resolves Project Bootstrap when accessible; non-Material diagnostics are not exempt; no early-return/tool-failure/timeout/partial/refusal/exception-recovery path bypasses the Response Close Completeness Gate. Material mutation gates remain independent.
 
 Framework `1.12.2` Registered Command Strict-Interface Hardening: recognized command bodies preserve governed structure/order/tokens/freshness/fail-closed representation and pass Command Contract Completeness Gate before TASK-042 Response Close Completeness Gate; current `[Project Status]` includes `Continuity`.
+
+Framework `1.13.0` Project Audit + Integrity Remediation: `[Project Audit]` is a strict read-only interface with exact `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; findings never auto-fix or create authority. TASK-032 remediation is workflow-only and reuses canonical owner/home, `R0–R3`, applicable AUTH/approval, rollback, direct resulting-state verification, and affected re-audit; no repair command, remediation Stable-ID family, or runtime auto-fix is created.

@@ -14,7 +14,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.12.2"
+project_source_framework_version: "1.14.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -56,6 +56,29 @@ A RELATED_TO B ↔ B RELATED_TO A
 
 `DEPENDS_ON` and `SUPPORTS` are directional and do not require an inverse record unless the other Project independently asserts compatible truth. A derived inverse edge from an external index is not reciprocal Project evidence and never becomes another Project's assertion.
 
+## Relation Reconciliation Workflow
+
+When reconciliation is applicable:
+
+```text
+identify local REL-* candidate
+→ discover counterpart by immutable project_uuid
+→ resolve counterpart authoritative current 92 / REL-* when available
+→ verify endpoint UUIDs + source pointers + freshness
+→ evaluate existing reciprocal/directional semantics
+→ update only this Project's REL-* under applicable authority
+→ never synthesize/write the counterpart Project's assertion
+```
+
+`CORROBORATED` additionally requires both current authoritative relation pointers, matching endpoint UUIDs, compatible type/direction, and sufficient freshness/review evidence. OpenViking/inverse traversal/ranking/similarity/recency alone is insufficient.
+
+`DEPENDS_ON` and `SUPPORTS` remain directional; there is no universal `DEPENDS_ON ↔ SUPPORTS` inverse. Counterpart unavailability/staleness uses `VERIFICATION_REQUIRED` for corroboration-sensitive claims and does not auto-retire valid local truth. Incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*` when material.
+## Impact Analysis Consumer Boundary
+
+`REL-*` may be traversed as one input to TASK-029 impact analysis, but the graph does not own `DEP-*`, `REQ-*`, `DEC-*`, Risk, Issue, or Evidence payloads. A `DIRECT` impact claim requires authoritative/current evidence beyond derived feed/index traversal. Impact analysis is advisory and grants no authority to mutate the target Project.
+## Notification Consumer Boundary
+
+A `REL-*` reconciliation conflict or material corroboration change may be a TASK-031 notification candidate, but relation state alone does not authorize delivery. Notification eligibility, recipient resolution, urgency, acknowledgement, escalation, deduplication, disclosure, and delivery authority remain governed outside `92`. No notification record or delivery runtime is synthesized from a relation assertion.
 ## External Derived Index Status / Pointers
 
 ```text

@@ -4,7 +4,62 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.12.1 → 1.12.2 (current)
+## 1.13.0 → 1.14.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.14.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is the Federated Change Intelligence Suite.
+- TASK-036 defines optional root `Project-Change-Feed/` as a derived, non-authoritative, bounded, rebuildable projection with maintained starter templates.
+- Projection states are exactly `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`; feed change kinds are `STABLE_ID_CHANGE | DOCUMENT_CHANGE | RELATION_CHANGE | LIFECYCLE_CHANGE | EVIDENCE_CHANGE | RELEASE_PUBLICATION_CHANGE | OTHER_MATERIAL_CHANGE`.
+- A source checkpoint supports incremental `since` routing; source-native ordering outranks timestamp guessing. Retention is bounded; gaps rebuild from authoritative/source-native history or remain `UNKNOWN / VERIFICATION_REQUIRED`.
+- Existing initialized Projects do not auto-create `Project-Change-Feed/`; adoption is applicability-driven and separately governed.
+- TASK-030 adds evidence-based relation reconciliation over existing `92 / REL-*`; counterpart discovery never grants cross-Project write authority.
+- Reciprocal compatibility remains TASK-022 exact; `DEPENDS_ON` and `SUPPORTS` remain directional with no universal inverse; `CORROBORATED` requires authoritative current evidence from both Projects.
+- Unavailable/stale counterpart evidence uses `VERIFICATION_REQUIRED`; incompatible authoritative assertions use `CONFLICTED` plus existing `CONFLICT-*`; TASK-029/TASK-031 remain dependency-gated.
+- TASK-029 adds advisory impact classification `DIRECT | POTENTIAL | UNKNOWN`; a `DIRECT` claim requires authoritative/current evidence and cannot rest solely on feed/OpenViking/Knowledge/derived traversal.
+- Impact analysis preserves canonical `REL-* / DEP-* / REQ-* / DEC-* / EVD-*` homes and never grants cross-Project mutation/upgrade/approval/publication authority.
+- TASK-031 adds vendor-neutral notification eligibility, exact urgency `ROUTINE | ATTENTION | URGENT`, governed recipient resolution, acknowledgement/escalation/dedup semantics, and explicit failure/stale handling.
+- Notification urgency is presentation-only; recipient/ack/escalation never grant authority; actual delivery/disclosure remains separately governed and no delivery runtime or notification Stable-ID family is introduced.
+- No watcher, crawler, webhook, daemon, scheduler, event bus, queue, CDC, Git hook, background agent, new command, new Stable-ID family, or cross-Project mutation runtime is introduced.
+
+### Upgrade checklist
+
+1. Preserve active local Framework pin/current truth until governed Direct-to-Latest promotion.
+2. Treat `Project-Change-Feed/` as optional derived routing only; never replace `10 Change Log`, Project Source, Git/source-native history, or `EVD-*`.
+3. If adopting the feed, declare projection checkpoint/retention and rebuild from authoritative/source-native pointers; corrupt state becomes `REBUILD_REQUIRED` rather than authority repair.
+4. Do not infer full historical coverage when a requested `since` checkpoint falls outside retention; rebuild or report the unavailable portion explicitly.
+5. Preserve the exact seven-command registry and existing TASK-022/TASK-028/TASK-032 authority boundaries.
+6. Do not synthesize feed content, runtime automation, notification delivery, impact records, reciprocal relation assertions, or cross-Project changes during upgrade. Relation reconciliation only changes an owning Project under its applicable authority.
+7. Direct-to-Latest remains valid; final cumulative suite verification still requires affected checks and one unchanged-candidate `RELEASE_FULL`.
+
+---
+
+## 1.12.2 → 1.13.0
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.13.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-028 + TASK-032 Integrity & Remediation Suite.
+- `[Project Audit]` is added as a Registered Command and Strict Governed Interface with exact top-level order `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`.
+- Audit health reuses `GREEN | AMBER | RED | UNKNOWN`; current/volatile evidence follows existing freshness rules and unresolved evidence remains `UNKNOWN / VERIFICATION_REQUIRED`.
+- Audit findings are presentation only and reuse existing canonical homes/routes; no `AUDIT-*` / `FINDING-*` family is created and `Audit finds ≠ Audit fixes`.
+- TASK-032 remediation workflow is dependency-ordered after TASK-028 and requires an explicit remediation request/Goal or other applicable authorization; audit findings alone do not activate mutation.
+- Remediation resolves canonical owner/home, `R0–R3`, applicable authority, prerequisites/freshness, ordered actions, rollback/reversibility, direct resulting-state verification, affected re-audit/result confirmation, and evidence/lifecycle updates. Existing `ISS/DRIFT/CONFLICT/MIG/CR/ACT/AUTH/ENV/DEC/REQ` homes are reused.
+- Semantic conflicts are routed to Decision/Change/Conflict governance rather than auto-repaired; `ACT DONE ≠ repair outcome verified`; R2/R3 and other explicit gates remain independent.
+- No issue/repair object, remediation ID family, repair command, validator/scanner/CLI, daemon, repair bot, auto-fix, or runtime enforcement is generated.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's valid local pin and current truth; adopt 1.13.0 only through governed `[Project Upgrade]` / Direct-to-Latest promotion.
+2. Add `[Project Audit]` to current command discovery and preserve the exact strict dimension order and read-only/no-auto-fix boundary.
+3. Keep optional audit categories applicability-driven; do not synthesize missing `92`, Project Knowledge, or Execution-profile surfaces solely for audit completeness.
+4. Treat findings as bounded command results; durable issues/drift/conflicts/migrations/changes use their existing canonical homes only through separately authorized work.
+5. For an authorized repair, classify the canonical owner and Risk before mutation; declare rollback/reversibility; verify direct resulting state plus affected references; then re-audit/confirm the affected category before closure.
+6. Preserve TASK-042 response-close and TASK-043 command-gate semantics unchanged.
+7. Verify scenarios `1–380`, current starter stamps, command registry, historical TASK-042/TASK-043 artifacts, local-pin/history preservation, no-runtime expansion, cumulative AFFECTED, and one final unchanged-candidate `RELEASE_FULL`.
+
+---
+
+## 1.12.1 → 1.12.2
 
 ### Affected distribution surfaces
 

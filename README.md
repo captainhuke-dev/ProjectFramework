@@ -21,16 +21,37 @@ How to use it:
 
 1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
-3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Project Audit]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, integrity audits, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
 
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 
 ## Current Release
 
-- Project Source Framework: **1.12.2**
+- Project Source Framework: **1.14.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.14.0 Federated Change Intelligence — Suite Contracts
+
+Framework `1.14.0` begins the Federated Change Intelligence suite with TASK-036 Project Change/Event History Feed. An optional root `Project-Change-Feed/` provides a **derived, non-authoritative, bounded, rebuildable** projection for incremental consumers; authoritative/current history remains Project Source, `10 Change Log`, Git/source-native history, relation history, and durable evidence as applicable.
+
+The feed uses projection maintenance states `CURRENT | STALE | REBUILD_REQUIRED | UNAVAILABLE`, source checkpoints for `since` queries, and bounded retention. Source-native ordering outranks timestamp guessing. A request outside retained coverage rebuilds from authoritative history when possible or reports the unavailable portion `UNKNOWN / VERIFICATION_REQUIRED`; it never silently truncates.
+
+Maintained starters live in `Framework-Source/templates/project-change-feed/`. Existing Projects do not auto-adopt the feed, and feed support creates no `EVENT-*`/`FEED-*` Stable-ID family, watcher, crawler, webhook, daemon, scheduler, event bus, queue, notification delivery, or cross-Project mutation runtime.
+
+TASK-030 adds evidence-based relation reconciliation over existing `92 / REL-*`. Counterparts are resolved by immutable `project_uuid`; `CORROBORATED` requires current compatible authoritative assertions from both Projects with matching endpoints/source pointers/freshness. Guaranteed reciprocal pairs remain TASK-022 exact; `DEPENDS_ON` and `SUPPORTS` stay directional with no universal inverse. Unavailable counterpart evidence yields `VERIFICATION_REQUIRED`; conflicts reuse `CONFLICT-*`; reconciliation mutates only the owning Project and never writes another Project on its behalf. TASK-029/TASK-031 remain dependency-gated.
+
+TASK-029 adds advisory cross-Project impact analysis with exact `DIRECT | POTENTIAL | UNKNOWN` classification. Material results trace changed refs through governed relation/dependency/requirement/decision pointers to authoritative evidence and a review-required disposition. Project-Change-Feed/OpenViking/Knowledge may route or assist traversal but cannot alone prove `DIRECT`. Impact never grants target-Project edit/upgrade/approval/publication authority, and no `[Impact]`, `IMPACT-*`, traversal runtime, cross-Project mutation, or notification delivery is introduced.
+TASK-031 adds vendor-neutral event/notification governance. Candidate events are filtered by materiality, owner/recipient relevance, required review/action, evidence freshness, outstanding-equivalent state, and declared Project policy. Urgency is exactly `ROUTINE | ATTENTION | URGENT` and is presentation-only. Recipient resolution uses governed ownership/responsibility evidence; unresolved recipients remain `VERIFICATION_REQUIRED`. Acknowledgement, escalation, and dedup preserve `notification ≠ approval ≠ authority`, and no delivery runtime, channel integration, scheduler, watcher, webhook, queue, or notification Stable-ID family is created.
+
+## Framework 1.13.0 Project Audit + Integrity Remediation Suite
+
+Framework `1.13.0` adds `[Project Audit]` as a fresh read-only integrity/drift command and preserves TASK-043 Strict Governed Interface semantics. Its exact top-level order is `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity`; audit category health reuses `GREEN | AMBER | RED | UNKNOWN`. Findings are presentation/evidence routing only: **Audit finds ≠ Audit fixes**. Audit never creates issue/drift/conflict/migration records or grants repair authority.
+
+TASK-032 completes the suite with a separate governed remediation workflow: selected defects resolve their canonical owner/home, `R0–R3`, exact authority/approval, prerequisites, ordered actions, rollback/reversibility, direct resulting-state verification, and affected re-audit/result confirmation. It reuses existing `ISS-* / DRIFT-* / CONFLICT-* / MIG-* / CR-* / ACT-* / AUTH-* / ENV-*` and Decision/Requirement homes. Semantic conflict is Decision/Change/Conflict work, not auto-repair; R2/R3 and other explicit gates remain independent; **ACT DONE ≠ repair outcome verified**.
+
+This cumulative minor release is documentation/governance only: no validator/scanner/CLI, audit daemon, repair bot, auto-fix, new audit/finding/remediation Stable-ID family, or repair command is introduced. Existing initialized Projects adopt the suite only through governed Direct-to-Latest upgrade.
 
 ## Framework 1.12.2 Registered Command Strict-Interface Hardening
 
@@ -256,7 +277,7 @@ When `UPGRADE_AVAILABLE` is verified, the command asks whether the user wants to
 
 Framework `1.3.0` adds a small registered bracketed Project command contract, Markdown-safe mandatory response-close rendering, and **Direct-to-Latest / Cumulative Target-State Upgrade** semantics while keeping Project Source Schema `1.0.0`, semantic slots, Stable-ID families, initialized-Project local pinning, and existing authority systems unchanged.
 
-Registered commands require literal brackets and match case-insensitively inside them. `[Project Status]` fresh-observes Project/Task/Git/verification/blocker state as a read-only dashboard; `[Project Path]` shows/validates configured bootstrap path values and routes explicit change requests through existing location governance. Angle-bracket values such as `<STORAGE>` or `<WS>` mean unset, not literal paths. Natural-language command-help requests list only registered commands as `[XXX] : purpose`.
+Registered commands require literal brackets and match case-insensitively inside them. `[Project Status]` fresh-observes Project/Task/Git/verification/blocker state as a read-only dashboard; `[Project Audit]` fresh-observes integrity/drift with exact governed dimensions and never auto-fixes Project truth; `[Project Path]` shows/validates configured bootstrap path values and routes explicit change requests through existing location governance. Angle-bracket values such as `<STORAGE>` or `<WS>` mean unset, not literal paths. Natural-language command-help requests list only registered commands as `[XXX] : purpose`.
 
 Mandatory response-close semantic labels remain `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:`, but Framework `1.3.0` recommends Markdown-safe presentation such as `**[Chat]:** CONTINUE_CURRENT_CHAT` so a renderer cannot hide the field as reference-definition syntax. Lifecycle vocabulary and Chat Closure Consistency are unchanged.
 
