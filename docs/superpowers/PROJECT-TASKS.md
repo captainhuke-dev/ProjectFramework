@@ -374,7 +374,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Commit:** `a38d514`
 - **Focused Verification:** `TASK028_FOCUSED 23/23 PASS`
 - **Completion Checkpoint Evidence:** `EVD-057 / CHG-057`
-- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / RECONCILIATION_PENDING`
+- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / PERSISTED / NOT_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #29 — Cross-Project Impact Analysis
@@ -414,7 +414,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Commit:** `daf01eb`
 - **Focused Verification:** `TASK029_FOCUSED_TEXT 34/34 PASS` — direct context-aware Git/text assertions; no executable verifier artifact.
 - **Completion Checkpoint Evidence:** `EVD-068 / CHG-068`
-- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / RECONCILIATION_PENDING`
+- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / PERSISTED / NOT_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #30 — Cross-Project Relation Reconciliation
@@ -453,7 +453,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation State:** `DONE / FOCUSED_VERIFIED` — relation reconciliation workflow implemented over existing REL-* with no cross-Project write/runtime/new family.
 - **Implementation Commit:** `360a1ad`
 - **Focused Verification:** `TASK030_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
-- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / RECONCILIATION_PENDING`
+- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / PERSISTED / NOT_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #31 — Project Event & Notification Contract
@@ -496,7 +496,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Suite Final Candidate:** `6a9ef8c3439e270c3c02e0721aa416a9b20c305d` / tree `f107e3841e73cc1ff1b147cb753ef9cec28a2f37` / Framework-Source tree `d5d04e4563157246872b1e02c791b94a6c564d95`.
 - **Suite Final RELEASE_FULL:** `FEDERATED_RELEASE_FULL 33/33 PASS_RUN_1` — exactly one executed run on the unchanged final candidate.
 - **Suite Release Evidence:** `docs/superpowers/evidence/2026-09-03-federated-change-intelligence-suite-release-full.md` / commit `e0646c9` / `EVD-072`.
-- **Version 1 Closure:** Framework 1.14.0 verified Last Stable 1.x Baseline; OUT-008 ACHIEVED / AUTH-008 TERMINATED / ACT-020 DONE / ENV-008 EXPIRED; publication `MERGED_TO_MAIN / PR #28 / merge eda1f2b / RECONCILIATION_PENDING`.
+- **Version 1 Closure:** Framework 1.14.0 verified Last Stable 1.x Baseline; OUT-008 ACHIEVED / AUTH-008 TERMINATED / ACT-020 DONE / ENV-008 EXPIRED; publication `MERGED_TO_MAIN / PR #28 / merge eda1f2b / PERSISTED / NOT_PENDING`.
+- **Canonical Publication Reconciliation:** checkpoint `0d7fcd4` freshly verified on `origin/main`; terminal OUT-010/AUTH-010/ACT-022/ENV-010 reconciliation prepared; final terminal commit requires fresh remote observation.
 - **Completion Checkpoint Evidence:** `EVD-070 / CHG-070`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
@@ -544,7 +545,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Final RELEASE_FULL:** `TASK028032_RELEASE_FULL 49/49 PASS` — exactly one run on the unchanged corrected candidate.
 - **Release Evidence:** `docs/superpowers/evidence/2026-09-02-task-028-task-032-integrity-remediation-release-full.md`
 - **Release Evidence Commit:** `950bff9`
-- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / RECONCILIATION_PENDING`
+- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / PERSISTED / NOT_PENDING`
 - **Completion State:** `DONE / LOCAL_VERIFIED`; canonical publication is merged and post-merge reconciliation remains pending.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
@@ -699,7 +700,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation State:** `DONE / FOCUSED_VERIFIED` — optional derived Project Change Feed contract implemented with no executable verifier/runtime/new command/new Stable-ID family.
 - **Implementation Commit:** `5c9ed7c`
 - **Focused Verification:** `TASK036_FOCUSED_TEXT 30/30 PASS` — direct read-only Git/text assertions; no executable verifier artifact.
-- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / RECONCILIATION_PENDING`
+- **Publication State:** `MERGED_TO_MAIN / PR #28 / merge eda1f2b / PERSISTED / NOT_PENDING`
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
 ## Task #37 — Security & Trust Boundary Contract
