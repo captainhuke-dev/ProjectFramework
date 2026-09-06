@@ -4,7 +4,34 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.13.0 → 1.14.0 (current)
+## 1.14.0 → 1.15.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.15.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-045 Response Close + Next Goal.
+- Mandatory visible response-close fields change from `[Next Action] → [Chat] → [Reason] → [Required Read]` to `[Next Action] → [Next Goal] → [Reason]`; nothing follows `[Reason]`.
+- `[Chat]` and `[Required Read]` are removed only from the mandatory visible close. `09 Handoff` may still preserve Chat Continuity, Required Read Before Continue, exact resume pointers, and `authority_transfer: false`.
+- `[Next Goal]` is presentation-only. A displayed suggestion never creates or changes `OUT-* / AUTH-* / ACT-* / ENV-*`; only an explicit Human `[Goal]` invocation does.
+- A non-`ไม่มี` suggestion is one copy-ready `[Goal] ...` or `[Goal] CHANGE ...` command for a sufficiently bounded, grounded outcome. No-next-action, redundant active-Goal, ambiguous/conflicting, ungrounded high-risk, and persistence-recovery cases use `ไม่มี`.
+- `[Next Goal]` never synthesizes push/publication, destructive, Root/Binding, external-disclosure, R3, or secret-value opt-ins.
+- TASK-042 remains the unskippable final-response control-flow invariant; TASK-043 Command Contract Completeness Gate still runs before the revised Response Close Completeness Gate.
+- Registered commands remain exactly seven. No new semantic slot, Stable-ID family, parser, middleware, UI hook, validator/CLI, bot, scheduler, watcher, daemon, or runtime enforcement is introduced.
+- Historical pre-1.15 examples/evidence remain provenance and are not globally rewritten.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's valid local pin until governed `[Project Upgrade]` promotion; upstream 1.15 does not silently alter Brownfield response behavior.
+2. Update current response-close guidance to exactly the two headings plus `[Next Action]`, `[Next Goal]`, `[Reason]`, in that order, with nothing after `[Reason]`.
+3. Remove mandatory visible `[Chat]`/`[Required Read]` requirements without deleting internal Handoff continuation/read-routing semantics.
+4. Preserve `[Goal]` authority rules: suggestion ≠ invocation ≠ authorization. Do not synthesize Goal records during upgrade.
+5. Preserve TASK-042/TASK-043 gate ordering and the exact seven-command registry.
+6. Keep thin launchers thin when they do not duplicate the old four-field payload; do not expand them merely for TASK-045.
+7. Verify maintained starter stamps/current guidance, scenarios `421–432`, full affected scope, and one final unchanged-candidate `RELEASE_FULL`.
+8. Direct-to-Latest remains valid; historical 1.14 response examples remain provenance rather than rewrite targets.
+
+---
+
+## 1.13.0 → 1.14.0 (previous)
 
 ### Affected distribution surfaces
 

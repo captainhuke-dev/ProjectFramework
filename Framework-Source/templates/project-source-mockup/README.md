@@ -1,10 +1,14 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.14.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.15.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.15.0 Response Close + Next Goal Semantics
+
+Framework `1.15.0` keeps Project Source Schema `1.0.0` and inherited Framework 1.14 semantics. The mandatory visible response close is two headings plus `[Next Action]`, `[Next Goal]`, `[Reason]`; nothing follows `[Reason]`. `[Next Goal]` is suggestion-only and never grants authority. Chat lifecycle and Required Read remain internal `09 Handoff` continuation/routing semantics when applicable.
 
 ## Framework 1.14.0 Federated Change Intelligence Semantics
 
@@ -89,7 +93,7 @@ Framework `1.2.4` adds a durable **Project Location Binding** in active local `F
 - Repository binding remains distinct from current branch/worktree, Canonical Integration Target, and Canonical Implementation Source; no new branch authority is introduced.
 - `09 Handoff` references the root binding and preserves source-native GitHub/Drive pointers rather than duplicating authoritative content.
 - Chat Closure Consistency requires `ไม่มีขั้นตอนถัดไป → START_NEW_CHAT`; `CONTINUE_CURRENT_CHAT` requires one concrete Next Action; `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus a persistence/recovery action.
-- Mandatory response-close display uses `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` as separate Markdown paragraphs.
+- Mandatory visible response-close display uses `[Next Action]:`, `[Next Goal]:`, `[Reason]:` as separate Markdown paragraphs in that order, with nothing after `[Reason]`; internal Chat/Required Read routing remains in Handoff when applicable.
 
 Existing initialized Projects remain locally pinned and do not auto-upgrade.
 ## Framework 1.2.3 Development Workspace & Runtime Authority Semantics

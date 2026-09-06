@@ -27,10 +27,14 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.14.0**
+- Project Source Framework: **1.15.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.15.0 Response Close + Next Goal
+
+Framework `1.15.0` simplifies the mandatory visible response close to `Next Action → Next Goal → Reason`. `[Next Goal]` may offer one copy-ready `[Goal] ...` or `[Goal] CHANGE ...` command when a bounded persistent outcome is already grounded; displaying the suggestion never creates authority. `[Chat]` and `[Required Read]` remain available as internal Handoff/continuation semantics but are no longer mandatory visible response-close fields. TASK-042 unskippable finalization and TASK-043 command-contract completeness remain in force.
 
 ## Framework 1.14.0 Federated Change Intelligence — Suite Contracts
 
@@ -144,16 +148,12 @@ Every response MUST end with:
 
 **[Next Action]:** <one exact next action or ไม่มีขั้นตอนถัดไป>
 
-**[Chat]:** CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+**[Next Goal]:** <one copy-ready [Goal] ... / [Goal] CHANGE ... command or ไม่มี>
 
 **[Reason]:** <concise reason>
-
-**[Required Read]:** <canonical locations or ไม่มี>
 ```
 
-Separate paragraphs; tokens unescaped.
-
-Lifecycle coupling is mandatory: `ไม่มีขั้นตอนถัดไป → START_NEW_CHAT`; `CONTINUE_CURRENT_CHAT` requires one concrete Next Action; `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus a concrete persistence/recovery action; nothing follows `[Required Read]`.
+Separate Markdown paragraphs; nothing follows `[Reason]`. `[Next Goal]` is suggestion-only and creates no authority until the Human explicitly invokes `[Goal]`. If there is no next action, an active compatible Goal already covers the work, the scope is ambiguous/conflicting, a new high-risk opt-in would be required, or persistence recovery is the immediate obligation, use `[Next Goal]: ไม่มี`. Chat lifecycle and Required Read pointers remain internal Handoff/continuation state rather than mandatory visible close fields.
 
 ## Framework Intent
 

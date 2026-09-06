@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.14.0"
+project_source_framework_version: "1.15.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -308,7 +308,10 @@ Framework `1.3.1` registers bracketed Project inspection commands. Literal `[` a
 [Project Audit] : fresh read-only integrity/drift audit with evidence, unknowns, and governed repair routes; never auto-fixes Project truth
 ```
 
-Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands. Framework `1.14.0` preserves the Framework `1.12.2` rule that a recognized Registered Command is a **Strict Governed Interface**: semantic equivalence alone is insufficient when the active command contract governs required dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; unavailable evidence keeps the governed field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible explanatory prose remains allowed only where the command contract does not define stricter presentation.
+Natural-language command-help requests list only registered commands as `[XXX] : purpose`; do not invent commands.
+
+Framework `1.15.0` mandatory visible response close is exactly two headings followed by `[Next Action] → [Next Goal] → [Reason]`, with nothing after `[Reason]`. `[Next Goal]` is a presentation-only copy-ready `[Goal]`/`[Goal] CHANGE` suggestion when a bounded grounded outcome warrants it; suggestion never creates authority. `[Chat]` and `[Required Read]` remain internal Handoff/continuation routing when applicable and are not mandatory visible close fields. TASK-042 remains unskippable and TASK-043 command completeness still precedes response-close validation.
+ Framework `1.14.0` preserves the Framework `1.12.2` rule that a recognized Registered Command is a **Strict Governed Interface**: semantic equivalence alone is insufficient when the active command contract governs required dimensions/order/tokens/freshness/fail-closed representation. Preserve required structure; unavailable evidence keeps the governed field and uses `UNKNOWN` / `VERIFICATION_REQUIRED` as applicable. Flexible explanatory prose remains allowed only where the command contract does not define stricter presentation.
 
 For recognized commands, run **Command Contract Completeness Gate → Response Close Completeness Gate → Emit**. The command gate validates command identity/active local contract, required dimensions and governed order, freshness or explicit unavailable evidence, canonical tokens, absence of unsupported stale-memory inference, and command-specific authority boundaries. It does not replace TASK-042's final global response-close gate.
 
