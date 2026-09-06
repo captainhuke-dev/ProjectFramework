@@ -941,3 +941,19 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Pull Request #27:** `MERGED` — `https://github.com/captainhuke-dev/ProjectFramework/pull/27`; merge `bdae13896ebec08235d5ef7101f189fa6861d801`; parents `40257f7dc97219715070b3764423c17118ecc51b` + `b45a9eaefc44da3f0526a4e865cf2c1c468d9da4`; Framework-Source tree unchanged `7417f06000e03a4e897e9d812fb0274544777a00`.
 - **Publication Evidence:** `EVD-049` / `ACT-017`; post-merge reconciliation verified by `EVD-050 / EVD-051 / EVD-052 / OUT-006 / AUTH-006 / ACT-018 / ENV-006`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
+## Task #45 — Response Close + Next Goal
+
+- **ID:** `TASK-045`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework response protocol / usability and persistent-Goal handoff refinement
+- **Collision Note:** `TASK-044` is already allocated to ProjectFramework 2.0 / AI-ControlTower Protocol Integration in the verified V2 `v2-premerge-readiness` line; TASK-045 does not rewrite or absorb it.
+- **Problem:** mandatory Framework responses expose `[Chat]` and `[Required Read]` fields that are implementation-facing rather than useful to the Human for routine control, while there is no concise copy-ready suggestion for users who want to turn the next bounded outcome into one persistent `[Goal]` command.
+- **User-approved direction:** remove `[Chat]` and `[Required Read]` from the mandatory visible response close; add `[Next Goal]` immediately after `[Next Action]`; preserve two mandatory headings and `[Reason]`; keep continuation/read-routing in Project Source/Handoff rather than forcing them into every response.
+- **Next Goal contract:** the field is mandatory but presentation-only. Value is a safe copy-ready `[Goal] ...` or `[Goal] CHANGE ...` command only when a bounded persistent outcome is clearly appropriate and does not synthesize high-risk opt-ins; otherwise `ไม่มี`. It never creates authority until the user actually invokes the command.
+- **Target Release:** Framework `1.15.0` / Schema `1.0.0` / release format `3`.
+- **Implementation Boundary:** documentation/governance/templates/tests only; no runtime parser/interceptor/UI hook/validator/CLI.
+- **Goal:** `OUT-012 / AUTH-012 / ACT-024 / ENV-012`.
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_PENDING`.
+- **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
+- **Exact Next Step:** write/self-review design spec, then implementation plan and TDD RED scenarios before changing production Framework semantics.
