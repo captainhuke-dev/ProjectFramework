@@ -954,6 +954,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Target Release:** Framework `1.15.0` / Schema `1.0.0` / release format `3`.
 - **Implementation Boundary:** documentation/governance/templates/tests only; no runtime parser/interceptor/UI hook/validator/CLI.
 - **Goal:** `OUT-012 / AUTH-012 / ACT-024 / ENV-012`.
-- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_PENDING`.
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`.
+- **Design Spec:** `docs/superpowers/specs/2026-09-06-task045-response-close-next-goal-design.md`
+- **Spec Self-Review:** `PASS` — placeholder, consistency, scope, ambiguity, Next Goal authority-safety, continuity separation and scenario coverage checked.
 - **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
 - **Exact Next Step:** write/self-review design spec, then implementation plan and TDD RED scenarios before changing production Framework semantics.
