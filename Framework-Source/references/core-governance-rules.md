@@ -877,17 +877,18 @@ Verification depth follows affected scope, dependency impact, and `R0 / R1 / R2 
 
 Fresh state-bound evidence MAY be reused while its proven candidate/dependency/target assumptions remain materially unchanged. Candidate/source changes, materially changed dependencies, semantic target movement, changed acceptance criteria, contradicting evidence, or unbounded uncertainty invalidate affected evidence. If impact cannot be bounded safely, verification escalates.
 
-### 16.3 Chat Closure Consistency and Mandatory Response Close
+### 16.3 Continuation Consistency and Mandatory Response Close
 
-Framework `1.2.4` makes Chat closure deterministic while preserving the existing persistence gate and lifecycle vocabulary. Binding invariants are:
+Framework `1.15.0` TASK-045 simplifies the mandatory visible response close while preserving internal continuation and persistence semantics. Chat lifecycle vocabulary remains `CONTINUE_CURRENT_CHAT | START_NEW_CHAT` for Project continuation state and `09 Handoff`; Required Read pointers remain internal routing data when materially needed. Neither is a mandatory visible end-of-response field in Framework 1.15.
 
-1. If `[Next Action]` is exactly `ไม่มีขั้นตอนถัดไป`, `[Chat]` MUST be `START_NEW_CHAT`.
-2. If `[Chat]` is `CONTINUE_CURRENT_CHAT`, `[Next Action]` MUST contain one concrete continuation action and MUST NOT be `ไม่มีขั้นตอนถัดไป`.
-3. `PERSISTENCE_PENDING` MUST pair with `CONTINUE_CURRENT_CHAT` and one concrete persistence/recovery Next Action. `PERSISTENCE_PENDING + ไม่มีขั้นตอนถัดไป` and `PERSISTENCE_PENDING + START_NEW_CHAT` are invalid.
-4. `START_NEW_CHAT` MAY pair with a concrete Next Action when required Material state is durably persisted and continuation is safe from external state plus Required Read pointers.
-5. `START_NEW_CHAT` is a continuation-safety recommendation, not a claim that the platform forces navigation.
+Internal continuation invariants remain:
 
-Every Framework-governed response MUST end with exactly these two headings, in order, with nothing after the second section. The canonical semantic field labels are `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:`. For Markdown output, use a presentation wrapper that keeps the labels visibly renderable rather than beginning a bare paragraph with reference-definition-like syntax:
+1. If there is no concrete next action, Project continuation state SHOULD be safe for a new chat only after required Material state is durably persisted.
+2. `PERSISTENCE_PENDING` requires one concrete persistence/recovery Next Action and must not be obscured by a Goal suggestion.
+3. Handoff may preserve `Chat Continuity`, `Required Read Before Continue`, `authority_transfer: false`, and exact resume pointers.
+4. Lifecycle/read-routing state never grants execution, publication, destructive, Root/Binding, disclosure, or secret-value authority.
+
+Every Framework-governed response MUST end with exactly these two headings, in order. The canonical visible semantic field labels are `[Next Action]:`, `[Next Goal]:`, and `[Reason]:`:
 
 ```text
 ### ทำอะไรไป?
@@ -898,18 +899,28 @@ Every Framework-governed response MUST end with exactly these two headings, in o
 
 **[Next Action]:** <one exact next action or ไม่มีขั้นตอนถัดไป>
 
-**[Chat]:** CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+**[Next Goal]:** <one copy-ready [Goal] ... / [Goal] CHANGE ... command or ไม่มี>
 
 **[Reason]:** <concise reason>
-
-**[Required Read]:** <canonical locations or ไม่มี>
 ```
 
-The four semantic fields remain separate Markdown paragraphs. Bold or equivalent Markdown-safe wrapping is presentation-only; it does not rename the canonical labels or lifecycle tokens. Canonical lifecycle tokens remain exactly `CONTINUE_CURRENT_CHAT` and `START_NEW_CHAT` and stay unescaped.
+Nothing follows `[Reason]`. The three semantic fields are separate Markdown paragraphs. Bold or equivalent Markdown-safe wrapping is presentation-only and does not rename their semantic labels.
 
-Before emit, every Framework-governed assistant response MUST run a lightweight **Response Close Completeness Gate** on the assistant final-response representation: exactly the two mandatory headings in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, and `[Required Read]:` field in separate paragraphs and in that order; one canonical lifecycle token in `[Chat]`; valid Chat Closure Consistency; and nothing after `[Required Read]`. Presentation wrappers are ignored for semantic field identity. Missing, duplicate, malformed, hidden/non-visible, out-of-order, or contradictory close content must be corrected before emit. The gate does not claim visibility into downstream transport/UI rendering; user-reported rendered omissions are regression evidence while the exact loss layer remains unverified unless independently observed.
+`[Next Goal]` is a presentation-only suggestion. A Suggested [Goal] is not an invocation and cannot mint or modify `OUT-*`, `AUTH-*`, `ACT-*`, or `ENV-*`. Persistent authority exists only after an explicit Human `[Goal]` invocation is processed through the active Goal contract. Apply these rules:
 
-Framework `1.12.1` TASK-042 makes this gate an explicit **unskippable final-response control-flow invariant**. Before the first Project-governed response in each chat/session, resolve the applicable Project Bootstrap when it is accessible so local governance is loaded before response generation; read-only, status, diagnostic, explanatory, and failure-report responses are not exempt merely because no Material mutation is planned. Before Material Project work, all existing binding, authority, Risk, and mutation gates still apply independently.
+- **NG-1:** `[Next Action] = ไม่มีขั้นตอนถัดไป` → `[Next Goal] = ไม่มี`.
+- **NG-2:** when one compatible active Goal already covers the same continuation, prefer `[Next Goal] = ไม่มี` rather than suggesting redundant authority.
+- **NG-3:** when a clear bounded outcome exists and no active Goal covers it, `[Next Goal]` MAY contain one copy-ready command beginning with literal `[Goal]`.
+- **NG-4:** when the exact grounded persistent change is to an active Goal, `[Next Goal]` MAY contain one copy-ready `[Goal] CHANGE ...` command.
+- **NG-5:** a non-`ไม่มี` suggestion identifies a bounded outcome sufficiently to avoid silent scope/success/prohibited-zone expansion.
+- **NG-6:** ambiguous, conflicting, under-specified, or materially uncertain Goal scope → `ไม่มี`.
+- **NG-7:** never synthesize new push/publication, destructive-operation, Root/Binding mutation, external-disclosure, R3, or secret-value opt-ins into `[Next Goal]`.
+- **NG-8:** `PERSISTENCE_PENDING` recovery remains in `[Next Action]`; `[Next Goal]` never bypasses or obscures it.
+- **NG-9:** material Goal/governance conflict fails closed for the suggestion; recency never resolves authority conflict.
+
+Before emit, every Framework-governed assistant response MUST run a lightweight **Response Close Completeness Gate** on the assistant final-response representation: exactly the two mandatory headings in order; exactly one visible semantic `[Next Action]:`, `[Next Goal]:`, and `[Reason]:` field in separate paragraphs and in that order; no mandatory visible `[Chat]:` or `[Required Read]:` field; valid NG-1..NG-9 disposition; and nothing after `[Reason]`. Missing, duplicate, malformed, hidden/non-visible, out-of-order, authority-expanding, or contradictory close content must be corrected before emit. The gate does not claim visibility into downstream transport/UI rendering; user-reported rendered omissions are regression evidence while the exact loss layer remains unverified unless independently observed.
+
+Framework `1.12.1` TASK-042 still makes this gate an explicit **unskippable final-response control-flow invariant**. Before the first Project-governed response in each chat/session, resolve the applicable Project Bootstrap when it is accessible so local governance is loaded before response generation; read-only, status, diagnostic, explanatory, and failure-report responses are not exempt merely because no Material mutation is planned. Before Material Project work, all existing binding, authority, Risk, and mutation gates still apply independently.
 
 Every Project-governed final response MUST pass the Response Close Completeness Gate immediately before emit. **No early-return path may bypass it.** This includes ordinary success, read-only/status/diagnostic paths, tool/MCP failure or exception, connector unavailable/disconnected handling, timeout, partial-result/degraded-mode response, refusal or blocked-action response, persistence failure / `PERSISTENCE_PENDING`, exception-recovery, and bootstrap repair/verification-required responses when a Project-governed final response is being produced. Intermediate tool output/error payloads are not final responses. A tool/MCP or connector failure alone does not imply `PERSISTENCE_PENDING`; use that state only when required durable continuation state is actually unpersisted.
 
@@ -1731,8 +1742,9 @@ Current Framework distribution integrity means at minimum:
 - `VERIFICATION_REQUIRED` and `NOT_APPLICABLE` fail closed for affected Material connector mutation, while `BOUND` has sufficient durable routing identity;
 - Project Location Binding does not create a competing `canonical_branch`, Canonical Integration Target, or Canonical Implementation Source;
 - persistent Project Location Binding changes require User Explicit Approval and governed Root Governance revision/promotion;
-- `ไม่มีขั้นตอนถัดไป` pairs with `START_NEW_CHAT`, while `CONTINUE_CURRENT_CHAT` and `PERSISTENCE_PENDING` require a concrete Next Action consistent with the persistence gate;
-- the mandatory response close preserves the two-heading structure and bracketed `[Next Action] / [Chat] / [Reason] / [Required Read]` fields;
+- internal Chat lifecycle and Required Read routing remain Handoff/continuation semantics rather than mandatory visible response-close fields;
+- `PERSISTENCE_PENDING` requires a concrete recovery Next Action and cannot be bypassed by a Goal suggestion;
+- the mandatory response close preserves the two-heading structure and bracketed `[Next Action] / [Next Goal] / [Reason]` fields, with nothing after `[Reason]`;
 - missing facts, authority, source, provenance, routing identity, or management-object identity are never fabricated.
 
 These are semantic requirements and may be reviewed manually or by an Agent. They do not require executable enforcement tooling.

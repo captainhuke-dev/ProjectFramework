@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260903-federated-change-intelligence.md` — latest amendment: Federated Change Intelligence Suite (TASK-036 foundation active)
+- `references/framework-governance-amendment-260906-task045-response-close-next-goal.md` — latest amendment: TASK-045 Response Close + Next Goal
+- `references/framework-governance-amendment-260903-federated-change-intelligence.md` — previous amendment: Federated Change Intelligence Suite
 - `references/framework-governance-amendment-260902-task028-task032.md` — previous amendment: TASK-028 + TASK-032 Integrity & Remediation Suite
 - `references/framework-governance-amendment-260902-task043.md` — TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening
 - `references/framework-governance-amendment-260902-task042-forward-port.md` — previous amendment: TASK-042 Response Finalization Hardening forward-port
@@ -148,7 +149,7 @@ These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope be
 
 ### Response Close Completeness Gate
 
-Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one visible semantic `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` field as separate Markdown paragraphs in that order; lifecycle-consistent `[Chat]`; and nothing after `[Required Read]`. For Markdown output, render the labels safely, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`, so a bare reference-definition-like line cannot disappear. Bold/wrapping is presentation-only; semantic labels and canonical lifecycle tokens remain unchanged. Missing/duplicate/malformed/hidden/out-of-order/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
+Before every Framework-governed assistant response emit, run the lightweight **Response Close Completeness Gate** on the assistant final-response representation: two mandatory headings exactly once and in order; exactly one visible semantic `[Next Action]:`, `[Next Goal]:`, `[Reason]:` field as separate Markdown paragraphs in that order; no mandatory visible `[Chat]:` or `[Required Read]:` field; valid TASK-045 Next Goal safety disposition; and nothing after `[Reason]`. `[Next Goal]` is suggestion-only and never creates authority. Markdown-safe wrapping is presentation-only. Missing/duplicate/malformed/hidden/out-of-order/authority-expanding/contradictory close content is incomplete and must be corrected before emit. Do not claim visibility into downstream app rendering; a user-visible omission is regression evidence while its generation/transport/rendering layer remains unverified unless independently observed.
 
 Framework `1.12.1` makes the pre-emit gate unskippable: every Project-governed final response passes it immediately before emit, and no early-return, read-only/status/diagnostic, tool/MCP failure, connector unavailable/disconnected, timeout, partial-result, refusal/blocked-action, `PERSISTENCE_PENDING`, exception-recovery, or bootstrap-repair path may bypass it. A tool/MCP failure does not automatically mean `PERSISTENCE_PENDING`; use that state only when required durable continuation state is unpersisted.
 
@@ -696,14 +697,12 @@ Mandatory Framework response close (Markdown-safe presentation; semantic labels 
 
 **[Next Action]:** <one exact next action or ไม่มีขั้นตอนถัดไป>
 
-**[Chat]:** CONTINUE_CURRENT_CHAT | START_NEW_CHAT
+**[Next Goal]:** <one copy-ready [Goal] ... / [Goal] CHANGE ... command or ไม่มี>
 
 **[Reason]:** <concise reason>
-
-**[Required Read]:** <canonical locations or ไม่มี>
 ```
 
-The four semantic fields are separate Markdown paragraphs. Bold/wrapping is presentation-only; canonical labels remain `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:` and lifecycle tokens stay unescaped.
+The three visible semantic fields are separate Markdown paragraphs and nothing follows `[Reason]`. `[Next Goal]` is presentation-only: it never creates `OUT-* / AUTH-* / ACT-* / ENV-*` until the Human explicitly invokes `[Goal]`. Use `ไม่มี` for no-next-action, redundant active-Goal, ambiguous/conflicting, ungrounded high-risk, or persistence-recovery cases. Internal Chat lifecycle and Required Read routing remain available in `09 Handoff`; they are not mandatory visible close fields.
 
 GitHub routing examples:
 
@@ -881,8 +880,8 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 - accepting `BOUND` without minimum durable routing identity;
 - silently rewriting Project Location Binding from connector discovery or a one-off exact-target instruction;
 - adding `canonical_branch` or other parallel Git branch authority to Location Binding;
-- pairing `ไม่มีขั้นตอนถัดไป` with `CONTINUE_CURRENT_CHAT`, or `PERSISTENCE_PENDING` with `START_NEW_CHAT`;
-- omitting one of `[Next Action] / [Chat] / [Reason] / [Required Read]` from the mandatory Framework response close;
+- using `[Next Goal]` to synthesize authority, bypass `PERSISTENCE_PENDING`, or smuggle push/destructive/Root-Binding/disclosure/R3/secret-value opt-ins;
+- omitting one of `[Next Action] / [Next Goal] / [Reason]` from the mandatory Framework response close, rendering them out of order, or emitting content after `[Reason]`;
 - maintaining a second full Project Source example/template tree alongside `templates/project-source-mockup/` in the current distribution;
 - creating unrelated Independent Work from the currently checked-out feature branch by default;
 - assuming local `main` is current without verifying the canonical integration target;
