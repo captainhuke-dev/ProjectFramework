@@ -958,7 +958,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec:** `docs/superpowers/specs/2026-09-06-task045-response-close-next-goal-design.md`
 - **Spec Self-Review:** `PASS` — placeholder, consistency, scope, ambiguity, Next Goal authority-safety, continuity separation and scenario coverage checked.
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-06-task045-response-close-next-goal.md`
-- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan State:** `IMPLEMENTATION_PLAN_EXECUTED / CANDIDATE_FREEZE_READY`
 - **Plan Self-Review:** `PASS` — spec coverage, no placeholders, dynamic collision checks, TDD RED ordering, AFFECTED/frozen-candidate/one-RELEASE_FULL/terminal reconciliation covered.
+- **TDD RED:** scenarios `421–432`; `TASK045_RED 4/13 PASS` with 9 expected missing-production-contract failures; scenario range `1–432` contiguous/unique; commit `ce6e816`.
+- **Normative Implementation:** Framework release/amendment/Core/SKILL commit `039fb8f`; post-normative verifier `11/13 PASS` with only README/migration propagation pending.
+- **Propagation Implementation:** README/migration/root/skeleton/mockup + 22 maintained starter stamps commit `f0f3416`; structural GREEN `13/13 PASS`.
+- **Affected Verification:** `TASK045_AFFECTED 27/27 PASS`; seven commands unchanged; TASK-042/TASK-043 preserved; 22/22 starter stamps at 1.15.0; thin launcher parity/size PASS; no runtime scope; V2 TASK-044 head `0ef4e4c` and Task-source blob `bb4b75f` preserved; full branch diff hygiene PASS.
+- **Implementation State:** `COMPLETE_PENDING_FINAL_RELEASE_FULL`; final candidate freeze is next.
 - **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
-- **Exact Next Step:** write/self-review design spec, then implementation plan and TDD RED scenarios before changing production Framework semantics.
+- **Exact Next Step:** freeze final Framework 1.15.0 candidate, then run exactly one RELEASE_FULL on the unchanged candidate.
