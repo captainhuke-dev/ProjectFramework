@@ -945,7 +945,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #45 — Response Close + Next Goal
 
 - **ID:** `TASK-045`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework response protocol / usability and persistent-Goal handoff refinement
 - **Collision Note:** `TASK-044` is already allocated to ProjectFramework 2.0 / AI-ControlTower Protocol Integration in the verified V2 `v2-premerge-readiness` line; TASK-045 does not rewrite or absorb it.
 - **Problem:** mandatory Framework responses expose `[Chat]` and `[Required Read]` fields that are implementation-facing rather than useful to the Human for routine control, while there is no concise copy-ready suggestion for users who want to turn the next bounded outcome into one persistent `[Goal]` command.
@@ -964,10 +964,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Normative Implementation:** Framework release/amendment/Core/SKILL commit `039fb8f`; post-normative verifier `11/13 PASS` with only README/migration propagation pending.
 - **Propagation Implementation:** README/migration/root/skeleton/mockup + 22 maintained starter stamps commit `f0f3416`; structural GREEN `13/13 PASS`.
 - **Affected Verification:** `TASK045_AFFECTED 27/27 PASS`; seven commands unchanged; TASK-042/TASK-043 preserved; 22/22 starter stamps at 1.15.0; thin launcher parity/size PASS; no runtime scope; V2 TASK-044 head `0ef4e4c` and Task-source blob `bb4b75f` preserved; full branch diff hygiene PASS.
-- **Implementation State:** `LOCAL_RELEASE_VERIFIED / TERMINAL_RECONCILIATION_PENDING`
+- **Implementation State:** `DONE / LOCAL_VERIFIED / TERMINAL_RECONCILED`
 - **Final Candidate:** `bc7f91c49372ff33e9726da7461288479438b86a` / tree `9170ba8fccbc1bf3f6031441389392d372f8950a` / Framework-Source tree `c095bd6570adb9668755d4598087dee0e4729208`.
 - **Final RELEASE_FULL:** `TASK045_RELEASE_FULL 33/33 PASS` / exactly one run on the unchanged final candidate.
-- **Release Evidence:** `docs/superpowers/evidence/2026-09-06-task-045-response-close-next-goal-release-full.md`; evidence commit pending this checkpoint.
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-06-task-045-response-close-next-goal-release-full.md`; evidence commit `4278182`.
 - **Preservation:** TASK-042/TASK-043 + launcher protected blobs preserved; seven commands unchanged; V2 TASK-044 head `0ef4e4c` and Task-source blob `bb4b75f` preserved; no runtime expansion.
 - **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
-- **Exact Next Step:** commit release evidence, then terminalize OUT-012/AUTH-012/ACT-024/ENV-012 and TASK-045 in Project Source.
+- **Goal State:** `OUT-012 ACHIEVED / AUTH-012 TERMINATED / ACT-024 DONE / ENV-012 EXPIRED`.
+- **Completion Criteria Met:** Framework 1.15 response-close contract, safe Next Goal semantics, internal continuity preservation, scenarios 1–432, structural/AFFECTED/one RELEASE_FULL PASS, evidence committed, V2 TASK-044 preserved, no runtime expansion, terminal Project Source reconciliation.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป; publication/adoption requires a new exact instruction.
