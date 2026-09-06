@@ -957,5 +957,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_APPROVED_BY_GOAL`.
 - **Design Spec:** `docs/superpowers/specs/2026-09-06-task045-response-close-next-goal-design.md`
 - **Spec Self-Review:** `PASS` — placeholder, consistency, scope, ambiguity, Next Goal authority-safety, continuity separation and scenario coverage checked.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-06-task045-response-close-next-goal.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_GOAL`
+- **Plan Self-Review:** `PASS` — spec coverage, no placeholders, dynamic collision checks, TDD RED ordering, AFFECTED/frozen-candidate/one-RELEASE_FULL/terminal reconciliation covered.
 - **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
 - **Exact Next Step:** write/self-review design spec, then implementation plan and TDD RED scenarios before changing production Framework semantics.
