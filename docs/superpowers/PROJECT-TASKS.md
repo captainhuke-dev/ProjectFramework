@@ -973,3 +973,80 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Goal State:** `OUT-012 ACHIEVED / AUTH-012 TERMINATED / ACT-024 DONE / ENV-012 EXPIRED`.
 - **Completion Criteria Met:** Framework 1.15 response-close contract, safe Next Goal semantics, internal continuity preservation, scenarios 1–432, structural/AFFECTED/one RELEASE_FULL PASS, evidence committed, V2 TASK-044 preserved, no runtime expansion, terminal Project Source reconciliation.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป; publication/adoption requires a new exact instruction.
+
+## Task #46 — Final Response Close Simplification
+
+- **ID:** `TASK-046`
+- **Status:** `TODO`
+- **Type:** Framework response-contract / user-facing protocol simplification
+- **depends_on:** `[TASK-042, TASK-043]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `READY`
+- **Identity Note:** `TASK-044` is already allocated to ProjectFramework 2.0 / AI-ControlTower Protocol Integration and `TASK-045` has its own preserved response-close lineage. This registration uses `TASK-046` under explicit user confirmation and does not rewrite either prior Task.
+
+- **User Instruction:** Remove `[Chat]` and `[Required Read]` from the canonical Final Response.
+
+- **Problem:** The current mandatory Final Response close exposes four fields:
+  `[Next Action]`, `[Chat]`, `[Reason]`, and `[Required Read]`.
+  `[Chat]` and `[Required Read]` expose Framework continuity/routing metadata
+  in every user-facing response even when that metadata does not need to be
+  presented to the user.
+
+- **Approved direction:** Simplify the canonical Final Response close to exactly:
+  1. `### ทำอะไรไป?`
+  2. `### และถัดไปคืออะไร?`
+  3. `[Next Action]: <one exact next action or ไม่มีขั้นตอนถัดไป>`
+  4. `[Reason]: <concise reason>`
+
+  `[Chat]` and `[Required Read]` MUST NOT appear as mandatory Final Response
+  fields after this Task is implemented.
+
+- **Continuity boundary:** Removing `[Chat]` from the user-facing close must not
+  remove Project continuity semantics. Chat/session continuation state remains
+  governed internally through applicable `03 Current State`, `09 Handoff`,
+  `OUT-* / AUTH-* / ACT-* / ENV-*`, and related canonical sources.
+
+- **Required-read boundary:** Removing `[Required Read]` from the user-facing
+  close must not remove bootstrap/read-routing requirements.
+  `PROJECT-BOOTSTRAP.md → 00 → 01 → 03 → task-specific source → 09 when
+  applicable` remains an internal governance/read contract rather than a
+  mandatory field emitted in every Final Response.
+
+- **Final-close rule after implementation:** `[Next Action]` and `[Reason]`
+  render as separate Markdown paragraphs in that order, and nothing follows
+  `[Reason]`.
+
+- **Scope:** Update all current normative/distribution surfaces that define,
+  validate, reproduce, or test the four-field Final Response contract,
+  including Core Governance, SKILL, maintained templates/starters, README and
+  migration guidance, Response Close Completeness Gate semantics, and pressure
+  scenarios. Preserve historical specs/plans/amendments/evidence when their
+  four-field representation was true at capture time.
+
+- **TASK-042 / TASK-043 compatibility:** Preserve their finalization and
+  strict-interface guarantees while changing the canonical close shape from
+  four fields to two. Completeness validation must validate the new contract,
+  not continue requiring removed fields.
+
+- **Brownfield rule:** Existing initialized Projects remain locally pinned and
+  do not silently acquire the new Final Response contract. Adoption follows
+  governed `[Project Upgrade]`.
+
+- **Release classification:** `BREAKING_RESPONSE_INTERFACE`; target the next
+  major Framework line. Exact Framework/Schema version must be confirmed by
+  the design before implementation.
+
+- **Implementation boundary:** Task registration only. Do not modify the
+  current Final Response contract, Core/SKILL/templates/tests, or release
+  descriptor until a separate design is approved.
+
+- **Completion criteria:** Current Framework surfaces unanimously require only
+  `[Next Action]` + `[Reason]`; no current normative surface still mandates
+  `[Chat]` or `[Required Read]`; internal continuity/read routing remains
+  intact; historical provenance is preserved; migration behavior is explicit;
+  pressure scenarios cover the new close; applicable verification passes
+  before Task completion.
+
+- **Exact Next Step:** Await a separately approved design flow for `TASK-046`; do not begin design or implementation from this registration checkpoint.
