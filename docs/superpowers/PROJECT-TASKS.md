@@ -942,6 +942,43 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication Evidence:** `EVD-049` / `ACT-017`; post-merge reconciliation verified by `EVD-050 / EVD-051 / EVD-052 / OUT-006 / AUTH-006 / ACT-018 / ENV-006`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
+## Task #44 — ProjectFramework 2.0 / AI-ControlTower Protocol Integration
+
+- **ID:** `TASK-044`
+- **Status:** `CANCELLED`
+- **Type:** Major-version architecture / governance protocol + state/workflow control-plane integration
+- **depends_on:** `[]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `CANCELLED_BY_USER / IMPLEMENTATION_NOT_STARTED`
+- **Problem:** ProjectFramework 1.x relies materially on AI interpretation of Markdown governance, workflow state, authority boundaries, and continuation context. ProjectFramework 2.0 moves deterministic state/workflow/guard/concurrency/recovery/API semantics into a public Protocol/Core inside AI-ControlTower while preserving governance authority boundaries and reducing agent drift.
+- **Approved direction:** Keep `ProjectFramework 2.0` as a named public Protocol/Core module inside the AI-ControlTower Project. AI-ControlTower is the runtime/control-plane platform; ProjectFramework defines governance/state/workflow/API/capability/migration protocol contracts. After governed cutover, `AI-ControlTower/projectframework/` becomes canonical 2.x development source and the existing ProjectFramework repository becomes a one-way verified public distribution mirror.
+- **Design Spec:** `docs/superpowers/specs/2026-09-04-projectframework-2-controltower-architecture-design.md`
+- **Design State:** `WRITTEN_SPEC_APPROVED_BY_GOAL / FORWARD_PORTED_TO_CANONICAL_V1_BASELINE`
+- **Forward-Port Checkpoint:** `aae3cb0a244a46434013c064847563893a752085` / `EVD-075` / `CHG-075`.
+- **Implementation/Migration Plan:** `docs/superpowers/plans/2026-09-05-projectframework-2-ai-controltower-migration.md` / SHA256 `24289085cc41e03153a37c3f6298b4251c0ac3864ba2c88aefbd196a7ea366d7`.
+- **Merge Manifest:** `docs/superpowers/plans/2026-09-05-projectframework-2-ai-controltower-merge-manifest.md` / SHA256 `cb3a11640ddc7eb7aa7f63a9796a4dde22ee85d6cd94c03d6f5caab89babb0f3`.
+- **Plan/Manifest Self-Review:** `PF2_PLAN_MANIFEST_SELF_REVIEW 36/36 PASS`.
+- **Target Verification:** `EVD-076` — `captainhuke-dev/ai-controltower` / `origin/main 5abcb8cbd2dde8d241ae74cf1f107721cd8b969a` / target UUID `2ab1b99a-901c-4159-87f1-953db0af5015` / GitHub+Local Workspace BOUND+VERIFIED; target root checkout excluded as merge workspace due divergence.
+- **Spec Self-Review:** `PF2_SPEC_SELF_REVIEW 28/28 PASS`
+- **Original Design Commit:** `6c9fd543c34e939db914c80e4c3354b3b36a0906`
+- **Original Design Base:** `9f5a6fb1f8d26b80049a4a9521e50c38a99126be`
+- **Forward-Port Baseline:** canonical Last Stable 1.x `aae65796a8d4ad5f23323889b65b060bd36302c1` / Framework-Source tree `d5d04e4563157246872b1e02c791b94a6c564d95`.
+- **V1 Gate:** `SATISFIED` — Framework 1.14 is committed, pushed, merged through PR #28, post-merge reconciled, and canonical on `main`; V1 Task source is 26/26 DONE.
+- **Stable-ID Forward-Port Rule:** original isolated design records used branch-local `EVD-071 / CHG-071`; these collide with later canonical V1 release records and are not imported as those IDs. The current canonical forward-port allocates `EVD-075 / CHG-075` while preserving original design commit/spec provenance. `OUT-009 / AUTH-009 / ACT-021 / ENV-009` remain reserved design identities and are promoted without collision.
+- **Current Goal:** `OUT-011 ACHIEVED / AUTH-011 TERMINATED / ACT-023 DONE / ENV-011 EXPIRED` — Pre-Merge preparation completed; no execution authority remains.
+- **Completed Goal Scope:** forward-port/reconcile design truth; written-spec approval recording; implementation/migration planning; merge manifest; AI-ControlTower read-only target/binding/current-architecture verification; rollback/version/licensing/conformance boundaries; local verification/commits and Pre-Merge Readiness evidence.
+- **Explicitly Excluded From Current Goal:** actual ProjectFramework→AI-ControlTower repository merge; AI-ControlTower Project Source/code/runtime mutation; canonical-source cutover; V2 runtime/API/state DB/MULTICA/adapter implementation; public mirror publication; force push/destructive history rewrite; license-instrument selection.
+- **Target Release:** ProjectFramework `2.0.0`; Project Source Schema `2.0.0`; initial API Protocol `1.0.0`; initial Workflow Schema `1.0.0`; AI-ControlTower application version independently governed.
+- **Completion Criteria For Pre-Merge Goal:** SATISFIED — `PF2_PRE_MERGE_READINESS 35/35 PASS` / `EVD-077`; no target mutation/merge/cutover/runtime implementation occurred.
+- **Pre-Merge Readiness Evidence:** `EVD-077 / CHG-077` / `PF2_PRE_MERGE_READINESS 35/35 PASS`.
+- **Tool/MCP Execution Policy:** `Project-Execution/tools.md` / CEO PRIMARY / HZM DISALLOWED / fallback NONE / FAIL_CLOSED / `EVD-078`.
+- **Cancellation Basis:** Explicit user direction on 2026-09-10: keep Framework 1.15, cancel ProjectFramework 2.0.0; no merge/cutover/runtime implementation occurred.
+- **Historical Preservation:** Original V2 head `0ef4e4cb2f4ffcedfc3145e718b7462d76fb3092`; design/migration/merge-manifest preserved; prior PRE_MERGE_READY evidence remains historical, not current execution authority.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-044; 2.0 line is cancelled.
+
 ## Task #45 — Response Close + Next Goal
 
 - **ID:** `TASK-045`
@@ -977,13 +1014,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #46 — Final Response Close Simplification
 
 - **ID:** `TASK-046`
-- **Status:** `TODO`
+- **Status:** `CANCELLED`
 - **Type:** Framework response-contract / user-facing protocol simplification
 - **depends_on:** `[TASK-042, TASK-043]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `READY`
+- **readiness:** `CANCELLED_BY_USER / SUPERSEDED_BEFORE_IMPLEMENTATION`
 - **Identity Note:** `TASK-044` is already allocated to ProjectFramework 2.0 / AI-ControlTower Protocol Integration and `TASK-045` has its own preserved response-close lineage. This registration uses `TASK-046` under explicit user confirmation and does not rewrite either prior Task.
 
 - **User Instruction:** Remove `[Chat]` and `[Required Read]` from the canonical Final Response.
@@ -1049,4 +1086,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   pressure scenarios cover the new close; applicable verification passes
   before Task completion.
 
-- **Exact Next Step:** Await a separately approved design flow for `TASK-046`; do not begin design or implementation from this registration checkpoint.
+- **Supersession / Cancellation:** On 2026-09-10 the user explicitly required `[Next Goal]` to remain mandatory, selected Framework 1.15 instead of 2.0.0, and invoked OUT-013 reconciliation. The original two-field `BREAKING_RESPONSE_INTERFACE` direction is cancelled before implementation.
+- **Current Implementation Baseline:** TASK-045 Framework `1.15.0` (`Next Action -> Next Goal -> Reason`), subject to the OUT-013 correction/reverification pass.
+- **Design Spec:** `docs/superpowers/specs/2026-09-10-task046-framework115-reconciliation-design.md`
+- **Reconciliation Design Self-Review:** `TASK046_SPEC_SELF_REVIEW 13/13 PASS`.
+- **Goal:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
+- **Historical Registration:** original registration preserved in commit `b42a2f4a536b851edf46b2b94139a0bc5932ea07` and reconciliation ancestry commit `caf2a19`.
+- **Exact Next Step:** user review of the written reconciliation design before implementation/correction execution.
