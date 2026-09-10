@@ -1087,7 +1087,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   before Task completion.
 
 - **Supersession / Cancellation:** On 2026-09-10 the user explicitly required `[Next Goal]` to remain mandatory, selected Framework 1.15 instead of 2.0.0, and invoked OUT-013 reconciliation. The original two-field `BREAKING_RESPONSE_INTERFACE` direction is cancelled before implementation.
-- **Current Implementation Baseline:** TASK-045 Framework `1.15.0` (`Next Action -> Next Goal -> Reason`), subject to the OUT-013 correction/reverification pass.
+- **Current Implementation Baseline:** TASK-045 Framework `1.15.0` (`Next Action -> Next Goal -> Reason`), terminally verified by OUT-013 without changing TASK-045 historical lineage.
 - **Design Spec:** `docs/superpowers/specs/2026-09-10-task046-framework115-reconciliation-design.md`
 - **Reconciliation Design Self-Review:** initial checkpoint `TASK046_SPEC_SELF_REVIEW 13/13 PASS`; revised spec `OUT013_REVISED_SPEC_SELF_REVIEW 18/18 PASS`; final revised review `OUT013_REVISED_SPEC_FINAL_SELF_REVIEW 20/20 PASS`.
 - **Reconciliation Design State:** `USER_APPROVED_FINAL_DESIGN / SPEC_APPROVED` / commit `f5f8ecf3551d3fd3d0adc10def1fd0fe5c0847d2`.
@@ -1095,16 +1095,18 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`; `OUT013_PLAN_SELF_REVIEW 19/19 PASS`.
 - **Goal:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
 - **Historical Registration:** original registration preserved in commit `b42a2f4a536b851edf46b2b94139a0bc5932ea07` and reconciliation ancestry commit `caf2a19`.
-- **Exact Next Step:** choose Subagent-Driven or Inline Execution for the approved OUT-013 implementation plan.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-046; its implementation remains cancelled and local OUT-013 is complete.
 
-## OUT-013 — Framework 1.15 Reconciliation Verification State
+## OUT-013 — Framework 1.15 Reconciliation Terminal State
 
-- **Status:** `DONE / VERIFIED_COMPLETE`
-- **Active work object:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
+- **Status:** `DONE / VERIFIED_COMPLETE / TERMINAL_RECONCILED`
+- **Terminal lifecycle:** `OUT-013 ACHIEVED / AUTH-013 TERMINATED / ACT-025 DONE / ENV-013 EXPIRED`
 - **Frozen candidate:** commit `16664a8b61d1641a842210773c8f997178502be5`; tree `e2db01ce75fb9c5abf7c442f6d103120c09b8a3d`; Framework-Source tree `835c5a24c909ef7de2d413c46a6451746ed5fbf0`.
 - **Verification:** `OUT013_RED 23/27`; `OUT013_AFFECTED 27/27`; `OUT013_RELEASE_FULL 29/29 PASS`; exactly one RELEASE_FULL PASS run on the unchanged candidate.
 - **Structural checks:** Registered commands `7/7 PASS`; scenarios `432/432 PASS`; maintained starter stamps `22/22 PASS`; V2 spec/plan/merge-manifest blob equality `3/3 PASS`.
 - **Release evidence:** `docs/superpowers/evidence/2026-09-10-out013-framework115-reconciliation-release-full.md`.
+- **Release evidence commit:** `009b4dbd5de93f56d5f9eb1c2ce1a1dedc4eedb7`.
 - **Preservation:** TASK-044 remains `CANCELLED / IMPLEMENTATION_NOT_STARTED`; TASK-045 remains `DONE / VERIFIED_COMPLETE` with its historical candidate/evidence and byte-semantics preserved; TASK-046 remains `CANCELLED / SUPERSEDED_BEFORE_IMPLEMENTATION`.
 - **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED`.
 - **Prohibited boundaries:** no push, PR, merge, AI-ControlTower mutation, V2 cutover, runtime/parser/validator/CLI implementation, destructive branch/worktree deletion, Root/Binding mutation, external disclosure, or secret-value persistence.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for local OUT-013 completion; publication/adoption requires separate authority.
