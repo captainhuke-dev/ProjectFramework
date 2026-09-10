@@ -1096,3 +1096,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Goal:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
 - **Historical Registration:** original registration preserved in commit `b42a2f4a536b851edf46b2b94139a0bc5932ea07` and reconciliation ancestry commit `caf2a19`.
 - **Exact Next Step:** choose Subagent-Driven or Inline Execution for the approved OUT-013 implementation plan.
+
+## OUT-013 — Framework 1.15 Reconciliation Verification State
+
+- **Status:** `DONE / VERIFIED_COMPLETE`
+- **Active work object:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
+- **Frozen candidate:** commit `16664a8b61d1641a842210773c8f997178502be5`; tree `e2db01ce75fb9c5abf7c442f6d103120c09b8a3d`; Framework-Source tree `835c5a24c909ef7de2d413c46a6451746ed5fbf0`.
+- **Verification:** `OUT013_RED 23/27`; `OUT013_AFFECTED 27/27`; `OUT013_RELEASE_FULL 29/29 PASS`; exactly one RELEASE_FULL PASS run on the unchanged candidate.
+- **Structural checks:** Registered commands `7/7 PASS`; scenarios `432/432 PASS`; maintained starter stamps `22/22 PASS`; V2 spec/plan/merge-manifest blob equality `3/3 PASS`.
+- **Release evidence:** `docs/superpowers/evidence/2026-09-10-out013-framework115-reconciliation-release-full.md`.
+- **Preservation:** TASK-044 remains `CANCELLED / IMPLEMENTATION_NOT_STARTED`; TASK-045 remains `DONE / VERIFIED_COMPLETE` with its historical candidate/evidence and byte-semantics preserved; TASK-046 remains `CANCELLED / SUPERSEDED_BEFORE_IMPLEMENTATION`.
+- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED`.
+- **Prohibited boundaries:** no push, PR, merge, AI-ControlTower mutation, V2 cutover, runtime/parser/validator/CLI implementation, destructive branch/worktree deletion, Root/Binding mutation, external disclosure, or secret-value persistence.
