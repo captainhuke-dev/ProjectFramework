@@ -330,7 +330,7 @@ TASK-032 remediation is a governed workflow, not a command. A repair proposal re
 Framework `1.8.0` external-AI disclosure uses `EXTERNAL_OK | EXTERNAL_REVIEW | DO_NOT_DISCLOSE | UNCLASSIFIED` plus provider/tool eligibility `ELIGIBLE | LIMITED | INELIGIBLE | VERIFICATION_REQUIRED`. `Classification ≠ Authorization`; provider eligibility and disclosure permission never grant Project mutation/Decision authority. Standing disclosure permission reuses bounded `AUTH-*`; exact one-off user instruction stays action-scoped. Minimum necessary context, mixed-sensitivity partitioning, fail-closed redaction uncertainty, `SECRET-*` reference-only handling, and material `EVD-*` evidence apply to `[Meeting]`, Project Knowledge, OpenViking, Goal/ENV, and other external-AI consumers. GREENFIELD creates no standing disclosure grant, provider credential, blanket `EXTERNAL_OK`, `DISC-*` family/slot, or runtime disclosure system.
 
 
-Markdown response-close presentation SHOULD keep canonical labels visibly renderable, e.g. `**[Chat]:** CONTINUE_CURRENT_CHAT`; wrapping is presentation-only and does not rename `[Chat]:` or lifecycle tokens.
+Markdown response-close presentation SHOULD keep current canonical visible labels renderable, e.g. `**[Next Action]:** ...`, `**[Next Goal]:** ...`, and `**[Reason]:** ...`; wrapping is presentation-only and does not rename the semantic labels. Chat lifecycle remains internal Handoff state.
 
 ### 5.3A Optional Project Change Feed
 

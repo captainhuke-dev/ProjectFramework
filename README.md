@@ -21,7 +21,7 @@ How to use it:
 
 1. **New Project** — start from this repository's `main`, follow the Bootstrap Read Order to create the approved locally pinned `Project-Source/`, then materialize root `PROJECT-BOOTSTRAP.md` from the maintained template. ChatGPT/Claude Project Settings are optional thin discovery adapters.
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
-3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Project Audit]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, integrity audits, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Chat]:`, `[Reason]:`, `[Required Read]:`.
+3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Project Audit]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, integrity audits, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Next Goal]:`, `[Reason]:`. Chat lifecycle and Required Read routing remain internal continuation/Handoff state rather than mandatory visible close fields.
 
 `captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
 

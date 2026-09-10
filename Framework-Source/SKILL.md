@@ -679,12 +679,12 @@ Operational sequence:
 5. Persist current usable state/pointers once at the checkpoint; CHECKPOINT_INTEGRITY verifies continuation state and only affected cross-surface integrity, not full release regression by default.
 6. If persistence fails, report `PERSISTENCE_PENDING` and identify what remains unpersisted.
 7. Return a compact Chat result; do not replay the connector transcript.
-8. Recommend exactly `CONTINUE_CURRENT_CHAT` or `START_NEW_CHAT`.
-9. Recommend `START_NEW_CHAT` only after the persistence gate passes: durable current state, pending/blocker state, Exact Next Action, and Required Read location exist outside Chat.
-10. If `[Next Action]` is exactly `ไม่มีขั้นตอนถัดไป`, `[Chat]` MUST be `START_NEW_CHAT`.
-11. `CONTINUE_CURRENT_CHAT` requires one concrete Next Action and MUST NOT pair with `ไม่มีขั้นตอนถัดไป`.
-12. `PERSISTENCE_PENDING` requires `CONTINUE_CURRENT_CHAT` plus one concrete persistence/recovery Next Action; it cannot pair with `START_NEW_CHAT` or `ไม่มีขั้นตอนถัดไป`.
-13. `START_NEW_CHAT` may carry a concrete Next Action when state is durably persisted and continuation is safe from Required Read locations.
+8. Record internal Chat Continuity as exactly `CONTINUE_CURRENT_CHAT` or `START_NEW_CHAT` in `09 Handoff` when continuation state is material.
+9. Use internal `START_NEW_CHAT` only after the persistence gate passes: durable current state, pending/blocker state, Exact Next Action, and Required Read location exist outside Chat.
+10. If `[Next Action]` is exactly `ไม่มีขั้นตอนถัดไป`, internal Chat Continuity MUST be `START_NEW_CHAT`.
+11. Internal `CONTINUE_CURRENT_CHAT` requires one concrete Next Action and MUST NOT pair with `ไม่มีขั้นตอนถัดไป`.
+12. `PERSISTENCE_PENDING` requires internal Chat Continuity `CONTINUE_CURRENT_CHAT` plus one concrete persistence/recovery Next Action; it cannot pair with `START_NEW_CHAT` or `ไม่มีขั้นตอนถัดไป`.
+13. Internal `START_NEW_CHAT` may carry a concrete Next Action when state is durably persisted and continuation is safe from Required Read locations.
 
 Mandatory Framework response close (Markdown-safe presentation; semantic labels unchanged):
 
