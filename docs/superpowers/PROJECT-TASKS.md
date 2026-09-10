@@ -1089,7 +1089,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Supersession / Cancellation:** On 2026-09-10 the user explicitly required `[Next Goal]` to remain mandatory, selected Framework 1.15 instead of 2.0.0, and invoked OUT-013 reconciliation. The original two-field `BREAKING_RESPONSE_INTERFACE` direction is cancelled before implementation.
 - **Current Implementation Baseline:** TASK-045 Framework `1.15.0` (`Next Action -> Next Goal -> Reason`), subject to the OUT-013 correction/reverification pass.
 - **Design Spec:** `docs/superpowers/specs/2026-09-10-task046-framework115-reconciliation-design.md`
-- **Reconciliation Design Self-Review:** initial checkpoint `TASK046_SPEC_SELF_REVIEW 13/13 PASS`; revised spec `OUT013_REVISED_SPEC_SELF_REVIEW 18/18 PASS`.
+- **Reconciliation Design Self-Review:** initial checkpoint `TASK046_SPEC_SELF_REVIEW 13/13 PASS`; revised spec `OUT013_REVISED_SPEC_SELF_REVIEW 18/18 PASS`; final revised review `OUT013_REVISED_SPEC_FINAL_SELF_REVIEW 20/20 PASS`.
+- **Reconciliation Design State:** `USER_APPROVED_FINAL_DESIGN / SPEC_APPROVED` / commit `f5f8ecf3551d3fd3d0adc10def1fd0fe5c0847d2`.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-10-out013-framework115-reconciliation.md`.
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`; `OUT013_PLAN_SELF_REVIEW 19/19 PASS`.
 - **Goal:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
 - **Historical Registration:** original registration preserved in commit `b42a2f4a536b851edf46b2b94139a0bc5932ea07` and reconciliation ancestry commit `caf2a19`.
-- **Exact Next Step:** user review of the written reconciliation design before implementation/correction execution.
+- **Exact Next Step:** choose Subagent-Driven or Inline Execution for the approved OUT-013 implementation plan.

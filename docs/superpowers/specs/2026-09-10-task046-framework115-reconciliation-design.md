@@ -2,7 +2,7 @@
 
 **Active Work Object:** OUT-013 — Reconcile ProjectFramework to Framework 1.15, cancel the 2.0 line, preserve TASK-044/TASK-046 history, and complete local verification
 **Related Task Context:** TASK-046 — Final Response Close Simplification / cancelled and superseded before implementation
-**Design State:** USER_APPROVED_REVISED_DIRECTION / WRITTEN_SPEC_REVISED / SELF_REVIEWED / PENDING_FINAL_APPROVAL
+**Design State:** USER_APPROVED_FINAL_DESIGN / SPEC_APPROVED
 **Date:** 2026-09-10
 **Implementation boundary:** local ProjectFramework governance/documentation/templates/tests/reconciliation only; no push/publication/merge, no AI-ControlTower mutation, no runtime/parser/validator/CLI work
 
