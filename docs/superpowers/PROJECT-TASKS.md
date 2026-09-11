@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog at the 2026-09-11 reconciliation: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog after TASK-047 registration: one active Task (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1117,3 +1117,19 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED`.
 - **Prohibited boundaries:** no push, PR, merge, AI-ControlTower mutation, V2 cutover, runtime/parser/validator/CLI implementation, destructive branch/worktree deletion, Root/Binding mutation, external disclosure, or secret-value persistence.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป for local OUT-013 completion; publication/adoption requires separate authority.
+
+## Task #47 — Response Close UI Rendering Compliance Regression
+
+- **ID:** `TASK-047`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework response protocol / UI-visible compliance regression
+- **Problem:** a live ChatGPT response after successful `.md` bootstrap emitted bare `[Next Action]:` and `[Next Goal]:` lines; the UI hid those fields while `[Reason]:` remained visible, causing an incorrect `PASS` claim even though the visible response close was incomplete.
+- **Root Cause:** execution/compliance failure against an already-correct Framework 1.15 contract. Current `Framework-Source/SKILL.md` requires Markdown-safe wrappers and Scenario 432 explicitly fails hidden/non-visible labels. No missing Framework semantic rule was found.
+- **User Goal:** `[Goal] ลงและปิด Task สำหรับ footer rendering/compliance regression ให้ยืนยันว่า [Next Action] → [Next Goal] → [Reason] แสดงครบใน UI`.
+- **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED` — ACTOR-001 replied `อนุมัติ` after the bounded design was presented.
+- **Goal / Authority / Action / Envelope:** `OUT-015 ACTIVE / AUTH-015 ACTIVE / ACT-027 IN_PROGRESS / ENV-015 ACTIVE`.
+- **Approved Direction:** do not modify Framework semantics/version merely to restate an existing rule; register the regression, verify Scenario 432 and the current Markdown-safe contract, use live ChatGPT UI acceptance as the user-facing acceptance gate, persist evidence/lifecycle, and commit locally without push.
+- **Acceptance Criteria:** current SKILL safe-wrapper rule present; Scenario 432 present and hidden-label failure preserved; all three footer fields visibly render in order in live ChatGPT UI; no content follows Reason; bounded structural verification passes; no Framework-Source semantic change; local completion commit observed; Task/Goal terminal state persisted.
+- **Initial Evidence:** `EVD-090` — regression observation, root cause, TDD RED, design approval, and USER_CONFIRMED live UI acceptance.
+- **Implementation Boundary:** Project Task/Project Source lifecycle and evidence only unless verification discovers a genuine Framework defect; no runtime/UI hook/parser/validator/CLI; no push/publication; no Root/Binding mutation.
+- **Exact Next Step:** run bounded GREEN verification, commit the checkpoint, then terminalize TASK-047/OUT-015 on resulting-state confirmation.
