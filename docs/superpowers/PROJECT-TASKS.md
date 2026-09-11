@@ -12,6 +12,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - `BLOCKED` — work cannot proceed until a stated blocker is resolved.
 - `CANCELLED` — work was intentionally closed without implementation completion.
 
+## Remaining-work reporting policy
+
+- Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
+- `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
+- A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
+- Current backlog at the 2026-09-11 reconciliation: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+
 ## Task #18 — `[Project Upgrade]`
 
 - **ID:** `TASK-018`
