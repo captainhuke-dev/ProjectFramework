@@ -1,6 +1,6 @@
 # Project Bootstrap
 
-This file is the stable Project-root discovery entrypoint for Projects created or upgraded to ProjectFramework `1.7.0+`.
+This file is the stable Project-root discovery entrypoint for ProjectFramework under ProjectFramework `1.15.0`.
 
 It is a **discovery/locator artifact only**. It is not a Project Source semantic slot, has no Stable ID, and never replaces or overrides active `Project-Source/00` / `FRAMEWORK-001`.
 
@@ -8,38 +8,31 @@ It is a **discovery/locator artifact only**. It is not a Project Source semantic
 
 ```text
 Project Source Root: Project-Source/
-First Read: Project-Source/00-Project-Source-Framework-r002-260829-1901.md
+First Read: Project-Source/00-Project-Source-Framework-r003-260911-1459.md
 ```
 
-If this Project uses a different approved relative Project Source path, replace the two values above during governed creation/upgrade. Do not infer a different path from recency, search ranking, active workspace IDs, mounts, or similarly named directories.
+Do not infer another Project Source root from recency, search ranking, active workspace IDs, mounts, or similarly named directories.
 
-## Active Project Source Files
+## Project Settings and README Entry
 
-```text
-00 / FRAMEWORK-001 -> Project-Source/00-Project-Source-Framework-r002-260829-1901.md
-01 / Project Source Index -> Project-Source/01-Project-Source-Index-r044-260901-1845.md
-03 / Current State -> Project-Source/03-Current-State-r043-260901-1845.md
-09 / Handoff -> Project-Source/09-Handoff-r043-260901-1845.md
-```
+Project Settings / Project Instructions may use `Project Bootstrap: <VERIFIED_ABSOLUTE_PROJECT_BOOTSTRAP_PATH>` to reach this file. When an environment-specific path is unavailable, this repository's managed README bootstrap block provides the portable fallback `Project Bootstrap: ./PROJECT-BOOTSTRAP.md`.
+
+Project Settings and README are discovery adapters only. They never replace this file, active `FRAMEWORK-001`, Project Location Binding, branch/integration/implementation authority, or `AUTH-*`.
 
 ## Required Read Order
 
-Once the Project root is accessible:
-
 ```text
 PROJECT-BOOTSTRAP.md
-→ 00 / FRAMEWORK-001
-→ 01 / Project Source Index
-→ 03 / Current State
+→ active 00 / FRAMEWORK-001
+→ active 01 / Project Source Index
+→ active 03 / Current State
 → task-specific routing from current authoritative sources
-→ 09 / Handoff when continuation/resume is applicable
+→ active 09 / Handoff when continuation/resume is applicable
 ```
 
-Validate the referenced `00` as the active `FRAMEWORK-001` for this Project before treating it as governance authority. After that validation, active Project Source governs.
+Validate the referenced `00` as active `FRAMEWORK-001`; after validation, active Project Source governs. `01`, `03`, and `09` are resolved from active Project Source routing rather than hard-coded revision pointers here.
 
 ## Authority Boundary
-
-Keep these concepts separate:
 
 ```text
 PROJECT-BOOTSTRAP.md = discovery/locator only
@@ -48,7 +41,6 @@ Project Location Binding
 ≠ current branch/worktree
 ≠ Canonical Integration Target
 ≠ Canonical Implementation Source
-≠ Runtime Location
 ≠ AUTH / Risk authority
 ```
 
@@ -56,27 +48,8 @@ Correct discovery location grants no permission to mutate, approve Risk, push, d
 
 ## Failure Handling
 
-Read-only inspection may continue far enough to diagnose a problem, but affected Material mutation fails closed when:
-
-- the declared Project Source root is missing;
-- the referenced `00` is not a valid active `FRAMEWORK-001` for this Project;
-- multiple root bootstrap locations claim canonical status;
-- this locator materially contradicts the active root binding;
-- a vendor adapter or optional `PROJECT-CONFIG.md` materially conflicts with resolved active Project Source.
-
-Do not silently rewrite either side and do not choose by recency.
-
-## GREENFIELD / Brownfield
-
-- **NEW Framework `1.7.0+` Project:** this root file is mandatory in the resulting approved Project.
-- **Existing initialized Project:** do not create or update this file automatically. Adopt it only through governed `[Project Upgrade]` or another explicitly authorized root migration/repair flow.
-
-## Optional Adapters and Location Reference
-
-ChatGPT Project Settings, Claude Project Settings, `AGENTS.md`, `CLAUDE.md`, and similar vendor surfaces may point here as optional thin discovery adapters. They are not Project authority.
-
-`PROJECT-CONFIG.md`, when present, remains an optional Bootstrap Location reference only. It does not replace this root discovery entrypoint or active `FRAMEWORK-001`.
+Read-only inspection may continue far enough to diagnose a problem, but affected Material mutation fails closed when the declared Project Source root is missing, the referenced `00` is not valid active `FRAMEWORK-001`, multiple canonical root bootstraps conflict, or this locator materially contradicts active Root/Location Binding. Do not silently choose by recency.
 
 ## Safety
 
-Do not store passwords, tokens, access keys, secret-bearing URLs, or other secret values here. Do not persist a concrete current branch/worktree, runtime endpoint, or mutable status as authority; fresh-observe volatile state from its canonical source when material.
+Do not store passwords, tokens, access keys, secret-bearing URLs, or other secret values here. Do not persist a concrete current branch/worktree or mutable status as authority; fresh-observe volatile Git state when material.
