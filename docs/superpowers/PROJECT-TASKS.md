@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog after TASK-047 completion: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TASK-048 TODO` (`TODO=1`, `IN_PROGRESS=0`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1140,3 +1140,32 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Published Commits:** `196ddd0d5a2ec7c48c7a9232bafc909b0284522b` (registration) + `bc880c75190f967a3b87c2842b8cc284f8a3bcab` (terminal close), freshly observed on `origin/main` before reconciliation.
 - **Publication Reconciliation:** `OUT-016 ACHIEVED / AUTH-016 TERMINATED / ACT-028 DONE / ENV-016 EXPIRED`; evidence `EVD-092 / CHG-092`; this reconciliation is complete when the active successor set is freshly read from canonical `origin/main`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป.
+
+## Task #48 — `[Project Path]` Workspace & MCP Execution Routing
+
+- **ID:** `TASK-048`
+- **Status:** `TODO`
+- **Type:** Framework command / workspace-role and MCP execution-routing feature
+- **depends_on:** `[TASK-027, TASK-043]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `DESIGN_APPROVED / WRITTEN_SPEC_SELF_REVIEWED / AWAITING_USER_REVIEW`
+- **Problem:** `[Project Path]` does not yet distinguish Develop Workspace from Production Workspace or expose one exact MCP execution route with deterministic declared fallback/recovery behavior. Agents therefore need a strict contract for where source may be edited/built/tested, where artifacts may only be deployed/run, and which MCP may execute when Primary is unavailable.
+- **User-approved direction:** Extend `[Project Path]` as the unified fresh read/verification view while reusing existing canonical owners: `FRAMEWORK-001` / Project Location Binding for workspace/location truth, `Project-Execution/tools.md` for exact Primary/fallback policy, `Project-Execution/fallback-log.md` for append-only actual fallback history, and existing `40 Technical Design` / `60 Deployment Plan` semantics for build/deployment mapping when applicable.
+- **Approved Workspace Contract:** Develop Workspace = `EDIT / BUILD / TEST / PACKAGE / VERIFY`; Production Workspace = `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
+- **Approved MCP Contract:** exact Primary MCP; `ORDERED_ALLOW_LIST` auto fallback only to explicitly declared eligible fallbacks; no fallback by recency/availability/similarity; no eligible declared MCP = `FAIL_CLOSED`.
+- **Approved Recovery Contract:** `CHECKPOINT_FAILBACK` — do not switch back to recovered Primary mid-action; finish/persist/verify the current bounded action/checkpoint, re-verify Primary target identity/capability, log recovery/failback, then use Primary for the next action.
+- **Unknown-Result Contract:** connection loss after possible submission yields `RESULT_VERIFICATION_REQUIRED`; verify resulting state before retry; unprovable result = `FAIL_CLOSED`.
+- **Fallback Log:** applicability-driven `Project-Execution/fallback-log.md`, append-only operational incident history; `MCP-FB-*` is correlation labeling only, not a Project Stable-ID family; no credentials/secrets.
+- **Strict `[Project Path]` Order:** Framework Path → Git Path → Storage Path → Develop Workspace → Production Workspace → MCP Execution → Build / Deployment Mapping → Continuity.
+- **Brownfield Rule:** no silent adoption/inference. Existing verified implementation Workspace may be Previewed as Develop only with evidence; Production is never inferred; connected/recent MCPs never become fallback automatically; Projects without explicit fallback remain `fallback_mode: NONE`.
+- **Authority Boundary:** `[Project Path]` remains read/verify/routing presentation. Correct paths and an ACTIVE MCP do not grant mutation, deploy, push/publication, Root/Binding, disclosure, secret, Decision, or runtime privilege.
+- **Implementation Boundary:** design/spec checkpoint only. Do not modify current Framework command semantics, release files, templates, Project Source pin, MCP runtime, background watcher/router, validator/CLI, credential store, CI/CD, or deployment automation until the written spec is reviewed and an implementation plan is explicitly approved.
+- **Design Spec:** `docs/superpowers/specs/2026-09-12-task048-project-path-workspace-mcp-routing-design.md`
+- **Design State:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED / AWAITING_USER_REVIEW`
+- **Design Baseline:** `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
+- **Target Release:** Framework `1.16.0` / Schema `1.0.0` / release format `3`.
+- **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.
+- **Completion Criteria:** approved strict `[Project Path]` interface; explicit Develop/Production roles; Production source-mutation prohibition; exact Primary and ordered declared fallback; durable fallback log; unknown-result verification; checkpoint failback; Brownfield/Greenfield safety; preserved authority separation; applicable TDD/AFFECTED/final release verification; publication separately governed.
