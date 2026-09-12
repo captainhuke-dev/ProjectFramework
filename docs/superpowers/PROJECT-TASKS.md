@@ -1013,7 +1013,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Final RELEASE_FULL:** `TASK045_RELEASE_FULL 33/33 PASS` / exactly one run on the unchanged final candidate.
 - **Release Evidence:** `docs/superpowers/evidence/2026-09-06-task-045-response-close-next-goal-release-full.md`; evidence commit `4278182`.
 - **Preservation:** TASK-042/TASK-043 + launcher protected blobs preserved; seven commands unchanged; V2 TASK-044 head `0ef4e4c` and Task-source blob `bb4b75f` preserved; no runtime expansion.
-- **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
+- **Publication State:** `PUBLISHED_TO_ORIGIN_MAIN / PERSISTED / NOT_PENDING`.
+- **Published Commits:** `196ddd0d5a2ec7c48c7a9232bafc909b0284522b` (registration) + `bc880c75190f967a3b87c2842b8cc284f8a3bcab` (terminal close), freshly observed on `origin/main` before reconciliation.
+- **Publication Reconciliation:** `OUT-016 ACHIEVED / AUTH-016 TERMINATED / ACT-028 DONE / ENV-016 EXPIRED`; evidence `EVD-092 / CHG-092`; this reconciliation is complete when the active successor set is freshly read from canonical `origin/main`.
 - **Goal State:** `OUT-012 ACHIEVED / AUTH-012 TERMINATED / ACT-024 DONE / ENV-012 EXPIRED`.
 - **Completion Criteria Met:** Framework 1.15 response-close contract, safe Next Goal semantics, internal continuity preservation, scenarios 1–432, structural/AFFECTED/one RELEASE_FULL PASS, evidence committed, V2 TASK-044 preserved, no runtime expansion, terminal Project Source reconciliation.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป; publication/adoption requires a new exact instruction.
@@ -1134,5 +1136,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Boundary:** Project Task/Project Source lifecycle and evidence only unless verification discovers a genuine Framework defect; no runtime/UI hook/parser/validator/CLI; no push/publication; no Root/Binding mutation.
 - **Verification Result:** `TASK047_GREEN PASS`; Scenario 432 + Markdown-safe SKILL contract PASS; live UI USER_CONFIRMED; `git diff --check` PASS; Framework-Source unchanged.
 - **Completion Checkpoint Commit:** `196ddd0d5a2ec7c48c7a9232bafc909b0284522b`.
-- **Publication State:** `NOT_PUSHED / NOT_AUTHORIZED`.
+- **Publication State:** `PUBLISHED_TO_ORIGIN_MAIN / PERSISTED / NOT_PENDING`.
+- **Published Commits:** `196ddd0d5a2ec7c48c7a9232bafc909b0284522b` (registration) + `bc880c75190f967a3b87c2842b8cc284f8a3bcab` (terminal close), freshly observed on `origin/main` before reconciliation.
+- **Publication Reconciliation:** `OUT-016 ACHIEVED / AUTH-016 TERMINATED / ACT-028 DONE / ENV-016 EXPIRED`; evidence `EVD-092 / CHG-092`; this reconciliation is complete when the active successor set is freshly read from canonical `origin/main`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป.
