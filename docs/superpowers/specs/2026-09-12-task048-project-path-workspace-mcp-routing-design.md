@@ -4,7 +4,7 @@ Date: `2026-09-12` (Asia/Bangkok)
 Task: `TASK-048`
 Design state: `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED / AWAITING_USER_REVIEW`
 Implementation state: `NOT_STARTED`
-Approval basis: user approved Architecture Option 1, Auto Fallback (A), Production deploy/run-only boundary, append-only fallback log (A), Checkpoint Failback (B), and Design Sections 1–4 in chat on `2026-09-12`.
+Approval basis: user approved Architecture Option 1, Auto Fallback (A), Production deploy/run-only boundary, append-only fallback log (A), Checkpoint Failback (B), and Design Sections 1–4 in chat on `2026-09-12`; during written-spec review the user additionally requested a Local ↔ Remote Durable Develop Workspace Relocation Contract before final spec approval.
 Base repository: `captainhuke-dev/ProjectFramework`
 Design baseline: `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
 Target release: Framework `1.16.0` / Schema `1.0.0` / release format `3`
@@ -15,18 +15,20 @@ Extend the registered `[Project Path]` strict interface so an Agent can determin
 
 1. where development source is edited, built, and tested;
 2. where production is deployed and run;
-3. which MCP/tool is the exact Primary execution path;
-4. which explicitly declared MCPs may be used as ordered fallback;
-5. how fallback, unknown-result recovery, and failback behave; and
-6. where fallback incidents are durably recorded.
+3. which Local or Remote Durable workspace is the one active Develop Workspace for the affected scope and how development relocates safely between them;
+4. which MCP/tool is the exact Primary execution path;
+5. which explicitly declared MCPs may be used as ordered fallback;
+6. how fallback, unknown-result recovery, and failback behave; and
+7. where fallback incidents are durably recorded.
 
 The design must preserve existing ProjectFramework authority separation. Correct location and an eligible MCP do not grant mutation, deployment, push, Root/Binding, secret, disclosure, or other authority.
 
 ## 2. Problem
 
-Current `[Project Path]` surfaces Framework/Git/Storage/MCP/Workspace location semantics, but two operational ambiguities remain material:
+Current `[Project Path]` surfaces Framework/Git/Storage/MCP/Workspace location semantics, but three operational ambiguities remain material:
 
-- one Project may have separate **Develop Workspace** and **Production Workspace** roles, and an Agent must know where source may be edited/built versus where an artifact may only be deployed/run; and
+- one Project may have separate **Develop Workspace** and **Production Workspace** roles, and an Agent must know where source may be edited/built versus where an artifact may only be deployed/run;
+- the active Develop Workspace may move between a local durable workspace and a remote durable development workspace, but Git Remote itself is not an interactive workspace and promotion must not lose or fork required implementation state; and
 - an MCP path/selection must be exact. An Agent must never select an undeclared substitute merely because another MCP is connected, recent, similar, or available.
 
 Existing contracts already provide most foundations:
@@ -77,7 +79,9 @@ TASK-048 preserves and composes:
 - `fallback_mode: NONE` means no undeclared/automatic substitute;
 - `ORDERED_ALLOW_LIST` permits only declared fallback entries in declared order;
 - unknown execution outcome must be verified before retry to avoid duplicate effects;
-- Registered Commands are Strict Governed Interfaces; and
+- Registered Commands are Strict Governed Interfaces;
+- existing workspace vocabulary includes `LOCAL_WORKSPACE`, `GIT_WORKTREE`, and `REMOTE_DURABLE_WORKSPACE`;
+- Git Remote/repository publication/synchronization identity remains distinct from an actual durable Develop Workspace where edits/build/tests execute; and
 - Brownfield Projects do not silently adopt new bindings/policy merely because the Framework distribution evolves.
 
 ## 5. Workspace Role Contract
@@ -153,6 +157,65 @@ local_workspaces:
 This is optional/additive metadata within the existing binding contract. It does not create a new semantic slot or Stable-ID family.
 
 Non-filesystem deployment/runtime targets remain represented through existing applicable Technical Design / Deployment Plan semantics; `[Project Path]` must surface the resolved target without fabricating a filesystem path.
+
+### 5.4 Develop Workspace Relocation Contract
+
+TASK-048 explicitly supports relocation of the active Develop Workspace between a verified Local workspace and a verified Remote Durable workspace.
+
+Supported directional pattern:
+
+```text
+LOCAL_WORKSPACE ↔ REMOTE_DURABLE_WORKSPACE
+```
+
+Git Remote such as `origin` is the repository synchronization/publication target. It is **not** itself a Develop Workspace. Remote development requires an actual durable remote workspace (for example a governed remote VM/Codespaces-like/durable cloud workspace) that can prove the bound repository/source identity and execute the declared development workflow.
+
+For one affected implementation scope, exactly one Develop Workspace is the active edit/build/test location at a time. Multiple durable copies may exist for recovery/synchronization, but ambiguous concurrent active development ownership fails closed for Material source mutation until the active workspace/scope is resolved.
+
+Minimum relocation preconditions:
+
+```text
+current active Develop Workspace resolved
+→ repository/source identity verified
+→ current required implementation state durably checkpointed in Git/source authority
+→ no required completed work exists only as uncommitted state in the source workspace
+→ Git Remote/source synchronization target freshly observed when Git-backed
+→ relocation target durability and recovery assumptions verified
+→ target workspace repository/source identity verified
+→ target workspace synchronized to the intended source revision
+→ target working-tree/source state verified and understood
+→ applicable authority for any persistent binding/location change satisfied
+```
+
+Canonical relocation flow:
+
+```text
+freeze relocation boundary
+→ checkpoint/commit required source state
+→ fresh-observe repository remote and intended source revision
+→ prepare/access target durable workspace
+→ fetch/sync target to intended source revision
+→ verify repository identity + source revision + target workspace integrity
+→ Preview any persistent Location Binding change
+→ obtain/apply required approval when Root/Binding mutation is involved
+→ promote target as active Develop Workspace for the affected scope
+→ demote prior workspace from active development routing
+→ verify source mutation/build/test now resolve only to the promoted workspace
+```
+
+Reverse relocation from Remote Durable → Local follows the same contract and does not receive weaker checks.
+
+Relocation safety rules:
+
+1. Do not infer the target workspace from recency, active editor state, MCP workspace lists, mounts, search ranking, or similarly named folders.
+2. Do not treat a repository URL or Git Remote name as a workspace locator.
+3. Do not promote a target whose repository identity, intended source revision, durability, or working-tree state is unresolved.
+4. Do not abandon required uncommitted implementation state in the source workspace; commit/checkpoint or explicitly reconcile it before promotion.
+5. Do not create two simultaneously active Develop Workspaces for the same affected scope unless a separately governed multi-writer architecture explicitly defines that model; TASK-048 does not create one.
+6. A persistent Local Workspace Binding/Project Location Binding change retains existing User Explicit Approval plus `FRAMEWORK-001` revision/validation/promotion/history rules.
+7. Relocation changes development routing only. It does not transfer Git integration authority, push/publication authority, deployment authority, MCP/tool authority, or other `AUTH-*` scope.
+
+`[Project Path]` must be able to show the active workspace type/locator and source identity without fabricating a remote filesystem path when the remote platform uses a non-filesystem stable locator.
 
 ## 6. Exact MCP Execution Policy
 
@@ -444,10 +507,14 @@ Storage Path
   ...
 
 Develop Workspace
+  Workspace Type: LOCAL_WORKSPACE | REMOTE_DURABLE_WORKSPACE | OTHER_DECLARED_WORKSPACE
+  Active Develop Workspace: ...
   Path/Locator: ...
   Role: EDIT / BUILD / TEST / PACKAGE
   Source Mutation: ALLOWED
+  Repository Remote: ...
   Repository / Source Identity: ...
+  Source Revision: ...
   Status: MATCH | MISMATCH | NOT_VERIFIED
 
 Production Workspace
@@ -486,6 +553,10 @@ If a required/applicable value cannot be verified, the field remains present and
 | Condition | Required result |
 |---|---|
 | Develop Workspace not verified | block source mutation/build for affected scope |
+| More than one unresolved active Develop Workspace for the same scope | block source mutation/build until one active workspace is resolved |
+| Relocation target repository/source identity or intended revision not verified | do not promote target; keep relocation fail-closed |
+| Required implementation state exists only as uncommitted source-workspace state | do not relocate until checkpoint/commit/reconciliation preserves it |
+| Persistent relocation changes Project Location Binding without required approval/promotion | block persistent relocation |
 | Production Workspace/target not verified | block deploy/run mutation for affected scope |
 | Direct source edit in Production | `FORBIDDEN` |
 | Primary unavailable + `fallback_mode: NONE` | `FAIL_CLOSED` |
@@ -504,6 +575,8 @@ Existing initialized Projects remain pinned to their local Framework and do not 
 When a Brownfield Project upgrades to the adopting Framework release:
 
 - an existing verified implementation `Workspace Path` may be Previewed/migrated as the Develop Workspace when evidence supports that classification;
+- an existing Local Develop Workspace remains active until a governed relocation explicitly promotes a verified Remote Durable workspace (or another declared target); a connected remote workspace is never auto-promoted;
+- Local ↔ Remote Durable relocation uses Section 5.4 and never treats Git Remote alone as a workspace;
 - Production Workspace must never be inferred solely from an existing workspace/path; if not explicitly configured/resolved, report it as not configured/not verified;
 - existing `mcp_location` remains routing/location evidence, not execution-selection policy;
 - existing `Project-Execution/tools.md` remains the execution policy owner;
@@ -519,6 +592,8 @@ The current ProjectFramework initialized Project remains pinned to Framework `1.
 For a new Project created under the adopting release:
 
 - Develop Workspace may be configured when implementation development is applicable;
+- Develop Workspace may be Local or Remote Durable, but the active workspace for an affected scope must be unambiguous;
+- later Local ↔ Remote Durable relocation follows the same Section 5.4 checkpoint/identity/promotion contract;
 - Production Workspace is optional/applicability-driven and must not be invented for Projects without a production/runtime target;
 - Primary MCP/tool policy is optional unless a durable execution profile is useful;
 - no default broad fallback is invented;
@@ -544,6 +619,8 @@ runtime privilege
 A correct Production target plus an ACTIVE MCP is still insufficient to deploy without applicable Goal/AUTH/ENV/Risk/tool/platform authority.
 
 Auto fallback changes only which already-eligible declared execution tool carries an already-authorized action. It never expands the action's authority or scope.
+
+Likewise, Develop Workspace relocation changes execution/edit routing only. If persistent Project Location Binding changes are required, the existing Root/Binding approval and promotion flow remains independently mandatory.
 
 ## 19. No Runtime Router / Watcher
 
@@ -601,7 +678,7 @@ BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE
 Rationale:
 
 - `[Project Path]` strict interface gains materially new required dimensions/behavior;
-- workspace-role and MCP fallback/failback semantics are additive Framework interfaces;
+- workspace-role, workspace-relocation, and MCP fallback/failback semantics are additive Framework interfaces;
 - no semantic slot is added;
 - no Project Stable-ID family is added;
 - existing canonical homes are reused; and
@@ -637,6 +714,14 @@ Pressure scenarios must cover at minimum:
 22. Existing strict-command and response-close completeness gates remain intact.
 23. Framework version becomes 1.16.0 while Schema remains 1.0.0.
 24. No runtime router/watcher/credential store/CLI is introduced.
+25. Local → Remote Durable relocation succeeds only after required source state is checkpointed, repository identity/source revision match, and target durability is verified.
+26. Remote Durable → Local relocation applies the same checks and does not receive a weaker reverse path.
+27. Git Remote URL/name alone is rejected as a Develop Workspace locator.
+28. Remote relocation target with repository identity or source revision mismatch is not promoted.
+29. Required implementation work that exists only as uncommitted state blocks relocation until preserved/reconciled.
+30. Two unresolved active Develop Workspace candidates for the same scope block Material source mutation.
+31. Persistent relocation that changes Project Location Binding requires the existing approval/revision/validation/promotion/history flow.
+32. After promotion, `[Project Path]` resolves the new active workspace and source mutation/build/test routing no longer targets the demoted workspace for that scope.
 
 Use `TASK_LOCAL_FAST` / focused affected verification during implementation checkpoints, `CHECKPOINT_INTEGRITY` at logical checkpoints, and one final `RELEASE_FULL` on the final unchanged release candidate as applicable under the active Framework contract.
 
@@ -646,6 +731,7 @@ TASK-048 implementation is complete only when:
 
 - `[Project Path]` has the approved strict eight-section order;
 - Develop vs Production roles are explicit and verifiable;
+- Local ↔ Remote Durable Develop Workspace relocation is deterministic, preserves required source state, verifies repository/revision/durability, and promotes exactly one active Develop Workspace per affected scope;
 - Production direct source mutation is forbidden;
 - build source and run target are explicitly distinguishable;
 - Primary MCP is exact and no implicit fallback exists;
@@ -664,10 +750,11 @@ TASK-048 implementation is complete only when:
 Result: `PASS`.
 
 - Placeholder scan: no unresolved `TBD`/`FIXME` implementation requirement; angle-bracket values are intentional configuration examples.
-- Internal consistency: approved Architecture Option 1, Auto Fallback, Production no-edit boundary, append-only fallback log, Checkpoint Failback, strict command order, Brownfield behavior, and 1.16.0 classification are mutually aligned.
+- Internal consistency: approved Architecture Option 1, Auto Fallback, Production no-edit boundary, Local ↔ Remote Durable Develop Workspace relocation, append-only fallback log, Checkpoint Failback, strict command order, Brownfield behavior, and 1.16.0 classification are mutually aligned.
 - Scope check: one architectural feature; no background router/watcher, deployment engine, validator/CLI, credential store, or Project Source auto-upgrade was introduced.
-- Ambiguity check: execution policy, location ownership, build/deploy ownership, authority separation, unknown-result handling, logging, and recovery conditions each have explicit canonical homes/behavior.
+- Ambiguity check: execution policy, workspace relocation/promotion, location ownership, build/deploy ownership, authority separation, unknown-result handling, logging, and recovery conditions each have explicit canonical homes/behavior.
 - Repository-path correction: README propagation points to root `README.md`; no nonexistent `Framework-Source/README` is required.
+- Relocation review: Git Remote is explicitly not a workspace; Local ↔ Remote Durable relocation is symmetrical, fail-closed on source-state/identity/durability uncertainty, and retains existing Root/Binding approval when persistent binding changes.
 
 ## 25. Implementation Gate
 
