@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.15.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.16.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,12 +18,13 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260906-task045-response-close-next-goal.md` — latest amendment: TASK-045 Response Close + Next Goal
+- `references/framework-governance-amendment-260912-task048-project-path-workspace-mcp-routing.md` — latest amendment: TASK-048 Project Path Workspace & MCP Routing
+- `references/framework-governance-amendment-260906-task045-response-close-next-goal.md` — previous amendment: TASK-045 Response Close + Next Goal
 - `references/framework-governance-amendment-260903-federated-change-intelligence.md` — previous amendment: Federated Change Intelligence Suite
 - `references/framework-governance-amendment-260902-task028-task032.md` — previous amendment: TASK-028 + TASK-032 Integrity & Remediation Suite
 - `references/framework-governance-amendment-260902-task043.md` — TASK-043 Registered Command Strict-Interface & Contract Completeness Hardening
 - `references/framework-governance-amendment-260902-task042-forward-port.md` — previous amendment: TASK-042 Response Finalization Hardening forward-port
-- `references/framework-governance-amendment-260901-task025.md` — latest amendment: Project Knowledge Layer / Compounding Knowledge Contract (current authority)
+- `references/framework-governance-amendment-260901-task025.md` — previous amendment: Project Knowledge Layer / Compounding Knowledge Contract
 - `references/framework-governance-amendment-260831-task041.md` — previous amendment: Portable Installation Bootstrap & Project Settings Handoff (current authority)
 - `references/framework-governance-amendment-260831-task040.md` — previous amendment: canonical `[Session]` command rename
 - `references/framework-governance-amendment-260830-task026.md` — previous amendment: External AI Context & Disclosure Governance
@@ -272,7 +273,7 @@ Registered Project command identity requires literal brackets; matching inside b
 
 ```text
 [Project Status] : fresh Project/Task/Git/verification/blocker dashboard
-[Project Path]   : show/verify configured bootstrap paths and route explicit path-change requests through existing governance
+[Project Path]   : fresh-verify Framework/Git/Storage, Develop/Production workspaces, MCP execution, build/deployment mapping, and continuity in the strict eight-section contract
 [Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
@@ -303,7 +304,90 @@ The **Command Contract Completeness Gate** validates the command body before TAS
 
 TASK-032 remediation is workflow-only. Resolve `Source finding/evidence → affected scope → canonical owner/home → desired resulting state → R0–R3 → applicable authority/approval → prerequisites/freshness → ordered actions → reversibility/rollback → direct resulting-state verification → affected re-audit/result confirmation → evidence/lifecycle`. Reuse existing `ISS/DRIFT/CONFLICT/MIG/CR/ACT/AUTH/ENV/DEC/REQ` homes; no `REPAIR-*` / `REM-*`. Semantic conflict requires Decision/Change/Conflict authority rather than auto-repair. R2/R3, push, destructive, Root/Binding, and disclosure gates remain independent. `ACT DONE ≠ repair outcome verified`; re-audit is read-only and cannot self-authorize the next fix.
 
-`[Project Path]` surfaces Framework Remote Path, Git Remote Path, Storage Path, MCP Path, and Workspace Path. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations. An explicit requested path may be used as action input, but persistent Bootstrap/Project Location changes retain existing approval and `FRAMEWORK-001` revision/validation/promotion/history rules.
+Framework `1.16.0` makes `[Project Path]` a strict unified read/verification view. Preserve exactly this top-level order:
+
+```text
+1. Framework Path
+2. Git Path
+3. Storage Path
+4. Develop Workspace
+5. Production Workspace
+6. MCP Execution
+7. Build / Deployment Mapping
+8. Continuity
+```
+
+Compose current semantics from their canonical owners rather than inventing a new path authority:
+
+```text
+FRAMEWORK-001 / Project Location Binding
+  repository + environment-scoped Local Workspace binding/routing only
+40 Technical Design / Development Workspace Contract
+  Develop Workspace role/type/locator/durability + active workspace
+60 Deployment Plan
+  Production/runtime applicability + deployment mapping when applicable
+Project-Execution/tools.md
+  exact MCP execution-selection policy
+Project-Execution/fallback-log.md
+  append-only fallback/recovery incident history when applicable
+fresh observation
+  source/revision/tool/runtime/result state
+```
+
+Project Location Binding must not acquire `workspace_role`, `source_mutation`, active Develop Workspace, Canonical Implementation Source, or Production runtime authority. Material contradictions among owners/fresh evidence are explicit `MISMATCH` / `NOT_VERIFIED` for the affected dimension and fail closed only for affected Material actions; never choose by recency.
+
+Strict command-facing structure includes:
+
+```text
+Develop Workspace
+  Workspace Type: LOCAL_WORKSPACE | REMOTE_DURABLE_WORKSPACE | OTHER_DECLARED_WORKSPACE
+  Active Develop Workspace: ...
+  Path/Locator: ...
+  Role: EDIT / BUILD / TEST / PACKAGE
+  Source Mutation: ALLOWED
+  Repository Remote: ...
+  Repository / Source Identity: ...
+  Source Revision: ...
+  Status: MATCH | MISMATCH | NOT_VERIFIED
+
+Production Workspace
+  Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+  Path/Locator: ... | NOT_APPLICABLE
+  Role: DEPLOY / RUN / HEALTH_CHECK | NOT_APPLICABLE
+  Source Mutation: FORBIDDEN
+  Runtime Target: ... | NOT_APPLICABLE
+  Status: MATCH | MISMATCH | NOT_VERIFIED | NOT_APPLICABLE
+
+MCP Execution
+  Primary MCP: ...
+  Primary Status: ACTIVE | UNAVAILABLE | VERIFICATION_REQUIRED
+  Fallback Mode: NONE | ORDERED_ALLOW_LIST
+  Fallback Order: ...
+  Active Execution MCP: ...
+  Failback Policy: CHECKPOINT_FAILBACK
+
+Build / Deployment Mapping
+  Build Source: DEVELOPMENT
+  Deployment Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+  Artifact Identity: ... | NOT_APPLICABLE
+  Run Target: PRODUCTION | NOT_APPLICABLE
+  Status: MATCH | MISMATCH | NOT_VERIFIED | NOT_APPLICABLE
+
+Continuity
+  Execution State: PRIMARY | FALLBACK_ACTIVE | FAIL_CLOSED
+  Latest Fallback Event: ...
+  Fallback Log: Project-Execution/fallback-log.md | NOT_APPLICABLE
+```
+
+Framework/Git/Storage sections remain first and keep existing `MATCH | MISMATCH | NOT_VERIFIED` semantics. Required sections/fields are never hidden merely because evidence is unavailable. Angle-bracket placeholders such as `<STORAGE>` or `<WS>` mean unset/not configured and are never literal paths or permission to infer fallback locations.
+
+Production applicability is exact: `APPLICABLE` with unresolved target uses `NOT_VERIFIED` and blocks affected deploy/run mutation; authoritative no-Production truth uses exact `NOT_APPLICABLE`; unresolved applicability uses `VERIFICATION_REQUIRED` + `NOT_VERIFIED`. Absence alone never means `NOT_APPLICABLE`.
+
+Git Remote is synchronization/publication identity, not a Develop Workspace locator. Local ↔ Remote Durable relocation is symmetric: preserve required source state durably; verify repository/source identity, intended revision, target durability/recovery and working-tree state; synchronize; promote exactly one active Develop Workspace in `40`; demote prior routing; verify edit/build/test now resolves only to the promoted workspace. Change `FRAMEWORK-001` only for an actual persistent Local Workspace Binding delta through existing User Explicit Approval + revision/validate/promote/history rules.
+
+`Source Mutation: ALLOWED` describes Develop workspace-role compatibility only and never grants `AUTH-*`. Direct Production source mutation is always `FORBIDDEN`; corrections return through Develop source/build/deploy flow.
+
+`[Project Path]` remains read/verify-only. An explicit requested path may be one-off action input, but the command grants no mutation, deploy/run, push/publication, Root/Binding, secret, disclosure, Decision/Requirement, or runtime authority.
 
 `[Project Upgrade]` is read-only through comparison. For an initialized Project, current Framework identity comes from the valid active local `FRAMEWORK-001` pin; canonical upstream is a freshly observed target candidate, never silent replacement authority. Compare Framework/Schema plus observable source identity/freshness and report `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED` as presentation-only labels. Equal version strings do not override material source divergence, and unresolved evidence fails closed. When `UPGRADE_AVAILABLE`, ask whether the user wants to **prepare** an upgrade. A positive answer starts cumulative current→target assessment/Preview only; mutation still requires separate explicit approval after `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` classification, preservation/rollback planning, affected verification, one final `RELEASE_FULL`, and governed promotion/history preservation. The command adds no path/binding, branch, implementation-source, runtime, or persistent-state authority.
 ## Framework 1.8.0 Persistent `[Goal]` Command
@@ -592,6 +676,16 @@ When material, Development Workspace Contract resolves Canonical Implementation 
 
 Descriptive workspace/mapping labels such as `LOCAL_WORKSPACE`, `GIT_WORKTREE`, `REMOTE_DURABLE_WORKSPACE`, `DEV_CONTAINER_DURABLE_WORKSPACE`, `DIRECT_EXECUTION`, `BIND_MOUNT`, `WORKSPACE_VOLUME`, `IMAGE_OR_ARTIFACT_BUILD`, and `REMOTE_SYNC` are blueprint vocabulary only; they are not Project states or Stable-ID families.
 
+Framework `1.16.0` makes `40` the semantic owner of the active Develop Workspace when workspace distinction is material. Resolve logical role `DEVELOPMENT`, active workspace locator, durability/recovery assumptions, repository/source identity, Canonical Implementation Source relationship, source revision, Human/Agent edit location, and role-compatible mutation boundary. A Local Develop Workspace references the applicable environment-scoped Local Workspace Binding; it does not duplicate that binding. A Remote Durable workspace may have its own durable locator in `40`; Git Remote URL/name is not the workspace.
+
+Relocation is symmetric:
+
+```text
+LOCAL_WORKSPACE ↔ REMOTE_DURABLE_WORKSPACE
+```
+
+Before promotion, durably checkpoint required implementation state and verify source identity, intended revision, durability/recovery, target working-tree state, and synchronization. Promote one active Develop Workspace for the affected scope, demote the prior routing, then verify edit/build/test resolution. Ambiguous concurrent active ownership fails closed for affected Material source mutation/build/test.
+
 ### `60 Deployment Plan`
 
 Use when install/deployment/operation is in scope. Deployment support vocabulary:
@@ -618,6 +712,10 @@ Operational sequence:
 ```text
 resolve Canonical Implementation Source / durable workspace
 → if Git branch/worktree integration is in scope, apply existing Base Freshness contract
+Framework `1.16.0` requires `60`, when deployment/runtime is applicable, to resolve `Production Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED`, target/locator, artifact identity, Source-to-Runtime Mapping, Development-vs-Production differences, and resulting-state/health verification. Production role is `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
+
+`Build Source: DEVELOPMENT` and `Run Target: PRODUCTION | NOT_APPLICABLE` remain distinct. Explicit no-Production truth is `NOT_APPLICABLE`; unknown applicability remains `VERIFICATION_REQUIRED`, never inferred from absence.
+
 → mutate canonical durable source / valid worktree
 → execute/test through declared Source-to-Runtime Mapping
 → compare Implementation Truth with Runtime Truth when material
@@ -909,11 +1007,29 @@ TASK-033 adds no scheduler, queue daemon, agent orchestrator, or background exec
 
 `Project-Execution/` is optional/applicability-driven and outside Project Source semantic slots. TASK-027 maintains `README.md` + `tools.md` under `templates/project-execution/`.
 
-Canonical tool selection policy: `PRIMARY`/`primary_tool`, `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, `fallback_order`, `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`. Tool selection policy ≠ Tool availability ≠ Location ≠ Authority; Tool/MCP profile ≠ permission to mutate.
+Canonical tool selection policy: `PRIMARY`/`primary_tool`, `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, `fallback_order`, `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`, plus Framework `1.16.0` `failback_policy: CHECKPOINT_FAILBACK`. Tool selection policy ≠ Tool availability ≠ Location ≠ Authority; Tool/MCP profile ≠ permission to mutate.
 
-Resolve authority/location first, then tool policy, then actual availability/authentication/bound-target identity, then normal AUTH/Risk/shared-state/platform gates. `ORDERED_ALLOW_LIST` is deterministic; `NONE` means no substitute. `READ_ONLY_DIAGNOSTIC_ONLY` permits bounded diagnostics only. Connected/recent tools, MCP workspace IDs, UI handles, and ranking do not create eligibility or authority.
+Resolve authority/location first, then tool policy, then actual availability/authentication/capability/bound-target identity, then normal AUTH/Risk/shared-state/platform gates. `ORDERED_ALLOW_LIST` is deterministic; `NONE` means no substitute. `READ_ONLY_DIAGNOSTIC_ONLY` permits bounded diagnostics only. Connected/recent/similar tools, MCP workspace IDs, UI handles, and ranking do not create eligibility or authority.
 
-`PROJECT-BOOTSTRAP.md` remains authority discovery; Project-Execution policy is routed only after active `FRAMEWORK-001` resolves. Credentials/secret values are prohibited. Brownfield never auto-adopts policy. TASK-027 adds no MCP router, automatic failover, `.lnwjud` mutation, daemon, or runtime tool selection system.
+An MCP is `ACTIVE` / execution-eligible only when all applicable checks succeed: endpoint/capability reachable, authentication/session usable when applicable, required capability/tool available, allowed by active Project-Execution policy, and bound Project/workspace/repository target identity verified. Command-facing state is `ACTIVE | UNAVAILABLE | VERIFICATION_REQUIRED`.
+
+Before a Material action, fresh-check Primary. If eligible, use Primary. If Primary is not eligible and `fallback_mode: ORDERED_ALLOW_LIST`, evaluate `fallback_order` first-to-last and choose only the first eligible declared fallback. `fallback_mode: NONE` permits no substitute. Availability never expands the allow-list.
+
+Before Material fallback mutation, append required `FALLBACK_STARTED` history to `Project-Execution/fallback-log.md`; if required log persistence fails, the affected mutation is `FAIL_CLOSED`. The log is append-only operational history, not authority, Project Source, credentials, or a Stable-ID registry.
+
+Unknown side-effect result uses:
+
+```text
+RESULT_VERIFICATION_REQUIRED
+→ verify resulting state through an eligible declared MCP/tool
+→ already applied: checkpoint; do not repeat
+→ proven not applied: resume/retry under valid authority
+→ unprovable: FAIL_CLOSED
+```
+
+`CHECKPOINT_FAILBACK` prevents mid-action switching. When Primary recovers, finish/persist/verify the current bounded fallback checkpoint, reverify Primary capability and target identity, append recovery/failback history, then use Primary for the next action. A fallback-to-next-fallback transition occurs only after resulting-state safety is established, follows declared order, and is logged.
+
+`PROJECT-BOOTSTRAP.md` remains authority discovery; Project-Execution policy is routed only after active `FRAMEWORK-001` resolves. Credentials/secret values are prohibited. Brownfield never auto-adopts policy or infers fallback from connected/recent tools. TASK-048 adds no background MCP watcher, automatic network router, `.lnwjud` mutation, daemon, validator/CLI, credential store, deployment engine, or runtime tool selection system.
 
 ## Framework 1.12.0 Agent / Model Capability Profile
 

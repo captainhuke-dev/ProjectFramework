@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.15.0"
+project_source_framework_version: "1.16.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -158,6 +158,8 @@ Binding state ของ GitHub, Google Drive และแต่ละ environmen
 - User Explicit Instruction ที่ระบุ exact target อาจ authorize action เดียวเมื่อ otherwise allowed แต่ไม่ persistently rewrite binding.
 - การเปลี่ยน active binding เป็น Root Governance mutation: ต้อง User Explicit Approval และใช้ `FRAMEWORK-001` revision → validate → promote → supersede/archive flow. Connector discovery, recency หรือ ranking ไม่ transfer authority.
 - Repository Location Binding `≠` File Storage Binding `≠` Local Workspace Binding `≠` current work branch/worktree `≠` Canonical Integration Target `≠` Canonical Implementation Source `≠` Runtime Location / Runtime Data / Persistent-State authority. Project Location Binding ห้ามสร้าง `canonical_branch` หรือ branch authority คู่ขนาน; Git integration target ยัง governed โดย Framework `1.2.2` Base Freshness contract.
+- Framework `1.16.0`: Local Workspace Binding remains environment/path/repository routing only. Do not add `workspace_role`, `source_mutation`, active Develop Workspace, Canonical Implementation Source, or Production runtime authority to `project_location_binding.local_workspaces`; those semantics remain owned by applicable `40 Technical Design` / `60 Deployment Plan` contracts.
+
 
 GREENFIELD ที่ยังไม่มี active `FRAMEWORK-001` อ่าน Project-specific Bootstrap Location Block เมื่อมี → ใช้ read-only discovery เมื่อจำเป็น → Preview proposed GitHub/Drive/local-workspace/generic-file-storage binding states/identities ตาม applicability → explicit user approval → first Material Project-Source write creates active `00` with approved binding. Binding uncertainty ห้ามถูกเดาจาก chat memory, recent activity หรือ search result. MCP `workspaceId`, editor handle, active/recent workspace เป็น routing evidence เท่านั้น ไม่ใช่ canonical Project identity; missing applicable local environment = `VERIFICATION_REQUIRED` โดย default. Persistent Local Workspace Binding change ยังเป็น Root Governance mutation และ one-off exact local target ไม่ persistently rewrite binding.
 ## 3. Project Source Location and Semantic Namespace

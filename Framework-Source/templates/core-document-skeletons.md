@@ -28,6 +28,10 @@ Framework `1.9.0` adds portable installation bootstrap: current Project Settings
 Framework `1.10.0` adds optional root `Project-Knowledge/` outside Project Source slots for advisory/provenance-aware reusable synthesis. It is applicability-driven, never Project authority, and is created only after active `FRAMEWORK-001` plus approval; Knowledge→Governance promotion reuses canonical owners/authority and external use still follows TASK-026.
 
 ## Framework 1.15.0 Response Close + Next Goal Semantics
+## Framework 1.16.0 Project Path Workspace & MCP Routing Semantics
+
+Framework `1.16.0` preserves Schema `1.0.0` and canonical ownership while adding explicit active Develop Workspace/relocation semantics to `40`, exact Production applicability/mapping to `60`, and deterministic ordered MCP fallback/checkpoint-failback/fallback-log semantics to optional `Project-Execution/`. `[Project Path]` composes those owners in its strict eight-section order without creating authority or runtime automation.
+
 
 Framework `1.15.0` preserves Schema `1.0.0` and all Framework 1.14 governance while revising the mandatory visible assistant response close to `[Next Action] → [Next Goal] → [Reason]`. Suggested Goals are presentation-only and cannot create authority; internal Handoff Chat Continuity / Required Read routing remains available. No new command, slot, Stable-ID family, or runtime implementation is introduced.
 
@@ -54,7 +58,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.15.0"
+project_source_framework_version: "1.16.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -569,20 +573,43 @@ scripts/      operational-helper responsibility
 When material, document/resolve:
 
 ```text
+Logical Role: DEVELOPMENT
 Canonical Implementation Source
 Repository / Source Identity when applicable
-Development Workspace Type
-Workspace Location / Boundary
+Workspace Type
+Active Workspace Locator
 Workspace Durability
 Human / Agent Edit Location
 Execution Environment
 Source-to-Runtime Mapping
+Source Mutation Policy: role-compatible only; independent AUTH still required
 Dependency Isolation Strategy
 Runtime Mutability Boundary
 Persistent-State Boundary
+Relocation State / Prior Active Workspace when relocation is material
 Related REQ / DEC / RISK / ASM / DEP / CR / EVD
 Verification / Drift Notes
 ```
+
+A Local Develop Workspace references the applicable environment-scoped `FRAMEWORK-001` Local Workspace Binding rather than duplicating it. A `REMOTE_DURABLE_WORKSPACE` may use its own declared durable remote locator in `40`; a Git Remote URL/name is repository synchronization identity and is never sufficient as the workspace locator.
+
+Relocation contract:
+
+```text
+resolve active Develop Workspace
+→ checkpoint/commit required source state
+→ fresh-observe repository remote + intended source revision
+→ prepare/access target durable workspace
+→ sync/fetch intended revision
+→ verify repository/source identity + revision + durability + working-tree state
+→ determine whether 40 only or 40 + FRAMEWORK-001 changes are required
+→ update/promote governed 40 workspace contract under applicable authority
+→ use Root revision/validation/promotion only for actual persistent Local Workspace Binding delta
+→ promote one active Develop Workspace; demote prior active routing
+→ verify edit/build/test route to the promoted workspace
+```
+
+The reverse `REMOTE_DURABLE_WORKSPACE → LOCAL_WORKSPACE` path uses the same checks. Required uncommitted implementation state blocks relocation until preserved/reconciled; ambiguous multiple active candidates block affected Material source mutation/build/test.
 
 Descriptive workspace types may include:
 
@@ -644,9 +671,14 @@ Required/expected sections:
 ```text
 Deployment Scope
 Deployment Support
+Production Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+Production Runtime Target / Locator
+Production Role: DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME
+Direct Source Mutation: FORBIDDEN
 Common Prerequisites
 Supported OS / Platform / Architecture
 Deployment Source / Artifact Acquisition
+Deployment Source / Artifact Identity
 Required Runtime / Container Runtime
 External Services
 Required Permissions
@@ -662,6 +694,7 @@ Source Installation View
 Docker Installation View
 Startup / Shutdown
 Verification / Health
+Resulting-State / Health Verification
 Logs / Diagnostics
 Upgrade
 Rollback
@@ -673,6 +706,8 @@ Related REQ / DEC / RISK / DEP / CR / GATE / EVD
 ```
 
 When Project File Storage is relevant to deployment, reference the active `FRAMEWORK-001` storage scope rather than redefining it. `File Storage Binding ≠ Runtime Data / Storage Authority ≠ Persistent-State Boundary`. The same physical target may serve multiple roles only when each role is explicitly declared; backup/mirror/mount/sync accessibility does not transfer current authority.
+If Production is `NOT_APPLICABLE`, do not invent a runtime target. If applicability is `VERIFICATION_REQUIRED`, affected Production/deployment details stay unresolved and only actions requiring that dimension fail closed. `Build Source: DEVELOPMENT` remains distinct from `Run Target: PRODUCTION | NOT_APPLICABLE`.
+
 
 A real Project may record concrete verified commands/paths. A synthetic/template context must not invent executable commands for nonexistent software.
 

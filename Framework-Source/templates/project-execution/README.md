@@ -10,9 +10,14 @@ Current maintained files:
 Project-Execution/
 ├── README.md
 ├── tools.md
+├── fallback-log.md   # only when ordered fallback is applicable
 ├── capabilities.md
 └── trust.md
 ```
+
+`fallback-log.md` is applicability-driven append-only operational incident history for actual MCP fallback/recovery events. It is not selection policy, Root Governance, `AUTH-*`, credentials, secret storage, Project Source authority, or a Stable-ID registry. Projects with `fallback_mode: NONE` do not need to materialize it.
+
+When ordered fallback is active, `tools.md` remains policy and `fallback-log.md` remains history. Do not infer fallback order from log recency, connected tools, or prior incidents.
 
 Later Framework contracts may extend this directory with additional single-responsibility policy files. Every file remains subordinate to active `FRAMEWORK-001` and existing authority/risk/disclosure/secret rules.
 

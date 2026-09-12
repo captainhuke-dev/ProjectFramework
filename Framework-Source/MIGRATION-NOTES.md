@@ -4,7 +4,36 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.14.0 → 1.15.0 (current)
+## 1.15.0 → 1.16.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.16.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-048 Project Path Workspace & MCP Routing.
+- `[Project Path]` becomes a strict eight-section interface: `Framework Path → Git Path → Storage Path → Develop Workspace → Production Workspace → MCP Execution → Build / Deployment Mapping → Continuity`.
+- `FRAMEWORK-001` Project Location Binding remains narrow: repository + environment-scoped Local Workspace binding/routing only. It does not acquire workspace-role, source-mutation, active Develop, Canonical Implementation Source, or Production runtime authority.
+- `40 Technical Design` / Development Workspace Contract gains explicit active Local/Remote Durable Develop Workspace semantics plus symmetric relocation and one-active-workspace-per-scope behavior.
+- `60 Deployment Plan` gains exact Production applicability `APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED`, explicit Production role, direct-source-mutation prohibition, artifact identity, mapping, and resulting-state verification.
+- `Project-Execution/tools.md` adds `failback_policy: CHECKPOINT_FAILBACK`; ordered fallback remains explicit-only through `fallback_order` and never expands from recency, similarity, ranking, or connected state.
+- `Project-Execution/fallback-log.md` is optional/applicability-driven append-only incident history for actual fallback/recovery events; it is not Project Source authority, credentials, selection policy, or a Stable-ID registry.
+- Unknown potentially-applied side effects use `RESULT_VERIFICATION_REQUIRED`; unprovable resulting state fails closed instead of blindly retrying.
+- Brownfield existing workspaces may become Develop only with evidence; Production is never inferred from an existing path; connected/recent MCPs never become fallback automatically.
+- Existing initialized Projects remain pinned until governed `[Project Upgrade]`; upstream distribution development never rewrites their local Project Source pin.
+- TASK-048 adds no background router/watcher, credential store, validator/CLI, deployment engine, CI/CD, scheduler, daemon, or runtime failover subsystem.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's current Framework pin, Stable IDs, Project-specific rules, bindings, current truth, and history until governed promotion.
+2. Use Direct-to-Latest cumulative comparison; do not replay intermediate release migrations merely because they exist.
+3. Preserve Project Location Binding as routing-only. Map Develop role/type/durability/active-workspace semantics into applicable `40`, not `FRAMEWORK-001`.
+4. Classify Production exactly: explicit no-Production truth = `NOT_APPLICABLE`; declared-but-unresolved target = `APPLICABLE + NOT_VERIFIED`; unknown applicability = `VERIFICATION_REQUIRED + NOT_VERIFIED`.
+5. For Local ↔ Remote Durable relocation, checkpoint required source state, verify repository/source identity + intended revision + durability + working-tree state, promote `40`, and revise `FRAMEWORK-001` only for a real persistent Local Workspace Binding delta.
+6. If adopting ordered MCP fallback, declare exact Primary + `fallback_order`, materialize `fallback-log.md`, and preserve `CHECKPOINT_FAILBACK` / unknown-result verification. Do not infer fallback from connected/recent tools.
+7. Preserve the seven-command registry, TASK-043 command completeness, TASK-045 response close, and all independent authority/push/Root/Binding/disclosure/secret gates.
+8. Verify affected surfaces progressively, then run one final `RELEASE_FULL` on the unchanged target candidate. FAST_PATH state-bound evidence reuse remains available only under its existing exact-tree rules.
+
+---
+
+## 1.14.0 → 1.15.0 (previous)
 
 ### Affected distribution surfaces
 

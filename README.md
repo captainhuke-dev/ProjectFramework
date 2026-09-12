@@ -27,10 +27,18 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.15.0**
+- Project Source Framework: **1.16.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.16.0 Project Path Workspace & MCP Routing
+
+Framework `1.16.0` extends the strict `[Project Path]` interface to exactly eight sections: `Framework Path → Git Path → Storage Path → Develop Workspace → Production Workspace → MCP Execution → Build / Deployment Mapping → Continuity`. It composes existing owners rather than creating a new routing authority: `FRAMEWORK-001` remains repository/environment-scoped Local Workspace binding truth, `40 Technical Design` owns active Develop Workspace semantics, `60 Deployment Plan` owns Production/runtime mapping when applicable, and `Project-Execution/tools.md` owns MCP selection policy.
+
+Develop source mutation/build/test belongs to the active Develop Workspace; direct Production source mutation is `FORBIDDEN`. Local ↔ Remote Durable development relocation is symmetric, preserves required source state, verifies repository/revision/durability/working-tree identity, and promotes exactly one active Develop Workspace per affected scope. Production applicability is explicit `APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED`; absence alone never implies no Production target.
+
+MCP execution uses the exact Primary when eligible. Automatic fallback exists only with explicit `ORDERED_ALLOW_LIST` / `fallback_order`; connected/recent/similar tools never become implicit fallbacks. Material fallback writes append-only incident history to applicability-driven `Project-Execution/fallback-log.md`; unknown side-effect results use `RESULT_VERIFICATION_REQUIRED`; recovered Primary returns only at a verified checkpoint under `CHECKPOINT_FAILBACK`. No router, watcher, credential store, validator/CLI, deployment engine, or runtime failover subsystem is introduced.
 
 ## Framework 1.15.0 Response Close + Next Goal
 
