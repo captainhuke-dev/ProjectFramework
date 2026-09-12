@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TASK-049 IN_PROGRESS` (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1188,3 +1188,23 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-048 integration. GitHub Release/tag publication and consuming-Project `[Project Upgrade]` remain separately governed.
 - **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.
 - **Completion Criteria:** approved strict `[Project Path]` interface; preserved canonical ownership; explicit Develop/Production roles; Local ↔ Remote Durable relocation; exact Production applicability representation; Production source-mutation prohibition; exact Primary and ordered declared fallback; durable fallback log; unknown-result verification; checkpoint failback; Brownfield/Greenfield safety; preserved authority separation; applicable TDD/AFFECTED/final release verification; publication separately governed.
+
+## Task #49 — Canonical Self-Hosting Release Reconciliation
+
+- **ID:** `TASK-049`
+- **Status:** `IN_PROGRESS`
+- **Type:** bounded governance / release-lifecycle correction
+- **depends_on:** `[TASK-048]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `GOAL_ACTIVE / BOUNDED_DESIGN_APPROVED / TDD_RED_PENDING`
+- **Problem:** canonical Framework distribution is `1.16.0` while ProjectFramework's self-hosted active Project Source and `PROJECT-BOOTSTRAP.md` remain `1.15.0` because the consuming-Project pin rule was applied to the canonical upstream repository itself.
+- **Approved Direction:** canonical `ProjectFramework` self-hosts each verified Framework release through a mandatory governed post-merge reconciliation without requiring `[Project Upgrade]`; consuming Projects remain locally pinned and continue to use governed `[Project Upgrade]`; unresolved self-reconciliation fails closed; no bot/daemon/CI/CD/hook/runtime auto-updater is introduced.
+- **Goal / Authority / Action / Envelope:** `OUT-017 ACTIVE / AUTH-017 ACTIVE / ACT-029 IN_PROGRESS / ENV-017 ACTIVE`.
+- **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED`.
+- **Goal Checkpoint:** `EVD-093 / CHG-093`.
+- **TDD Target:** pressure scenarios `469–472`.
+- **Implementation Boundary:** local implementation, Root/Project Source reconciliation, verification, evidence, and commits only; no push/PR/merge/release-tag publication.
+- **Target Self-Host State:** Framework `1.16.0` / Schema `1.0.0` across canonical `Framework-Source`, active Project Source, and root Bootstrap with identity/bindings/history preserved.
