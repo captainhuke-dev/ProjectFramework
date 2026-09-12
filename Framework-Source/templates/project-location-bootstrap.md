@@ -62,14 +62,22 @@ current_branch_worktree:
 
 Current Framework `1.12.1` vendor settings do not require the legacy five labels. When legacy/Brownfield settings or internal bootstrap representations contain angle-bracket placeholders, those values remain **unset / not configured** and never authorize fallback.
 
-On `[Project Path]` (case-insensitive inside brackets):
+On `[Project Path]` (case-insensitive inside brackets), compose current truth from existing owners rather than creating a new location authority:
 
-1. Read applicable current location semantics from the thin Project Settings adapter, root bootstrap/README fallback, internal Bootstrap Location representation, and active `FRAMEWORK-001` Project Location Binding as available.
-2. Surface Framework/Git/Storage/MCP/Workspace semantics from their applicable canonical/discovery sources before Material work.
-3. Verify available repository identity/remote, MCP target, local workspace, storage locator/reachability as applicable, and active `FRAMEWORK-001` Project Location Binding when present.
-4. Report each comparison as `MATCH`, `MISMATCH`, or `NOT_VERIFIED`. These are diagnostic display labels, not Framework lifecycle, epistemic, binding, or authority states.
-5. A Material mismatch fails closed for the affected mutation. Do not silently rewrite Project Settings, a repo reference, or `FRAMEWORK-001`.
-6. If the user explicitly requests a path change, distinguish one-off action targeting from persistent configuration/binding change; persistent governed changes retain explicit approval plus applicable `FRAMEWORK-001` revision/validate/promote/history flow.
+```text
+thin Project Settings / root README / PROJECT-BOOTSTRAP / internal bootstrap locators
++ active FRAMEWORK-001 repository + environment-scoped Local Workspace bindings
++ applicable active 40 Development Workspace Contract
++ applicable active 60 Deployment Plan
++ applicable Project-Execution/tools.md + fallback-log.md
++ fresh Git/MCP/runtime observations needed by the strict dimensions
+```
+
+Preserve the exact Framework 1.16 top-level order `Framework Path → Git Path → Storage Path → Develop Workspace → Production Workspace → MCP Execution → Build / Deployment Mapping → Continuity`. Project Location Binding remains routing-only; `40` owns active Develop Workspace semantics; `60` owns Production/deployment mapping when applicable; `Project-Execution/tools.md` owns MCP selection. Material contradictions are surfaced as `MISMATCH` / `NOT_VERIFIED` and fail closed only for affected Material actions that require the unresolved dimension.
+
+Configured angle-bracket placeholders remain unset/not configured. Git Remote is not a Develop Workspace locator. Production applicability uses exactly `APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED`; absence alone never proves `NOT_APPLICABLE`. If the user explicitly requests a path change, distinguish one-off action targeting from persistent configuration/binding change; persistent governed Local Workspace Binding changes retain explicit approval plus applicable `FRAMEWORK-001` revision/validate/promote/history flow.
+
+The command is read/verify-only and grants no source mutation, deployment, push/publication, Root/Binding, secret/disclosure, Decision/Requirement, runtime, or other authority.
 
 ## Optional / Legacy Repo-Native Location Reference
 

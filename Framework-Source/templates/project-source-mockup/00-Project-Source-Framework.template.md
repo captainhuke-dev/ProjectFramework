@@ -48,6 +48,9 @@ project_location_binding:
       binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
       canonical_path: "<ABSOLUTE_LOCAL_PATH_OR_UNKNOWN>"
       repository: "<OWNER/REPOSITORY_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+      repository_url: "<CANONICAL_REPOSITORY_URL_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+      verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
+      last_verified_at: "<ISO8601_OR_UNKNOWN>"
   file_storage_locations:
     - storage_key: "<PROJECT_DEFINED_STORAGE_KEY>"
       binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
@@ -60,6 +63,8 @@ project_location_binding:
 ```
 
 Use the full root contract for Bootstrap Location precedence, minimum durable identity, generic non-Drive File Storage Binding, dedicated non-duplicated Google Drive authority, fail-closed behavior, verification metadata, designated progress-file pointers, Root Governance mutation approval, and environment-scoped local routing, MCP/tool IDs as evidence only, and separation from current branch/worktree / Canonical Integration Target / Canonical Implementation Source / Runtime Location. `03`/`09` reference this binding; they do not become an independent authority. Do not add `canonical_branch` to Project Location Binding.
+Framework `1.16.0` keeps `project_location_binding.local_workspaces` location/routing-only. Do not add workspace role, source-mutation, active Develop Workspace, Canonical Implementation Source, or Production runtime authority to this block; those semantics belong to applicable `40` / `60` contracts.
+
 ## Framework 1.3.1 Command / Direct Upgrade Pointer
 
 The full root template carries registered `[Project Status]` / `[Project Path]` / `[Project Upgrade]` / `[Project Audit]` semantics, Markdown-safe mandatory response-close presentation, and Direct-to-Latest cumulative upgrade governance. Framework `1.15.0` also carries the TASK-045 three-field visible response-close contract and preserves inherited Federated Change Intelligence pointers for optional derived change feed, evidence-based relation reconciliation, advisory impact analysis, and notification governance while preserving Project-local authority and no-runtime boundaries. Framework `1.15.0` preserves Strict Governed Interface + Command Contract Completeness Gate semantics; `[Project Audit]` is read-only with exact `Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity` and never auto-fixes or materializes findings as authority. TASK-032 remediation is workflow-only: canonical owner/home + `R0–R3` + applicable authority + rollback + direct verification + affected re-audit; it creates no repair command or remediation ID family. `[Project Upgrade]` fresh-compares the active local pin with canonical upstream target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and treats a positive upgrade choice as assessment/Preview authorization only—not mutation. Brackets are required and command-name matching inside them is case-insensitive. `<...>` Project Path placeholders mean unset. Initialized Projects remain pinned and, when explicitly upgraded, classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; direct current→target migration preserves Stable IDs, Project-Specific Rules, bindings, current truth, and history without mandatory intermediate-release execution.

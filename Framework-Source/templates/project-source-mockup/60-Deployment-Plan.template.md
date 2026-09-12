@@ -30,6 +30,20 @@ compatible_schema_range: ">=1.0,<2.0"
 ## Deployment Support
 `<SOURCE_ONLY | DOCKER_ONLY | SOURCE_AND_DOCKER | NOT_APPLICABLE>`
 
+## Production Applicability
+`<APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED>`
+
+## Production Runtime Target / Locator
+`<VERIFIED_TARGET_OR_NOT_APPLICABLE_OR_VERIFICATION_REQUIRED>`
+
+## Production Role
+`DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`
+
+## Direct Source Mutation
+`FORBIDDEN`
+
+If Production is `NOT_APPLICABLE`, do not invent a runtime target. If applicability is `VERIFICATION_REQUIRED`, keep affected deployment details unresolved and fail closed only for actions that require those details.
+
 ## Common Prerequisites
 <OS_PLATFORM_ARCH_RUNTIME_EXTERNAL_SERVICES_PERMISSIONS>
 
@@ -38,6 +52,9 @@ compatible_schema_range: ">=1.0,<2.0"
 
 ## Deployment Source / Artifact Acquisition
 <SOURCE_OR_ARTIFACT_IDENTITY_AND_ACQUISITION>
+
+## Deployment Source / Artifact Identity
+<SOURCE_COMMIT_BUILD_ID_ARTIFACT_NAME_HASH_OR_DIGEST_TARGET_ENVIRONMENT_DEPLOYED_AT_AS_APPLICABLE>
 
 ## Source-to-Runtime Mapping
 <DIRECT_EXECUTION_BIND_MOUNT_WORKSPACE_VOLUME_IMAGE_ARTIFACT_REMOTE_SYNC_OR_OTHER_DECLARED_MAPPING>
@@ -59,6 +76,11 @@ File Storage Binding may be referenced for Project-file routing, but `File Stora
 ## Development-only vs Production Mapping Differences
 <EXPLICIT_MATERIAL_DIFFERENCES_AND_RELATED_VARIANCE>
 
+```text
+Build Source: DEVELOPMENT
+Run Target: PRODUCTION | NOT_APPLICABLE
+```
+
 ## Source Installation View
 <ACQUISITION_RUNTIME_DEPENDENCIES_CONFIG_DATA_INIT_START_STOP_VERIFY_UPGRADE_ROLLBACK_CLEANUP>
 
@@ -67,6 +89,9 @@ File Storage Binding may be referenced for Project-file routing, but `File Stora
 
 ## Verification / Health
 <RESULTING_STATE_CHECKS_INCLUDING_REQUIRED_SURVIVAL_ACROSS_DECLARED_RECREATION_WHEN_APPLICABLE>
+
+## Resulting-State / Health Verification
+<DEPLOYED_ARTIFACT_IDENTITY_RUNTIME_HEALTH_AND_EXPECTED_STATE_CHECKS>
 
 ## Logs / Diagnostics
 <LOGS_AND_DIAGNOSTICS>
