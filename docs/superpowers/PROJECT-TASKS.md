@@ -1151,7 +1151,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `VERIFIED_COMPLETE / LOCAL_DONE / PUBLICATION_NOT_AUTHORIZED`
+- **readiness:** `VERIFIED_COMPLETE / BRANCH_PUSHED / PR_OPEN / NOT_MERGED`
 - **Problem:** `[Project Path]` does not yet distinguish Develop Workspace from Production Workspace or expose one exact MCP execution route with deterministic declared fallback/recovery behavior. Agents therefore need a strict contract for where source may be edited/built/tested, where artifacts may only be deployed/run, and which MCP may execute when Primary is unavailable.
 - **User-approved direction:** Extend `[Project Path]` as the unified fresh read/verification view while preserving canonical ownership: `FRAMEWORK-001` / Project Location Binding for repository + environment-scoped Local Workspace binding/routing truth, `40 Technical Design` for Develop Workspace role/type/location/durability and active-workspace semantics, `60 Deployment Plan` for applicable deployment/runtime mapping, `Project-Execution/tools.md` for exact Primary/fallback policy, and `Project-Execution/fallback-log.md` for append-only actual fallback history.
 - **Approved Workspace Contract:** Develop Workspace = `EDIT / BUILD / TEST / PACKAGE / VERIFY`; Production Workspace = `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
@@ -1164,12 +1164,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Production Applicability:** explicit no-Production truth = `NOT_APPLICABLE`; applicable-but-unresolved Production target = `APPLICABLE` + `NOT_VERIFIED`; insufficient evidence to decide applicability = `VERIFICATION_REQUIRED` + `NOT_VERIFIED`; absence alone is never silently interpreted as `NOT_APPLICABLE`.
 - **Brownfield Rule:** no silent adoption/inference. Existing verified implementation Workspace may be Previewed as Develop only with evidence; Production is never inferred; connected/recent MCPs never become fallback automatically; Projects without explicit fallback remain `fallback_mode: NONE`.
 - **Authority Boundary:** `[Project Path]` remains read/verify/routing presentation. Correct paths and an ACTIVE MCP do not grant mutation, deploy, push/publication, Root/Binding, disclosure, secret, Decision, or runtime privilege.
-- **Implementation Boundary:** local TASK-048 implementation is complete and state-bound to verified Framework 1.16 candidate `abc4b5316a7f3bbc9b4a8c0f5b5c509904a26185`. Distribution semantics/templates changed only within approved scope; active Project Source pin remains Framework `1.15.0`; no runtime/router/watcher/validator/CLI/credential/deployment automation was introduced; publication/merge/Project Upgrade remain separately governed and unauthorized.
+- **Implementation Boundary:** local TASK-048 implementation is complete and state-bound to verified Framework 1.16 candidate `abc4b5316a7f3bbc9b4a8c0f5b5c509904a26185`. Distribution semantics/templates changed only within approved scope; active Project Source pin remains Framework `1.15.0`; no runtime/router/watcher/validator/CLI/credential/deployment automation was introduced. The user explicitly authorized branch push + PR on `2026-09-12`; merge, release publication, and consuming-Project `[Project Upgrade]` remain separately governed and were not performed.
 - **Design Spec:** `docs/superpowers/specs/2026-09-12-task048-project-path-workspace-mcp-routing-design.md`
 - **Design State:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_APPROVED`
 - **Written Spec Approval:** `USER_EXPLICIT_APPROVAL — 2026-09-12`
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-12-task048-project-path-workspace-mcp-routing.md`
-- **Plan State:** `COMPLETE / AFFECTED_PASS / RELEASE_FULL_PASS / EVIDENCE_RECORDED / PUBLICATION_NOT_AUTHORIZED`
+- **Plan State:** `COMPLETE / AFFECTED_PASS / RELEASE_FULL_PASS / EVIDENCE_RECORDED / BRANCH_PUSHED / PR_OPEN / NOT_MERGED / NOT_RELEASED`
 - **Plan Self-Review:** `PASS` — approved spec sections mapped to Tasks 1–7; scenario allocation `433–468` freshly collision-checked against current `1–432`; forbidden placeholder scan clean; canonical ownership/Production applicability/relocation/MCP fallback/one-RELEASE_FULL/publication boundaries covered.
 - **Execution Mode:** `INLINE_EXECUTION_IN_ISOLATED_WORKTREE` at `E:\GitHub\ProjectFramework\.worktrees\task048-framework116`; no implementation mutation was performed on canonical main checkout.
 - **Implementation Commits:** `79843e3` RED scenarios; `90b1e68` normative Framework 1.16 contract; `bb67ef5` workspace relocation + Production applicability templates; `2b88f54` MCP fallback/failback profile + log; `004c631` README/migration/starter propagation.
@@ -1179,11 +1179,12 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Candidate State:** `VERIFIED_FINAL_CANDIDATE`; commit `abc4b5316a7f3bbc9b4a8c0f5b5c509904a26185`; tree `266b2cf7d03d516c9bcab9f81790a92f3c84d9c7`; Framework-Source tree `5e06595f419d21b03ed2ef8e959189594628dbf2`.
 - **Release Evidence:** `docs/superpowers/evidence/2026-09-12-task-048-project-path-workspace-mcp-routing-release-full.md`.
 - **Evidence Commit:** `8fbb47cb61d50f81c49979a32863139be64959af`.
+- **Pull Request:** `#30` — `https://github.com/captainhuke-dev/ProjectFramework/pull/30` — `OPEN`, base `main`, head `task048-framework116`.
 - **Completion State:** `LOCAL_VERIFIED_COMPLETE / TASK-048 DONE`; no persistent Goal lineage or Project Source lifecycle records were synthesized.
 - **Goal Lineage:** none created for TASK-048 execution; do not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact.
-- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
+- **Publication State:** `PUSH_AND_PR_AUTHORIZED / PUSHED / PR_OPEN / NOT_MERGED / NOT_RELEASED`.
 - **Design Baseline:** `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
 - **Target Release:** Framework `1.16.0` / Schema `1.0.0` / release format `3`.
-- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for local TASK-048 implementation. Any push/merge/release publication or consuming-Project `[Project Upgrade]` requires separate applicable authorization.
+- **Exact Next Step:** PR `#30` is open for review. No automatic merge, release publication, or consuming-Project `[Project Upgrade]`; each remains separately governed.
 - **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.
 - **Completion Criteria:** approved strict `[Project Path]` interface; preserved canonical ownership; explicit Develop/Production roles; Local ↔ Remote Durable relocation; exact Production applicability representation; Production source-mutation prohibition; exact Primary and ordered declared fallback; durable fallback log; unknown-result verification; checkpoint failback; Brownfield/Greenfield safety; preserved authority separation; applicable TDD/AFFECTED/final release verification; publication separately governed.
