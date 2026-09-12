@@ -1,10 +1,16 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.15.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.16.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.16.0 Project Path Workspace & MCP Routing Semantics
+
+Framework `1.16.0` keeps Schema `1.0.0` while extending strict `[Project Path]` to the eight-section workspace/MCP view. `FRAMEWORK-001` remains repository/local routing only; active Develop Workspace semantics live in `40`, Production/runtime mapping in applicable `60`, and exact MCP selection in optional `Project-Execution/tools.md` with append-only fallback history in `fallback-log.md` when ordered fallback applies.
+
+Starter workspace semantics preserve Local ↔ Remote Durable relocation, one active Develop Workspace per affected scope, direct Production source mutation `FORBIDDEN`, exact Production applicability, `RESULT_VERIFICATION_REQUIRED`, ordered explicit fallback, and `CHECKPOINT_FAILBACK`. No runtime router/watcher/CLI/deployment automation or new Stable-ID family is introduced.
 
 ## Framework 1.15.0 Response Close + Next Goal Semantics
 

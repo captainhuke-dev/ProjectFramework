@@ -28,6 +28,10 @@ Framework `1.9.0` adds portable installation bootstrap: current Project Settings
 Framework `1.10.0` adds optional root `Project-Knowledge/` outside Project Source slots for advisory/provenance-aware reusable synthesis. It is applicability-driven, never Project authority, and is created only after active `FRAMEWORK-001` plus approval; Knowledge→Governance promotion reuses canonical owners/authority and external use still follows TASK-026.
 
 ## Framework 1.15.0 Response Close + Next Goal Semantics
+## Framework 1.16.0 Project Path Workspace & MCP Routing Semantics
+
+Framework `1.16.0` preserves Schema `1.0.0` and canonical ownership while adding explicit active Develop Workspace/relocation semantics to `40`, exact Production applicability/mapping to `60`, and deterministic ordered MCP fallback/checkpoint-failback/fallback-log semantics to optional `Project-Execution/`. `[Project Path]` composes those owners in its strict eight-section order without creating authority or runtime automation.
+
 
 Framework `1.15.0` preserves Schema `1.0.0` and all Framework 1.14 governance while revising the mandatory visible assistant response close to `[Next Action] → [Next Goal] → [Reason]`. Suggested Goals are presentation-only and cannot create authority; internal Handoff Chat Continuity / Required Read routing remains available. No new command, slot, Stable-ID family, or runtime implementation is introduced.
 
@@ -54,7 +58,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.15.0"
+project_source_framework_version: "1.16.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
