@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-048 TODO` (`TODO=1`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TASK-048 IN_PROGRESS` (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1144,14 +1144,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #48 — `[Project Path]` Workspace & MCP Execution Routing
 
 - **ID:** `TASK-048`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework command / workspace-role and MCP execution-routing feature
 - **depends_on:** `[TASK-027, TASK-043]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `SPEC_APPROVED / IMPLEMENTATION_PLAN_WRITTEN / AWAITING_EXECUTION_CHOICE`
+- **readiness:** `IMPLEMENTATION_IN_PROGRESS / AFFECTED_PASS / FINAL_CANDIDATE_FREEZE_READY`
 - **Problem:** `[Project Path]` does not yet distinguish Develop Workspace from Production Workspace or expose one exact MCP execution route with deterministic declared fallback/recovery behavior. Agents therefore need a strict contract for where source may be edited/built/tested, where artifacts may only be deployed/run, and which MCP may execute when Primary is unavailable.
 - **User-approved direction:** Extend `[Project Path]` as the unified fresh read/verification view while preserving canonical ownership: `FRAMEWORK-001` / Project Location Binding for repository + environment-scoped Local Workspace binding/routing truth, `40 Technical Design` for Develop Workspace role/type/location/durability and active-workspace semantics, `60 Deployment Plan` for applicable deployment/runtime mapping, `Project-Execution/tools.md` for exact Primary/fallback policy, and `Project-Execution/fallback-log.md` for append-only actual fallback history.
 - **Approved Workspace Contract:** Develop Workspace = `EDIT / BUILD / TEST / PACKAGE / VERIFY`; Production Workspace = `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
@@ -1164,13 +1164,19 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Production Applicability:** explicit no-Production truth = `NOT_APPLICABLE`; applicable-but-unresolved Production target = `APPLICABLE` + `NOT_VERIFIED`; insufficient evidence to decide applicability = `VERIFICATION_REQUIRED` + `NOT_VERIFIED`; absence alone is never silently interpreted as `NOT_APPLICABLE`.
 - **Brownfield Rule:** no silent adoption/inference. Existing verified implementation Workspace may be Previewed as Develop only with evidence; Production is never inferred; connected/recent MCPs never become fallback automatically; Projects without explicit fallback remain `fallback_mode: NONE`.
 - **Authority Boundary:** `[Project Path]` remains read/verify/routing presentation. Correct paths and an ACTIVE MCP do not grant mutation, deploy, push/publication, Root/Binding, disclosure, secret, Decision, or runtime privilege.
-- **Implementation Boundary:** written spec is approved and implementation plan is materialized, but execution has not started. Do not modify current Framework command semantics, release files, templates, Project Source pin, MCP runtime, background watcher/router, validator/CLI, credential store, CI/CD, or deployment automation until the user selects/authorizes the implementation execution path.
+- **Implementation Boundary:** user authorized execution on `2026-09-12`; Tasks 1–5 are implemented in isolated worktree branch `task048-framework116`. Distribution semantics/templates are changed only within approved TASK-048 scope; active Project Source pin remains Framework `1.15.0`; no runtime/router/watcher/validator/CLI/credential/deployment automation was introduced; publication remains separately governed.
 - **Design Spec:** `docs/superpowers/specs/2026-09-12-task048-project-path-workspace-mcp-routing-design.md`
 - **Design State:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_APPROVED`
 - **Written Spec Approval:** `USER_EXPLICIT_APPROVAL — 2026-09-12`
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-12-task048-project-path-workspace-mcp-routing.md`
-- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`
+- **Plan State:** `EXECUTING / TASKS_1–5_COMPLETE / AFFECTED_PASS / RELEASE_FULL_NOT_RUN`
 - **Plan Self-Review:** `PASS` — approved spec sections mapped to Tasks 1–7; scenario allocation `433–468` freshly collision-checked against current `1–432`; forbidden placeholder scan clean; canonical ownership/Production applicability/relocation/MCP fallback/one-RELEASE_FULL/publication boundaries covered.
+- **Execution Mode:** `INLINE_EXECUTION_IN_ISOLATED_WORKTREE` at `E:\GitHub\ProjectFramework\.worktrees\task048-framework116`; no implementation mutation was performed on canonical main checkout.
+- **Implementation Commits:** `79843e3` RED scenarios; `90b1e68` normative Framework 1.16 contract; `bb67ef5` workspace relocation + Production applicability templates; `2b88f54` MCP fallback/failback profile + log; `004c631` README/migration/starter propagation.
+- **Verification Progress:** TDD RED `TASK048_RED 9/18` expected; structural GREEN `TASK048_STRUCTURAL 18/18 PASS`; cumulative AFFECTED `TASK048_AFFECTED 47/47 PASS`; pressure scenarios `1–468` contiguous/unique.
+- **Candidate State:** `FREEZE_READY / RELEASE_FULL_NOT_RUN`; the Task 6 freeze commit produced after this update is the final Framework 1.16 candidate and its exact commit/tree/Framework-Source tree are bound by post-commit readback and Task 7 evidence.
+- **Goal Lineage:** none created for TASK-048 execution; do not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact.
+- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
 - **Design Baseline:** `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
 - **Target Release:** Framework `1.16.0` / Schema `1.0.0` / release format `3`.
 - **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.
