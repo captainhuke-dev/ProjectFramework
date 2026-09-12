@@ -936,6 +936,7 @@ Framework `1.12.2` TASK-043 makes every recognized Registered Command a **Strict
 Framework `1.13.0` TASK-028 further registers read-only `[Project Audit]` integrity/drift assessment; audit findings are presentation/evidence routing only and never self-authorize repair. TASK-032 further defines governed repair/remediation through existing canonical homes, Risk/AUTH gates, rollback, resulting-state verification, and affected re-audit; it adds no repair command or remediation Stable-ID family.
 Framework `1.14.0` TASK-036 further defines optional derived `Project-Change-Feed/` for bounded incremental change routing; it remains non-authoritative/rebuildable and adds no command, Project Source Stable-ID family, or runtime watcher/crawler.
 
+Framework `1.16.0` TASK-048 further extends strict `[Project Path]` presentation with explicit Develop/Production workspace roles, Local ↔ Remote Durable development relocation, exact Production applicability, deterministic MCP fallback/failback, and fallback incident history while preserving existing command, authority, binding, and response-close boundaries.
 #### Registered Command Strict-Interface Contract
 
 A recognized Registered Command is a **Strict Governed Interface**, not merely a natural-language request for equivalent information. Once command identity is resolved, the Agent MUST execute the active local command contract. When that contract governs structure, order, tokens/vocabulary, freshness, fail-closed representation, or authority boundaries, those elements are non-discretionary. Semantic equivalence alone is insufficient: the Agent MUST NOT replace the governed command response with an equivalent narrative, renamed/reordered dashboard, omitted required dimension, unsupported inference, or stale-memory reconstruction unless the active command contract explicitly permits that variation.
@@ -1009,9 +1010,112 @@ Completion sequence is **execute authorized repair → verify direct resulting s
 
 #### `[Project Path]`
 
-`[Project Path]` reads and verifies the applicable Framework/Git/Storage/MCP/Workspace location semantics from current Project Settings/bootstrap/internal location sources and active Project Location Binding. Framework `1.9.0` does not require the legacy five labels as current vendor Project Settings fields; their underlying roles remain governed. Any configured angle-bracket placeholder means **unset / not configured**, not a literal path. Missing/unset values never authorize fallback to recent, active, mounted, cached, search-ranked, or similarly named locations.
+Framework `1.16.0` makes `[Project Path]` a strict unified read/verification view over existing canonical owners. It never creates a competing authority source. Resolve and compose, when applicable:
 
-The command may include an explicit request to change one or more path values, but it grants no new mutation authority. A one-off exact target remains action-specific. Persistent Bootstrap Location or active Project Location Binding changes still require applicable User Explicit Approval and, when Root Governance is affected, the normal `FRAMEWORK-001` revision → validate → promote → supersede/archive flow.
+```text
+FRAMEWORK-001 / Project Location Binding
+  repository + environment-scoped Local Workspace binding/routing only
+
+40 Technical Design / Development Workspace Contract
+  Develop Workspace role/type/locator/durability, active workspace,
+  Canonical Implementation Source relationship, Human/Agent edit location
+
+60 Deployment Plan
+  Production/runtime applicability, target, artifact and deployment mapping
+
+Project-Execution/tools.md
+  exact MCP execution-selection policy
+
+Project-Execution/fallback-log.md
+  append-only fallback/recovery incident history when ordered fallback applies
+
+fresh observation
+  repository/source identity, revision, availability, runtime/result state
+```
+
+`FRAMEWORK-001` remains location/routing authority only. It does not own `workspace_role`, `source_mutation`, active Develop Workspace semantics, Canonical Implementation Source, or Production runtime authority. A material contradiction between canonical owners or fresh evidence is reported as `MISMATCH` / `NOT_VERIFIED` for the affected dimension and fails closed only for Material actions that require that dimension. Never choose an owner by recency.
+
+The exact eight top-level sections and order are:
+
+```text
+1. Framework Path
+2. Git Path
+3. Storage Path
+4. Develop Workspace
+5. Production Workspace
+6. MCP Execution
+7. Build / Deployment Mapping
+8. Continuity
+```
+
+Canonical strict structure:
+
+```text
+[Project Path]
+
+Framework Path
+  Upstream: ...
+  Status: MATCH | MISMATCH | NOT_VERIFIED
+
+Git Path
+  Repository: ...
+  Project Source: ...
+  Status: MATCH | MISMATCH | NOT_VERIFIED
+
+Storage Path
+  ...
+
+Develop Workspace
+  Workspace Type: LOCAL_WORKSPACE | REMOTE_DURABLE_WORKSPACE | OTHER_DECLARED_WORKSPACE
+  Active Develop Workspace: ...
+  Path/Locator: ...
+  Role: EDIT / BUILD / TEST / PACKAGE
+  Source Mutation: ALLOWED
+  Repository Remote: ...
+  Repository / Source Identity: ...
+  Source Revision: ...
+  Status: MATCH | MISMATCH | NOT_VERIFIED
+
+Production Workspace
+  Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+  Path/Locator: ... | NOT_APPLICABLE
+  Role: DEPLOY / RUN / HEALTH_CHECK | NOT_APPLICABLE
+  Source Mutation: FORBIDDEN
+  Runtime Target: ... | NOT_APPLICABLE
+  Status: MATCH | MISMATCH | NOT_VERIFIED | NOT_APPLICABLE
+
+MCP Execution
+  Primary MCP: ...
+  Primary Status: ACTIVE | UNAVAILABLE | VERIFICATION_REQUIRED
+  Fallback Mode: NONE | ORDERED_ALLOW_LIST
+  Fallback Order: ...
+  Active Execution MCP: ...
+  Failback Policy: CHECKPOINT_FAILBACK
+
+Build / Deployment Mapping
+  Build Source: DEVELOPMENT
+  Deployment Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+  Artifact Identity: ... | NOT_APPLICABLE
+  Run Target: PRODUCTION | NOT_APPLICABLE
+  Status: MATCH | MISMATCH | NOT_VERIFIED | NOT_APPLICABLE
+
+Continuity
+  Execution State: PRIMARY | FALLBACK_ACTIVE | FAIL_CLOSED
+  Latest Fallback Event: ...
+  Fallback Log: Project-Execution/fallback-log.md | NOT_APPLICABLE
+```
+
+Missing evidence changes values, not strict structure. Keep required sections/fields present and use the allowed `NOT_VERIFIED`, `VERIFICATION_REQUIRED`, or `NOT_APPLICABLE` representation. Angle-bracket placeholders remain **unset / not configured**, never literal paths or fallback authority.
+
+Production applicability is exact. `APPLICABLE` means Project truth declares a Production/runtime target; unresolved target details remain `NOT_VERIFIED` and affected deploy/run mutation fails closed. `NOT_APPLICABLE` requires authoritative Project truth that no Production/runtime target applies and uses exact `NOT_APPLICABLE` dependent fields. `VERIFICATION_REQUIRED` means applicability itself cannot be established; absence alone never implies `NOT_APPLICABLE` and actions requiring the unresolved Production dimension fail closed.
+
+Git Remote/repository publication identity is not a Develop Workspace locator. A Remote Durable Develop Workspace is an actual durable declared workspace able to prove repository/source identity and execute the development workflow. For one affected implementation scope exactly one Develop Workspace is active unless a separately governed multi-writer architecture exists.
+
+Local ↔ Remote Durable relocation is symmetric and requires: current active workspace resolution; repository/source identity verification; durable checkpoint/commit of required implementation state; no required completed work left only uncommitted; fresh Git Remote/source observation when Git-backed; target durability/recovery verification; target repository/source identity, intended revision, and working-tree verification; synchronization to the intended revision; governed `40` promotion/demotion; and resulting edit/build/test routing verification. Change `FRAMEWORK-001` only when an actual persistent Local Workspace Binding delta exists, using existing User Explicit Approval plus revision → validate → promote → supersede/archive history rules.
+
+`Source Mutation: ALLOWED` is workspace-role compatibility only; it never grants `AUTH-*`. Production direct source mutation is always `FORBIDDEN`; corrections flow through canonical Develop source → verify/build/package → deploy verified artifact → verify runtime.
+
+The command may include an explicit requested path as one-off action input, but `[Project Path]` remains read/verify-only and grants no mutation, deployment, push/publication, Root/Binding, secret, disclosure, Decision/Requirement, runtime, or other authority.
 
 #### `[Project Upgrade]`
 
@@ -1644,6 +1748,16 @@ Runtime Mutability Boundary
 Persistent-State Boundary
 Related REQ / DEC / RISK / ASM / DEP / CR / EVD
 Verification / Drift Notes
+
+Framework `1.16.0` makes `40 Technical Design` the semantic owner of the active Develop Workspace when that distinction is material. In addition to the existing fields, resolve the logical role `DEVELOPMENT`, active workspace locator, workspace durability/recovery assumptions, repository/source identity, Canonical Implementation Source relationship, Human/Agent edit location, source revision, and role-compatible source-mutation boundary. For a Local Develop Workspace, reference the applicable `FRAMEWORK-001` Local Workspace Binding rather than creating a second local binding. For a Remote Durable workspace, record a durable remote locator in `40`; a Git Remote URL/name is never the workspace itself.
+
+Relocation is symmetric:
+
+```text
+LOCAL_WORKSPACE ↔ REMOTE_DURABLE_WORKSPACE
+```
+
+Before promotion, preserve required implementation state durably and verify identity, intended revision, durability, and working-tree state. Promotion establishes one active Develop Workspace for the affected scope and demotes the prior routing. Ambiguous active ownership fails closed for affected Material source mutation/build/test.
 ```
 
 Common descriptive workspace types MAY include `LOCAL_WORKSPACE`, `GIT_WORKTREE`, `REMOTE_DURABLE_WORKSPACE`, `DEV_CONTAINER_DURABLE_WORKSPACE`, and `OTHER_DECLARED_WORKSPACE`. Common mapping descriptions MAY include `DIRECT_EXECUTION`, `BIND_MOUNT`, `WORKSPACE_VOLUME`, `IMAGE_OR_ARTIFACT_BUILD`, `REMOTE_SYNC`, and `OTHER_DECLARED_MAPPING`. These are blueprint vocabulary only; they are not Project states or Stable-ID families.
@@ -1713,6 +1827,10 @@ Uninstall / Cleanup
 Troubleshooting
 Known Limitations / Deployment Mode Variance
 ```
+
+Framework `1.16.0` requires `60 Deployment Plan`, when deployment/runtime is applicable, to resolve Production applicability (`APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED`), target/locator, artifact identity, source-to-runtime mapping, health/resulting-state verification, and Development-vs-Production differences. Production role is `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
+
+`Build Source: DEVELOPMENT` and `Run Target: PRODUCTION | NOT_APPLICABLE` remain distinct. No filesystem path is fabricated for non-filesystem runtime targets. Explicit no-Production truth is `NOT_APPLICABLE`; unknown applicability remains `VERIFICATION_REQUIRED`, not inferred from absence.
 
 Installation is not operationally ready merely because an install/start command returns success. Verification may include service availability, dependency reachability, storage initialization/persistence, configuration loading, secret resolution without exposure, health/runtime signal, core flow usability, running version identity, Source/Docker parity when applicable, and survival of state that the declared replacement/recreation lifecycle requires.
 
@@ -1842,13 +1960,31 @@ Tool selection policy ≠ Tool availability ≠ Location ≠ Authority
 Tool/MCP profile ≠ permission to mutate
 ```
 
-`tools.md` declares `primary_tool` (`PRIMARY`), `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, deterministic `fallback_order`, and `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`. `disallowed_tools` wins. `NONE` permits no automatic substitute. `ORDERED_ALLOW_LIST` never expands from recency/ranking/connected status.
+`tools.md` declares `primary_tool` (`PRIMARY`), `allowed_tools`, `disallowed_tools`, `fallback_mode: NONE | ORDERED_ALLOW_LIST`, deterministic `fallback_order`, `failure_policy: FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY`, and Framework `1.16.0` `failback_policy: CHECKPOINT_FAILBACK`. `disallowed_tools` wins. `NONE` permits no automatic substitute. `ORDERED_ALLOW_LIST` never expands from recency/ranking/connected/similarity status.
 
 Execution resolution is Project authority/location/binding → applicable tool profile → action/tool eligibility → availability/authentication/bound-target verification → PRIMARY or declared fallback → ordinary AUTH/Risk/shared-state/platform gates. An allowed tool cannot override a wrong/unverified Project target; a correctly connected but disallowed tool is not eligible.
 
 `READ_ONLY_DIAGNOSTIC_ONLY` permits only bounded read-only diagnosis needed to explain or repair availability/identity; it never permits Material mutation through an undeclared substitute. Unavailable, unauthenticated, stale, renamed, or target-unverified tools use the declared fallback/failure policy and `VERIFICATION_REQUIRED` where identity cannot be proven.
 
-`PROJECT-BOOTSTRAP.md` resolves active Project authority first; it does not embed full tool policy. `01`/task routing may point to `Project-Execution/tools.md` after authority resolves. The profile stores no credentials/secret values and creates no MCP router, automatic failover, `.lnwjud` mutation, daemon, vendor tool routing, or authority.
+Framework `1.16.0` treats an MCP as `ACTIVE` / execution-eligible only when all applicable checks succeed: endpoint/capability reachable, authentication/session usable when applicable, required capability/tool available, allowed by active Project-Execution policy, and bound Project/workspace/repository target identity verified. Command-facing MCP state is `ACTIVE | UNAVAILABLE | VERIFICATION_REQUIRED`; availability alone never grants policy eligibility or authority.
+
+Before a Material execution action, fresh-check Primary policy + availability/capability + target identity. If Primary is eligible, use Primary. If Primary is not eligible and `fallback_mode: ORDERED_ALLOW_LIST`, evaluate `fallback_order` from first to last and select the first eligible declared entry. An undeclared tool is never eligible merely because it is connected, recent, similar, ranked, or reachable.
+
+Before a Material mutation through fallback, append the required `FALLBACK_STARTED` incident event to `Project-Execution/fallback-log.md`. If required incident persistence fails, the affected mutation is `FAIL_CLOSED`. The log is append-only operational incident history, not authority, credentials, Project Source, or a Stable-ID registry.
+
+If an operation may have been submitted but its result is unknown:
+
+```text
+RESULT_VERIFICATION_REQUIRED
+→ inspect resulting state through an eligible declared MCP/tool
+→ if already applied: checkpoint result; do not repeat
+→ if proven not applied: resume/retry under valid authority
+→ if outcome cannot be proven: FAIL_CLOSED
+```
+
+`CHECKPOINT_FAILBACK` means Primary recovery never causes a mid-action switch. Complete and verify the current bounded action/checkpoint through fallback, persist the result, reverify Primary capability and target identity, append recovery/failback history, then route the next action through Primary. If the active fallback fails, establish unknown-result/resulting-state safety before evaluating the next declared fallback in order and append the transition.
+
+`PROJECT-BOOTSTRAP.md` resolves active Project authority first; it does not embed full tool policy. `01`/task routing may point to `Project-Execution/tools.md` after authority resolves. The profile/log store no credentials/secret values and create no background MCP watcher, automatic network router, `.lnwjud` mutation, daemon, validator/CLI, deployment engine, vendor routing runtime, or authority.
 
 GREENFIELD/Brownfield adoption is applicability-driven and governed; prior tool use/vendor settings never auto-create restrictive/permissive policy.
 
