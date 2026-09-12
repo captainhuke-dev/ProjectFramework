@@ -1151,7 +1151,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `DESIGN_APPROVED / WRITTEN_SPEC_SELF_REVIEWED / AWAITING_USER_REVIEW`
+- **readiness:** `SPEC_APPROVED / IMPLEMENTATION_PLAN_WRITTEN / AWAITING_EXECUTION_CHOICE`
 - **Problem:** `[Project Path]` does not yet distinguish Develop Workspace from Production Workspace or expose one exact MCP execution route with deterministic declared fallback/recovery behavior. Agents therefore need a strict contract for where source may be edited/built/tested, where artifacts may only be deployed/run, and which MCP may execute when Primary is unavailable.
 - **User-approved direction:** Extend `[Project Path]` as the unified fresh read/verification view while preserving canonical ownership: `FRAMEWORK-001` / Project Location Binding for repository + environment-scoped Local Workspace binding/routing truth, `40 Technical Design` for Develop Workspace role/type/location/durability and active-workspace semantics, `60 Deployment Plan` for applicable deployment/runtime mapping, `Project-Execution/tools.md` for exact Primary/fallback policy, and `Project-Execution/fallback-log.md` for append-only actual fallback history.
 - **Approved Workspace Contract:** Develop Workspace = `EDIT / BUILD / TEST / PACKAGE / VERIFY`; Production Workspace = `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
@@ -1164,9 +1164,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Production Applicability:** explicit no-Production truth = `NOT_APPLICABLE`; applicable-but-unresolved Production target = `APPLICABLE` + `NOT_VERIFIED`; insufficient evidence to decide applicability = `VERIFICATION_REQUIRED` + `NOT_VERIFIED`; absence alone is never silently interpreted as `NOT_APPLICABLE`.
 - **Brownfield Rule:** no silent adoption/inference. Existing verified implementation Workspace may be Previewed as Develop only with evidence; Production is never inferred; connected/recent MCPs never become fallback automatically; Projects without explicit fallback remain `fallback_mode: NONE`.
 - **Authority Boundary:** `[Project Path]` remains read/verify/routing presentation. Correct paths and an ACTIVE MCP do not grant mutation, deploy, push/publication, Root/Binding, disclosure, secret, Decision, or runtime privilege.
-- **Implementation Boundary:** design/spec checkpoint only. Do not modify current Framework command semantics, release files, templates, Project Source pin, MCP runtime, background watcher/router, validator/CLI, credential store, CI/CD, or deployment automation until the written spec is reviewed and an implementation plan is explicitly approved.
+- **Implementation Boundary:** written spec is approved and implementation plan is materialized, but execution has not started. Do not modify current Framework command semantics, release files, templates, Project Source pin, MCP runtime, background watcher/router, validator/CLI, credential store, CI/CD, or deployment automation until the user selects/authorizes the implementation execution path.
 - **Design Spec:** `docs/superpowers/specs/2026-09-12-task048-project-path-workspace-mcp-routing-design.md`
-- **Design State:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED / AWAITING_USER_REVIEW`
+- **Design State:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Written Spec Approval:** `USER_EXPLICIT_APPROVAL — 2026-09-12`
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-12-task048-project-path-workspace-mcp-routing.md`
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`
+- **Plan Self-Review:** `PASS` — approved spec sections mapped to Tasks 1–7; scenario allocation `433–468` freshly collision-checked against current `1–432`; forbidden placeholder scan clean; canonical ownership/Production applicability/relocation/MCP fallback/one-RELEASE_FULL/publication boundaries covered.
 - **Design Baseline:** `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
 - **Target Release:** Framework `1.16.0` / Schema `1.0.0` / release format `3`.
 - **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.

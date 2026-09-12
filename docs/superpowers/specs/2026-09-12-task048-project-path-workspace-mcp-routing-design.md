@@ -2,8 +2,9 @@
 
 Date: `2026-09-12` (Asia/Bangkok)
 Task: `TASK-048`
-Design state: `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED / AWAITING_USER_REVIEW`
+Design state: `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_APPROVED`
 Implementation state: `NOT_STARTED`
+Written spec approval: `USER_EXPLICIT_APPROVAL — 2026-09-12`
 Approval basis: user approved Architecture Option 1, Auto Fallback (A), Production deploy/run-only boundary, append-only fallback log (A), Checkpoint Failback (B), and Design Sections 1–4 in chat on `2026-09-12`; during written-spec review the user additionally requested a Local ↔ Remote Durable Develop Workspace Relocation Contract before final spec approval.
 Base repository: `captainhuke-dev/ProjectFramework`
 Design baseline: `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
@@ -805,6 +806,6 @@ Result: `PASS`.
 
 ## 25. Implementation Gate
 
-This written spec records the user-approved architecture, but implementation does not start until the user reviews this materialized spec and explicitly approves proceeding to implementation planning.
+Written-spec review gate: `SATISFIED — USER_EXPLICIT_APPROVAL 2026-09-12`.
 
-Next architectural workflow step after written-spec approval: invoke the implementation-planning workflow and create the detailed TASK-048 plan. No implementation mutation is authorized by this spec materialization alone.
+Implementation planning is authorized and materialized at `docs/superpowers/plans/2026-09-12-task048-project-path-workspace-mcp-routing.md`. Implementation remains `NOT_STARTED`; plan materialization does not itself authorize execution, publication, push, Root/Binding mutation, or any other effect outside the approved plan/governance boundaries.
