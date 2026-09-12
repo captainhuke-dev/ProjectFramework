@@ -47,7 +47,14 @@ Chosen architecture: **Extend `[Project Path]` and compose existing canonical ow
 
 ```text
 FRAMEWORK-001 / Project Location Binding
-  → canonical workspace/location binding truth
+  → canonical repository + environment-scoped Local Workspace binding/routing truth
+
+40 Technical Design / Development Workspace Contract
+  → canonical Develop Workspace role/type/location/durability, active-workspace semantics,
+    Canonical Implementation Source relationship, and workspace mutation-policy semantics
+
+60 Deployment Plan when applicable
+  → canonical deployment/runtime target and build/deployment mapping semantics
 
 Project-Execution/tools.md
   → exact MCP execution-selection policy
@@ -55,17 +62,17 @@ Project-Execution/tools.md
 Project-Execution/fallback-log.md
   → append-only history of actual fallback/recovery events
 
-40 Technical Design / 60 Deployment Plan when applicable
-  → source-to-runtime and build/deployment mapping
-
 [Project Path]
-  → fresh unified read/verification view over the above
+  → fresh unified read/verification view over the above canonical owners
+  → fail closed for affected Material work when those owners materially contradict one another
 ```
 
 Rejected alternatives:
 
 - placing all MCP routing policy into `FRAMEWORK-001`, because volatile operational selection would make Root mutation unnecessarily frequent; and
 - introducing a new `Project-Execution/routing.md`, because it would duplicate truth already owned by Project Location Binding and `tools.md`.
+
+TASK-048 also rejects moving Develop/Production workspace-role or source-mutation semantics into `FRAMEWORK-001`. Project Location Binding continues to own location/routing bindings only; `40 Technical Design` owns Development Workspace Contract semantics, and `60 Deployment Plan` owns deployment/runtime mapping when applicable.
 
 ## 4. Existing Contracts Reused
 
@@ -100,7 +107,7 @@ PACKAGE
 VERIFY
 ```
 
-Source mutation is `ALLOWED` only when the workspace is valid for the active Canonical Implementation Source and required binding/source identity checks pass.
+Source mutation is `ALLOWED` only when the workspace is valid for the active Canonical Implementation Source, required binding/source identity checks pass, and independent action authority permits the mutation. Workspace role never creates `AUTH-*` by itself.
 
 The Agent must not infer a Develop Workspace from recency, an active editor, MCP workspace list, mounted folders, search ranking, or similarly named directories.
 
@@ -135,28 +142,46 @@ observe/diagnose Production
 → verify Production runtime result
 ```
 
-### 5.3 Binding Representation
+### 5.3 Canonical Ownership and Binding Representation
 
-When a local filesystem workspace binding is applicable, existing `project_location_binding.local_workspaces` entries may carry role metadata such as:
+`FRAMEWORK-001` / Project Location Binding remains a location/routing authority. It does not become the owner of Develop/Production role semantics or source-mutation permission.
+
+When a local filesystem workspace binding is applicable, existing `project_location_binding.local_workspaces` stays location-focused:
 
 ```yaml
 local_workspaces:
-  - workspace_role: "DEVELOPMENT"
-    environment_scope: "<DEVELOPMENT_ENVIRONMENT>"
-    binding_state: "BOUND"
-    canonical_path: "<ABSOLUTE_DEVELOPMENT_WORKSPACE_PATH>"
-    source_mutation: "ALLOWED"
-
-  - workspace_role: "PRODUCTION"
-    environment_scope: "<PRODUCTION_ENVIRONMENT>"
-    binding_state: "BOUND"
-    canonical_path: "<ABSOLUTE_PRODUCTION_WORKSPACE_PATH>"
-    source_mutation: "FORBIDDEN"
+  - environment_scope: "<USER_CONFIRMED_ENVIRONMENT_SCOPE>"
+    binding_state: "<BOUND | NOT_APPLICABLE | VERIFICATION_REQUIRED>"
+    canonical_path: "<ABSOLUTE_LOCAL_PATH_OR_UNKNOWN>"
+    repository: "<OWNER/REPOSITORY_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+    repository_url: "<CANONICAL_REPOSITORY_URL_OR_UNKNOWN_OR_NOT_APPLICABLE>"
+    verification_status: "<VERIFIED | USER_CONFIRMED | VERIFICATION_REQUIRED>"
+    last_verified_at: "<ISO8601_OR_UNKNOWN>"
 ```
 
-This is optional/additive metadata within the existing binding contract. It does not create a new semantic slot or Stable-ID family.
+Do not add `workspace_role`, `source_mutation`, active-Develop ownership, Canonical Implementation Source, or Production runtime authority to `project_location_binding.local_workspaces`. Location correctness and binding state never grant source-mutation authority.
+
+When material, `40 Technical Design` / Development Workspace Contract owns the semantic workspace profile, for example:
+
+```text
+Develop Workspace
+  Logical Role: DEVELOPMENT
+  Workspace Type: LOCAL_WORKSPACE | GIT_WORKTREE | REMOTE_DURABLE_WORKSPACE | OTHER_DECLARED_WORKSPACE
+  Active Workspace Locator: <DECLARED_LOCATOR>
+  Workspace Durability: <DECLARED_DURABILITY>
+  Repository / Source Identity: <VERIFIED_IDENTITY>
+  Canonical Implementation Source Relationship: <DECLARED_RELATIONSHIP>
+  Human / Agent Edit Location: <DECLARED_LOCATION>
+  Source Mutation Policy: ALLOWED only when separately authorized
+```
+
+For a Local Develop Workspace, `40` references the applicable environment-scoped Local Workspace Binding rather than creating a competing local binding. A Remote Durable workspace may use a declared durable remote locator in `40` because Git Remote/repository identity and Remote Develop Workspace identity are distinct concepts.
+
+Production role/source-mutation semantics are likewise technical/deployment semantics rather than Location Binding authority. `40 Technical Design` describes the role/boundary and `60 Deployment Plan` resolves the concrete deployment/runtime target and mapping when deployment is applicable.
 
 Non-filesystem deployment/runtime targets remain represented through existing applicable Technical Design / Deployment Plan semantics; `[Project Path]` must surface the resolved target without fabricating a filesystem path.
+
+`[Project Path]` composes these owners. A material contradiction among Project Location Binding, `40 Technical Design`, `60 Deployment Plan`, repository/source identity, or fresh observation is `MISMATCH`/`NOT_VERIFIED` for the affected dimension and fails closed for affected Material mutation; the command must not choose an owner by recency.
 
 ### 5.4 Develop Workspace Relocation Contract
 
@@ -184,7 +209,7 @@ current active Develop Workspace resolved
 → target workspace repository/source identity verified
 → target workspace synchronized to the intended source revision
 → target working-tree/source state verified and understood
-→ applicable authority for any persistent binding/location change satisfied
+→ applicable authority for any persistent Project Source / binding change satisfied
 ```
 
 Canonical relocation flow:
@@ -196,9 +221,10 @@ freeze relocation boundary
 → prepare/access target durable workspace
 → fetch/sync target to intended source revision
 → verify repository identity + source revision + target workspace integrity
-→ Preview any persistent Location Binding change
-→ obtain/apply required approval when Root/Binding mutation is involved
-→ promote target as active Develop Workspace for the affected scope
+→ determine separately whether relocation changes `40` workspace semantics, `FRAMEWORK-001` Local Workspace Binding, or both
+→ update/promote the governed `40 Technical Design` workspace contract under applicable Project authority
+→ Preview and obtain/apply explicit approval only when a persistent `FRAMEWORK-001` Local Workspace Binding change is also required
+→ promote target as the one active Develop Workspace for the affected scope in the governed workspace contract
 → demote prior workspace from active development routing
 → verify source mutation/build/test now resolve only to the promoted workspace
 ```
@@ -212,7 +238,7 @@ Relocation safety rules:
 3. Do not promote a target whose repository identity, intended source revision, durability, or working-tree state is unresolved.
 4. Do not abandon required uncommitted implementation state in the source workspace; commit/checkpoint or explicitly reconcile it before promotion.
 5. Do not create two simultaneously active Develop Workspaces for the same affected scope unless a separately governed multi-writer architecture explicitly defines that model; TASK-048 does not create one.
-6. A persistent Local Workspace Binding/Project Location Binding change retains existing User Explicit Approval plus `FRAMEWORK-001` revision/validation/promotion/history rules.
+6. A persistent Local Workspace Binding/Project Location Binding change retains existing User Explicit Approval plus `FRAMEWORK-001` revision/validation/promotion/history rules; a Remote Durable active-workspace change does not invent a Root binding when no Local Workspace Binding delta exists.
 7. Relocation changes development routing only. It does not transfer Git integration authority, push/publication authority, deployment authority, MCP/tool authority, or other `AUTH-*` scope.
 
 `[Project Path]` must be able to show the active workspace type/locator and source identity without fabricating a remote filesystem path when the remote platform uses a non-filesystem stable locator.
@@ -518,11 +544,12 @@ Develop Workspace
   Status: MATCH | MISMATCH | NOT_VERIFIED
 
 Production Workspace
-  Path/Locator: ...
-  Role: DEPLOY / RUN / HEALTH_CHECK
+  Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+  Path/Locator: ... | NOT_APPLICABLE
+  Role: DEPLOY / RUN / HEALTH_CHECK | NOT_APPLICABLE
   Source Mutation: FORBIDDEN
-  Runtime Target: ...
-  Status: MATCH | MISMATCH | NOT_VERIFIED
+  Runtime Target: ... | NOT_APPLICABLE
+  Status: MATCH | MISMATCH | NOT_VERIFIED | NOT_APPLICABLE
 
 MCP Execution
   Primary MCP: ...
@@ -534,9 +561,10 @@ MCP Execution
 
 Build / Deployment Mapping
   Build Source: DEVELOPMENT
-  Artifact Identity: ...
-  Run Target: PRODUCTION
-  Status: MATCH | MISMATCH | NOT_VERIFIED
+  Deployment Applicability: APPLICABLE | NOT_APPLICABLE | VERIFICATION_REQUIRED
+  Artifact Identity: ... | NOT_APPLICABLE
+  Run Target: PRODUCTION | NOT_APPLICABLE
+  Status: MATCH | MISMATCH | NOT_VERIFIED | NOT_APPLICABLE
 
 Continuity
   Execution State: PRIMARY | FALLBACK_ACTIVE | FAIL_CLOSED
@@ -546,7 +574,15 @@ Continuity
 
 If a required/applicable value cannot be verified, the field remains present and uses explicit unknown/not-verified representation. Strict-interface compliance must not hide a field simply because evidence is unavailable.
 
-`PRIMARY | FALLBACK_ACTIVE | FAIL_CLOSED` are command-facing execution-state labels only, not lifecycle or Stable-ID families.
+`Source Mutation: ALLOWED` in the Develop Workspace section is derived from the governed `40 Technical Design` workspace role and means only that source mutation is compatible with that workspace role; it never grants mutation authority. Production remains `FORBIDDEN` for direct source mutation regardless of action authority.
+
+For Production Workspace and deployment mapping, applicability has exact semantics:
+
+- `APPLICABLE` — Project truth declares a Production/runtime target; unresolved target details use `NOT_VERIFIED` and affected deploy/run mutation fails closed.
+- `NOT_APPLICABLE` — authoritative Project truth explicitly establishes that no Production/runtime target is applicable; exact strict output uses `Path/Locator: NOT_APPLICABLE`, `Role: NOT_APPLICABLE`, `Runtime Target: NOT_APPLICABLE`, and `Status: NOT_APPLICABLE`.
+- `VERIFICATION_REQUIRED` — available Project truth is insufficient to establish whether Production is applicable; do not infer `NOT_APPLICABLE` merely from absence. Use `Status: NOT_VERIFIED` and fail closed only for actions that require the unresolved Production/runtime dimension.
+
+`NOT_APPLICABLE` here is a command-facing diagnostic/applicability label for the new strict sections. It does not alter existing Project Location Binding state families or create a Stable-ID/lifecycle state. `PRIMARY | FALLBACK_ACTIVE | FAIL_CLOSED` likewise remain command-facing execution-state labels only.
 
 ## 15. Fail-Closed Matrix
 
@@ -557,7 +593,9 @@ If a required/applicable value cannot be verified, the field remains present and
 | Relocation target repository/source identity or intended revision not verified | do not promote target; keep relocation fail-closed |
 | Required implementation state exists only as uncommitted source-workspace state | do not relocate until checkpoint/commit/reconciliation preserves it |
 | Persistent relocation changes Project Location Binding without required approval/promotion | block persistent relocation |
-| Production Workspace/target not verified | block deploy/run mutation for affected scope |
+| Project truth explicitly says Production is not applicable | show exact `NOT_APPLICABLE` representation; do not invent a target; no Production-specific blocker exists |
+| Production applicability itself cannot be established | show `Applicability: VERIFICATION_REQUIRED` + `Status: NOT_VERIFIED`; block only actions that require Production/runtime resolution |
+| Production Applicability is `APPLICABLE` but Workspace/target is not verified | block deploy/run mutation for affected scope |
 | Direct source edit in Production | `FORBIDDEN` |
 | Primary unavailable + `fallback_mode: NONE` | `FAIL_CLOSED` |
 | Primary unavailable + eligible ordered fallback | auto-select first eligible fallback |
@@ -577,7 +615,7 @@ When a Brownfield Project upgrades to the adopting Framework release:
 - an existing verified implementation `Workspace Path` may be Previewed/migrated as the Develop Workspace when evidence supports that classification;
 - an existing Local Develop Workspace remains active until a governed relocation explicitly promotes a verified Remote Durable workspace (or another declared target); a connected remote workspace is never auto-promoted;
 - Local ↔ Remote Durable relocation uses Section 5.4 and never treats Git Remote alone as a workspace;
-- Production Workspace must never be inferred solely from an existing workspace/path; if not explicitly configured/resolved, report it as not configured/not verified;
+- Production Workspace must never be inferred solely from an existing workspace/path. Explicit no-Production truth becomes `NOT_APPLICABLE`; an expected-but-unresolved Production target is `APPLICABLE` + `NOT_VERIFIED`; insufficient evidence to decide applicability is `VERIFICATION_REQUIRED` + `NOT_VERIFIED`;
 - existing `mcp_location` remains routing/location evidence, not execution-selection policy;
 - existing `Project-Execution/tools.md` remains the execution policy owner;
 - connected/recent tools do not become fallback entries automatically;
@@ -594,7 +632,7 @@ For a new Project created under the adopting release:
 - Develop Workspace may be configured when implementation development is applicable;
 - Develop Workspace may be Local or Remote Durable, but the active workspace for an affected scope must be unambiguous;
 - later Local ↔ Remote Durable relocation follows the same Section 5.4 checkpoint/identity/promotion contract;
-- Production Workspace is optional/applicability-driven and must not be invented for Projects without a production/runtime target;
+- Production Workspace is optional/applicability-driven. A Project that explicitly has no production/runtime target reports `NOT_APPLICABLE`; absence alone does not prove non-applicability;
 - Primary MCP/tool policy is optional unless a durable execution profile is useful;
 - no default broad fallback is invented;
 - if a Project chooses ordered fallback, the list/order is explicit and `fallback-log.md` becomes applicable; and
@@ -620,7 +658,7 @@ A correct Production target plus an ACTIVE MCP is still insufficient to deploy w
 
 Auto fallback changes only which already-eligible declared execution tool carries an already-authorized action. It never expands the action's authority or scope.
 
-Likewise, Develop Workspace relocation changes execution/edit routing only. If persistent Project Location Binding changes are required, the existing Root/Binding approval and promotion flow remains independently mandatory.
+Likewise, Develop Workspace relocation changes execution/edit routing only. The active Develop Workspace semantic owner remains `40 Technical Design`; if a relocation also changes persistent Local Workspace Binding, the existing Root/Binding approval and promotion flow remains independently mandatory.
 
 ## 19. No Runtime Router / Watcher
 
@@ -722,6 +760,10 @@ Pressure scenarios must cover at minimum:
 30. Two unresolved active Develop Workspace candidates for the same scope block Material source mutation.
 31. Persistent relocation that changes Project Location Binding requires the existing approval/revision/validation/promotion/history flow.
 32. After promotion, `[Project Path]` resolves the new active workspace and source mutation/build/test routing no longer targets the demoted workspace for that scope.
+33. Project Location Binding remains location/routing-only; `workspace_role`, `source_mutation`, and active Develop Workspace semantics are not moved into `FRAMEWORK-001`.
+34. `40 Technical Design` is the canonical owner of active Develop Workspace role/type/location/durability semantics; `[Project Path]` fails closed on material contradiction with Local Workspace Binding or fresh repository evidence.
+35. Explicit no-Production Project truth renders the complete Production Workspace section as `NOT_APPLICABLE` rather than `NOT_VERIFIED`.
+36. Unknown Production applicability renders `Applicability: VERIFICATION_REQUIRED` + `Status: NOT_VERIFIED` and is not silently converted to `NOT_APPLICABLE`.
 
 Use `TASK_LOCAL_FAST` / focused affected verification during implementation checkpoints, `CHECKPOINT_INTEGRITY` at logical checkpoints, and one final `RELEASE_FULL` on the final unchanged release candidate as applicable under the active Framework contract.
 
@@ -731,8 +773,11 @@ TASK-048 implementation is complete only when:
 
 - `[Project Path]` has the approved strict eight-section order;
 - Develop vs Production roles are explicit and verifiable;
+- canonical ownership is preserved: `FRAMEWORK-001` owns repository/local binding, `40 Technical Design` owns Develop Workspace semantics, and `60 Deployment Plan` owns applicable deployment/runtime mapping;
+- Project Location Binding does not acquire `workspace_role`, `source_mutation`, or active-workspace authority;
 - Local ↔ Remote Durable Develop Workspace relocation is deterministic, preserves required source state, verifies repository/revision/durability, and promotes exactly one active Develop Workspace per affected scope;
 - Production direct source mutation is forbidden;
+- Production applicability is exact: explicit no-Production truth uses `NOT_APPLICABLE`, unresolved applicability uses `VERIFICATION_REQUIRED`, and absence is never silently interpreted as either;
 - build source and run target are explicitly distinguishable;
 - Primary MCP is exact and no implicit fallback exists;
 - ordered auto-fallback uses only declared eligible entries;
@@ -750,11 +795,13 @@ TASK-048 implementation is complete only when:
 Result: `PASS`.
 
 - Placeholder scan: no unresolved `TBD`/`FIXME` implementation requirement; angle-bracket values are intentional configuration examples.
-- Internal consistency: approved Architecture Option 1, Auto Fallback, Production no-edit boundary, Local ↔ Remote Durable Develop Workspace relocation, append-only fallback log, Checkpoint Failback, strict command order, Brownfield behavior, and 1.16.0 classification are mutually aligned.
+- Internal consistency: approved Architecture Option 1, canonical owner separation (`FRAMEWORK-001` binding vs `40` workspace semantics vs `60` deployment mapping), Auto Fallback, Production no-edit boundary, Local ↔ Remote Durable Develop Workspace relocation, append-only fallback log, Checkpoint Failback, strict command order, Brownfield behavior, and 1.16.0 classification are mutually aligned.
 - Scope check: one architectural feature; no background router/watcher, deployment engine, validator/CLI, credential store, or Project Source auto-upgrade was introduced.
-- Ambiguity check: execution policy, workspace relocation/promotion, location ownership, build/deploy ownership, authority separation, unknown-result handling, logging, and recovery conditions each have explicit canonical homes/behavior.
+- Ambiguity check: execution policy, workspace relocation/promotion, local binding ownership, Develop Workspace semantic ownership, deployment ownership, authority separation, Production applicability, unknown-result handling, logging, and recovery conditions each have explicit canonical homes/behavior.
 - Repository-path correction: README propagation points to root `README.md`; no nonexistent `Framework-Source/README` is required.
 - Relocation review: Git Remote is explicitly not a workspace; Local ↔ Remote Durable relocation is symmetrical, fail-closed on source-state/identity/durability uncertainty, and retains existing Root/Binding approval when persistent binding changes.
+- Location-vs-authority review: `project_location_binding.local_workspaces` remains location/routing-only and does not carry `workspace_role` or `source_mutation` semantics.
+- Production applicability review: explicit non-applicability, unresolved applicability, and applicable-but-unverified targets have distinct strict representations; missing data alone never becomes `NOT_APPLICABLE`.
 
 ## 25. Implementation Gate
 
