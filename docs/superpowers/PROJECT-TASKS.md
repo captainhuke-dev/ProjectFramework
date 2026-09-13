@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-055 IN_PROGRESS` (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
+- Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1240,13 +1240,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-051`
 - **Status:** `DONE`
 - **Type:** Framework architecture / feature-delivery workflow design and implementation
-- **Source Issue:** GitHub Issue `#29` — TASK-051 is merged through PR #32; closure is bound to TASK-055 reconciliation PR using `Closes #29` and requires post-merge readback.
+- **Source Issue:** GitHub Issue `#29` — `CLOSED` at `2026-09-13T15:47:48Z` through TASK-055 reconciliation PR #33 `Closes #29`.
 - **depends_on:** `[]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `MEDIUM`
-- **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
+- **readiness:** `DONE / VERIFIED_COMPLETE / MERGED_TO_MAIN / ISSUE_CLOSED`
 - **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / MERGED_TO_MAIN / PR_32`.
 - **Goal / Authority / Action / Envelope:** `OUT-019 ACHIEVED / AUTH-019 TERMINATED / ACT-031 DONE / ENV-019 EXPIRED`.
 - **Design:** `USER_APPROVED_FINAL_DESIGN / SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
@@ -1257,9 +1257,9 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Candidate:** HEAD `008fc934a84d595d163a4bc25d974fcd35bac335`; tree `bb77342982cfa7dea0fd60151108cee6463657b8`; Framework-Source tree `5a6a711861bbbc1e6f9315361921e28625cce854`.
 - **Evidence:** `EVD-101 / EVD-102 / CHG-101 / CHG-102`; `docs/superpowers/evidence/2026-09-13-task-051-risk-tiered-feature-delivery-fast-path-release-full.md`.
 - **Publication State:** `MERGED_TO_MAIN / PR_32 / merge f6330e9 / NOT_RELEASED`.
-- **Self-Host Boundary:** PR #32 merged Framework 1.18.0 distribution; TASK-055 now reconciles canonical self-host Root/Project Source/Bootstrap to 1.18.0.
+- **Self-Host Result:** TASK-055 completed canonical Framework 1.18 self-host reconciliation through PR #33 merge `5b067a1c2fcfeab867ba3879a76f675904566e27`; Issue #29 is CLOSED.
 - **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — MERGED to `main` at `f6330e9929c28977d43fc149b864d590df1c2816`.
-- **Exact Next Step:** TASK-055 performs the separately authorized post-merge self-host reconciliation; tag/GitHub Release remain separately governed.
+- **Exact Next Step:** none for TASK-051; tag/GitHub Release remain separately governed.
 ## Task #52 — Project Upgrade One-Session Fast Path
 
 - **ID:** `TASK-052`
@@ -1271,7 +1271,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
+- **readiness:** `DONE / VERIFIED_COMPLETE / MERGED_TO_MAIN`
 - **Problem:** compatible upgrades remained slow because comparison, prepare intent, Preview, approval, mutation persistence, verification, and canonical self-host reconciliation required redundant rounds even when candidate/evidence/authority were unchanged.
 - **Approved Architecture:** Single-Preview / Single-Approval Upgrade Transaction; one bounded mutation batch; proof-domain separation between Framework Release Acceptance and Project Upgrade Acceptance; exact release-evidence reuse for FAST_PATH and bounded compatible ASSESSED_PATH; selective recovery; canonical self-host chaining when exact Preview and authority cover integration + Root reconciliation.
 - **Target Release:** Framework `1.18.0` / Schema `1.0.0` / release format `3`.
@@ -1286,16 +1286,16 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Evidence:** `EVD-104 / CHG-104`; `docs/superpowers/evidence/2026-09-13-task-052-project-upgrade-one-session-fast-path-release-full.md`.
 - **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / MERGED_TO_MAIN / PR_32`.
 - **Publication State:** `MERGED_TO_MAIN / PR_32 / merge f6330e9 / NOT_RELEASED`.
-- **Self-Host Boundary:** TASK-055 / AUTH-021 provides the exact separately authorized 1.18 canonical self-host reconciliation.
+- **Self-Host Result:** TASK-055 completed canonical 1.18 self-host reconciliation through PR #33 merge `5b067a1c2fcfeab867ba3879a76f675904566e27`; AUTH-021 is terminal.
 - **Reviewer Side-Effect Handling:** reviewer-invented TASK-053 and residual-latency registration are not authorized Project backlog and are excluded from terminal truth.
 - **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — MERGED to `main` at `f6330e9929c28977d43fc149b864d590df1c2816`.
 - **Publication Evidence:** `EVD-105 / CHG-105`; `docs/superpowers/evidence/2026-09-13-task-051-task-052-pr32-publication.md`.
-- **Exact Next Step:** TASK-055 performs the separately authorized post-merge self-host reconciliation; tag/GitHub Release remain separately governed.
+- **Exact Next Step:** none for TASK-052; tag/GitHub Release remain separately governed.
 
 ## Task #55 — PR #32 Post-Merge Canonical Self-Host Reconciliation
 
 - **ID:** `TASK-055`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** bounded governance / canonical self-host post-merge reconciliation
 - **Source Goal:** ACTOR-001 explicit `[Goal]` on 2026-09-13 to reconcile PR #32 through Framework 1.18 self-host convergence, merge evidence persistence, Project Source/Bootstrap reconciliation, and Issue #29 closure.
 - **depends_on:** `[TASK-051, TASK-052]`
@@ -1303,11 +1303,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `IN_PROGRESS / RECONCILIATION_CANDIDATE / VERIFICATION_PENDING`
-- **Canonical Merge Basis:** PR #32 MERGED at `f6330e9929c28977d43fc149b864d590df1c2816`; Framework-Source tree `929065ccac7e3ecf25fda09de5326bb40c4f8f9c` exactly matches TASK-052 release acceptance.
-- **Goal / Authority / Action / Envelope:** `OUT-021 ACTIVE / AUTH-021 ACTIVE / ACT-033 IN_PROGRESS / ENV-021 ACTIVE`.
-- **Migration:** `MIG-004` — canonical self-host Framework 1.16.0 → 1.18.0; ordinary consuming Projects are unaffected.
-- **Verification Strategy:** reuse exact Framework 1.18 RELEASE_FULL evidence because Framework-Source is unchanged; require Project-specific affected verification and independent HIGH review; fresh INTEGRATION_GATE before canonical-main mutation.
-- **Issue #29:** currently OPEN; reconciliation PR will include `Closes #29` and final completion requires fresh CLOSED readback.
-- **Implementation Boundary:** Root/Project Source/Bootstrap + task/evidence/migration/current truth and exact repository/Issue integration needed by Goal; no tag/GitHub Release, binding change, force history rewrite, runtime automation, external disclosure, or secrets.
-- **Exact Next Step:** verify and review the reconciliation candidate.
+- **readiness:** `DONE / VERIFIED_COMPLETE / MERGED_TO_MAIN / PR_33 / ISSUE_CLOSED`
+- **Canonical Release Basis:** PR #32 MERGED at `f6330e9929c28977d43fc149b864d590df1c2816`; Framework-Source tree `929065ccac7e3ecf25fda09de5326bb40c4f8f9c` exactly matches TASK-052 release acceptance.
+- **Reconciliation Candidate:** `70ef176be0f07e9ce82aeeceb90b864bc28d8ea2`; `TASK055_AFFECTED 163/163 PASS`; independent HIGH review `12/12 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
+- **Canonical Reconciliation:** PR #33 MERGED to `main` at `5b067a1c2fcfeab867ba3879a76f675904566e27` on `2026-09-13T15:47:47Z`.
+- **Issue #29:** `CLOSED` at `2026-09-13T15:47:48Z` through PR #33 exact `Closes #29`; fresh readback verified the closed state.
+- **Goal / Authority / Action / Envelope:** `OUT-021 ACHIEVED / AUTH-021 TERMINATED / ACT-033 DONE / ENV-021 EXPIRED`.
+- **Migration:** `MIG-004 COMPLETED / PERSISTED / NOT_PENDING` — canonical self-host Framework 1.16.0 → 1.18.0; ordinary consuming Projects remain unaffected.
+- **Evidence:** `EVD-106 / EVD-107 / CHG-106 / CHG-107`; `docs/superpowers/evidence/2026-09-13-task-055-pr33-terminal-reconciliation.md`.
+- **Implementation Boundary Preserved:** no tag/GitHub Release, binding change, force/history rewrite, destructive cleanup, runtime automation, external AI disclosure, secret persistence, or Framework-Source mutation after release acceptance.
+- **Terminal Persistence Contract:** this terminal record is externally claimable when this exact successor set is observed on canonical `origin/main`; that observation does not require another successor solely to restate completion.
+- **Exact Next Step:** none for TASK-055.
