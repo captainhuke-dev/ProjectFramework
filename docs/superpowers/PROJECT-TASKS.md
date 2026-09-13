@@ -1250,11 +1250,13 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Problem:** genuinely low-risk feature work can still traverse release-grade governance/verification/persistence paths and take far longer than necessary.
 - **Required Design Questions:** Low/Medium/High risk and blast radius; minimum authority/location preflight per tier; safe reuse of governance/evidence; per-tier verification and review; when independent review is mandatory; Task DONE evidence; preservation of Preview/explicit approval for governance/bootstrap/root-binding/security/high-risk changes; interruption/recovery; safe parallelism; direct Git/GitHub remote operation policy where no runtime state exists.
 - **Existing Building Blocks:** Framework 1.2.5 progressive verification/evidence reuse; risk-tiered postflight; exact-candidate Integration Gate reuse; capability/independent-review primitives. These reduce redundant work but do not by themselves satisfy Issue #29's feature-delivery fast-path contract.
-- **Implementation State:** `IN_PROGRESS`; OUT-019/AUTH-019 authorize design through verified local implementation completion; Framework mutation has not started at this Goal checkpoint.
+- **Implementation State:** `IN_PROGRESS / DESIGN_COMPLETE / PLAN_REQUIRED`; Framework mutation has not started.
 - **Tracker State:** GitHub Issue #29 remains `OPEN` and now contains the TASK-051 mapping comment from TASK-050.
 - **Goal / Authority / Action / Envelope:** `OUT-019 IN_PROGRESS / AUTH-019 ACTIVE / ACT-031 IN_PROGRESS / ENV-019 ACTIVE`.
-- **Design Direction:** `USER_APPROVED_RECOMMENDED_ARCHITECTURE` - Derived Delivery Tier; authority-gated Continuous Delivery; conditional MEDIUM review; tier + acceptance-boundary verification; state-bound preflight reuse; recommended remaining decisions adopted by user direction.
+- **Design Direction:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED` - Derived Delivery Tier; authority-gated Continuous Delivery; conditional MEDIUM review; tier + acceptance-boundary verification; state-bound preflight reuse; recommended remaining decisions adopted by user direction.
 - **Target Release:** Framework `1.17.0` / Schema `1.0.0` / release format `3`.
 - **Execution Mode:** isolated branch/worktree `task051-feature-delivery-fast-path` at `E:\GitHub\ProjectFramework\.worktrees\task051-feature-delivery-fast-path`, base `7d7463b`.
 - **Publication Boundary:** local verified completion only; push/PR/merge/tag/GitHub Release are not authorized by AUTH-019.
-- **Exact Next Step:** write and self-review the architectural design spec, then implementation plan.
+- **Design Spec:** `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
+- **Spec Self-Review:** `TASK051_SPEC_SELF_REVIEW 13/13 PASS`; scenarios `473-504` collision-free after verified contiguous `1-472`.
+- **Exact Next Step:** write and self-review the implementation plan.
