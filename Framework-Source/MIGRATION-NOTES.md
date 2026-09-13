@@ -8,7 +8,7 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ### Affected distribution surfaces
 
-- Framework identity becomes `1.16.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-048 Project Path Workspace & MCP Routing.
+- Framework identity remains `1.16.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-049 Canonical Self-Hosting Release Reconciliation, layered on TASK-048 Project Path Workspace & MCP Routing.
 - `[Project Path]` becomes a strict eight-section interface: `Framework Path → Git Path → Storage Path → Develop Workspace → Production Workspace → MCP Execution → Build / Deployment Mapping → Continuity`.
 - `FRAMEWORK-001` Project Location Binding remains narrow: repository + environment-scoped Local Workspace binding/routing only. It does not acquire workspace-role, source-mutation, active Develop, Canonical Implementation Source, or Production runtime authority.
 - `40 Technical Design` / Development Workspace Contract gains explicit active Local/Remote Durable Develop Workspace semantics plus symmetric relocation and one-active-workspace-per-scope behavior.
@@ -17,7 +17,8 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 - `Project-Execution/fallback-log.md` is optional/applicability-driven append-only incident history for actual fallback/recovery events; it is not Project Source authority, credentials, selection policy, or a Stable-ID registry.
 - Unknown potentially-applied side effects use `RESULT_VERIFICATION_REQUIRED`; unprovable resulting state fails closed instead of blindly retrying.
 - Brownfield existing workspaces may become Develop only with evidence; Production is never inferred from an existing path; connected/recent MCPs never become fallback automatically.
-- Existing initialized Projects remain pinned until governed `[Project Upgrade]`; upstream distribution development never rewrites their local Project Source pin.
+- Ordinary initialized consuming Projects remain pinned until governed `[Project Upgrade]`; canonical ProjectFramework self-host reconciliation does not broaden this rule.
+- The verified canonical `captainhuke-dev/ProjectFramework` repository is the narrow self-host exception: after a verified Framework release merge to canonical `main`, its own active Root/Project Source/Bootstrap must reconcile to the same release as a mandatory governed post-merge step. Unresolved state is `RECONCILIATION_REQUIRED`; no redundant `[Project Upgrade]` is required for that canonical same-release self-host transition.
 - TASK-048 adds no background router/watcher, credential store, validator/CLI, deployment engine, CI/CD, scheduler, daemon, or runtime failover subsystem.
 
 ### Upgrade checklist

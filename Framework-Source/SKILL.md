@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260912-task048-project-path-workspace-mcp-routing.md` — latest amendment: TASK-048 Project Path Workspace & MCP Routing
+- `references/framework-governance-amendment-260912-task049-canonical-self-hosting.md` — latest amendment: TASK-049 Canonical Self-Hosting Release Reconciliation
+- `references/framework-governance-amendment-260912-task048-project-path-workspace-mcp-routing.md` — previous amendment: TASK-048 Project Path Workspace & MCP Routing
 - `references/framework-governance-amendment-260906-task045-response-close-next-goal.md` — previous amendment: TASK-045 Response Close + Next Goal
 - `references/framework-governance-amendment-260903-federated-change-intelligence.md` — previous amendment: Federated Change Intelligence Suite
 - `references/framework-governance-amendment-260902-task028-task032.md` — previous amendment: TASK-028 + TASK-032 Integrity & Remediation Suite
@@ -390,6 +391,16 @@ Git Remote is synchronization/publication identity, not a Develop Workspace loca
 `[Project Path]` remains read/verify-only. An explicit requested path may be one-off action input, but the command grants no mutation, deploy/run, push/publication, Root/Binding, secret, disclosure, Decision/Requirement, or runtime authority.
 
 `[Project Upgrade]` is read-only through comparison. For an initialized Project, current Framework identity comes from the valid active local `FRAMEWORK-001` pin; canonical upstream is a freshly observed target candidate, never silent replacement authority. Compare Framework/Schema plus observable source identity/freshness and report `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED` as presentation-only labels. Equal version strings do not override material source divergence, and unresolved evidence fails closed. When `UPGRADE_AVAILABLE`, ask whether the user wants to **prepare** an upgrade. A positive answer starts cumulative current→target assessment/Preview only; mutation still requires separate explicit approval after `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` classification, preservation/rollback planning, affected verification, one final `RELEASE_FULL`, and governed promotion/history preservation. The command adds no path/binding, branch, implementation-source, runtime, or persistent-state authority.
+
+### Canonical ProjectFramework self-hosting after a verified release merge
+
+Ordinary initialized **consuming Projects** remain pinned and use `[Project Upgrade]` exactly as above. A narrow exception applies only to the verified canonical `captainhuke-dev/ProjectFramework` repository itself when repository identity, canonical `main`, merged Framework release identity/schema, and the exact Framework-Source tree are freshly verified against `FRAMEWORK-RELEASE.yaml`.
+
+For that canonical self-host only, a verified Framework release merge makes post-merge self-host reconciliation mandatory. If active `FRAMEWORK-001`, applicable active Project Source metadata/routing, or `PROJECT-BOOTSTRAP.md` do not match the merged verified release, surface `RECONCILIATION_REQUIRED`; under separately valid Root authority, create/validate/promote the successor Root, reconcile active Project Source/Bootstrap to the same release, preserve Project UUID/Stable IDs/bindings/history, and verify the resulting state before treating release integration as reconciled. The canonical self-host transition does not require a redundant `[Project Upgrade]` invocation.
+
+Unresolved canonical repository/branch identity, release identity/tree, Root successor validity, Bootstrap routing, or resulting state stays `RECONCILIATION_REQUIRED` and fails closed for the affected integration-completion claim. A Git merge alone is not proof of self-host reconciliation.
+
+“Automatic” here means an unskippable governed post-merge workflow step performed by an authorized Human/Agent. It creates no daemon, bot, watcher, Git hook, CI/CD mutation job, scheduler, runtime router, auto-updater, validator/CLI, or background self-modifying service. This exception never expands to consuming Projects.
 ## Framework 1.8.0 Persistent `[Goal]` Command
 
 `[Goal]` is persistent across chats and composes existing Project Source homes rather than creating a `GOAL-*` family: `OUT-*` in `91` is the desired outcome/success evidence; `AUTH-*` in `12` is durable Goal authority; `ACT-* / ENV-*` in `15` are execution; `03` summarizes current status; `09` stores pointers only with `authority_transfer: false`.

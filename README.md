@@ -40,6 +40,10 @@ Develop source mutation/build/test belongs to the active Develop Workspace; dire
 
 MCP execution uses the exact Primary when eligible. Automatic fallback exists only with explicit `ORDERED_ALLOW_LIST` / `fallback_order`; connected/recent/similar tools never become implicit fallbacks. Material fallback writes append-only incident history to applicability-driven `Project-Execution/fallback-log.md`; unknown side-effect results use `RESULT_VERIFICATION_REQUIRED`; recovered Primary returns only at a verified checkpoint under `CHECKPOINT_FAILBACK`. No router, watcher, credential store, validator/CLI, deployment engine, or runtime failover subsystem is introduced.
 
+### Canonical ProjectFramework self-hosting
+
+Ordinary initialized consuming Projects remain locally pinned and adopt newer releases only through governed `[Project Upgrade]`. The canonical `captainhuke-dev/ProjectFramework` repository is intentionally different: after a verified Framework release is merged to canonical `main`, its own active Project Source and `PROJECT-BOOTSTRAP.md` must reconcile to that same release before release integration is considered fully reconciled. If release identity/tree or the resulting Root/Bootstrap state cannot be verified, the workflow remains `RECONCILIATION_REQUIRED` and fails closed. This is a mandatory Human/Agent post-merge governance step, not a daemon, bot, Git hook, CI/CD mutation job, watcher, or auto-updater.
+
 ## Framework 1.15.0 Response Close + Next Goal
 
 Framework `1.15.0` simplifies the mandatory visible response close to `Next Action → Next Goal → Reason`. `[Next Goal]` may offer one copy-ready `[Goal] ...` or `[Goal] CHANGE ...` command when a bounded persistent outcome is already grounded; displaying the suggestion never creates authority. `[Chat]` and `[Required Read]` remain available as internal Handoff/continuation semantics but are no longer mandatory visible response-close fields. TASK-042 unskippable finalization and TASK-043 command-contract completeness remain in force.

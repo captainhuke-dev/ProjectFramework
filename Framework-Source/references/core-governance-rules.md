@@ -1142,6 +1142,16 @@ When the command reports `UPGRADE_AVAILABLE`, its report includes the target rel
 
 `MIGRATION-NOTES.md` documents per-release upgrade guidance (affected surfaces, checklist). It is a routing/documentation aid — never normative authority — and Core Governance plus the latest amendment win on any conflict. Missing notes for a transition remain an explicit `UNKNOWN`; they are never invented retroactively.
 
+#### Canonical ProjectFramework Self-Hosting Release Reconciliation
+
+The initialized-Project pin rule continues to govern ordinary consuming Projects. Canonical ProjectFramework self-hosting is a narrow release-lifecycle exception, not consumer auto-upgrade. The exception is eligible only when the current repository is freshly verified as `FRAMEWORK-RELEASE.yaml` `canonical_repository`, the integration target is its verified `canonical_branch`, the Framework release identity/schema/release format and exact Framework-Source tree are verified, and that release has been merged to the canonical integration target.
+
+For an eligible canonical self-host merge, release integration remains incomplete while its active Project Source/Bootstrap lag the merged release. Surface `RECONCILIATION_REQUIRED`, then under applicable explicit Root Governance authority perform: verify merged release identity/tree → create and validate a `FRAMEWORK-001` successor → preserve Project UUID, Stable IDs, Project-specific truth, Project Location Binding values and predecessor history → reconcile applicable active Project Source Framework/Schema metadata/routing → reconcile `PROJECT-BOOTSTRAP.md` to the promoted Root/release → verify exact release/tree/routing/history/binding preservation → record evidence/change/migration as applicable. The canonical self-host does not need a redundant `[Project Upgrade]` invocation for that same verified merged release.
+
+If repository/branch identity, merged release identity/tree, Root successor, Bootstrap routing, or resulting state cannot be verified, retain the last valid active Root, keep `RECONCILIATION_REQUIRED`, and fail closed for claiming canonical release integration complete. A merge by itself never proves self-host convergence. `RECONCILIATION_REQUIRED` is a workflow/diagnostic label only, not a new lifecycle or Stable-ID family.
+
+Automatic self-host reconciliation means this step is mandatory in the governed post-merge workflow. It does not authorize or introduce a daemon, bot, watcher, Git hook, CI/CD mutation job, scheduler, auto-updater, runtime router, validator/CLI, or background self-modifying service. Ordinary consuming Projects remain pinned and still require governed `[Project Upgrade]` for adoption.
+
 ### 16.4A Project Change/Event History Feed (TASK-036)
 
 `Project-Change-Feed/` is an optional derived surface outside `Project-Source/00–99`. **Project-Change-Feed ≠ Project Source ≠ 10 Change Log ≠ Git/source-native history ≠ Evidence.** It is non-authoritative, bounded, rebuildable, and disposable. Missing feed state is valid when not applicable/adopted.

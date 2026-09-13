@@ -1188,3 +1188,29 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-048 integration. GitHub Release/tag publication and consuming-Project `[Project Upgrade]` remain separately governed.
 - **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.
 - **Completion Criteria:** approved strict `[Project Path]` interface; preserved canonical ownership; explicit Develop/Production roles; Local ↔ Remote Durable relocation; exact Production applicability representation; Production source-mutation prohibition; exact Primary and ordered declared fallback; durable fallback log; unknown-result verification; checkpoint failback; Brownfield/Greenfield safety; preserved authority separation; applicable TDD/AFFECTED/final release verification; publication separately governed.
+
+## Task #49 — Canonical Self-Hosting Release Reconciliation
+
+- **ID:** `TASK-049`
+- **Status:** `DONE`
+- **Type:** bounded governance / release-lifecycle correction
+- **depends_on:** `[TASK-048]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `LOCAL_VERIFIED / CANONICAL_INTEGRATION_PENDING / PUBLICATION_NOT_AUTHORIZED`
+- **Problem:** canonical Framework distribution was `1.16.0` while ProjectFramework self-host Project Source/bootstrap remained `1.15.0` because consuming-Project pin semantics were applied to the canonical upstream repository itself.
+- **Implemented Direction:** canonical ProjectFramework has a narrow mandatory governed post-merge self-host reconciliation rule without redundant `[Project Upgrade]`; ordinary consuming Projects remain pinned and use `[Project Upgrade]`; unresolved reconciliation is `RECONCILIATION_REQUIRED`; no runtime automation was introduced.
+- **Goal Lifecycle:** `OUT-017 BLOCKED / AUTH-017 TERMINATED / ACT-029 DONE / ENV-017 EXPIRED`.
+- **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED`.
+- **Goal Checkpoint:** `EVD-093 / CHG-093`; promotion `EVD-094 / CHG-094 / MIG-003`; local terminal `EVD-095 / CHG-095`.
+- **Implementation Commits:** Goal checkpoint `7895bf9`; RED `e56f409`; normative `9f5471b690df09d1993cb931a653fd85b35a2cd0`; verified self-host promotion `759c7dd29c060888b3ef9c4424cdcb17cd809eed`.
+- **TDD / Verification:** `TASK049_RED 5/10` expected → `TASK049_STRUCTURAL 8/10` → `TASK049_AFFECTED 25/25 PASS` → `TASK049_RELEASE_FULL 23/23 PASS_RUN_1`.
+- **Verified Candidate:** `759c7dd29c060888b3ef9c4424cdcb17cd809eed` / tree `6659e0e8494cbcff5daea89e8af16bf5ff4311b8` / Framework-Source tree `a84e7bd0ed56bd73a7e2cb6c642885d9fefeb24a`.
+- **Self-Host State:** local active `FRAMEWORK-001`, all 16 active Project Source documents, Framework distribution, and `PROJECT-BOOTSTRAP.md` coherently use Framework `1.16.0` / Schema `1.0.0`; UUID/binding/history preservation verified.
+- **Evidence:** `docs/superpowers/evidence/2026-09-12-task-049-canonical-self-hosting-release-full.md`.
+- **Completion State:** `LOCAL_VERIFIED_COMPLETE / TASK-049 DONE`; implementation work is complete.
+- **Goal Boundary:** `OUT-017` is not ACHIEVED because canonical `main` integration is still outside terminated `AUTH-017`.
+- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
+- **Exact Next Step:** choose a separately authorized integration path for branch `task049-self-hosting-reconcile` if canonical `main` should adopt the verified 1.16 self-host state.
