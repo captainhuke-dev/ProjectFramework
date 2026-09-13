@@ -27,6 +27,12 @@ Framework `1.8.0` registers persistent `[Goal]` without a `GOAL-*` family: Goal 
 Framework `1.9.0` adds portable installation bootstrap: current Project Settings use `ProjectFramework Upstream` + verified absolute `Project Bootstrap`; every adopting GREENFIELD Project has exactly one managed `PROJECTFRAMEWORK-BOOTSTRAP` README fallback using `./PROJECT-BOOTSTRAP.md`; both route to locator-only root bootstrap and active `FRAMEWORK-001` authority. Core installation completion is separate from vendor-settings confirmation.
 Framework `1.10.0` adds optional root `Project-Knowledge/` outside Project Source slots for advisory/provenance-aware reusable synthesis. It is applicability-driven, never Project authority, and is created only after active `FRAMEWORK-001` plus approval; Knowledge→Governance promotion reuses canonical owners/authority and external use still follows TASK-026.
 
+## Framework 1.18.0 Project Upgrade One-Session Fast Path Semantics
+
+Framework `1.18.0` keeps Schema `1.0.0` and the existing upgrade path classes while making compatible `[Project Upgrade]` a single read-only comparison/assessment/Preview pass followed by one explicit mutation approval and one bounded mutation transaction. Exact valid Framework release proof may be reused for FAST_PATH or bounded compatible ASSESSED_PATH, but Project affected verification remains mandatory; MAJOR remains outside the fast path.
+
+Material Preview deltas require reapproval, deterministic generated metadata does not, interruption reuses still-valid evidence, and `INTEGRATION_GATE` remains mandatory before mutable-target integration. Canonical integration+self-host may chain only under exact existing authority; Brownfield no-auto-upgrade and no-runtime boundaries remain.
+
 ## Framework 1.17.0 Risk-Tiered Feature Delivery Fast Path Semantics
 
 Framework `1.17.0` preserves Schema `1.0.0` and canonical `R0–R3` while adding derived `LOW | MEDIUM | HIGH` delivery tiers. Tier may escalate workflow but never grants authority or weakens binding/trust/security/publication gates. LOW uses focused affected verification + completion commit; MEDIUM broadens affected checks and conditionally requires independent review; HIGH preserves sensitive-surface approval/review/recovery/postflight. State-bound stable evidence may be reused while assumptions remain unchanged, but volatile Git and applicable R2/R3 prerequisites stay fresh. `RELEASE_FULL` and `INTEGRATION_GATE` remain distinct acceptance boundaries; direct Git/GitHub eligibility creates no publication authority; no runtime/CI/router/validator/new Stable-ID family is introduced.
@@ -62,7 +68,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "<STATUS>"
 freshness_class: "<CLASS>"
-project_source_framework_version: "1.17.0"
+project_source_framework_version: "1.18.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"

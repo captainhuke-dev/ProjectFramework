@@ -27,10 +27,18 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.17.0**
+- Project Source Framework: **1.18.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.18.0 Project Upgrade One-Session Fast Path
+
+Framework `1.18.0` removes the redundant “prepare?” round-trip from `[Project Upgrade]`: comparison, cumulative assessment, path classification, one-session eligibility, and the exact Preview now happen in one read-only pass. One explicit Human mutation approval remains mandatory before Material upgrade mutation. Eligible `FAST_PATH` and bounded compatible `ASSESSED_PATH` can then execute as one bounded transaction; `MAJOR_MIGRATION_REQUIRED` remains outside the fast path.
+
+Framework Release Acceptance remains distinct from Project Upgrade Acceptance. Exact valid state-bound `RELEASE_FULL` evidence may be reused for an unchanged target, but Project-specific affected/result verification remains mandatory; mismatch or candidate change invalidates reuse. `INTEGRATION_GATE` remains mandatory before mutable-target integration.
+
+For canonical ProjectFramework, integration and self-host reconciliation may chain only when the same exact Preview and authority cover both; otherwise the workflow stops at the first unauthorized boundary such as `RECONCILIATION_REQUIRED`. Existing Brownfield Projects do not auto-upgrade, and no runtime updater, CI mutator, bot, router, scheduler, or validator/CLI is introduced.
 
 ## Framework 1.17.0 Risk-Tiered Feature Delivery Fast Path
 

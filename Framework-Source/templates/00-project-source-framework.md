@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.17.0"
+project_source_framework_version: "1.18.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -618,6 +618,12 @@ Project-Specific Rules ทำให้ stricter ได้. Before R2/R3 mutation
 `LOW | MEDIUM | HIGH` is Derived Delivery Tier workflow vocabulary over canonical `R0 / R1 / R2 / R3`; it is not Risk authority and may only make workflow stricter. LOW is bounded R0/R1 feature work with focused affected verification and completion commit; R2 is never LOW; R3 and controlling Root/Binding/bootstrap/security/schema/production/cross-Project/release-review-verification semantics are HIGH. MEDIUM covers bounded broader/R2 work.
 
 Still-valid stable governance/location evidence may be reused while bound assumptions remain unchanged; volatile Git state and applicable R2/R3 authority/target checks remain fresh. LOW review is not required by default, MEDIUM is conditional, HIGH is required absent an explicit governed exact-scope waiver. Task acceptance remains distinct from `RELEASE_FULL` and `INTEGRATION_GATE`. Parallel mutation requires proven independence plus combined-candidate verification; HIGH mutation serializes by default. Direct Git/GitHub eligibility never creates publication authority. Existing initialized Projects adopt 1.17 only through governed upgrade; no runtime/CI/bot/router/validator or new Stable-ID family is created.
+### 12.2 Framework 1.18 Project Upgrade One-Session Fast Path
+
+`[Project Upgrade]` fresh-resolves current/target state, performs cumulative assessment and exact Preview in one read-only pass, then requires one explicit mutation approval. Eligible `FAST_PATH` and bounded compatible `ASSESSED_PATH` may execute as one bounded transaction; `MAJOR_MIGRATION_REQUIRED` remains outside the fast path.
+
+Exact valid Framework `RELEASE_FULL` proof may be reused only when the target tree/content and assumptions match; Project affected/result verification remains mandatory and `INTEGRATION_GATE` remains separate before mutable-target actions. Material Preview deltas require reapproval, while deterministic generated revision/timestamp/filename/routing values do not. Brownfield no-auto-upgrade and all Root/Binding/publication authority gates remain binding.
+
 
 ## 13. Preflight and Postflight
 

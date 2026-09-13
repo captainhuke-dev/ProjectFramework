@@ -4,7 +4,31 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.16.0 → 1.17.0 (current)
+## 1.17.0 → 1.18.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.18.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-052 Project Upgrade One-Session Fast Path.
+- `[Project Upgrade]` performs fresh comparison, cumulative assessment, `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` classification, one-session eligibility, and exact Preview in one read-only pass; the separate prepare prompt is removed.
+- One explicit Human mutation approval bound to the exact Preview/candidate remains mandatory before Material mutation.
+- Eligible `FAST_PATH` and bounded compatible `ASSESSED_PATH` may execute as one bounded successor/archive/routing transaction; `MAJOR_MIGRATION_REQUIRED` remains outside the one-session fast path.
+- Framework Release Acceptance and Project Upgrade Acceptance are separate proof domains. Exact valid state-bound `RELEASE_FULL` evidence may be reused for an unchanged target, while Project-specific affected/result verification remains mandatory.
+- Evidence mismatch, target change, stale/contradictory evidence, or unbounded impact invalidates reuse. Consuming-upgrade `RELEASE_FULL` budget is zero with exact reusable proof and at most one when genuinely required on the exact unchanged candidate.
+- Material Preview/candidate/scope/authority/rollback changes require re-Preview/reapproval; deterministic revision/timestamp/filename/routing values implied by the approved transaction do not.
+- Interruption recovery reuses still-valid comparison/assessment/release evidence and reconstructable durable state; unknown shared/non-idempotent results use `RESULT_VERIFICATION_REQUIRED` before retry.
+- `INTEGRATION_GATE` remains mandatory immediately before applicable mutable-target integration/publication.
+- Canonical ProjectFramework integration and self-host reconciliation may chain only when one exact Preview and authority cover both; missing Root authority stops at `RECONCILIATION_REQUIRED`.
+- Existing initialized Projects do not auto-adopt 1.18. No runtime updater, CI/CD mutator, bot, scheduler, router, validator/CLI, or new state/Stable-ID family is introduced.
+
+### Upgrade checklist
+
+1. Preserve current Project identity/pin, Project-specific truth/rules, Stable IDs, bindings, history, and rollback basis until the exact Preview is approved.
+2. Run `[Project Upgrade]` to produce cumulative assessment + exact Preview without a separate prepare round-trip.
+3. Approve the exact mutation transaction once; reapprove only after material approved assumptions change.
+4. Reuse exact Framework release proof only when target tree/content and material assumptions match committed state-bound evidence.
+5. Always run Project affected/result verification after mutation, even when release proof is reused.
+6. Preserve `INTEGRATION_GATE` before mutable-target action and all independent publication/Root/Binding/security authority gates.
+7. Verify scenarios `505–528` while preserving cumulative scenarios `1–528` contiguous/unique.
 
 ### Affected distribution surfaces
 
