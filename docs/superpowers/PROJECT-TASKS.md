@@ -1259,3 +1259,26 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
 - **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; future post-merge 1.17 reconciliation requires separate authority.
 - **Exact Next Step:** none for local TASK-051 completion.
+## Task #52 — Project Upgrade One-Session Fast Path
+
+- **ID:** `TASK-052`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework architecture / Project Upgrade workflow acceleration
+- **Source:** ACTOR-001 explicit Goal on 2026-09-13 to design and implement a one-session compatible Project Upgrade path.
+- **depends_on:** `[TASK-051]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `DESIGN_COMPLETE / WRITTEN_SPEC_SELF_REVIEWED / USER_REVIEW_REQUIRED`
+- **Problem:** compatible upgrades remain slow because comparison, prepare intent, Preview, approval, mutation persistence, verification, and canonical self-host reconciliation can require redundant rounds even when candidate/evidence/authority are unchanged.
+- **Approved Architecture:** Single-Preview / Single-Approval Upgrade Transaction; one bounded mutation batch; proof-domain separation between Framework Release Acceptance and Project Upgrade Acceptance; exact release-evidence reuse for FAST_PATH and bounded compatible ASSESSED_PATH; selective recovery; canonical self-host chaining when exact Preview and authority cover integration + Root reconciliation.
+- **Target Release:** Framework `1.18.0` / Schema `1.0.0` / release format `3`.
+- **Stacked Work:** deliberate child of TASK-051 terminal local commit `26fbb3c0ff298b183f23c7dabe5132dc11002185`; parent Framework 1.17 candidate/evidence remains preserved and unpublished.
+- **Goal / Authority / Action / Envelope:** `OUT-020 ACTIVE / AUTH-020 ACTIVE / ACT-032 IN_PROGRESS / ENV-020 ACTIVE`.
+- **Design Spec:** `docs/superpowers/specs/2026-09-13-project-upgrade-one-session-fast-path-design.md`.
+- **Spec Self-Review:** `TASK052_SPEC_SELF_REVIEW 15/15 PASS`.
+- **Scenario Allocation:** current `1-504` contiguous/unique; TASK-052 reserves `505-528` (24 scenarios).
+- **Implementation Gate:** architectural written-spec user review is required before implementation planning; no implementation has started.
+- **Publication Boundary:** local design/plan/implementation/verification commits only under current Goal; push/PR/merge/tag/GitHub Release and actual self-host Root promotion remain separately governed.
+- **Exact Next Step:** ACTOR-001 reviews the written spec; after approval, invoke writing-plans for the implementation plan.
