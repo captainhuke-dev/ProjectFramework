@@ -1,59 +1,131 @@
 # Upgrade Preview
 
-Standard structure for preparing an initialized-Project Framework upgrade. Fill from observed current state and the selected target; never invent values. This template is executable documentation, not normative authority — Core Governance and the latest amendment win on conflict.
+Standard state-bound transaction contract for an initialized-Project Framework upgrade. Fill only from observed current state and the exact selected target; never invent values. This template is executable documentation, not normative authority — Core Governance and the latest amendment win on conflict.
 
-## 1. Identity
+## 1. Current Project and target identity
 
 ```text
-Current local pin (FRAMEWORK-001): <version / amendment pointer>
-Target release:                    <version>
-Target tree SHA:                   <observed SHA or UNKNOWN>
-Classification:                    FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED
+Current Project / repository identity: <verified identity>
+Current local pin (FRAMEWORK-001):      <Framework / Schema / amendment pointer>
+Exact Target Framework:                 <version>
+Target Schema:                          <version>
+Target release format:                  <integer>
+Target source / ref:                    <observed source/ref or UNKNOWN>
+Target tree / content identity:         <observed SHA/digest or UNKNOWN>
+Path Classification:                    FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED
+One-Session Eligibility:                ELIGIBLE | NOT_ELIGIBLE | VERIFICATION_REQUIRED
 ```
 
-## 2. Comparison result
+`One-Session Eligibility` is Preview working vocabulary only; it is not lifecycle, Risk, authority, migration status, Epistemic Status, or a Stable-ID family.
+
+## 2. Comparison and cumulative assessment
 
 ```text
-[Project Upgrade] report: UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED
+[Project Upgrade] report: UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED
 Migration notes for target: <pointer or "none exist">
+Cumulative current→target assessment: <bounded summary>
+Material assumptions: <candidate / compatibility / dependency / authority assumptions>
 ```
 
-## 3. Affected surfaces
+`[Project Upgrade]` performs this read-only comparison, assessment, classification, eligibility assessment, and exact Preview in one pass. No separate “prepare?” approval is required before this read-only work.
 
-List only surfaces the target actually touches — draw from `MIGRATION-NOTES.md` when present:
+## 3. Affected transaction surfaces
+
+List only surfaces the exact target transaction will mutate:
 
 ```text
-<surface> : <change summary>
+Project Source: <exact slots/documents or NONE>
+Root FRAMEWORK-001: <successor delta or NONE>
+PROJECT-BOOTSTRAP: <delta or NONE>
+Other governed local artifacts: <exact list or NONE>
 ```
 
-## 4. Preservation checklist
+## 4. Preservation invariants
 
-Every item must be `PRESERVED` with evidence before mutation approval:
+Every applicable item must have an observed preservation basis before mutation approval:
 
 ```text
-[ ] current truth documents        [ ] Project-specific rules
-[ ] Stable IDs                     [ ] bindings (repo/Drive/local/storage)
-[ ] history / provenance           [ ] approval & rollback records
+[ ] Project UUID / identity
+[ ] current truth documents
+[ ] Project-specific rules
+[ ] Stable IDs / references
+[ ] Project Location Binding values
+[ ] repository / Drive / local / storage bindings when applicable
+[ ] predecessor history / provenance
+[ ] active Goal / Authority / Task truth
+[ ] secrets remain references only
 ```
 
-## 5. Rollback plan
+## 5. Rollback / recovery route
 
 ```text
-Reversal mechanism: <e.g. git branch/tag of pre-upgrade pin state>
-Verification after rollback: <minimum sufficient check>
+Pre-upgrade durable state: <commit/ref/current active revisions>
+Reversal mechanism:       <exact bounded recovery route>
+Verification after rollback: <minimum sufficient resulting-state checks>
+Partial-transaction recovery: <how durable completed effects are detected/reused>
 ```
 
-## 6. Verification plan
+## 6. Framework Release Evidence Reuse Decision
 
 ```text
-FAST_PATH: proportional resulting-state confirmation if target tree SHA matches committed evidence; else one full verification.
-ASSESSED_PATH / MAJOR_MIGRATION_REQUIRED: affected checks + one final RELEASE_FULL on unchanged candidate.
+Framework Release Acceptance evidence: <EVD/path/commit/tree or NONE>
+Observed target tree/content identity:   <exact identity>
+Evidence binding match:                  MATCH | MISMATCH | VERIFICATION_REQUIRED
+Release proof reuse:                     REUSE | DO_NOT_REUSE | VERIFICATION_REQUIRED
+Reason:                                  <bounded state-based reason>
 ```
 
-## 7. Approvals
+Framework Release Acceptance is distinct from Project Upgrade Acceptance. Reuse is allowed only when exact target identity/tree/content and material assumptions match committed current state-bound evidence.
+
+## 7. Project Upgrade Verification Plan
 
 ```text
-Upgrade preparation approved by: <user, date>
-Mutation approval:               <separate explicit approval, date>
-Outcome recorded in:             16 Migration Registry (MIG-*)
+Project affected verification: REQUIRED
+Affected invariants: <Root / Project Source / routing / Bootstrap / UUID / Stable IDs / bindings / history / rollback / other>
+RELEASE_FULL for consuming upgrade: 0 when exact release proof is reusable; otherwise at most 1 when genuinely required on the exact unchanged candidate
+Terminal resulting-state confirmation: <exact checks>
+```
+
+Release-proof reuse never removes Project-specific affected verification.
+
+## 8. Publication / integration and canonical self-host scope
+
+```text
+Local upgrade mutation scope:       <exact authorized scope>
+Integration / publication scope:    <authorized exact target or NOT_AUTHORIZED>
+Canonical self-host applicable:     YES | NO | VERIFICATION_REQUIRED
+Self-host mutation scope:           <exact approved Root/Project Source/Bootstrap delta or NOT_AUTHORIZED>
+INTEGRATION_GATE required:          YES when mutable-target action is applicable
+```
+
+When the same exact Preview and authority cover canonical integration plus post-merge self-host reconciliation, those steps may chain in one transaction after fresh merged-result verification. Missing Root authority stops at `RECONCILIATION_REQUIRED`.
+
+## 9. Exact mutation authority requested
+
+```text
+Human mutation approval requested for: <exact bounded transaction>
+Explicit exclusions / stop boundaries: <push / merge / Root / Binding / disclosure / destructive / other as applicable>
+Approval binds to target candidate:    <exact tree/content identity>
+Preview fingerprint / assumptions:     <reconstructable identity of this Preview and material assumptions>
+```
+
+## 10. Approval validity
+
+```text
+Mutation approval: <PENDING | APPROVED by ACTOR-001/date/evidence | REJECTED>
+```
+
+Approval is state-bound to this exact Preview/candidate. Material candidate/tree, path-class, semantic-scope, compatibility, binding, rollback, or required-authority changes require re-Preview and reapproval.
+
+Deterministic monotonic revision numbers, timestamps, successor filenames, and routing/index/manifest references implied by the approved transaction do not require reapproval by themselves.
+
+## 11. Known stop boundaries
+
+```text
+MAJOR_MIGRATION_REQUIRED          → stop One-Session Fast Path
+missing mutation authority        → no Material upgrade mutation
+local-only authority              → stop before integration
+integration authority without Root authority → integration may complete, then RECONCILIATION_REQUIRED
+unknown shared/non-idempotent result → RESULT_VERIFICATION_REQUIRED before retry
+material approved assumption change → re-Preview / reapproval
 ```
