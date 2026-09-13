@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-051 TODO` only (`TODO=1`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TASK-051 IN_PROGRESS` only (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1238,7 +1238,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #51 — Risk-Tiered Feature Delivery Fast Path
 
 - **ID:** `TASK-051`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / feature-delivery workflow design
 - **Source Issue:** GitHub Issue `#29` — `TODO: Design risk-tiered Feature Delivery Fast Path`.
 - **depends_on:** `[]`
@@ -1246,10 +1246,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `MEDIUM`
-- **readiness:** `DESIGN_REQUIRED / IMPLEMENTATION_NOT_STARTED`
+- **readiness:** `DESIGN_DIRECTION_APPROVED / IMPLEMENTATION_AUTHORIZED_BY_GOAL`
 - **Problem:** genuinely low-risk feature work can still traverse release-grade governance/verification/persistence paths and take far longer than necessary.
 - **Required Design Questions:** Low/Medium/High risk and blast radius; minimum authority/location preflight per tier; safe reuse of governance/evidence; per-tier verification and review; when independent review is mandatory; Task DONE evidence; preservation of Preview/explicit approval for governance/bootstrap/root-binding/security/high-risk changes; interruption/recovery; safe parallelism; direct Git/GitHub remote operation policy where no runtime state exists.
 - **Existing Building Blocks:** Framework 1.2.5 progressive verification/evidence reuse; risk-tiered postflight; exact-candidate Integration Gate reuse; capability/independent-review primitives. These reduce redundant work but do not by themselves satisfy Issue #29's feature-delivery fast-path contract.
-- **Implementation State:** `NOT_STARTED`; TASK-050 audit/reconciliation is complete and did not start TASK-051.
+- **Implementation State:** `IN_PROGRESS`; OUT-019/AUTH-019 authorize design through verified local implementation completion; Framework mutation has not started at this Goal checkpoint.
 - **Tracker State:** GitHub Issue #29 remains `OPEN` and now contains the TASK-051 mapping comment from TASK-050.
-- **Exact Next Step:** when selected by a future explicit Goal, brainstorm/approve the risk-tiered design before implementation.
+- **Goal / Authority / Action / Envelope:** `OUT-019 IN_PROGRESS / AUTH-019 ACTIVE / ACT-031 IN_PROGRESS / ENV-019 ACTIVE`.
+- **Design Direction:** `USER_APPROVED_RECOMMENDED_ARCHITECTURE` - Derived Delivery Tier; authority-gated Continuous Delivery; conditional MEDIUM review; tier + acceptance-boundary verification; state-bound preflight reuse; recommended remaining decisions adopted by user direction.
+- **Target Release:** Framework `1.17.0` / Schema `1.0.0` / release format `3`.
+- **Execution Mode:** isolated branch/worktree `task051-feature-delivery-fast-path` at `E:\GitHub\ProjectFramework\.worktrees\task051-feature-delivery-fast-path`, base `7d7463b`.
+- **Publication Boundary:** local verified completion only; push/PR/merge/tag/GitHub Release are not authorized by AUTH-019.
+- **Exact Next Step:** write and self-review the architectural design spec, then implementation plan.
