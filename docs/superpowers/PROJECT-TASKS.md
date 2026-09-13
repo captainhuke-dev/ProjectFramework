@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TASK-050 IN_PROGRESS` + `TASK-051 TODO` (`TODO=1`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1199,18 +1199,57 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `LOCAL_VERIFIED / CANONICAL_INTEGRATION_PENDING / PUBLICATION_NOT_AUTHORIZED`
+- **readiness:** `CANONICAL_MAIN_INTEGRATED / VERIFIED_COMPLETE / RELEASE_NOT_PUBLISHED`
 - **Problem:** canonical Framework distribution was `1.16.0` while ProjectFramework self-host Project Source/bootstrap remained `1.15.0` because consuming-Project pin semantics were applied to the canonical upstream repository itself.
 - **Implemented Direction:** canonical ProjectFramework has a narrow mandatory governed post-merge self-host reconciliation rule without redundant `[Project Upgrade]`; ordinary consuming Projects remain pinned and use `[Project Upgrade]`; unresolved reconciliation is `RECONCILIATION_REQUIRED`; no runtime automation was introduced.
-- **Goal Lifecycle:** `OUT-017 BLOCKED / AUTH-017 TERMINATED / ACT-029 DONE / ENV-017 EXPIRED`.
+- **Goal Lifecycle:** `OUT-017 ACHIEVED / AUTH-017 TERMINATED / ACT-029 DONE / ENV-017 EXPIRED`.
 - **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED`.
-- **Goal Checkpoint:** `EVD-093 / CHG-093`; promotion `EVD-094 / CHG-094 / MIG-003`; local terminal `EVD-095 / CHG-095`.
-- **Implementation Commits:** Goal checkpoint `7895bf9`; RED `e56f409`; normative `9f5471b690df09d1993cb931a653fd85b35a2cd0`; verified self-host promotion `759c7dd29c060888b3ef9c4424cdcb17cd809eed`.
+- **Goal Checkpoint:** `EVD-093 / CHG-093`; promotion `EVD-094 / CHG-094 / MIG-003`; local terminal `EVD-095 / CHG-095`; canonical merge readback `EVD-096 / CHG-096`.
+- **Implementation Commits:** Goal checkpoint `7895bf9`; RED `e56f409`; normative `9f5471b690df09d1993cb931a653fd85b35a2cd0`; verified self-host promotion `759c7dd29c060888b3ef9c4424cdcb17cd809eed`; branch terminal `76ee6ed`.
 - **TDD / Verification:** `TASK049_RED 5/10` expected → `TASK049_STRUCTURAL 8/10` → `TASK049_AFFECTED 25/25 PASS` → `TASK049_RELEASE_FULL 23/23 PASS_RUN_1`.
 - **Verified Candidate:** `759c7dd29c060888b3ef9c4424cdcb17cd809eed` / tree `6659e0e8494cbcff5daea89e8af16bf5ff4311b8` / Framework-Source tree `a84e7bd0ed56bd73a7e2cb6c642885d9fefeb24a`.
-- **Self-Host State:** local active `FRAMEWORK-001`, all 16 active Project Source documents, Framework distribution, and `PROJECT-BOOTSTRAP.md` coherently use Framework `1.16.0` / Schema `1.0.0`; UUID/binding/history preservation verified.
+- **Self-Host State:** canonical active `FRAMEWORK-001`, all active Project Source documents, Framework distribution, and `PROJECT-BOOTSTRAP.md` coherently use Framework `1.16.0` / Schema `1.0.0`; UUID/binding/history preservation verified.
 - **Evidence:** `docs/superpowers/evidence/2026-09-12-task-049-canonical-self-hosting-release-full.md`.
-- **Completion State:** `LOCAL_VERIFIED_COMPLETE / TASK-049 DONE`; implementation work is complete.
-- **Goal Boundary:** `OUT-017` is not ACHIEVED because canonical `main` integration is still outside terminated `AUTH-017`.
-- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
-- **Exact Next Step:** choose a separately authorized integration path for branch `task049-self-hosting-reconcile` if canonical `main` should adopt the verified 1.16 self-host state.
+- **Completion State:** `VERIFIED_COMPLETE / TASK-049 DONE / CANONICAL_MAIN_INTEGRATED`.
+- **Publication State:** `MERGED_TO_MAIN / PR #31 / merge 4039be4 / PERSISTED / NOT_RELEASED`.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-049; GitHub Release/tag remains separately governed.
+
+## Task #50 — GitHub Issue Backlog Reconciliation Audit
+
+- **ID:** `TASK-050`
+- **Status:** `IN_PROGRESS`
+- **Type:** governance / tracker reconciliation / backlog audit
+- **depends_on:** `[TASK-049]`
+- **blocks:** `[]`
+- **enables:** `[TASK-051]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `AUDIT_CLASSIFIED / ISSUE_RECONCILIATION_PENDING`
+- **User Goal:** audit GitHub Issues #25/#29 against Framework current state and reconcile Issue tracker with TASK ledger.
+- **Canonical Baseline:** `origin/main@4039be4` after PR #31 merge; active Framework/Project self-host pin `1.16.0`.
+- **Issue #25 Finding:** `RESOLVED_BY_STRONGER_EXISTING_CONTRACT` — TASK-041/current Framework requires bootstrap before first Project-governed response (including read-only/status/diagnostic), preserves `PROJECT-BOOTSTRAP → FRAMEWORK-001 → 01 → 03`, rejects recency/ranking/chat-memory authority promotion, and fails closed for affected Material mutation when authority remains unresolved. No separate vague-request fallback feature remains necessary.
+- **Issue #29 Finding:** `GENUINE_PENDING_BACKLOG` — current progressive verification/evidence reuse/risk-tiered postflight/independent-review primitives do not yet define the complete Low/Medium/High Feature Delivery Fast Path requested by the Issue.
+- **Reconciliation Direction:** close/comment #25 with the evidence-backed resolved/superseded rationale; keep #29 open and map it to TASK-051; do not implement TASK-051 inside TASK-050.
+- **Goal / Authority / Action / Envelope:** `OUT-018 ACTIVE / AUTH-018 ACTIVE / ACT-030 IN_PROGRESS / ENV-018 ACTIVE`.
+- **Evidence / Change:** `EVD-096 / CHG-096`.
+- **Completion Criteria:** tracker readback proves #25 CLOSED and #29 OPEN; #29 references TASK-051; ledger backlog counts are exact; TASK-050 completion commit observed; no TASK-051 implementation/Framework semantic change.
+- **Publication Boundary:** issue tracker mutations are in Goal scope; push/PR/merge of ledger reconciliation is separately governed and not authorized.
+- **Exact Next Step:** commit audit checkpoint, reconcile #25/#29 on GitHub, fresh-read states, then terminalize TASK-050 locally.
+
+## Task #51 — Risk-Tiered Feature Delivery Fast Path
+
+- **ID:** `TASK-051`
+- **Status:** `TODO`
+- **Type:** Framework architecture / feature-delivery workflow design
+- **Source Issue:** GitHub Issue `#29` — `TODO: Design risk-tiered Feature Delivery Fast Path`.
+- **depends_on:** `[]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `MEDIUM`
+- **readiness:** `DESIGN_REQUIRED / IMPLEMENTATION_NOT_STARTED`
+- **Problem:** genuinely low-risk feature work can still traverse release-grade governance/verification/persistence paths and take far longer than necessary.
+- **Required Design Questions:** Low/Medium/High risk and blast radius; minimum authority/location preflight per tier; safe reuse of governance/evidence; per-tier verification and review; when independent review is mandatory; Task DONE evidence; preservation of Preview/explicit approval for governance/bootstrap/root-binding/security/high-risk changes; interruption/recovery; safe parallelism; direct Git/GitHub remote operation policy where no runtime state exists.
+- **Existing Building Blocks:** Framework 1.2.5 progressive verification/evidence reuse; risk-tiered postflight; exact-candidate Integration Gate reuse; capability/independent-review primitives. These reduce redundant work but do not by themselves satisfy Issue #29's feature-delivery fast-path contract.
+- **Implementation State:** `NOT_STARTED`; TASK-050 performs audit/registration only.
+- **Exact Next Step:** when selected by a future explicit Goal, brainstorm/approve the risk-tiered design before implementation.
