@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-052 IN_PROGRESS`; `TASK-053 TODO` (`TODO=1`, `IN_PROGRESS=1`, `BLOCKED=0`).
+- Current backlog: `TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`.
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1262,7 +1262,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #52 — Project Upgrade One-Session Fast Path
 
 - **ID:** `TASK-052`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / Project Upgrade workflow acceleration
 - **Source:** ACTOR-001 explicit Goal on 2026-09-13 to design and implement a one-session compatible Project Upgrade path.
 - **depends_on:** `[TASK-051]`
@@ -1270,40 +1270,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `DESIGN_COMPLETE / WRITTEN_SPEC_SELF_REVIEWED / USER_REVIEW_REQUIRED`
-- **Problem:** compatible upgrades remain slow because comparison, prepare intent, Preview, approval, mutation persistence, verification, and canonical self-host reconciliation can require redundant rounds even when candidate/evidence/authority are unchanged.
+- **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
+- **Problem:** compatible upgrades remained slow because comparison, prepare intent, Preview, approval, mutation persistence, verification, and canonical self-host reconciliation required redundant rounds even when candidate/evidence/authority were unchanged.
 - **Approved Architecture:** Single-Preview / Single-Approval Upgrade Transaction; one bounded mutation batch; proof-domain separation between Framework Release Acceptance and Project Upgrade Acceptance; exact release-evidence reuse for FAST_PATH and bounded compatible ASSESSED_PATH; selective recovery; canonical self-host chaining when exact Preview and authority cover integration + Root reconciliation.
 - **Target Release:** Framework `1.18.0` / Schema `1.0.0` / release format `3`.
 - **Stacked Work:** deliberate child of TASK-051 terminal local commit `26fbb3c0ff298b183f23c7dabe5132dc11002185`; parent Framework 1.17 candidate/evidence remains preserved and unpublished.
-- **Goal / Authority / Action / Envelope:** `OUT-020 ACTIVE / AUTH-020 ACTIVE / ACT-032 IN_PROGRESS / ENV-020 ACTIVE`.
-- **Design Spec:** `docs/superpowers/specs/2026-09-13-project-upgrade-one-session-fast-path-design.md`.
-- **Spec Self-Review:** `TASK052_SPEC_SELF_REVIEW 15/15 PASS`.
-- **Scenario Allocation:** current `1-504` contiguous/unique; TASK-052 reserves `505-528` (24 scenarios).
-- **Implementation Gate:** architectural written-spec user review is required before implementation planning; no implementation has started.
-- **Publication Boundary:** local design/plan/implementation/verification commits only under current Goal; push/PR/merge/tag/GitHub Release and actual self-host Root promotion remain separately governed.
-- **Exact Next Step:** ACTOR-001 reviews the written spec; after approval, invoke writing-plans for the implementation plan.
-
-## Task #53 — Project Upgrade Residual Latency / Transaction Mode Optimization
-
-- **ID:** `TASK-053`
-- **Status:** `TODO`
-- **Type:** Framework architecture / governance-transaction performance optimization
-- **Source:** ACTOR-001 explicit approval on 2026-09-13 to register the observed problem that consuming Projects using `[Project Upgrade]` still take disproportionately long.
-- **depends_on:** `[TASK-052]`
-- **blocks:** `[]`
-- **enables:** `[]`
-- **parallelizable_with:** `[]`
-- **priority:** `HIGH`
-- **readiness:** `TODO / WAIT_FOR_TASK052_STABLE_BASELINE`
-- **Problem:** even with TASK-052 One-Session Fast Path as the immediate foundation, real consuming-Project upgrades can still spend excessive elapsed time on repeated namespace/revision scans, intermediate Project Source rotations, Manifest rebuilds, redundant verification, approval round-trips, recovery churn, and freshness rechecks.
-- **Approved Direction:** implement and measure the ProjectFramework Transaction Mode optimization roadmap as the next optimization layer rather than creating a competing upgrade fast path. Preserve canonical `R0–R3`, authority, Root/Binding, disclosure, destructive/Production/publication gates, Stable-ID non-recycling, reconstructability, rollback, final `RELEASE_FULL` rules, and fresh `INTEGRATION_GATE`.
-- **Primary Roadmap:** `docs/superpowers/plans/2026-09-13-projectframework-transaction-mode-optimization-roadmap.md`.
-- **Follow-on Roadmap:** `docs/superpowers/plans/2026-09-13-projectframework-structured-core-generated-governance-roadmap.md` — Option 3 remains gated until Transaction Mode is implemented and measured and residual synchronization cost is proven material.
-- **Registration Note:** `docs/superpowers/plans/2026-09-13-project-upgrade-residual-latency-todo.md`.
-- **Measurement Contract:** capture practical governance-friction counters including `owner_approval_count`, `preview_count`, `namespace_scan_count`, `reservation_reallocation_count`, `primary_rotation_count`, `manifest_generation_count`, `checkpoint_commit_count`, `release_full_count`, `integration_gate_count`, `publication_round_trip_count`, and `elapsed_human_wait_points`.
-- **Initial Target for normal compatible `[Project Upgrade]`:** one comparison/assessment; one exact Preview; one mutation approval; one namespace/revision reservation; zero normal reservation reallocations; one bounded mutation transaction; one final Manifest generation; `RELEASE_FULL <= 1` and preferably `0` when exact reusable proof is contract-valid; one completion commit; one fresh Integration Gate; one publication/readback sequence when authorized.
-- **Implementation Sequence:** Phase A measure current TASK-051/TASK-052 workflows → Phase B reservation + transaction-scoped single writer → Phase C artifact/Manifest scaling → Phase D approval + verification budget → Phase E adoption and before/after measurement.
-- **Acceptance Criteria:** normal compatible upgrade materially reduces approvals/checkpoints/scans/verification runs; no per-document checkpoint absent a real continuation boundary; unchanged candidate does not regenerate Manifest or rerun `RELEASE_FULL`; interruption recovery reuses still-valid evidence; collision races are prevented without ghost ID consumption; Brownfield remains no-auto-adopt; mandatory HIGH/root/security/destructive gates remain intact.
-- **Option 3 Gate:** do not promote Structured Core + Generated Governance to implementation merely to address current latency; first prove Transaction Mode residual friction and then pilot deterministic Manifest generation if evidence justifies it.
-- **Implementation Boundary:** Task registration only. Do not implement Transaction Mode, Structured Core, generated governance, runtime services, daemons, schedulers, watchers, automatic consuming-Project mutation, or publication as part of this registration.
-- **Exact Next Step:** after TASK-052 reaches a stable verified baseline, execute TASK-053 Phase A friction measurement on representative consuming-Project `[Project Upgrade]` workflows and use those measurements to scope the implementation design.
+- **Goal / Authority / Action / Envelope:** `OUT-020 ACHIEVED / AUTH-020 TERMINATED / ACT-032 DONE / ENV-020 EXPIRED`.
+- **Design:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-project-upgrade-one-session-fast-path-design.md`; spec commit `5adc2ed`; self-review `15/15 PASS`.
+- **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-project-upgrade-one-session-fast-path.md`; plan commit `07f8026`; self-review `16/16 PASS`; Inline Execution.
+- **Implementation Commits:** `27485c2` RED scenarios; `a33ced7` normative contract; `85b98f4` propagation; `e3f1f96` pressure expectation forward-port; `bc36a80` + `48212bb` independent-review fixes/current-surface alignment.
+- **Review:** `Codex-Independent-Acceptance-Review`; `15/15 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
+- **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 31/31 PASS → AFFECTED 43/43 PASS → RELEASE_FULL 44/44 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `48212bb4f4b577af482afcf5758424eee2f7e036`; tree `601f9ad5041cec9f53188c19998960b93878c534`; Framework-Source tree `929065ccac7e3ecf25fda09de5326bb40c4f8f9c`.
+- **Evidence:** `EVD-104 / CHG-104`; `docs/superpowers/evidence/2026-09-13-task-052-project-upgrade-one-session-fast-path-release-full.md`.
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / NOT_PUBLISHED`.
+- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
+- **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; actual 1.18 canonical self-host promotion requires separate exact authority.
+- **Reviewer Side-Effect Handling:** reviewer-invented TASK-053 and residual-latency registration are not authorized Project backlog and are excluded from terminal truth.
+- **Exact Next Step:** none for local TASK-052 completion.
