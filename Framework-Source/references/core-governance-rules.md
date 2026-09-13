@@ -877,6 +877,60 @@ Verification depth follows affected scope, dependency impact, and `R0 / R1 / R2 
 
 Fresh state-bound evidence MAY be reused while its proven candidate/dependency/target assumptions remain materially unchanged. Candidate/source changes, materially changed dependencies, semantic target movement, changed acceptance criteria, contradicting evidence, or unbounded uncertainty invalidate affected evidence. If impact cannot be bounded safely, verification escalates.
 
+### 16.2A Risk-Tiered Feature Delivery Fast Path
+
+Framework `1.17.0` adds `LOW | MEDIUM | HIGH` as a **Derived Delivery Tier** over canonical `R0 / R1 / R2 / R3`, affected scope, dependency blast radius, sensitive-surface flags, rollback, and uncertainty. Delivery tier is workflow vocabulary only: it is not Risk authority, lifecycle, Epistemic Status, Git freshness, or a Stable-ID family. It MAY escalate required workflow and MUST NOT lower any canonical Risk, AUTH, binding, trust, disclosure, secret, destructive, production, publication, or platform/tool gate.
+
+Classify the bounded outcome by the highest required tier:
+
+- **LOW** — required completion actions are R0/R1 only; scope is narrow/bounded, identity is verified, rollback is straightforward, affected dependencies are known, no shared/external action is required for local Task DONE, and uncertainty is low.
+- **MEDIUM** — bounded multi-surface/dependency work, broader compatibility impact, non-trivial rollback, or exact-target authorized R2 action. A required R2 action is never LOW; MEDIUM MUST NOT contain a required R3 action.
+- **HIGH** — any required R3 action, destructive/irreversible effect, wide/unbounded/unknown impact, or change to controlling semantics of Root/`FRAMEWORK-001`, Project Location Binding, bootstrap authority/routing, Risk/AUTH/approval, security/trust/disclosure/secrets, Schema/Stable-ID compatibility, production/deployment safety, cross-Project write authority, or release/review/verification gates.
+
+Uncertainty escalates or blocks classification; it never defaults downward. Artificially splitting MEDIUM/HIGH outcomes into LOW fragments to avoid gates is prohibited.
+
+Before Material mutation run a **common invariant preflight** sufficient to resolve active Project authority, exact Project/repository/workspace/Canonical Implementation Source when applicable, active Goal/AUTH/ENV scope, current volatile Git state, affected dependencies/sensitive surfaces, canonical Risk, delivery tier, review/verification floor, rollback route, and stricter active tool/capability/trust/disclosure overlays.
+
+Still-valid state-bound stable authority/location/governance evidence MAY be reused while its bound revision, identity, candidate, dependencies, and material assumptions remain unchanged. Selectively invalidate changed evidence. Always fresh-check volatile Git state before Material Git work, applicable R2/R3 authority immediately before mutation, remote/shared target identity, required reviewer eligibility when stale/material, current target/Base Freshness at `INTEGRATION_GATE`, and R3 resulting state. Unknown validity fails closed to reread/reverification or higher tier.
+
+Minimum review policy:
+
+- LOW → independent review `NOT_REQUIRED` by default unless a stricter active rule applies.
+- MEDIUM → `OPTIONAL` by default; becomes `REQUIRED` for unfamiliar ownership/subsystem, broad semantic coupling, weak verification, concurrency/ordering complexity, security/trust adjacency, material compatibility/migration exposure, important user-facing protocol semantics, hard-to-test assumptions, an active stricter policy, or material acceptance uncertainty.
+- HIGH → independent review `REQUIRED` by default. Reviewer unavailable is not a waiver. A valid governed waiver must be evidence-backed and bounded to the exact scope/action/candidate.
+
+Review evidence is state-bound and is selectively invalidated by candidate/content change, material semantic target movement, conflict/rebase changes, newly discovered dependency impact, changed Requirement/Decision/Risk premise, or changed material reviewer eligibility.
+
+Minimum Task verification policy:
+
+- LOW → `TASK_LOCAL_FAST`/focused affected checks, direct changed-behavior/dependency checks, diff hygiene, direct resulting-state confirmation, understood working-tree state, and observed durable completion commit before Material Git-backed Task DONE.
+- MEDIUM → broader affected/dependency/invariant verification, any triggered review, direct shared result verification for authorized R2 action, diff hygiene, completion commit, and selective reverification of invalidated evidence.
+- HIGH → comprehensive affected/risk-scoped verification, required independent review absent valid waiver, applicable Preview/explicit approval, fresh authority/target checks, explicit recovery/rollback, strong postflight, and completion commit.
+
+Task acceptance remains distinct from release and integration acceptance:
+
+```text
+Task acceptance                      → tier minimum affected verification
+Logical Checkpoint                   → CHECKPOINT_INTEGRITY when durability is needed
+Release/equivalent semantic accept   → RELEASE_FULL once on the exact final unchanged candidate
+Mutable-target integration/publication → INTEGRATION_GATE
+```
+
+A LOW Task does not require `RELEASE_FULL` solely because it is a feature. A Framework Release Candidate still requires `RELEASE_FULL` even if all contributing Tasks were LOW. `RELEASE_FULL` does not replace the fresh mutable-target `INTEGRATION_GATE`.
+
+For eligible LOW work, one-session delivery SHOULD reuse valid stable evidence, fresh-observe volatile state, implement, run focused checks, self-review, confirm result, create the completion commit, and fresh-read committed/working-tree state without redundant Project-level prompts/checkpoints. One-session delivery is an objective, not an SLA. ProjectFramework itself does not require a separate architectural spec/plan for a bounded LOW existing-flow change when Task/Goal intent and acceptance criteria are already sufficient; higher-level product/tool development gates remain independently binding.
+
+Use Logical Checkpoints only when continuation/handoff/phase transition needs durable state; completion commit plus final lifecycle/evidence may be the main durable checkpoint for uninterrupted LOW work. A non-Git transport/session failure does not by itself invalidate Git evidence bound to an unchanged commit/tree. Unknown possibly-applied non-idempotent side effects use `RESULT_VERIFICATION_REQUIRED`; verify resulting state before retry.
+
+Independent read/test/review work MAY run in parallel against a stable candidate. Parallel mutation requires proven disjoint ownership, no sequencing dependency, no shared external side effect, no coupled safety invariant requiring joint acceptance, known base/candidate identity, and affected verification on the final **combined candidate**. MEDIUM needs stronger independence proof; HIGH mutation is serialized by default. If independence is uncertain, serialize.
+
+Repository-native **direct Git/GitHub** operations MAY be used when exact Project/repository identity, active tool policy, exact action authority, and platform/tool gates permit and no material non-repository runtime/process/UI state must be observed through another owner. ProjectFramework has no application runtime merely because it is a repository; MCP is not required solely to represent nonexistent runtime/process/UI state. Direct Git/GitHub eligibility never grants push/PR/merge/publication authority and never bypasses active tool policy, Risk, disclosure, secrets, or `INTEGRATION_GATE`.
+
+A Material Git-backed Task DONE still requires the intended result, tier-appropriate verification, required review or valid waiver, direct resulting-state confirmation, required evidence, observed durable completion commit(s), and clean/understood working-tree state. `WIP commit ≠ Task DONE`; Task DONE remains distinct from MERGED, PUSHED, RELEASED, artifact publication, and deployment.
+
+Existing Brownfield Projects do not auto-adopt Framework 1.17. They remain pinned and receive this contract only through governed Direct-to-Latest `[Project Upgrade]`. Framework 1.17 creates no runtime delivery engine, scheduler, watcher, queue, CI/CD, merge/release bot, policy engine, validator/CLI, MCP router, credential store, or new Stable-ID family.
+
+
 ### 16.3 Continuation Consistency and Mandatory Response Close
 
 Framework `1.15.0` TASK-045 simplifies the mandatory visible response close while preserving internal continuation and persistence semantics. Chat lifecycle vocabulary remains `CONTINUE_CURRENT_CHAT | START_NEW_CHAT` for Project continuation state and `09 Handoff`; Required Read pointers remain internal routing data when materially needed. Neither is a mandatory visible end-of-response field in Framework 1.15.
@@ -954,7 +1008,7 @@ Initial registry:
 ```text
 [Project Status] : fresh-read Project identity, Task state, Git sync/working-tree state, verification, blockers, and health
 [Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
-[Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Project Upgrade] : fresh-compare current vs target, materialize the exact read-only upgrade Preview, then require one explicit mutation approval
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
@@ -1119,6 +1173,8 @@ The command may include an explicit requested path as one-off action input, but 
 
 #### `[Project Upgrade]`
 
+Framework `1.18.0` governs compatible upgrade acceleration through the **Project Upgrade One-Session Fast Path** defined below; it extends Direct-to-Latest without creating a new command, Risk family, lifecycle state, or authority source.
+
 `[Project Upgrade]` is read-only through current/target comparison and reporting. For an initialized Project, resolve the valid active local `FRAMEWORK-001` first and treat its locally pinned Framework/Schema identity as current Project authority. Then fresh-resolve the applicable canonical upstream Framework as a target candidate. Chat memory, prior command output, cached `origin/main`, recent/active workspace ranking, similarly named repositories, or other inferred fallbacks do not establish current upstream truth.
 
 Minimum comparison considers current/target Framework version, Schema version, observable source/distribution identity, and freshness evidence. Report exactly one of these presentation-only labels when supported:
@@ -1132,11 +1188,15 @@ VERIFICATION_REQUIRED
 
 These are command-report labels only, not new lifecycle, Epistemic Status, Git freshness, authority, migration, or health state families. Equal version strings do not suppress a material source/distribution conflict; unresolved or conflicting inputs fail closed as `SOURCE_DIVERGENCE` or `VERIFICATION_REQUIRED` rather than being guessed `UP_TO_DATE`.
 
-If a verified target differs from the current local pin, `UPGRADE_AVAILABLE` asks whether the user wants to **prepare** an upgrade. A positive answer authorizes cumulative current→target assessment and Preview preparation only; it does **not** authorize immediate Project mutation. Actual mutation still reuses the existing Direct-to-Latest flow: classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`, preserve current truth/Stable IDs/Project-specific rules/bindings/history and applicable authority/Task state, include rollback/reversibility and verification in the Preview, obtain separate explicit mutation approval, run affected verification plus one final `RELEASE_FULL`, then promote while preserving history. Intermediate release execution remains non-mandatory and the latest starter remains non-destructive by default.
+If a verified target differs from the current local pin, `UPGRADE_AVAILABLE` immediately performs the remaining safe read-only work needed to reach one exact decision point: cumulative current→target assessment → classify `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` → determine one-session eligibility → materialize the exact state-bound Preview. The command does not ask a separate “prepare?” question. `[Project Upgrade]` remains read-only through this Preview and does not authorize immediate Project mutation.
 
-When the command reports `UPGRADE_AVAILABLE`, its report includes the target release's migration-notes pointer when `MIGRATION-NOTES.md` covers that target, and states their absence explicitly when it does not; affected surfaces therefore become visible before preparation is decided. Upgrade preparation uses `templates/upgrade-preview.md` as the standard Preview structure; deviation is permitted only with explicit reason recorded in the Preview.
+When the command reports `UPGRADE_AVAILABLE`, the Preview includes the target release's migration-notes pointer when `MIGRATION-NOTES.md` covers that target and states their absence explicitly when it does not. `templates/upgrade-preview.md` is the standard transaction contract. The Preview binds current Project/pin, exact target identity/tree when material, path classification, one-session eligibility, affected Root/Project Source/Bootstrap surfaces, preservation invariants, rollback/recovery, release-evidence reuse decision, Project verification plan, integration/self-host scope, exact mutation authority requested, and known stop boundaries. Material candidate/path/scope/compatibility/binding/rollback/authority change requires re-Preview and reapproval; deterministic revision/timestamp/filename/routing generation implied by the approved transaction does not.
 
-**FAST_PATH verification scope rule.** For a Project classified `FAST_PATH`, when the exact target candidate tree already carries committed state-bound evidence — the recorded tree SHA equals the freshly observed target tree SHA — the upgrade may satisfy final verification through proportional resulting-state confirmation (release identity plus affected checks) instead of rerunning one full verification from scratch. This reuses Framework `1.2.5` evidence-reuse semantics. Evidence reuse fails closed whenever the candidate changed after its evidence was captured, the tree SHA does not match exactly, or evidence validity cannot be freshly confirmed; in those cases the existing one-final-`RELEASE_FULL` requirement applies unchanged. `ASSESSED_PATH` and `MAJOR_MIGRATION_REQUIRED` are never eligible for this substitution.
+After one explicit Human mutation approval bound to the exact Preview/candidate and fresh prerequisite checks, an eligible `FAST_PATH` or bounded compatible `ASSESSED_PATH` executes as one bounded successor/archive/routing transaction, followed by Project affected verification, one completion commit, and fresh terminal readback. `MAJOR_MIGRATION_REQUIRED` is never one-session eligible. Per-document Logical Checkpoints are not required during an uninterrupted eligible transaction; checkpoint only when real interruption/handoff, a blocker, or a non-idempotent/shared effect creates continuation state.
+
+**Framework Release Acceptance ≠ Project Upgrade Acceptance.** For either `FAST_PATH` or bounded compatible `ASSESSED_PATH`, exact committed state-bound `RELEASE_FULL` evidence MAY be reused when the freshly observed target tree/content identity exactly matches the evidence binding and all material assumptions remain valid. Release-proof reuse never removes Project-specific affected/result verification. Mismatch, post-evidence candidate change, stale/contradictory/incomplete/unverifiable evidence, an upgrade that changes the Framework candidate, or unbounded impact invalidates reuse; then run applicable verification and, when genuinely required, at most one final `RELEASE_FULL` on the exact unchanged final candidate. Normal consuming-upgrade `RELEASE_FULL` budget is therefore `0` with exact reusable release proof and `1` maximum when genuinely required absent later evidence invalidation.
+
+After interruption, fresh-read volatile Git/current-routing state, resolve the approved Preview/candidate, inspect durable effects, reuse still-valid comparison/assessment/release evidence, execute only unfinished safe operations, and rerun only invalidated/newly affected checks. Unknown possibly-applied shared/non-idempotent effects use `RESULT_VERIFICATION_REQUIRED` before retry.
 
 `[Project Upgrade]` grants no Bootstrap/Project Location mutation authority and no branch/worktree, Canonical Integration Target, Canonical Implementation Source, Runtime, or Persistent-State authority.
 
@@ -1146,7 +1206,9 @@ When the command reports `UPGRADE_AVAILABLE`, its report includes the target rel
 
 The initialized-Project pin rule continues to govern ordinary consuming Projects. Canonical ProjectFramework self-hosting is a narrow release-lifecycle exception, not consumer auto-upgrade. The exception is eligible only when the current repository is freshly verified as `FRAMEWORK-RELEASE.yaml` `canonical_repository`, the integration target is its verified `canonical_branch`, the Framework release identity/schema/release format and exact Framework-Source tree are verified, and that release has been merged to the canonical integration target.
 
-For an eligible canonical self-host merge, release integration remains incomplete while its active Project Source/Bootstrap lag the merged release. Surface `RECONCILIATION_REQUIRED`, then under applicable explicit Root Governance authority perform: verify merged release identity/tree → create and validate a `FRAMEWORK-001` successor → preserve Project UUID, Stable IDs, Project-specific truth, Project Location Binding values and predecessor history → reconcile applicable active Project Source Framework/Schema metadata/routing → reconcile `PROJECT-BOOTSTRAP.md` to the promoted Root/release → verify exact release/tree/routing/history/binding preservation → record evidence/change/migration as applicable. The canonical self-host does not need a redundant `[Project Upgrade]` invocation for that same verified merged release.
+When one exact approved Preview and authority already cover both canonical integration and post-merge self-host reconciliation, execute them as one governed delivery transaction: run `INTEGRATION_GATE` immediately before the mutable-target action → perform the authorized integration → fresh-verify the exact merged release identity/tree → create and validate the approved `FRAMEWORK-001` successor → preserve Project UUID, Stable IDs, Project-specific truth, Project Location Binding values and predecessor history → reconcile applicable active Project Source Framework/Schema metadata/routing → reconcile `PROJECT-BOOTSTRAP.md` → verify affected resulting state → record terminal evidence. No second `[Project Upgrade]`, Preview, or approval is required when the merged result exactly matches the already-approved self-host delta.
+
+If integration authority exists but Root/self-host authority does not, complete only the authorized integration, surface `RECONCILIATION_REQUIRED`, and stop before Root mutation. If only local authority exists, stop successfully before integration. Fast Path never synthesizes missing publication or Root authority.
 
 If repository/branch identity, merged release identity/tree, Root successor, Bootstrap routing, or resulting state cannot be verified, retain the last valid active Root, keep `RECONCILIATION_REQUIRED`, and fail closed for claiming canonical release integration complete. A merge by itself never proves self-host convergence. `RECONCILIATION_REQUIRED` is a workflow/diagnostic label only, not a new lifecycle or Stable-ID family.
 

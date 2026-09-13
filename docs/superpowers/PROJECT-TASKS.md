@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`.
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1199,18 +1199,95 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `LOCAL_VERIFIED / CANONICAL_INTEGRATION_PENDING / PUBLICATION_NOT_AUTHORIZED`
+- **readiness:** `CANONICAL_MAIN_INTEGRATED / VERIFIED_COMPLETE / RELEASE_NOT_PUBLISHED`
 - **Problem:** canonical Framework distribution was `1.16.0` while ProjectFramework self-host Project Source/bootstrap remained `1.15.0` because consuming-Project pin semantics were applied to the canonical upstream repository itself.
 - **Implemented Direction:** canonical ProjectFramework has a narrow mandatory governed post-merge self-host reconciliation rule without redundant `[Project Upgrade]`; ordinary consuming Projects remain pinned and use `[Project Upgrade]`; unresolved reconciliation is `RECONCILIATION_REQUIRED`; no runtime automation was introduced.
-- **Goal Lifecycle:** `OUT-017 BLOCKED / AUTH-017 TERMINATED / ACT-029 DONE / ENV-017 EXPIRED`.
+- **Goal Lifecycle:** `OUT-017 ACHIEVED / AUTH-017 TERMINATED / ACT-029 DONE / ENV-017 EXPIRED`.
 - **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED`.
-- **Goal Checkpoint:** `EVD-093 / CHG-093`; promotion `EVD-094 / CHG-094 / MIG-003`; local terminal `EVD-095 / CHG-095`.
-- **Implementation Commits:** Goal checkpoint `7895bf9`; RED `e56f409`; normative `9f5471b690df09d1993cb931a653fd85b35a2cd0`; verified self-host promotion `759c7dd29c060888b3ef9c4424cdcb17cd809eed`.
+- **Goal Checkpoint:** `EVD-093 / CHG-093`; promotion `EVD-094 / CHG-094 / MIG-003`; local terminal `EVD-095 / CHG-095`; canonical merge readback `EVD-096 / CHG-096`.
+- **Implementation Commits:** Goal checkpoint `7895bf9`; RED `e56f409`; normative `9f5471b690df09d1993cb931a653fd85b35a2cd0`; verified self-host promotion `759c7dd29c060888b3ef9c4424cdcb17cd809eed`; branch terminal `76ee6ed`.
 - **TDD / Verification:** `TASK049_RED 5/10` expected → `TASK049_STRUCTURAL 8/10` → `TASK049_AFFECTED 25/25 PASS` → `TASK049_RELEASE_FULL 23/23 PASS_RUN_1`.
 - **Verified Candidate:** `759c7dd29c060888b3ef9c4424cdcb17cd809eed` / tree `6659e0e8494cbcff5daea89e8af16bf5ff4311b8` / Framework-Source tree `a84e7bd0ed56bd73a7e2cb6c642885d9fefeb24a`.
-- **Self-Host State:** local active `FRAMEWORK-001`, all 16 active Project Source documents, Framework distribution, and `PROJECT-BOOTSTRAP.md` coherently use Framework `1.16.0` / Schema `1.0.0`; UUID/binding/history preservation verified.
+- **Self-Host State:** canonical active `FRAMEWORK-001`, all active Project Source documents, Framework distribution, and `PROJECT-BOOTSTRAP.md` coherently use Framework `1.16.0` / Schema `1.0.0`; UUID/binding/history preservation verified.
 - **Evidence:** `docs/superpowers/evidence/2026-09-12-task-049-canonical-self-hosting-release-full.md`.
-- **Completion State:** `LOCAL_VERIFIED_COMPLETE / TASK-049 DONE`; implementation work is complete.
-- **Goal Boundary:** `OUT-017` is not ACHIEVED because canonical `main` integration is still outside terminated `AUTH-017`.
-- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
-- **Exact Next Step:** choose a separately authorized integration path for branch `task049-self-hosting-reconcile` if canonical `main` should adopt the verified 1.16 self-host state.
+- **Completion State:** `VERIFIED_COMPLETE / TASK-049 DONE / CANONICAL_MAIN_INTEGRATED`.
+- **Publication State:** `MERGED_TO_MAIN / PR #31 / merge 4039be4 / PERSISTED / NOT_RELEASED`.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-049; GitHub Release/tag remains separately governed.
+
+## Task #50 — GitHub Issue Backlog Reconciliation Audit
+
+- **ID:** `TASK-050`
+- **Status:** `DONE`
+- **Type:** governance / tracker reconciliation / backlog audit
+- **depends_on:** `[TASK-049]`
+- **blocks:** `[]`
+- **enables:** `[TASK-051]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `VERIFIED_COMPLETE / ISSUE_TRACKER_RECONCILED / LOCAL_TERMINAL_PERSISTENCE`
+- **User Goal:** audit GitHub Issues #25/#29 against Framework current state and reconcile Issue tracker with TASK ledger.
+- **Canonical Baseline:** `origin/main@4039be4` after PR #31 merge; active Framework/Project self-host pin `1.16.0`.
+- **Issue #25 Result:** `CLOSED / comments=1 / RESOLVED_BY_STRONGER_EXISTING_CONTRACT`; reconciliation comment records that current TASK-041/TASK-042 bootstrap semantics are stronger than the proposal; backend `closed_at=2026-09-13T03:30:48Z`.
+- **Issue #29 Result:** `OPEN / comments=1 / GENUINE_PENDING_BACKLOG`; mapping comment points to `TASK-051 / TODO / DESIGN_REQUIRED / IMPLEMENTATION_NOT_STARTED` and explicitly states TASK-050 does not start implementation.
+- **Goal / Authority / Action / Envelope:** `OUT-018 ACHIEVED / AUTH-018 TERMINATED / ACT-030 DONE / ENV-018 EXPIRED`.
+- **Evidence / Change:** `EVD-096 / EVD-097 / CHG-096 / CHG-097`.
+- **Audit Checkpoint Commit:** `4d1f225ef067d60d4884e54a971214a3281ad304`.
+- **Completion Criteria Met:** tracker readback proves #25 CLOSED and #29 OPEN; #29 explicitly references TASK-051; ledger backlog counts are exact (`TODO=1 / IN_PROGRESS=0 / BLOCKED=0`); TASK-049 canonical integration truth is corrected; no TASK-051 implementation or Framework semantic change occurred; terminal successor set requires fresh post-commit readback before external completion claim.
+- **Publication Boundary:** issue tracker mutations completed under OUT-018; push/PR/merge of this local ledger reconciliation is separately governed and was not authorized/performed.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-050; TASK-051 remains separate TODO.
+## Task #51 — Risk-Tiered Feature Delivery Fast Path
+
+- **ID:** `TASK-051`
+- **Status:** `DONE`
+- **Type:** Framework architecture / feature-delivery workflow design and implementation
+- **Source Issue:** GitHub Issue `#29` — remains `OPEN`; PR #32 carries the implementation lineage but does not auto-close the issue.
+- **depends_on:** `[]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `MEDIUM`
+- **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / PUSHED / PR_32_OPEN / NOT_MERGED`.
+- **Goal / Authority / Action / Envelope:** `OUT-019 ACHIEVED / AUTH-019 TERMINATED / ACT-031 DONE / ENV-019 EXPIRED`.
+- **Design:** `USER_APPROVED_FINAL_DESIGN / SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
+- **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-task051-risk-tiered-feature-delivery-fast-path.md`.
+- **Implementation Commits:** `bff9d39` RED scenarios; `fc0859e` normative contract; `008fc93` propagation/frozen candidate.
+- **Review:** independent reviewer `e289f236-6dee-46fa-83b6-d0335fea12a5`; `10/10 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
+- **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 34/34 PASS → AFFECTED 48/48 PASS → RELEASE_FULL 49/49 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `008fc934a84d595d163a4bc25d974fcd35bac335`; tree `bb77342982cfa7dea0fd60151108cee6463657b8`; Framework-Source tree `5a6a711861bbbc1e6f9315361921e28625cce854`.
+- **Evidence:** `EVD-101 / EVD-102 / CHG-101 / CHG-102`; `docs/superpowers/evidence/2026-09-13-task-051-risk-tiered-feature-delivery-fast-path-release-full.md`.
+- **Publication State:** `PUSHED_TO_REMOTE_BRANCH / PR_32_OPEN / NOT_MERGED / NOT_RELEASED`.
+- **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; future post-merge 1.17 reconciliation requires separate authority.
+- **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — OPEN against `main`; merge not authorized/performed.
+- **Exact Next Step:** none under current authority; PR #32 merge/tag/release/self-host reconciliation remain separately governed.
+## Task #52 — Project Upgrade One-Session Fast Path
+
+- **ID:** `TASK-052`
+- **Status:** `DONE`
+- **Type:** Framework architecture / Project Upgrade workflow acceleration
+- **Source:** ACTOR-001 explicit Goal on 2026-09-13 to design and implement a one-session compatible Project Upgrade path.
+- **depends_on:** `[TASK-051]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
+- **Problem:** compatible upgrades remained slow because comparison, prepare intent, Preview, approval, mutation persistence, verification, and canonical self-host reconciliation required redundant rounds even when candidate/evidence/authority were unchanged.
+- **Approved Architecture:** Single-Preview / Single-Approval Upgrade Transaction; one bounded mutation batch; proof-domain separation between Framework Release Acceptance and Project Upgrade Acceptance; exact release-evidence reuse for FAST_PATH and bounded compatible ASSESSED_PATH; selective recovery; canonical self-host chaining when exact Preview and authority cover integration + Root reconciliation.
+- **Target Release:** Framework `1.18.0` / Schema `1.0.0` / release format `3`.
+- **Stacked Work:** deliberate child of TASK-051 terminal local commit `26fbb3c0ff298b183f23c7dabe5132dc11002185`; parent Framework 1.17 candidate/evidence remains preserved and unpublished.
+- **Goal / Authority / Action / Envelope:** `OUT-020 ACHIEVED / AUTH-020 TERMINATED / ACT-032 DONE / ENV-020 EXPIRED`.
+- **Design:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-project-upgrade-one-session-fast-path-design.md`; spec commit `5adc2ed`; self-review `15/15 PASS`.
+- **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-project-upgrade-one-session-fast-path.md`; plan commit `07f8026`; self-review `16/16 PASS`; Inline Execution.
+- **Implementation Commits:** `27485c2` RED scenarios; `a33ced7` normative contract; `85b98f4` propagation; `e3f1f96` pressure expectation forward-port; `bc36a80` + `48212bb` independent-review fixes/current-surface alignment.
+- **Review:** `Codex-Independent-Acceptance-Review`; `15/15 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
+- **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 31/31 PASS → AFFECTED 43/43 PASS → RELEASE_FULL 44/44 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `48212bb4f4b577af482afcf5758424eee2f7e036`; tree `601f9ad5041cec9f53188c19998960b93878c534`; Framework-Source tree `929065ccac7e3ecf25fda09de5326bb40c4f8f9c`.
+- **Evidence:** `EVD-104 / CHG-104`; `docs/superpowers/evidence/2026-09-13-task-052-project-upgrade-one-session-fast-path-release-full.md`.
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / PUSHED / PR_32_OPEN / NOT_MERGED`.
+- **Publication State:** `PUSHED_TO_REMOTE_BRANCH / PR_32_OPEN / NOT_MERGED / NOT_RELEASED`.
+- **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; actual 1.18 canonical self-host promotion requires separate exact authority.
+- **Reviewer Side-Effect Handling:** reviewer-invented TASK-053 and residual-latency registration are not authorized Project backlog and are excluded from terminal truth.
+- **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — OPEN against `main`; merge not authorized/performed.
+- **Publication Evidence:** `EVD-105 / CHG-105`; `docs/superpowers/evidence/2026-09-13-task-051-task-052-pr32-publication.md`.
+- **Exact Next Step:** none under current authority; PR #32 merge/tag/release/self-host reconciliation remain separately governed.

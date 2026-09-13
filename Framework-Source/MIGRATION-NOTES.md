@@ -4,7 +4,62 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.15.0 → 1.16.0 (current)
+## 1.17.0 → 1.18.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.18.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-052 Project Upgrade One-Session Fast Path.
+- `[Project Upgrade]` performs fresh comparison, cumulative assessment, `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED` classification, one-session eligibility, and exact Preview in one read-only pass; the separate prepare prompt is removed.
+- One explicit Human mutation approval bound to the exact Preview/candidate remains mandatory before Material mutation.
+- Eligible `FAST_PATH` and bounded compatible `ASSESSED_PATH` may execute as one bounded successor/archive/routing transaction; `MAJOR_MIGRATION_REQUIRED` remains outside the one-session fast path.
+- Framework Release Acceptance and Project Upgrade Acceptance are separate proof domains. Exact valid state-bound `RELEASE_FULL` evidence may be reused for an unchanged target, while Project-specific affected/result verification remains mandatory.
+- Evidence mismatch, target change, stale/contradictory evidence, or unbounded impact invalidates reuse. Consuming-upgrade `RELEASE_FULL` budget is zero with exact reusable proof and at most one when genuinely required on the exact unchanged candidate.
+- Material Preview/candidate/scope/authority/rollback changes require re-Preview/reapproval; deterministic revision/timestamp/filename/routing values implied by the approved transaction do not.
+- Interruption recovery reuses still-valid comparison/assessment/release evidence and reconstructable durable state; unknown shared/non-idempotent results use `RESULT_VERIFICATION_REQUIRED` before retry.
+- `INTEGRATION_GATE` remains mandatory immediately before applicable mutable-target integration/publication.
+- Canonical ProjectFramework integration and self-host reconciliation may chain only when one exact Preview and authority cover both; missing Root authority stops at `RECONCILIATION_REQUIRED`.
+- Existing initialized Projects do not auto-adopt 1.18. No runtime updater, CI/CD mutator, bot, scheduler, router, validator/CLI, or new state/Stable-ID family is introduced.
+
+### Upgrade checklist
+
+1. Preserve current Project identity/pin, Project-specific truth/rules, Stable IDs, bindings, history, and rollback basis until the exact Preview is approved.
+2. Run `[Project Upgrade]` to produce cumulative assessment + exact Preview without a separate prepare round-trip.
+3. Approve the exact mutation transaction once; reapprove only after material approved assumptions change.
+4. Reuse exact Framework release proof only when target tree/content and material assumptions match committed state-bound evidence.
+5. Always run Project affected/result verification after mutation, even when release proof is reused.
+6. Preserve `INTEGRATION_GATE` before mutable-target action and all independent publication/Root/Binding/security authority gates.
+7. Verify scenarios `505–528` while preserving cumulative scenarios `1–528` contiguous/unique.
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.17.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-051 Risk-Tiered Feature Delivery Fast Path.
+- `LOW | MEDIUM | HIGH` is Derived Delivery Tier workflow vocabulary over canonical `R0–R3`; it never replaces Risk or grants authority.
+- Tier derivation composes Risk, affected scope, blast radius, sensitive surfaces, rollback, uncertainty, and evidence quality; uncertainty escalates rather than silently downgrades.
+- Common invariant preflight permits state-bound reuse of still-valid stable governance/location evidence while volatile Git state and applicable R2/R3 authority/target prerequisites remain fresh-check obligations.
+- Review floor is LOW not-required by default, MEDIUM conditional, HIGH required absent an explicit governed exact-scope waiver; reviewer unavailability is never a waiver.
+- Task verification is tiered while acceptance boundaries remain distinct: Task affected verification/completion commit ≠ `RELEASE_FULL` ≠ `INTEGRATION_GATE`.
+- One-session LOW delivery is an objective, not an SLA; redundant rereads/checkpoints/prompts are reduced without removing safety gates.
+- Interruption recovery selectively invalidates evidence; unknown potentially-applied non-idempotent results use `RESULT_VERIFICATION_REQUIRED` before retry.
+- Parallel mutation requires positive independence evidence plus final combined-candidate verification; HIGH mutation is serialized by default.
+- Direct Git/GitHub may handle repository-native state when tool policy/identity/authority allow; MCP is not a prerequisite merely for nonexistent runtime/process/UI state.
+- No new Project Source file is required in consuming Projects; optional `Project-Execution/` profiles remain stricter overlays when present.
+- Existing initialized Projects do not auto-adopt 1.17 and remain pinned until governed Direct-to-Latest `[Project Upgrade]`.
+- No runtime service, CI/CD, bot, router, watcher, scheduler, validator/CLI, policy engine, credential store, new Risk family, Stable-ID family, or Registered Command is introduced.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's local pin, current truth, Stable IDs, Project-specific rules, bindings, and history until governed promotion.
+2. Preserve canonical `R0–R3`, AUTH/location/trust/disclosure/secret/destructive/production/publication gates; Derived Delivery Tier may only make workflow stricter.
+3. Adopt `LOW | MEDIUM | HIGH` only as derived feature-delivery classification; do not materialize a parallel Risk or Stable-ID family.
+4. Preserve any stricter active optional tool/capability/trust profile; absence of an optional profile creates no new authority.
+5. Preserve completion-commit semantics plus distinct `RELEASE_FULL` and `INTEGRATION_GATE` boundaries.
+6. Do not synthesize push/PR/merge/release/deployment authority from delivery tier or direct Git/GitHub eligibility.
+7. Verify current guidance, maintained starters, and pressure scenarios `473–504` while preserving scenarios `1–504` contiguous/unique.
+8. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+
+---
+
+## 1.15.0 → 1.16.0 (previous)
 
 ### Affected distribution surfaces
 

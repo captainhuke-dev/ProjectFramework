@@ -1,10 +1,20 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.16.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.18.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.18.0 Project Upgrade One-Session Fast Path Semantics
+
+Framework `1.18.0` makes compatible `[Project Upgrade]` use one read-only comparison/assessment/Preview pass, one explicit mutation approval, and one bounded mutation transaction. FAST_PATH and bounded compatible ASSESSED_PATH may qualify; MAJOR does not. Exact valid release proof may be reused only with exact target/evidence binding, while Project-specific affected verification and `INTEGRATION_GATE` remain mandatory where applicable.
+
+Material approved-assumption changes require re-Preview/reapproval; deterministic generated metadata does not. Canonical self-host chaining never creates Root/publication authority. Existing initialized Projects remain pinned until explicit upgrade, and no runtime updater/CI/bot/router/validator is introduced.
+
+## Framework 1.17.0 Risk-Tiered Feature Delivery Fast Path Semantics
+
+Framework `1.17.0` keeps Schema `1.0.0` and derives `LOW | MEDIUM | HIGH` delivery tiers over canonical `R0–R3`. LOW uses bounded one-session-focused workflow, affected verification and completion commit; MEDIUM expands affected checks and conditionally requires independent review; HIGH retains sensitive-surface approval, independent review, recovery, and strong postflight. Stable state-bound evidence reuse never removes volatile Git/R2/R3 fresh checks. Task acceptance remains distinct from `RELEASE_FULL` and `INTEGRATION_GATE`; direct Git/GitHub eligibility grants no publication authority. Existing initialized Projects do not auto-adopt 1.17, and no runtime/CI/bot/router/validator/new Stable-ID family is introduced.
 
 ## Framework 1.16.0 Project Path Workspace & MCP Routing Semantics
 

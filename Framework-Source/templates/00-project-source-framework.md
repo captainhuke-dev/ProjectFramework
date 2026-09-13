@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.16.0"
+project_source_framework_version: "1.18.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -303,7 +303,7 @@ Framework `1.3.1` registers bracketed Project inspection commands. Literal `[` a
 ```text
 [Project Status]  : fresh read-only Project/Task/Git/verification/blocker dashboard
 [Project Path]    : show/verify configured Project path values and route explicit change requests through existing location governance
-[Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Project Upgrade] : fresh-compare current vs target, materialize the exact read-only upgrade Preview, then require one explicit mutation approval
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
@@ -321,7 +321,7 @@ For recognized commands, run **Command Contract Completeness Gate → Response C
 
 TASK-032 remediation is a governed workflow, not a command. A repair proposal resolves source finding/evidence, affected scope, canonical owner/home, desired state, `R0–R3`, applicable authority/approval, freshness prerequisites, ordered actions, rollback/reversibility, direct result verification, affected re-audit/result confirmation, and evidence/lifecycle updates. Reuse existing `ISS-* / DRIFT-* / CONFLICT-* / MIG-* / CR-* / ACT-* / AUTH-* / ENV-*` and Decision/Requirement homes. Semantic conflict cannot be auto-repaired; R2/R3 and other explicit gates remain independent; `ACT DONE ≠ repair outcome verified`; re-audit never self-authorizes further mutation. No repair command or remediation Stable-ID family is created.
 
-`[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. `[Project Upgrade]` keeps the active local `FRAMEWORK-001` pin as current authority, fresh-resolves canonical upstream as target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and asks before preparing an upgrade when a verified difference exists. A positive answer authorizes assessment/Preview only, not Project mutation; persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
+`[Project Path]` treats angle-bracket values such as `<STORAGE>` / `<WS>` as unset, never literal paths or fallback authority. `[Project Upgrade]` keeps the active local `FRAMEWORK-001` pin as current authority, fresh-resolves canonical upstream as target evidence, reports `UP_TO_DATE | UPGRADE_AVAILABLE | SOURCE_DIVERGENCE | VERIFICATION_REQUIRED`, and when a verified difference exists performs cumulative assessment/classification/one-session eligibility plus the exact Preview in the same read-only pass. One explicit mutation approval bound to that Preview/candidate remains mandatory; persistent path/binding changes retain existing explicit approval + Root Governance revision flow.
 
 `[Session]` uses bounded `ENV-*` records in `15 Action Registry` for declare/show/close session/task scope; it never lifts fail-closed gates.
 
@@ -613,6 +613,18 @@ Default:
 
 Project-Specific Rules ทำให้ stricter ได้. Before R2/R3 mutation, fresh-read authority.
 
+### 12.1 Framework 1.17 Risk-Tiered Feature Delivery Fast Path
+
+`LOW | MEDIUM | HIGH` is Derived Delivery Tier workflow vocabulary over canonical `R0 / R1 / R2 / R3`; it is not Risk authority and may only make workflow stricter. LOW is bounded R0/R1 feature work with focused affected verification and completion commit; R2 is never LOW; R3 and controlling Root/Binding/bootstrap/security/schema/production/cross-Project/release-review-verification semantics are HIGH. MEDIUM covers bounded broader/R2 work.
+
+Still-valid stable governance/location evidence may be reused while bound assumptions remain unchanged; volatile Git state and applicable R2/R3 authority/target checks remain fresh. LOW review is not required by default, MEDIUM is conditional, HIGH is required absent an explicit governed exact-scope waiver. Task acceptance remains distinct from `RELEASE_FULL` and `INTEGRATION_GATE`. Parallel mutation requires proven independence plus combined-candidate verification; HIGH mutation serializes by default. Direct Git/GitHub eligibility never creates publication authority. Existing initialized Projects adopt 1.17 only through governed upgrade; no runtime/CI/bot/router/validator or new Stable-ID family is created.
+### 12.2 Framework 1.18 Project Upgrade One-Session Fast Path
+
+`[Project Upgrade]` fresh-resolves current/target state, performs cumulative assessment and exact Preview in one read-only pass, then requires one explicit mutation approval. Eligible `FAST_PATH` and bounded compatible `ASSESSED_PATH` may execute as one bounded transaction; `MAJOR_MIGRATION_REQUIRED` remains outside the fast path.
+
+Exact valid Framework `RELEASE_FULL` proof may be reused only when the target tree/content and assumptions match; Project affected/result verification remains mandatory and `INTEGRATION_GATE` remains separate before mutable-target actions. Material Preview deltas require reapproval, while deterministic generated revision/timestamp/filename/routing values do not. Brownfield no-auto-upgrade and all Root/Binding/publication authority gates remain binding.
+
+
 ## 13. Preflight and Postflight
 
 READ PREFLIGHT: identity, `00`, `01`, `03`, scope, truth, freshness, blockers.
@@ -832,7 +844,7 @@ GREENFIELD BROWNFIELD IMPORT
 - BROWNFIELD → preserve-first; ห้าม move/rename/delete legacy source อัตโนมัติ
 - IMPORT → quarantine `import-staging/` ก่อน promotion
 
-Ordinary initialized **consuming Projects** pin Framework/Schema and never auto-upgrade. Framework `1.3.0` uses Direct-to-Latest / Cumulative Target-State Upgrade for approved consuming-Project upgrades: compare current reconstructable Project directly with the selected target, migrate only the cumulative semantic delta, preserve Stable IDs/current truth/Project-Specific Rules/bindings/history, and do not require intermediate-release execution. Classify exactly `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. Skipping intermediate execution never skips assessment, Preview/approval, rollback, validation, evidence, or promotion. The latest starter is not a destructive rebuild default. Use affected verification during work and one final `RELEASE_FULL` on the unchanged target candidate.
+Ordinary initialized **consuming Projects** pin Framework/Schema and never auto-upgrade. Direct-to-Latest / Cumulative Target-State Upgrade compares current reconstructable Project directly with the selected target, migrates only the cumulative semantic delta, preserves Stable IDs/current truth/Project-Specific Rules/bindings/history, and does not require intermediate-release execution. Classify exactly `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. Skipping intermediate execution never skips assessment, exact Preview/approval, rollback, validation, evidence, or promotion. The latest starter is not a destructive rebuild default. Use mandatory Project-specific affected/result verification; reuse exact valid state-bound Framework release proof for eligible FAST/bounded ASSESSED targets, otherwise run at most one final `RELEASE_FULL` on the exact unchanged target candidate when genuinely required.
 
 Canonical ProjectFramework self-hosting is the narrow exception. When this Project is freshly verified as the Framework release descriptor's canonical repository/branch and a verified Framework release has already merged there, a mismatched active self-host Root/Bootstrap is `RECONCILIATION_REQUIRED`. Under separate explicit Root authority, reconcile `FRAMEWORK-001`, applicable active Project Source metadata/routing, and `PROJECT-BOOTSTRAP.md` to that exact merged release while preserving UUID/Stable IDs/Project Location Binding/history, then verify the resulting release/tree/routing state. That canonical same-release self-host transition does not require another `[Project Upgrade]`; unresolved evidence fails closed. “Automatic” means mandatory governed post-merge workflow behavior only—never a bot, daemon, watcher, Git hook, CI/CD mutation job, scheduler, runtime auto-updater, validator/CLI, or background service.
 
