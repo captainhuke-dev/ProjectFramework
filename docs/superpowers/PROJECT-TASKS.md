@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-051 IN_PROGRESS` only (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
+- Current backlog: `TASK-052 IN_PROGRESS`; `TASK-053 TODO` (`TODO=1`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1282,3 +1282,28 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Gate:** architectural written-spec user review is required before implementation planning; no implementation has started.
 - **Publication Boundary:** local design/plan/implementation/verification commits only under current Goal; push/PR/merge/tag/GitHub Release and actual self-host Root promotion remain separately governed.
 - **Exact Next Step:** ACTOR-001 reviews the written spec; after approval, invoke writing-plans for the implementation plan.
+
+## Task #53 — Project Upgrade Residual Latency / Transaction Mode Optimization
+
+- **ID:** `TASK-053`
+- **Status:** `TODO`
+- **Type:** Framework architecture / governance-transaction performance optimization
+- **Source:** ACTOR-001 explicit approval on 2026-09-13 to register the observed problem that consuming Projects using `[Project Upgrade]` still take disproportionately long.
+- **depends_on:** `[TASK-052]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `TODO / WAIT_FOR_TASK052_STABLE_BASELINE`
+- **Problem:** even with TASK-052 One-Session Fast Path as the immediate foundation, real consuming-Project upgrades can still spend excessive elapsed time on repeated namespace/revision scans, intermediate Project Source rotations, Manifest rebuilds, redundant verification, approval round-trips, recovery churn, and freshness rechecks.
+- **Approved Direction:** implement and measure the ProjectFramework Transaction Mode optimization roadmap as the next optimization layer rather than creating a competing upgrade fast path. Preserve canonical `R0–R3`, authority, Root/Binding, disclosure, destructive/Production/publication gates, Stable-ID non-recycling, reconstructability, rollback, final `RELEASE_FULL` rules, and fresh `INTEGRATION_GATE`.
+- **Primary Roadmap:** `docs/superpowers/plans/2026-09-13-projectframework-transaction-mode-optimization-roadmap.md`.
+- **Follow-on Roadmap:** `docs/superpowers/plans/2026-09-13-projectframework-structured-core-generated-governance-roadmap.md` — Option 3 remains gated until Transaction Mode is implemented and measured and residual synchronization cost is proven material.
+- **Registration Note:** `docs/superpowers/plans/2026-09-13-project-upgrade-residual-latency-todo.md`.
+- **Measurement Contract:** capture practical governance-friction counters including `owner_approval_count`, `preview_count`, `namespace_scan_count`, `reservation_reallocation_count`, `primary_rotation_count`, `manifest_generation_count`, `checkpoint_commit_count`, `release_full_count`, `integration_gate_count`, `publication_round_trip_count`, and `elapsed_human_wait_points`.
+- **Initial Target for normal compatible `[Project Upgrade]`:** one comparison/assessment; one exact Preview; one mutation approval; one namespace/revision reservation; zero normal reservation reallocations; one bounded mutation transaction; one final Manifest generation; `RELEASE_FULL <= 1` and preferably `0` when exact reusable proof is contract-valid; one completion commit; one fresh Integration Gate; one publication/readback sequence when authorized.
+- **Implementation Sequence:** Phase A measure current TASK-051/TASK-052 workflows → Phase B reservation + transaction-scoped single writer → Phase C artifact/Manifest scaling → Phase D approval + verification budget → Phase E adoption and before/after measurement.
+- **Acceptance Criteria:** normal compatible upgrade materially reduces approvals/checkpoints/scans/verification runs; no per-document checkpoint absent a real continuation boundary; unchanged candidate does not regenerate Manifest or rerun `RELEASE_FULL`; interruption recovery reuses still-valid evidence; collision races are prevented without ghost ID consumption; Brownfield remains no-auto-adopt; mandatory HIGH/root/security/destructive gates remain intact.
+- **Option 3 Gate:** do not promote Structured Core + Generated Governance to implementation merely to address current latency; first prove Transaction Mode residual friction and then pilot deterministic Manifest generation if evidence justifies it.
+- **Implementation Boundary:** Task registration only. Do not implement Transaction Mode, Structured Core, generated governance, runtime services, daemons, schedulers, watchers, automatic consuming-Project mutation, or publication as part of this registration.
+- **Exact Next Step:** after TASK-052 reaches a stable verified baseline, execute TASK-053 Phase A friction measurement on representative consuming-Project `[Project Upgrade]` workflows and use those measurements to scope the implementation design.
