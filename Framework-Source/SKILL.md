@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.16.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.17.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260912-task049-canonical-self-hosting.md` — latest amendment: TASK-049 Canonical Self-Hosting Release Reconciliation
+- `references/framework-governance-amendment-260913-task051-feature-delivery-fast-path.md` — latest amendment: TASK-051 Risk-Tiered Feature Delivery Fast Path
+- `references/framework-governance-amendment-260912-task049-canonical-self-hosting.md` — previous amendment: TASK-049 Canonical Self-Hosting Release Reconciliation
 - `references/framework-governance-amendment-260912-task048-project-path-workspace-mcp-routing.md` — previous amendment: TASK-048 Project Path Workspace & MCP Routing
 - `references/framework-governance-amendment-260906-task045-response-close-next-goal.md` — previous amendment: TASK-045 Response Close + Next Goal
 - `references/framework-governance-amendment-260903-federated-change-intelligence.md` — previous amendment: Federated Change Intelligence Suite
@@ -148,6 +149,28 @@ INTEGRATION_GATE
 ```
 
 These are workflow vocabulary only. `TASK_LOCAL_FAST` verifies affected scope before Task completion. `CHECKPOINT_INTEGRITY` verifies durable continuation; **Logical Checkpoint ≠ RELEASE_FULL**. `RELEASE_FULL` runs once on the completed release/candidate state. `INTEGRATION_GATE` re-resolves Canonical Integration Target/Base Freshness and prior evidence validity. Fresh state-bound evidence may be reused while candidate/dependency/target assumptions remain materially unchanged; selectively invalidate affected evidence when assumptions change, and escalate when impact cannot be bounded safely. Exact fast-forward to an already verified candidate normally needs resulting-state confirmation rather than an unconditional full rerun.
+
+### Risk-Tiered Feature Delivery Fast Path
+
+Framework `1.17.0` operationalizes feature delivery through a **Derived Delivery Tier**: `LOW | MEDIUM | HIGH`. Canonical Risk remains `R0 / R1 / R2 / R3`; delivery tier never grants authority or lowers Risk/binding/security/publication gates.
+
+For every Material feature:
+
+1. Resolve the common invariant preflight once: Project/`FRAMEWORK-001`, exact repository/workspace/implementation source, active Goal/AUTH/ENV, affected scope/dependencies/sensitive surfaces, rollback, and current Git state.
+2. Reuse still-valid state-bound stable governance/location evidence while exact revisions and material assumptions are unchanged. Fresh-observe volatile Git state; fresh-read applicable R2/R3 authority immediately before mutation; fresh-check mutable integration target at `INTEGRATION_GATE`.
+3. Derive the tier: LOW only for bounded R0/R1 completion actions with low uncertainty; MEDIUM for bounded broader R1/R2 work; HIGH for R3, destructive/irreversible, sensitive authority/security/bootstrap/binding/schema/production/cross-Project/review-verification-control semantics, or unbounded/high uncertainty.
+4. Apply review floor: LOW independent review not required by default; MEDIUM optional unless a material trigger makes it required; HIGH independent review required absent an explicit governed waiver. Reviewer unavailable is not waiver.
+5. Apply Task verification floor: LOW focused `TASK_LOCAL_FAST`; MEDIUM broader affected/dependency verification; HIGH comprehensive affected/risk verification plus required review/approval/postflight. Every Material Git-backed Task still needs an observed durable completion commit before DONE.
+6. Reclassify upward immediately if scope, Risk, sensitive surface, dependency impact, rollback, or uncertainty grows. Do not split work merely to avoid a higher tier.
+7. Use Logical Checkpoints only when continuation durability is actually needed. For uninterrupted LOW work, completion commit + final lifecycle/evidence may be the principal checkpoint; `CHECKPOINT_INTEGRITY` still replaces blanket release regression at a checkpoint.
+8. After interruption, fresh-read Git state and reuse only evidence bound to unchanged state. A non-Git connection loss does not automatically invalidate unchanged Git evidence. Unknown possibly-applied side effect → `RESULT_VERIFICATION_REQUIRED` before retry.
+9. Parallelize independent read/test/review work freely. Parallel mutation requires proven independence and final affected verification of the combined candidate; HIGH mutation is serialized by default.
+10. Stop successfully at local Task DONE when publication authority is absent. Direct Git/GitHub may be repository-native when tool policy/identity/authority allow, but route eligibility never grants push/PR/merge/publication permission.
+
+Task acceptance is not release acceptance. `RELEASE_FULL` still runs at the final unchanged Framework Release Candidate/equivalent semantic acceptance boundary; `INTEGRATION_GATE` still runs before applicable mutable-target integration/publication. The one-session LOW delivery objective is not an SLA.
+
+For bounded LOW changes to an existing flow, ProjectFramework itself does not require a standalone architecture spec/implementation plan when the active Task/Goal already provides sufficient intent and acceptance criteria. Higher-level product/tool development gates remain binding. Existing Brownfield Projects do not auto-adopt 1.17.
+
 
 ### Response Close Completeness Gate
 

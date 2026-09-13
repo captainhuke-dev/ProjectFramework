@@ -1,5 +1,5 @@
 release_format_version: 3
-framework_version: "1.16.0"
+framework_version: "1.17.0"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
@@ -12,7 +12,7 @@ entrypoints:
   skill: "SKILL.md"
   project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260912-task049-canonical-self-hosting.md"
+latest_framework_amendment: "references/framework-governance-amendment-260913-task051-feature-delivery-fast-path.md"
 migration_notes: "MIGRATION-NOTES.md"
 upgrade_preview_template: "templates/upgrade-preview.md"
 core_governance: "references/core-governance-rules.md"

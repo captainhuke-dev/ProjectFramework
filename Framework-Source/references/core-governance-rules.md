@@ -877,6 +877,60 @@ Verification depth follows affected scope, dependency impact, and `R0 / R1 / R2 
 
 Fresh state-bound evidence MAY be reused while its proven candidate/dependency/target assumptions remain materially unchanged. Candidate/source changes, materially changed dependencies, semantic target movement, changed acceptance criteria, contradicting evidence, or unbounded uncertainty invalidate affected evidence. If impact cannot be bounded safely, verification escalates.
 
+### 16.2A Risk-Tiered Feature Delivery Fast Path
+
+Framework `1.17.0` adds `LOW | MEDIUM | HIGH` as a **Derived Delivery Tier** over canonical `R0 / R1 / R2 / R3`, affected scope, dependency blast radius, sensitive-surface flags, rollback, and uncertainty. Delivery tier is workflow vocabulary only: it is not Risk authority, lifecycle, Epistemic Status, Git freshness, or a Stable-ID family. It MAY escalate required workflow and MUST NOT lower any canonical Risk, AUTH, binding, trust, disclosure, secret, destructive, production, publication, or platform/tool gate.
+
+Classify the bounded outcome by the highest required tier:
+
+- **LOW** — required completion actions are R0/R1 only; scope is narrow/bounded, identity is verified, rollback is straightforward, affected dependencies are known, no shared/external action is required for local Task DONE, and uncertainty is low.
+- **MEDIUM** — bounded multi-surface/dependency work, broader compatibility impact, non-trivial rollback, or exact-target authorized R2 action. A required R2 action is never LOW; MEDIUM MUST NOT contain a required R3 action.
+- **HIGH** — any required R3 action, destructive/irreversible effect, wide/unbounded/unknown impact, or change to controlling semantics of Root/`FRAMEWORK-001`, Project Location Binding, bootstrap authority/routing, Risk/AUTH/approval, security/trust/disclosure/secrets, Schema/Stable-ID compatibility, production/deployment safety, cross-Project write authority, or release/review/verification gates.
+
+Uncertainty escalates or blocks classification; it never defaults downward. Artificially splitting MEDIUM/HIGH outcomes into LOW fragments to avoid gates is prohibited.
+
+Before Material mutation run a **common invariant preflight** sufficient to resolve active Project authority, exact Project/repository/workspace/Canonical Implementation Source when applicable, active Goal/AUTH/ENV scope, current volatile Git state, affected dependencies/sensitive surfaces, canonical Risk, delivery tier, review/verification floor, rollback route, and stricter active tool/capability/trust/disclosure overlays.
+
+Still-valid state-bound stable authority/location/governance evidence MAY be reused while its bound revision, identity, candidate, dependencies, and material assumptions remain unchanged. Selectively invalidate changed evidence. Always fresh-check volatile Git state before Material Git work, applicable R2/R3 authority immediately before mutation, remote/shared target identity, required reviewer eligibility when stale/material, current target/Base Freshness at `INTEGRATION_GATE`, and R3 resulting state. Unknown validity fails closed to reread/reverification or higher tier.
+
+Minimum review policy:
+
+- LOW → independent review `NOT_REQUIRED` by default unless a stricter active rule applies.
+- MEDIUM → `OPTIONAL` by default; becomes `REQUIRED` for unfamiliar ownership/subsystem, broad semantic coupling, weak verification, concurrency/ordering complexity, security/trust adjacency, material compatibility/migration exposure, important user-facing protocol semantics, hard-to-test assumptions, an active stricter policy, or material acceptance uncertainty.
+- HIGH → independent review `REQUIRED` by default. Reviewer unavailable is not a waiver. A valid governed waiver must be evidence-backed and bounded to the exact scope/action/candidate.
+
+Review evidence is state-bound and is selectively invalidated by candidate/content change, material semantic target movement, conflict/rebase changes, newly discovered dependency impact, changed Requirement/Decision/Risk premise, or changed material reviewer eligibility.
+
+Minimum Task verification policy:
+
+- LOW → `TASK_LOCAL_FAST`/focused affected checks, direct changed-behavior/dependency checks, diff hygiene, direct resulting-state confirmation, understood working-tree state, and observed durable completion commit before Material Git-backed Task DONE.
+- MEDIUM → broader affected/dependency/invariant verification, any triggered review, direct shared result verification for authorized R2 action, diff hygiene, completion commit, and selective reverification of invalidated evidence.
+- HIGH → comprehensive affected/risk-scoped verification, required independent review absent valid waiver, applicable Preview/explicit approval, fresh authority/target checks, explicit recovery/rollback, strong postflight, and completion commit.
+
+Task acceptance remains distinct from release and integration acceptance:
+
+```text
+Task acceptance                      → tier minimum affected verification
+Logical Checkpoint                   → CHECKPOINT_INTEGRITY when durability is needed
+Release/equivalent semantic accept   → RELEASE_FULL once on the exact final unchanged candidate
+Mutable-target integration/publication → INTEGRATION_GATE
+```
+
+A LOW Task does not require `RELEASE_FULL` solely because it is a feature. A Framework Release Candidate still requires `RELEASE_FULL` even if all contributing Tasks were LOW. `RELEASE_FULL` does not replace the fresh mutable-target `INTEGRATION_GATE`.
+
+For eligible LOW work, one-session delivery SHOULD reuse valid stable evidence, fresh-observe volatile state, implement, run focused checks, self-review, confirm result, create the completion commit, and fresh-read committed/working-tree state without redundant Project-level prompts/checkpoints. One-session delivery is an objective, not an SLA. ProjectFramework itself does not require a separate architectural spec/plan for a bounded LOW existing-flow change when Task/Goal intent and acceptance criteria are already sufficient; higher-level product/tool development gates remain independently binding.
+
+Use Logical Checkpoints only when continuation/handoff/phase transition needs durable state; completion commit plus final lifecycle/evidence may be the main durable checkpoint for uninterrupted LOW work. A non-Git transport/session failure does not by itself invalidate Git evidence bound to an unchanged commit/tree. Unknown possibly-applied non-idempotent side effects use `RESULT_VERIFICATION_REQUIRED`; verify resulting state before retry.
+
+Independent read/test/review work MAY run in parallel against a stable candidate. Parallel mutation requires proven disjoint ownership, no sequencing dependency, no shared external side effect, no coupled safety invariant requiring joint acceptance, known base/candidate identity, and affected verification on the final **combined candidate**. MEDIUM needs stronger independence proof; HIGH mutation is serialized by default. If independence is uncertain, serialize.
+
+Repository-native **direct Git/GitHub** operations MAY be used when exact Project/repository identity, active tool policy, exact action authority, and platform/tool gates permit and no material non-repository runtime/process/UI state must be observed through another owner. ProjectFramework has no application runtime merely because it is a repository; MCP is not required solely to represent nonexistent runtime/process/UI state. Direct Git/GitHub eligibility never grants push/PR/merge/publication authority and never bypasses active tool policy, Risk, disclosure, secrets, or `INTEGRATION_GATE`.
+
+A Material Git-backed Task DONE still requires the intended result, tier-appropriate verification, required review or valid waiver, direct resulting-state confirmation, required evidence, observed durable completion commit(s), and clean/understood working-tree state. `WIP commit ≠ Task DONE`; Task DONE remains distinct from MERGED, PUSHED, RELEASED, artifact publication, and deployment.
+
+Existing Brownfield Projects do not auto-adopt Framework 1.17. They remain pinned and receive this contract only through governed Direct-to-Latest `[Project Upgrade]`. Framework 1.17 creates no runtime delivery engine, scheduler, watcher, queue, CI/CD, merge/release bot, policy engine, validator/CLI, MCP router, credential store, or new Stable-ID family.
+
+
 ### 16.3 Continuation Consistency and Mandatory Response Close
 
 Framework `1.15.0` TASK-045 simplifies the mandatory visible response close while preserving internal continuation and persistence semantics. Chat lifecycle vocabulary remains `CONTINUE_CURRENT_CHAT | START_NEW_CHAT` for Project continuation state and `09 Handoff`; Required Read pointers remain internal routing data when materially needed. Neither is a mandatory visible end-of-response field in Framework 1.15.
