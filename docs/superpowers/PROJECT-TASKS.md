@@ -1238,28 +1238,24 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #51 — Risk-Tiered Feature Delivery Fast Path
 
 - **ID:** `TASK-051`
-- **Status:** `IN_PROGRESS`
-- **Type:** Framework architecture / feature-delivery workflow design
-- **Source Issue:** GitHub Issue `#29` — `TODO: Design risk-tiered Feature Delivery Fast Path`.
+- **Status:** `DONE`
+- **Type:** Framework architecture / feature-delivery workflow design and implementation
+- **Source Issue:** GitHub Issue `#29` — remains `OPEN`; tracker closure/publication was not authorized by AUTH-019.
 - **depends_on:** `[]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `MEDIUM`
-- **readiness:** `DESIGN_DIRECTION_APPROVED / IMPLEMENTATION_AUTHORIZED_BY_GOAL`
-- **Problem:** genuinely low-risk feature work can still traverse release-grade governance/verification/persistence paths and take far longer than necessary.
-- **Required Design Questions:** Low/Medium/High risk and blast radius; minimum authority/location preflight per tier; safe reuse of governance/evidence; per-tier verification and review; when independent review is mandatory; Task DONE evidence; preservation of Preview/explicit approval for governance/bootstrap/root-binding/security/high-risk changes; interruption/recovery; safe parallelism; direct Git/GitHub remote operation policy where no runtime state exists.
-- **Existing Building Blocks:** Framework 1.2.5 progressive verification/evidence reuse; risk-tiered postflight; exact-candidate Integration Gate reuse; capability/independent-review primitives. These reduce redundant work but do not by themselves satisfy Issue #29's feature-delivery fast-path contract.
-- **Implementation State:** `IN_PROGRESS / DESIGN_COMPLETE / PLAN_SELF_REVIEWED / IMPLEMENTATION_READY`; Framework production mutation has not started.
-- **Tracker State:** GitHub Issue #29 remains `OPEN` and now contains the TASK-051 mapping comment from TASK-050.
-- **Goal / Authority / Action / Envelope:** `OUT-019 IN_PROGRESS / AUTH-019 ACTIVE / ACT-031 IN_PROGRESS / ENV-019 ACTIVE`.
-- **Design Direction:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED` - Derived Delivery Tier; authority-gated Continuous Delivery; conditional MEDIUM review; tier + acceptance-boundary verification; state-bound preflight reuse; recommended remaining decisions adopted by user direction.
-- **Target Release:** Framework `1.17.0` / Schema `1.0.0` / release format `3`.
-- **Execution Mode:** isolated branch/worktree `task051-feature-delivery-fast-path` at `E:\GitHub\ProjectFramework\.worktrees\task051-feature-delivery-fast-path`, base `7d7463b`.
-- **Publication Boundary:** local verified completion only; push/PR/merge/tag/GitHub Release are not authorized by AUTH-019.
-- **Design Spec:** `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
-- **Spec Self-Review:** `TASK051_SPEC_SELF_REVIEW 13/13 PASS`; scenarios `473-504` collision-free after verified contiguous `1-472`.
-- **Implementation Plan:** `docs/superpowers/plans/2026-09-13-task051-risk-tiered-feature-delivery-fast-path.md`.
-- **Plan State:** `SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_OUT-019`; `TASK051_PLAN_SELF_REVIEW 18/18 PASS`.
-- **Execution Mode:** `INLINE_EXECUTION_IN_ISOLATED_WORKTREE`; independent review remains mandatory before candidate acceptance unless an explicit governed waiver is later supplied.
-- **Exact Next Step:** execute TDD RED scenarios `473-504` before production Framework edits.
+- **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / NOT_PUBLISHED`.
+- **Goal / Authority / Action / Envelope:** `OUT-019 ACHIEVED / AUTH-019 TERMINATED / ACT-031 DONE / ENV-019 EXPIRED`.
+- **Design:** `USER_APPROVED_FINAL_DESIGN / SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
+- **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-task051-risk-tiered-feature-delivery-fast-path.md`.
+- **Implementation Commits:** `bff9d39` RED scenarios; `fc0859e` normative contract; `008fc93` propagation/frozen candidate.
+- **Review:** independent reviewer `e289f236-6dee-46fa-83b6-d0335fea12a5`; `10/10 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
+- **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 34/34 PASS → AFFECTED 48/48 PASS → RELEASE_FULL 49/49 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `008fc934a84d595d163a4bc25d974fcd35bac335`; tree `bb77342982cfa7dea0fd60151108cee6463657b8`; Framework-Source tree `5a6a711861bbbc1e6f9315361921e28625cce854`.
+- **Evidence:** `EVD-101 / EVD-102 / CHG-101 / CHG-102`; `docs/superpowers/evidence/2026-09-13-task-051-risk-tiered-feature-delivery-fast-path-release-full.md`.
+- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
+- **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; future post-merge 1.17 reconciliation requires separate authority.
+- **Exact Next Step:** none for local TASK-051 completion.
