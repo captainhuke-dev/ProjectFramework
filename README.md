@@ -27,10 +27,18 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.16.0**
+- Project Source Framework: **1.17.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.17.0 Risk-Tiered Feature Delivery Fast Path
+
+Framework `1.17.0` adds `LOW | MEDIUM | HIGH` as a **Derived Delivery Tier** over canonical `R0–R3`; it does not replace Risk or grant authority. LOW favors a one-session objective with focused affected verification and an observed completion commit. MEDIUM broadens affected/dependency checks and conditionally requires independent review. HIGH preserves sensitive-surface approval, review, recovery, and strong postflight requirements.
+
+Stable governance/location evidence may be reused only while its bound state and assumptions remain valid; volatile Git state plus applicable R2/R3 prerequisites remain fresh-check obligations. Task acceptance remains separate from release/integration acceptance: `RELEASE_FULL` still verifies the exact final unchanged Release Candidate/equivalent semantic acceptance point, and `INTEGRATION_GATE` still fresh-resolves mutable target/Base Freshness/evidence validity before authorized integration/publication.
+
+Repository-native direct Git/GitHub may be used when identity, active tool policy, exact action authority, and platform gates permit. MCP is not retained merely to represent nonexistent ProjectFramework runtime/process/UI state. Fast Path creates no runtime delivery engine, CI/CD, merge bot, router, watcher, scheduler, policy engine, validator/CLI, new Risk family, Stable-ID family, or Registered Command.
 
 ## Framework 1.16.0 Project Path Workspace & MCP Routing
 

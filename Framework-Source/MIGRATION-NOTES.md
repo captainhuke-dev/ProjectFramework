@@ -4,7 +4,38 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 
 ---
 
-## 1.15.0 → 1.16.0 (current)
+## 1.16.0 → 1.17.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.17.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-051 Risk-Tiered Feature Delivery Fast Path.
+- `LOW | MEDIUM | HIGH` is Derived Delivery Tier workflow vocabulary over canonical `R0–R3`; it never replaces Risk or grants authority.
+- Tier derivation composes Risk, affected scope, blast radius, sensitive surfaces, rollback, uncertainty, and evidence quality; uncertainty escalates rather than silently downgrades.
+- Common invariant preflight permits state-bound reuse of still-valid stable governance/location evidence while volatile Git state and applicable R2/R3 authority/target prerequisites remain fresh-check obligations.
+- Review floor is LOW not-required by default, MEDIUM conditional, HIGH required absent an explicit governed exact-scope waiver; reviewer unavailability is never a waiver.
+- Task verification is tiered while acceptance boundaries remain distinct: Task affected verification/completion commit ≠ `RELEASE_FULL` ≠ `INTEGRATION_GATE`.
+- One-session LOW delivery is an objective, not an SLA; redundant rereads/checkpoints/prompts are reduced without removing safety gates.
+- Interruption recovery selectively invalidates evidence; unknown potentially-applied non-idempotent results use `RESULT_VERIFICATION_REQUIRED` before retry.
+- Parallel mutation requires positive independence evidence plus final combined-candidate verification; HIGH mutation is serialized by default.
+- Direct Git/GitHub may handle repository-native state when tool policy/identity/authority allow; MCP is not a prerequisite merely for nonexistent runtime/process/UI state.
+- No new Project Source file is required in consuming Projects; optional `Project-Execution/` profiles remain stricter overlays when present.
+- Existing initialized Projects do not auto-adopt 1.17 and remain pinned until governed Direct-to-Latest `[Project Upgrade]`.
+- No runtime service, CI/CD, bot, router, watcher, scheduler, validator/CLI, policy engine, credential store, new Risk family, Stable-ID family, or Registered Command is introduced.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's local pin, current truth, Stable IDs, Project-specific rules, bindings, and history until governed promotion.
+2. Preserve canonical `R0–R3`, AUTH/location/trust/disclosure/secret/destructive/production/publication gates; Derived Delivery Tier may only make workflow stricter.
+3. Adopt `LOW | MEDIUM | HIGH` only as derived feature-delivery classification; do not materialize a parallel Risk or Stable-ID family.
+4. Preserve any stricter active optional tool/capability/trust profile; absence of an optional profile creates no new authority.
+5. Preserve completion-commit semantics plus distinct `RELEASE_FULL` and `INTEGRATION_GATE` boundaries.
+6. Do not synthesize push/PR/merge/release/deployment authority from delivery tier or direct Git/GitHub eligibility.
+7. Verify current guidance, maintained starters, and pressure scenarios `473–504` while preserving scenarios `1–504` contiguous/unique.
+8. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+
+---
+
+## 1.15.0 → 1.16.0 (previous)
 
 ### Affected distribution surfaces
 
