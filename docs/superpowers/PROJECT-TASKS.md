@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-050 IN_PROGRESS` + `TASK-051 TODO` (`TODO=1`, `IN_PROGRESS=1`, `BLOCKED=0`).
+- Current backlog: `TASK-051 TODO` only (`TODO=1`, `IN_PROGRESS=0`, `BLOCKED=0`).
 
 ## Task #18 — `[Project Upgrade]`
 
@@ -1217,25 +1217,24 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #50 — GitHub Issue Backlog Reconciliation Audit
 
 - **ID:** `TASK-050`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** governance / tracker reconciliation / backlog audit
 - **depends_on:** `[TASK-049]`
 - **blocks:** `[]`
 - **enables:** `[TASK-051]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `AUDIT_CLASSIFIED / ISSUE_RECONCILIATION_PENDING`
+- **readiness:** `VERIFIED_COMPLETE / ISSUE_TRACKER_RECONCILED / LOCAL_TERMINAL_PERSISTENCE`
 - **User Goal:** audit GitHub Issues #25/#29 against Framework current state and reconcile Issue tracker with TASK ledger.
 - **Canonical Baseline:** `origin/main@4039be4` after PR #31 merge; active Framework/Project self-host pin `1.16.0`.
-- **Issue #25 Finding:** `RESOLVED_BY_STRONGER_EXISTING_CONTRACT` — TASK-041/current Framework requires bootstrap before first Project-governed response (including read-only/status/diagnostic), preserves `PROJECT-BOOTSTRAP → FRAMEWORK-001 → 01 → 03`, rejects recency/ranking/chat-memory authority promotion, and fails closed for affected Material mutation when authority remains unresolved. No separate vague-request fallback feature remains necessary.
-- **Issue #29 Finding:** `GENUINE_PENDING_BACKLOG` — current progressive verification/evidence reuse/risk-tiered postflight/independent-review primitives do not yet define the complete Low/Medium/High Feature Delivery Fast Path requested by the Issue.
-- **Reconciliation Direction:** close/comment #25 with the evidence-backed resolved/superseded rationale; keep #29 open and map it to TASK-051; do not implement TASK-051 inside TASK-050.
-- **Goal / Authority / Action / Envelope:** `OUT-018 ACTIVE / AUTH-018 ACTIVE / ACT-030 IN_PROGRESS / ENV-018 ACTIVE`.
-- **Evidence / Change:** `EVD-096 / CHG-096`.
-- **Completion Criteria:** tracker readback proves #25 CLOSED and #29 OPEN; #29 references TASK-051; ledger backlog counts are exact; TASK-050 completion commit observed; no TASK-051 implementation/Framework semantic change.
-- **Publication Boundary:** issue tracker mutations are in Goal scope; push/PR/merge of ledger reconciliation is separately governed and not authorized.
-- **Exact Next Step:** commit audit checkpoint, reconcile #25/#29 on GitHub, fresh-read states, then terminalize TASK-050 locally.
-
+- **Issue #25 Result:** `CLOSED / comments=1 / RESOLVED_BY_STRONGER_EXISTING_CONTRACT`; reconciliation comment records that current TASK-041/TASK-042 bootstrap semantics are stronger than the proposal; backend `closed_at=2026-09-13T03:30:48Z`.
+- **Issue #29 Result:** `OPEN / comments=1 / GENUINE_PENDING_BACKLOG`; mapping comment points to `TASK-051 / TODO / DESIGN_REQUIRED / IMPLEMENTATION_NOT_STARTED` and explicitly states TASK-050 does not start implementation.
+- **Goal / Authority / Action / Envelope:** `OUT-018 ACHIEVED / AUTH-018 TERMINATED / ACT-030 DONE / ENV-018 EXPIRED`.
+- **Evidence / Change:** `EVD-096 / EVD-097 / CHG-096 / CHG-097`.
+- **Audit Checkpoint Commit:** `4d1f225ef067d60d4884e54a971214a3281ad304`.
+- **Completion Criteria Met:** tracker readback proves #25 CLOSED and #29 OPEN; #29 explicitly references TASK-051; ledger backlog counts are exact (`TODO=1 / IN_PROGRESS=0 / BLOCKED=0`); TASK-049 canonical integration truth is corrected; no TASK-051 implementation or Framework semantic change occurred; terminal successor set requires fresh post-commit readback before external completion claim.
+- **Publication Boundary:** issue tracker mutations completed under OUT-018; push/PR/merge of this local ledger reconciliation is separately governed and was not authorized/performed.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-050; TASK-051 remains separate TODO.
 ## Task #51 — Risk-Tiered Feature Delivery Fast Path
 
 - **ID:** `TASK-051`
@@ -1251,5 +1250,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Problem:** genuinely low-risk feature work can still traverse release-grade governance/verification/persistence paths and take far longer than necessary.
 - **Required Design Questions:** Low/Medium/High risk and blast radius; minimum authority/location preflight per tier; safe reuse of governance/evidence; per-tier verification and review; when independent review is mandatory; Task DONE evidence; preservation of Preview/explicit approval for governance/bootstrap/root-binding/security/high-risk changes; interruption/recovery; safe parallelism; direct Git/GitHub remote operation policy where no runtime state exists.
 - **Existing Building Blocks:** Framework 1.2.5 progressive verification/evidence reuse; risk-tiered postflight; exact-candidate Integration Gate reuse; capability/independent-review primitives. These reduce redundant work but do not by themselves satisfy Issue #29's feature-delivery fast-path contract.
-- **Implementation State:** `NOT_STARTED`; TASK-050 performs audit/registration only.
+- **Implementation State:** `NOT_STARTED`; TASK-050 audit/reconciliation is complete and did not start TASK-051.
+- **Tracker State:** GitHub Issue #29 remains `OPEN` and now contains the TASK-051 mapping comment from TASK-050.
 - **Exact Next Step:** when selected by a future explicit Goal, brainstorm/approve the risk-tiered design before implementation.
