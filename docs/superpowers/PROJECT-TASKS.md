@@ -1250,7 +1250,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Problem:** genuinely low-risk feature work can still traverse release-grade governance/verification/persistence paths and take far longer than necessary.
 - **Required Design Questions:** Low/Medium/High risk and blast radius; minimum authority/location preflight per tier; safe reuse of governance/evidence; per-tier verification and review; when independent review is mandatory; Task DONE evidence; preservation of Preview/explicit approval for governance/bootstrap/root-binding/security/high-risk changes; interruption/recovery; safe parallelism; direct Git/GitHub remote operation policy where no runtime state exists.
 - **Existing Building Blocks:** Framework 1.2.5 progressive verification/evidence reuse; risk-tiered postflight; exact-candidate Integration Gate reuse; capability/independent-review primitives. These reduce redundant work but do not by themselves satisfy Issue #29's feature-delivery fast-path contract.
-- **Implementation State:** `IN_PROGRESS / DESIGN_COMPLETE / PLAN_REQUIRED`; Framework mutation has not started.
+- **Implementation State:** `IN_PROGRESS / DESIGN_COMPLETE / PLAN_SELF_REVIEWED / IMPLEMENTATION_READY`; Framework production mutation has not started.
 - **Tracker State:** GitHub Issue #29 remains `OPEN` and now contains the TASK-051 mapping comment from TASK-050.
 - **Goal / Authority / Action / Envelope:** `OUT-019 IN_PROGRESS / AUTH-019 ACTIVE / ACT-031 IN_PROGRESS / ENV-019 ACTIVE`.
 - **Design Direction:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED` - Derived Delivery Tier; authority-gated Continuous Delivery; conditional MEDIUM review; tier + acceptance-boundary verification; state-bound preflight reuse; recommended remaining decisions adopted by user direction.
@@ -1259,4 +1259,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication Boundary:** local verified completion only; push/PR/merge/tag/GitHub Release are not authorized by AUTH-019.
 - **Design Spec:** `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
 - **Spec Self-Review:** `TASK051_SPEC_SELF_REVIEW 13/13 PASS`; scenarios `473-504` collision-free after verified contiguous `1-472`.
-- **Exact Next Step:** write and self-review the implementation plan.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-13-task051-risk-tiered-feature-delivery-fast-path.md`.
+- **Plan State:** `SELF_REVIEWED / EXECUTION_AUTHORIZED_BY_OUT-019`; `TASK051_PLAN_SELF_REVIEW 18/18 PASS`.
+- **Execution Mode:** `INLINE_EXECUTION_IN_ISOLATED_WORKTREE`; independent review remains mandatory before candidate acceptance unless an explicit governed waiver is later supplied.
+- **Exact Next Step:** execute TDD RED scenarios `473-504` before production Framework edits.
