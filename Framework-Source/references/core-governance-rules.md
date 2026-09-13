@@ -1008,7 +1008,7 @@ Initial registry:
 ```text
 [Project Status] : fresh-read Project identity, Task state, Git sync/working-tree state, verification, blockers, and health
 [Project Path]   : show/verify configured bootstrap path values and route explicit path-change requests through existing location governance
-[Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Project Upgrade] : fresh-compare current vs target, materialize the exact read-only upgrade Preview, then require one explicit mutation approval
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority

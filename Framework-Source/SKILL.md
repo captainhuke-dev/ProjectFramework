@@ -9,7 +9,7 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.17.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.18.0 / Schema 1.0.0**.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +18,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260913-task051-feature-delivery-fast-path.md` — latest amendment: TASK-051 Risk-Tiered Feature Delivery Fast Path
+- `references/framework-governance-amendment-260913-task052-project-upgrade-one-session-fast-path.md` — latest amendment: TASK-052 Project Upgrade One-Session Fast Path
+- `references/framework-governance-amendment-260913-task051-feature-delivery-fast-path.md` — previous amendment: TASK-051 Risk-Tiered Feature Delivery Fast Path
 - `references/framework-governance-amendment-260912-task049-canonical-self-hosting.md` — previous amendment: TASK-049 Canonical Self-Hosting Release Reconciliation
 - `references/framework-governance-amendment-260912-task048-project-path-workspace-mcp-routing.md` — previous amendment: TASK-048 Project Path Workspace & MCP Routing
 - `references/framework-governance-amendment-260906-task045-response-close-next-goal.md` — previous amendment: TASK-045 Response Close + Next Goal
@@ -298,7 +299,7 @@ Registered Project command identity requires literal brackets; matching inside b
 ```text
 [Project Status] : fresh Project/Task/Git/verification/blocker dashboard
 [Project Path]   : fresh-verify Framework/Git/Storage, Develop/Production workspaces, MCP execution, build/deployment mapping, and continuity in the strict eight-section contract
-[Project Upgrade] : fresh-compare the active Project Framework with canonical upstream and offer governed upgrade preparation when they differ
+[Project Upgrade] : fresh-compare current vs target, materialize the exact read-only upgrade Preview, then require one explicit mutation approval
 [Goal] : create/show/change/cancel a persistent outcome and its bounded continuous-execution authorization
 [Meeting] : convene a multi-model advisory council for a question using minimum authorized context; results are evidence/advice, never Project authority
 [Session] : declare, show, or close the user-pre-approved scope of operations for the current session/task
@@ -782,7 +783,7 @@ Existing Projects never auto-upgrade. Framework `1.3.0` uses **Direct-to-Latest 
 
 Classify exactly `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`. `FAST_PATH` requires bounded compatible delta; `ASSESSED_PATH` uses one cumulative `MIG-*` assessment/plan; `MAJOR_MIGRATION_REQUIRED` applies when breaking schema/namespace/root semantics, non-reconstructable current truth, or material unresolved conflicts/unknowns prevent safe bounded direct migration. Skipping intermediate execution never skips Preview/approval, compatibility assessment, Stable-ID/current-truth/Project-Specific-Rule/binding/history preservation, rollback, validation, evidence, or promotion. The maintained starter is not the default destructive upgrade path for initialized Projects.
 
-Use affected/risk-scoped verification during migration, `CHECKPOINT_INTEGRITY` at logical checkpoints, one `RELEASE_FULL` on the final unchanged target candidate, and `INTEGRATION_GATE` for current Base Freshness/evidence validity. Do not run full release verification once per skipped historical version.
+Use affected/risk-scoped verification during migration and `CHECKPOINT_INTEGRITY` only at real logical continuation boundaries. When exact target `RELEASE_FULL` evidence is current, state-bound, and reusable, consuming-Project upgrade acceptance uses that proof plus mandatory Project-specific affected/result verification with zero redundant full rerun; otherwise run at most one final `RELEASE_FULL` on the exact unchanged target candidate when genuinely required. `INTEGRATION_GATE` remains fresh and separate for current Base Freshness/evidence validity before applicable mutable-target action. Do not run full release verification once per skipped historical version.
 
 For Framework `1.2.0` migration:
 
@@ -962,7 +963,7 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
 | `[Project Status]` | fresh read-only Identity → Health → Remain Tasks → Git Sync → Working Tree → Verification → Blockers → Continuity; Task count ≠ Git change count |
 | `[Project Audit]` | fresh read-only Scope → Health → Categories → Findings → Unknowns → Evidence → Repair Routes → Continuity; `Audit finds ≠ Audit fixes` |
 | `[Project Path]` | show/verify configured path values; `<...>` means unset; persistent changes keep existing approval/root-governance rules |
-| `[Project Upgrade]` | fresh local-pin vs canonical-upstream comparison; report `UP_TO_DATE/UPGRADE_AVAILABLE/SOURCE_DIVERGENCE/VERIFICATION_REQUIRED`; yes to upgrade = prepare Preview, not mutation approval |
+| `[Project Upgrade]` | fresh compare + cumulative assessment + exact read-only Preview in one pass; one explicit mutation approval; eligible FAST/bounded ASSESSED may complete in one session; MAJOR does not |
 | Command discovery | list registered commands only as `[XXX] : purpose`; bracketed command matching is case-insensitive and brackets are required |
 | Framework upgrade | direct current→target cumulative assessment; `FAST_PATH | ASSESSED_PATH | MAJOR_MIGRATION_REQUIRED`; preserve history; no mandatory intermediate execution |
 | `ไม่มีขั้นตอนถัดไป` | pair with `START_NEW_CHAT` |
