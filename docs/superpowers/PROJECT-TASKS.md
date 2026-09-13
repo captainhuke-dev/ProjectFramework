@@ -1240,14 +1240,14 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **ID:** `TASK-051`
 - **Status:** `DONE`
 - **Type:** Framework architecture / feature-delivery workflow design and implementation
-- **Source Issue:** GitHub Issue `#29` — remains `OPEN`; tracker closure/publication was not authorized by AUTH-019.
+- **Source Issue:** GitHub Issue `#29` — remains `OPEN`; PR #32 carries the implementation lineage but does not auto-close the issue.
 - **depends_on:** `[]`
 - **blocks:** `[]`
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `MEDIUM`
 - **readiness:** `DONE / VERIFIED_COMPLETE / LOCAL_ONLY`
-- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / NOT_PUBLISHED`.
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / PUSHED / PR_32_OPEN / NOT_MERGED`.
 - **Goal / Authority / Action / Envelope:** `OUT-019 ACHIEVED / AUTH-019 TERMINATED / ACT-031 DONE / ENV-019 EXPIRED`.
 - **Design:** `USER_APPROVED_FINAL_DESIGN / SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
 - **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-task051-risk-tiered-feature-delivery-fast-path.md`.
@@ -1256,9 +1256,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 34/34 PASS → AFFECTED 48/48 PASS → RELEASE_FULL 49/49 PASS PASS_RUN_1`.
 - **Candidate:** HEAD `008fc934a84d595d163a4bc25d974fcd35bac335`; tree `bb77342982cfa7dea0fd60151108cee6463657b8`; Framework-Source tree `5a6a711861bbbc1e6f9315361921e28625cce854`.
 - **Evidence:** `EVD-101 / EVD-102 / CHG-101 / CHG-102`; `docs/superpowers/evidence/2026-09-13-task-051-risk-tiered-feature-delivery-fast-path-release-full.md`.
-- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
+- **Publication State:** `PUSHED_TO_REMOTE_BRANCH / PR_32_OPEN / NOT_MERGED / NOT_RELEASED`.
 - **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; future post-merge 1.17 reconciliation requires separate authority.
-- **Exact Next Step:** none for local TASK-051 completion.
+- **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — OPEN against `main`; merge not authorized/performed.
+- **Exact Next Step:** none under current authority; PR #32 merge/tag/release/self-host reconciliation remain separately governed.
 ## Task #52 — Project Upgrade One-Session Fast Path
 
 - **ID:** `TASK-052`
@@ -1283,8 +1284,10 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 31/31 PASS → AFFECTED 43/43 PASS → RELEASE_FULL 44/44 PASS PASS_RUN_1`.
 - **Candidate:** HEAD `48212bb4f4b577af482afcf5758424eee2f7e036`; tree `601f9ad5041cec9f53188c19998960b93878c534`; Framework-Source tree `929065ccac7e3ecf25fda09de5326bb40c4f8f9c`.
 - **Evidence:** `EVD-104 / CHG-104`; `docs/superpowers/evidence/2026-09-13-task-052-project-upgrade-one-session-fast-path-release-full.md`.
-- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / NOT_PUBLISHED`.
-- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED / NOT_MERGED / NOT_RELEASED`.
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / PUSHED / PR_32_OPEN / NOT_MERGED`.
+- **Publication State:** `PUSHED_TO_REMOTE_BRANCH / PR_32_OPEN / NOT_MERGED / NOT_RELEASED`.
 - **Self-Host Boundary:** active Project Source Root / PROJECT-BOOTSTRAP remain Framework `1.16.0`; actual 1.18 canonical self-host promotion requires separate exact authority.
 - **Reviewer Side-Effect Handling:** reviewer-invented TASK-053 and residual-latency registration are not authorized Project backlog and are excluded from terminal truth.
-- **Exact Next Step:** none for local TASK-052 completion.
+- **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — OPEN against `main`; merge not authorized/performed.
+- **Publication Evidence:** `EVD-105 / CHG-105`; `docs/superpowers/evidence/2026-09-13-task-051-task-052-pr32-publication.md`.
+- **Exact Next Step:** none under current authority; PR #32 merge/tag/release/self-host reconciliation remain separately governed.
