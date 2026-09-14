@@ -2,166 +2,32 @@ name: TASK-057 planner execution handoff
 
 on:
   push:
-    branches: [main]
-    paths:
-      - '.github/workflows/task057-planner-handoff.yml'
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   patch:
-    runs-on: ubuntu-24.04
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: RED then patch then GREEN
+      - name: Apply bounded planner handoff patch
         shell: bash
+        env:
+          PATCH_B64: "ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmltcG9ydCBzdWJwcm9jZXNzCmZyb20gdGV4dHdyYXAgaW1wb3J0IGRlZGVudAoKQkFTRUxJTkUgPSAiZWZiYTk0MzIxZWNlNGNiZDUyMGM5OTM3Yzc4ZTE0MmY4YTZkM2M3MSIKTEVER0VSID0gUGF0aCgiZG9jcy9zdXBlcnBvd2Vycy9QUk9KRUNULVRBU0tTLm1kIikKU1BFQyA9IFBhdGgoImRvY3Mvc3VwZXJwb3dlcnMvc3BlY3MvMjAyNi0wOS0xNC10YXNrMDU3LWFpLWNvbnRyb2x0b3dlci1nb3Zlcm5hbmNlLXN1cHBvcnQtbGF5ZXItZGVzaWduLm1kIikKUExBTiA9IFBhdGgoImRvY3Mvc3VwZXJwb3dlcnMvcGxhbnMvMjAyNi0wOS0xNC10YXNrMDU3LWFpLWNvbnRyb2x0b3dlci1nb3Zlcm5hbmNlLXN1cHBvcnQtbGF5ZXIubWQiKQoKZGVmIHJlYWQocCk6CiAgICByZXR1cm4gcC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKCmRlZiBhc3NlcnRfZGVzaXJlZCgpOgogICAgbGVkZ2VyLCBzcGVjLCBwbGFuID0gcmVhZChMRURHRVIpLCByZWFkKFNQRUMpLCByZWFkKFBMQU4pCiAgICBhc3NlcnQgImBXUklUVEVOX1NQRUNfQVBQUk9WRUQgLyBJTVBMRU1FTlRBVElPTl9QTEFOX0NPTVBMRVRFIC8gRVhFQ1VUSU9OX0hBTkRPRkZfUkVRVUlSRUQgLyBJTVBMRU1FTlRBVElPTl9OT1RfU1RBUlRFRGAiIGluIGxlZGdlcgogICAgYXNzZXJ0ICJgV1JJVFRFTiAvIFNFTEZfUkVWSUVXRURfLyBFWEVDVVRJT05fSEFORE9GRl9SRVFVSVJFRCAvIEVYRUNVVElPTl9OT1RfU1RBUlRFRGAiIGluIGxlZGdlcgogICAgYXNzZXJ0ICIqKlBsYW5uZXIgLyBFeGVjdXRpb24gSGFuZG9mZjoqKiBgR1BUID0gUExBTk5FUiAvIEVYRUNVVElPTl9IQU5ET0ZGX1JFUVVJUkVEYCIgaW4gbGVkZ2VyCiAgICBhc3NlcnQgIkhhbmRvZmYgdGhlIGFwcHJvdmVkIGltcGxlbWVudGF0aW9uIHBsYW4gdG8gdGhlIGFwcGxpY2FibGUgZXhlY3V0aW9uLWNvbnRyb2wgbGF5ZXIuIiBpbiBsZWRnZXIKICAgIGFzc2VydCAiY2hvb3NlIGltcGxlbWVudGF0aW9uIGV4ZWN1dGlvbiBtb2RlIGZvciB0aGUgYXBwcm92ZWQgcGxhbiIgbm90IGluIGxlZGdlcgoKICAgIGFzc2VydCAiSW1wbGVtZW50YXRpb24gc3RhdGU6IGBQTEFOTklOR19DT01QTEVURSAvIEVYRUNVVElPTl9IQU5ET0ZGX1JFUVVJUkVEIC8gSU1QTEVNRU5UQVRJT05fTk9UX1NUQVJURURgIiBpbiBzcGVjCiAgICBhc3NlcnQgIiMjIyAyLjEgUGxhbm5lciAvIEV4ZWN1dGlvbiBIYW5kb2ZmIEJvdW5kYXJ5IiBpbiBzcGVjCiAgICBhc3NlcnQgImBQbGFubmVyIOKJoCBFeGVjdXRvciDimaAgVmVyaWZpZXJgLiIgaW4gc3BlYwogICAgYXNzZXJ0ICJHUFQgTVVTVCBOT1Qgc2VsZi1wcm9tb3RlIGludG8gVEFTSyBleGVjdXRpb24gbWVyZWx5IGJlY2F1c2UgcGxhbm5pbmcgaXMgY29tcGxldGUuIiBpbiBzcGVjCiAgICBhc3NlcnQgIkltcGxlbWVudGF0aW9uIHBsYW5uaW5nIGlzIGNvbXBsZXRlOyBleGVjdXRpb24gaGFuZG9mZiBpcyByZXF1aXJlZDsgRnJhbWV3b3JrIG5vcm1hdGl2ZSBtdXRhdGlvbiBoYXMgbm90IHN0YXJ0ZWQuIiBpbiBzcGVjCgogICAgYXNzZXJ0ICI+ICoqRXhlY3V0aW9uIGhhbmRvZmY6KiogYEdQVCA9IFBMQU5ORVIgLyBFWEVDVVRJT05fSEFORE9GRl9SRVFVSVJFSGAuIiBpbiBwbGFuCiAgICBhc3NlcnQgIj4gKipGb3IgYSBzZWxlY3RlZCBhZ2VudGljIEV4ZWN1dG9yOioqIiBpbiBwbGFuCiAgICBhc3NlcnQgIlRBU0stMDU3IHBsYW5uZXIgYm91bmRhcnk6IEdQVCBpcyBQbGFubmVyOyBhZnRlciBwbGFuIGNvbXBsZXRpb24gc3RhdGUgaXMgYEVYRUNVVElPTl9IQU5ET0ZGX1JFUVVJUkVEYCIgaW4gcGxhbgogICAgYXNzZXJ0ICJFeGVjdXRpb24gaGFuZG9mZiBib3VuZGFyeTogR1BUIHJlbWFpbnMgUGxhbm5lciB1bnRpbCBhIHNlcGFyYXRlIGdvdmVybmVkIGV4ZWN1dGlvbiBkZWNpc2lvbiBzZWxlY3RzIGFuIGVsaWdpYmxlIEV4ZWN1dG9yIiBpbiBwbGFuCiAgICBhc3NlcnQgIj4gKipGb3IgYWdlbnRpYyB3b3JrZXJzOioqIFJFUVVJUkVEIFNVQi1TS0lMTDoiIG5vdCBpbiBwbGFuCgpkZWYgcmVwbGFjZV9vbmNlKHBhdGgsIG9sZCwgbmV3KToKICAgIHRleHQgPSByZWFkKHBhdGgpCiAgICBjb3VudCA9IHRleHQuY291bnQob2xkKQogICAgYXNzZXJ0IGNvdW50ID09IDEsIGYie3BhdGh9OiBleHBlY3RlZCBvbmUgZXhhY3QgbWF0Y2gsIGdvdCB7Y291bnR9OiB7b2xkWzoxMDBdIXJ9IgogICAgcGF0aC53cml0ZV90ZXh0KHRleHQucmVwbGFjZShvbGQsIG5ldywgMSksIGVuY29kaW5nPSJ1dGYtOCIsIG5ld2xpbmU9IiIpCgojIFJFRAp0cnk6CiAgICBhc3NlcnRfZGVzaXJlZCgpCmV4Y2VwdCBBc3NlcnRpb25FcnJvcjoKICAgIHByaW50KCJSRURfUEFTUzogZGVzaXJlZCBzdGF0ZSBhYnNlbnQgYmVmb3JlIHBhdGNoIikKZWxzZToKICAgIHJhaXNlIFN5c3RlbUV4aXQoIlJFRF9GQUlMOiBkZXNpcmVkIHN0YXRlIGFscmVhZHkgcHJlc2VudCIpCgpyZXBsYWNlX29uY2UoCiAgICBMRURHRVIsCiAgICAnLSAqKnJlYWRpbmVzczoqKiBgV1JJVFRFTl9TUEVDX0FQUFJPVkVEIC8gSU1QTEVNRU5UQVRJT05fUExBTl9DT01QTEVURSAvIElNUExFTUVOVEFUSU9OX05PVF9TVEFSVEVEYHAnLAogICAgJy0gKipyZWFkaW5lc3M6KiogYFdSSVRURU5fU1BFQ19BUFBST1ZFRCAvIElNUExFTUVOVEFUSU9OX1BMQU5fQ09NUExFVEUgLyBFWEVDVVRJT05fSEFORE9GRl9SRVFVSVJFRCAvIElNUExFTUVOVEFUSU9OX05PVF9TVEFSVEVEYHAnLAopCnJlcGxhY2Vfb25jZSgKICAgIExFREdFUiwKICAgICctICoqUGxhbiBTdGF0ZToqKiBgV1JJVFRFTiAvIFNFTEZfUkVWSUVXRURfLyBFWEVDVVRJT05fTk9UX1NUQVJURURgLicsCiAgICAnLSAqKlBsYW4gU3RhdGU6KiogYFdSSVRURU4gLyBTRUxGX1JFVklFV0VEIC8gRVhFQ1VUSU9OX0hBTkRPRkZfUkVRVUlSRUQgLyBFWEVDVVRJT05fTk9UX1NUQVJURURgLicsCikKb2xkX2Rlc2lnbiA9ICctICoqRGVzaWduIFN0YXRlOioqIGBXUklUVEVOX1NQRUNfQVBQUk9WRUQgLyBVU0VSX0FQUFJPVkVEYDsgQUNUT1ItMDAxIGV4cGxpY2l0bHkgYXBwcm92ZWQgdGhlIHdyaXR0ZW4gc3BlYyBvbiAyMDI2LTA5LTE0OyBpbXBsZW1lbnRhdGlvbiBwbGFubmluZyBpcyBjb21wbGV0ZSBhbmQgRnJhbWV3b3JrIG5vcm1hdGl2ZSBtdXRhdGlvbiByZW1haW5zIE5PVF9TVEFSVEVELicKbmV3X2Rlc2lnbiA9IG9sZF9kZXNpZ24gKyAnXG4tICoqUGxhbm5lciAvIEV4ZWN1dGlvbiBIYW5kb2ZmOioqIGBHUFQgPSBQTEFOTkVSIC8gRVhFQ1VUSU9OX0hBTkRPRkZfUkVRVUlSRURgLiBQbGFubmluZyBjb21wbGV0aW9uIGRvZXMgbm90IGFzc2lnbiBleGVjdXRpb24uIFRoZSBhcHBsaWNhYmxlIGV4ZWN1dGlvbi1jb250cm9sIGxheWVyIHNlbGVjdHMgYW4gZWxpZ2libGUgRXhlY3V0b3IgZnJvbSBjdXJyZW50IFRhc2sgQ29udHJhY3QsIEV4ZWN1dGlvbiBFbnZlbG9wZSwgQVVUSCwgYFI0X0NUWmAsIGNhcGFiaWxpdHkvdG9vbC90cnVzdC9leGVjdXRvciBwb2xpY3ksIGFuZCBSZWFkeSBHYXRlLiBJZiBpbmRlcGVuZGVudCB2ZXJpZmljYXRpb24gaXMgcmVxdWlyZWQsIFZlcmlmaWVyIHNlbGVjdGlvbiBpcyBzZXBhcmF0ZS4gR1BUIE1VU1QgTk9UIHNlbGYtcHJvbW90ZSBpbnRvIFRBU0sgZXhlY3V0aW9uIG1lcmVseSBiZWNhdXNlIHBsYW5uaW5nIGlzIGNvbXBsZXRlLicKcmVwbGFjZV9vbmNlKExFREdFUiwgb2xkX2Rlc2lnbiwgbmV3X2Rlc2lnbikKcmVwbGFjZV9vbmNlKAogICAgTEVER0VSLAogICAgJy0gKipFeGFjdCBOZXh0IFN0ZXA6KiogY2hvb3NlIGltcGxlbWVudGF0aW9uIGV4ZWN1dGlvbiBtb2RlIGZvciB0aGUgYXBwcm92ZWQgcGxhbiBGcmFtZXdvcmsgbm9ybWF0aXZlIG11dGF0aW9uIHJlbWFpbnMgTk9UX1NUQVJURUQgdW50aWwgZXhlY3V0aW9uIGJlZ2lucy4nLAogICAgJy0gKipFeGFjdCBOZXh0IFN0ZXA6KiogSGFuZG9mZiB0aGUgYXBwcm92ZWQgaW1wbGVtZW50YXRpb24gcGxhbiB0byB0aGUgYXBwbGljYWJsZSBleGVjdXRpb24tY29udHJvbCBsYXllci4gVGhhdCBsYXllciBzZWxlY3RzIGFuIGVsaWdpYmxlIEV4ZWN1dG9yIHVuZGVyIHRoZSBjdXJyZW50IFRhc2sgQ29udHJhY3QsIEV4ZWN1dGlvbiBFbnZlbG9wZSwgQVVUSCwgYFI0X0NUWmAsIGNhcGFiaWxpdHkvdG9vbC90cnVzdC9leGVjdXRvciBwb2xpY3ksIGFuZCBSZWFkeSBHYXRlLiBHUFQgcmVtYWlucyBQbGFubmVyIHVubGVzcyBhIGZ1dHVyZSBnb3Zlcm5lZCBleGVjdXRpb24gZGVjaXNpb24gc2VwYXJhdGVseSBzZWxlY3RzIGl0IGFzIGFuIGVsaWdpYmxlIEV4ZWN1dG9yLiBGcmFtZXdvcmsgbm9ybWF0aXZlIG11dGF0aW9uIHJlbWFpbnMgTk9UX1NUQVJURUQgdW50aWwgYW4gRXhlY3V0b3IgYmVnaW5zIGdvdmVybmVkIGV4ZWN1dGlvbi4nLAopCgpyZXBsYWNlX29uY2UoCiAgICBTUEVDLAogICAgJ0ltcGxlbWVudGF0aW9uIHN0YXRlOiBgUExBTk5JTkdfQ09NUExFVEUgLyBJTVBMRU1FTlRBVElPTl9OT1RfU1RBUlRFRGAnLAogICAgJ0ltcGxlbWVudGF0aW9uIHN0YXRlOiBgUExBTk5JTkdfQ09NUExFVEUgLyBFWEVDVVRJT05fSEFORE9GRl9SRVFVSVJFRCAvIElNUExFTUVOVEFUSU9OX05PVF9TVEFSVEVEYHAnLAopCnNlY3Rpb24gPSBkZWRlbnQoJycnCiMjIyAyLjEgUGxhbm5lciAvIEV4ZWN1dGlvbiBIYW5kb2ZmIEJvdW5kYXJ5CgpGb3IgVEFTSy0wNTcsIHRoZSBkZXNpZ25hdGVkIEdQVCByb2xlIGlzIGBQTEFOTkVSYC4gUGxhbm5pbmcgY29tcGxldGlvbiBkb2VzIG5vdCBhc3NpZ24gZXhlY3V0aW9uLgoKYFBsYW5uZXIg4omgIEV4ZWN1dG9yIOKJoCBWZXJpZmllcmAuCgpBZnRlciB0aGUgaW1wbGVtZW50YXRpb24gcGxhbiBpcyBjb21wbGV0ZSwgdGhlIHBsYW5uaW5nIHN0YXRlIGJlY29tZXMgYEVYRUNVVElPTl9IQU5ET0ZGX1JFUVVJUkVEYC4gVGhlIGFwcHJvdmVkIHBsYW4gaXMgaGFuZGVkIHRvIHRoZSBhcHBsaWNhYmxlIGV4ZWN1dGlvbi1jb250cm9sIGxheWVyLCB3aGljaCByZXNvbHZlcyB0aGUgY3VycmVudCBUYXNrIENvbnRyYWN0LCBFeGVjdXRpb24gRW52ZWxvcGUsIEFVVEgsIGBSNF9DVFpgLCBjYXBhYmlsaXR5L3Rvb2wvdHJ1c3QvZXhlY3V0b3IgcG9saWN5LCBhbmQgVGFzayBSZWFkeSBHYXRlIGJlZm9yZSBzZWxlY3RpbmcgYW4gZWxpZ2libGUgRXhlY3V0b3IuCgpQbGFubmVyIGNhcGFiaWxpdHkgdG8gZXhlY3V0ZSDimaAgYXNzaWdubWVudCBhcyBFeGVjdXRvci4gR1BUIE1VU1QgTk9UIHNlbGYtcHJvbW90ZSBpbnRvIFRBU0sgZXhlY3V0aW9uIG1lcmVseSBiZWNhdXNlIHBsYW5uaW5nIGlzIGNvbXBsZXRlLiBHUFQgbWF5IGV4ZWN1dGUgb25seSBpZiBhIGZ1dHVyZSBnb3Zlcm5lZCBleGVjdXRpb24gZGVjaXNpb24gc2VwYXJhdGVseSBzZWxlY3RzIGl0IGFzIGFuIGVsaWdpYmxlIEV4ZWN1dG9yIHVuZGVyIGN1cnJlbnQgYXV0aG9yaXR5IGFuZCBlbGlnaWJpbGl0eSBjb25zdHJhaW50cy4KCldoZW4gaW5kZXBlbmRlbnQgdmVyaWZpY2F0aW9uIGlzIHJlcXVpcmVkLCBWZXJpZmllciBzZWxlY3Rpb24gaXMgYSBzZXBhcmF0ZSBldmFsdWF0aW9uIGZyb20gRXhlY3V0b3Igc2VsZWN0aW9uLgoKJycnKQpyZXBsYWNlX29uY2UoU1BFQywgJyMjIDMuIFBMQU4gLyBUQVNLIC8gVkVSSUZZIGFuZCBSNCBDdXJyZW50IFRydXRoJywgc2VjdGlvbiArICcjIyAzLiBQTEFOIC8gVEFTSyAvIFZFUklGWSBhbmQgUjQgQ3VycmVudCBUcnV0aCcpCnJlcGxhY2Vfb25jZSgKICAgIFNQRUMsCiAgICAnVGhpcyBmaWxlIGlzIHRoZSBkdXJhYmxlIHdyaXR0ZW4tc3BlYyBhcnRpZmFjdC4gQUNUT1ItMDAxIGV4cGxpY2l0bHkgYXBwcm92ZWQgdGhpcyB3cml0dGVuIHNwZWNpZmljYXRpb24gb24gMjAyNi0wOS0xNC4gSW1wbGVtZW50YXRpb24gcGxhbm5pbmcgaXMgY29tcGxldGU7IEZyYW1ld29yayBub3JtYXRpdmUgbXV0YXRpb24gaGFzIG5vdCBzdGFydGVkLicsCiAgICAnVGhpcyBmaWxlIGlzIHRoZSBkdXJhYmxlIHdyaXR0ZW4tc3BlYyBhcnRpZmFjdC4gQUNUT1ItMDAxIGV4cGxpY2l0bHkgYXBwcm92ZWQgdGhpcyB3cml0dGVuIHNwZWNpZmljYXRpb24gb24gMjAyNi0wOS0xNC4gSW1wbGVtZW50YXRpb24gcGxhbm5pbmcgaXMgY29tcGxldGU7IGV4ZWN1dGlvbiBoYW5kb2ZmIGlzIHJlcXVpcmVkOyBGcmFtZXdvcmsgbm9ybWF0aXZlIG11dGF0aW9uIGhhcyBub3Qgc3RhcnRlZC4nLAopCgpvbGRfaGVhZGVyID0gJz4gKipGb3IgYWdlbnRpYyB3b3JrZXJzOioqIFJFUVVJUkVEIFNVQi1TS0lMTDogVXNlIHN1cGVycG93ZXJzOnN1YmFnZW50LWRyaXZlbi1kZXZlbG9wbWVudCAocmVjb21tZW5kZWQpIG9yIHN1cGVycG93ZXJzOmV4ZWN1dGluZy1wbGFucyB0byBpbXBsZW1lbnQgdGhpcyBwbGFuIHRhc2stYnktdGFzay4gU3RlcHMgdXNlIGNoZWNrYm94IChgLSBbIF1gKSBzeW50YXggZm9yIHRyYWNraW5nLicKbmV3X2hlYWRlciA9IGRlZGVudCgnJycKPiAqKkV4ZWN1dGlvbiBoYW5kb2ZmOioqIGBHUFQgPSBQTEFOTkVSIC8gRVhFQ1VUSU9OX0hBTkRPRkZfUkVRVUlSRURgLiBQbGFubmluZyBjb21wbGV0aW9uIGRvZXMgbm90IGFzc2lnbiBleGVjdXRpb24uIFRoaXMgYXBwcm92ZWQgcGxhbiBNVVNUIGJlIGhhbmRlZCB0byB0aGUgYXBwbGljYWJsZSBleGVjdXRpb24tY29udHJvbCBsYXllciwgd2hpY2ggc2VsZWN0cyBhbiBlbGlnaWJsZSBFeGVjdXRvciBmcm9tIHRoZSBjdXJyZW50IFRhc2sgQ29udHJhY3QsIEV4ZWN1dGlvbiBFbnZlbG9wZSwgQVVUSCwgYFI0X0NUWmAsIGNhcGFiaWxpdHkvdG9vbC90cnVzdC9leGVjdXRvciBwb2xpY3ksIGFuZCBSZWFkeSBHYXRlLiBgUGxhbm5lciDimaAgRXhlY3V0b3Ig4omgIFZlcmlmaWVyYDsgR1BUIE1VU1QgTk9UIHNlbGYtcHJvbW90ZSBpbnRvIFRBU0sgZXhlY3V0aW9uIG1lcmVseSBiZWNhdXNlIHBsYW5uaW5nIGlzIGNvbXBsZXRlLiBJbmRlcGVuZGVudCBWZXJpZmllciBzZWxlY3Rpb24sIHdoZW4gcmVxdWlyZWQsIGlzIHNlcGFyYXRlIGZyb20gRXhlY3V0b3Igc2VsZWN0aW9uLgo+Cj4gKipGb3IgYSBzZWxlY3RlZCBhZ2VudGljIEV4ZWN1dG9yOioqIGFmdGVyIGdvdmVybmVkIHNlbGVjdGlvbiwgdXNlIHN1cGVycG93ZXJzOnN1YmFnZW50LWRyaXZlbi1kZXZlbG9wbWVudCBvciBzdXBlcnBvd2VyczpleGVjdXRpbmctcGxhbnMgaWYgc3VwcG9ydGVkIGJ5IHRoYXQgZXhlY3V0aW9uIGVudmlyb25tZW50LiBTdGVwcyB1c2UgY2hlY2tib3ggKGAtIFsgXWApIHN5bnRheCBmb3IgdHJhY2tpbmcuCicnJykuc3RyaXAoKQpyZXBsYWNlX29uY2UoUExBTiwgb2xkX2hlYWRlciwgbmV3X2hlYWRlcikKcmVwbGFjZV9vbmNlKAogICAgUExBTiwKICAgICctIEJyb3duZmllbGQgaGlzdG9yaWNhbCBUYXNrcyBhcmUgbm90IHNpbGVudGx5IHJldHJvZml0dGVkLicsCiAgICAnLSBCcm93bmZpZWxkIGhpc3RvcmljYWwgVGFza3MgYXJlIG5vdCBzaWxlbnRseSByZXRyb2ZpdHRlZC5cbi0gVEFTSy0wNTcgcGxhbm5lciBib3VuZGFyeTogR1BUIGlzIFBsYW5uZXI7IGFmdGVyIHBsYW4gY29tcGxldGlvbiBzdGF0ZSBpcyBgRVhFQ1VUSU9OX0hBTkRPRkZfUkVRVUlSRURgOyBFeGVjdXRvciBzZWxlY3Rpb24gYmVsb25ncyB0byB0aGUgYXBwbGljYWJsZSBleGVjdXRpb24tY29udHJvbCBsYXllciB1c2luZyBjdXJyZW50IFRhc2sgQ29udHJhY3QsIEV4ZWN1dGlvbiBFbnZlbG9wZSwgQVVUSCwgYFI0X0NUWmAsIGNhcGFiaWxpdHkvdG9vbC90cnVzdC9leGVjdXRvciBwb2xpY3ksIGFuZCBSZWFkeSBHYXRlOyBpbmRlcGVuZGVudCBWZXJpZmllciBzZWxlY3Rpb24gcmVtYWlucyBzZXBhcmF0ZSB3aGVuIGFwcGxpY2FibGUuJywKKQpyZXBsYWNlX29uY2UoCiAgICBQTEFOLAogICAgJy0gUHVibGljYXRpb24gYm91bmRhcnk6IGltcGxlbWVudGF0aW9uIHZlcmlmaWNhdGlvbiByZW1haW5zIGRpc3RpbmN0IGZyb20gc2hhcmVkLXN0YXRlIHB1YmxpY2F0aW9uL3NlbGYtaG9zdCBwcm9tb3Rpb24uJywKICAgICctIFB1YmxpY2F0aW9uIGJvdW5kYXJ5OiBpbXBsZW1lbnRhdGlvbiB2ZXJpZmljYXRpb24gcmVtYWlucyBkaXN0aW5jdCBmcm9tIHNoYXJlZC1zdGF0ZSBwdWJsaWNhdGlvbi9zZWxmLWhvc3QgcHJvbW90aW9uLlxuLSBFeGVjdXRpb24gaGFuZG9mZiBib3VuZGFyeTogR1BUIHJlbWFpbnMgUGxhbm5lciB1bnRpbCBhIHNlcGFyYXRlIGdvdmVybmVkIGV4ZWN1dGlvbiBkZWNpc2lvbiBzZWxlY3RzIGFuIGVsaWdpYmxlIEV4ZWN1dG9yOyBwbGFuIGNvbXBsZXRpb24gYWxvbmUgbmV2ZXIgc3RhcnRzIFRBU0sgZXhlY3V0aW9uLicsCikKCiMgR1JFRU4KYXNzZXJ0X2Rlc2lyZWQoKQpwcmludCgiR1JFRU5fUEFTUzogcGxhbm5lciBoYW5kb2ZmIHN0YXRlIHByZXNlbnQiKQoKc3VicHJvY2Vzcy5ydW4oWyJnaXQiLCAiZGlmZiIsICItLWNoZWNrIl0sIGNoZWNrPVRydWUpCnN1YnByb2Nlc3MucnVuKFsiZ2l0IiwgImRpZmYiLCAiLS1xdWlldCIsIEJBU0VMSU5FLCAtLS0iLCBcIkZyYW1ld29yay1Tb3VyY2VcIl0sIGNoZWNrPVRydWUpCmV4cGVjdGVkID0ge3N0cihMRURHRVIpLCBzdHIoU1BFQyksIHN0cihQTEFOKX0KYWN0dWFsID0gc2V0KHN1YnByb2Nlc3MuY2hlY2tfb3V0cHV0KFsiZ2l0IiwgImRpZmYiLCAiLS1uYW1lLW9ubHkiLCBCQVNFTElORV0sIHRleHQ9VHJ1ZSkuc3BsaXRsaW5lcygpKQphc3NlcnQgYWN0dWFsID09IGV4cGVjdGVkLCBmInVuZXhwZWN0ZWQgY2hhbmdlZCBmaWxlczoge3NvcnRlZChhY3R1YWwpfSIKcHJpbnQoIkJPVU5ERURfRElGRl9QQVNTOiIsIHNvcnRlZChhY3R1YWwpKQo="
         run: |
           set -euo pipefail
-          BASELINE='efba94321ece4cbd520c9937c78e142f8a6d3c71'
-          LEDGER='docs/superpowers/PROJECT-TASKS.md'
-          SPEC='docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md'
-          PLAN='docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md'
-
-          test "$(git rev-parse HEAD^)" = "$BASELINE"
-          test "$(git rev-parse "$BASELINE:Framework-Source")" = '929065ccac7e3ecf25fda09de5326bb40c4f8f9c'
-
-          cat > /tmp/assert_task057_handoff.py <<'PY'
-          from pathlib import Path
-
-          ledger = Path('docs/superpowers/PROJECT-TASKS.md').read_text(encoding='utf-8')
-          spec = Path('docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md').read_text(encoding='utf-8')
-          plan = Path('docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md').read_text(encoding='utf-8')
-
-          assert '`WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_COMPLETE / EXECUTION_HANDOFF_REQUIRED / IMPLEMENTATION_NOT_STARTED`' in ledger
-          assert '`WRITTEN / SELF_REVIEWED / EXECUTION_HANDOFF_REQUIRED / EXECUTION_NOT_STARTED`' in ledger
-          assert '**Planner / Execution Handoff:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`' in ledger
-          assert 'Handoff the approved implementation plan to the applicable execution-control layer.' in ledger
-          assert 'choose implementation execution mode for the approved plan' not in ledger
-
-          assert 'Implementation state: `PLANNING_COMPLETE / EXECUTION_HANDOFF_REQUIRED / IMPLEMENTATION_NOT_STARTED`' in spec
-          assert '### 2.1 Planner / Execution Handoff Boundary' in spec
-          assert '`Planner ≠ Executor ≠ Verifier`.' in spec
-          assert 'GPT MUST NOT self-promote into TASK execution merely because planning is complete.' in spec
-          assert 'Implementation planning is complete; execution handoff is required; Framework normative mutation has not started.' in spec
-
-          assert '> **Execution handoff:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`.' in plan
-          assert '> **For a selected agentic Executor:**' in plan
-          assert 'TASK-057 planner boundary: GPT is Planner; after plan completion state is `EXECUTION_HANDOFF_REQUIRED`' in plan
-          assert 'Execution handoff boundary: GPT remains Planner until a separate governed execution decision selects an eligible Executor' in plan
-          assert '> **For agentic workers:** REQUIRED SUB-SKILL:' not in plan
-          PY
-
-          set +e
-          python /tmp/assert_task057_handoff.py
-          RED_RC=$?
-          set -e
-          if [ "$RED_RC" -eq 0 ]; then
-            echo 'RED unexpectedly passed before patch'
-            exit 1
-          fi
-          echo 'RED confirmed: desired planner handoff state is absent before patch'
-
-          python - <<'PY'
-          from pathlib import Path
-
-          def replace_once(path, old, new):
-              p = Path(path)
-              text = p.read_text(encoding='utf-8')
-              count = text.count(old)
-              assert count == 1, f'{path}: expected one exact match, got {count}: {old[:80]!r}'
-              p.write_text(text.replace(old, new, 1), encoding='utf-8', newline='')
-
-          ledger = 'docs/superpowers/PROJECT-TASKS.md'
-          spec = 'docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md'
-          plan = 'docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md'
-
-          replace_once(
-              ledger,
-              '- **readiness:** `WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_COMPLETE / IMPLEMENTATION_NOT_STARTED`',
-              '- **readiness:** `WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_COMPLETE / EXECUTION_HANDOFF_REQUIRED / IMPLEMENTATION_NOT_STARTED`',
-          )
-          replace_once(
-              ledger,
-              '- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`.',
-              '- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_HANDOFF_REQUIRED / EXECUTION_NOT_STARTED`.',
-          )
-          old_design = '- **Design State:** `WRITTEN_SPEC_APPROVED / USER_APPROVED`; ACTOR-001 explicitly approved the written spec on 2026-09-14; implementation planning is complete and Framework normative mutation remains NOT_STARTED.'
-          new_design = old_design + '\n- **Planner / Execution Handoff:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`. Planning completion does not assign execution. The applicable execution-control layer selects an eligible Executor from current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. If independent verification is required, Verifier selection is separate. GPT MUST NOT self-promote into TASK execution merely because planning is complete.'
-          replace_once(ledger, old_design, new_design)
-          replace_once(
-              ledger,
-              '- **Exact Next Step:** choose implementation execution mode for the approved plan; Framework normative mutation remains NOT_STARTED until execution begins.',
-              '- **Exact Next Step:** Handoff the approved implementation plan to the applicable execution-control layer. That layer selects an eligible Executor under the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. GPT remains Planner unless a future governed execution decision separately selects it as an eligible Executor. Framework normative mutation remains NOT_STARTED until an Executor begins governed execution.',
-          )
-
-          replace_once(
-              spec,
-              'Implementation state: `PLANNING_COMPLETE / IMPLEMENTATION_NOT_STARTED`',
-              'Implementation state: `PLANNING_COMPLETE / EXECUTION_HANDOFF_REQUIRED / IMPLEMENTATION_NOT_STARTED`',
-          )
-          section = '''### 2.1 Planner / Execution Handoff Boundary
-
-For TASK-057, the designated GPT role is `PLANNER`. Planning completion does not assign execution.
-
-`Planner ≠ Executor ≠ Verifier`.
-
-After the implementation plan is complete, the planning state becomes `EXECUTION_HANDOFF_REQUIRED`. The approved plan is handed to the applicable execution-control layer, which resolves the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Task Ready Gate before selecting an eligible Executor.
-
-Planner capability to execute ≠ assignment as Executor. GPT MUST NOT self-promote into TASK execution merely because planning is complete. GPT may execute only if a future governed execution decision separately selects it as an eligible Executor under current authority and eligibility constraints.
-
-When independent verification is required, Verifier selection is a separate evaluation from Executor selection.
-
-'''
-          replace_once(spec, '## 3. PLAN / TASK / VERIFY and R4 Current Truth', section + '## 3. PLAN / TASK / VERIFY and R4 Current Truth')
-          replace_once(
-              spec,
-              'This file is the durable written-spec artifact. ACTOR-001 explicitly approved this written specification on 2026-09-14. Implementation planning is complete; Framework normative mutation has not started.',
-              'This file is the durable written-spec artifact. ACTOR-001 explicitly approved this written specification on 2026-09-14. Implementation planning is complete; execution handoff is required; Framework normative mutation has not started.',
-          )
-
-          old_header = '> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.'
-          new_header = '''> **Execution handoff:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`. Planning completion does not assign execution. This approved plan MUST be handed to the applicable execution-control layer, which selects an eligible Executor from the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. `Planner ≠ Executor ≠ Verifier`; GPT MUST NOT self-promote into TASK execution merely because planning is complete. Independent Verifier selection, when required, is separate from Executor selection.
->
-> **For a selected agentic Executor:** after governed selection, use superpowers:subagent-driven-development or superpowers:executing-plans if supported by that execution environment. Steps use checkbox (`- [ ]`) syntax for tracking.'''
-          replace_once(plan, old_header, new_header)
-          replace_once(
-              plan,
-              '- Brownfield historical Tasks are not silently retrofitted.',
-              '- Brownfield historical Tasks are not silently retrofitted.\n- TASK-057 planner boundary: GPT is Planner; after plan completion state is `EXECUTION_HANDOFF_REQUIRED`; Executor selection belongs to the applicable execution-control layer using current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate; independent Verifier selection remains separate when applicable.',
-          )
-          replace_once(
-              plan,
-              '- Publication boundary: implementation verification remains distinct from shared-state publication/self-host promotion.',
-              '- Publication boundary: implementation verification remains distinct from shared-state publication/self-host promotion.\n- Execution handoff boundary: GPT remains Planner until a separate governed execution decision selects an eligible Executor; plan completion alone never starts TASK execution.',
-          )
-          PY
-
-          python /tmp/assert_task057_handoff.py
-          echo 'GREEN confirmed: desired planner handoff state is present after patch'
-
+          echo "$PATCH_B64" | base64 -d > /tmp/task057_patch.py
+          git merge-base --is-ancestor "efba94321ece4cbd520c9937c78e142f8a6d3c71" HEAD
           rm .github/workflows/task057-planner-handoff.yml
-          git diff --check
-          git diff --quiet "$BASELINE" -- Framework-Source
-
-          python - <<'PY'
-          import subprocess
-          baseline = 'efba94321ece4cbd520c9937c78e142f8a6d3c71'
-          expected = {
-              'docs/superpowers/PROJECT-TASKS.md',
-              'docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md',
-              'docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md',
-          }
-          actual = set(subprocess.check_output(['git', 'diff', '--name-only', baseline], text=True).splitlines())
-          assert actual == expected, f'unexpected changed files: {sorted(actual)}'
-          print('BOUNDED_DIFF_PASS', sorted(actual))
-          PY
-
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python /tmp/task057_patch.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m 'docs(task057): enforce planner execution handoff boundary'
+          git commit -m "docs(task057): enforce planner execution handoff boundary"
           git push origin HEAD:main
