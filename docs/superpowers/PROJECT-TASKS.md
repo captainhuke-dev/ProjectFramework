@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
+- Current backlog: `TASK-057 IN_PROGRESS` (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
@@ -139,7 +139,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria met:** federated Project-authoritative graph; standard conditional slot `92`; canonical `REL-*`; immutable `project_uuid` endpoints; late binding; semantic nesting/location separation; evidence-based corroboration/conflict; merge/split reassessment; AI-ControlTower/OpenViking `DERIVED_ONLY` + `REBUILDABLE` boundary; Brownfield custom-slot-92 migration; 22 starter templates; scenarios `1–171`; documentation-only scope.
 - **Publication State:** `PUBLISHED_TO_ORIGIN_MAIN` — verified TASK-022 implementation and completion through `9a34b49` were pushed to `origin/main` on `2026-08-28` under explicit user publication approval; this publication-state reconciliation record is included in the same approved publication operation.
 - **Completion Working Tree:** `CLEAN`
-- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes/commits there; implementation continued inline on local `main` under the user's explicit continuous approval. Remote publication was performed only after the user's separate explicit push approval.
+- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes there; implementation continued inline on local `main` under the user's explicit continuous approval. Remote publication was performed only after the user's separate explicit push approval.
 - **Completion criteria:** A user-approved design specifies relation ownership, canonical-vs-derived truth boundaries, Project Graph representation, AI-ControlTower/OpenViking integration contract, late-binding lifecycle, rebuild/re-index behavior, failure/drift handling, and affected Framework surfaces; implementation proceeds under the user's explicit continuous approval with proportional verification and a final unchanged-candidate `RELEASE_FULL` before completion.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
@@ -551,7 +551,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Prior Cumulative Affected Verification:** `58/58 PASS` / `EVD-058`; candidate `5991c9f` later invalidated before RELEASE_FULL for Project Source EOF hygiene.
 - **Corrected Cumulative Affected Verification:** `59/59 PASS` / `EVD-060`, including prospective full branch `git diff --check origin/main` PASS.
 - **Invalidated Candidate:** `5991c9fe133942703c93a579be26ecafc7c7d59e` / tree `160a36ffe552e2a10cdc98413c2994acc580c856` / Framework-Source tree `61c27afad2bb794e54561e422b928fc777186585` / RELEASE_FULL NOT_RUN.
-- **Final Candidate:** `089fc186275b303440b3be236c5e29b39f552cd5`
+- **Final Candidate:** `089fc186275b303440b3fe236c5e29b39f552cd5`
 - **Final Candidate Tree:** `ec50f32ef2d8f063afe98b2c6e07568c3004dd66`
 - **Final Framework-Source Tree:** `61c27afad2bb794e54561e422b928fc777186585`
 - **Final RELEASE_FULL:** `TASK028032_RELEASE_FULL 49/49 PASS` — exactly one run on the unchanged corrected candidate.
@@ -1319,3 +1319,28 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Boundary Preserved:** no tag/GitHub Release, binding change, force/history rewrite, destructive cleanup, runtime automation, external AI disclosure, secret persistence, or Framework-Source mutation after release acceptance.
 - **Terminal Persistence Contract:** this terminal record is externally claimable when this exact successor set is observed on canonical `origin/main`; that observation does not require another successor solely to restate completion.
 - **Exact Next Step:** none for TASK-055.
+
+## Task #57 — ProjectFramework 1.19 AI-ControlTower Governance Support Layer
+
+- **ID:** `TASK-057`
+- **Status:** `IN_PROGRESS`
+- **Type:** Framework architecture / AI-ControlTower governance support contract layer
+- **Source Goal:** ACTOR-001 explicit `[Goal]` on 2026-09-14: `ดำเนิน ProjectFramework 1.19 AI-ControlTower Governance Support Layer ต่อจาก Design Sections 1–2 ที่อนุมัติแล้ว จนถึง verified completion โดยยังไม่ implement AI-ControlTower runtime`.
+- **depends_on:** `[TASK-055]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `DESIGN_SECTIONS_1_6_APPROVED / WRITTEN_SPEC_REVIEW_REQUIRED / IMPLEMENTATION_NOT_STARTED`
+- **Problem:** ProjectFramework 1.18 has strong governance, Task, verification, publication, capability/tool/trust, and continuity semantics, but future AI-ControlTower/Multica consumers need deterministic declarative contracts for Plan/Task/Verify execution without transferring Project authority to a runtime/control plane.
+- **Approved Architecture:** Approach A — Schema-first Declarative Contracts; Plan Contract + Task Contract; nested non-authoritative Execution Envelope; mandatory Expected IPOCV; separate Task Record / Actual IPOCV; state-bound Verification Record; `R4_CTX` Current Truth; pure fail-closed Task Ready Gate; separate operational execution state; Multica claim/coordination-only authority; domain-owned source-of-truth reconciliation; declarative Executor Profile + Project Adapter; filter-before-rank execution selection; exact-SHA candidate verification; fresh `INTEGRATION_GATE`; integration/merge reconciliation; canonical Task owner retains Task DONE authority.
+- **Target Release:** Framework `1.19.0` / Project Source Schema `1.0.0` / release format `3`.
+- **Design Sections:** `1–6 USER_APPROVED / LOCKED` on 2026-09-14.
+- **Design Spec:** `docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md`.
+- **Design Spec Commit:** `554c449eade42815a2e228d174d4f6e5a8cbb440`.
+- **Design State:** `WRITTEN_SPEC_DRAFTED / USER_REVIEW_REQUIRED`; implementation planning MUST wait for explicit written-spec approval.
+- **Goal Link:** the exact user Goal is persisted above as this Task's durable source. This registration intentionally does not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact; any later Project Source Goal lifecycle allocation must follow current Goal governance.
+- **Implementation Boundary:** governance/documentation contracts and maintained starters only. Do not implement AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime/implementation as part of TASK-057.
+- **Completion Criteria:** written spec explicitly approved; implementation plan completed; TDD/pressure scenarios added before normative implementation; Framework 1.19 contract/starters implemented; Plan/Task/Verify, IPOCV, R4_CTX, Ready Gate/state machine, Multica/source-of-truth, Executor/Profile/Adapter, exact-SHA verification and integration reconciliation remain consistent; required independent review passes; AFFECTED passes; one final unchanged-candidate `RELEASE_FULL` passes; evidence and durable completion commit are observed; canonical Task/Goal lifecycle is reconciled truthfully.
+- **Publication Boundary:** registration/design persistence on canonical `main` does not by itself authorize future release/tag/deployment or AI-ControlTower runtime mutation; later shared-state actions remain governed by exact current authority.
+- **Exact Next Step:** ACTOR-001 reviews/approves the written spec; after approval, invoke implementation planning (`writing-plans`) before Framework normative mutation.
