@@ -1331,16 +1331,19 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `DESIGN_SECTIONS_1_6_APPROVED / WRITTEN_SPEC_REVIEW_REQUIRED / IMPLEMENTATION_NOT_STARTED`
+- **readiness:** `WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_COMPLETE / IMPLEMENTATION_NOT_STARTED`
 - **Problem:** ProjectFramework 1.18 has strong governance, Task, verification, publication, capability/tool/trust, and continuity semantics, but future AI-ControlTower/Multica consumers need deterministic declarative contracts for Plan/Task/Verify execution without transferring Project authority to a runtime/control plane.
 - **Approved Architecture:** Approach A — Schema-first Declarative Contracts; Plan Contract + Task Contract; nested non-authoritative Execution Envelope; mandatory Expected IPOCV; separate Task Record / Actual IPOCV; state-bound Verification Record; `R4_CTX` Current Truth; pure fail-closed Task Ready Gate; separate operational execution state; Multica claim/coordination-only authority; domain-owned source-of-truth reconciliation; declarative Executor Profile + Project Adapter; filter-before-rank execution selection; exact-SHA candidate verification; fresh `INTEGRATION_GATE`; integration/merge reconciliation; canonical Task owner retains Task DONE authority.
 - **Target Release:** Framework `1.19.0` / Project Source Schema `1.0.0` / release format `3`.
 - **Design Sections:** `1–6 USER_APPROVED / LOCKED` on 2026-09-14.
 - **Design Spec:** `docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md`.
 - **Design Spec Commit:** `554c449eade42815a2e228d174d4f6e5a8cbb440`.
-- **Design State:** `WRITTEN_SPEC_DRAFTED / USER_REVIEW_REQUIRED`; implementation planning MUST wait for explicit written-spec approval.
+- **Written Spec Approval:** `ACTOR-001 EXPLICIT_APPROVAL / 2026-09-14`.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md`.
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`.
+- **Design State:** `WRITTEN_SPEC_APPROVED / USER_APPROVED`; ACTOR-001 explicitly approved the written spec on 2026-09-14; implementation planning is complete and Framework normative mutation remains NOT_STARTED.
 - **Goal Link:** the exact user Goal is persisted above as this Task's durable source. This registration intentionally does not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact; any later Project Source Goal lifecycle allocation must follow current Goal governance.
 - **Implementation Boundary:** governance/documentation contracts and maintained starters only. Do not implement AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime/implementation as part of TASK-057.
 - **Completion Criteria:** written spec explicitly approved; implementation plan completed; TDD/pressure scenarios added before normative implementation; Framework 1.19 contract/starters implemented; Plan/Task/Verify, IPOCV, R4_CTX, Ready Gate/state machine, Multica/source-of-truth, Executor/Profile/Adapter, exact-SHA verification and integration reconciliation remain consistent; required independent review passes; AFFECTED passes; one final unchanged-candidate `RELEASE_FULL` passes; evidence and durable completion commit are observed; canonical Task/Goal lifecycle is reconciled truthfully.
 - **Publication Boundary:** registration/design persistence on canonical `main` does not by itself authorize future release/tag/deployment or AI-ControlTower runtime mutation; later shared-state actions remain governed by exact current authority.
-- **Exact Next Step:** ACTOR-001 reviews/approves the written spec; after approval, invoke implementation planning (`writing-plans`) before Framework normative mutation.
+- **Exact Next Step:** choose implementation execution mode for the approved plan; Framework normative mutation remains NOT_STARTED until execution begins.

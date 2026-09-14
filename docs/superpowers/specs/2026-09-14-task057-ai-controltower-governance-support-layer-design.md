@@ -1,8 +1,9 @@
 # TASK-057 — ProjectFramework 1.19 AI-ControlTower Governance Support Layer Design
 
 Date: `2026-09-14` (Asia/Bangkok)
-Design state: `DESIGN_SECTIONS_1_TO_6_USER_APPROVED / WRITTEN_SPEC_REVIEW_REQUIRED`
-Implementation state: `NOT_STARTED`
+Design state: `DESIGN_SECTIONS_1_TO_6_USER_APPROVED / WRITTEN_SPEC_USER_APPROVED`
+Written spec approval: `ACTOR-001 EXPLICIT_APPROVAL / 2026-09-14`
+Implementation state: `PLANNING_COMPLETE / IMPLEMENTATION_NOT_STARTED`
 Target release: Framework `1.19.0` / Project Source Schema `1.0.0` / release format `3`
 Task: `TASK-057`
 
@@ -624,4 +625,4 @@ Publication, PR/merge, tag, GitHub Release, Project Source self-host promotion, 
 
 Design Sections 3–6 were consolidated from explicitly approved design text in the 2026-09-14 conversation. Sections 1–2 are conservative consolidation of the previously approved Approach A, AI-ControlTower-support scope, Plan/Task/Verify requirement, R4/source-of-truth boundary, and no-runtime boundary retained in Project conversation context.
 
-This file is the durable written-spec review artifact. No implementation begins until ACTOR-001 explicitly accepts this written specification. After approval, the next process step is implementation planning (`writing-plans`) before mutation of Framework normative surfaces.
+This file is the durable written-spec artifact. ACTOR-001 explicitly approved this written specification on 2026-09-14. Implementation planning is complete; Framework normative mutation has not started.
