@@ -19,6 +19,11 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
 - Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
 
+## Cancelled — never-registered scope (2026-09-14, user decision)
+
+- `TASK-053` (Governance Friction Benchmark): never registered as an authorized Project task (reviewer-invented registration, already excluded from terminal truth by TASK-052). Explicitly cancelled by the user on 2026-09-14. No work, branch, or PR exists for it.
+- `TASK-056` (Fast Path Reconciliation): proposed but never registered in this file and never present in any commit, branch, or PR. Explicitly cancelled by the user on 2026-09-14. No work, branch, or PR exists for it.
+
 ## Task #18 — `[Project Upgrade]`
 
 - **ID:** `TASK-018`
