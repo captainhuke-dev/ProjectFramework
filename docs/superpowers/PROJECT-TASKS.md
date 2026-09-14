@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-057 IN_PROGRESS` (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
+- Current backlog: none (`TODO=0`, `IN_PROGRESS=0`, `BLOCKED=0`).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
@@ -87,6 +87,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria met:** all five items implemented; scenarios 153–157 added; launchers remain ≤4,500 with byte-identical markers; Schema/release format unchanged.
 - **Publication State:** `MERGED_TO_MAIN` — merged locally and pushed; `main` = `origin/main` at `faf3406bec9d16d676ec9406ecc4a13dc2b14a6d`. No PR by user decision (direct merge).
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
+
 
 ## Task #21 — ChatGPT→MCP Continuity (Continuous System Management)
 
@@ -216,8 +217,8 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Framework-Source Tree:** `9a959e20723c28c58e7b37be7fd52aef8501d8f1`
 - **Completion criteria met:** `[Meeting]` registered with literal brackets/case-insensitive matching; Thin Council Provider Adapter separation; minimum-authorized outbound context; secret-value prohibition; independent views/disagreement/peer signal/Chairman synthesis/limitations; Council/majority/Chairman advisory-only boundary; `COMPLETE | PARTIAL | FAILED | UNAVAILABLE`; material `EVD-*` persistence; no `MEETING-*` family/provider JSON authority/runtime implementation; Goal/ENV disclosure separation; Brownfield no-auto-Meeting; scenarios 1–227; launcher parity/size; final verification PASS.
 - **Publication State:** `NOT_PUSHED`
-- **Exact Next Step:** Prepare TASK-026 External AI Context & Disclosure Governance architectural design before implementation.
 
+- **Exact Next Step:** Prepare TASK-026 External AI Context & Disclosure Governance architectural design before implementation.
 ## Task #25 — Project Knowledge Layer / Compounding Knowledge Contract
 
 - **ID:** `TASK-025`
@@ -267,7 +268,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Publication State:** `MERGED_TO_MAIN / PERSISTED`
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
-
 ## Task #26 — External AI Context & Disclosure Governance
 
 - **ID:** `TASK-026`
@@ -352,7 +352,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
-
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
 - **ID:** `TASK-028`
@@ -602,7 +601,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
-
 ## Task #34 — Agent / Model Capability Profile
 
 - **ID:** `TASK-034`
@@ -641,7 +639,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
-
 ## Task #35 — Project Release / Publication Contract
 
 - **ID:** `TASK-035`
@@ -680,7 +677,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
-
 ## Task #36 — Project Change/Event History Feed
 
 - **ID:** `TASK-036`
@@ -765,7 +761,6 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
-
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
 - **ID:** `TASK-038`
@@ -1041,18 +1036,94 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **priority:** `HIGH`
 - **readiness:** `CANCELLED_BY_USER / SUPERSEDED_BEFORE_IMPLEMENTATION`
 - **Identity Note:** `TASK-044` is already allocated to ProjectFramework 2.0 / AI-ControlTower Protocol Integration and `TASK-045` has its own preserved response-close lineage. This registration uses `TASK-046` under explicit user confirmation and does not rewrite either prior Task.
+
 - **User Instruction:** Remove `[Chat]` and `[Required Read]` from the canonical Final Response.
-- **Problem:** The current mandatory Final Response close exposes four fields: `[Next Action]`, `[Chat]`, `[Reason]`, and `[Required Read]`.
-- **Approved direction:** Simplify the canonical Final Response close to exactly `[Next Action]` + `[Reason]`, preserving internal continuity/read-routing semantics.
-- **Release classification:** `BREAKING_RESPONSE_INTERFACE`; target the next major Framework line.
-- **Supersession / Cancellation:** On 2026-09-10 the user explicitly required `[Next Goal]` to remain mandatory, selected Framework 1.15 instead of 2.0.0, and invoked OUT-013 reconciliation. The original two-field direction is cancelled before implementation.
+
+- **Problem:** The current mandatory Final Response close exposes four fields:
+  `[Next Action]`, `[Chat]`, `[Reason]`, and `[Required Read]`.
+  `[Chat]` and `[Required Read]` expose Framework continuity/routing metadata
+  in every user-facing response even when that metadata does not need to be
+  presented to the user.
+
+- **Approved direction:** Simplify the canonical Final Response close to exactly:
+  1. `### ทำอะไรไป?`
+  2. `### และถัดไปคืออะไร?`
+  3. `[Next Action]: <one exact next action or ไม่มีขั้นตอนถัดไป>`
+  4. `[Reason]: <concise reason>`
+
+  `[Chat]` and `[Required Read]` MUST NOT appear as mandatory Final Response
+  fields after this Task is implemented.
+
+- **Continuity boundary:** Removing `[Chat]` from the user-facing close must not
+  remove Project continuity semantics. Chat/session continuation state remains
+  governed internally through applicable `03 Current State`, `09 Handoff`,
+  `OUT-* / AUTH-* / ACT-* / ENV-*`, and related canonical sources.
+
+- **Required-read boundary:** Removing `[Required Read]` from the user-facing
+  close must not remove bootstrap/read-routing requirements.
+  `PROJECT-BOOTSTRAP.md → 00 → 01 → 03 → task-specific source → 09 when
+  applicable` remains an internal governance/read contract rather than a
+  mandatory field emitted in every Final Response.
+
+- **Final-close rule after implementation:** `[Next Action]` and `[Reason]`
+  render as separate Markdown paragraphs in that order, and nothing follows
+  `[Reason]`.
+
+- **Scope:** Update all current normative/distribution surfaces that define,
+  validate, reproduce, or test the four-field Final Response contract,
+  including Core Governance, SKILL, maintained templates/starters, README and
+  migration guidance, Response Close Completeness Gate semantics, and pressure
+  scenarios. Preserve historical specs/plans/amendments/evidence when their
+  four-field representation was true at capture time.
+
+- **TASK-042 / TASK-043 compatibility:** Preserve their finalization and
+  strict-interface guarantees while changing the canonical close shape from
+  four fields to two. Completeness validation must validate the new contract,
+  not continue requiring removed fields.
+
+- **Brownfield rule:** Existing initialized Projects remain locally pinned and
+  do not silently acquire the new Final Response contract. Adoption follows
+  governed `[Project Upgrade]`.
+
+- **Release classification:** `BREAKING_RESPONSE_INTERFACE`; target the next
+  major Framework line. Exact Framework/Schema version must be confirmed by
+  the design before implementation.
+
+- **Implementation boundary:** Task registration only. Do not modify the
+  current Final Response contract, Core/SKILL/templates/tests, or release
+  descriptor until a separate design is approved.
+
+- **Completion criteria:** Current Framework surfaces unanimously require only
+  `[Next Action]` + `[Reason]`; no current normative surface still mandates
+  `[Chat]` or `[Required Read]`; internal continuity/read routing remains
+  intact; historical provenance is preserved; migration behavior is explicit;
+  pressure scenarios cover the new close; applicable verification passes
+  before Task completion.
+
+- **Supersession / Cancellation:** On 2026-09-10 the user explicitly required `[Next Goal]` to remain mandatory, selected Framework 1.15 instead of 2.0.0, and invoked OUT-013 reconciliation. The original two-field `BREAKING_RESPONSE_INTERFACE` direction is cancelled before implementation.
 - **Current Implementation Baseline:** TASK-045 Framework `1.15.0` (`Next Action -> Next Goal -> Reason`), terminally verified by OUT-013 without changing TASK-045 historical lineage.
 - **Design Spec:** `docs/superpowers/specs/2026-09-10-task046-framework115-reconciliation-design.md`
-- **Reconciliation Design State:** `USER_APPROVED_FINAL_DESIGN / SPEC_APPROVED`.
+- **Reconciliation Design Self-Review:** initial checkpoint `TASK046_SPEC_SELF_REVIEW 13/13 PASS`; revised spec `OUT013_REVISED_SPEC_SELF_REVIEW 18/18 PASS`; final revised review `OUT013_REVISED_SPEC_FINAL_SELF_REVIEW 20/20 PASS`.
+- **Reconciliation Design State:** `USER_APPROVED_FINAL_DESIGN / SPEC_APPROVED` / commit `f5f8ecf3551d3fd3d0adc10def1fd0fe5c0847d2`.
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-10-out013-framework115-reconciliation.md`.
-- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`.
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`; `OUT013_PLAN_SELF_REVIEW 19/19 PASS`.
 - **Goal:** `OUT-013 / AUTH-013 / ACT-025 / ENV-013`
+- **Historical Registration:** original registration preserved in commit `b42a2f4a536b851edf46b2b94139a0bc5932ea07` and reconciliation ancestry commit `caf2a19`.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-046; its implementation remains cancelled and local OUT-013 is complete.
+
+## OUT-013 — Framework 1.15 Reconciliation Terminal State
+
+- **Status:** `DONE / VERIFIED_COMPLETE / TERMINAL_RECONCILED`
+- **Terminal lifecycle:** `OUT-013 ACHIEVED / AUTH-013 TERMINATED / ACT-025 DONE / ENV-013 EXPIRED`
+- **Frozen candidate:** commit `16664a8b61d1641a842210773c8f997178502be5`; tree `e2db01ce75fb9c5abf7c442f6d103120c09b8a3d`; Framework-Source tree `835c5a24c909ef7de2d413c46a6451746ed5fbf0`.
+- **Verification:** `OUT013_RED 23/27`; `OUT013_AFFECTED 27/27`; `OUT013_RELEASE_FULL 29/29 PASS`; exactly one RELEASE_FULL PASS run on the unchanged candidate.
+- **Structural checks:** Registered commands `7/7 PASS`; scenarios `432/432 PASS`; maintained starter stamps `22/22 PASS`; V2 spec/plan/merge-manifest blob equality `3/3 PASS`.
+- **Release evidence:** `docs/superpowers/evidence/2026-09-10-out013-framework115-reconciliation-release-full.md`.
+- **Release evidence commit:** `009b4dbd5de93f56d5f9eb1c2ce1a1dedc4eedb7`.
+- **Preservation:** TASK-044 remains `CANCELLED / IMPLEMENTATION_NOT_STARTED`; TASK-045 remains `DONE / VERIFIED_COMPLETE` with its historical candidate/evidence and byte-semantics preserved; TASK-046 remains `CANCELLED / SUPERSEDED_BEFORE_IMPLEMENTATION`.
+- **Publication State:** `NOT_AUTHORIZED / NOT_PUSHED`.
+- **Prohibited boundaries:** no push, PR, merge, AI-ControlTower mutation, V2 cutover, runtime/parser/validator/CLI implementation, destructive branch/worktree deletion, Root/Binding mutation, external disclosure, or secret-value persistence.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for local OUT-013 completion; publication/adoption requires separate authority.
 
 ## Task #47 — Response Close UI Rendering Compliance Regression
 
@@ -1086,14 +1157,42 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
 - **readiness:** `VERIFIED_COMPLETE / MERGED_TO_MAIN / RECONCILIATION_PERSISTED`
-- **Problem:** `[Project Path]` does not yet distinguish Develop Workspace from Production Workspace or expose one exact MCP execution route with deterministic declared fallback/recovery behavior.
-- **Implementation Boundary:** local TASK-048 implementation is complete and state-bound to verified Framework 1.16 candidate `abc4b5316a7f3bbc9b4a8c0f5b5c509904a26185`.
+- **Problem:** `[Project Path]` does not yet distinguish Develop Workspace from Production Workspace or expose one exact MCP execution route with deterministic declared fallback/recovery behavior. Agents therefore need a strict contract for where source may be edited/built/tested, where artifacts may only be deployed/run, and which MCP may execute when Primary is unavailable.
+- **User-approved direction:** Extend `[Project Path]` as the unified fresh read/verification view while preserving canonical ownership: `FRAMEWORK-001` / Project Location Binding for repository + environment-scoped Local Workspace binding/routing truth, `40 Technical Design` for Develop Workspace role/type/location/durability and active-workspace semantics, `60 Deployment Plan` for applicable deployment/runtime mapping, `Project-Execution/tools.md` for exact Primary/fallback policy, and `Project-Execution/fallback-log.md` for append-only actual fallback history.
+- **Approved Workspace Contract:** Develop Workspace = `EDIT / BUILD / TEST / PACKAGE / VERIFY`; Production Workspace = `DEPLOY / RUN / HEALTH_CHECK / OBSERVE_RUNTIME`; direct Production source mutation is `FORBIDDEN`.
+- **Canonical Ownership:** Project Location Binding remains location/routing-only and does not acquire `workspace_role`, `source_mutation`, Canonical Implementation Source, active Develop Workspace, or Production runtime authority. Local ↔ Remote Durable relocation changes governed `40` workspace semantics and changes `FRAMEWORK-001` only when a persistent Local Workspace Binding delta actually exists.
+- **Approved MCP Contract:** exact Primary MCP; `ORDERED_ALLOW_LIST` auto fallback only to explicitly declared eligible fallbacks; no fallback by recency/availability/similarity; no eligible declared MCP = `FAIL_CLOSED`.
+- **Approved Recovery Contract:** `CHECKPOINT_FAILBACK` — do not switch back to recovered Primary mid-action; finish/persist/verify the current bounded action/checkpoint, re-verify Primary target identity/capability, log recovery/failback, then use Primary for the next action.
+- **Unknown-Result Contract:** connection loss after possible submission yields `RESULT_VERIFICATION_REQUIRED`; verify resulting state before retry; unprovable result = `FAIL_CLOSED`.
+- **Fallback Log:** applicability-driven `Project-Execution/fallback-log.md`, append-only operational incident history; `MCP-FB-*` is correlation labeling only, not a Project Stable-ID family; no credentials/secrets.
+- **Strict `[Project Path]` Order:** Framework Path → Git Path → Storage Path → Develop Workspace → Production Workspace → MCP Execution → Build / Deployment Mapping → Continuity.
+- **Production Applicability:** explicit no-Production truth = `NOT_APPLICABLE`; applicable-but-unresolved Production target = `APPLICABLE` + `NOT_VERIFIED`; insufficient evidence to decide applicability = `VERIFICATION_REQUIRED` + `NOT_VERIFIED`; absence alone is never silently interpreted as `NOT_APPLICABLE`.
+- **Brownfield Rule:** no silent adoption/inference. Existing verified implementation Workspace may be Previewed as Develop only with evidence; Production is never inferred; connected/recent MCPs never become fallback automatically; Projects without explicit fallback remain `fallback_mode: NONE`.
+- **Authority Boundary:** `[Project Path]` remains read/verify/routing presentation. Correct paths and an ACTIVE MCP do not grant mutation, deploy, push/publication, Root/Binding, disclosure, secret, Decision, or runtime privilege.
+- **Implementation Boundary:** local TASK-048 implementation is complete and state-bound to verified Framework 1.16 candidate `abc4b5316a7f3bbc9b4a8c0f5b5c509904a26185`. Distribution semantics/templates changed only within approved scope; active Project Source pin remains Framework `1.15.0`; no runtime/router/watcher/validator/CLI/credential/deployment automation was introduced. The user explicitly authorized branch push + PR and then PR merge to `main` on `2026-09-12`; GitHub Release/tag publication and consuming-Project `[Project Upgrade]` remain separately governed and were not performed.
 - **Design Spec:** `docs/superpowers/specs/2026-09-12-task048-project-path-workspace-mcp-routing-design.md`
 - **Design State:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_APPROVED`
+- **Written Spec Approval:** `USER_EXPLICIT_APPROVAL — 2026-09-12`
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-12-task048-project-path-workspace-mcp-routing.md`
-- **Publication State:** `MERGED_TO_MAIN / PR #30 / merge 7dd5b269 / PERSISTED / NOT_PENDING / NOT_RELEASED`.
+- **Plan State:** `COMPLETE / AFFECTED_PASS / RELEASE_FULL_PASS / EVIDENCE_RECORDED / MERGED_TO_MAIN / RECONCILIATION_PERSISTED / NOT_RELEASED`
+- **Plan Self-Review:** `PASS` — approved spec sections mapped to Tasks 1–7; scenario allocation `433–468` freshly collision-checked against current `1–432`; forbidden placeholder scan clean; canonical ownership/Production applicability/relocation/MCP fallback/one-RELEASE_FULL/publication boundaries covered.
+- **Execution Mode:** `INLINE_EXECUTION_IN_ISOLATED_WORKTREE` at `E:\GitHub\ProjectFramework\.worktrees\task048-framework116`; no implementation mutation was performed on canonical main checkout.
+- **Implementation Commits:** `79843e3` RED scenarios; `90b1e68` normative Framework 1.16 contract; `bb67ef5` workspace relocation + Production applicability templates; `2b88f54` MCP fallback/failback profile + log; `004c631` README/migration/starter propagation.
+- **Verification Progress:** TDD RED `TASK048_RED 9/18` expected; structural GREEN `TASK048_STRUCTURAL 18/18 PASS`; cumulative AFFECTED `TASK048_AFFECTED 47/47 PASS`; post-verifier-repair AFFECTED `47/47 PASS`; final replacement candidate RELEASE_FULL `TASK048_RELEASE_FULL 56/56 PASS` on its first and only release-mode run; pressure scenarios `1–468` contiguous/unique.
+- **Invalidated Candidate:** `d7876ba288f9f113f831cc4540d5069494f84736` / tree `c01d6a105b40a515e74f16c10a7ea0ec4f025c27` / Framework-Source tree `5e06595f419d21b03ed2ef8e959189594628dbf2`. RELEASE_FULL run #1 exited before semantic release assertions because the scratch verifier decoded `git show` through Windows `cp874` and raised `UnicodeDecodeError`; candidate is not reused as release evidence. Framework-Source semantics were not changed by this finding.
+- **Verifier Repair:** scratch-only verifier now forces Git subprocess decoding to UTF-8; post-repair AFFECTED `47/47 PASS`. The verifier file is ignored/non-candidate state.
+- **Candidate State:** `VERIFIED_FINAL_CANDIDATE`; commit `abc4b5316a7f3bbc9b4a8c0f5b5c509904a26185`; tree `266b2cf7d03d516c9bcab9f81790a92f3c84d9c7`; Framework-Source tree `5e06595f419d21b03ed2ef8e959189594628dbf2`.
+- **Release Evidence:** `docs/superpowers/evidence/2026-09-12-task-048-project-path-workspace-mcp-routing-release-full.md`.
+- **Evidence Commit:** `8fbb47cb61d50f81c49979a32863139be64959af`.
+- **Pull Request:** `#30` — `https://github.com/captainhuke-dev/ProjectFramework/pull/30` — `MERGED`, base `main`, head `task048-framework116`; merge commit `7dd5b2691dce86dd211c5a58ff4ed6cbe345967f`; merged branch head `07694607e2c4487a9b9572dbead1fe73fab1fd29`; canonical Framework-Source tree `5e06595f419d21b03ed2ef8e959189594628dbf2`.
+- **Completion State:** `LOCAL_VERIFIED_COMPLETE / TASK-048 DONE / CANONICAL_MAIN_INTEGRATED`.
 - **Goal Lineage:** none created for TASK-048 execution; do not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact.
-- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-048 integration.
+- **Publication State:** `MERGED_TO_MAIN / PR #30 / merge 7dd5b269 / PERSISTED / NOT_PENDING / NOT_RELEASED`.
+- **Design Baseline:** `main@a1da22d64ff8e30658a4aaf8b675705a0e043dc9`
+- **Target Release:** Framework `1.16.0` / Schema `1.0.0` / release format `3`.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-048 integration. GitHub Release/tag publication and consuming-Project `[Project Upgrade]` remain separately governed.
+- **Release Classification:** `BACKWARD_COMPATIBLE_REGISTERED_COMMAND_AND_EXECUTION_ROUTING_FEATURE`.
+- **Completion Criteria:** approved strict `[Project Path]` interface; preserved canonical ownership; explicit Develop/Production roles; Local ↔ Remote Durable relocation; exact Production applicability representation; Production source-mutation prohibition; exact Primary and ordered declared fallback; durable fallback log; unknown-result verification; checkpoint failback; Brownfield/Greenfield safety; preserved authority separation; applicable TDD/AFFECTED/final release verification; publication separately governed.
 
 ## Task #49 — Canonical Self-Hosting Release Reconciliation
 
@@ -1110,10 +1209,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implemented Direction:** canonical ProjectFramework has a narrow mandatory governed post-merge self-host reconciliation rule without redundant `[Project Upgrade]`; ordinary consuming Projects remain pinned and use `[Project Upgrade]`; unresolved reconciliation is `RECONCILIATION_REQUIRED`; no runtime automation was introduced.
 - **Goal Lifecycle:** `OUT-017 ACHIEVED / AUTH-017 TERMINATED / ACT-029 DONE / ENV-017 EXPIRED`.
 - **Design State:** `USER_APPROVED_BOUNDED_CHANGE / INLINE_DESIGN_APPROVED`.
+- **Goal Checkpoint:** `EVD-093 / CHG-093`; promotion `EVD-094 / CHG-094 / MIG-003`; local terminal `EVD-095 / CHG-095`; canonical merge readback `EVD-096 / CHG-096`.
+- **Implementation Commits:** Goal checkpoint `7895bf9`; RED `e56f409`; normative `9f5471b690df09d1993cb931a653fd85b35a2cd0`; verified self-host promotion `759c7dd29c060888b3ef9c4424cdcb17cd809eed`; branch terminal `76ee6ed`.
+- **TDD / Verification:** `TASK049_RED 5/10` expected → `TASK049_STRUCTURAL 8/10` → `TASK049_AFFECTED 25/25 PASS` → `TASK049_RELEASE_FULL 23/23 PASS_RUN_1`.
+- **Verified Candidate:** `759c7dd29c060888b3ef9c4424cdcb17cd809eed` / tree `6659e0e8494cbcff5daea89e8af16bf5ff4311b8` / Framework-Source tree `a84e7bd0ed56bd73a7e2cb6c642885d9fefeb24a`.
+- **Self-Host State:** canonical active `FRAMEWORK-001`, all active Project Source documents, Framework distribution, and `PROJECT-BOOTSTRAP.md` coherently use Framework `1.16.0` / Schema `1.0.0`; UUID/binding/history preservation verified.
 - **Evidence:** `docs/superpowers/evidence/2026-09-12-task-049-canonical-self-hosting-release-full.md`.
 - **Completion State:** `VERIFIED_COMPLETE / TASK-049 DONE / CANONICAL_MAIN_INTEGRATED`.
 - **Publication State:** `MERGED_TO_MAIN / PR #31 / merge 4039be4 / PERSISTED / NOT_RELEASED`.
-- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-049.
+- **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-049; GitHub Release/tag remains separately governed.
 
 ## Task #50 — GitHub Issue Backlog Reconciliation Audit
 
@@ -1127,9 +1231,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **priority:** `HIGH`
 - **readiness:** `VERIFIED_COMPLETE / ISSUE_TRACKER_RECONCILED / LOCAL_TERMINAL_PERSISTENCE`
 - **User Goal:** audit GitHub Issues #25/#29 against Framework current state and reconcile Issue tracker with TASK ledger.
+- **Canonical Baseline:** `origin/main@4039be4` after PR #31 merge; active Framework/Project self-host pin `1.16.0`.
+- **Issue #25 Result:** `CLOSED / comments=1 / RESOLVED_BY_STRONGER_EXISTING_CONTRACT`; reconciliation comment records that current TASK-041/TASK-042 bootstrap semantics are stronger than the proposal; backend `closed_at=2026-09-13T03:30:48Z`.
+- **Issue #29 Result:** `OPEN / comments=1 / GENUINE_PENDING_BACKLOG`; mapping comment points to `TASK-051 / TODO / DESIGN_REQUIRED / IMPLEMENTATION_NOT_STARTED` and explicitly states TASK-050 does not start implementation.
 - **Goal / Authority / Action / Envelope:** `OUT-018 ACHIEVED / AUTH-018 TERMINATED / ACT-030 DONE / ENV-018 EXPIRED`.
+- **Evidence / Change:** `EVD-096 / EVD-097 / CHG-096 / CHG-097`.
+- **Audit Checkpoint Commit:** `4d1f225ef067d60d4884e54a971214a3281ad304`.
+- **Completion Criteria Met:** tracker readback proves #25 CLOSED and #29 OPEN; #29 explicitly references TASK-051; ledger backlog counts are exact (`TODO=1 / IN_PROGRESS=0 / BLOCKED=0`); TASK-049 canonical integration truth is corrected; no TASK-051 implementation or Framework semantic change occurred; terminal successor set requires fresh post-commit readback before external completion claim.
+- **Publication Boundary:** issue tracker mutations completed under OUT-018; push/PR/merge of this local ledger reconciliation is separately governed and was not authorized/performed.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-050; TASK-051 remains separate TODO.
-
 ## Task #51 — Risk-Tiered Feature Delivery Fast Path
 
 - **ID:** `TASK-051`
@@ -1146,11 +1256,15 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Goal / Authority / Action / Envelope:** `OUT-019 ACHIEVED / AUTH-019 TERMINATED / ACT-031 DONE / ENV-019 EXPIRED`.
 - **Design:** `USER_APPROVED_FINAL_DESIGN / SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-task051-risk-tiered-feature-delivery-fast-path-design.md`.
 - **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-task051-risk-tiered-feature-delivery-fast-path.md`.
+- **Implementation Commits:** `bff9d39` RED scenarios; `fc0859e` normative contract; `008fc93` propagation/frozen candidate.
+- **Review:** independent reviewer `e289f236-6dee-46fa-83b6-d0335fea12a5`; `10/10 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
 - **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 34/34 PASS → AFFECTED 48/48 PASS → RELEASE_FULL 49/49 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `008fc934a84d595d163a4bc25d974fcd35bac335`; tree `bb77342982cfa7dea0fd60151108cee6463657b8`; Framework-Source tree `5a6a711861bbbc1e6f9315361921e28625cce854`.
+- **Evidence:** `EVD-101 / EVD-102 / CHG-101 / CHG-102`; `docs/superpowers/evidence/2026-09-13-task-051-risk-tiered-feature-delivery-fast-path-release-full.md`.
 - **Publication State:** `MERGED_TO_MAIN / PR_32 / merge f6330e9 / NOT_RELEASED`.
 - **Self-Host Result:** TASK-055 completed canonical Framework 1.18 self-host reconciliation through PR #33 merge `5b067a1c2fcfeab867ba3879a76f675904566e27`; Issue #29 is CLOSED.
+- **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — MERGED to `main` at `f6330e9929c28977d43fc149b864d590df1c2816`.
 - **Exact Next Step:** none for TASK-051; tag/GitHub Release remain separately governed.
-
 ## Task #52 — Project Upgrade One-Session Fast Path
 
 - **ID:** `TASK-052`
@@ -1163,15 +1277,24 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
 - **readiness:** `DONE / VERIFIED_COMPLETE / MERGED_TO_MAIN`
+- **Problem:** compatible upgrades remained slow because comparison, prepare intent, Preview, approval, mutation persistence, verification, and canonical self-host reconciliation required redundant rounds even when candidate/evidence/authority were unchanged.
 - **Approved Architecture:** Single-Preview / Single-Approval Upgrade Transaction; one bounded mutation batch; proof-domain separation between Framework Release Acceptance and Project Upgrade Acceptance; exact release-evidence reuse for FAST_PATH and bounded compatible ASSESSED_PATH; selective recovery; canonical self-host chaining when exact Preview and authority cover integration + Root reconciliation.
 - **Target Release:** Framework `1.18.0` / Schema `1.0.0` / release format `3`.
+- **Stacked Work:** deliberate child of TASK-051 terminal local commit `26fbb3c0ff298b183f23c7dabe5132dc11002185`; parent Framework 1.17 candidate/evidence remains preserved and unpublished.
 - **Goal / Authority / Action / Envelope:** `OUT-020 ACHIEVED / AUTH-020 TERMINATED / ACT-032 DONE / ENV-020 EXPIRED`.
 - **Design:** `USER_APPROVED_FINAL_DESIGN / WRITTEN_SPEC_SELF_REVIEWED`; spec `docs/superpowers/specs/2026-09-13-project-upgrade-one-session-fast-path-design.md`; spec commit `5adc2ed`; self-review `15/15 PASS`.
 - **Plan:** `IMPLEMENTATION_PLAN_EXECUTED`; plan `docs/superpowers/plans/2026-09-13-project-upgrade-one-session-fast-path.md`; plan commit `07f8026`; self-review `16/16 PASS`; Inline Execution.
+- **Implementation Commits:** `27485c2` RED scenarios; `a33ced7` normative contract; `85b98f4` propagation; `e3f1f96` pressure expectation forward-port; `bc36a80` + `48212bb` independent-review fixes/current-surface alignment.
+- **Review:** `Codex-Independent-Acceptance-Review`; `15/15 PASS / Critical 0 / Important 0 / Minor 0 / REVIEW_PASS`.
 - **Verification:** `RED 13/13 PASS_EXPECTED_MISSING_CONTRACT → STRUCTURAL 31/31 PASS → AFFECTED 43/43 PASS → RELEASE_FULL 44/44 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `48212bb4f4b577af482afcf5758424eee2f7e036`; tree `601f9ad5041cec9f53188c19998960b93878c534`; Framework-Source tree `929065ccac7e3ecf25fda09de5326bb40c4f8f9c`.
+- **Evidence:** `EVD-104 / CHG-104`; `docs/superpowers/evidence/2026-09-13-task-052-project-upgrade-one-session-fast-path-release-full.md`.
 - **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / MERGED_TO_MAIN / PR_32`.
 - **Publication State:** `MERGED_TO_MAIN / PR_32 / merge f6330e9 / NOT_RELEASED`.
+- **Self-Host Result:** TASK-055 completed canonical 1.18 self-host reconciliation through PR #33 merge `5b067a1c2fcfeab867ba3879a76f675904566e27`; AUTH-021 is terminal.
 - **Reviewer Side-Effect Handling:** reviewer-invented TASK-053 and residual-latency registration are not authorized Project backlog and are excluded from terminal truth.
+- **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — MERGED to `main` at `f6330e9929c28977d43fc149b864d590df1c2816`.
+- **Publication Evidence:** `EVD-105 / CHG-105`; `docs/superpowers/evidence/2026-09-13-task-051-task-052-pr32-publication.md`.
 - **Exact Next Step:** none for TASK-052; tag/GitHub Release remain separately governed.
 
 ## Task #55 — PR #32 Post-Merge Canonical Self-Host Reconciliation
@@ -1196,28 +1319,3 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Implementation Boundary Preserved:** no tag/GitHub Release, binding change, force/history rewrite, destructive cleanup, runtime automation, external AI disclosure, secret persistence, or Framework-Source mutation after release acceptance.
 - **Terminal Persistence Contract:** this terminal record is externally claimable when this exact successor set is observed on canonical `origin/main`; that observation does not require another successor solely to restate completion.
 - **Exact Next Step:** none for TASK-055.
-
-## Task #57 — ProjectFramework 1.19 AI-ControlTower Governance Support Layer
-
-- **ID:** `TASK-057`
-- **Status:** `IN_PROGRESS`
-- **Type:** Framework architecture / AI-ControlTower governance support contract layer
-- **Source Goal:** ACTOR-001 explicit `[Goal]` on 2026-09-14: `ดำเนิน ProjectFramework 1.19 AI-ControlTower Governance Support Layer ต่อจาก Design Sections 1–2 ที่อนุมัติแล้ว จนถึง verified completion โดยยังไม่ implement AI-ControlTower runtime`.
-- **depends_on:** `[TASK-055]`
-- **blocks:** `[]`
-- **enables:** `[]`
-- **parallelizable_with:** `[]`
-- **priority:** `HIGH`
-- **readiness:** `DESIGN_SECTIONS_1_6_APPROVED / WRITTEN_SPEC_REVIEW_REQUIRED / IMPLEMENTATION_NOT_STARTED`
-- **Problem:** ProjectFramework 1.18 has strong governance, Task, verification, publication, capability/tool/trust, and continuity semantics, but future AI-ControlTower/Multica consumers need deterministic declarative contracts for Plan/Task/Verify execution without transferring Project authority to a runtime/control plane.
-- **Approved Architecture:** Approach A — Schema-first Declarative Contracts; Plan Contract + Task Contract; nested non-authoritative Execution Envelope; mandatory Expected IPOCV; separate Task Record / Actual IPOCV; state-bound Verification Record; `R4_CTX` Current Truth; pure fail-closed Task Ready Gate; separate operational execution state; Multica claim/coordination-only authority; domain-owned source-of-truth reconciliation; declarative Executor Profile + Project Adapter; filter-before-rank execution selection; exact-SHA candidate verification; fresh `INTEGRATION_GATE`; integration/merge reconciliation; canonical Task owner retains Task DONE authority.
-- **Target Release:** Framework `1.19.0` / Project Source Schema `1.0.0` / release format `3`.
-- **Design Sections:** `1–6 USER_APPROVED / LOCKED` on 2026-09-14.
-- **Design Spec:** `docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md`.
-- **Design Spec Commit:** `554c449eade42815a2e228d174d4f6e5a8cbb440`.
-- **Design State:** `WRITTEN_SPEC_DRAFTED / USER_REVIEW_REQUIRED`; implementation planning MUST wait for explicit written-spec approval.
-- **Goal Link:** the exact user Goal is persisted above as this Task's durable source. This registration intentionally does not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact; any later Project Source Goal lifecycle allocation must follow current Goal governance.
-- **Implementation Boundary:** governance/documentation contracts and maintained starters only. Do not implement AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime/implementation as part of TASK-057.
-- **Completion Criteria:** written spec explicitly approved; implementation plan completed; TDD/pressure scenarios added before normative implementation; Framework 1.19 contract/starters implemented; Plan/Task/Verify, IPOCV, R4_CTX, Ready Gate/state machine, Multica/source-of-truth, Executor/Profile/Adapter, exact-SHA verification and integration reconciliation remain consistent; required independent review passes; AFFECTED passes; one final unchanged-candidate `RELEASE_FULL` passes; evidence and durable completion commit are observed; canonical Task/Goal lifecycle is reconciled truthfully.
-- **Publication Boundary:** registration/design persistence on canonical `main` does not by itself authorize future release/tag/deployment or AI-ControlTower runtime mutation; later shared-state actions remain governed by exact current authority.
-- **Exact Next Step:** ACTOR-001 reviews/approves the written spec; after approval, invoke implementation planning (`writing-plans`) before Framework normative mutation.
