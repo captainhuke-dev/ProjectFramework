@@ -3,7 +3,7 @@
 Date: `2026-09-14` (Asia/Bangkok)
 Design state: `DESIGN_SECTIONS_1_TO_6_USER_APPROVED / WRITTEN_SPEC_USER_APPROVED`
 Written spec approval: `ACTOR-001 EXPLICIT_APPROVAL / 2026-09-14`
-Implementation state: `PLANNING_COMPLETE / IMPLEMENTATION_NOT_STARTED`
+Implementation state: `PLANNING_COMPLETE / EXECUTION_HANDOFF_REQUIRED / IMPLEMENTATION_NOT_STARTED`
 Target release: Framework `1.19.0` / Project Source Schema `1.0.0` / release format `3`
 Task: `TASK-057`
 
@@ -75,6 +75,18 @@ Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED
 ```
 
 Framework 1.19 does not implement AI-ControlTower runtime, ProjectFramework 2.0 cutover, a Control Plane, state/workflow engine, task database, event store, queue, scheduler, worker daemon, Multica runtime, lease/fencing service, distributed lock, automatic transition engine, model/executor router, executable Project Adapter, MCP router, merge bot, merge queue, verification daemon, CI runner, API server, automatic Task DONE updater, automatic reconciliation worker, Structured Core, Generated Governance, Transaction Mode implementation, or a new authority system.
+
+### 2.1 Planner / Execution Handoff Boundary
+
+For TASK-057, the designated GPT role is `PLANNER`. Planning completion does not assign execution.
+
+`Planner ≠ Executor ≠ Verifier`.
+
+After the implementation plan is complete, the planning state becomes `EXECUTION_HANDOFF_REQUIRED`. The approved plan is handed to the applicable execution-control layer, which resolves the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Task Ready Gate before selecting an eligible Executor.
+
+Planner capability to execute ≠ assignment as Executor. GPT MUST NOT self-promote into TASK execution merely because planning is complete. GPT may execute only if a future governed execution decision separately selects it as an eligible Executor under current authority and eligibility constraints.
+
+When independent verification is required, Verifier selection is a separate evaluation from Executor selection.
 
 ## 3. PLAN / TASK / VERIFY and R4 Current Truth
 
@@ -625,4 +637,4 @@ Publication, PR/merge, tag, GitHub Release, Project Source self-host promotion, 
 
 Design Sections 3–6 were consolidated from explicitly approved design text in the 2026-09-14 conversation. Sections 1–2 are conservative consolidation of the previously approved Approach A, AI-ControlTower-support scope, Plan/Task/Verify requirement, R4/source-of-truth boundary, and no-runtime boundary retained in Project conversation context.
 
-This file is the durable written-spec artifact. ACTOR-001 explicitly approved this written specification on 2026-09-14. Implementation planning is complete; Framework normative mutation has not started.
+This file is the durable written-spec artifact. ACTOR-001 explicitly approved this written specification on 2026-09-14. Implementation planning is complete; execution handoff is required; Framework normative mutation has not started.

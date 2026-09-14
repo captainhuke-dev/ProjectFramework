@@ -1,6 +1,8 @@
 # TASK-057 AI-ControlTower Governance Support Layer Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **Execution handoff:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`. Planning completion does not assign execution. This approved plan MUST be handed to the applicable execution-control layer, which selects an eligible Executor from the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. `Planner ≠ Executor ≠ Verifier`; GPT MUST NOT self-promote into TASK execution merely because planning is complete. Independent Verifier selection, when required, is separate from Executor selection.
+>
+> **For a selected agentic Executor:** after governed selection, use superpowers:subagent-driven-development or superpowers:executing-plans if supported by that execution environment. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Implement ProjectFramework `1.19.0` declarative PLAN/TASK/VERIFY governance support for AI-ControlTower/Multica consumers without implementing their runtime.
 
@@ -24,6 +26,7 @@
 - Executor selection is filter-before-rank; TASK and VERIFY are separate evaluations; VERIFY support alone is not independent-review qualification.
 - Material Git verification binds repository + exact commit SHA. Fresh `INTEGRATION_GATE` remains mandatory before shared-state mutation.
 - Brownfield historical Tasks are not silently retrofitted.
+- TASK-057 planner boundary: GPT is Planner; after plan completion state is `EXECUTION_HANDOFF_REQUIRED`; Executor selection belongs to the applicable execution-control layer using current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate; independent Verifier selection remains separate when applicable.
 - Do not implement AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, database/event store, leases/fencing, distributed lock, state engine, router, executable adapter, merge bot/queue, CI runner, API server, automatic Task DONE/reconciliation, Structured Core, Generated Governance, or Transaction Mode runtime.
 - Pressure scenarios are RED-first. Allocate required classes contiguously as scenarios `529–556`.
 - One final `RELEASE_FULL` on the unchanged final candidate; rerun only after candidate-invalidating change.
@@ -190,3 +193,4 @@
 - Vocabulary consistency: R4_CTX, Ready Gate, Task lifecycle, operational states, integration strategies, and ambiguous-result recovery match the approved spec.
 - Scope: governance/docs/starters only; no runtime or new Project Source Stable-ID family.
 - Publication boundary: implementation verification remains distinct from shared-state publication/self-host promotion.
+- Execution handoff boundary: GPT remains Planner until a separate governed execution decision selects an eligible Executor; plan completion alone never starts TASK execution.
