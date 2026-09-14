@@ -1,0 +1,69 @@
+name: TASK-057 spec approval persistence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/task057-approve-spec-plan.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Persist approval and plan metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          spec = Path('docs/superpowers/specs/2026-09-14-task057-ai-controltower-governance-support-layer-design.md')
+          s = spec.read_text(encoding='utf-8')
+          old = 'Design state: `DESIGN_SECTIONS_1_TO_6_USER_APPROVED / WRITTEN_SPEC_REVIEW_REQUIRED`\nImplementation state: `NOT_STARTED`'
+          new = 'Design state: `DESIGN_SECTIONS_1_TO_6_USER_APPROVED / WRITTEN_SPEC_USER_APPROVED`\nWritten spec approval: `ACTOR-001 EXPLICIT_APPROVAL / 2026-09-14`\nImplementation state: `PLANNING_COMPLETE / IMPLEMENTATION_NOT_STARTED`'
+          assert s.count(old) == 1, f'spec header match count={s.count(old)}'
+          s = s.replace(old, new, 1)
+          gate = 'This file is the durable written-spec review artifact. No implementation begins until ACTOR-001 explicitly accepts this written specification. After approval, the next process step is implementation planning (`writing-plans`) before mutation of Framework normative surfaces.'
+          gate_new = 'This file is the durable written-spec artifact. ACTOR-001 explicitly approved this written specification on 2026-09-14. Implementation planning is complete; Framework normative mutation has not started.'
+          assert s.count(gate) == 1, f'spec gate match count={s.count(gate)}'
+          spec.write_text(s.replace(gate, gate_new, 1), encoding='utf-8')
+
+          task = Path('docs/superpowers/PROJECT-TASKS.md')
+          t = task.read_text(encoding='utf-8')
+          old_readiness = '- **readiness:** `DESIGN_SECTIONS_1_6_APPROVED / WRITTEN_SPEC_REVIEW_REQUIRED / IMPLEMENTATION_NOT_STARTED`'
+          new_readiness = '- **readiness:** `WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_COMPLETE / IMPLEMENTATION_NOT_STARTED`'
+          assert t.count(old_readiness) == 1, f'readiness match count={t.count(old_readiness)}'
+          t = t.replace(old_readiness, new_readiness, 1)
+
+          old_state = '- **Design State:** `WRITTEN_SPEC_DRAFTED / USER_REVIEW_REQUIRED`; implementation planning MUST wait for explicit written-spec approval.'
+          new_state = '- **Design State:** `WRITTEN_SPEC_APPROVED / USER_APPROVED`; ACTOR-001 explicitly approved the written spec on 2026-09-14; implementation planning is complete and Framework normative mutation remains NOT_STARTED.'
+          assert t.count(old_state) == 1, f'design-state match count={t.count(old_state)}'
+          t = t.replace(old_state, new_state, 1)
+
+          anchor = '- **Design Spec Commit:** `554c449eade42815a2e228d174d4f6e5a8cbb440`.\n'
+          insert = anchor + '- **Written Spec Approval:** `ACTOR-001 EXPLICIT_APPROVAL / 2026-09-14`.\n- **Implementation Plan:** `docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md`.\n- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_NOT_STARTED`.\n'
+          assert t.count(anchor) == 1, f'plan anchor count={t.count(anchor)}'
+          t = t.replace(anchor, insert, 1)
+
+          old_next = '- **Exact Next Step:** ACTOR-001 reviews/approves the written spec; after approval, invoke implementation planning (`writing-plans`) before Framework normative mutation.'
+          new_next = '- **Exact Next Step:** choose implementation execution mode for the approved plan; Framework normative mutation remains NOT_STARTED until execution begins.'
+          assert t.count(old_next) == 1, f'next-step match count={t.count(old_next)}'
+          task.write_text(t.replace(old_next, new_next, 1), encoding='utf-8')
+
+          plan = Path('docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md')
+          assert plan.is_file(), 'implementation plan missing'
+          PY
+
+          rm .github/workflows/task057-approve-spec-plan.yml
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'docs(task057): persist written spec approval and plan state'
+          git push origin HEAD:main
