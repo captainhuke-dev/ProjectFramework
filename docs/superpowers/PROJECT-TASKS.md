@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TASK-057 IN_PROGRESS` (`TODO=0`, `IN_PROGRESS=1`, `BLOCKED=0`).
+- Current backlog: `TODO=0 / IN_PROGRESS=0 / BLOCKED=0` (TASK-057 DONE).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
@@ -1323,7 +1323,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #57 — ProjectFramework 1.19 AI-ControlTower Governance Support Layer
 
 - **ID:** `TASK-057`
-- **Status:** `IN_PROGRESS`
+- **Status:** `DONE`
 - **Type:** Framework architecture / AI-ControlTower governance support contract layer
 - **Source Goal:** ACTOR-001 explicit `[Goal]` on 2026-09-14: `ดำเนิน ProjectFramework 1.19 AI-ControlTower Governance Support Layer ต่อจาก Design Sections 1–2 ที่อนุมัติแล้ว จนถึง verified completion โดยยังไม่ implement AI-ControlTower runtime`.
 - **depends_on:** `[TASK-055]`
@@ -1331,7 +1331,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_COMPLETE / EXECUTION_HANDOFF_REQUIRED / IMPLEMENTATION_NOT_STARTED`
+- **readiness:** `DONE / VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / PUSHED_TO_ORIGIN_MAIN / NOT_TAGGED / NOT_RELEASED`
 - **Problem:** ProjectFramework 1.18 has strong governance, Task, verification, publication, capability/tool/trust, and continuity semantics, but future AI-ControlTower/Multica consumers need deterministic declarative contracts for Plan/Task/Verify execution without transferring Project authority to a runtime/control plane.
 - **Approved Architecture:** Approach A — Schema-first Declarative Contracts; Plan Contract + Task Contract; nested non-authoritative Execution Envelope; mandatory Expected IPOCV; separate Task Record / Actual IPOCV; state-bound Verification Record; `R4_CTX` Current Truth; pure fail-closed Task Ready Gate; separate operational execution state; Multica claim/coordination-only authority; domain-owned source-of-truth reconciliation; declarative Executor Profile + Project Adapter; filter-before-rank execution selection; exact-SHA candidate verification; fresh `INTEGRATION_GATE`; integration/merge reconciliation; canonical Task owner retains Task DONE authority.
 - **Target Release:** Framework `1.19.0` / Project Source Schema `1.0.0` / release format `3`.
@@ -1340,11 +1340,21 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Design Spec Commit:** `554c449eade42815a2e228d174d4f6e5a8cbb440`.
 - **Written Spec Approval:** `ACTOR-001 EXPLICIT_APPROVAL / 2026-09-14`.
 - **Implementation Plan:** `docs/superpowers/plans/2026-09-14-task057-ai-controltower-governance-support-layer.md`.
-- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_HANDOFF_REQUIRED / EXECUTION_NOT_STARTED`.
-- **Design State:** `WRITTEN_SPEC_APPROVED / USER_APPROVED`; ACTOR-001 explicitly approved the written spec on 2026-09-14; implementation planning is complete and Framework normative mutation remains NOT_STARTED.
-- **Planner / Execution Handoff:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`. Planning completion does not assign execution. The applicable execution-control layer selects an eligible Executor from current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. If independent verification is required, Verifier selection is separate. GPT MUST NOT self-promote into TASK execution merely because planning is complete.
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTED`.
+- **Design State:** `WRITTEN_SPEC_APPROVED / USER_APPROVED`; ACTOR-001 explicitly approved the written spec on 2026-09-14; implementation is complete and verified.
+- **Planner / Execution Handoff:** execution handoff completed. ACTOR-001 explicitly authorized governed execution (อินาซื้อมั) on 2026-09-15 after a clean fast-forward of `origin/main`; an eligible Executor was selected under the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. Independent Verifier selection was separate (fresh-context review subagent).
 - **Goal Link:** the exact user Goal is persisted above as this Task's durable source. This registration intentionally does not synthesize `OUT-* / AUTH-* / ACT-* / ENV-*` after the fact; any later Project Source Goal lifecycle allocation must follow current Goal governance.
 - **Implementation Boundary:** governance/documentation contracts and maintained starters only. Do not implement AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime/implementation as part of TASK-057.
 - **Completion Criteria:** written spec explicitly approved; implementation plan completed; TDD/pressure scenarios added before normative implementation; Framework 1.19 contract/starters implemented; Plan/Task/Verify, IPOCV, R4_CTX, Ready Gate/state machine, Multica/source-of-truth, Executor/Profile/Adapter, exact-SHA verification and integration reconciliation remain consistent; required independent review passes; AFFECTED passes; one final unchanged-candidate `RELEASE_FULL` passes; evidence and durable completion commit are observed; canonical Task/Goal lifecycle is reconciled truthfully.
 - **Publication Boundary:** registration/design persistence on canonical `main` does not by itself authorize future release/tag/deployment or AI-ControlTower runtime mutation; later shared-state actions remain governed by exact current authority.
-- **Exact Next Step:** Handoff the approved implementation plan to the applicable execution-control layer. That layer selects an eligible Executor under the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Ready Gate. GPT remains Planner unless a future governed execution decision separately selects it as an eligible Executor. Framework normative mutation remains NOT_STARTED until an Executor begins governed execution.
+- **Implementation Commits:** `90f2e50` RED scenarios 529–556; `9f6436a` normative Framework 1.19 declarative execution contracts; `e4b442c` 7 declarative execution contract starters; `a89c3dd` guidance/starter propagation; `bd3b99a` Framework 1.19 release metadata; `f378e0a` Planner/Execution Handoff Boundary in Core projection.
+- **Review:** `Hermes-Independent-Review-Subagent` (fresh context, read-only); candidate `f378e0a`; `Critical 0 / Important 0 / Minor 3 / REVIEW_PASS`.
+- **Verification:** `TASK057_RED (0 Core-Governance token matches pre-mutation) → TASK057_AFFECTED 96/96 PASS → TASK057_RELEASE_FULL 77/77 PASS PASS_RUN_1`.
+- **Candidate:** HEAD `f378e0a0b4796a94ec52ba1286d17d05e6a5c9b2`; tree `f4957c3564f4963bd38f22cf256f3efa5434ff60`; Framework-Source tree `23274ada739c56a10c8edcfc14e6a9a0e46e9a0b`.
+- **Evidence:** `docs/superpowers/evidence/2026-09-15-task-057-ai-controltower-governance-support-layer-release-full.md`.
+- **Implementation State:** `LOCAL_VERIFIED_COMPLETE / RELEASE_CANDIDATE_VERIFIED / PUSHED_TO_ORIGIN_MAIN`.
+- **Publication State:** `PUSHED_TO_ORIGIN_MAIN` (`origin/main = f378e0a`) / `NOT_TAGGED` / `NOT_RELEASED`.
+- **Self-Host Result:** active self-host `Project-Source/` (FRAMEWORK-001) and root `PROJECT-BOOTSTRAP.md` remain Framework `1.18.0` / Schema `1.0.0`; no 1.19 self-host promotion occurred.
+- **No-Runtime Confirmation:** only `.md`/`.yaml` changed (42 files); no AI-ControlTower/Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime introduced.
+- **Terminal Persistence Contract:** this terminal record is externally claimable when this exact successor set is observed on canonical `origin/main`; that observation does not require another successor solely to restate completion.
+- **Exact Next Step:** none for TASK-057; tag/GitHub Release, self-host 1.19 promotion, and AI-ControlTower runtime mutation remain separately governed.
