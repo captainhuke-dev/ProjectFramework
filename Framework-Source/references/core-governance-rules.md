@@ -2143,3 +2143,127 @@ TASK-035 publication dimensions remain factual lifecycle state: `PUSHED`, `PUBLI
 
 Framework `1.12.1` TASK-042 further hardens response bootstrap/finalization: first Project-governed response resolves Project Bootstrap when accessible, non-Material diagnostics are not exempt, and no early-return/exception path may bypass the pre-emit Response Close Completeness Gate.
 Framework `1.12.2` TASK-043 further hardens Registered Command execution: command bodies are Strict Governed Interfaces, pass the Command Contract Completeness Gate before TASK-042 final-response validation, and current `[Project Status]` summaries align through `Continuity`.
+## Framework 1.19.0 AI-ControlTower Governance Support Layer (TASK-057)
+
+Full normative text: `references/framework-governance-amendment-260914-task057-ai-controltower-governance-support-layer.md`. This section is the binding Core Governance projection.
+
+### Execution modes and R4 current truth
+
+The following remain distinct and none implies another:
+
+```text
+Contract ≠ Authority
+Capability ≠ Authority
+Eligibility ≠ Authority
+Claim ≠ Authority
+Execution success ≠ Verification PASS
+Verification PASS ≠ Task DONE
+Task DONE ≠ OUT achieved
+Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED
+```
+
+Framework `1.19.0` standardizes execution-facing modes `PLAN | TASK | VERIFY`. `PLAN complete ≠ Task Ready ≠ execution authority.` TASK performs work only inside `Task Contract ∩ Plan Contract ∩ Execution Envelope ∩ applicable AUTH ∩ current R4 truth.` VERIFY evaluates contract + Expected IPOCV + Task Record + Actual IPOCV + exact candidate identity when applicable + required current truth, and MUST NOT rewrite Expected IPOCV or acceptance criteria merely to make execution pass.
+
+`R4_CTX` / `current_truth_context` is execution-time Current Truth resolved from the applicable canonical/source-native owner. `R4_CTX ≠ Risk R4`; canonical Project Risk remains exactly `R0–R3`. `R4_CTX` is derived context, not another authority and not a permanent copy of mutable state.
+
+### Contracts, Envelope, and mandatory IPOCV
+
+Plan Contract owns execution strategy, not Task success semantics. Task Contract owns intent, acceptance criteria, declared dependencies, completion requirements, Expected IPOCV, and integration applicability; Plan Contract MUST NOT create a competing authoritative copy. Execution Envelope is a nested Task execution constraint — not Project Source `ENV-*`, not a Stable-ID family, and grants no authority. The envelope MAY narrow existing authority but can never broaden it; an entry naming a target, workspace, or operation does not create authority for it.
+
+Every Task Contract carries complete Expected IPOCV (`I = Input, P = Process, O = Output, C = Control, V = Verification`). Every dimension is mandatory; a genuinely inapplicable dimension is explicit `NOT_APPLICABLE` with a reason. Omission is not equivalent to not-applicable, and bare `NOT_APPLICABLE` without a reason keeps `EXPECTED_IPOCV_COMPLETE` false. No-inference rules: `missing field ≠ permission to infer`; `unknown authority ≠ authorized`; `unknown dependency ≠ satisfied`; `available tool ≠ eligible executor.`
+
+Expected IPOCV (Task Contract) and Actual IPOCV (Task Record) remain separate. Comparison result is exactly `MATCH | ACCEPTED_VARIANCE | MISMATCH | UNKNOWN.` `ACCEPTED_VARIANCE` requires a governed basis; `MISMATCH` cannot verify; applicable `UNKNOWN` fails closed.
+
+### Task Record and Verification Record
+
+Task Record captures observed execution (`record_type: TASK_RECORD`): task/plan/contract refs, execution ref, resolved current truth, Actual IPOCV, produced artifacts, evidence refs, candidate identity, execution result. It does not rewrite the original contract.
+
+Verification Record is state-bound (`record_type: VERIFICATION_RECORD`) with `result: PASS | FAIL | UNKNOWN` and explicit invalidation conditions. Verification `PASS` is evidence for the exact observed state, not permanent universal truth.
+
+### Task Ready Gate
+
+The Task Ready Gate is a pure fail-closed eligibility evaluation with result exactly `PASS | FAIL | UNKNOWN.` `PASS` requires all applicable conditions: `TASK_PLANNING_READINESS == READY`, `PLAN_CONTRACT_VALID`, `TASK_CONTRACT_VALID`, `EXPECTED_IPOCV_COMPLETE`, `EXECUTION_ENVELOPE_VALID`, `DEPENDENCIES_SATISFIED`, `R4_REQUIRED_TRUTH_RESOLVED`, `APPLICABLE_AUTHORITY_RESOLVED`, `REQUIRED_EXECUTOR_CAPABILITY_RESOLVED`, `SOURCE_OF_TRUTH_OWNERS_RESOLVED`, `NO_BLOCKING_CONFLICT.` `UNKNOWN`, materially stale, conflicted, or unresolved mandatory truth cannot be normalized to `PASS.`
+
+```text
+Task Ready Gate PASS
+≠ authority grant
+≠ claim
+≠ execution success
+≠ Task DONE
+```
+
+### Operational execution state machine
+
+Canonical Task lifecycle remains `TODO | IN_PROGRESS | DONE | BLOCKED | CANCELLED.` Framework `1.19.0` adds a separate operational execution-state domain:
+
+```text
+PROPOSED
+→ READY_FOR_CLAIM
+→ CLAIMED
+→ EXECUTING
+→ RESULT_RECORDED
+→ VERIFYING
+→ VERIFIED
+→ INTEGRATION_PENDING
+→ INTEGRATED
+→ CLOSED
+```
+
+Conditional/exception states: `VERIFICATION_FAILED | BLOCKED | CANCELLED | STALE.` Execution State MUST NOT directly mutate canonical Task lifecycle; a state transition claiming lifecycle effect without Task-owner action under `completion_requirements` is invalid.
+
+### Multica and source-of-truth boundary
+
+Multica owns operational coordination facts only (claim availability/holder/scope, worker assignment, claim release/expiry/stale observation, parallel execution coordination). Multica MUST NOT own or mutate Project intent, Plan/Task Contract, acceptance criteria, AUTH, Risk, Project Source, Task lifecycle, Verification PASS, Git truth, merge/release/deployment truth, or OUT achievement. A coordination claim is neither Project authority nor a guaranteed distributed lock/fencing mechanism. There is no newest-timestamp-wins rule; conflicts resolve by truth domain and canonical owner. Stale claim recovery inspects durable/source-native effects before reassignment; an unknown possibly-applied effect uses `RESULT_VERIFICATION_REQUIRED` before any retry.
+
+### Executor Profile, Project Adapter, and execution selection
+
+Framework `1.19.0` reuses TASK-034 capability, TASK-027 tool/MCP, TASK-037 trust, and `AUTH-*` semantics, and adds declarative Executor Profile semantics (supported PLAN/TASK/VERIFY modes, work classes, capability/tool/trust refs, execution limits, workspace roles, coordination support). It is eligibility metadata, not permission. Supporting VERIFY is not the same as qualifying as an independent verifier; independent-review qualification is declared separately.
+
+The Project Adapter maps generic contracts to Project-specific owners and locators; it does not become those owners. `Project Adapter ≠ Project Source ≠ Task Source ≠ Git ≠ GitHub ≠ Runtime Authority ≠ AUTH.`
+
+Selection is deterministic filter-before-rank:
+
+```text
+Task Ready Gate PASS
+→ execution mode
+→ work class
+→ mandatory capabilities
+→ provider scope
+→ tool policy
+→ trust policy
+→ Execution Envelope
+→ risk/side-effect compatibility
+→ workspace compatibility
+→ independent-review constraints
+→ eligible executor set
+→ preference ranking
+→ selected executor
+→ volatile-prerequisite recheck
+→ coordination claim
+```
+
+An ineligible executor cannot become eligible because it is preferred, cheaper, stronger, recent, or available. No eligible candidate produces `NO_ELIGIBLE_EXECUTOR`; no undeclared fallback is invented. TASK and VERIFY selection are separate evaluations.
+
+### Exact-SHA verification and candidate identity
+
+For Material Git-backed work, verification binds to exact observed candidate identity: `repository`, `commit_sha`, `tree_sha`, `worktree_or_branch_ref`, `observed_at.` Canonical verification identity is repository + exact observed commit SHA. Mutable branch names, PR numbers, version labels, or "latest commit" are routing references, not immutable terminal evidence. VERIFY operates on a frozen candidate; material change after `PASS` invalidates affected proof. `Verification PASS(candidate A) ≠ Verification PASS(candidate B).` Task Verification and Framework `RELEASE_FULL` remain different proof domains; a Verification Record may reference exact valid release evidence but does not clone or redefine that proof.
+
+### Integration eligibility, strategy, and reconciliation
+
+`VERIFIED` is not sufficient to merge. `VERIFIED ≠ INTEGRATION_ELIGIBLE ≠ MERGED.` Integration eligibility requires Verification PASS, the exact verified candidate still current, integration applicability, resolved target, valid exact integration authority, valid Base Freshness, satisfied required review, no blocking conflict, and a fresh `INTEGRATION_GATE` result of `PASS.` Immediately before shared-state mutation, fresh-resolve candidate SHA, target ref/SHA, authority, verification validity, PR/head identity when applicable, Base Freshness, and mergeability/conflicts; a changed target invalidates the gate. That does not automatically require rerunning unchanged-candidate `RELEASE_FULL.`
+
+Framework `1.19.0` recognizes integration strategies `FAST_FORWARD_EXACT | MERGE_COMMIT_PRESERVING_CANDIDATE | TRANSFORMING_INTEGRATION.` For `FAST_FORWARD_EXACT` the canonical result equals the verified candidate; any additional change in the same operation makes it a different strategy. A merge commit that preserves the candidate retains candidate proof about that candidate, but the canonical resulting state requires Integration Reconciliation. Squash/rebase/manual conflict resolution/cherry-pick transformations do not automatically inherit candidate verification; proof reuse requires deterministic exact-equivalence evidence, and exact-equivalence proof reuse covers only the proof domains where equivalence was actually shown. Otherwise the canonical result must be reverified.
+
+A derived Integration Reconciliation record captures verified candidate SHA, integration strategy, target, pre-integration target SHA, resulting SHA, candidate relation, verification reuse/reverification state, source-native evidence, and `PASS | FAIL | UNKNOWN` result. Git / the declared canonical Git hosting target remains the source of truth for Git integration facts. Unknown shared/non-idempotent outcomes use `RESULT_VERIFICATION_REQUIRED`; no blind retry is allowed after an ambiguous push/merge response.
+
+### Task DONE, CLOSED, and post-merge reconciliation
+
+Task completion is determined by Task Contract `completion_requirements.` A local-only bounded Task may become `DONE` after applicable verification + durable completion commit even when publication is outside its outcome. An integration-required Task cannot become `DONE` until required integration/resulting-state criteria are satisfied. AI-ControlTower/Multica may submit completion evidence but cannot set Task DONE directly. Execution `CLOSED` is operational lifecycle closure, not OUT achievement.
+
+Code/content integration and governance reconciliation remain separate. A merged change may truthfully yield `MERGED + RECONCILIATION_REQUIRED` when required Root/Project Source reconciliation lacks authority. Workflow continuity never expands authority implicitly; post-merge reconciliation performs only what the current authority covers.
+
+### Brownfield, Greenfield, and no-runtime boundary
+
+Framework `1.19.0` adoption does not retroactively require historical Tasks to acquire reconstructed Plan Contracts, IPOCV, Task Records, Executor Profiles, or Project Adapters. Projects that do not use AI-ControlTower remain valid ProjectFramework Projects. Unknown Brownfield mappings remain `UNKNOWN` rather than guessed. Maintained additions are additive starter/contract files around existing `Project-Execution/` and template surfaces (`plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, `integration-reconciliation.md`); no new Project Source semantic slot or Stable-ID family is introduced.
+
+TASK-057 ships governance/documentation contracts and maintained starters only. It adds no AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, event store, lease/fencing service, distributed lock, state engine, model/executor router, executable Project Adapter, merge bot/queue, CI runner, API server, automatic Task DONE updater, automatic reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime.
