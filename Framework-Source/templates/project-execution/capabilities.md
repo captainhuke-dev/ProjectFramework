@@ -34,5 +34,6 @@ Rules:
 - `DEGRADED_ALLOWED` permits only genuinely supported bounded work; required review and safety/authority gates remain.
 - `UNKNOWN` fails closed for materially sensitive required capability.
 - `independent_review: REQUIRED` requires an eligible independent reviewer where practicable; do not fabricate reviewer capability/availability/independence.
+- TASK-057: supporting VERIFY mode does not qualify an executor as an independent verifier; independent-review qualification is declared separately in the Executor Profile.
 - `[Meeting]` remains TASK-024 advisory behavior even when `COUNCIL` is required.
 - Profile values are eligibility constraints, not mutation, approval, deployment, disclosure, or binding authority.

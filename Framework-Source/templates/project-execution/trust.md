@@ -28,3 +28,4 @@ UNKNOWN trust for materially sensitive action → VERIFICATION_REQUIRED / fail c
 - Material data/code/artifact/execution crossings require applicable provenance, tool eligibility, capability eligibility, TASK-026 disclosure/secret checks, and AUTH/Risk/Decision/shared-state gates.
 - Actual secret values MUST NOT be stored here.
 - Brownfield adoption never infers trust merely from successful prior use.
+- TASK-057: trust policy is one filter in deterministic filter-before-rank executor selection; UNKNOWN trust for materially sensitive work fails closed before any preference ranking.

@@ -31,4 +31,5 @@ Rules:
 - Unknown potentially-applied side effects enter `RESULT_VERIFICATION_REQUIRED`; verify resulting state before retrying or transitioning to another declared fallback.
 - Material fallback mutation requires the applicable append-only `fallback-log.md` incident event to be persisted first; inability to persist it is `FAIL_CLOSED`.
 - Tool IDs are policy labels, not credentials, MCP workspace IDs, repository identity, Project Stable IDs, or authority.
+- TASK-057: tool policy is one filter in deterministic filter-before-rank executor selection; an undeclared tool is never eligible, and `NO_ELIGIBLE_EXECUTOR` fails closed without invented fallback.
 - Actual secret values MUST NOT be stored here.
