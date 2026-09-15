@@ -2,9 +2,33 @@
 
 Per-release migration guidance for upgrading an initialized Project's Framework pin. These notes are routing/documentation aids, **not** normative authority — Core Governance and the latest amendment win on any conflict. Absence of a section for a transition means no notes exist yet; do not invent them.
 
+## 1.18.0 → 1.19.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.19.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-057 AI-ControlTower Governance Support Layer.
+- Declarative execution contracts are added: `PLAN | TASK | VERIFY` modes, Plan Contract, Task Contract, nested Execution Envelope, mandatory Expected IPOCV, Task Record / Actual IPOCV, state-bound Verification Record, Task Ready Gate, operational execution state, Multica coordination boundary, Executor Profile / Project Adapter, filter-before-rank selection, exact-SHA verification, fresh `INTEGRATION_GATE`, and integration reconciliation.
+- `R4_CTX` / `current_truth_context` is execution-time current truth, not a Risk level; canonical Risk remains exactly `R0–R3.`
+- `Contract ≠ Authority`; `Eligibility ≠ Authority`; `Claim ≠ Authority`; `Verification PASS ≠ Task DONE`; Execution State never mutates canonical Task lifecycle; `VERIFIED ≠ INTEGRATION_ELIGIBLE ≠ MERGED.`
+- Seven optional declarative starters are maintained under `templates/project-execution/`: `plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, `integration-reconciliation.md.`
+- Adoption is additive and applicability-driven. Non-ControlTower Projects remain valid ProjectFramework Projects without adopting any contract.
+- No new Project Source semantic slot, Stable-ID family, Registered Command, or release-descriptor format changes.
+- No AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, database, state engine, router, executable adapter, merge bot, CI runner, API server, automatic DONE/reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime is introduced.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's local pin, current truth, Stable IDs, Project-specific rules, bindings, and history until governed promotion.
+2. Preserve canonical `R0–R3` and all existing authority/risk/disclosure/secret/publication gates; 1.19 contracts may only compose with them, never weaken them.
+3. Adopt declarative contracts only when AI-ControlTower/Multica consumption is applicable; do not materialize empty contract files for completeness.
+4. Do not retrofit historical/Brownfield Tasks with reconstructed Plan Contracts, IPOCV, Task Records, Executor Profiles, or Project Adapters; unknown mappings remain `UNKNOWN.`
+5. Preserve the distinctness of canonical Task lifecycle, operational execution state, Verification PASS, and Task DONE.
+6. Preserve `INTEGRATION_GATE`, exact-SHA candidate binding, and `RESULT_VERIFICATION_REQUIRED` unknown-result semantics.
+7. Verify scenarios `529–556` while preserving cumulative scenarios `1–556` contiguous/unique.
+8. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+
 ---
 
-## 1.17.0 → 1.18.0 (current)
+## 1.17.0 → 1.18.0
 
 ### Affected distribution surfaces
 
