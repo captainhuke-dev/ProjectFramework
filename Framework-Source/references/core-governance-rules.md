@@ -2211,6 +2211,10 @@ PROPOSED
 
 Conditional/exception states: `VERIFICATION_FAILED | BLOCKED | CANCELLED | STALE.` Execution State MUST NOT directly mutate canonical Task lifecycle; a state transition claiming lifecycle effect without Task-owner action under `completion_requirements` is invalid.
 
+### Planner / Execution Handoff Boundary
+
+`Planner ≠ Executor ≠ Verifier.` Planning completion does not assign execution. After an implementation plan is complete, the planning state becomes `EXECUTION_HANDOFF_REQUIRED`. The approved plan is handed to the applicable execution-control layer, which resolves the current Task Contract, Execution Envelope, AUTH, `R4_CTX`, capability/tool/trust/executor policy, and Task Ready Gate before selecting an eligible Executor. Planner capability to execute is not assignment as Executor; an agent MUST NOT self-promote into TASK execution merely because planning is complete. When independent verification is required, Verifier selection is a separate evaluation from Executor selection.
+
 ### Multica and source-of-truth boundary
 
 Multica owns operational coordination facts only (claim availability/holder/scope, worker assignment, claim release/expiry/stale observation, parallel execution coordination). Multica MUST NOT own or mutate Project intent, Plan/Task Contract, acceptance criteria, AUTH, Risk, Project Source, Task lifecycle, Verification PASS, Git truth, merge/release/deployment truth, or OUT achievement. A coordination claim is neither Project authority nor a guaranteed distributed lock/fencing mechanism. There is no newest-timestamp-wins rule; conflicts resolve by truth domain and canonical owner. Stale claim recovery inspects durable/source-native effects before reassignment; an unknown possibly-applied effect uses `RESULT_VERIFICATION_REQUIRED` before any retry.
