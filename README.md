@@ -27,11 +27,29 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.18.0**
+- Project Source Framework: **1.19.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
 
+## Framework 1.19.0 AI-ControlTower Governance Support Layer
+
+Framework `1.19.0` adds a declarative **Governance Support Layer** so AI-ControlTower, Multica, agents, and future orchestrators can consume ProjectFramework work contracts deterministically without becoming Project authority. It is additive: no new Project Source semantic slot, Stable-ID family, Registered Command, or runtime.
+
+- **Execution modes** `PLAN | TASK | VERIFY` with `PLAN complete ≠ Task Ready ≠ execution authority.`
+- **Plan Contract** owns execution strategy; **Task Contract** owns intent, acceptance criteria, dependencies, completion requirements, and mandatory **Expected IPOCV** (`I/P/O/C/V`; explicit `NOT_APPLICABLE` + reason when inapplicable).
+- **Execution Envelope** is a nested constraint that may narrow but never broaden AUTH.
+- **Task Record / Actual IPOCV** and state-bound **Verification Record** (`PASS | FAIL | UNKNOWN`) keep expected vs actual separate (`MATCH | ACCEPTED_VARIANCE | MISMATCH | UNKNOWN`).
+- **Task Ready Gate** is pure fail-closed (`PASS | FAIL | UNKNOWN`); `PASS` grants no authority.
+- **Operational execution state** is separate from canonical Task lifecycle and never mutates it.
+- **Multica** owns coordination facts only; conflicts resolve by truth domain and canonical owner, never newest-timestamp-wins.
+- **Executor Profile / Project Adapter** are eligibility/locator metadata; selection is deterministic filter-before-rank; `NO_ELIGIBLE_EXECUTOR` fails closed.
+- **Exact-SHA verification**: Git-backed verification binds repository + exact commit SHA; `VERIFIED ≠ INTEGRATION_ELIGIBLE ≠ MERGED`; fresh `INTEGRATION_GATE` remains mandatory.
+- **Integration strategies** `FAST_FORWARD_EXACT | MERGE_COMMIT_PRESERVING_CANDIDATE | TRANSFORMING_INTEGRATION` with derived Integration Reconciliation; transforming integration inherits no proof without exact-equivalence evidence.
+- **`R4_CTX`** is execution-time current truth, not a Risk level (Risk remains `R0–R3`).
+- **Brownfield**: historical Tasks are not retrofitted; non-ControlTower Projects remain valid.
+
+Maintained starters: `Framework-Source/templates/project-execution/{plan-contract,task-contract,task-record,verification-record,executor-profile,project-adapter,integration-reconciliation}.md.` No AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, database, state engine, router, merge bot, CI runner, API server, or automatic DONE/reconciliation worker is introduced.
 ## Framework 1.18.0 Project Upgrade One-Session Fast Path
 
 Framework `1.18.0` removes the redundant “prepare?” round-trip from `[Project Upgrade]`: comparison, cumulative assessment, path classification, one-session eligibility, and the exact Preview now happen in one read-only pass. One explicit Human mutation approval remains mandatory before Material upgrade mutation. Eligible `FAST_PATH` and bounded compatible `ASSESSED_PATH` can then execute as one bounded transaction; `MAJOR_MIGRATION_REQUIRED` remains outside the fast path.

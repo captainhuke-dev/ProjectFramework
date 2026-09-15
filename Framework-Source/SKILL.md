@@ -9,7 +9,9 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.18.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.19.0 / Schema 1.0.0**.
+
+Framework `1.19.0` adds the declarative AI-ControlTower Governance Support Layer: `PLAN | TASK | VERIFY` modes, Plan/Task Contract, nested Execution Envelope, mandatory Expected IPOCV, Task Record / Actual IPOCV, state-bound Verification Record, pure fail-closed Task Ready Gate, separate operational execution state, Multica coordination-only boundary, Executor Profile / Project Adapter, filter-before-rank selection, exact-SHA candidate verification, fresh `INTEGRATION_GATE`, and integration reconciliation. `R4_CTX` is execution-time current truth, **not** a Risk level (Risk remains `R0–R3`). `Contract ≠ Authority`; `Eligibility ≠ Authority`; `Claim ≠ Authority`; `Verification PASS ≠ Task DONE.` No AI-ControlTower/Multica runtime, scheduler, state engine, router, or automatic executor is introduced.
 
 ProjectFramework is **conceptual governance/planning first**. Technical and integrity requirements are semantic contracts. **Do not expand Tech Stack, installation, Docker, governance, or integrity work into application code, Dockerfile/Compose, scripts, validator/CLI, CI/CD, scheduler, background automation, or other implementation unless the user explicitly requests a separate implementation scope.**
 
@@ -18,7 +20,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260913-task052-project-upgrade-one-session-fast-path.md` — latest amendment: TASK-052 Project Upgrade One-Session Fast Path
+- `references/framework-governance-amendment-260914-task057-ai-controltower-governance-support-layer.md` — latest amendment: TASK-057 AI-ControlTower Governance Support Layer
+- `references/framework-governance-amendment-260913-task052-project-upgrade-one-session-fast-path.md` — previous amendment: TASK-052 Project Upgrade One-Session Fast Path
 - `references/framework-governance-amendment-260913-task051-feature-delivery-fast-path.md` — previous amendment: TASK-051 Risk-Tiered Feature Delivery Fast Path
 - `references/framework-governance-amendment-260912-task049-canonical-self-hosting.md` — previous amendment: TASK-049 Canonical Self-Hosting Release Reconciliation
 - `references/framework-governance-amendment-260912-task048-project-path-workspace-mcp-routing.md` — previous amendment: TASK-048 Project Path Workspace & MCP Routing
@@ -921,12 +924,13 @@ Immediately before integration, `INTEGRATION_GATE` re-resolves the current Canon
     External-AI disclosure rule: purpose/provider → candidate context → classify portions as `EXTERNAL_OK|EXTERNAL_REVIEW|DO_NOT_DISCLOSE|UNCLASSIFIED` → remove secrets/restricted material → minimize/redact → resolve `ELIGIBLE|LIMITED|INELIGIBLE|VERIFICATION_REQUIRED` provider eligibility → resolve bounded `AUTH-*` or exact one-off instruction → partition mixed sensitivity → send only authorized eligible subset; uncertainty fails closed and material disclosure evidence uses bounded `EVD-*` without duplicating sensitive payload.
     Project Knowledge rule: after active Project authority resolves, use optional `Project-Knowledge/` only when applicable; maintain provenance/index/log/page state; keep Knowledge advisory; route promotion through canonical Project Source + authority; external use still follows TASK-026; OpenViking preserves `PROJECT_SOURCE_AUTHORITY` vs `PROJECT_KNOWLEDGE_ADVISORY` and remains `DERIVED_ONLY`.
 
-19. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
-20. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
-21. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
-22. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
-23. Never store actual secrets; use `SECRET-*` metadata references only.
-24. Preserve history and finish with completion/readiness/exact-next-action summary using the mandatory bracketed response close; enforce Chat Closure Consistency and Response Close Completeness Gate.
+19. Framework 1.19 **AI-ControlTower Governance Support Layer**: when a Task uses declarative execution contracts, route `Task Source/Task Contract → Plan Contract when separate → applicable AUTH → R4 domain-owner current truth → Project-Execution profiles → Task Ready Gate → TASK/VERIFY`. `R4_CTX ≠ Risk R4` (Risk remains `R0–R3`); Ready Gate `PASS ≠ AUTH`; `Claim ≠ AUTH`; VERIFY support `≠` independent verifier; `Verification PASS ≠ Task DONE.` Execution State never mutates canonical Task lifecycle; Multica owns coordination facts only; selection is filter-before-rank with `NO_ELIGIBLE_EXECUTOR` fail-closed; Git-backed verification binds repository + exact commit SHA; `VERIFIED ≠ INTEGRATION_ELIGIBLE ≠ MERGED`; fresh `INTEGRATION_GATE` remains mandatory; unknown shared results use `RESULT_VERIFICATION_REQUIRED.` Local-only `DONE` remains distinct from publication; integration-required completion waits; post-merge reconciliation never expands authority; Brownfield Tasks are not retrofitted. No AI-ControlTower/Multica runtime is introduced.
+20. If exact Git provenance is observed/material, record consistently in `00`/`14`; otherwise never fabricate it.
+21. If Git branch/worktree integration is in scope, resolve the canonical integration target, classify Independent vs `STACKED_WORK`, enforce Base Freshness checkpoints, and route semantic staleness to Forward-Port before integration.
+22. If implementation/runtime mapping is material, resolve Canonical Implementation Source, workspace durability, Source-to-Runtime Mapping, Runtime Mutability Boundary, and required persistent-state authority before implementation-completion/readiness claims.
+23. Verify referenced current Stable IDs resolve without archive traversal before readiness/CURRENT export claims.
+24. Never store actual secrets; use `SECRET-*` metadata references only.
+25. Preserve history and finish with completion/readiness/exact-next-action summary using the mandatory bracketed response close; enforce Chat Closure Consistency and Response Close Completeness Gate.
 
 ## Quick Reference
 
@@ -1095,3 +1099,23 @@ Crossing types include `DATA_READ`, `DATA_WRITE`, `CODE_EXECUTION`, `ARTIFACT_TR
 `PRIVILEGED` means elevated consequence, not broader permission. Material `PRIVILEGED_OPERATION` needs explicit authority and applicable review/risk/evidence. External/untrusted/limited/unknown code or artifacts do not become trusted by workspace presence. `17 Secret Reference Registry` remains reference-only; actual secret values never belong in trust policy.
 
 TASK-035 publication truth remains factual: PUSHED/PUBLISHED/DEPLOYED never proves trust or grants Runtime authority. Brownfield never infers trust from successful prior use. No scanner, sandbox, policy engine, runtime isolation, supply-chain service, secret store, or automatic privileged executor is created.
+
+## Framework 1.19.0 AI-ControlTower Governance Support Layer
+
+`Project-Execution/` gains optional declarative governance-support starters: `plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, and `integration-reconciliation.md`. They serve AI-ControlTower/Multica consumers deterministically without transferring Project authority to a runtime/control plane.
+
+Execution modes are `PLAN | TASK | VERIFY`. `PLAN complete ≠ Task Ready ≠ execution authority.` TASK works only inside `Task Contract ∩ Plan Contract ∩ Execution Envelope ∩ applicable AUTH ∩ current R4 truth.` Every Task Contract carries complete Expected IPOCV (`I/P/O/C/V`); each dimension is mandatory, and a genuinely inapplicable one is explicit `NOT_APPLICABLE` with a reason. Expected IPOCV (contract) and Actual IPOCV (Task Record) stay separate; comparison is `MATCH | ACCEPTED_VARIANCE | MISMATCH | UNKNOWN.`
+
+`R4_CTX` / `current_truth_context` resolves required current truth from its canonical/source-native owner at the execution boundary. `R4_CTX ≠ Risk R4`; canonical Risk remains exactly `R0–R3.`
+
+The Task Ready Gate is pure fail-closed with result `PASS | FAIL | UNKNOWN`; `UNKNOWN`, stale, conflicted, or unresolved mandatory truth never normalizes to `PASS.` Ready Gate `PASS` grants no authority, claim, execution success, or Task DONE.
+
+Operational execution state (`PROPOSED → READY_FOR_CLAIM → CLAIMED → EXECUTING → RESULT_RECORDED → VERIFYING → VERIFIED → INTEGRATION_PENDING → INTEGRATED → CLOSED`, plus `VERIFICATION_FAILED | BLOCKED | CANCELLED | STALE`) is separate from canonical Task lifecycle `TODO | IN_PROGRESS | DONE | BLOCKED | CANCELLED` and must not mutate it.
+
+Multica owns coordination facts only (claim availability/holder/scope, worker assignment, release/expiry/stale, parallel coordination). It never owns intent, contracts, acceptance, AUTH, Risk, Project Source, Task lifecycle, Verification PASS, Git truth, merge/release/deployment truth, or OUT achievement. No newest-timestamp-wins rule; conflicts resolve by truth domain and canonical owner.
+
+Executor Profile is eligibility metadata, not permission. The Project Adapter maps contracts to owners/locators and never becomes those owners. Selection is deterministic filter-before-rank; an ineligible executor never becomes eligible by preference; no eligible candidate yields `NO_ELIGIBLE_EXECUTOR` with invented fallback; TASK and VERIFY selection are separate evaluations; VERIFY support is not independent-verifier qualification.
+
+Git-backed verification binds repository + exact observed commit SHA; branch/PR/label are routing references. `Verification PASS(candidate A) ≠ Verification PASS(candidate B).` `VERIFIED ≠ INTEGRATION_ELIGIBLE ≠ MERGED`; fresh `INTEGRATION_GATE` re-resolves candidate SHA, target, authority, verification validity, PR/head identity, Base Freshness, and mergeability immediately before shared-state mutation. Strategies are `FAST_FORWARD_EXACT | MERGE_COMMIT_PRESERVING_CANDIDATE | TRANSFORMING_INTEGRATION`; transforming integration inherits no candidate proof without deterministic exact-equivalence evidence; unknown shared outcomes use `RESULT_VERIFICATION_REQUIRED` with no blind retry.
+
+Local-only bounded Tasks may be `DONE` with verification + durable completion commit; integration-required Tasks wait; AI-ControlTower/Multica cannot set Task DONE directly; a merged change may truthfully remain `MERGED + RECONCILIATION_REQUIRED.` Brownfield historical Tasks are not retrofitted; non-ControlTower Projects remain valid. TASK-057 adds no AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, database, state engine, router, executable adapter, merge bot, CI runner, API server, automatic DONE/reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime.

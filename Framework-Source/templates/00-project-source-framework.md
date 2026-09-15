@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.18.0"
+project_source_framework_version: "1.19.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -625,6 +625,11 @@ Still-valid stable governance/location evidence may be reused while bound assump
 Exact valid Framework `RELEASE_FULL` proof may be reused only when the target tree/content and assumptions match; Project affected/result verification remains mandatory and `INTEGRATION_GATE` remains separate before mutable-target actions. Material Preview deltas require reapproval, while deterministic generated revision/timestamp/filename/routing values do not. Brownfield no-auto-upgrade and all Root/Binding/publication authority gates remain binding.
 
 
+### 12.3 Framework 1.19 AI-ControlTower Governance Support Layer
+
+Framework `1.19.0` adds declarative execution contracts for AI-ControlTower/Multica consumers: `PLAN | TASK | VERIFY` modes; Plan Contract (execution strategy) + Task Contract (intent/acceptance/dependencies/completion/Expected IPOCV/integration applicability); nested Execution Envelope that may narrow but never broaden AUTH; mandatory Expected IPOCV (`I/P/O/C/V`, explicit `NOT_APPLICABLE` + reason); Task Record / Actual IPOCV; state-bound Verification Record (`PASS | FAIL | UNKNOWN`); pure fail-closed Task Ready Gate; separate operational execution state; Multica coordination-only boundary; Executor Profile / Project Adapter; filter-before-rank selection with `NO_ELIGIBLE_EXECUTOR`; exact-SHA candidate verification; fresh `INTEGRATION_GATE`; `FAST_FORWARD_EXACT | MERGE_COMMIT_PRESERVING_CANDIDATE | TRANSFORMING_INTEGRATION` reconciliation.
+
+`R4_CTX` is execution-time current truth, not a Risk level; canonical Risk remains `R0–R3.` `Contract ≠ Authority`; `Claim ≠ AUTH`; `Verification PASS ≠ Task DONE`; Execution State never mutates canonical Task lifecycle; local-only `DONE` ≠ publication; Brownfield Tasks are not retrofitted. Optional `Project-Execution/` contract starters are applicability-driven; no new Project Source semantic slot, Stable-ID family, or runtime is introduced.
 ## 13. Preflight and Postflight
 
 READ PREFLIGHT: identity, `00`, `01`, `03`, scope, truth, freshness, blockers.
