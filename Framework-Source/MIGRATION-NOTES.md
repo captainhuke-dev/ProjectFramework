@@ -2,7 +2,37 @@
 
 Per-release migration guidance for upgrading an initialized Project's Framework pin. These notes are routing/documentation aids, **not** normative authority — Core Governance and the latest amendment win on any conflict. Absence of a section for a transition means no notes exist yet; do not invent them.
 
-## 1.18.0 → 1.19.0 (current)
+## 1.19.0 → 1.20.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.20.0`; Project Source Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-058 Deterministic Execution Runtime Contract.
+- Framework 1.20 extends the 1.19 PLAN/TASK/VERIFY layer with deterministic long-running execution-control protocol semantics: separate Task/Operational-Execution/Attempt/Action domains, durable execution identities and semantic fingerprints, Runtime Event Journal > Checkpoint/Snapshot, runtime generation + fencing, atomic state-version transitions, restart/recovery/version-pinning rules, typed executor proposals, durable budgets, wait/wakeup, Effect-Surface Closure, Effect Gateway, JIT single-use Effect Permits, target preconditions, and deterministic ambiguity/reconciliation/cancellation/compensation semantics.
+- Five optional/applicability-driven Project-Execution starters are added: `runtime-contract.md`, `execution-attempt.md`, `execution-checkpoint.md`, `action-journal.md`, and `effect-policy.md`. Existing Task/Record/Executor/Tool/Trust starters gain additive references/eligibility metadata without changing canonical ownership.
+- `Runtime decision ≠ Authority`; `Claim ≠ Lease ≠ Fence ≠ Authority`; `Effect Permit ≠ AUTH`; `Heartbeat ≠ completion evidence`; `PERMIT_CONSUMED ≠ effect APPLIED`; `Cancellation ≠ rollback`; `Compensation ≠ rollback`; arbitrary external exactly-once execution is not claimed.
+- Active executions in a future conforming runtime are version-pinned to applicable runtime/event-schema and Task/Plan/Envelope semantics. A newer runtime or mutable contract path must not silently reinterpret an active execution.
+- Effect-Surface Closure is an enforcement property: every governed Material-Effect route must be mediated by the Effect Gateway or explicitly prohibited/confined. Prompt-only instruction is insufficient when an equivalent uncontrolled mutation path remains.
+- Brownfield/historical Tasks are not retrofitted with runtime journals, Attempts, Permits, checkpoints, fingerprints, leases, or fences. Unknown historical mappings remain `UNKNOWN`.
+- Adoption is additive and applicability-driven. Projects that do not use AI-ControlTower or long-running deterministic execution remain valid and do not need to materialize the new starters.
+- No new Project Source semantic slot, Stable-ID family, Registered Command, Project Source schema version, or release-descriptor format is introduced.
+- Framework 1.20 ships no AI-ControlTower runtime service, scheduler, queue, runtime database, worker daemon, lease/fencing service, Effect Gateway service, credential broker, sandbox/network policy, MCP/model router, Multica runtime, merge/release bot, CI runner, API server, automatic Task-DONE updater, or self-improvement runtime.
+- If implementation/upgrade assessment reveals a breaking contract/schema requirement, reclassify the release/upgrade path rather than forcing additive `1.20.0` assumptions.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's active local Framework pin, Project Source truth, Project-specific rules, Stable IDs, bindings, authority, evidence, and history until governed `[Project Upgrade]` promotion.
+2. Treat TASK-058 runtime starters as optional/applicability-driven. Do not create runtime artifacts merely because the target Framework supports them.
+3. Preserve TASK-057 PLAN/TASK/VERIFY, `R4_CTX`, Ready Gate, Task/Verification Record, exact-candidate verification, Multica coordination-only, integration reconciliation, and Task-DONE ownership semantics.
+4. Do not retrofit historical/Brownfield Tasks or executions with invented runtime journals, Attempts, Effect Permits, checkpoints, leases/fences, budgets, or contract fingerprints.
+5. For future active deterministic executions, preserve exact Task/Plan/Envelope/runtime/event-schema pinning across runtime upgrades and recovery; incompatible state requires governed migration/resolution rather than silent reinterpretation.
+6. Preserve verify-before-retry for unknown/possibly-applied effects. Non-idempotent/unknown ambiguous effects without a valid reconciliation path remain blocked/manual; fallback tool/worker/runtime restart does not reset the unresolved Action identity.
+7. Preserve secret/disclosure/trust boundaries. Runtime journals/checkpoints/evidence do not store raw secret values merely for observability.
+8. Verify TASK-058 pressure scenarios `557–602` together with cumulative prior scenarios, five new starters, six aligned existing execution surfaces, current release routing, maintained starter stamps, no-runtime/no-self-host scope, and one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+9. Canonical ProjectFramework self-host promotion, consumer upgrade, push/PR/merge/tag/GitHub Release, and AI-ControlTower runtime implementation remain separately governed actions.
+
+---
+
+## 1.18.0 → 1.19.0 (previous)
 
 ### Affected distribution surfaces
 
@@ -79,7 +109,7 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 5. Preserve completion-commit semantics plus distinct `RELEASE_FULL` and `INTEGRATION_GATE` boundaries.
 6. Do not synthesize push/PR/merge/release/deployment authority from delivery tier or direct Git/GitHub eligibility.
 7. Verify current guidance, maintained starters, and pressure scenarios `473–504` while preserving scenarios `1–504` contiguous/unique.
-8. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+8. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged candidate.
 
 ---
 
@@ -122,7 +152,7 @@ Per-release migration guidance for upgrading an initialized Project's Framework 
 - `[Chat]` and `[Required Read]` are removed only from the mandatory visible close. `09 Handoff` may still preserve Chat Continuity, Required Read Before Continue, exact resume pointers, and `authority_transfer: false`.
 - `[Next Goal]` is presentation-only. A displayed suggestion never creates or changes `OUT-* / AUTH-* / ACT-* / ENV-*`; only an explicit Human `[Goal]` invocation does.
 - A non-`ไม่มี` suggestion is one copy-ready `[Goal] ...` or `[Goal] CHANGE ...` command for a sufficiently bounded, grounded outcome. No-next-action, redundant active-Goal, ambiguous/conflicting, ungrounded high-risk, and persistence-recovery cases use `ไม่มี`.
-- `[Next Goal]` never synthesizes push/publication, destructive, Root/Binding, external-disclosure, R3, or secret-value opt-ins.
+- `[Next Goal]` never synthesizes push/publication, destructive, Root/Binding mutation, external-disclosure, R3, or secret-value opt-ins.
 - TASK-042 remains the unskippable final-response control-flow invariant; TASK-043 Command Contract Completeness Gate still runs before the revised Response Close Completeness Gate.
 - Registered commands remain exactly seven. No new semantic slot, Stable-ID family, parser, middleware, UI hook, validator/CLI, bot, scheduler, watcher, daemon, or runtime enforcement is introduced.
 - Historical pre-1.15 examples/evidence remain provenance and are not globally rewritten.
@@ -365,7 +395,7 @@ ProjectFramework Upstream is for Framework discovery/upgrade only; it never repl
 9. Do **not** synthesize a persistent Goal from old free-text goals, backlog items, Handoff prose, an existing `OUT-*`, or prior “continue” messages. A persistent Goal exists only after explicit `[Goal]` invocation/adoption under the active contract.
 10. Preserve existing `OUT-*`, `AUTH-*`, `ACT-*`, and `ENV-*` records. TASK-039 adds composition semantics; it does not migrate them into a `GOAL-*` family.
 11. If `[Goal]` is explicitly adopted, materialize/resolve Goal `OUT-*` and `AUTH-*` through their canonical homes; conditional `91` becomes applicable only when Goal/outcome truth is material.
-12. Default local Goal authority may cover bounded local development unless narrowed; push, destructive actions, Root/Binding mutation, and external disclosure remain exact opt-ins and higher-level controls still apply.
+12. Default local Goal authority may cover bounded local design/plan/edit/test/fix/verify/local-commit/checkpoint work. Push, destructive effects, Root/Binding mutation, and external disclosure remain exact opt-ins and higher-level controls still apply.
 13. Do **not** synthesize a Meeting from prior AI transcripts, backlog, Handoff, existing `EVD-*`, or provider conversation JSON. `[Meeting]` begins only from an explicit bracketed invocation under the active contract.
 14. Treat the explicit Meeting question as the default outbound payload. Additional Project context remains minimum-necessary and separately disclosure-authorized; actual secret values remain prohibited.
 15. Preserve existing external-AI/evidence records. Material Meeting use may reference/persist advisory `EVD-*`; do not migrate provider JSON into Project Source or create `MEETING-*` records.
