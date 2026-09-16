@@ -241,6 +241,8 @@ dependencies:
 
 `key` is local to the Task Contract revision. It is not a new Stable-ID family.
 
+For Task Contract `1.1`, every required dependency MUST declare an explicit `satisfaction.predicate`. Missing predicate is contract-invalid/`UNKNOWN`; it MUST NOT silently default to `TASK_DONE`, `VERIFICATION_PASS`, or any other success condition.
+
 ### 6.3 Initial governed predicate set
 
 The initial predicate set is:
@@ -494,7 +496,7 @@ Plan Set graph revision
 Task Contract acceptance/completion semantics
 Task dependency predicate
 Expected IPOCV
-Plan invalidation conditions
+Plan Contract execution strategy / invalidation semantics
 Execution Envelope narrowing
 required verification policy
 consumed upstream artifact/state identity
@@ -659,6 +661,54 @@ Requirements:
 8. Plan Set introduces no Project Source semantic slot and no Stable-ID family.
 9. Project Source Schema remains `1.0.0` unless implementation proves a breaking Project Source requirement; in that event release classification must be revisited rather than forcing `1.21.0`.
 10. Existing canonical Task lifecycle remains exactly `TODO | IN_PROGRESS | DONE | BLOCKED | CANCELLED`.
+
+### 16.1 Compatibility with the existing AI-ControlTower operating model
+
+This design preserves the existing responsibility and truth boundaries from the source candidate:
+
+```text
+PLAN / DEVELOPMENT / PRODUCTION / MEMORY
+```
+
+A Plan Set is a planning/governance artifact consumed by the existing execution-control boundary. It does not create a fifth Path.
+
+Work Classes remain exactly:
+
+```text
+PROJECT
+OPERATION
+ENGINEERING
+```
+
+Long-horizon DAG semantics are most directly applicable to `ENGINEERING`, but they do not force `OPERATION` work through DEVELOPMENT or otherwise change Work Class ownership.
+
+Memory remains derived:
+
+```text
+PLANNED future state != CANONICAL implemented state
+```
+
+Any planning projection into Memory must preserve planning provenance/channel distinctions and may not be treated as proof that execution occurred.
+
+Production authority remains separate:
+
+```text
+DEPLOY task planned
+!= DEPLOY task ready
+!= deployment authorized
+```
+
+Production-related activation still requires applicable current deployment authority, verified artifact/result identity, and current Production readiness.
+
+Fleet/observation output remains planning input only:
+
+```text
+Recommendation != Plan
+Plan != Task Ready
+Task Ready != Authority
+```
+
+Cross-project impact or campaign planning never infers cross-project execution authority; each Project retains its local governance owner.
 
 ## 17. Candidate maintained Framework surfaces
 
@@ -841,17 +891,19 @@ This written design is ready for implementation planning only when the reviewer 
 2. Plan Set is optional and structural only;
 3. Task Contract owns explicit dependency predicates;
 4. Task Contract `1.0` is preserved and predicate-aware semantics use successor `1.1`;
-5. `RESULT_ACCEPTED` is intentionally not introduced without a canonical owner;
-6. activation composes with TASK-058 execution identity/fingerprints rather than creating a duplicate binding record;
-7. graph revision changes cannot silently hot-swap active execution;
-8. re-plan propagation depends on declared consumption/dependency facts;
-9. continuous execution requires a fresh Task Ready/authority/runtime binding per Task;
-10. verifier readiness is applicability-driven and cannot be silently downgraded;
-11. R4_CTX remains the mutable current-truth mechanism;
-12. runtime queues/scheduler/traversal remain outside ProjectFramework;
-13. no new Project Source slot or Stable-ID family is introduced;
-14. Brownfield no-invention behavior is preserved;
-15. implementation planning does not begin before explicit written-spec approval.
+5. missing Task Contract `1.1` dependency predicate fails closed and has no implicit default;
+6. `RESULT_ACCEPTED` is intentionally not introduced without a canonical owner;
+7. activation composes with TASK-058 execution identity/fingerprints rather than creating a duplicate binding record;
+8. graph revision changes cannot silently hot-swap active execution;
+9. re-plan propagation depends on declared consumption/dependency facts;
+10. continuous execution requires a fresh Task Ready/authority/runtime binding per Task;
+11. verifier readiness is applicability-driven and cannot be silently downgraded;
+12. R4_CTX remains the mutable current-truth mechanism;
+13. runtime queues/scheduler/traversal remain outside ProjectFramework;
+14. 4-Path, Work Class, Memory-derived-state, Production-authority, Fleet-input, and Project-local authority boundaries remain unchanged;
+15. no new Project Source slot or Stable-ID family is introduced;
+16. Brownfield no-invention behavior is preserved;
+17. implementation planning does not begin before explicit written-spec approval.
 
 ## 24. Review gate
 
