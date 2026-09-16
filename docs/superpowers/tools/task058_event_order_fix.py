@@ -1,0 +1,52 @@
+from pathlib import Path
+
+amend_path = Path('Framework-Source/references/framework-governance-amendment-260916-task058-deterministic-execution-runtime-contract.md')
+amend = amend_path.read_text(encoding='utf-8')
+old = """The journal is logically append-oriented authoritative runtime observation. Checkpoint/Snapshot is derived and MUST identify the journal sequence summarized.
+
+Minimum checkpoint linkage:
+"""
+new = """The journal is logically append-oriented authoritative runtime observation. Checkpoint/Snapshot is derived and MUST identify the journal sequence summarized.
+
+Every authoritative runtime event MUST carry immutable ingestion identity sufficient to make duplicate delivery and ordering deterministic:
+
+```yaml
+runtime_event:
+  event_id: "<immutable unique id within this execution>"
+  execution_id: "<execution id>"
+  event_sequence: "<strict contiguous monotonic sequence>"
+  previous_event_id: "<immediately preceding event id, or NOT_APPLICABLE for first event>"
+  event_type: "<bounded runtime event type>"
+  state_version_before: "<expected version before applying event>"
+  state_version_after: "<resulting version after applying event>"
+  observed_at: "<runtime timestamp; telemetry only>"
+```
+
+Journal ingestion rules are fail-closed:
+
+- Re-delivery of an already-committed `event_id` with the same immutable payload is an idempotent duplicate observation. It MUST NOT append another authoritative event, advance `state_version` again, or repeat any Action/Effect.
+- The same `event_id` with different immutable payload, or an already-occupied `event_sequence` with a different event identity/payload, is `EVENT_IDENTITY_CONFLICT` / `EVENT_SEQUENCE_CONFLICT` and enters `RECOVERY_BLOCKED` (or equivalent) until reconciled.
+- An event with `event_sequence` greater than the next expected contiguous sequence is `EVENT_GAP`. It is quarantined/not authoritatively applied until predecessor continuity is proven; missing events MUST NOT be inferred.
+- An old/stale sequence that is not the exact already-committed duplicate is rejected/reconciled rather than inserted retroactively.
+- `event_sequence` plus predecessor continuity is ordering authority. `observed_at`/wall-clock timestamp is telemetry only and MUST NOT reorder authoritative runtime history.
+- A state transition is eligible only after event identity, sequence/predecessor continuity, and `state_version_before` checks pass; the state-version transition itself remains CAS-equivalent.
+
+Minimum checkpoint linkage:
+"""
+assert amend.count(old) == 1, amend.count(old)
+amend_path.write_text(amend.replace(old, new, 1), encoding='utf-8', newline='\n')
+
+core_path = Path('Framework-Source/references/core-governance-rules.md')
+core = core_path.read_text(encoding='utf-8')
+marker = 'Keep four lifecycle domains separate: canonical Task lifecycle; TASK-057 Operational Execution state; Execution Attempt state; Action/Effect state.'
+assert core.count(marker) == 1, core.count(marker)
+event_para = """Runtime Event Journal ingestion is identity- and sequence-governed. Every authoritative event has immutable `event_id`, Execution identity, strict contiguous `event_sequence`, predecessor identity, event type, and before/after `state_version`. Exact same-event redelivery is idempotent and MUST NOT append/transition/effect twice; conflicting reuse is `EVENT_IDENTITY_CONFLICT` / `EVENT_SEQUENCE_CONFLICT`. A future sequence with a missing predecessor is `EVENT_GAP` and is quarantined until continuity is proven; missing events are never inferred and timestamps never reorder authoritative history. Event identity/sequence/predecessor validation occurs before the CAS-equivalent state transition.
+
+"""
+core_path.write_text(core.replace(marker, event_para + marker, 1), encoding='utf-8', newline='\n')
+
+for token in ['event_id','event_sequence','previous_event_id','EVENT_IDENTITY_CONFLICT','EVENT_SEQUENCE_CONFLICT','EVENT_GAP','idempotent duplicate observation','telemetry only']:
+    assert token in amend_path.read_text(encoding='utf-8'), token
+for token in ['event_id','event_sequence','EVENT_SEQUENCE_CONFLICT','EVENT_GAP','timestamps never reorder']:
+    assert token in core_path.read_text(encoding='utf-8'), token
+print('TASK058_EVENT_ORDER_NORMATIVE 13/13 PASS')
