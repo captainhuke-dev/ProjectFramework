@@ -61,3 +61,34 @@ Rules:
 - `integration.applicable: false` means the Task may be DONE locally without integration; `true` means it cannot be DONE until required integration/resulting-state criteria are satisfied.
 - This file is a work contract. It is not Root Governance, `AUTH-*`, Project Source, Task lifecycle truth, or a Stable-ID family.
 - No runtime, scheduler, state engine, or automatic executor is implied by this contract.
+
+## Framework 1.20 V2 shape (TASK-058)
+
+For Wave A V2 execution, the Task Contract declares the source/material-input/ownership/fencing requirements that the Execution State Binding will resolve:
+
+```yaml
+contract_type: TASK
+contract_version: "2.0"
+task_id: "TASK-xxx"
+# ... all v1 fields remain required as above ...
+wave_a_bindings:
+  source_declarations:
+    - resource_ref: "<logical resource identity>"
+      role: "<declared role>"
+      required: true
+      identity_kind: "GIT | FILE_SET | SCHEMA | EXTERNAL_CONTRACT | SOURCE_NATIVE"
+  material_input_classes:
+    - "toolchain | dependencies | configuration | feature_state | schemas | external_contracts | material_inputs | environment_constraints"
+  ownership:
+    required: true
+    fencing_minimum: "COORDINATION_ONLY | ACCEPTANCE_FENCED | SIDE_EFFECT_FENCED"
+  digest_profile_ref: "<canonicalization + digest profile>"
+```
+
+Rules:
+
+- `wave_a_bindings` is required only when the Task uses Wave A V2 execution contracts; a Task that does not use them remains valid on `contract_version: "1.0".`
+- Declared required source members and material input classes are the completeness basis for the Revision Set and Execution Input Manifest. A requirement cannot be relaxed post hoc merely to make an execution complete.
+- `fencing_minimum` is the required assurance level for the Task's material operation paths; it cannot be silently downgraded at dispatch.
+
+**Compatibility:** existing Task Contract `1.0` artifacts remain valid under their original contract and are **not retrofitted.** V2 `contract_version: "2.0"` is a successor shape; historical `1.0` contracts are never rewritten in place.

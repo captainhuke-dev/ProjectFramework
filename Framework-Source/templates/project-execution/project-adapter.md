@@ -37,3 +37,25 @@ Rules:
 - Unknown Brownfield mappings remain `UNKNOWN` rather than guessed.
 - This file is a locator mapping. It is not a Stable-ID family and introduces no new Project Source semantic slot.
 - No runtime, executable adapter, MCP router, or automatic mapper is implied by this file.
+
+## Framework 1.20 Wave A V2 locator mappings (TASK-058)
+
+When a Project uses Wave A V2 execution contracts, the adapter gains locator mappings for:
+
+```yaml
+locator_mappings:
+  - concept: "operational_aggregate_owner"
+    locator: "<declared execution-state owner for operational aggregate storage/versioning>"
+  - concept: "ownership_owner"
+    locator: "<declared execution-control owner that grants authoritative execution ownership>"
+  - concept: "runtime_local_resource_ref"
+    locator: "<scope declaration for runtime-local logical resource identities>"
+  - concept: "source_native_result_owner"
+    locator: "<source-native system that owns result truth for non-Git result kinds>"
+```
+
+Rules:
+
+- The adapter still **locates** these owners; it does not become them. `Project Adapter ≠ owner` remains absolute.
+- These mappings are translation metadata only; they grant no authority and create no Stable-ID family.
+- Projects without a declared runtime leave these mappings absent or `UNKNOWN`; absence never implies a default owner.
