@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TODO=1 / IN_PROGRESS=0 / BLOCKED=0` (TASK-058 TODO).
+- Current backlog: `TODO=0 / IN_PROGRESS=1 / BLOCKED=0` (TASK-058 IN_PROGRESS).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
