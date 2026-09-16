@@ -14,10 +14,10 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout exact review-fix target
+      - name: Checkout exact corrected implementation target
         uses: actions/checkout@v4
         with:
-          ref: 1fb53635b419c3889dd62f314d1cbd23e381cfcd
+          ref: da7d1c8a2d0adb1629351fe42d83b1252671d18c
           fetch-depth: 0
 
       - name: Reuse unchanged 176-check verifier
@@ -26,13 +26,16 @@ jobs:
           git show 7fb84eae73a5ff94c3811f90e30fe1df6b6edfdd:docs/superpowers/tools/task058_verify.py > /tmp/task058_verify.py
           python /tmp/task058_verify.py
 
-      - name: Verify both independent-review corrections
+      - name: Verify all independent-review corrections
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           effect = Path('Framework-Source/templates/project-execution/effect-policy.md').read_text(encoding='utf-8')
           profile = Path('Framework-Source/templates/project-execution/executor-profile.md').read_text(encoding='utf-8')
+          action = Path('Framework-Source/templates/project-execution/action-journal.md').read_text(encoding='utf-8')
+          amend = Path('Framework-Source/references/framework-governance-amendment-260916-task058-deterministic-execution-runtime-contract.md').read_text(encoding='utf-8')
+          core = Path('Framework-Source/references/core-governance-rules.md').read_text(encoding='utf-8')
           required_effect = [
               'inventory_state: "COMPLETE | INCOMPLETE | UNKNOWN"',
               'all_governed_routes_accounted_for',
@@ -55,5 +58,20 @@ jobs:
           ]
           for token in required_profile:
               assert token in profile, token
-          print('TASK058_REVIEW_FIX_FOCUSED 14/14 PASS')
+          event_tokens = [
+              'event_id', 'event_sequence', 'previous_event_id',
+              'state_version_before', 'state_version_after',
+              'EVENT_IDENTITY_CONFLICT', 'EVENT_SEQUENCE_CONFLICT', 'EVENT_GAP',
+          ]
+          for token in event_tokens:
+              assert token in action, ('action', token)
+              assert token in amend, ('amend', token)
+          core_tokens = ['event_id', 'event_sequence', 'EVENT_SEQUENCE_CONFLICT', 'EVENT_GAP', 'timestamps never reorder']
+          for token in core_tokens:
+              assert token in core, ('core', token)
+          assert 'idempotent duplicate observation' in action
+          assert 'idempotent duplicate observation' in amend
+          assert 'observed_at' in action and 'telemetry, not ordering authority' in action
+          assert 'observed_at' in amend and 'telemetry only' in amend
+          print('TASK058_REVIEW_FIX_FOCUSED 39/39 PASS')
           PY
