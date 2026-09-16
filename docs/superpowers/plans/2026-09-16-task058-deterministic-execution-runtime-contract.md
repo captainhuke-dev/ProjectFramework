@@ -780,8 +780,10 @@ Fix only material in-scope findings. Rerun focused checks for every fix and reru
 
 - [ ] **Step 5: Commit review fixes if any**
 
+Stage only review-fix files within the approved Framework/doc scope. The worktree must be clean before review, so this command stages only newly introduced review-fix changes:
+
 ```bash
-git add <only-task058-review-fix-files>
+git add Framework-Source README.md
 git commit -m "fix(task058): address deterministic runtime contract review findings"
 ```
 
@@ -863,7 +865,7 @@ All required pressure classes `557–602` have an explicit Task 1 allocation. Al
 
 ### Placeholder scan
 
-This plan contains no `TBD`, no implementation `TODO`, no `fill in later`, and no `similar to Task N` instructions. Angle-bracket shell notation appears only in the literal `git add <only-task058-review-fix-files>` example; the Executor must replace that with the exact files actually changed by independent-review fixes, or skip the commit when no files changed.
+Instruction steps contain no unresolved filler markers or replace-me path tokens. Empty values in YAML blocks intentionally specify required schema keys rather than unfinished plan content. Canonical `TODO` appears only as governed Task-lifecycle vocabulary, not as an unplanned implementation item.
 
 ### Interface/type consistency
 
