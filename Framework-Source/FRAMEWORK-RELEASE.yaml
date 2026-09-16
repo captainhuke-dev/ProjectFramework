@@ -1,5 +1,5 @@
 release_format_version: 3
-framework_version: "1.19.0"
+framework_version: "1.20.0"
 schema_version: "1.0.0"
 release_channel: "stable"
 canonical_repository: "captainhuke-dev/ProjectFramework"
@@ -12,7 +12,7 @@ entrypoints:
   skill: "SKILL.md"
   project_location_bootstrap: "templates/project-location-bootstrap.md"
 
-latest_framework_amendment: "references/framework-governance-amendment-260914-task057-ai-controltower-governance-support-layer.md"
+latest_framework_amendment: "references/framework-governance-amendment-260916-task058-wave-a-v2-deterministic-execution-foundation.md"
 migration_notes: "MIGRATION-NOTES.md"
 upgrade_preview_template: "templates/upgrade-preview.md"
 core_governance: "references/core-governance-rules.md"

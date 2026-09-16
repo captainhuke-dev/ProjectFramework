@@ -42,3 +42,37 @@ Rules:
 - Task Verification and Framework `RELEASE_FULL` remain different proof domains. This record may reference exact valid release evidence but does not clone or redefine that proof.
 - This file is a state-bound verification result. It is not Root Governance, `AUTH-*`, Project Source, Task lifecycle truth, or a Stable-ID family.
 - No runtime, verification daemon, or automatic verifier is implied by this record.
+
+## Framework 1.20 V2 shape (TASK-058)
+
+For Wave A V2 execution, the Verification Record starts from an exact Verification Basis and separates result from current validity:
+
+```yaml
+record_type: VERIFICATION_RECORD
+record_version: "2.0"
+task_ref: "TASK-xxx"
+# ... all v1 fields remain required as above ...
+verification_basis:
+  task_contract_ref: "<contract>"
+  task_record_ref: "<observation>"
+  result_acceptance_ref: "<exact immutable acceptance evaluation used to begin verification>"
+  state_binding_ref: "<exact execution binding>"
+  accepted_result_ref: "<exact result/result set>"
+  verification_requirements_ref: "<requirements>"
+  verification_current_truth:
+    r4_context_ref: "<verification-time current truth>"
+    observed_at: "<timestamp>"
+evidence_assessment:
+  - requirement: "<required verification input or proof domain>"
+    assessment: "PASS | FAIL | FLAKY | UNTRUSTED | INCOMPLETE | UNKNOWN"
+result: "PASS | FAIL | UNKNOWN"
+validity_at_verification: "CURRENT | STALE | INVALIDATED | UNKNOWN"
+```
+
+Rules:
+
+- Promotable verification starts only from a current applicable `ELIGIBLE` Result Acceptance and a complete Verification Basis.
+- Any required `FAIL`, `FLAKY`, `UNTRUSTED`, `INCOMPLETE`, or `UNKNOWN` evidence assessment prohibits overall `result: PASS` absent a pre-governed optional/advisory or variance basis. The Verifier cannot relax requirements post hoc.
+- `result` remains **exactly** `PASS | FAIL | UNKNOWN` and is never overloaded with freshness states. `validity_at_verification` is the separate current-usability dimension; a later validity change is recorded in a `VERIFICATION_VALIDITY_EVALUATION`, never by rewriting this record.
+- Before `VERIFYING → VERIFIED`, the current applicable Result Acceptance MUST be freshly re-evaluated and remain `ELIGIBLE.`
+- **Compatibility:** existing v1 Verification Records stay historical and exact-SHA bound under their original contract; they are never rewritten into V2.

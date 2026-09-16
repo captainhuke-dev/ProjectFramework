@@ -38,3 +38,36 @@ Rules:
 - `execution_result` is an **execution observation**. It is not a Verification result and does not imply `Verification PASS` or `Task DONE`.
 - This file is an observation record. It is not Root Governance, `AUTH-*`, Project Source, Task lifecycle truth, or a Stable-ID family.
 - No runtime, state engine, or automatic recorder is implied by this record.
+
+## Framework 1.20 V2 shape (TASK-058)
+
+For Wave A V2 execution, the Task Record adds state binding, generic result identity, and ownership-at-report:
+
+```yaml
+record_type: TASK_RECORD
+record_version: "2.0"
+task_ref: "TASK-xxx"
+# ... all v1 fields remain required as above ...
+state_binding_ref: "<Execution State Binding>"
+result_observation: "SUCCEEDED | FAILED | PARTIAL | UNKNOWN"
+result_identity:
+  kind: "GIT_REVISION_SET | OPERATIONAL_OBSERVATION | EXTERNAL_TRANSACTION | ARTIFACT | DEPLOYMENT_STATE | OTHER_SOURCE_NATIVE"
+  source_native_ref: "<owner/source ref>"
+  exact_identity: "<kind-specific exact identity>"
+  digest_profile_ref: "<when digest participates in identity>"
+  identity_digest: "<when applicable>"
+  completeness: "COMPLETE | INCOMPLETE | UNKNOWN"
+  observed_at: "<timestamp>"
+result_set_ref: "<Result Set when one execution produces multiple material outputs>"
+ownership_at_report:
+  ownership_ref: "<grant>"
+  ownership_epoch: "<generation at report time>"
+  state: "ACTIVE | SUSPECT | EXPIRED | REVOKED | COMPLETED | UNKNOWN"
+```
+
+Rules:
+
+- `result_observation` is an **execution observation.** Observed success is not result eligibility; observed failure may still be a valid governed result for verification/recovery.
+- Generic Result Identity is source-native and **not Git-only.** Timestamp alone is never a universal immutable result identity.
+- `ownership_at_report` records the observed ownership state at report time; it does not re-grant or extend ownership.
+- **Compatibility:** existing v1 `candidate_identity` stays valid historical exact-SHA evidence. A v1 Git-backed `candidate_identity` may be viewed by a V2 consumer as a one-member `GIT_REVISION_SET` **only when the existing evidence is sufficient** (repository + exact commit SHA present). The mapping is an explicit compatibility view; v1 records are never silently rewritten.

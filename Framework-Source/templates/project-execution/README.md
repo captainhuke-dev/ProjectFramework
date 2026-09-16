@@ -14,12 +14,19 @@ Project-Execution/
 ├── capabilities.md
 ├── trust.md
 ├── plan-contract.md        # TASK-057 declarative Plan Contract starter
-├── task-contract.md        # TASK-057 declarative Task Contract starter
-├── task-record.md          # TASK-057 Task Record starter
-├── verification-record.md  # TASK-057 Verification Record starter
+├── task-contract.md        # TASK-057/058 declarative Task Contract starter (V1 + V2 shape)
+├── task-record.md          # TASK-057/058 Task Record starter (V1 + V2 shape)
+├── verification-record.md  # TASK-057/058 Verification Record starter (V1 + V2 shape)
 ├── executor-profile.md     # TASK-057 Executor Profile starter
-├── project-adapter.md      # TASK-057 Project Adapter starter
-└── integration-reconciliation.md  # TASK-057 Integration Reconciliation starter
+├── project-adapter.md      # TASK-057/058 Project Adapter starter (Wave A locator mappings)
+├── integration-reconciliation.md  # TASK-057/058 Integration Reconciliation starter (V2 Git rule)
+├── revision-set.md                 # TASK-058 Revision Set starter
+├── execution-input-manifest.md     # TASK-058 Execution Input Manifest starter
+├── execution-state-binding.md      # TASK-058 Execution State Binding starter
+├── execution-ownership.md          # TASK-058 Execution Ownership Grant/Evidence starter
+├── operational-transition-record.md  # TASK-058 Operational Transition Record starter
+├── result-acceptance.md              # TASK-058 Result Acceptance starter
+└── verification-validity.md          # TASK-058 Verification Validity Evaluation starter
 ```
 
 `fallback-log.md` is applicability-driven append-only operational incident history for actual MCP fallback/recovery events. It is not selection policy, Root Governance, `AUTH-*`, credentials, secret storage, Project Source authority, or a Stable-ID registry. Projects with `fallback_mode: NONE` do not need to materialize it.
@@ -46,3 +53,5 @@ TASK-034 adds `capabilities.md` for agent/model work eligibility. `Capability �
 TASK-037 adds `trust.md` for security/trust crossing constraints. `Trust classification ≠ Authority`; UNKNOWN sensitive crossings fail closed.
 
 TASK-057 (Framework `1.19.0`) adds declarative governance-support starters: `plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, and `integration-reconciliation.md`. They are optional/applicability-driven for AI-ControlTower/Multica consumers. `Contract ≠ Authority`; `Eligibility ≠ Authority`; `Claim ≠ Authority`; `Verification PASS ≠ Task DONE.` `R4_CTX` is execution-time current truth, not a Risk level (Risk remains `R0–R3`). No runtime, scheduler, state engine, router, or automatic executor is introduced.
+
+TASK-058 (Framework `1.20.0`) adds the **Compositional State Binding Hub** starters: `revision-set.md`, `execution-input-manifest.md`, `execution-state-binding.md`, `execution-ownership.md`, `operational-transition-record.md`, `result-acceptance.md`, and `verification-validity.md`, plus explicit V2 shapes (`contract_version`/`record_version: "2.0"`) for `task-contract.md`, `task-record.md`, and `verification-record.md` with v1 compatibility preserved. Core invariants: `Resource Identity ≠ Locator ≠ Revision`; `Coordination Claim ≠ Execution Ownership Grant`; `Task Record observation ≠ Result Acceptance`; `Verification PASS ≠ Verification Validity CURRENT`; `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED.` Binding references are state-bound/reconstructable, historical records are never rewritten, `UNKNOWN` never normalizes to `PASS`, and no executor self-grants ownership or AUTH. No runtime, task database, event store, queue, scheduler, lease/fencing service, CAS store, automatic transition engine, or automatic acceptance/verification engine is introduced.

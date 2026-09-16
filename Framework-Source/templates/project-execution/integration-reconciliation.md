@@ -29,3 +29,13 @@ Rules:
 - Unknown shared/non-idempotent outcomes use `RESULT_VERIFICATION_REQUIRED`; no blind retry is allowed after an ambiguous push/merge response.
 - This file is a derived reconciliation record. It is not Root Governance, `AUTH-*`, Project Source, Task lifecycle truth, Git truth, or a Stable-ID family.
 - No runtime, merge bot, merge queue, or automatic reconciler is implied by this record.
+
+## Framework 1.20 Wave A V2 compatibility rule (TASK-058)
+
+For V2 Git results, the exact Git candidate for integration comes from the verified **`GIT_REVISION_SET`** result identity (repository + exact commit SHA), not from a mutable branch or `latest` pointer.
+
+Rules:
+
+- This rule adds only the V2 Git result compatibility mapping. It does **not** generalize Git integration into Wave C deployment-saga or Release Transaction semantics.
+- Non-Git result kinds (`OPERATIONAL_OBSERVATION`, `EXTERNAL_TRANSACTION`, `ARTIFACT`, `DEPLOYMENT_STATE`, `OTHER_SOURCE_NATIVE`) remain outside this record's integration scope; their governed integration, if any, belongs to a separately declared contract.
+- All existing strategy/reconciliation rules above remain unchanged.
