@@ -16,6 +16,7 @@ effect_policy:
   target_precondition:
     support: "SUPPORTED | UNSUPPORTED"
     mechanism: "<SHA | ETAG | RESOURCE_VERSION | ROW_VERSION | OBJECT_HASH | CAS | OTHER | NOT_APPLICABLE>"
+    mismatch_result: "PRECONDITION_CONFLICT"
     unsupported_recovery: "<reconciliation/fail-closed strategy when unsupported>"
   idempotency: "IDEMPOTENT | CONDITIONALLY_IDEMPOTENT | NON_IDEMPOTENT | UNKNOWN"
   reconciliation: "NATIVE_IDEMPOTENCY_KEY | COMPARE_AND_SET | SOURCE_READBACK | NATIVE_READBACK | EXTERNAL_CONFIRMATION | MANUAL_VERIFICATION | NONE"
@@ -37,6 +38,7 @@ Conformance rules:
 
 - Every governed Material Effect path is mediated or prohibited/confined.
 - Policy text alone is not effect-surface closure.
+- A supported target precondition mismatch yields `PRECONDITION_CONFLICT`; it is never silently dispatched against a materially different target.
 - `Effect Permit ≠ AUTH`; `Gateway eligibility ≠ AUTH`; `Tool availability ≠ eligibility`.
 - Permit mint/consume is atomic/CAS-equivalent and stale generation/fence or replay/transfer is rejected.
 - One Permit maps to one independently reconcilable Material Effect unless a verified source-native atomic transaction makes a compound operation one reconcilable unit.
