@@ -32,6 +32,11 @@ execution_envelope:
   required_authority_refs:
     - "<AUTH-* or explicit user authority reference>"
   current_truth_context: R4_REQUIRED
+  runtime_contract_ref: "<./runtime-contract.md or NOT_APPLICABLE: <reason>>"
+  effect_policy_ref: "<./effect-policy.md or NOT_APPLICABLE: <reason>>"
+  runtime_controls:
+    durable_resume_required: "<true | false>"
+    mediated_material_effects: "<true | false>"
   concurrency:
     claim_scope: "<bounded claim scope>"
     parallelism_constraints: "<declared parallelism, or NONE>"
@@ -56,8 +61,10 @@ integration:
 Rules:
 
 - **Mandatory no-inference rules:** `missing field ≠ permission to infer`; `unknown authority ≠ authorized`; `unknown dependency ≠ satisfied`; `available tool ≠ eligible executor.`
-- The Execution Envelope **may narrow** existing authority but can **never broaden** it. An entry naming a target, workspace, or operation does not create authority for it.
+- The Execution Envelope **may narrow** existing authority but can **never broaden** it. An entry naming a target, workspace, operation, runtime contract, or effect policy does not create authority for it.
 - `current_truth_context: R4_REQUIRED` declares that execution-time current truth must be resolved from its owner; it is not a Risk level (`R4_CTX ≠ Risk R4`; Risk remains `R0–R3`).
+- `runtime_contract_ref` / `effect_policy_ref` declare applicable execution-control requirements only. Runtime Event Journal, Attempt state, Action state, lease/fence, and Checkpoint truth remain runtime-domain data and MUST NOT be copied into this Task Contract as competing lifecycle truth.
+- `durable_resume_required` and `mediated_material_effects` describe Task control requirements; they do not instantiate a runtime or grant Effect Permit/AUTH.
 - `integration.applicable: false` means the Task may be DONE locally without integration; `true` means it cannot be DONE until required integration/resulting-state criteria are satisfied.
 - This file is a work contract. It is not Root Governance, `AUTH-*`, Project Source, Task lifecycle truth, or a Stable-ID family.
 - No runtime, scheduler, state engine, or automatic executor is implied by this contract.
