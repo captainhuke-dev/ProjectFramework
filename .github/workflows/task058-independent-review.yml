@@ -18,7 +18,7 @@ jobs:
       - name: Checkout exact implementation review target
         uses: actions/checkout@v4
         with:
-          ref: eadf7a63f6cb1057f982491edc889fe0e7cf3086
+          ref: 1fb53635b419c3889dd62f314d1cbd23e381cfcd
           fetch-depth: 0
           path: target
 
@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           cd target
-          git diff --no-ext-diff --unified=3 f81992064d49c1f50f80c790667ec5be9b9ada0f..eadf7a63f6cb1057f982491edc889fe0e7cf3086 > /tmp/task058.diff
+          git diff --no-ext-diff --unified=3 f81992064d49c1f50f80c790667ec5be9b9ada0f..1fb53635b419c3889dd62f314d1cbd23e381cfcd > /tmp/task058.diff
           python - <<'PY'
           from pathlib import Path
           header = Path('../runner/.github/task058-independent-review-prompt.txt').read_text(encoding='utf-8')
