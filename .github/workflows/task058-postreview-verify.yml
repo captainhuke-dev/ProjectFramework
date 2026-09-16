@@ -17,7 +17,7 @@ jobs:
       - name: Checkout exact corrected implementation target
         uses: actions/checkout@v4
         with:
-          ref: da7d1c8a2d0adb1629351fe42d83b1252671d18c
+          ref: 38ed9530cf118f044efebc4f828d87c7d4922a0c
           fetch-depth: 0
 
       - name: Reuse unchanged 176-check verifier
@@ -59,12 +59,13 @@ jobs:
           for token in required_profile:
               assert token in profile, token
           event_tokens = [
-              'event_id', 'event_sequence', 'previous_event_id',
+              'event_id', 'event_sequence', 'previous_event_id', 'event_payload_hash',
               'state_version_before', 'state_version_after',
               'EVENT_IDENTITY_CONFLICT', 'EVENT_SEQUENCE_CONFLICT', 'EVENT_GAP',
           ]
           for token in event_tokens:
               assert token in action, ('action', token)
+          for token in ['event_id','event_sequence','previous_event_id','state_version_before','state_version_after','EVENT_IDENTITY_CONFLICT','EVENT_SEQUENCE_CONFLICT','EVENT_GAP']:
               assert token in amend, ('amend', token)
           core_tokens = ['event_id', 'event_sequence', 'EVENT_SEQUENCE_CONFLICT', 'EVENT_GAP', 'timestamps never reorder']
           for token in core_tokens:
@@ -73,5 +74,5 @@ jobs:
           assert 'idempotent duplicate observation' in amend
           assert 'observed_at' in action and 'telemetry, not ordering authority' in action
           assert 'observed_at' in amend and 'telemetry only' in amend
-          print('TASK058_REVIEW_FIX_FOCUSED 39/39 PASS')
+          print('TASK058_REVIEW_FIX_FOCUSED 40/40 PASS')
           PY
