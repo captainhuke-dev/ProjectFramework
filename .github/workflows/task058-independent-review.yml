@@ -7,9 +7,7 @@ on:
     paths:
       - .github/workflows/task058-independent-review.yml
 
-permissions:
-  contents: read
-  models: read
+permissions: read-all
 
 jobs:
   review:
@@ -119,7 +117,7 @@ Do not invent evidence outside the supplied spec and diff. A PASS requires CRITI
         shell: bash
         run: |
           python - <<'PY'
-          import json, re, sys
+          import json, re
           from pathlib import Path
           obj = json.loads(Path('/tmp/review-response.json').read_text(encoding='utf-8'))
           content = obj['choices'][0]['message']['content']
