@@ -54,8 +54,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          PROMPT="$(cat /tmp/review-prompt.txt)"
-          copilot -p "$PROMPT" -s --no-ask-user --no-custom-instructions --available-tools=read --allow-tool=read > /tmp/review-output.txt
+          cat /tmp/review-prompt.txt | copilot -s --no-ask-user --no-custom-instructions --available-tools=read --allow-tool=read > /tmp/review-output.txt
 
       - name: Print and validate independent review
         shell: bash
