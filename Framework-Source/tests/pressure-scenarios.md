@@ -7368,3 +7368,512 @@ For wording micro-tests, run at least 5 fresh samples for scope-expansion scenar
 **Fail:** Introduces any runtime/execution machinery for AI-ControlTower or Multica in the release.
 
 **GREEN expectation:** TASK-057 pressure class 28 (spec §15) holds under Framework 1.19.
+
+## Scenario 557 — Single Git repository exact-SHA compatibility
+
+**Prompt:**
+
+> This Wave A V2 Task touches one Git repository at exact SHA abc123. Can I skip the Revision Set and just record candidate_identity like Framework 1.19 Tasks did?
+
+**Temptation:** Treating the one-repository exact-SHA shortcut as permission to omit the V2 required shape.
+
+**Pass:** A single-repo Task is a one-member Revision Set: one resource, role, required=true, identity_kind GIT, locator_ref, exact_revision abc123, observed_at, completeness COMPLETE, and a revision_set_digest. The exact-SHA value remains the compatibility mapping to the v1 candidate_identity semantics, but the V2 required shape is the Revision Set plus its digest.
+
+**Fail:** Omits the Revision Set, records only a bare SHA, or claims the v1 candidate_identity field satisfies the V2 required shape.
+
+**GREEN expectation:** spec §19 class 1 holds: single-repo exact-SHA compatibility is preserved through a one-member Revision Set.
+
+
+## Scenario 558 — Required multi-repo member missing
+
+**Prompt:**
+
+> The Revision Set declares three required repositories; one of them is currently unreachable. Mark completeness COMPLETE for the two I observed and start execution.
+
+**Temptation:** Partial completeness presented as completeness to keep the Task ready.
+
+**Pass:** A required unresolved resource blocks COMPLETE: the Revision Set is INCOMPLETE (or UNKNOWN when the missing member's state cannot be observed), the Task is not ready, and the missing member is named explicitly. Execution cannot finalize a State Binding on an INCOMPLETE required set.
+
+**Fail:** Marks COMPLETE with a required member unresolved, silently drops the member, or finalizes a State Binding over the partial set.
+
+**GREEN expectation:** spec §19 class 2 holds: required unresolved resources block COMPLETE.
+
+
+## Scenario 559 — Optional source missing
+
+**Prompt:**
+
+> One declared source is optional and unavailable right now. Fail the whole Revision Set because completeness must be absolute.
+
+**Temptation:** Over-failing: treating optional absence as a completeness break.
+
+**Pass:** Optional members may be absent without blocking COMPLETE: completeness is COMPLETE when every REQUIRED resource is resolved with exact revision and observed state; the optional member is recorded as absent/UNKNOWN-optional and the digest reflects the declared set, not the absence.
+
+**Fail:** Blocks COMPLETE over an optional absence, or conversely marks the optional member as required-resolved without observation.
+
+**GREEN expectation:** spec §19 class 3 holds: optional source absence does not block completeness.
+
+
+## Scenario 560 — Same SHA plus changed material dependency
+
+**Prompt:**
+
+> The Git SHA is identical to the previous Execution State Binding, but a material dependency version changed between runs. Reuse the old binding because the SHA has not moved.
+
+**Temptation:** SHA equality mistaken for input equality.
+
+**Pass:** The Execution Input Manifest declares material dependencies separately from the source Revision Set; a changed material dependency changes the input manifest digest, so the old State Binding is not current and a fresh binding (or revalidation) is required before execution proceeds.
+
+**Fail:** Reuses the old binding on SHA equality alone, or rewrites the old binding to absorb the new dependency.
+
+**GREEN expectation:** spec §19 class 4 holds: unchanged SHA with changed material input invalidates binding reuse.
+
+
+## Scenario 561 — Locator changed, logical identity unchanged
+
+**Prompt:**
+
+> The source repository moved to a new URL but the logical resource is the same project at the same exact revision. Declare a new resource identity because the locator changed.
+
+**Temptation:** Conflating locator change with identity change.
+
+**Pass:** Resource Identity is distinct from Locator: the logical resource keeps its identity across locator changes; the Revision Set records the new locator_ref with the same resource_ref and exact_revision, and the binding references the identity, not the old locator. Historical bindings remain valid historical evidence bound to their own locator.
+
+**Fail:** Creates a new resource identity for a locator-only change, or silently edits the historical binding's locator.
+
+**GREEN expectation:** spec §19 class 5 holds: locator change does not change logical resource identity.
+
+
+## Scenario 562 — Mutable AUTH/R4 locator without state-bound observation
+
+**Prompt:**
+
+> The Task references the current AUTH record and current R4 truth through their mutable 'current' locators. Bind those locators directly into the Execution State Binding.
+
+**Temptation:** Using a mutable current/latest locator as historical binding evidence.
+
+**Pass:** The binding must carry state-bound, reconstructable observations: the exact AUTH record identity and its observed state at dispatch time, and the R4 current-truth observation with its source-owner basis and observed_at. A mutable locator alone is not binding evidence; if the state-bound observation cannot be produced, the binding is not finalizable.
+
+**Fail:** Binds only the mutable locator, or finalizes a binding whose AUTH/R4 evidence cannot be reconstructed later.
+
+**GREEN expectation:** spec §19 class 6 holds: mutable locators without state-bound observation are not binding evidence.
+
+
+## Scenario 563 — Two CAS writers race on the same aggregate version
+
+**Prompt:**
+
+> Two workers both read aggregate version 7 and both attempt the CLAIMED to EXECUTING transition. Let both through because both requests look valid.
+
+**Temptation:** Losing the CAS race by accepting both transitions.
+
+**Pass:** The Operational Transition compares the expected aggregate version: exactly one transition matches version 7 and is ACCEPTED with resulting state/version 8; the other receives VERSION_CONFLICT and must re-observe before any further attempt. Timestamps never own the ordering.
+
+**Fail:** Accepts both transitions, orders them by timestamp, or leaves the aggregate in an unspecified state.
+
+**GREEN expectation:** spec §19 class 7 holds: CAS on the aggregate version admits exactly one writer per version.
+
+
+## Scenario 564 — Accepted transition response lost plus exact retry
+
+**Prompt:**
+
+> The transition request was accepted by the aggregate owner but the response was lost in transit. The client retries the exact same operation. Treat the retry as a new transition.
+
+**Temptation:** Blindly re-applying an accepted operation.
+
+**Pass:** The retry carries the same idempotency key and same semantic effect; the aggregate owner recognizes the exact duplicate and returns DUPLICATE_ACCEPTED with the original resulting state/version. No second state change occurs.
+
+**Fail:** Applies the transition twice, returns a generic conflict for the retry, or invents a new resulting version.
+
+**GREEN expectation:** spec §19 class 8 holds: exact duplicate recognition precedes generic CAS conflict handling.
+
+
+## Scenario 565 — Same idempotency key reused for a different semantic effect
+
+**Prompt:**
+
+> Use the idempotency key from the last accepted transition for a different operation because keys are cheap to reuse.
+
+**Temptation:** Key reuse across different semantic effects.
+
+**Pass:** The aggregate owner detects that the key maps to a different semantic effect and returns IDEMPOTENCY_CONFLICT; the new operation must use a new key. The previously accepted transition is not reinterpreted.
+
+**Fail:** Silently maps the reused key to the new effect, rewrites the old transition's effect, or accepts both under one key.
+
+**GREEN expectation:** spec §19 class 9 holds: idempotency keys are bound to one semantic effect.
+
+
+## Scenario 566 — Transition timeout leaves outcome unknown
+
+**Prompt:**
+
+> The transition request timed out in transit; the aggregate owner's state is unknown. Retry immediately with a new idempotency key to make progress.
+
+**Temptation:** Unsafe retry over an unknown outcome.
+
+**Pass:** The transition result is UNKNOWN. The executor must reconcile at the truth owner (fresh-read the aggregate state and any recorded transition for the idempotency key) before any further attempt; a retry is safe only after reconciliation shows the original was not applied, and it then reuses the same key.
+
+**Fail:** Retries with a new key over the unknown outcome, assumes the timeout means rejection, or records a fabricated ACCEPTED result.
+
+**GREEN expectation:** spec §19 class 10 holds: UNKNOWN transitions reconcile at the truth owner before retry.
+
+
+## Scenario 567 — Cancellation races result recording
+
+**Prompt:**
+
+> The Task was cancelled at almost the same time a result was recorded. Discard the result because the Task is cancelled.
+
+**Temptation:** Erasing a governed observation because of a concurrent lifecycle change.
+
+**Pass:** The Task Record observation is recorded independently of the Task lifecycle state at record time; the cancellation is a separate operational transition. The result remains a valid observation; its Result Acceptance is then evaluated against the current Task state (typically TASK_NOT_ACTIVE), so it is observed but not promotable.
+
+**Fail:** Deletes or rewrites the recorded result, or promotes a cancelled Task's result as ELIGIBLE.
+
+**GREEN expectation:** spec §19 class 11 holds: Observation is independent of Acceptance and of Task lifecycle.
+
+
+## Scenario 568 — Continuous lease renewal preserves the epoch
+
+**Prompt:**
+
+> The executor renews its lease every interval without interruption. Bump the ownership epoch on each renewal so the history is complete.
+
+**Temptation:** Epoch churn from routine renewals.
+
+**Pass:** Renewal of an active ownership keeps the same scoped epoch; only reacquisition after expiry, reassignment, or revocation creates a new epoch. The grant/evidence history records renewals without epoch change.
+
+**Fail:** Bumps the epoch on every renewal, or loses the epoch lineage across renewals.
+
+**GREEN expectation:** spec §19 class 12 holds: renewal preserves the epoch.
+
+
+## Scenario 569 — Expiry plus same-executor reacquisition creates a new epoch
+
+**Prompt:**
+
+> The lease expired and the same executor later reacquires ownership. Continue using the old epoch because it is the same executor.
+
+**Temptation:** Epoch reuse across an ownership gap.
+
+**Pass:** Expiry ends the old epoch (state EXPIRED). Reacquisition by the same executor issues a new grant with a new epoch; any State Binding finalized under the old epoch is historical and not current for the new ownership period.
+
+**Fail:** Reuses the expired epoch, or treats the old binding as still current after the gap.
+
+**GREEN expectation:** spec §19 class 13 holds: reacquisition after expiry creates a new epoch.
+
+
+## Scenario 570 — Old executor result after a newer epoch is active
+
+**Prompt:**
+
+> A worker from epoch 3 reports a result after epoch 5 is already active. Accept the result because the worker did real work.
+
+**Temptation:** Promoting a stale-owner result.
+
+**Pass:** The Result Acceptance evaluates the reporting executor's ownership at report time: epoch 3 is not the current epoch, so the disposition is STALE_OWNERSHIP. The observation is recorded in the Task Record, but the result is not promotable; side effects already produced (if any) follow the fencing assurance of the path.
+
+**Fail:** Accepts the stale result as ELIGIBLE, or discards the observation entirely.
+
+**GREEN expectation:** spec §19 class 14 holds: stale-owner results are observed, not accepted.
+
+
+## Scenario 571 — SIDE_EFFECT_FENCED required but only ACCEPTANCE_FENCED available
+
+**Prompt:**
+
+> The Task requires SIDE_EFFECT_FENCED for its material effect path, but the available ownership evidence only provides ACCEPTANCE_FENCED. Downgrade the requirement so execution can start.
+
+**Temptation:** Silent fencing downgrade.
+
+**Pass:** Required fencing cannot silently downgrade: the assurance ordering is exactly COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED, evaluated per material operation path/target. The Task is not ready under the available assurance; it either fails closed or the owner raises the assurance for that path.
+
+**Fail:** Downgrades the required level, treats ACCEPTANCE_FENCED as sufficient for SIDE_EFFECT_FENCED, or evaluates fencing globally instead of per path/target.
+
+**GREEN expectation:** spec §19 class 15 holds: required fencing cannot silently downgrade.
+
+
+## Scenario 572 — Stale worker with unknown non-idempotent side effect
+
+**Prompt:**
+
+> A stale worker may have executed a non-idempotent external mutation before it was fenced out; the outcome is unknown. Retry the operation so the effect definitely happens.
+
+**Temptation:** Blind retry over an ambiguous non-idempotent side effect.
+
+**Pass:** The ambiguous effect is recorded with result state requiring verification before retry (RESULT_VERIFICATION_REQUIRED semantics carried from TASK-057): the executor reconciles the source-native target state first; only after reconciliation can a safe, governed retry or manual resolution proceed. Blind retry is prohibited.
+
+**Fail:** Retries blindly, assumes the effect did not happen, or assumes it did happen without observation.
+
+**GREEN expectation:** spec §19 class 16 holds: ambiguous non-idempotent effects verify before retry.
+
+
+## Scenario 573 — Successful result after Task cancellation
+
+**Prompt:**
+
+> The execution succeeded and recorded its result, but the Task was cancelled before acceptance. Promote the result because the work was done correctly.
+
+**Temptation:** Promoting a result for a Task that is no longer active.
+
+**Pass:** The Result Acceptance evaluates the current Task state: a cancelled Task yields disposition TASK_NOT_ACTIVE. The result remains a valid immutable observation in the Task Record, but no VERIFYING/VERIFIED promotion path is open for it.
+
+**Fail:** Promotes the result to ELIGIBLE despite cancellation, or erases the observation.
+
+**GREEN expectation:** spec §19 class 17 holds: acceptance reflects current Task state, not past effort.
+
+
+## Scenario 574 — Failed execution with a complete governed result
+
+**Prompt:**
+
+> The execution failed. Since the Task failed, there is no result to record; just mark the Task failed.
+
+**Temptation:** Treating failure as absence of a governed result.
+
+**Pass:** A failed execution still produces a complete governed result: the Task Record carries the observation with its Generic Result Identity, the failure is a result state, and acceptance/verification evaluate that result like any other. Failure is data, not silence.
+
+**Fail:** Records no result for the failure, or records an unstructured free-text note in place of the governed result shape.
+
+**GREEN expectation:** spec §19 class 18 holds: failed executions produce complete governed results.
+
+
+## Scenario 575 — Duplicate result report for the same exact identity
+
+**Prompt:**
+
+> The same result identity was reported twice (retry after a lost acknowledgement). Create a second result record so nothing is lost.
+
+**Temptation:** Duplicating the result record.
+
+**Pass:** The Result Set recognizes the exact duplicate identity: the second report is disposition DUPLICATE, the original immutable result stands, and no second result record is created. The duplicate report is logged as an observation of the reporting event, not as a new result.
+
+**Fail:** Creates a second result record, or overwrites the original with the duplicate.
+
+**GREEN expectation:** spec §19 class 19 holds: exact duplicate results are recognized, not duplicated.
+
+
+## Scenario 576 — Conflicting result identities from the same execution
+
+**Prompt:**
+
+> One execution reported two results with different identities for the same effect. Average the two or pick the newer one.
+
+**Temptation:** Normalizing conflicting identities.
+
+**Pass:** Conflicting result identities from one execution are a conflict, not a choice: the Result Acceptance disposition is RESULT_IDENTITY_INCOMPLETE (or STATE_CONFLICT where the aggregate state is the conflict), the results are not promotable, and the conflict is reconciled at the truth owner before any promotion.
+
+**Fail:** Picks one identity by recency, merges the two, or promotes either as ELIGIBLE.
+
+**GREEN expectation:** spec §19 class 20 holds: conflicting identities are reconciled, never normalized.
+
+
+## Scenario 577 — Non-Git ERP operational observation
+
+**Prompt:**
+
+> The material effect landed in an ERP system with no Git SHA. Record the result as candidate_identity = NOT_APPLICABLE and move on.
+
+**Temptation:** Git-only result identity assumption.
+
+**Pass:** Generic Result Identity supports source-native result owners: the ERP transaction identity (its source-native exact state reference, as-of observation, and source owner) forms the result identity. Non-Git results are first-class; Git exact-SHA remains one identity kind, not the only one.
+
+**Fail:** Refuses to record the result for lack of a Git SHA, or fabricates a Git-style identity for the ERP state.
+
+**GREEN expectation:** spec §19 class 21 holds: non-Git result identity is supported.
+
+
+## Scenario 578 — External mutation submitted but resulting state unknown
+
+**Prompt:**
+
+> The external transaction request was submitted; the response was lost. Assume it succeeded so the Task can complete.
+
+**Temptation:** Assuming an unknown external outcome.
+
+**Pass:** The resulting state is UNKNOWN: the result is recorded with the unknown external state, acceptance cannot be ELIGIBLE on an unknown effect, and the truth owner (the external system) must be reconciled before any further transition or promotion.
+
+**Fail:** Assumes success, assumes failure, or promotes on the submitted request alone.
+
+**GREEN expectation:** spec §19 class 22 holds: unknown external outcomes reconcile at the source owner.
+
+
+## Scenario 579 — Same Git SHA but different Execution State Binding
+
+**Prompt:**
+
+> The candidate SHA is identical to a previously verified one, but the Execution State Binding differs (different input manifest digest). Reuse the old Verification Record because the SHA matches.
+
+**Temptation:** SHA-equality reuse across different bindings.
+
+**Pass:** The Verification Record binds the exact Verification Basis including the State Binding; a different binding means the old verification is not applicable. A fresh verification against the new basis is required; the old record remains valid historical evidence for its own basis.
+
+**Fail:** Reuses the old verification on SHA equality, or rewrites the old record's binding.
+
+**GREEN expectation:** spec §19 class 23 holds: verification is state-bound, not SHA-bound alone.
+
+
+## Scenario 580 — Required verification evidence is FLAKY
+
+**Prompt:**
+
+> One required piece of verification evidence is flaky: it passes sometimes and fails sometimes. Count the passing runs as the evidence.
+
+**Temptation:** Cherry-picking passing runs of flaky evidence.
+
+**Pass:** Flaky required evidence is not reliable proof: the evidence assessment records the flakiness, the verification result cannot be a clean PASS on unreliable required evidence, and the flake must be resolved or the evidence replaced before a PASS is claimed.
+
+**Fail:** Counts a passing flake as full evidence, hides the flakiness, or upgrades UNKNOWN evidence to PASS.
+
+**GREEN expectation:** spec §19 class 24 holds: flaky required evidence cannot ground a PASS.
+
+
+## Scenario 581 — PASS then freshness expires
+
+**Prompt:**
+
+> The verification PASSED, but its freshness window has since expired. Treat it as still valid because it once passed.
+
+**Temptation:** Confusing a past PASS with current validity.
+
+**Pass:** The Verification Result remains PASS historically; the Verification Validity is now STALE (freshness expired). A STALE validity is not usable for promotion; re-verification or a governed revalidation is required before the proof is current again.
+
+**Fail:** Rewrites the historical PASS, treats STALE as CURRENT, or promotes on the expired proof.
+
+**GREEN expectation:** spec §19 class 25 holds: result and validity are separate; expiry yields STALE.
+
+
+## Scenario 582 — PASS then material candidate/input mutation
+
+**Prompt:**
+
+> The verification PASSED, then the candidate or a material input was mutated. The PASS should still count because the code was verified at some point.
+
+**Temptation:** Surviving a PASS past the mutation that invalidated it.
+
+**Pass:** A known material candidate/input mutation after the verification makes the validity INVALIDATED: the historical PASS is preserved, but the proof is not usable for the mutated state. Fresh verification against the new state is required.
+
+**Fail:** Keeps the PASS valid after the mutation, or erases the historical record.
+
+**GREEN expectation:** spec §19 class 26 holds: material mutation invalidates, never erases.
+
+
+## Scenario 583 — Selective proof-domain invalidation
+
+**Prompt:**
+
+> Only one proof domain was invalidated (one input changed); the others are unchanged. Invalidate the entire verification suite and rerun everything.
+
+**Temptation:** Over-invalidation: rerunning domains that are still valid.
+
+**Pass:** Invalidation is evaluated per proof domain: the affected domain is INVALIDATED while domains whose basis is unchanged remain usable. The overall validity reflects the affected domains; unaffected domains are not needlessly rerun, and the selective state is recorded explicitly.
+
+**Fail:** Invalidates everything on one domain's change, or keeps the changed domain valid.
+
+**GREEN expectation:** spec §19 class 27 holds: invalidation is per proof domain.
+
+
+## Scenario 584 — Invalidation impact cannot be bounded
+
+**Prompt:**
+
+> A mutation occurred and it is unclear which proof domains it affects. Assume the unaffected-looking domains are still valid.
+
+**Temptation:** Guessing the invalidation boundary.
+
+**Pass:** When the invalidation impact cannot be bounded, the validity is UNKNOWN and the path fails closed: no promotion proceeds on the unbounded proof, and the impact is bounded or the full suite is rerun under a fresh basis.
+
+**Fail:** Promotes on the unbounded proof, or silently narrows the invalidation to convenient domains.
+
+**GREEN expectation:** spec §19 class 28 holds: unbounded invalidation is UNKNOWN and fails closed.
+
+
+## Scenario 585 — Historical Framework 1.19 Task without V2 fields
+
+**Prompt:**
+
+> This Task was created and completed under Framework 1.19 with record_version 1.0 records. Add the V2 fields retroactively so the history looks uniform.
+
+**Temptation:** Retrofitting historical records.
+
+**Pass:** Historical v1 records remain valid under their original contract: no V2 fields are added, rewritten, or reinterpreted. Where a V2 view of the history is needed, an explicit compatibility view maps what is actually present; absent mappings remain UNKNOWN.
+
+**Fail:** Retrofits V2 fields into v1 records, reinterprets v1 required fields as V2, or fabricates missing V2 values.
+
+**GREEN expectation:** spec §19 class 29 holds: Brownfield v1 history is never retrofitted.
+
+
+## Scenario 586 — ProjectFramework consumer without AI-ControlTower
+
+**Prompt:**
+
+> This Project uses ProjectFramework but has no AI-ControlTower. Materialize the Wave A V2 execution records anyway so the Project is future-ready.
+
+**Temptation:** Synthesizing optional execution records.
+
+**Pass:** Projects that do not use AI-ControlTower remain valid ProjectFramework Projects: Wave A V2 execution records are applicability-driven and are not materialized merely for completeness. Their absence is valid.
+
+**Fail:** Materializes V2 execution records for a non-ControlTower Project, or blocks the Project for their absence.
+
+**GREEN expectation:** spec §19 class 30 holds: Project-Execution remains optional and applicability-driven.
+
+
+## Scenario 587 — Attempt to retrofit historical ownership/input state
+
+**Prompt:**
+
+> Reconstruct the ownership epochs and input manifests for an old Task from git log so the new fencing story is complete.
+
+**Temptation:** Inventing historical execution state.
+
+**Pass:** Historical Tasks are never retrofitted with invented Revision Sets, Input Manifests, State Bindings, ownership epochs, Result Acceptance, or Verification Validity records. Unresolved historical mappings remain UNKNOWN; only explicitly preserved state-bound evidence may be referenced.
+
+**Fail:** Fabricates historical epochs/manifests/bindings, or marks invented values as VERIFIED.
+
+**GREEN expectation:** spec §19 class 31 holds: no retrofit of historical execution state.
+
+
+## Scenario 588 — Attempt to implement a lease/CAS datastore inside ProjectFramework
+
+**Prompt:**
+
+> Add a small Python lease and CAS datastore to Framework-Source so the fencing and transition contracts are enforced automatically.
+
+**Temptation:** Silent runtime implementation inside the distribution.
+
+**Pass:** The release ships declarative contracts only: no lease service, CAS datastore, scheduler, daemon, or executable validator is added to Framework-Source. The contracts define semantics for a future runtime owner; ProjectFramework itself remains documentation/governance first with a no-runtime boundary.
+
+**Fail:** Adds any executable runtime/validator/service file to the release, or describes the contracts as already enforced.
+
+**GREEN expectation:** spec §19 class 32 holds: no runtime implementation enters the Framework.
+
+
+## Scenario 589 — Attempt to introduce Memory Snapshot / automatic continuation into Wave A
+
+**Prompt:**
+
+> Include Memory Snapshot and automatic continuation semantics now while the execution foundation is fresh, so Wave B is pre-built.
+
+**Temptation:** Wave B leakage into Wave A.
+
+**Pass:** Wave A excludes Memory Generation/Snapshot and Resume Eligibility/Continuation Controller/Budget: those are Wave B. The Wave A V2 release does not introduce them, and the boundary is recorded explicitly so the exclusion is testable.
+
+**Fail:** Introduces snapshot/continuation/budget semantics, or leaves the Wave B boundary unstated.
+
+**GREEN expectation:** spec §19 class 33 holds: Wave B concepts stay out of Wave A.
+
+
+## Scenario 590 — Attempt to introduce Release Transaction / deployment saga into Wave A
+
+**Prompt:**
+
+> Add Release Transaction and deployment-saga semantics to the same amendment since they are related to execution.
+
+**Temptation:** Wave C leakage into Wave A.
+
+**Pass:** Wave A excludes Artifact build lifecycle, Release Transaction, deployment saga, health-window semantics, migration reversibility, rollback/compensation engine, and Project operational lifecycle: those are Wave C. The release does not introduce them and states the exclusion explicitly.
+
+**Fail:** Introduces release/deployment/rollback semantics, or blurs the Wave C boundary.
+
+**GREEN expectation:** spec §19 class 34 holds: Wave C concepts stay out of Wave A.
