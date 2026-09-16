@@ -23,6 +23,21 @@ jobs:
       - name: Apply bounded TASK-058 patches
         run: python docs/superpowers/tools/task058_patch.py
 
+      - name: Normalize changed text EOFs
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess
+          from pathlib import Path
+          names = subprocess.check_output(['git','diff','--name-only','HEAD'], text=True).splitlines()
+          for name in names:
+              p = Path(name)
+              if p.is_file() and p.suffix in {'.md', '.yaml', '.yml'}:
+                  text = p.read_text(encoding='utf-8')
+                  p.write_text(text.rstrip() + '\n', encoding='utf-8', newline='\n')
+          print('TASK058_EOF_NORMALIZE PASS')
+          PY
+
       - name: Verify diff hygiene and no runtime/code artifacts
         shell: bash
         run: |
