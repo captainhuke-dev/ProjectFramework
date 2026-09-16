@@ -7,7 +7,9 @@ on:
     paths:
       - .github/workflows/task058-independent-review.yml
 
-permissions: read-all
+permissions:
+  contents: read
+  copilot-requests: write
 
 jobs:
   review:
@@ -43,36 +45,25 @@ jobs:
           print('REVIEW_DIFF_LINES', diff.count('\n') + 1)
           PY
 
-      - name: Call fresh GitHub Models reviewer
+      - name: Install current Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Run fresh read-only Copilot review
+        working-directory: target
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          prompt = Path('/tmp/review-prompt.txt').read_text(encoding='utf-8')
-          payload = {
-              'model': 'openai/gpt-4.1',
-              'temperature': 0,
-              'max_tokens': 7000,
-              'messages': [
-                  {'role': 'system', 'content': 'You are a rigorous independent software-governance reviewer. Follow the requested output format exactly.'},
-                  {'role': 'user', 'content': prompt},
-              ],
-          }
-          Path('/tmp/review-request.json').write_text(json.dumps(payload), encoding='utf-8')
-          PY
-          curl --fail-with-body --silent --show-error https://models.github.ai/inference/chat/completions -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary @/tmp/review-request.json > /tmp/review-response.json
+          PROMPT="$(cat /tmp/review-prompt.txt)"
+          copilot -p "$PROMPT" -s --no-ask-user --no-custom-instructions --available-tools=read --allow-tool=read > /tmp/review-output.txt
 
       - name: Print and validate independent review
         shell: bash
         run: |
           python - <<'PY'
-          import json, re
+          import re
           from pathlib import Path
-          obj = json.loads(Path('/tmp/review-response.json').read_text(encoding='utf-8'))
-          content = obj['choices'][0]['message']['content']
+          content = Path('/tmp/review-output.txt').read_text(encoding='utf-8')
           print('=== INDEPENDENT_REVIEW_BEGIN ===')
           print(content)
           print('=== INDEPENDENT_REVIEW_END ===')
