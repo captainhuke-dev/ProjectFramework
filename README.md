@@ -27,10 +27,27 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.19.0**
+- Project Source Framework: **1.20.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.20.0 Deterministic Execution Runtime Contract
+
+Framework `1.20.0` extends the Framework 1.19 PLAN/TASK/VERIFY governance-support layer with a language-/provider-neutral **deterministic execution-runtime contract** for future AI-ControlTower-compatible runtimes. ProjectFramework still defines protocol semantics only; it does **not** ship an AI-ControlTower runtime, scheduler, queue, runtime database, worker daemon, lease/fencing service, Effect Gateway service, credential broker, sandbox/network policy, MCP/model router, Multica runtime, merge/release bot, CI runner, API server, automatic Task-DONE updater, or self-improvement runtime.
+
+- **Four truth/lifecycle domains stay separate:** canonical Task lifecycle, Operational Execution, Execution Attempt, and Action/Effect. Worker/model-turn/process lifetime never becomes Task lifetime.
+- **Durable execution control** uses exact Task/Plan/Envelope fingerprints, `runtime_generation + fence_epoch`, `state_version` atomic transitions, and version-pinned runtime/event-schema semantics.
+- **Runtime Event Journal > Checkpoint / Snapshot.** Checkpoints are derived recovery accelerators; missing journal continuity fails closed instead of reconstructing truth from model/chat memory.
+- **Effect-Surface Closure** requires every equivalent governed Material-Effect path to be mediated by the Effect Gateway or explicitly prohibited/confined; prompt-only policy is insufficient.
+- **JIT Effect Permits** are short-lived, single-use, non-transferable, and bound to exact execution/attempt/action/hash/target/tool/generation/fence/contracts. `Effect Permit ≠ AUTH` and `PERMIT_CONSUMED ≠ effect APPLIED`.
+- **TOCTOU/result safety** uses source-native target preconditions and explicit idempotency/reconciliation/reversibility classes. Unknown non-idempotent effects without a reconciliation path do not auto-retry; arbitrary external exactly-once execution is not claimed.
+- **Cancellation and compensation remain truthful:** `Cancellation ≠ rollback`; compensation is a separately governed Material Effect with its own identity, AUTH, Permit, evidence, and reconciliation.
+- **Typed executor proposals** cannot forge `AUTH_GRANTED`, `LEASE_ACQUIRED`, `FENCE_ADVANCED`, `PERMIT_ISSUED`, `VERIFIED`, `INTEGRATED`, or `TASK_DONE`.
+- **Durable hierarchical budgets / wait-wakeup** bound autonomous and recursive work; child execution cannot manufacture authority or budget, and fail-closed behavior cannot become infinite retry/polling.
+- **Brownfield stays additive:** historical Tasks are not retrofitted with invented runtime journals, Attempts, checkpoints, leases/fences, Permits, budgets, or fingerprints. Projects not using deterministic long-running runtime control remain valid.
+
+Maintained TASK-058 starters are `Framework-Source/templates/project-execution/{runtime-contract,execution-attempt,execution-checkpoint,action-journal,effect-policy}.md`, with additive alignment in existing Task/Record/Executor/Tool/Trust profiles.
 
 ## Framework 1.19.0 AI-ControlTower Governance Support Layer
 
@@ -179,7 +196,7 @@ usable Project Settings absolute Project Bootstrap
 → 01 → 03 → task routing → 09 when continuation applies
 ```
 
-Project Settings, README, the fixed upstream, and `PROJECT-BOOTSTRAP.md` are discovery/locator surfaces only. Active local `FRAMEWORK-001` remains Project governance authority. Successful README discovery at a moved/cloned path does not silently rewrite Local Workspace Binding.
+Project Settings, README, the fixed upstream, and `PROJECT-BOOTSTRAP.md` are discovery/locator surfaces only. Active local `FRAMEWORK-001` remains Project governance authority. A stale absolute Settings path after clone/move may use the relative README fallback; successful discovery does not rewrite Local Workspace Binding.
 
 Existing initialized Projects remain locally pinned and adopt this behavior only through governed `[Project Upgrade]`; upstream movement never silently rewrites Brownfield README, Project Settings, root governance, or bindings.
 
@@ -563,7 +580,7 @@ When exact provenance is actually observed, a Project may record source ref/tag 
 
 ## Bootstrap Mockup
 
-`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.12.2` / Schema `1.0.0`.
+`templates/project-source-mockup/` is the concrete starter representation of the Project Source namespace. It contains `.template.md` starters for `00–17`, conditional starters for `40`, `60`, `91`, and Framework `1.6.0` standard conditional `92 Project Graph`; current starter metadata is stamped to Framework `1.20.0` / Schema `1.0.0`.
 
 The mockup is **the single maintained concrete starter representation in the current distribution** and is executable documentation, not normative authority. `references/core-governance-rules.md` remains authoritative if a mismatch appears. The presence of a conditional template does not mean an active Project must create that document. Historical composition examples remain recoverable from Git history rather than being maintained as a second full Project Source tree.
 
