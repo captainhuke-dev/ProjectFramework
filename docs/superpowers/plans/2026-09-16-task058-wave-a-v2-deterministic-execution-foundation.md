@@ -1,6 +1,6 @@
 # TASK-058 Wave A V2 Deterministic Execution Foundation Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **Execution role boundary:** `GPT = PLANNER / EXECUTION_HANDOFF_REQUIRED`; `LOCAL_LLM_ENGINEER = designated TASK Executor`; `INDEPENDENT_ENGINEERING_VERIFIER = VERIFY`. GPT MUST NOT perform TASK-058 implementation-plane source/test/migration mutation or substitute itself for the designated Executor. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Deliver a verified ProjectFramework successor to Framework `1.19.0` that implements TASK-058 Wave A V2 deterministic execution interoperability contracts while preserving ProjectFramework authority boundaries, exact historical evidence, Brownfield compatibility, and the no-runtime boundary.
 
@@ -10,9 +10,21 @@
 
 **Spec:** `docs/superpowers/specs/2026-09-16-task058-wave-a-v2-deterministic-execution-foundation-design.md`
 
+## Execution Role Boundary
+
+- `GPT = PLANNER`. GPT owns PLAN-mode analysis, contract/plan creation and revision, evidence consumption, and REPLAN/REWORK decisions. Planning completion yields `EXECUTION_HANDOFF_REQUIRED`; it does not authorize GPT to perform implementation-plane mutation.
+- `LOCAL_LLM_ENGINEER = designated TASK Executor`. Phase 0 mutation and TASK-058 implementation Tasks may execute only after the applicable Task Ready Gate passes and an eligible, runtime-bound Local LLM Executor is selected for the exact repository/workspace/task envelope.
+- `INDEPENDENT_ENGINEERING_VERIFIER = VERIFY`. Independent verification is selected separately from TASK execution; the designated Local LLM Executor MUST NOT self-satisfy an independent-verifier requirement and the Verifier MUST NOT repair implementation while acting in VERIFY.
+- Commands in this plan are instructions for the selected `LOCAL_LLM_ENGINEER` execution context. They are not authorization for GPT to run implementation steps directly.
+- If no eligible/runtime-bound designated Local LLM Executor exists, return `NO_ELIGIBLE_EXECUTOR` and `FAIL_CLOSED`. Do not substitute GPT, Codex, generic shell automation, another undeclared agent, or an availability-based fallback.
+- Integrator/canonical completion remains a separate role/boundary and requires its own current authority and downstream gates. `Verification PASS ≠ integration authority ≠ Task DONE`.
+
 ## Global Constraints
 
 - TASK-058 status remains `TODO` until implementation actually begins; planning is not implementation.
+- Execution role assignment is fixed for this plan: `GPT = PLANNER`, `LOCAL_LLM_ENGINEER = designated TASK Executor`, `INDEPENDENT_ENGINEERING_VERIFIER = VERIFY`.
+- GPT MUST NOT run Phase 0 or TASK-058 implementation-plane mutation and MUST NOT invoke Inline/Subagent execution as a substitute execution path.
+- `NO_ELIGIBLE_EXECUTOR → FAIL_CLOSED`: if the designated Local LLM Executor is unavailable, ineligible, or not runtime-bound to the exact target, stop and return to PLAN/REPLAN; never fall back to GPT, Codex, generic shell automation, or another undeclared executor.
 - Current observed local planning baseline at plan creation: local `HEAD=e2e20d99433bc38a2063e81c5d388832b29fa2df`, local `origin/main=38f9993824b03c5afd58fee0279f717b120d7918`, `HEAD:Framework-Source=23274ada739c56a10c8edcfc14e6a9a0e46e9a0b`.
 - Framework distribution is `1.19.0` / Project Source Schema `1.0.0` / release format `3` before TASK-058 execution.
 - Active canonical ProjectFramework self-host is currently Framework `1.18.0`; **TASK-058 normative implementation MUST NOT begin until canonical `origin/main` self-host reconciliation to Framework `1.19.0` is completed and freshly verified.**
@@ -924,3 +936,7 @@ Before offering execution, verify all of the following against the written spec:
 20. Exactly one final RELEASE_FULL runs on the unchanged candidate; evidence is state-bound.
 21. Publication and post-1.20 self-host promotion remain separately governed.
 22. Plan contains no unresolved placeholder markers, no vague generic test/error-handling steps, and no undefined implementation interface.
+23. GPT is PLAN-only for implementation work and never performs TASK-058 implementation-plane source/test/migration mutation.
+24. `LOCAL_LLM_ENGINEER` is the designated TASK Executor for Phase 0 and TASK-058 implementation after Ready Gate + runtime-binding checks.
+25. Independent verification remains a separate `INDEPENDENT_ENGINEERING_VERIFIER / VERIFY` role and is not satisfied by the Task Executor.
+26. `NO_ELIGIBLE_EXECUTOR → FAIL_CLOSED`; the plan contains no GPT/Codex/generic-shell/undeclared-executor fallback path.
