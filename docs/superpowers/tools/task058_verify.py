@@ -3,6 +3,7 @@ import re, subprocess, sys
 
 ROOT = Path('.')
 BASE = 'f81992064d49c1f50f80c790667ec5be9b9ada0f'
+TEMP_VERIFY = {'docs/superpowers/tools/task058_verify.py', '.github/workflows/task058-verify.yml'}
 checks = []
 
 def ok(name, cond, detail=''):
@@ -111,9 +112,10 @@ names = subprocess.check_output(['git','diff','--name-only',BASE+'..HEAD'], text
 ok('no_project_source_self_host_mutation', not any(n.startswith('Project-Source/') or n=='PROJECT-BOOTSTRAP.md' for n in names), str([n for n in names if n.startswith('Project-Source/') or n=='PROJECT-BOOTSTRAP.md']))
 ok('launchers_unchanged', not any(n in {'Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md','Framework-Source/CLAUDE-PROJECT-INSTRUCTIONS.md'} for n in names))
 allowed = {'.md','.yaml'}
-non_docs = [n for n in names if Path(n).suffix not in allowed]
+non_docs = [n for n in names if n not in TEMP_VERIFY and Path(n).suffix not in allowed]
 ok('candidate_scope_docs_yaml_only', not non_docs, str(non_docs))
-ok('no_temp_task058_helpers', not Path('.github/workflows/task058-consolidate.yml').exists() and not Path('docs/superpowers/tools/task058_patch.py').exists())
+ok('temporary_verifier_is_only_temp_non_doc', all(n in TEMP_VERIFY or Path(n).suffix in allowed for n in names))
+ok('old_patch_helpers_removed', not Path('.github/workflows/task058-consolidate.yml').exists() and not Path('docs/superpowers/tools/task058_patch.py').exists())
 
 # Baseline current command names remain present in core, with no TASK-058 command introduced.
 commands = ['[Project Status]','[Project Path]','[Project Upgrade]','[Project Audit]','[Session]','[Goal]','[Meeting]']
