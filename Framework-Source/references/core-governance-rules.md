@@ -2310,6 +2310,8 @@ Exactly-once execution is not assumed
 Fail closed != retry forever
 ```
 
+Runtime Event Journal ingestion is identity- and sequence-governed. Every authoritative event has immutable `event_id`, Execution identity, strict contiguous `event_sequence`, predecessor identity, event type, and before/after `state_version`. Exact same-event redelivery is idempotent and MUST NOT append/transition/effect twice; conflicting reuse is `EVENT_IDENTITY_CONFLICT` / `EVENT_SEQUENCE_CONFLICT`. A future sequence with a missing predecessor is `EVENT_GAP` and is quarantined until continuity is proven; missing events are never inferred and timestamps never reorder authoritative history. Event identity/sequence/predecessor validation occurs before the CAS-equivalent state transition.
+
 Keep four lifecycle domains separate: canonical Task lifecycle; TASK-057 Operational Execution state; Execution Attempt state; Action/Effect state. Attempt loss/termination never directly closes Operational Execution or Task. Model `CANDIDATE_COMPLETE` is only a proposal for governed verification/completion evaluation.
 
 A conforming runtime uses durable Execution/Attempt identity with pinned Task/Plan/Envelope fingerprints, `runtime_contract_version`, `event_schema_version`, `runtime_generation`, `fence_epoch`, and `state_version`. Material contract fingerprint changes invalidate continuation or require governed replanning/revalidation; runtime state transitions use compare-and-set or equivalent atomic semantics. Control identity is `(runtime_generation, fence_epoch)`; a new generation invalidates prior leases/fences/Effect Permits and requires unresolved-effect reconciliation before new dispatch.

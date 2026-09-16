@@ -187,6 +187,29 @@ Runtime Event Journal > Checkpoint / Snapshot
 
 The journal is logically append-oriented authoritative runtime observation. Checkpoint/Snapshot is derived and MUST identify the journal sequence summarized.
 
+Every authoritative runtime event MUST carry immutable ingestion identity sufficient to make duplicate delivery and ordering deterministic:
+
+```yaml
+runtime_event:
+  event_id: "<immutable unique id within this execution>"
+  execution_id: "<execution id>"
+  event_sequence: "<strict contiguous monotonic sequence>"
+  previous_event_id: "<immediately preceding event id, or NOT_APPLICABLE for first event>"
+  event_type: "<bounded runtime event type>"
+  state_version_before: "<expected version before applying event>"
+  state_version_after: "<resulting version after applying event>"
+  observed_at: "<runtime timestamp; telemetry only>"
+```
+
+Journal ingestion rules are fail-closed:
+
+- Re-delivery of an already-committed `event_id` with the same immutable payload is an idempotent duplicate observation. It MUST NOT append another authoritative event, advance `state_version` again, or repeat any Action/Effect.
+- The same `event_id` with different immutable payload, or an already-occupied `event_sequence` with a different event identity/payload, is `EVENT_IDENTITY_CONFLICT` / `EVENT_SEQUENCE_CONFLICT` and enters `RECOVERY_BLOCKED` (or equivalent) until reconciled.
+- An event with `event_sequence` greater than the next expected contiguous sequence is `EVENT_GAP`. It is quarantined/not authoritatively applied until predecessor continuity is proven; missing events MUST NOT be inferred.
+- An old/stale sequence that is not the exact already-committed duplicate is rejected/reconciled rather than inserted retroactively.
+- `event_sequence` plus predecessor continuity is ordering authority. `observed_at`/wall-clock timestamp is telemetry only and MUST NOT reorder authoritative runtime history.
+- A state transition is eligible only after event identity, sequence/predecessor continuity, and `state_version_before` checks pass; the state-version transition itself remains CAS-equivalent.
+
 Minimum checkpoint linkage:
 
 ```yaml
