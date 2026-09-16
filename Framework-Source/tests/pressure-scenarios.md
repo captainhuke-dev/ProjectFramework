@@ -7377,7 +7377,7 @@ For wording micro-tests, run at least 5 fresh samples for scope-expansion scenar
 
 **Temptation:** Treating the one-repository exact-SHA shortcut as permission to omit the V2 required shape.
 
-**Pass:** A single-repo Task is a one-member Revision Set: one resource, role, required=true, identity_kind GIT, locator_ref, exact_revision abc123, observed_at, completeness COMPLETE, and a revision_set_digest. The exact-SHA value remains the compatibility mapping to the v1 candidate_identity semantics, but the V2 required shape is the Revision Set plus its digest.
+**Pass:** A single-repo Task is a one-member Revision Set: one resource, role, required=true, identity_kind GIT, locator_ref, revision.exact_identity abc123, observed_at, completeness COMPLETE, and a revision_set_digest. The exact-SHA value remains the compatibility mapping to the v1 candidate_identity semantics, but the V2 required shape is the Revision Set plus its digest.
 
 **Fail:** Omits the Revision Set, records only a bare SHA, or claims the v1 candidate_identity field satisfies the V2 required shape.
 
@@ -7437,7 +7437,7 @@ For wording micro-tests, run at least 5 fresh samples for scope-expansion scenar
 
 **Temptation:** Conflating locator change with identity change.
 
-**Pass:** Resource Identity is distinct from Locator: the logical resource keeps its identity across locator changes; the Revision Set records the new locator_ref with the same resource_ref and exact_revision, and the binding references the identity, not the old locator. Historical bindings remain valid historical evidence bound to their own locator.
+**Pass:** Resource Identity is distinct from Locator: the logical resource keeps its identity across locator changes; the Revision Set records the new locator_ref with the same resource_ref and revision.exact_identity, and the binding references the identity, not the old locator. Historical bindings remain valid historical evidence bound to their own locator.
 
 **Fail:** Creates a new resource identity for a locator-only change, or silently edits the historical binding's locator.
 

@@ -15,7 +15,8 @@ resources:
     required: true
     identity_kind: "GIT | FILE_SET | SCHEMA | EXTERNAL_CONTRACT | SOURCE_NATIVE"
     locator_ref: "<routing locator>"
-    exact_revision: "<source-native exact revision, e.g. exact commit SHA>"
+    revision:
+      exact_identity: "<source-native exact revision, e.g. exact commit SHA>"
     observed_at: "<timestamp of the observation>"
 completeness:
   required_resources: 1

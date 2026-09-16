@@ -197,6 +197,9 @@ external_contracts:
 material_inputs:
   - input_ref: "<material input>"
     revision_or_digest: "<identity>"
+environment_constraints:
+  - constraint_ref: "<declared environment constraint, if material>"
+    revision_or_digest: "<exact observed identity>"
 completeness: "COMPLETE | INCOMPLETE | UNKNOWN"
 manifest_digest: "<semantic digest>"
 created_at: "<timestamp>"
@@ -308,7 +311,7 @@ correlation_ref: "<correlation>"
 authority_refs: ["<authority>"]
 ownership_evidence_ref: "<ownership>"
 state_binding_ref: "<binding when applicable>"
-outcome: "<exactly one applicable outcome>"
+result: "<exactly one applicable outcome>"
 observed_at: "<timestamp>"
 ```
 
@@ -704,7 +707,7 @@ Wave A V2 MUST NOT silently redefine the required serialized meaning of an exist
 - Task Contract: `contract_version: "2.0"` for the V2 required shape.
 - Task Record: `record_version: "2.0"` for the V2 required shape.
 - Verification Record: `record_version: "2.0"` for the V2 required shape.
-- New Wave A record types use `record_version: "1.0"` because they are new record types: `REVISION_SET`, `EXECUTION_INPUT_MANIFEST`, `EXECUTION_STATE_BINDING`, `EXECUTION_OWNERSHIP_GRANT`, `OPERATIONAL_TRANSITION`, `RESULT_ACCEPTANCE`, `VERIFICATION_VALIDITY_EVALUATION`.
+- New Wave A record types use `record_version: "1.0"` because they are new record types: `REVISION_SET`, `EXECUTION_INPUT_MANIFEST`, `EXECUTION_STATE_BINDING`, `EXECUTION_OWNERSHIP_GRANT`, `EXECUTION_OWNERSHIP_EVIDENCE`, `OPERATIONAL_TRANSITION`, `RESULT_ACCEPTANCE`, `VERIFICATION_VALIDITY_EVALUATION`.
 
 Historical version `1.0` Task Contract / Task Record / Verification Record artifacts remain valid according to their original contract. Existing Plan Contract `1.0`, Executor Profile, capability/tool/trust profiles, Task lifecycle, Risk `R0–R3`, and the Registered Command set remain unchanged.
 
