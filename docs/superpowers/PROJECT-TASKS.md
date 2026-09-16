@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TODO=0 / IN_PROGRESS=0 / BLOCKED=0` (TASK-057 DONE).
+- Current backlog: `TODO=1 / IN_PROGRESS=0 / BLOCKED=0` (TASK-058 TODO).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
@@ -78,7 +78,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
   4. Launcher compaction policy + ceiling raised from 4,500 to 5,000 Unicode characters.
   5. `[Project Upgrade]` `UPGRADE_AVAILABLE` report references the target release's MIGRATION-NOTES.
 - **Constraints:** Markdown/YAML only; no validator/CLI/auto-updater/runtime artifact; Schema stays `1.0.0`; release format `3`; backward compatible with locally pinned Projects; historical amendments unchanged; `commit ≠ push`.
-- **Completion criteria:** All five items implemented across descriptor, normative sources, templates, launchers, README; pressure scenarios added for the new upgrade-scope rules; affected verification passes; one final `RELEASE_FULL` on the unchanged candidate; release evidence committed as Framework `1.4.0` / Schema `1.0.0`.
+- **Completion criteria:** All five items implemented across descriptor, normative sources, templates, launchers, README; pressure scenarios added for the new upgrade-scope rules; affected verification passes; one final `RELEASE_FULL` on the unchanged candidate; evidence committed as Framework `1.4.0` / Schema `1.0.0`.
 - **Design Spec:** `docs/superpowers/specs/2026-08-25-upgrade-acceleration-design.md` (`USER_APPROVED_DESIGN / SPEC_APPROVED`)
 - **Implementation Release:** Framework `1.4.0` / Schema `1.0.0`
 - **Implementation Commit(s):** `c0bb174`, `63c7306`, `d6cd6e0`, `dbd2fc9`, `f370eb3`
@@ -139,7 +139,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion criteria met:** federated Project-authoritative graph; standard conditional slot `92`; canonical `REL-*`; immutable `project_uuid` endpoints; late binding; semantic nesting/location separation; evidence-based corroboration/conflict; merge/split reassessment; AI-ControlTower/OpenViking `DERIVED_ONLY` + `REBUILDABLE` boundary; Brownfield custom-slot-92 migration; 22 starter templates; scenarios `1–171`; documentation-only scope.
 - **Publication State:** `PUBLISHED_TO_ORIGIN_MAIN` — verified TASK-022 implementation and completion through `9a34b49` were pushed to `origin/main` on `2026-08-28` under explicit user publication approval; this publication-state reconciliation record is included in the same approved publication operation.
 - **Completion Working Tree:** `CLEAN`
-- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes/commits there; implementation continued inline on local `main` under the user's explicit continuous approval. Remote publication was performed only after the user's separate explicit push approval.
+- **Execution Note:** isolated worktree was prepared but host Active Workspace mutation routing blocked writes there; implementation continued inline on local `main` under the user's explicit continuous approval. Remote publication was performed only after the user's separate explicit push approval.
 - **Completion criteria:** A user-approved design specifies relation ownership, canonical-vs-derived truth boundaries, Project Graph representation, AI-ControlTower/OpenViking integration contract, late-binding lifecycle, rebuild/re-index behavior, failure/drift handling, and affected Framework surfaces; implementation proceeds under the user's explicit continuous approval with proportional verification and a final unchanged-candidate `RELEASE_FULL` before completion.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 
@@ -352,6 +352,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
+
 ## Task #28 — `[Project Audit]` Integrity & Drift Command
 
 - **ID:** `TASK-028`
@@ -601,6 +602,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
+
 ## Task #34 — Agent / Model Capability Profile
 
 - **ID:** `TASK-034`
@@ -639,6 +641,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
+
 ## Task #35 — Project Release / Publication Contract
 
 - **ID:** `TASK-035`
@@ -677,6 +680,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
+
 ## Task #36 — Project Change/Event History Feed
 
 - **ID:** `TASK-036`
@@ -761,6 +765,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป
 - **Completed-work Integration Evidence:** `docs/superpowers/evidence/2026-09-02-completed-work-main-integration-release-full.md` / `0c8d972`
 - **Canonical Main Integration:** `b8697f17c6d5de9835edfb9248229e5e3bf6525f` / Framework-Source tree `993b481c0d36057108df0eb87e41194bead64577` / EVD-042 verified
+
 ## Task #38 — Framework Source Naming & Distribution-Root Migration
 
 - **ID:** `TASK-038`
@@ -1240,6 +1245,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Completion Criteria Met:** tracker readback proves #25 CLOSED and #29 OPEN; #29 explicitly references TASK-051; ledger backlog counts are exact (`TODO=1 / IN_PROGRESS=0 / BLOCKED=0`); TASK-049 canonical integration truth is corrected; no TASK-051 implementation or Framework semantic change occurred; terminal successor set requires fresh post-commit readback before external completion claim.
 - **Publication Boundary:** issue tracker mutations completed under OUT-018; push/PR/merge of this local ledger reconciliation is separately governed and was not authorized/performed.
 - **Exact Next Step:** ไม่มีขั้นตอนถัดไป for TASK-050; TASK-051 remains separate TODO.
+
 ## Task #51 — Risk-Tiered Feature Delivery Fast Path
 
 - **ID:** `TASK-051`
@@ -1265,6 +1271,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Self-Host Result:** TASK-055 completed canonical Framework 1.18 self-host reconciliation through PR #33 merge `5b067a1c2fcfeab867ba3879a76f675904566e27`; Issue #29 is CLOSED.
 - **Pull Request:** `#32` — `https://github.com/captainhuke-dev/ProjectFramework/pull/32` — MERGED to `main` at `f6330e9929c28977d43fc149b864d590df1c2816`.
 - **Exact Next Step:** none for TASK-051; tag/GitHub Release remain separately governed.
+
 ## Task #52 — Project Upgrade One-Session Fast Path
 
 - **ID:** `TASK-052`
@@ -1358,3 +1365,29 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **No-Runtime Confirmation:** only `.md`/`.yaml` changed (42 files); no AI-ControlTower/Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime introduced.
 - **Terminal Persistence Contract:** this terminal record is externally claimable when this exact successor set is observed on canonical `origin/main`; that observation does not require another successor solely to restate completion.
 - **Exact Next Step:** none for TASK-057; tag/GitHub Release, self-host 1.19 promotion, and AI-ControlTower runtime mutation remain separately governed.
+
+## Task #58 — ProjectFramework 1.20 Deterministic Execution Runtime Contract
+
+- **ID:** `TASK-058`
+- **Status:** `TODO`
+- **Type:** Framework architecture / deterministic execution-runtime governance contract
+- **Source Direction:** ACTOR-001 explicit instruction on 2026-09-16: `Freeze Design V3 → Register TASK-058 → เขียน Written Spec`.
+- **depends_on:** `[TASK-057]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `DESIGN_V3_FROZEN / WRITTEN_SPEC_PENDING_EXPLICIT_REVIEW / IMPLEMENTATION_NOT_STARTED`
+- **Problem:** Framework 1.19 defines deterministic declarative execution contracts but intentionally has no runtime enforcement. Long-running autonomous execution still needs a language-neutral contract for durable runtime state, worker/attempt recovery, lease/heartbeat/fencing, effect mediation, side-effect ambiguity, budgets, cancellation, and resume behavior so model-turn/MCP/process failure cannot silently terminate, duplicate, or over-authorize work.
+- **Approved Architecture:** Design V3 — ProjectFramework defines governance/runtime protocol semantics; AI-ControlTower owns execution-control facts only; Task/Execution/Attempt/Action lifecycles remain separate; Runtime Event Journal is canonical inside the runtime domain and Checkpoints are derived; a deterministic Supervisor owns state transitions; Material Effects are mediated through an Effect Gateway with effect-surface closure; JIT Effect Permits are short-lived, single-use, non-transferable, action/attempt/target/tool/generation/fence/contract-bound; target preconditions and atomic state-version CAS prevent stale decisions; effect semantics explicitly classify idempotency, reconciliation, and reversibility; ambiguous effects use verify-before-retry and may require manual resolution; runtime budgets are durable/hierarchical; cancellation does not erase in-flight source-native facts; compensation is a separately governed effect; runtime/control generation prevents old fences/permits from becoming valid after failover/restore; model proposals and runtime-owned events use separate typed namespaces; active executions pin runtime/event-schema versions.
+- **Design RolePlay:** three adversarial rounds completed before freeze, covering worker/MCP failure, stale/zombie workers, split brain, TOCTOU AUTH/R4/target changes, runtime restart/store rollback, direct Gateway bypass, permit replay/theft, unreconcilable effects, cancellation/compensation, recursive budget escape, forged runtime state, secret-safe journaling, runtime schema upgrade, and prompt-injection/tool-output pressure.
+- **Target Release:** Framework `1.20.0` / Project Source Schema `1.0.0` / release format `3` — candidate classification `BACKWARD_COMPATIBLE_ADDITIVE_RUNTIME_CONTRACT`.
+- **Design Spec:** `docs/superpowers/specs/2026-09-16-task058-deterministic-execution-runtime-contract-design.md`.
+- **Design Spec Commit:** `dc1353e063a0d088582836d2d75e074ff76920fa`.
+- **Design State:** `DESIGN_V3_USER_APPROVED / FROZEN / WRITTEN_SPEC_PENDING_EXPLICIT_REVIEW`.
+- **Pressure Scenario Contract:** reserve RED-first scenarios `557–602` for deterministic runtime/effect-boundary failure classes after written-spec approval and implementation planning.
+- **Implementation Boundary:** TASK-058 is Framework governance/documentation/contracts/templates/tests only. Do not implement an AI-ControlTower runtime service, Python supervisor, runtime database, scheduler/queue/worker daemon, lease/fencing service, Effect Gateway service, credential broker, sandbox/container/network policy, MCP/model router, RLM runtime, Multica runtime, automatic Task DONE updater, CI/merge/release bot, API server, or self-improvement runtime as part of TASK-058.
+- **Authority Boundary:** `Runtime decision ≠ Authority`; `Claim ≠ Lease ≠ Fence ≠ Authority`; `Effect Permit ≠ AUTH`; Multica remains coordination-only; source-native systems remain factual owners of their domains; canonical Task owner retains Task lifecycle/DONE authority.
+- **Completion Criteria:** written spec explicitly approved; implementation plan written/self-reviewed; scenarios `557–602` RED-first; normative/runtime-contract starters implemented without runtime code; TASK-057 semantics preserved; independent review has zero unresolved Critical/Important findings; AFFECTED passes; one final unchanged-candidate `RELEASE_FULL` passes; release/completion evidence and truthful Task lifecycle are persisted.
+- **Publication Boundary:** this registration/design persistence on canonical `main` does not authorize runtime implementation, tag/GitHub Release, consumer upgrade, AI-ControlTower mutation, or other separately governed shared-state actions.
+- **Exact Next Step:** ACTOR-001 reviews and explicitly approves the written spec; only after that gate may the TASK-058 implementation plan be written. No implementation/runtime work starts before written-spec approval.
