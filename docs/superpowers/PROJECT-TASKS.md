@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TODO=0 / IN_PROGRESS=0 / BLOCKED=0` (TASK-057 DONE).
+- Current backlog: `TODO=1 / IN_PROGRESS=0 / BLOCKED=0` (TASK-058 TODO; implementation has not started and requires canonical Framework 1.19 self-host reconciliation before normative mutation).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
@@ -1358,3 +1358,30 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **No-Runtime Confirmation:** only `.md`/`.yaml` changed (42 files); no AI-ControlTower/Multica runtime, Control Plane, scheduler, queue, task database, lease/fencing service, distributed lock, automatic state engine, model/router service, executable Project Adapter, merge bot, CI runner, API server, automatic Task DONE updater, Structured Core, Generated Governance, or Transaction Mode runtime introduced.
 - **Terminal Persistence Contract:** this terminal record is externally claimable when this exact successor set is observed on canonical `origin/main`; that observation does not require another successor solely to restate completion.
 - **Exact Next Step:** none for TASK-057; tag/GitHub Release, self-host 1.19 promotion, and AI-ControlTower runtime mutation remain separately governed.
+
+## Task #58 — AI-ControlTower V4 Interoperability Wave A V2 Deterministic Execution Foundation
+
+- **ID:** `TASK-058`
+- **Status:** `TODO`
+- **Type:** Framework architecture / AI-ControlTower deterministic execution interoperability contract
+- **depends_on:** `[TASK-057]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `DESIGN_SECTIONS_1_TO_6_USER_APPROVED / INTEGRATED_ROLEPLAY_PASS_WITH_CORRECTIONS / WRITTEN_SPEC_SELF_REVIEWED / USER_REVIEW_REQUIRED / IMPLEMENTATION_NOT_STARTED / SELF_HOST_RECONCILIATION_REQUIRED_BEFORE_IMPLEMENTATION`
+- **Source Direction:** ACTOR-001 on 2026-09-16 instructed creation of Wave A Design V2 from the V4 roleplay, beginning with `Execution State Binding + Operational Transition + Ownership/Fencing + Revision/Input/Result/Verification contracts` while locking the Wave B/C boundary; ACTOR-001 explicitly approved Design Sections 1–6.
+- **Problem:** Framework 1.19 provides declarative Plan/Task/Verify, R4 current truth, Task/Verification records, coordination-only Multica semantics and exact-SHA verification, but V4 stress cases require deterministic state binding, versioned/idempotent transition semantics, explicit execution ownership generations/fencing assurance, multi-resource/input identity, non-Git result identity, result acceptance separation, and verification validity without moving runtime authority into ProjectFramework.
+- **Approved Architecture:** `Compositional State Binding Hub` — Stable Resource Identity / Revision Set + Execution Input Manifest + state-bound AUTH/R4/workspace/ownership evidence → Execution State Binding; authoritative operational aggregate version + CAS + idempotency; Coordination Claim distinct from Execution Ownership Grant; scoped ownership epoch + `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED`; Task Record observation distinct from Result Acceptance; Generic Result Identity / Result Set; Verification Result remains `PASS | FAIL | UNKNOWN`; Verification Validity is separate `CURRENT | STALE | INVALIDATED | UNKNOWN`; no mega-record and no new Project authority.
+- **Integrated Roleplay Corrections:** (1) canonical order is `claim → ownership grant → finalize State Binding → CAS EXECUTING` because the immutable binding carries ownership epoch/evidence; (2) `VERIFYING → VERIFIED` fresh-revalidates Result Acceptance and requires it still `ELIGIBLE` in addition to Verification `PASS` + validity `CURRENT`. Integrated design roleplay has no unresolved P0 semantic gap after these corrections.
+- **Design Spec:** `docs/superpowers/specs/2026-09-16-task058-wave-a-v2-deterministic-execution-foundation-design.md`.
+- **Design State:** `SECTIONS_1_TO_6_USER_APPROVED / WRITTEN_SPEC_SELF_REVIEWED / USER_REVIEW_REQUIRED`.
+- **Compatibility:** additive successor of TASK-057 / Framework 1.19; existing exact-SHA `record_version: 1.0` history remains valid; V2 must not silently reinterpret required v1 record shapes, retrofit Brownfield execution history, add Project Source semantic slots/Stable-ID families, or require AI-ControlTower for Projects that do not use it.
+- **Wave Boundary:** Wave A excludes Memory Snapshot/Generation, authenticated event envelope, anti-replay/crypto producer identity, Resume Eligibility/Continuation Controller/Budget (Wave B), and excludes Artifact build lifecycle, Release Transaction, deployment saga, health/migration/rollback-compensation and Project operational lifecycle (Wave C).
+- **Implementation Boundary:** governance/documentation contracts and maintained starters only. No AI-ControlTower/Multica runtime, task database, event store, scheduler, queue, lease/heartbeat service, distributed lock, fencing-token generator, CAS datastore, automatic state/acceptance/verification engine, executable adapter, API server, merge bot, release/deployment orchestrator, or automatic Task DONE updater is authorized.
+- **Self-Host Precondition:** fresh 2026-09-16 inspection shows Framework distribution `1.19.0` while active ProjectFramework `FRAMEWORK-001`, `PROJECT-BOOTSTRAP.md`, and active Project Source remain pinned to `1.18.0`; TASK-057 explicitly records that no 1.19 self-host promotion occurred. TASK-058 normative implementation must not start until canonical 1.19 self-host reconciliation is completed/verified or an exact separately governed implementation transaction lawfully includes that prerequisite under valid Root authority.
+- **Target Version:** successor Framework version intentionally unallocated until fresh baseline + self-host reconciliation + implementation planning; Project Source Schema is expected to remain `1.0.0` unless planning discovers and explicitly reclassifies a breaking schema change.
+- **Pressure Contract:** minimum integrated design suite contains 34 scenario classes spanning revision/input identity, CAS/idempotency races, ownership epochs/fencing, result acceptance, non-Git identity, verification evidence/validity, Brownfield compatibility and Wave B/C leakage.
+- **Publication Boundary:** design persistence/local commit does not authorize push, PR/merge, tag/GitHub Release, Project Source Root promotion, AI-ControlTower runtime mutation, Wave B/C implementation, or production/deployment action.
+- **Self-Review:** `TASK058_SPEC_SELF_REVIEW PASS`; required semantic tokens, pressure scenarios `1–34`, registration/collision checks, placeholder scan, and diff hygiene passed.
+- **Exact Next Step:** obtain ACTOR-001 review/approval of the written spec before implementation planning.
