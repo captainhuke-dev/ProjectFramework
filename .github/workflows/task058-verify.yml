@@ -1,0 +1,24 @@
+name: TASK058 temporary structural affected verification
+
+on:
+  push:
+    branches:
+      - task058-framework120
+    paths:
+      - .github/workflows/task058-verify.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout implementation branch
+        uses: actions/checkout@v4
+        with:
+          ref: task058-framework120
+          fetch-depth: 0
+
+      - name: Run TASK-058 structural and affected verification
+        run: python docs/superpowers/tools/task058_verify.py
