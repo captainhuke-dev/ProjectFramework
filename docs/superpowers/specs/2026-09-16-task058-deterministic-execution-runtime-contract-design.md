@@ -301,7 +301,7 @@ Tool availability != Gateway eligibility
 
 ## 9. Just-in-Time Effect Permit
 
-A conforming runtime SHOULD mint a short-lived Effect Permit only after fresh validation at the effect boundary.
+For every Gateway-mediated Material Effect, a conforming runtime MUST mint a short-lived Effect Permit only after fresh validation at the effect boundary.
 
 Minimum semantic shape:
 
@@ -347,7 +347,7 @@ The transition `PERMIT_ACTIVE -> PERMIT_CONSUMED` MUST be atomic/compare-and-set
 
 ## 10. Target preconditions and TOCTOU control
 
-A model may reason over state that changes before dispatch. Therefore Material Effects SHOULD declare source-native target preconditions whenever the target supports them.
+A model may reason over state that changes before dispatch. Therefore Material Effects MUST declare source-native target preconditions whenever the target supports them. When a target does not provide a usable precondition primitive, the effect policy MUST record that limitation explicitly and use the applicable reconciliation/fail-closed strategy rather than silently assuming target freshness.
 
 Examples include:
 
@@ -367,7 +367,7 @@ Fresh AUTH/R4/fence/target checks SHOULD occur as close as practical to dispatch
 
 ## 11. Bounded Action and Effect semantics
 
-One Effect Permit SHOULD correspond to one **independently reconcilable Material Effect**.
+One Effect Permit MUST correspond to one **independently reconcilable Material Effect**, except when the source-native platform provides and the runtime verifies a real atomic transaction that makes the grouped effect independently reconcilable as one unit.
 
 Composite human/model intent such as:
 
