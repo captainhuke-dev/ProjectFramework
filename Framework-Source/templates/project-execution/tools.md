@@ -14,6 +14,15 @@ fallback_order:
 failure_policy: "FAIL_CLOSED | READ_ONLY_DIAGNOSTIC_ONLY"
 failback_policy: "CHECKPOINT_FAILBACK"
 review_trigger: "<EVENT_OR_NOT_APPLICABLE>"
+runtime_effect_support:
+  mediated_effect_classes:
+    - "<effect class or NONE>"
+  target_preconditions:
+    - "<supported source-native precondition or NONE>"
+  idempotency_support:
+    - "<IDEMPOTENT | CONDITIONALLY_IDEMPOTENT | NON_IDEMPOTENT | UNKNOWN>"
+  reconciliation_support:
+    - "<SOURCE_READBACK | NATIVE_IDEMPOTENCY_KEY | COMPARE_AND_SET | EXTERNAL_CONFIRMATION | MANUAL_VERIFICATION | NONE>"
 ```
 
 Rules:
@@ -26,10 +35,12 @@ Rules:
 - An undeclared tool is never eligible merely because it is available, connected, recent, similar, or highly ranked.
 - Execution eligibility requires applicable tool/capability availability, active policy eligibility, and verified bound Project/workspace/repository target identity.
 - `FAIL_CLOSED` blocks the affected execution when no eligible tool exists.
-- `READ_ONLY_DIAGNOSTIC_ONLY` allows only bounded read-only diagnosis; it never authorizes mutation through an undeclared tool.
-- `CHECKPOINT_FAILBACK` never switches MCPs in the middle of the current bounded action/checkpoint. Finish/persist/verify that checkpoint, reverify Primary, append recovery/failback history, then use Primary for the next action.
-- Unknown potentially-applied side effects enter `RESULT_VERIFICATION_REQUIRED`; verify resulting state before retrying or transitioning to another declared fallback.
-- Material fallback mutation requires the applicable append-only `fallback-log.md` incident event to be persisted first; inability to persist it is `FAIL_CLOSED`.
-- Tool IDs are policy labels, not credentials, MCP workspace IDs, repository identity, Project Stable IDs, or authority.
-- TASK-057: tool policy is one filter in deterministic filter-before-rank executor selection; an undeclared tool is never eligible, and `NO_ELIGIBLE_EXECUTOR` fails closed without invented fallback.
+- `READ_ONLY_DIAGNOSTIC_ONLY` allows bounded read-only diagnosis only.
+- `CHECKPOINT_FAILBACK` never switches tools in the middle of the current unresolved bounded action/effect.
+- Unknown potentially-applied side effects remain `RESULT_VERIFICATION_REQUIRED`; reconcile resulting state before retrying, failback, or transitioning to another declared fallback. A fallback route does not reset prior Action identity.
+- For a mediated Material Effect, applicable Effect Policy/Gateway rules still govern. `Tool availability != Gateway eligibility != AUTH`.
+- Supported target preconditions are applied when required. Unsupported preconditions are explicit and use the declared reconciliation/fail-closed path rather than assumed freshness.
+- An ambiguous non-idempotent/unknown effect without reconciliation support is not automatically retryable.
+- Material fallback mutation still requires applicable `fallback-log.md` persistence first; inability to persist it is `FAIL_CLOSED`.
+- Tool IDs are policy labels, not secret values, workspace IDs, repository identity, Project Stable IDs, or authority.
 - Actual secret values MUST NOT be stored here.
