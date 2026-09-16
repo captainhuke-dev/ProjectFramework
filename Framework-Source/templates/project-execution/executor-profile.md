@@ -19,7 +19,13 @@ runtime_support:
   checkpoint_resume: "SUPPORTED | UNSUPPORTED"
   mediated_effect_classes:
     - "<effect class or NONE>"
-  effect_surface_closure: "PROVEN | NOT_PROVEN | NOT_APPLICABLE"
+  effect_surface_closure:
+    state: "PROVEN | NOT_PROVEN | NOT_APPLICABLE"
+    policy_ref: "./effect-policy.md"
+    inventory_state: "COMPLETE | INCOMPLETE | UNKNOWN | NOT_APPLICABLE"
+    all_governed_routes_accounted_for: "<true | false | NOT_APPLICABLE>"
+    evidence_refs:
+      - "<independently reviewable closure evidence ref, or NOT_APPLICABLE: <reason>>"
   recursive_execution: "SUPPORTED | UNSUPPORTED"
   max_child_executions: "<n or NOT_APPLICABLE>"
   max_recursion_depth: "<n or NOT_APPLICABLE>"
@@ -39,7 +45,8 @@ Rules:
 
 - `Eligibility ≠ Authority.` This profile never grants AUTH, mutation, approval, deployment, disclosure, or binding authority.
 - **Supporting VERIFY is not the same as qualifying as an independent verifier.** `independent_verifier.qualified` is declared separately; generic VERIFY support does not satisfy an independent-review requirement.
-- For an autonomous mediated Material Effect class, `effect_surface_closure: NOT_PROVEN` makes the executor ineligible for that class even when the model/tool is otherwise capable. Policy-only intent is not confinement.
+- For an autonomous mediated Material Effect class, `effect_surface_closure.state: PROVEN` is valid only when the referenced Effect Policy has `inventory_state: COMPLETE`, `all_governed_routes_accounted_for: true`, every governed route is mediated/prohibited/confined, and `evidence_refs` resolve to independently reviewable enforcement evidence. Any incomplete/unknown inventory, missing route, missing evidence, or policy-only self-attestation forces `NOT_PROVEN` and makes the executor ineligible for that autonomous effect class.
+- `effect_surface_closure.state: NOT_APPLICABLE` requires an explicit reason/basis in the referenced policy and cannot be used to bypass a Material Effect that actually has an executable route.
 - `typed_proposal_protocol: SUPPORTED` means the executor can emit allowed proposal/report messages; it does not let the executor emit runtime-owned `AUTH_GRANTED`, `LEASE_ACQUIRED`, `FENCE_ADVANCED`, `PERMIT_ISSUED`, `VERIFIED`, `INTEGRATED`, or `TASK_DONE` events.
 - Recursive-execution limits are capability/eligibility ceilings. Child execution cannot create authority or budget.
 - Selection is deterministic **filter-before-rank**: Ready Gate PASS → mode → work class → mandatory capabilities → provider scope → tool policy → trust policy → Execution Envelope → runtime/effect requirements → risk/side-effect → workspace → independent-review constraints → eligible set → preference ranking → selection → volatile recheck → claim.
