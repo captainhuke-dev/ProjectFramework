@@ -1,5 +1,6 @@
 name: TASK058 temporary structural affected verification
 
+# rerun: findings-fixed
 on:
   push:
     branches:
