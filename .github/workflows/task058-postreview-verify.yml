@@ -1,0 +1,59 @@
+name: TASK058 post-review structural affected verification
+
+on:
+  push:
+    branches:
+      - task058-verify-runner
+    paths:
+      - .github/workflows/task058-postreview-verify.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact review-fix target
+        uses: actions/checkout@v4
+        with:
+          ref: 1fb53635b419c3889dd62f314d1cbd23e381cfcd
+          fetch-depth: 0
+
+      - name: Reuse unchanged 176-check verifier
+        shell: bash
+        run: |
+          git show 7fb84eae73a5ff94c3811f90e30fe1df6b6edfdd:docs/superpowers/tools/task058_verify.py > /tmp/task058_verify.py
+          python /tmp/task058_verify.py
+
+      - name: Verify both independent-review corrections
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          effect = Path('Framework-Source/templates/project-execution/effect-policy.md').read_text(encoding='utf-8')
+          profile = Path('Framework-Source/templates/project-execution/executor-profile.md').read_text(encoding='utf-8')
+          required_effect = [
+              'inventory_state: "COMPLETE | INCOMPLETE | UNKNOWN"',
+              'all_governed_routes_accounted_for',
+              'closure_evidence_refs',
+              'independently reviewable closure evidence',
+              'authority_ref',
+              'r4_context_ref',
+              'issued_at',
+              'expires_at',
+              'expired_permit_result: REJECT',
+          ]
+          for token in required_effect:
+              assert token in effect, token
+          required_profile = [
+              'inventory_state: "COMPLETE | INCOMPLETE | UNKNOWN | NOT_APPLICABLE"',
+              'all_governed_routes_accounted_for',
+              'evidence_refs',
+              'independently reviewable enforcement evidence',
+              'forces `NOT_PROVEN`',
+          ]
+          for token in required_profile:
+              assert token in profile, token
+          print('TASK058_REVIEW_FIX_FOCUSED 14/14 PASS')
+          PY
