@@ -20,6 +20,9 @@ execution_attempt:
     parent_budget_id: "<parent or NOT_APPLICABLE>"
     allocated: "<bounded allocation>"
     consumed: "<durable consumption>"
+  recursive_limits:
+    max_child_executions: "<n>"
+    max_recursion_depth: "<n>"
   parent_execution_id: "<parent or NOT_APPLICABLE>"
   root_execution_id: "<root>"
   recursion_depth: "<n>"
@@ -34,3 +37,4 @@ Rules:
 - Lease validity uses runtime-authoritative/monotonic time, not executor wall clock.
 - Fence identity is `(runtime_generation, fence_epoch)`.
 - A child Attempt/Execution cannot create new authority or budget by recursion.
+- `recursion_depth` MUST NOT exceed `max_recursion_depth`; child creation MUST remain within `max_child_executions` and the root hierarchical budget.
