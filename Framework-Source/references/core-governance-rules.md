@@ -930,7 +930,6 @@ A Material Git-backed Task DONE still requires the intended result, tier-appropr
 
 Existing Brownfield Projects do not auto-adopt Framework 1.17. They remain pinned and receive this contract only through governed Direct-to-Latest `[Project Upgrade]`. Framework 1.17 creates no runtime delivery engine, scheduler, watcher, queue, CI/CD, merge/release bot, policy engine, validator/CLI, MCP router, credential store, or new Stable-ID family.
 
-
 ### 16.3 Continuation Consistency and Mandatory Response Close
 
 Framework `1.15.0` TASK-045 simplifies the mandatory visible response close while preserving internal continuation and persistence semantics. Chat lifecycle vocabulary remains `CONTINUE_CURRENT_CHAT | START_NEW_CHAT` for Project continuation state and `09 Handoff`; Required Read pointers remain internal routing data when materially needed. Neither is a mandatory visible end-of-response field in Framework 1.15.
@@ -1476,7 +1475,6 @@ GREENFIELD creates no standing disclosure `AUTH-*`, provider eligibility grant, 
 
 TASK-026 remains documentation/governance-only: no `DISC-*` family/slot, runtime redactor, provider router/proxy, MCP disclosure gateway, interception layer, secret manager, DLP scanner, classification database, watcher/crawler, automatic outbound call, credential provisioning, or CI/CD/deployment automation is introduced.
 
-
 ### GREENFIELD
 
 If environment is a ChatGPT Project or Claude Project, begin with the matching canonical platform Project instruction artifact. If no valid local Project Source exists, bootstrap from canonical repository `main` using:
@@ -1633,11 +1631,11 @@ Canonical terms:
 
 Binding behavior:
 
-1. ก่อนสร้าง branch/worktree ใหม่ที่เป็น **Independent Work** ต้อง fresh-read/fetch Canonical Integration Target และสร้างงานจาก current observed target; ห้าม inherit จาก feature branch ที่บังเอิญ checkout อยู่โดย default. Local branch ชื่อ `main` ไม่ได้ prove ว่า current.
+1. ก่อนสร้าง branch/worktreeใหม่ที่เป็น **Independent Work** ต้อง fresh-read/fetch Canonical Integration Target และสร้างงานจาก current observed target; ห้าม inherit จาก feature branch ที่บังเอิญ checkout อยู่โดย default. Local branch ชื่อ `main` ไม่ได้ prove ว่า current.
 2. Feature-on-feature ancestry อนุญาตเฉพาะ explicit `STACKED_WORK`. Parent change ที่ material ต้อง trigger child base re-evaluation; parent merge/closure ไม่ได้ prove ว่า child fresh โดยอัตโนมัติ.
 3. Base Freshness ต้องตรวจอย่างน้อยก่อนสร้าง independent work, ก่อนเริ่ม material implementation phase ใหม่เมื่อ upstream อาจขยับ, ก่อนเปิด/อัปเดต integration PR ที่ base อาจ stale, และ immediately before acceptance/merge เมื่อ target head เปลี่ยนหลัง review.
 4. Commit count ไม่ใช่ semantic-staleness threshold. Classification ต้องดู impact ต่อ Framework/governance/schema/authority/Requirements/Decisions/interfaces/technical-deployment contracts/source-of-truth assumptions ที่งานพึ่งพา.
-5. `STALE_NON_SEMANTIC` ใช้เมื่อ upstream change ไม่เปลี่ยน material assumption/contract ของงาน. ให้ mark `BASE_STALE` จนกว่า base จะถูก update ด้วยวิธีที่เหมาะสมและ affected verification จะผ่าน. Private/rewritable work อาจใช้ `REBASE_REQUIRED`; shared/public work ต้องรักษา published history ด้วย merge/update strategy ที่เหมาะสม. หลัง update + verification สำเร็จจึงกลับ `FRESH`.
+5. `STALE_NON_SEMANTIC` ใช้เมื่อ upstream change ไม่เปลี่ยน material assumption/contract ของงาน. ให้ mark `BASE_STALE` จนกว่า base จะถูก update ด้วยวิธีที่เหมาะสมและ affected verification จะผ่าน. Private/rewritable work อาจใช้ `REBASE_REQUIRED`; shared/public work ต้องรักษา published historyด้วย merge/update strategy ที่เหมาะสม. หลัง update + verification สำเร็จจึงกลับ `FRESH`.
 6. `STALE_SEMANTIC` ใช้เมื่อ upstream เปลี่ยน applicable Framework/Root Governance/Schema/authority/routing/Requirements/Decisions/interfaces หรือ contract ที่งานพึ่งพา. ให้ mark `BASE_STALE`, หยุด affected new implementation scope, assess changed assumptions และใช้ `FORWARD_PORT_REQUIRED` โดย default.
 7. Forward-Port ต้องเริ่ม clean branch/worktree จาก current Canonical Integration Target, treat stale branch เป็น source material/evidence ไม่ใช่ authority, แล้ว carry เฉพาะ still-valid accepted changes. Cherry-pick ได้เมื่อ commit boundary สะอาด; ถ้าไม่สะอาดให้ re-implement accepted intent บน current base.
 8. Forward-Port ต้อง exclude temporary staging/transport artifacts, obsolete workflow, old version metadata, superseded assumptions และ unrelated experimental history ที่ไม่ใช่ current deliverable.
@@ -1904,6 +1902,14 @@ Framework `1.16.0` requires `60 Deployment Plan`, when deployment/runtime is app
 
 `Build Source: DEVELOPMENT` and `Run Target: PRODUCTION | NOT_APPLICABLE` remain distinct. No filesystem path is fabricated for non-filesystem runtime targets. Explicit no-Production truth is `NOT_APPLICABLE`; unknown applicability remains `VERIFICATION_REQUIRED`, not inferred from absence.
 
+Git Remote/repository publication identity is not a Develop Workspace locator. A Remote Durable Develop Workspace is an actual durable declared workspace able to prove repository/source identity and execute the development workflow. For one affected implementation scope exactly one Develop Workspace is active unless a separately governed multi-writer architecture exists.
+
+Local ↔ Remote Durable relocation is symmetric and requires: current active workspace resolution; repository/source identity verification; durable checkpoint/commit of required implementation state; no required completed work left only uncommitted; fresh Git Remote/source observation when Git-backed; target durability/recovery verification; target repository/source identity, intended revision, and working-tree verification; synchronization to the intended revision; governed `40` promotion/demotion; and resulting edit/build/test routing verification. Change `FRAMEWORK-001` only when an actual persistent Local Workspace Binding delta exists, using existing User Explicit Approval plus revision → validate → promote → supersede/archive history rules.
+
+`Source Mutation: ALLOWED` is workspace-role compatibility only; it never grants `AUTH-*`. Production direct source mutation is always `FORBIDDEN`; corrections flow through canonical Develop source → verify/build/package → deploy verified artifact → verify runtime.
+
+The command may include an explicit requested path as one-off action input, but `[Project Path]` remains read/verify-only and grants no mutation, deployment, push/publication, Root/Binding, secret, disclosure, Decision/Requirement, runtime, or other authority.
+
 Installation is not operationally ready merely because an install/start command returns success. Verification may include service availability, dependency reachability, storage initialization/persistence, configuration loading, secret resolution without exposure, health/runtime signal, core flow usability, running version identity, Source/Docker parity when applicable, and survival of state that the declared replacement/recreation lifecycle requires.
 
 ## 22. Framework Integrity Contract
@@ -2140,7 +2146,6 @@ TASK-035 publication dimensions remain factual lifecycle state: `PUSHED`, `PUBLI
 
 `PROJECT-BOOTSTRAP.md` resolves Project authority first; Project-Execution policy is read afterward when applicable. GREENFIELD/Brownfield never invent trust from prior successful use. TASK-037 adds no scanner, sandbox enforcement, policy engine, runtime isolation, supply-chain automation, external security service, secret store, or privileged-operation executor.
 
-
 Framework `1.12.1` TASK-042 further hardens response bootstrap/finalization: first Project-governed response resolves Project Bootstrap when accessible, non-Material diagnostics are not exempt, and no early-return/exception path may bypass the pre-emit Response Close Completeness Gate.
 Framework `1.12.2` TASK-043 further hardens Registered Command execution: command bodies are Strict Governed Interfaces, pass the Command Contract Completeness Gate before TASK-042 final-response validation, and current `[Project Status]` summaries align through `Continuity`.
 ## Framework 1.19.0 AI-ControlTower Governance Support Layer (TASK-057)
@@ -2271,3 +2276,57 @@ Code/content integration and governance reconciliation remain separate. A merged
 Framework `1.19.0` adoption does not retroactively require historical Tasks to acquire reconstructed Plan Contracts, IPOCV, Task Records, Executor Profiles, or Project Adapters. Projects that do not use AI-ControlTower remain valid ProjectFramework Projects. Unknown Brownfield mappings remain `UNKNOWN` rather than guessed. Maintained additions are additive starter/contract files around existing `Project-Execution/` and template surfaces (`plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, `integration-reconciliation.md`); no new Project Source semantic slot or Stable-ID family is introduced.
 
 TASK-057 ships governance/documentation contracts and maintained starters only. It adds no AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, event store, lease/fencing service, distributed lock, state engine, model/executor router, executable Project Adapter, merge bot/queue, CI runner, API server, automatic Task DONE updater, automatic reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime.
+
+## Framework 1.20.0 Deterministic Execution Runtime Contract (TASK-058)
+
+Full normative text: `references/framework-governance-amendment-260916-task058-deterministic-execution-runtime-contract.md`. This section is the binding Core Governance projection. TASK-057 remains authoritative for PLAN/TASK/VERIFY, `R4_CTX`, Task Ready Gate, Operational Execution state, Task/Verification Records, exact-candidate verification, integration reconciliation, and Task-DONE ownership.
+
+### Runtime ownership and lifecycle separation
+
+A conforming runtime may own execution-control facts only. `Runtime decision ≠ Authority`; `Claim ≠ Lease ≠ Fence ≠ Authority`; `Heartbeat ≠ completion evidence`; `Effect Permit ≠ AUTH`. The runtime cannot own Project intent, Requirements, Decisions, Risk, Project Source, canonical Task lifecycle, AUTH, Verification PASS, Git truth, deployment/release truth, or OUT achievement.
+
+Four domains remain distinct: canonical Task lifecycle; TASK-057 Operational Execution state; Execution Attempt state `CREATED → RUNNABLE → RUNNING → WAITING → RECONCILING → TERMINATED` with applicable `LOST | BLOCKED | CANCEL_REQUESTED`; and Action/Effect state `PROPOSED → PREPARED → PERMITTED → DISPATCH_INTENT_RECORDED → DISPATCHED → ACKNOWLEDGED → RECONCILING → APPLIED | NOT_APPLIED | AMBIGUOUS | REJECTED`. `Attempt terminal ≠ Operational Execution terminal`; `ACKNOWLEDGED ≠ resulting-state proof`.
+
+### Durable execution identity, journal, recovery, and atomic control
+
+Execution identity includes durable `execution_id`, pinned `runtime_contract_version`, `event_schema_version`, Task/Plan/Execution-Envelope semantic fingerprints; Attempt identity includes `attempt_id`, executor/claim refs, `runtime_generation`, and `fence_epoch`. Material pinned-contract mutation is detected and never silently hot-swapped into active success semantics.
+
+Inside the runtime domain `Runtime Event Journal > Checkpoint / Snapshot`. Checkpoints are derived recovery accelerators linked to journal sequence and `state_version`; missing/corrupt checkpoint does not outrank a valid journal. Unprovable journal continuity fails closed as `RECOVERY_BLOCKED` or equivalent. Model/chat/worker memory cannot reconstruct authoritative runtime truth.
+
+Canonical stale-control identity is `(runtime_generation, fence_epoch)`. A new generation invalidates old leases/fences/Permits and unresolved former-generation effects are reconciled before new effects. Lease validity uses runtime-authoritative/monotonic time, never executor-local wall clock. Authoritative runtime transitions use `state_version` compare-and-set or equivalent; losing concurrent decisions become `STALE_CONTROL_DECISION → reload`.
+
+Runtime/event-schema interpretation is pinned. Active execution compatibility under runtime upgrade is `BACKWARD_COMPATIBLE | REQUIRES_MIGRATION | INCOMPATIBLE`; incompatible semantics are never silently reinterpreted.
+
+### Effect-Surface Closure, Gateway, Permit, and target freshness
+
+For every mediated Material Effect, all equivalent effect-capable surfaces available to the executor must be inventoried and classified `MEDIATED_BY_EFFECT_GATEWAY` or `EXPLICITLY_PROHIBITED / CONFINED`. Prompt-only policy is not effect-surface closure while an uncontrolled equivalent mutation route remains.
+
+The Effect Gateway fresh-validates Operational Execution/Attempt/control identity, pinned fingerprints, applicable AUTH, required `R4_CTX`, Tool/Capability/Trust eligibility, exact target and source-native preconditions, effect semantics, budget/retry policy, and Permit validity immediately before consequence dispatch. Gateway eligibility does not create AUTH.
+
+Every Gateway-mediated Material Effect uses a fresh short-lived Effect Permit that is single-use, non-transferable, and bound to exact execution/attempt/action/action-hash/target/tool/generation/fence/contracts. `PERMIT_ACTIVE → PERMIT_CONSUMED` is atomic/CAS-equivalent; `PERMIT_CONSUMED ≠ effect APPLIED`.
+
+Use source-native target preconditions when supported (exact Git ref/SHA, ETag/If-Match, resource/row version, object hash, CAS token, immutable candidate identity). Stale target yields `PRECONDITION_CONFLICT` or equivalent; unsupported preconditions are explicit and use declared reconciliation/fail-closed handling rather than assumed freshness.
+
+### Effect semantics, ambiguity, cancellation, and compensation
+
+One Permit normally maps to one independently reconcilable Material Effect unless a verified source-native atomic transaction makes a group independently reconcilable as one unit. Effects classify idempotency (`IDEMPOTENT | CONDITIONALLY_IDEMPOTENT | NON_IDEMPOTENT | UNKNOWN`), reconciliation strategy, and reversibility (`REVERSIBLE_ATOMIC | COMPENSATABLE | IRREVERSIBLE | UNKNOWN`). ProjectFramework does not claim arbitrary exactly-once external execution.
+
+Possibly-dispatched effects reconcile to `APPLIED | NOT_APPLIED | AMBIGUOUS` before retry/fallback. `NON_IDEMPOTENT|UNKNOWN + reconciliation NONE + ambiguous` requires blocking/manual resolution; automatic retry is prohibited. Switching worker/tool/runtime route never erases unresolved Action identity.
+
+`Cancellation ≠ rollback`. Cancellation blocks new governed dispatch but preserves already-caused source-native facts and reconciles in-flight effects. Compensation is a separate governed Material Effect with its own identity, authority, Permit, evidence, budget, preconditions, and reconciliation. Failed compensation is recorded truthfully; it never rewrites history into a successful rollback.
+
+### Typed executor, durable budget, wait/wakeup, and Task Record boundary
+
+Executor/model output is advisory typed proposal/report data such as `ACTION_PROPOSAL | CANDIDATE_COMPLETE | WAIT_REQUEST | INPUT_REQUEST | YIELD | BLOCKED_REPORT | ERROR_REPORT`. Executors cannot authoritatively emit runtime/canonical events such as `AUTH_GRANTED`, `LEASE_ACQUIRED`, `FENCE_ADVANCED`, `PERMIT_ISSUED`, `VERIFIED`, `INTEGRATED`, or `TASK_DONE`.
+
+Applicable budgets are durable/hierarchical (`max_model_turns`, `max_tool_calls`, `max_tokens`, `max_wall_time`, `max_retries_per_action`, `max_child_executions`, `max_recursion_depth`). Recursive/child execution cannot manufacture budget or authority. Budget exhaustion is not Task DONE.
+
+External waits are durable and bounded; fail-closed handling must not become infinite polling/retry. Multica claim remains coordination only and is distinct from runtime lease/fence/Permit/AUTH.
+
+`Runtime Event Journal = fine-grained execution-control observation`; `Task Record = bounded observed execution result + Actual IPOCV consumed by VERIFY`. Task Record carries only bounded runtime evidence references needed to explain the result and never becomes the raw per-action journal.
+
+### Brownfield and no-runtime boundary
+
+TASK-058 adoption is additive/applicability-driven. Historical/Brownfield Tasks are not retrofitted with invented runtime journals, Attempts, checkpoints, leases/fences, Permits, budgets, or fingerprints; unknown historical mappings remain `UNKNOWN`. Projects not using AI-ControlTower/deterministic long-running runtime control remain valid.
+
+Framework `1.20.0` defines protocol semantics and maintained Markdown/YAML starters only. It adds no AI-ControlTower runtime service, scheduler/queue/worker daemon, runtime database, lease/fencing service, Effect Gateway service, credential broker, sandbox/network policy, MCP/model router, RLM runtime, Multica runtime, merge/release bot, CI runner, API server, automatic Task-DONE updater, or self-improvement runtime.
