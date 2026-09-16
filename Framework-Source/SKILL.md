@@ -1119,3 +1119,27 @@ Executor Profile is eligibility metadata, not permission. The Project Adapter ma
 Git-backed verification binds repository + exact observed commit SHA; branch/PR/label are routing references. `Verification PASS(candidate A) ≠ Verification PASS(candidate B).` `VERIFIED ≠ INTEGRATION_ELIGIBLE ≠ MERGED`; fresh `INTEGRATION_GATE` re-resolves candidate SHA, target, authority, verification validity, PR/head identity, Base Freshness, and mergeability immediately before shared-state mutation. Strategies are `FAST_FORWARD_EXACT | MERGE_COMMIT_PRESERVING_CANDIDATE | TRANSFORMING_INTEGRATION`; transforming integration inherits no candidate proof without deterministic exact-equivalence evidence; unknown shared outcomes use `RESULT_VERIFICATION_REQUIRED` with no blind retry.
 
 Local-only bounded Tasks may be `DONE` with verification + durable completion commit; integration-required Tasks wait; AI-ControlTower/Multica cannot set Task DONE directly; a merged change may truthfully remain `MERGED + RECONCILIATION_REQUIRED.` Brownfield historical Tasks are not retrofitted; non-ControlTower Projects remain valid. TASK-057 adds no AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, database, state engine, router, executable adapter, merge bot, CI runner, API server, automatic DONE/reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime.
+
+## Framework 1.20.0 Wave A V2 Deterministic Execution Foundation
+
+TASK-058 adds the **Compositional State Binding Hub**: declarative record semantics that bind one execution attempt to the exact materially relevant state it ran against. Full normative text: `references/framework-governance-amendment-260916-task058-wave-a-v2-deterministic-execution-foundation.md`.
+
+When a Task uses Wave A V2 execution contracts, the executor MUST follow the canonical composition in order:
+
+```text
+resolve state-bound inputs (Revision Set + Execution Input Manifest + dispatch-time R4 + dispatch-time AUTH + workspace identity)
+→ select executor via existing filter-before-rank
+→ claim coordination scope
+→ obtain authoritative ownership grant + scoped epoch (never self-grant ownership or AUTH)
+→ finalize the immutable Execution State Binding after the grant
+→ CAS into execution (CLAIMED → EXECUTING)
+→ record the Task Record observation independently of acceptance
+→ fresh-evaluate Result Acceptance before any promotable verification
+→ fresh-re-evaluate Result Acceptance again before VERIFYING → VERIFIED promotion
+→ separate verification result (PASS | FAIL | UNKNOWN) from current validity (CURRENT | STALE | INVALIDATED | UNKNOWN)
+→ reconcile UNKNOWN at the truth owner before any unsafe retry
+```
+
+Key invariants: `Resource Identity ≠ Locator ≠ Revision.` `Coordination Claim ≠ Execution Ownership Grant.` `Task Record observation ≠ Result Acceptance.` `Verification PASS ≠ Verification Validity CURRENT.` Fencing assurance orders `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED` and is evaluated per material operation path/target. Binding references MUST be state-bound/reconstructable; a mutable `current`/branch/`latest` pointer alone is insufficient. Transition outcomes are exactly `ACCEPTED | DUPLICATE_ACCEPTED | VERSION_CONFLICT | STATE_CONFLICT | IDEMPOTENCY_CONFLICT | AUTHORITY_REJECTED | OWNERSHIP_REJECTED | PRECONDITION_REJECTED | INVALID_TRANSITION | UNKNOWN`; a timeout is not evidence of failure. Generic Result Identity is source-native and not Git-only; timestamp alone is never a universal immutable result identity.
+
+Never instruct an executor to self-grant ownership/AUTH, to infer missing mandatory truth, to normalize `UNKNOWN` to `PASS`, to promote a stale-ownership result, to rewrite historical records, or to implement automatic continuation. Wave A excludes Resume Eligibility, Continuation Budget, Memory Snapshot/automatic continuation, cryptographic producer authentication, and Release Transaction/deployment-saga semantics. No task database, event store, queue, scheduler, worker daemon, lease/fencing service, distributed lock, fencing-token generator, runtime CAS store, automatic transition engine, model router, automatic acceptance engine, verification daemon, executable adapter, API server, merge bot, or automatic Task-DONE updater is introduced. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED.` `R4_CTX ≠ Risk R4` (Risk remains exactly `R0–R3`).

@@ -2271,3 +2271,89 @@ Code/content integration and governance reconciliation remain separate. A merged
 Framework `1.19.0` adoption does not retroactively require historical Tasks to acquire reconstructed Plan Contracts, IPOCV, Task Records, Executor Profiles, or Project Adapters. Projects that do not use AI-ControlTower remain valid ProjectFramework Projects. Unknown Brownfield mappings remain `UNKNOWN` rather than guessed. Maintained additions are additive starter/contract files around existing `Project-Execution/` and template surfaces (`plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, `integration-reconciliation.md`); no new Project Source semantic slot or Stable-ID family is introduced.
 
 TASK-057 ships governance/documentation contracts and maintained starters only. It adds no AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, event store, lease/fencing service, distributed lock, state engine, model/executor router, executable Project Adapter, merge bot/queue, CI runner, API server, automatic Task DONE updater, automatic reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime.
+
+## Framework 1.20.0 Wave A V2 Deterministic Execution Foundation (TASK-058)
+
+Full normative text: `references/framework-governance-amendment-260916-task058-wave-a-v2-deterministic-execution-foundation.md`. This section is the binding Core Governance projection.
+
+### Compositional State Binding Hub
+
+Framework `1.20.0` binds each execution attempt to the exact materially relevant state it ran against through single-responsibility records that reference each other. No mega-record is introduced. The canonical order is:
+
+```text
+Task Ready Gate PASS
+→ eligible executor selection (filter-before-rank)
+→ applicable Coordination Claim
+→ Execution Ownership Grant + scoped ownership epoch + required fencing assurance
+→ Revision Set + Execution Input Manifest + dispatch-time R4 + dispatch-time AUTH + workspace identity + state-bound ownership evidence
+→ finalize immutable Execution State Binding
+→ CAS operational transition CLAIMED → EXECUTING
+→ bounded execution / Task Record observation
+→ Generic Result Identity or Result Set
+→ fresh Result Acceptance evaluation
+→ Verification Basis → Verification Evidence → PASS | FAIL | UNKNOWN
+→ Verification Validity → CURRENT | STALE | INVALIDATED | UNKNOWN
+```
+
+The Execution Ownership Grant MUST precede Execution State Binding finalization. Before `VERIFYING → VERIFIED`, the current applicable Result Acceptance MUST be freshly re-evaluated and remain `ELIGIBLE` in addition to Verification `PASS` and validity `CURRENT`.
+
+### Identity separation, Revision Set, and Input Manifest
+
+```text
+Resource Identity ≠ Locator ≠ Revision
+Revision Set ≠ Input Manifest ≠ Execution State Binding
+```
+
+A `REVISION_SET` answers which source state the execution ran against; every declared required resource must resolve exactly for `COMPLETE`; a single Git repository exact SHA is a valid one-member Revision Set; once referenced by a State Binding it is immutable evidence; source change produces a new observation, never a rewrite of historical evidence to `latest.` No `RESOURCE-*` Stable-ID family is introduced.
+
+An `EXECUTION_INPUT_MANIFEST` answers which materially relevant execution inputs participated. Only input classes declared material by contract/envelope/policy participate in binding identity. A required unknown material input prevents a complete manifest and requirements cannot be relaxed post hoc. Actual secret values MUST NOT enter the manifest.
+
+### State-bound references and digest profiles
+
+Binding references that affect immutable identity MUST resolve to state-bound/reconstructable evidence. A mutable `current`, branch, locator, or `latest` pointer alone is insufficient historical binding evidence. Any semantic digest compared across records MUST declare or inherit a compatible `digest_profile_ref` (canonicalization profile, algorithm identity, profile version). Same digest text under an incompatible profile is not proven semantic identity.
+
+### Ownership, scoped epoch, and fencing assurance
+
+```text
+Coordination Claim ≠ Execution Ownership Grant
+```
+
+Multica remains a coordination/claim owner only; the declared execution-control owner grants authoritative execution ownership; no executor self-grants ownership or AUTH. Epochs are comparable only within the same ownership domain and scope; continuous lease renewal does not increment the epoch; reacquisition after termination creates a new epoch even for the same executor. Observed ownership state is `ACTIVE | SUSPECT | EXPIRED | REVOKED | COMPLETED | UNKNOWN`, and `SUSPECT` / `UNKNOWN` fail closed where current ownership is materially required.
+
+Ordered stale-owner protection levels:
+
+```text
+COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED
+```
+
+Assurance is evaluated per material operation path/target and cannot be silently downgraded. Unknown possibly-applied non-idempotent stale effects require `RESULT_VERIFICATION_REQUIRED` before unsafe retry or reassignment. Correct epoch claims do not prove producer authentication (Wave B).
+
+### Operational transition, CAS, and idempotency
+
+Operational state ordering belongs to the declared execution-state owner and its authoritative aggregate version; timestamp order is audit evidence, not transition authority. Transition outcomes are exactly: `ACCEPTED | DUPLICATE_ACCEPTED | VERSION_CONFLICT | STATE_CONFLICT | IDEMPOTENCY_CONFLICT | AUTHORITY_REJECTED | OWNERSHIP_REJECTED | PRECONDITION_REJECTED | INVALID_TRANSITION | UNKNOWN.` A timeout is not evidence of failure; `UNKNOWN` requires authoritative reconciliation before unsafe retry. The transition record is evidence, not the state authority.
+
+### Result observation, Result Acceptance, and verification
+
+```text
+Task Record observation ≠ Result Acceptance
+Result Acceptance ELIGIBLE ≠ Verification PASS
+Verification PASS ≠ Verification Validity CURRENT
+```
+
+Task Record observed outcome is `SUCCEEDED | FAILED | PARTIAL | UNKNOWN`; observed success is not result eligibility. Generic Result Identity is source-native and not Git-only (`GIT_REVISION_SET | OPERATIONAL_OBSERVATION | EXTERNAL_TRANSACTION | ARTIFACT | DEPLOYMENT_STATE | OTHER_SOURCE_NATIVE`); timestamp alone is never a universal immutable result identity. `RESULT_ACCEPTANCE` is a state-bound derived evaluation with disposition `ELIGIBLE | STALE_OWNERSHIP | TASK_NOT_ACTIVE | AUTHORITY_INVALID | STATE_BINDING_INVALIDATED | DUPLICATE | STATE_CONFLICT | RESULT_IDENTITY_INCOMPLETE | PRECONDITION_FAILED | UNKNOWN`; historical evaluations are immutable and stale observations are retained but never promoted.
+
+Promotable verification starts only from a current applicable `ELIGIBLE` acceptance and a complete Verification Basis. Required evidence assessment is `PASS | FAIL | FLAKY | UNTRUSTED | INCOMPLETE | UNKNOWN`; any required non-`PASS` assessment prohibits overall Verification `PASS` absent a pre-governed optional/advisory or variance basis. Verification result remains exactly `PASS | FAIL | UNKNOWN` and is never overloaded with freshness states. `VERIFICATION_VALIDITY_EVALUATION` state is exactly `CURRENT | STALE | INVALIDATED | UNKNOWN`; a historical `PASS` is not rewritten because validity changes; unbounded invalidation impact fails closed.
+
+### Operational state guards, failure classes, and reassignment
+
+The `1.19.0` operational execution-state domain is unchanged. `CLAIMED → EXECUTING` additionally requires the current Execution Ownership Grant, a complete State Binding finalized after the grant, required fencing assurance, current AUTH and R4, compatible workspace identity, and an accepted CAS transition. `RESULT_RECORDED → VERIFYING` requires current applicable acceptance `ELIGIBLE` plus a complete Verification Basis. `VERIFYING → VERIFIED` requires Verification `PASS`, validity `CURRENT`, and fresh applicable acceptance `ELIGIBLE.` Operational Execution State still MUST NOT directly mutate canonical Task lifecycle; Result Acceptance and Verification Validity are evaluations, not execution states.
+
+Four conceptual failure classes: preconditions unresolved (do not begin), observation exists but not eligible (retain, do not promote), ambiguous side effect (`RESULT_VERIFICATION_REQUIRED`), historical proof currently unusable (retain proof; validity `STALE | INVALIDATED | UNKNOWN`). `UNKNOWN` mandatory truth never becomes `PASS` by convenience.
+
+Reassignment Gate outcomes are `REASSIGNABLE | RESULT_VERIFICATION_REQUIRED | MANUAL_REVIEW_REQUIRED | BLOCKED | UNKNOWN` — evaluation outcomes, not a new lifecycle or Stable-ID family. Loss of liveness never automatically authorizes repeating potentially non-idempotent work.
+
+### Compatibility, exclusions, and no-runtime boundary
+
+Framework `1.19.0` Task/Verification Records remain valid under the contract version that created them; a Git-backed `candidate_identity` maps to a one-member `GIT_REVISION_SET` only when evidence is sufficient; historical files are never rewritten. Historical Tasks MUST NOT receive invented Wave A records; unresolvable mapping remains `UNKNOWN.` V2 required shapes use Task Contract `contract_version: "2.0"`, Task Record `record_version: "2.0"`, Verification Record `record_version: "2.0"`; new Wave A record types use `record_version: "1.0".`
+
+Wave A excludes Resume Eligibility, Continuation Budget, Memory Snapshot/automatic continuation, cryptographic producer authentication, Release Transaction/deployment-saga semantics, and all runtime implementation. TASK-058 ships governance/documentation contracts and maintained starters only. It adds no task database, event store, queue, scheduler, worker daemon, lease/fencing service, distributed lock, fencing-token generator, runtime CAS store, automatic transition engine, model router, automatic acceptance engine, verification daemon, executable Project Adapter, API server, merge bot, or automatic Task-DONE updater. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED.` `R4_CTX ≠ Risk R4` (Risk remains exactly `R0–R3`).
