@@ -2271,3 +2271,65 @@ Code/content integration and governance reconciliation remain separate. A merged
 Framework `1.19.0` adoption does not retroactively require historical Tasks to acquire reconstructed Plan Contracts, IPOCV, Task Records, Executor Profiles, or Project Adapters. Projects that do not use AI-ControlTower remain valid ProjectFramework Projects. Unknown Brownfield mappings remain `UNKNOWN` rather than guessed. Maintained additions are additive starter/contract files around existing `Project-Execution/` and template surfaces (`plan-contract.md`, `task-contract.md`, `task-record.md`, `verification-record.md`, `executor-profile.md`, `project-adapter.md`, `integration-reconciliation.md`); no new Project Source semantic slot or Stable-ID family is introduced.
 
 TASK-057 ships governance/documentation contracts and maintained starters only. It adds no AI-ControlTower runtime, Multica runtime, Control Plane, scheduler, queue, task database, event store, lease/fencing service, distributed lock, state engine, model/executor router, executable Project Adapter, merge bot/queue, CI runner, API server, automatic Task DONE updater, automatic reconciliation worker, Structured Core, Generated Governance, or Transaction Mode runtime.
+
+## Framework 1.20.0 Deterministic Execution Runtime Contract (TASK-058)
+
+Framework `1.20.0` extends TASK-057 declarative PLAN/TASK/VERIFY governance with language-neutral deterministic runtime **contract semantics only**. It does not ship an AI-ControlTower runtime, scheduler, database, queue, worker daemon, Effect Gateway service, credential broker, RLM runtime, model/MCP router, CI/merge bot, or automatic Task-DONE updater.
+
+Ownership remains separated:
+
+```text
+ProjectFramework = governance/protocol semantics
+Project Source = canonical Project governance truth
+Durable Task Source = canonical Task lifecycle truth
+AUTH-* / explicit User authority = operation/mutation authority
+R4_CTX = current truth from its owner
+Multica = claim/coordination only
+AI-ControlTower Runtime Store = execution-control facts only
+Runtime Event Journal = canonical runtime observation inside the runtime domain
+Checkpoint / Snapshot = derived recovery accelerator
+Effect Gateway = mediated Material-Effect consequence boundary
+Effect Permit = short-lived dispatch-eligibility proof, never AUTH
+```
+
+Core invariants:
+
+```text
+Runtime decision != Authority
+Model proposal != Runtime decision
+Claim != Lease != Fence != Authority
+Heartbeat != completion evidence
+Task lifetime != model-turn/chat/MCP lifetime
+Worker lifetime != Execution lifetime
+Execution lifetime != canonical Task lifecycle
+Runtime Event Journal > Checkpoint / Snapshot
+ACKNOWLEDGED != resulting-state proof
+Cancellation != rollback
+Compensation != rollback
+Exactly-once execution is not assumed
+Fail closed != retry forever
+```
+
+Keep four lifecycle domains separate: canonical Task lifecycle; TASK-057 Operational Execution state; Execution Attempt state; Action/Effect state. Attempt loss/termination never directly closes Operational Execution or Task. Model `CANDIDATE_COMPLETE` is only a proposal for governed verification/completion evaluation.
+
+A conforming runtime uses durable Execution/Attempt identity with pinned Task/Plan/Envelope fingerprints, `runtime_contract_version`, `event_schema_version`, `runtime_generation`, `fence_epoch`, and `state_version`. Material contract fingerprint changes invalidate continuation or require governed replanning/revalidation; runtime state transitions use compare-and-set or equivalent atomic semantics. Control identity is `(runtime_generation, fence_epoch)`; a new generation invalidates prior leases/fences/Effect Permits and requires unresolved-effect reconciliation before new dispatch.
+
+For mediated Material Effects, every effect-capable route is `MEDIATED_BY_EFFECT_GATEWAY` or explicitly prohibited/confined. Policy-only instruction without enforceable Effect-Surface Closure is not sufficient conformance. The Effect Gateway fresh-checks current execution/attempt identity, generation/fence, Task/Plan/Envelope fingerprints, applicable AUTH, R4, tool/capability/trust eligibility, target identity/precondition, effect semantics, budget/retry policy, and Effect Permit immediately before dispatch as applicable.
+
+Every Gateway-mediated Material Effect requires a short-lived JIT Effect Permit that is single-use, non-transferable, attempt/action/action-hash/target/tool/generation/fence/contract/envelope-bound. `PERMIT_ACTIVE -> PERMIT_CONSUMED` is atomic/CAS-equivalent; `PERMIT_CONSUMED != effect APPLIED`. Source-native target preconditions are mandatory when supported; mismatch yields `PRECONDITION_CONFLICT`. Unsupported preconditions are explicit and route to declared reconciliation/fail-closed handling rather than assumed freshness.
+
+One Permit maps to one independently reconcilable Material Effect unless a verified source-native atomic transaction makes the group independently reconcilable as one unit. Effect policy classifies idempotency `IDEMPOTENT | CONDITIONALLY_IDEMPOTENT | NON_IDEMPOTENT | UNKNOWN`, reconciliation strategy, and reversibility `REVERSIBLE_ATOMIC | COMPENSATABLE | IRREVERSIBLE | UNKNOWN`. ProjectFramework does not claim universal exactly-once external execution.
+
+TASK-057 `RESULT_VERIFICATION_REQUIRED` remains binding. Possibly-dispatched effects reconcile to `APPLIED | NOT_APPLIED | AMBIGUOUS`; `NON_IDEMPOTENT | UNKNOWN` plus no valid reconciliation path and ambiguous result becomes `MANUAL_RESOLUTION_REQUIRED`/blocking. Fallback tools never blind-replay an unresolved prior effect.
+
+Executor/model proposal schema is separate from runtime-owned event schema. Allowed bounded reports include `ACTION_PROPOSAL | CANDIDATE_COMPLETE | WAIT_REQUEST | INPUT_REQUEST | YIELD | BLOCKED_REPORT | ERROR_REPORT`. Models cannot authoritatively emit `AUTH_GRANTED`, `LEASE_ACQUIRED`, `FENCE_ADVANCED`, `PERMIT_ISSUED`, `VERIFIED`, `INTEGRATED`, or `TASK_DONE`; unknown privileged fields fail closed.
+
+Budgets are durable and hierarchical across model turns/restarts/children; `parent consumption + sum(child allocations) <= root budget`. Child recursion cannot manufacture authority or budget. Budget exhaustion is blocked/waiting truth, never Task DONE. Long waits use durable WAIT/wakeup semantics rather than unbounded model polling.
+
+Cancellation blocks new governed dispatch but does not erase possibly-applied source-native facts. In-flight effects are reconciled. Compensation is a new governed effect with its own Action identity, AUTH check, Permit, budget, evidence, and reconciliation; `ROLLED_BACK` requires source-native proof of real atomic rollback.
+
+Process/store recovery validates journal continuity, uses only compatible derived checkpoints, replays the journal tail, identifies lost Attempts, reconciles unresolved dispatch, invalidates stale generation/fence/permit state, fresh-resolves AUTH/R4/fingerprints, and schedules only safely runnable work. Missing journal continuity yields `RECOVERY_BLOCKED`; model/chat memory is not runtime truth. Active executions remain version-pinned as `BACKWARD_COMPATIBLE | REQUIRES_MIGRATION | INCOMPATIBLE` across runtime upgrades.
+
+Runtime journals/checkpoints/evidence never store raw secret values merely for observability. Use minimum sufficient `REFERENCE_ONLY | REDACTED | HASH_ONLY | classified metadata`. Tool/model output remains untrusted data and cannot create authority or bypass effect controls.
+
+TASK-058 starter/profile surfaces under `Project-Execution/` remain optional/applicability-driven. Non-ControlTower Projects remain valid. No new Project Source semantic slot, Stable-ID family, Risk level, or Registered Command is introduced.

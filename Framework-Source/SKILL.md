@@ -9,7 +9,9 @@ description: Use when creating, adopting, importing, updating, reviewing, handin
 
 Maintain a consistent `Project-Source/` governance layer. Make **current truth, current authority, Project health, and exact next action** explicit without inventing facts.
 
-Current distribution: **Framework 1.19.0 / Schema 1.0.0**.
+Current distribution: **Framework 1.20.0 / Schema 1.0.0**.
+
+Framework `1.20.0` adds deterministic execution-runtime contract semantics without shipping a runtime: Task/Operational Execution/Attempt/Action domains remain separate; Runtime Event Journal outranks derived Checkpoints; claim/lease/fence/AUTH remain distinct; mediated Material Effects require Effect-Surface Closure, fresh Effect Gateway validation, single-use JIT Effect Permit, source-native preconditions when supported, and deterministic reconciliation before retry. Typed model proposals cannot author runtime/governance state; budgets are durable/hierarchical; cancellation does not erase in-flight facts; compensation is a new governed effect. `Runtime decision ≠ Authority`; `Effect Permit ≠ AUTH`; `Verification PASS ≠ Task DONE`. No AI-ControlTower/Multica runtime, Python supervisor, scheduler, database, router, or automatic executor is introduced.
 
 Framework `1.19.0` adds the declarative AI-ControlTower Governance Support Layer: `PLAN | TASK | VERIFY` modes, Plan/Task Contract, nested Execution Envelope, mandatory Expected IPOCV, Task Record / Actual IPOCV, state-bound Verification Record, pure fail-closed Task Ready Gate, separate operational execution state, Multica coordination-only boundary, Executor Profile / Project Adapter, filter-before-rank selection, exact-SHA candidate verification, fresh `INTEGRATION_GATE`, and integration reconciliation. `R4_CTX` is execution-time current truth, **not** a Risk level (Risk remains `R0–R3`). `Contract ≠ Authority`; `Eligibility ≠ Authority`; `Claim ≠ Authority`; `Verification PASS ≠ Task DONE.` No AI-ControlTower/Multica runtime, scheduler, state engine, router, or automatic executor is introduced.
 
@@ -20,7 +22,8 @@ ProjectFramework is **conceptual governance/planning first**. Technical and inte
 Before creating or materially changing Project Source, read (each entry notes what it is for):
 
 - `FRAMEWORK-RELEASE.yaml` — release identity and bootstrap policy
-- `references/framework-governance-amendment-260914-task057-ai-controltower-governance-support-layer.md` — latest amendment: TASK-057 AI-ControlTower Governance Support Layer
+- `references/framework-governance-amendment-260916-task058-deterministic-execution-runtime-contract.md` — latest amendment: TASK-058 Deterministic Execution Runtime Contract
+- `references/framework-governance-amendment-260914-task057-ai-controltower-governance-support-layer.md` — previous amendment: TASK-057 AI-ControlTower Governance Support Layer
 - `references/framework-governance-amendment-260913-task052-project-upgrade-one-session-fast-path.md` — previous amendment: TASK-052 Project Upgrade One-Session Fast Path
 - `references/framework-governance-amendment-260913-task051-feature-delivery-fast-path.md` — previous amendment: TASK-051 Risk-Tiered Feature Delivery Fast Path
 - `references/framework-governance-amendment-260912-task049-canonical-self-hosting.md` — previous amendment: TASK-049 Canonical Self-Hosting Release Reconciliation

@@ -2,7 +2,33 @@
 
 Per-release migration guidance for upgrading an initialized Project's Framework pin. These notes are routing/documentation aids, **not** normative authority — Core Governance and the latest amendment win on any conflict. Absence of a section for a transition means no notes exist yet; do not invent them.
 
-## 1.18.0 → 1.19.0 (current)
+## 1.19.0 → 1.20.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.20.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-058 Deterministic Execution Runtime Contract.
+- TASK-057 PLAN/TASK/VERIFY, `R4_CTX`, Task Ready Gate, Operational Execution state, Expected/Actual IPOCV, Verification Record, Multica coordination-only ownership, exact-candidate verification, `INTEGRATION_GATE`, and canonical Task DONE ownership remain unchanged.
+- TASK-058 adds declarative runtime-control semantics: separate Execution Attempt and Action/Effect domains, deterministic Supervisor, Runtime Event Journal > derived Checkpoint, lease/heartbeat/fence/control-generation semantics, atomic `state_version` transitions, Effect-Surface Closure, Effect Gateway, single-use JIT Effect Permit, source-native target preconditions, deterministic ambiguity/reconciliation, hierarchical budgets, typed Executor proposals, cancellation/compensation, recovery, and runtime/event-schema version pinning.
+- Five optional Project-Execution starters are added: `runtime-contract.md`, `execution-attempt.md`, `execution-checkpoint.md`, `action-journal.md`, `effect-policy.md`.
+- Existing `task-contract.md`, `task-record.md`, `executor-profile.md`, `tools.md`, `trust.md`, and Project-Execution README are aligned without transferring authority or turning Task Record into an event log.
+- Adoption is additive/applicability-driven. Brownfield historical Tasks are not retrofitted. Non-ControlTower Projects remain valid.
+- No new semantic slot, Stable-ID family, Registered Command, Risk level, schema version, or release-format version.
+- No AI-ControlTower/Multica runtime, Python supervisor, runtime database, scheduler/queue/worker daemon, lease/fencing service, Effect Gateway service, credential broker, sandbox/network policy, model/MCP router, RLM runtime, API server, CI/merge/release bot, or automatic Task DONE updater is introduced.
+
+### Upgrade checklist
+
+1. Preserve local pin, Project truth, Stable IDs, Project-specific rules, bindings, history, authority, and canonical Task lifecycle until governed promotion.
+2. Preserve `Claim ≠ Lease ≠ Fence ≠ Authority`, `Effect Permit ≠ AUTH`, `Verification PASS ≠ Task DONE`, and `Runtime Event Journal > Checkpoint / Snapshot`.
+3. Adopt runtime/effect starters only when deterministic runtime integration is applicable; do not materialize them merely for completeness.
+4. Preserve `RESULT_VERIFICATION_REQUIRED`; ambiguous non-idempotent effects are reconciled or manually resolved, never blind-retried.
+5. Require Effect-Surface Closure for autonomous mediated Material Effects; a policy instruction alone is not enforcement.
+6. Preserve exact TASK-048 Primary/fallback/`CHECKPOINT_FAILBACK` semantics and TASK-037/TASK-026 trust/disclosure/secret boundaries.
+7. Verify scenarios `557–602` while preserving cumulative scenarios `1–602` contiguous/unique.
+8. Run cumulative affected verification, independent review, then one final `RELEASE_FULL` on the exact unchanged candidate.
+
+---
+
+## 1.18.0 → 1.19.0 (previous)
 
 ### Affected distribution surfaces
 

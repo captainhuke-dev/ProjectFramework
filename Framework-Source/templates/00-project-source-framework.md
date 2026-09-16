@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.19.0"
+project_source_framework_version: "1.20.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -274,6 +274,10 @@ framework_source_provenance:
 ```
 
 ห้าม predict/fabricate/backfill exact tag/SHA. หาก exact provenance ไม่มี ให้ใช้ `UNKNOWN / UNVERIFIED` เมื่อจำเป็นต้อง represent state. Absence ของ optional exact provenance เพียงอย่างเดียวไม่ทำให้ Project `NOT_OPERATIONALLY_READY`.
+
+### 5.1A Framework 1.20 Deterministic Execution Runtime Contract
+
+When deterministic AI-ControlTower-compatible execution is applicable, use the optional `Project-Execution/` TASK-057/TASK-058 contracts after active Project authority resolves. Keep Task/Operational Execution/Attempt/Action truth separate. Runtime control facts never grant AUTH or Task DONE. Mediated Material Effects require enforceable Effect-Surface Closure plus current Gateway/Permit/precondition/reconciliation semantics. Runtime Event Journal outranks derived Checkpoint/Snapshot; ambiguous effects use verify-before-retry; cancellation does not erase source-native results; compensation is a new governed effect. No runtime service is materialized by this root template merely because the contract exists.
 
 ### 5.2 Concept-First Technical / Tooling Boundary
 

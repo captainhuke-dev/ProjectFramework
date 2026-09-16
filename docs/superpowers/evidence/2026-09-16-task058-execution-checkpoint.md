@@ -213,3 +213,7 @@ fresh-read branch task058-framework120
 ```
 
 Do not merge/publish/release/self-host-promote or mutate AI-ControlTower merely to bypass this blocker.
+
+## 9. Resume — bounded patch capability restored
+
+Execution resumed after the prior checkpoint using an ephemeral branch-only GitHub Actions helper whose sole purpose was to apply exact bounded text patches to large Markdown surfaces inside a real repository checkout. The helper is not a Framework runtime/CI feature, is removed before candidate review, and grants no Project authority. This resume operation consolidated scenarios `557–602` into the canonical pressure suite, projected TASK-058 into Core/current guidance/migration/templates, and advanced durable Task truth to `IN_PROGRESS`. Candidate freeze still requires Structural GREEN, AFFECTED, independent review, and final release verification.

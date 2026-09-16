@@ -1362,7 +1362,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #58 — ProjectFramework 1.20 Deterministic Execution Runtime Contract
 
 - **ID:** `TASK-058`
-- **Status:** `TODO`
+- **Status:** `IN_PROGRESS`
 - **Type:** Framework architecture / deterministic execution-runtime governance contract
 - **Source Direction:** ACTOR-001 explicit instruction on 2026-09-16: `Freeze Design V3 → Register TASK-058 → เขียน Written Spec`.
 - **depends_on:** `[TASK-057]`
@@ -1370,17 +1370,19 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **enables:** `[]`
 - **parallelizable_with:** `[]`
 - **priority:** `HIGH`
-- **readiness:** `DESIGN_V3_FROZEN / WRITTEN_SPEC_PENDING_EXPLICIT_REVIEW / IMPLEMENTATION_NOT_STARTED`
+- **readiness:** `WRITTEN_SPEC_APPROVED / IMPLEMENTATION_PLAN_SELF_REVIEWED / EXECUTION_IN_PROGRESS / CANDIDATE_NOT_FROZEN`
 - **Problem:** Framework 1.19 defines deterministic declarative execution contracts but intentionally has no runtime enforcement. Long-running autonomous execution still needs a language-neutral contract for durable runtime state, worker/attempt recovery, lease/heartbeat/fencing, effect mediation, side-effect ambiguity, budgets, cancellation, and resume behavior so model-turn/MCP/process failure cannot silently terminate, duplicate, or over-authorize work.
 - **Approved Architecture:** Design V3 — ProjectFramework defines governance/runtime protocol semantics; AI-ControlTower owns execution-control facts only; Task/Execution/Attempt/Action lifecycles remain separate; Runtime Event Journal is canonical inside the runtime domain and Checkpoints are derived; a deterministic Supervisor owns state transitions; Material Effects are mediated through an Effect Gateway with effect-surface closure; JIT Effect Permits are short-lived, single-use, non-transferable, action/attempt/target/tool/generation/fence/contract-bound; target preconditions and atomic state-version CAS prevent stale decisions; effect semantics explicitly classify idempotency, reconciliation, and reversibility; ambiguous effects use verify-before-retry and may require manual resolution; runtime budgets are durable/hierarchical; cancellation does not erase in-flight source-native facts; compensation is a separately governed effect; runtime/control generation prevents old fences/permits from becoming valid after failover/restore; model proposals and runtime-owned events use separate typed namespaces; active executions pin runtime/event-schema versions.
 - **Design RolePlay:** three adversarial rounds completed before freeze, covering worker/MCP failure, stale/zombie workers, split brain, TOCTOU AUTH/R4/target changes, runtime restart/store rollback, direct Gateway bypass, permit replay/theft, unreconcilable effects, cancellation/compensation, recursive budget escape, forged runtime state, secret-safe journaling, runtime schema upgrade, and prompt-injection/tool-output pressure.
 - **Target Release:** Framework `1.20.0` / Project Source Schema `1.0.0` / release format `3` — candidate classification `BACKWARD_COMPATIBLE_ADDITIVE_RUNTIME_CONTRACT`.
 - **Design Spec:** `docs/superpowers/specs/2026-09-16-task058-deterministic-execution-runtime-contract-design.md`.
 - **Design Spec Commit:** `dc1353e063a0d088582836d2d75e074ff76920fa`.
-- **Design State:** `DESIGN_V3_USER_APPROVED / FROZEN / WRITTEN_SPEC_PENDING_EXPLICIT_REVIEW`.
+- **Design State:** `DESIGN_V3_USER_APPROVED / FROZEN / WRITTEN_SPEC_APPROVED`.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-16-task058-deterministic-execution-runtime-contract.md`.
+- **Plan State:** `WRITTEN / SELF_REVIEWED / EXECUTION_AUTHORIZED`.
 - **Pressure Scenario Contract:** reserve RED-first scenarios `557–602` for deterministic runtime/effect-boundary failure classes after written-spec approval and implementation planning.
 - **Implementation Boundary:** TASK-058 is Framework governance/documentation/contracts/templates/tests only. Do not implement an AI-ControlTower runtime service, Python supervisor, runtime database, scheduler/queue/worker daemon, lease/fencing service, Effect Gateway service, credential broker, sandbox/container/network policy, MCP/model router, RLM runtime, Multica runtime, automatic Task DONE updater, CI/merge/release bot, API server, or self-improvement runtime as part of TASK-058.
 - **Authority Boundary:** `Runtime decision ≠ Authority`; `Claim ≠ Lease ≠ Fence ≠ Authority`; `Effect Permit ≠ AUTH`; Multica remains coordination-only; source-native systems remain factual owners of their domains; canonical Task owner retains Task lifecycle/DONE authority.
 - **Completion Criteria:** written spec explicitly approved; implementation plan written/self-reviewed; scenarios `557–602` RED-first; normative/runtime-contract starters implemented without runtime code; TASK-057 semantics preserved; independent review has zero unresolved Critical/Important findings; AFFECTED passes; one final unchanged-candidate `RELEASE_FULL` passes; release/completion evidence and truthful Task lifecycle are persisted.
 - **Publication Boundary:** this registration/design persistence on canonical `main` does not authorize runtime implementation, tag/GitHub Release, consumer upgrade, AI-ControlTower mutation, or other separately governed shared-state actions.
-- **Exact Next Step:** ACTOR-001 reviews and explicitly approves the written spec; only after that gate may the TASK-058 implementation plan be written. No implementation/runtime work starts before written-spec approval.
+- **Exact Next Step:** Complete canonical Framework 1.20 propagation/verification on `task058-framework120`; then independent review → candidate freeze → one final `RELEASE_FULL`. AI-ControlTower runtime remains out of scope.

@@ -1,7 +1,7 @@
 # TASK-058 — ProjectFramework 1.20 Deterministic Execution Runtime Contract Design
 
 Date: `2026-09-16` (Asia/Bangkok)
-Design state: `DESIGN_V3_USER_APPROVED / FROZEN / WRITTEN_SPEC_PENDING_EXPLICIT_REVIEW`
+Design state: `DESIGN_V3_USER_APPROVED / FROZEN / WRITTEN_SPEC_APPROVED`
 Task: `TASK-058`
 Depends on: `TASK-057`
 Target release: Framework `1.20.0` / Project Source Schema `1.0.0` / release format `3`
@@ -951,18 +951,18 @@ TASK-058 may be considered complete only after:
 11. Task lifecycle is reconciled truthfully;
 12. publication/tag/GitHub Release/self-host promotion/AI-ControlTower runtime mutation remain separately governed.
 
-## 35. Written-spec approval gate
+## 35. Written-spec approval and execution gate
 
-Design V3 is frozen by explicit user approval. This file is the durable written representation of that design, but **written-spec approval remains a separate gate**.
+ACTOR-001 explicitly approved this Written Spec on `2026-09-16`. The TASK-058 implementation plan was then written/self-reviewed and execution was explicitly authorized on `2026-09-16`.
 
-Until the user explicitly approves this written spec:
+Current governed state during implementation:
 
 ```text
-TASK-058 = TODO
-Implementation Plan = NOT WRITTEN
-Implementation = NOT STARTED
-Framework 1.20 mutation = NOT AUTHORIZED BY THIS SPEC ALONE
-AI-ControlTower runtime mutation = NOT AUTHORIZED
+TASK-058 = IN_PROGRESS
+WRITTEN_SPEC = APPROVED
+IMPLEMENTATION_PLAN = WRITTEN / SELF_REVIEWED
+EXECUTION = AUTHORIZED / IN_PROGRESS
+AI_CONTROLTOWER_RUNTIME_IMPLEMENTATION = NOT AUTHORIZED_BY_TASK058
 ```
 
-After explicit written-spec approval, the next allowed planning step is to invoke the implementation-planning workflow and produce the TASK-058 implementation plan. Planning completion still does not self-assign an Executor; TASK-057 Planner/Execution Handoff semantics remain binding.
+Execution still follows TASK-057 Planner/Execution Handoff semantics: current Task/Plan/Envelope, AUTH, `R4_CTX`, Ready Gate, tool/capability/trust/executor eligibility, workspace/target truth, and independent Verifier requirements remain binding. Planning/execution authorization does not authorize merge, tag/GitHub Release, consuming-Project upgrade, self-host promotion, or AI-ControlTower runtime mutation.

@@ -27,10 +27,18 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.19.0**
+- Project Source Framework: **1.20.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.20.0 Deterministic Execution Runtime Contract
+
+Framework `1.20.0` adds a language-neutral deterministic **execution-runtime contract** on top of the Framework 1.19 declarative governance layer. ProjectFramework still ships no runtime. A future AI-ControlTower may own bounded execution-control facts while Project Source, Task Source, AUTH, Verification, Git/source-native truth, release/deployment truth, and Task DONE stay with their existing owners.
+
+Key additions are separate Execution/Attempt/Action domains; Runtime Event Journal > derived Checkpoint; lease/heartbeat/fence/control-generation semantics; atomic state transitions; Effect-Surface Closure; Effect Gateway + single-use JIT Effect Permit; source-native target preconditions; deterministic ambiguous-result reconciliation without universal exactly-once claims; durable hierarchical budgets; typed model proposal vs runtime-event namespaces; cancellation/in-flight reconciliation; compensation as a new governed effect; restart/store-restore recovery; and runtime/event-schema version pinning.
+
+Maintained optional starters now include `runtime-contract.md`, `execution-attempt.md`, `execution-checkpoint.md`, `action-journal.md`, and `effect-policy.md` under `Framework-Source/templates/project-execution/`, alongside the TASK-057 contracts. Non-ControlTower Projects remain valid; Brownfield historical Tasks are not retrofitted. No Python supervisor, scheduler, database, Effect Gateway service, credential broker, model/MCP router, RLM runtime, CI bot, or automatic Task-DONE service is introduced.
 
 ## Framework 1.19.0 AI-ControlTower Governance Support Layer
 

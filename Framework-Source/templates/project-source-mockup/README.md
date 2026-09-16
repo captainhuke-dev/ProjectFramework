@@ -1,10 +1,18 @@
 # Project Source Bootstrap Mockup
 
-This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.18.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
+This directory is the concrete starter representation of the Project Source semantic namespace for **Framework 1.20.0 / Schema 1.0.0**. Use it to answer: **“เลขไหน คือเรื่องอะไร และ starter file ชื่ออะไร?”**
 
 > **Authority:** This mockup is executable documentation. `../../references/core-governance-rules.md`, active `00 Project Source Framework`, and `../core-document-skeletons.md` are normative. If this mockup disagrees with Core Governance, Core Governance wins and the mockup must be corrected.
 
 > **Maintenance invariant:** `templates/project-source-mockup/` is the **single maintained concrete starter representation** in the current Framework distribution. Do not maintain a second full Project Source example/template tree alongside it; historical composition examples remain available through Git history.
+
+## Framework 1.20.0 Deterministic Execution Runtime Contract Semantics
+
+Framework `1.20.0` keeps Schema `1.0.0` and adds optional deterministic runtime/effect contract starters under `Project-Execution/`. Runtime control never becomes Project/Task/AUTH/Verification authority; Runtime Event Journal > Checkpoint; mediated effects require Effect-Surface Closure, Gateway + single-use Permit, precondition/reconciliation semantics, bounded budgets, and truthful cancellation/compensation recovery. This mockup remains Project Source documentation only and materializes no runtime service.
+
+## Framework 1.19.0 AI-ControlTower Governance Support Layer Semantics
+
+Framework `1.19.0` adds optional declarative PLAN/TASK/VERIFY execution contracts, Expected/Actual IPOCV, state-bound verification, Task Ready Gate, Operational Execution state, Multica coordination-only semantics, Executor/Profile/Adapter selection, and exact-candidate integration reconciliation without adding a runtime or changing canonical Task lifecycle.
 
 ## Framework 1.18.0 Project Upgrade One-Session Fast Path Semantics
 
