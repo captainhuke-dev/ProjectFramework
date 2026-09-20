@@ -27,10 +27,23 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.20.0**
+- Project Source Framework: **1.21.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.21.0 V3 Forward-Port Runtime Control Contract
+
+Framework `1.21.0` forward-ports the still-useful runtime-control semantics of the superseded TASK-058 Design V3 onto the verified Framework 1.20 baseline. It adds a **Durable Runtime Control Contract** for long-running governed execution: a language-neutral, declarative set of record semantics for durable runtime observation, checkpoint derivation, supervisor control generation, runtime liveness projection, Effect Gateway mediation with single-use Effect Permits, ambiguous-effect reconciliation, bounded continuation, RLM/recursive execution profiles, cancellation/compensation, and runtime version pinning. It is additive: no new Project Source semantic slot, Stable-ID family, Registered Command, or runtime.
+
+- **Durable observation**: the Runtime Event Journal is canonical observation only inside the execution-runtime domain; checkpoints are derived recovery accelerators that never outrank the journal; unproven journal continuity fails closed (`RECOVERY_BLOCKED`).
+- **Supervisor / control generation**: `Supervisor decision ≠ AUTH`; `Supervisor liveness ≠ Execution Ownership Grant`; `Heartbeat ≠ completion evidence`; a new control generation invalidates prior-generation leases/fences/permits without rewriting the Wave A V2 ownership epoch or canonical Task state; fence identity is `(runtime_generation, fence_epoch).`
+- **Liveness projection**: runtime lease/heartbeat is subordinate to the Framework 1.20 Execution Ownership Grant; no lease, heartbeat, or fence creates ownership or AUTH.
+- **Effect Gateway / Effect Permit**: mediated Material Effects transit `proposal → fresh evaluation → Effect Permit → Gateway dispatch → source-native reconciliation`; permits are short-lived, single-use, non-transferable, and bound; `Effect Permit ≠ AUTH-*`; direct uncontrolled paths for a mediated class are non-conforming.
+- **Ambiguity**: no arbitrary exactly-once claims; `UNKNOWN → reconcile at source-native truth owner → APPLIED | NOT_APPLIED | PARTIAL | STILL_UNKNOWN`; unsafe blind retry is prohibited.
+- **Bounded continuation / RLM**: finite budgets, wake conditions, explicit `WAIT | BLOCKED | MANUAL_RESOLUTION_REQUIRED` dispositions; provider-neutral RLM profile with `max_recursion_depth` and hierarchical child budgets; children cannot mint authority or budget.
+- **Cancellation / compensation**: `Cancellation ≠ rollback`; `Compensation ≠ history erasure`; compensation is a new governed effect.
+- **Handoff**: the AI-ControlTower Python 3.14 Supervisor reference runtime is a separate AI-ControlTower Task against this conformance boundary; Prime Agent remains an optional mapping to the RLM/long-horizon Executor Profile.
 
 ## Framework 1.20.0 Wave A V2 Deterministic Execution Foundation
 
