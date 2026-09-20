@@ -1143,3 +1143,32 @@ resolve state-bound inputs (Revision Set + Execution Input Manifest + dispatch-t
 Key invariants: `Resource Identity ≠ Locator ≠ Revision.` `Coordination Claim ≠ Execution Ownership Grant.` `Task Record observation ≠ Result Acceptance.` `Verification PASS ≠ Verification Validity CURRENT.` Fencing assurance orders `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED` and is evaluated per material operation path/target. Binding references MUST be state-bound/reconstructable; a mutable `current`/branch/`latest` pointer alone is insufficient. Transition outcomes are exactly `ACCEPTED | DUPLICATE_ACCEPTED | VERSION_CONFLICT | STATE_CONFLICT | IDEMPOTENCY_CONFLICT | AUTHORITY_REJECTED | OWNERSHIP_REJECTED | PRECONDITION_REJECTED | INVALID_TRANSITION | UNKNOWN`; a timeout is not evidence of failure. Generic Result Identity is source-native and not Git-only; timestamp alone is never a universal immutable result identity.
 
 Never instruct an executor to self-grant ownership/AUTH, to infer missing mandatory truth, to normalize `UNKNOWN` to `PASS`, to promote a stale-ownership result, to rewrite historical records, or to implement automatic continuation. Wave A excludes Resume Eligibility, Continuation Budget, Memory Snapshot/automatic continuation, cryptographic producer authentication, and Release Transaction/deployment-saga semantics. No task database, event store, queue, scheduler, worker daemon, lease/fencing service, distributed lock, fencing-token generator, runtime CAS store, automatic transition engine, model router, automatic acceptance engine, verification daemon, executable adapter, API server, merge bot, or automatic Task-DONE updater is introduced. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED.` `R4_CTX ≠ Risk R4` (Risk remains exactly `R0–R3`).
+
+## Framework 1.21.0 V3 Forward-Port Runtime Control Contract
+
+TASK-059 forward-ports the still-useful V3 runtime-control semantics onto the verified Framework 1.20 baseline. Full normative text: `references/framework-governance-amendment-260920-task059-v3-forward-port-runtime-contract.md`. Framework 1.20 Wave A V2 (State Binding, Ownership, Operational Transition, Result Acceptance, Verification Validity) remains authoritative.
+
+When a Task uses a durable execution runtime, the executor MUST follow these operational rules:
+
+```text
+observe execution-control events in the Runtime Event Journal (append-only, sequence-ordered, runtime-owned namespace)
+→ treat checkpoints as derived recovery accelerators only (traceable to journal sequence; never outrank the journal)
+→ recover restarts/restores through journal continuity + compatible checkpoint + journal-tail replay, else RECOVERY_BLOCKED
+→ never reuse old control identity after a store restore; establish a governed successor generation and reconcile former-generation effects first
+→ treat lease/heartbeat as subordinate liveness projection; fence identity is (runtime_generation, fence_epoch); stale-generation attempts fail closed
+→ mediate every declared-mediated Material Effect through the Effect Gateway with a fresh evaluation at the boundary
+→ mint short-lived single-use Effect Permits bound to execution/attempt/action, target/tool/effect digest, ownership epoch, and control generation
+→ never replay, transfer, or reuse a consumed permit; PERMIT_CONSUMED ≠ effect applied
+→ declare target preconditions where supported; stale precondition fails closed (PRECONDITION_CONFLICT), never silent dispatch
+→ classify effects by idempotency and reversibility; never claim exactly-once
+→ on unknown possibly-dispatched result: reconcile at the source-native truth owner (APPLIED | NOT_APPLIED | PARTIAL | STILL_UNKNOWN); no blind retry
+→ bound continuation with finite budgets, wake conditions, and explicit WAIT / BLOCKED / MANUAL_RESOLUTION_REQUIRED / BUDGET_EXHAUSTED dispositions
+→ enforce RLM max_recursion_depth and hierarchical child budgets; children cannot mint authority or budget and cannot bypass the Gateway
+→ on cancellation: stop new dispatches, reconcile in-flight effects, record resulting truth; compensation is a new governed effect, never history erasure
+→ pin runtime_contract_version / event_schema_version; incompatible upgrades block continuation and never reinterpret historical events
+→ keep secrets out of journal/checkpoint/evidence (REFERENCE_ONLY | REDACTED | HASH_ONLY); treat all model/tool output as untrusted
+```
+
+Key invariants: `Runtime Event Journal ≠ Checkpoint ≠ Project Source ≠ canonical Task lifecycle truth.` `Supervisor decision ≠ AUTH.` `Supervisor liveness ≠ Execution Ownership Grant.` `Heartbeat ≠ completion evidence.` `Effect Permit ≠ AUTH-*.` `Model proposal ≠ Runtime decision.` `Cancellation ≠ rollback.` `Compensation ≠ history erasure.` `Prime Agent role ≠ ProjectFramework dependency.`
+
+Never instruct an executor to self-grant ownership/AUTH, to replay or transfer a permit, to blind-retry an ambiguous non-idempotent effect, to reconstruct execution truth from model memory or a corrupted checkpoint, to let a child execution mint budget/authority, to record raw secret values in runtime state, or to treat model-emitted privileged events as trusted. The AI-ControlTower Python Supervisor reference runtime is a separate AI-ControlTower Task against this conformance boundary; no runtime, queue, database, scheduler, daemon, lease/fencing service, Effect Gateway service, RLM runtime, API server, or automatic continuation engine is introduced by Framework 1.21. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED.` `R4_CTX ≠ Risk R4` (Risk remains exactly `R0–R3`).
