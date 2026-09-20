@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # TASK-059 AFFECTED verification suite (cumulative).
 # Run from anywhere: python task059_affected.py [repo_root]
-import re, sys, os, subprocess, glob
+import re, sys, os, subprocess, glob, shutil
 
 root = sys.argv[1] if len(sys.argv) > 1 else "E:/GitHub/ProjectFramework"
+GIT = shutil.which("git") or "git"
 results = []
 
 def check(name, ok, detail=""):
@@ -17,7 +18,7 @@ def txt(path):
     return rd(path).decode("utf-8")
 
 def git(*args):
-    return subprocess.run(list(args), cwd=root, capture_output=True, text=True).stdout.strip()
+    return subprocess.run([GIT] + list(args), cwd=root, capture_output=True, text=True).stdout.strip()
 
 # ---------- A. Release identity ----------
 y = txt("Framework-Source/FRAMEWORK-RELEASE.yaml")
@@ -119,7 +120,7 @@ check("G2 no duplicates", len(nums) == len(set(nums)))
 check("G3 ceiling is 620", max(nums) == 620)
 # 557-590 unchanged vs baseline (git)
 base_557_590 = subprocess.run(
-    ["git", "show", "04b718446d7579f0336d5cdac24a66037e0f20e0:Framework-Source/tests/pressure-scenarios.md"],
+    [GIT, "show", "04b718446d7579f0336d5cdac24a66037e0f20e0:Framework-Source/tests/pressure-scenarios.md"],
     cwd=root, capture_output=True, text=True).stdout
 def scenario_block(text, n):
     m = re.search(r"(^## Scenario %d —.*?)(?=^## Scenario %d —|\Z)" % (n, n + 1), text, re.M | re.S)
@@ -236,7 +237,7 @@ for dirpath, dirnames, filenames in os.walk(os.path.join(root, "Framework-Source
 check("N3 all Framework-Source .md files CRLF-consistent", crlf_ok, str(crlf_bad))
 
 # ---------- O. RED→GREEN proof ----------
-base_fs = subprocess.run(["git", "archive", base, "Framework-Source"], cwd=root, capture_output=True).stdout
+base_fs = subprocess.run([GIT, "archive", base, "Framework-Source"], cwd=root, capture_output=True).stdout
 import io, zipfile
 z = zipfile.ZipFile(io.BytesIO(base_fs))
 base_am_names = z.namelist()
