@@ -1403,7 +1403,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 ## Task #59 -- V3 Forward-Port Runtime Contract & AI-ControlTower Handoff
 
 - **ID:** `TASK-059`
-- **Status:** `DONE_LOCAL_CANDIDATE`
+- **Status:** `DONE / MERGED_TO_MAIN / PR_36 / TAGGED_v1.21.0 / RELEASED / SELF_HOST_RECONCILED_MIG_007`
 - **Type:** Framework architecture / deterministic runtime-control contract / AI-ControlTower handoff
 - **depends_on:** `[TASK-058]`
 - **blocks:** `[]`
