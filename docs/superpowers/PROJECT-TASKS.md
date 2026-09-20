@@ -17,7 +17,7 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - Remaining-work / "what is left" summaries include only Tasks whose current status is `TODO`, `IN_PROGRESS`, or `BLOCKED`.
 - `CANCELLED` is historical lifecycle state and is omitted from remaining-work summaries unless the user explicitly asks for cancelled/history.
 - A proposed/future scope that was never accepted as an active Task is not backlog. When the user explicitly cancels such unstarted scope, preserve needed history/provenance but do not continue presenting it as pending work.
-- Current backlog: `TODO=0 / IN_PROGRESS=0 / BLOCKED=0` (TASK-058 DONE / MERGED_TO_MAIN / PR_35 / TAGGED v1.20.0 / RELEASED; post-merge 1.20 self-host reconciliation persisted at MIG-006, canonical `origin/main` `cc289bb`).
+- Current backlog: `TODO=1 / IN_PROGRESS=0 / BLOCKED=0` (TASK-059 TODO; V3-derived runtime contract forward-port on Framework 1.20 baseline; implementation has not started).
 
 ## Cancelled — never-registered scope (2026-09-14, user decision)
 
@@ -1399,3 +1399,32 @@ Task numbers in this file are backlog sequence numbers. They are **not** Project
 - **Post-Merge Self-Host 1.20 Reconciliation (2026-09-20, ACTOR-001 explicit approval "อนุมัติ 2"):** required post-merge prerequisite executed and persisted — `MIG-006` (Framework 1.19.0 → 1.20.0, Schema 1.0.0, release format 3) COMPLETED / PERSISTED / NOT_PENDING; 16 active Project Source successors stamped `260920-1016` at 1.20.0 / 1.0.0 with supersedes chains to the archived 1.19 predecessors (stamp `260916-1415`); `CHG-110` / `EVD-111` registered; Bootstrap routes to `00-Project-Source-Framework-r008-260920-1016.md`; local structural self-host verification PASS (0 failures); pushed to canonical `origin/main` at `dc26f3a14433ef3e0b6588888d89f4a686d240f3`; fresh canonical readback verified 16/16 active stamps at 1.20.0 / 1.0.0 and Framework-Source tree `28b4003cf620f3cb553a1afea4a2b0063e47e845` unchanged from the frozen candidate.
 - **Completion Criteria Met:** all local completion requirements in the implementation plan Task 10 Step 2 are satisfied and read back; TASK-058 is `DONE / MERGED_TO_MAIN / PR_35 / TAGGED_v1.20.0 / RELEASED`; post-merge canonical 1.20 self-host reconciliation completed and persisted (MIG-006). Wave B/C design work remains separately governed.
 - **Exact Next Step:** none for TASK-058. Separately governed follow-ups only: Wave B/C design work remains excluded from this Task.
+
+## Task #59 -- V3 Forward-Port Runtime Contract & AI-ControlTower Handoff
+
+- **ID:** `TASK-059`
+- **Status:** `TODO`
+- **Type:** Framework architecture / deterministic runtime-control contract / AI-ControlTower handoff
+- **depends_on:** `[TASK-058]`
+- **blocks:** `[]`
+- **enables:** `[]`
+- **parallelizable_with:** `[]`
+- **priority:** `HIGH`
+- **readiness:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_SELF_REVIEWED / EXPLICIT_WRITTEN_SPEC_APPROVAL_PENDING / IMPLEMENTATION_NOT_STARTED`
+- **Source Direction:** ACTOR-001 explicitly approved on 2026-09-20 the sequence `forward-port/trim V3 on Framework 1.20 -> runtime handoff -> AI-ControlTower implementation -> canonical-source cutover -> standalone ProjectFramework closure`.
+- **Problem:** The verified Framework 1.20 Wave A V2 contract deliberately excluded long-running runtime-control semantics such as a durable Runtime Event Journal, checkpoint/replay authority, Supervisor/control-generation recovery, Effect Gateway/Effect Permit mediation, bounded continuation budgets, RLM recursion controls and executable Python runtime behavior. Historical TASK-058 Design V3 explored these semantics, but that V3 track was superseded by Wave A V2 and MUST NOT be revived in place.
+- **Approved Direction:** Create a clean successor on top of Framework 1.20. Preserve Wave A V2 as authoritative; retain only V3 concepts still missing; reject duplicated/conflicting V3 semantics; define provider-neutral runtime-control and RLM/recursive-executor contracts; create a precise handoff for a later AI-ControlTower Python Supervisor reference runtime; do not place executable AI-ControlTower runtime code in the standalone ProjectFramework repository.
+- **Historical V3 Source:** `docs/superpowers/specs/2026-09-16-task058-deterministic-execution-runtime-contract-design.md` and its historical plan are source material only; old V3 branches remain `SUPERSEDED / PAUSED / NOT_MERGED`.
+- **Framework Baseline:** canonical ProjectFramework `1.20.0 / Schema 1.0.0 / release format 3`; TASK-058 `DONE / PR_35 / TAGGED_v1.20.0 / RELEASED / SELF_HOST_RECONCILED`.
+- **Candidate Target:** Framework `1.21.0 / Schema 1.0.0 / release format 3`, subject to fresh baseline and breaking-change reclassification at implementation preflight.
+- **Core Scope:** Runtime Event Journal; derived checkpoint/replay; Supervisor/control generation; runtime liveness projection subordinate to Framework ownership; Effect Gateway + single-use Effect Permit; ambiguous-effect reconciliation; bounded continuation/retry/wake semantics; RLM/recursive Executor Profile with recursion depth and hierarchical budget; cancellation/compensation; runtime/event-schema pinning; AI-ControlTower Python Supervisor conformance handoff.
+- **Prime Agent Boundary:** AI-ControlTower may later map its `Prime Agent = Autonomous / Long-Horizon Operator` candidate role to the provider-neutral TASK-059 RLM/long-horizon Executor Profile after separate promotion. Prime Agent is not a ProjectFramework dependency or authority.
+- **AI-ControlTower Boundary:** Actual Python Supervisor, runtime store, worker/scheduler, Effect Gateway service, RLM runtime, provider integration and deployment belong to a separate AI-ControlTower implementation Task. TASK-059 itself is ProjectFramework governance/contracts/templates/tests/release metadata only.
+- **Cutover Boundary:** TASK-059 does not change canonical development source. After TASK-059 verified completion and accepted AI-ControlTower runtime handoff, standalone ProjectFramework feature development is intended to freeze; a separate governed Cutover Task promotes `AI-ControlTower/projectframework/` as canonical development source and converts this repository to read-only mirror/archive.
+- **Design Spec:** `docs/superpowers/specs/2026-09-20-task059-v3-forward-port-runtime-contract-design.md`.
+- **Design State:** `USER_APPROVED_DIRECTION / WRITTEN_SPEC_SELF_REVIEWED / EXPLICIT_WRITTEN_SPEC_APPROVAL_PENDING`.
+- **Implementation Plan:** `docs/superpowers/plans/2026-09-20-task059-v3-forward-port-runtime-contract.md`.
+- **Plan State:** `DRAFT / SELF_REVIEWED / EXECUTION_NOT_AUTHORIZED_UNTIL_WRITTEN_SPEC_APPROVAL`.
+- **Implementation Boundary:** no normative Framework mutation, no AI-ControlTower source/runtime mutation, no push/PR/merge/tag/Release, no canonical-source cutover, no repository archival, and no production/deployment action merely from this registration.
+- **Self-Review:** `TASK059_SPEC_PLAN_SELF_REVIEW 12/12 PASS` — baseline/collision/scope/authority/runtime-handoff/diff-hygiene checks passed; no implementation started.
+- **Exact Next Step:** obtain explicit written-spec approval for the self-reviewed TASK-059 design before implementation-plane mutation.
