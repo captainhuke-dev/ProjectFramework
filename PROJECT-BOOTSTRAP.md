@@ -1,6 +1,6 @@
 # Project Bootstrap
 
-This file is the stable Project-root discovery entrypoint for ProjectFramework under ProjectFramework `1.19.0`.
+This file is the stable Project-root discovery entrypoint for ProjectFramework under ProjectFramework `1.20.0`.
 
 It is a **discovery/locator artifact only**. It is not a Project Source semantic slot, has no Stable ID, and never replaces or overrides active `Project-Source/00` / `FRAMEWORK-001`.
 
@@ -8,7 +8,7 @@ It is a **discovery/locator artifact only**. It is not a Project Source semantic
 
 ```text
 Project Source Root: Project-Source/
-First Read: Project-Source/00-Project-Source-Framework-r007-260916-1415.md
+First Read: Project-Source/00-Project-Source-Framework-r008-260920-1016.md
 ```
 
 Do not infer another Project Source root from recency, search ranking, active workspace IDs, mounts, or similarly named directories.
