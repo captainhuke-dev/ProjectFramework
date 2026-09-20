@@ -164,12 +164,38 @@ Heartbeat != completion evidence
 Runtime control generation != Project authority
 ```
 
+A `record_type: RUNTIME_CONTRACT` is the execution-runtime domain's top-level binding for one long-running execution:
+
+```yaml
+record_type: RUNTIME_CONTRACT
+record_version: "1.0"
+contract_ref: "<contract-local reference>"
+execution_id: "<durable runtime execution id>"
+task_ref: "TASK-xxx"
+state_binding_ref: "<Wave A V2 Execution State Binding>"
+runtime_contract_version: "<version>"
+event_schema_version: "<version>"
+control_generation: "<current runtime control generation>"
+fence_epoch: "<monotonic epoch within generation>"
+liveness:
+  lease_mode: "RUNTIME_AUTHORITY_TIME | MONOTONIC_DURATION"
+  lease_ref: "<lease identity when applicable>"
+continuation_policy:
+  continuation_budget: "<finite>"
+  retry_budget: "<finite, per action class>"
+  wake_conditions: ["<declared wake event / condition>"]
+  fallback_check_at: "<time when applicable>"
+disposition: "RUNNING | WAIT | BLOCKED | MANUAL_RESOLUTION_REQUIRED | BUDGET_EXHAUSTED | WAITING_FOR_REAUTHORIZATION | RECOVERY_BLOCKED | TERMINATED"
+created_at: "<timestamp>"
+```
+
 Rules:
 
 - An executor may propose actions or report observations but cannot self-promote runtime state, ownership, or AUTH.
 - The end of an LLM turn MUST NOT be interpreted as completion. If an execution remains runnable and non-terminal, the Supervisor may schedule another reasoning step subject to authority, budgets, current truth, and wait/block policy — or persist an explicit wait/blocked disposition (Section 12).
 - A **runtime control generation** is the unique successor identity of the runtime control path for an execution domain. A new control generation invalidates prior-generation runtime-local leases, fences, and Effect Permits.
 - A control generation change does NOT rewrite the Framework `1.20.0` ownership epoch, the Execution State Binding, or canonical Task state. Ownership epochs remain governed by the Wave A V2 Execution Ownership Grant; the runtime generation is a runtime-local projection (Section 6).
+- The `RUNTIME_CONTRACT` references the Wave A V2 Execution State Binding; it never replaces it. It is runtime-domain contract evidence, not Project authority.
 - A runtime-store restore to an older snapshot MUST NOT reuse old control identity silently. A new control generation (or equivalent unique successor identity) is required before new effects, and unresolved effects from the former generation are reconciled first (Section 15).
 - Recovery sequence on restart/restore: load or establish governed successor generation → validate journal continuity → load compatible checkpoint → replay journal tail → identify expired/lost attempts → reconcile unresolved dispatched effects → invalidate stale leases/fences/permits → re-resolve authority/R4/contract fingerprints → schedule only safely runnable work.
 
@@ -537,7 +563,7 @@ Framework `1.21.0` is an additive successor to Framework `1.20.0`:
 - Wave A V2 exclusions remain in force: Release Transaction, deployment saga, and multi-system transactional release semantics (Wave C) are NOT included. Cryptographic producer authentication remains excluded unless implementation evidence requires it (Section 17).
 - If implementation discovers a required breaking schema/authority change, the release classification and target version MUST be re-planned before mutation.
 
-New TASK-059 record types use `record_version: "1.0"`: `RUNTIME_EVENT`, `EXECUTION_CHECKPOINT`, `EFFECT_POLICY`, `EFFECT_PERMIT`, `RLM_EXECUTION_PROFILE.` No existing record type's serialized meaning is redefined.
+New TASK-059 record types use `record_version: "1.0"`: `RUNTIME_CONTRACT`, `RUNTIME_EVENT`, `EXECUTION_CHECKPOINT`, `EFFECT_POLICY`, `EFFECT_PERMIT`, `RLM_EXECUTION_PROFILE.` No existing record type's serialized meaning is redefined.
 
 TASK-059 ships governance/documentation contracts and maintained starters only. It adds no task database, event store, queue, scheduler, worker daemon, lease/fencing service, distributed lock, fencing-token generator, runtime CAS store, automatic transition engine, model router, automatic acceptance engine, verification daemon, executable Project Adapter, API server, merge bot, or automatic Task-DONE updater. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED.` `R4_CTX ≠ Risk R4` (Risk remains exactly `R0–R3`).
 
