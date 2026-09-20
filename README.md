@@ -27,10 +27,21 @@ How to use it:
 
 ## Current Release
 
-- Project Source Framework: **1.19.0**
+- Project Source Framework: **1.20.0**
 - Project Source Schema: **1.0.0**
 - Distributable package root: `Framework-Source/`
 - Release descriptor: `Framework-Source/FRAMEWORK-RELEASE.yaml`
+
+## Framework 1.20.0 Wave A V2 Deterministic Execution Foundation
+
+Framework `1.20.0` adds the **Compositional State Binding Hub**: declarative record semantics that bind one execution attempt to the exact materially relevant state it ran against — source state (Revision Set), material execution inputs (Input Manifest), an immutable Execution State Binding, authoritative ownership with scoped epochs and fencing assurance, CAS operational transitions with idempotency, state-bound Result Acceptance, and separate Verification Validity. It is additive: no new Project Source semantic slot, Stable-ID family, Registered Command, or runtime.
+
+- **Identity separation**: `Resource Identity ≠ Locator ≠ Revision`; a single Git exact SHA is a valid one-member Revision Set; once bound, evidence is immutable and never rewritten to `latest.`
+- **Ownership**: `Coordination Claim ≠ Execution Ownership Grant`; no executor self-grants ownership or AUTH; `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED` per material operation path.
+- **Transitions**: aggregate-version CAS with idempotency; outcomes `ACCEPTED | DUPLICATE_ACCEPTED | VERSION_CONFLICT | STATE_CONFLICT | IDEMPOTENCY_CONFLICT | AUTHORITY_REJECTED | OWNERSHIP_REJECTED | PRECONDITION_REJECTED | INVALID_TRANSITION | UNKNOWN`; a timeout is not evidence of failure.
+- **Results**: Task Record observation (`SUCCEEDED | FAILED | PARTIAL | UNKNOWN`) is not Result Acceptance; Generic Result Identity is source-native and not Git-only; stale observations are retained but never promoted.
+- **Verification**: result stays exactly `PASS | FAIL | UNKNOWN`; current usability is a separate `CURRENT | STALE | INVALIDATED | UNKNOWN` validity evaluation; fresh `ELIGIBLE` acceptance is required before `VERIFYING` and again before `VERIFIED` promotion.
+- **Compatibility**: Framework `1.19.0` records remain valid under their original contract; V2 shapes use explicit `2.0` contract/record versions; Brownfield Tasks are never retrofitted; non-ControlTower Projects remain valid.
 
 ## Framework 1.19.0 AI-ControlTower Governance Support Layer
 

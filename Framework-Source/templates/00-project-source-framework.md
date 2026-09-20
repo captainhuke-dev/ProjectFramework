@@ -15,7 +15,7 @@ created_by: "<ACTOR_ID>"
 created_by_instance: "<INSTANCE_ID>"
 epistemic_status: "USER_CONFIRMED"
 freshness_class: "STABLE"
-project_source_framework_version: "1.19.0"
+project_source_framework_version: "1.20.0"
 project_source_schema_version: "1.0.0"
 compatible_framework_range: ">=1.0,<2.0"
 compatible_schema_range: ">=1.0,<2.0"
@@ -630,6 +630,10 @@ Exact valid Framework `RELEASE_FULL` proof may be reused only when the target tr
 Framework `1.19.0` adds declarative execution contracts for AI-ControlTower/Multica consumers: `PLAN | TASK | VERIFY` modes; Plan Contract (execution strategy) + Task Contract (intent/acceptance/dependencies/completion/Expected IPOCV/integration applicability); nested Execution Envelope that may narrow but never broaden AUTH; mandatory Expected IPOCV (`I/P/O/C/V`, explicit `NOT_APPLICABLE` + reason); Task Record / Actual IPOCV; state-bound Verification Record (`PASS | FAIL | UNKNOWN`); pure fail-closed Task Ready Gate; separate operational execution state; Multica coordination-only boundary; Executor Profile / Project Adapter; filter-before-rank selection with `NO_ELIGIBLE_EXECUTOR`; exact-SHA candidate verification; fresh `INTEGRATION_GATE`; `FAST_FORWARD_EXACT | MERGE_COMMIT_PRESERVING_CANDIDATE | TRANSFORMING_INTEGRATION` reconciliation.
 
 `R4_CTX` is execution-time current truth, not a Risk level; canonical Risk remains `R0–R3.` `Contract ≠ Authority`; `Claim ≠ AUTH`; `Verification PASS ≠ Task DONE`; Execution State never mutates canonical Task lifecycle; local-only `DONE` ≠ publication; Brownfield Tasks are not retrofitted. Optional `Project-Execution/` contract starters are applicability-driven; no new Project Source semantic slot, Stable-ID family, or runtime is introduced.
+
+### 12.4 Framework 1.20 Wave A V2 Deterministic Execution Foundation
+
+Framework `1.20.0` adds the Compositional State Binding Hub as declarative record semantics: `REVISION_SET` (source state; `Resource Identity ≠ Locator ≠ Revision`), `EXECUTION_INPUT_MANIFEST` (material inputs; no secret values), `EXECUTION_STATE_BINDING` (immutable, state-bound/reconstructable, finalized after the ownership grant), `EXECUTION_OWNERSHIP_GRANT` / `EXECUTION_OWNERSHIP_EVIDENCE` (scoped epochs; `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED`), `OPERATIONAL_TRANSITION` (aggregate-version CAS + idempotency; timestamp is not ordering authority), `RESULT_ACCEPTANCE` (state-bound derived evaluation; observation ≠ acceptance), and `VERIFICATION_VALIDITY_EVALUATION` (`CURRENT | STALE | INVALIDATED | UNKNOWN`; historical `PASS` is never rewritten). V2 required shapes use Task Contract `contract_version: "2.0"`, Task Record `record_version: "2.0"`, Verification Record `record_version: "2.0"`; existing `1.0` artifacts remain valid and are never retrofitted. Verification result remains exactly `PASS | FAIL | UNKNOWN`; fresh `ELIGIBLE` acceptance is required before `VERIFYING` and again before `VERIFIED` promotion. `Task DONE ≠ MERGED ≠ PUSHED ≠ RELEASED ≠ ARTIFACT_PUBLISHED ≠ DEPLOYED.` No new semantic slot, Stable-ID family, Registered Command, or runtime is introduced.
 ## 13. Preflight and Postflight
 
 READ PREFLIGHT: identity, `00`, `01`, `03`, scope, truth, freshness, blockers.

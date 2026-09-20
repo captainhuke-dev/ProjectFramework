@@ -2,7 +2,35 @@
 
 Per-release migration guidance for upgrading an initialized Project's Framework pin. These notes are routing/documentation aids, **not** normative authority — Core Governance and the latest amendment win on any conflict. Absence of a section for a transition means no notes exist yet; do not invent them.
 
-## 1.18.0 → 1.19.0 (current)
+## 1.19.0 → 1.20.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.20.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-058 Wave A V2 Deterministic Execution Foundation.
+- The **Compositional State Binding Hub** is added as declarative record semantics: `REVISION_SET`, `EXECUTION_INPUT_MANIFEST`, `EXECUTION_STATE_BINDING`, `EXECUTION_OWNERSHIP_GRANT` / `EXECUTION_OWNERSHIP_EVIDENCE`, `OPERATIONAL_TRANSITION`, `RESULT_ACCEPTANCE`, and `VERIFICATION_VALIDITY_EVALUATION` (all `record_version: "1.0"` as new record types).
+- V2 required shapes: Task Contract `contract_version: "2.0"`, Task Record `record_version: "2.0"`, Verification Record `record_version: "2.0"`. Existing `1.0` artifacts remain valid under their original contract and are never rewritten in place.
+- Canonical execution composition: Task Ready Gate PASS → eligible executor (filter-before-rank) → coordination claim → Execution Ownership Grant + scoped epoch + required fencing assurance → finalize immutable Execution State Binding → CAS `CLAIMED → EXECUTING` → Task Record observation → Generic Result Identity / Result Set → fresh Result Acceptance → Verification Basis/Evidence → `PASS | FAIL | UNKNOWN` → Verification Validity `CURRENT | STALE | INVALIDATED | UNKNOWN.`
+- `Resource Identity ≠ Locator ≠ Revision`; `Coordination Claim ≠ Execution Ownership Grant`; `Task Record observation ≠ Result Acceptance`; `Verification PASS ≠ Verification Validity CURRENT`; `COORDINATION_ONLY < ACCEPTANCE_FENCED < SIDE_EFFECT_FENCED.`
+- Seven optional Wave A V2 starters are maintained under `templates/project-execution/`: `revision-set.md`, `execution-input-manifest.md`, `execution-state-binding.md`, `execution-ownership.md`, `operational-transition-record.md`, `result-acceptance.md`, `verification-validity.md`; `task-contract.md`, `task-record.md`, `verification-record.md`, `project-adapter.md`, and `integration-reconciliation.md` gain explicit V2 sections with v1 compatibility preserved.
+- Adoption is additive and applicability-driven. Non-ControlTower Projects remain valid ProjectFramework Projects without adopting any Wave A V2 contract.
+- No new Project Source semantic slot, Stable-ID family, Registered Command, Risk level, Task lifecycle value, or release-descriptor format changes.
+- Wave B/C semantics (Resume Eligibility, Continuation Budget, Memory Snapshot/automatic continuation, cryptographic producer authentication, Release Transaction/deployment-saga) and all runtime implementation remain excluded.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's local pin, current truth, Stable IDs, Project-specific rules, bindings, and history until governed promotion.
+2. Preserve canonical `R0–R3` and all existing authority/risk/disclosure/secret/publication gates; 1.20 contracts may only compose with them, never weaken them.
+3. Adopt Wave A V2 execution contracts only when applicable; do not materialize empty contract files for completeness.
+4. Do not retrofit historical/Brownfield Tasks with invented Revision Sets, Input Manifests, State Bindings, ownership epochs, Result Acceptances, or Validity Evaluations; unknown mappings remain `UNKNOWN.`
+5. Preserve the distinctness of canonical Task lifecycle, operational execution state, Verification result (`PASS | FAIL | UNKNOWN`), Verification Validity (`CURRENT | STALE | INVALIDATED | UNKNOWN`), and Task DONE.
+6. Preserve the grant-before-binding order, fresh Result Acceptance before `VERIFYING` and again before `VERIFIED` promotion, and `RESULT_VERIFICATION_REQUIRED` unknown-effect semantics.
+7. Verify scenarios `557–590` while preserving cumulative scenarios `1–590` contiguous/unique.
+8. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+
+---
+
+## 1.18.0 → 1.19.0
+
 
 ### Affected distribution surfaces
 
