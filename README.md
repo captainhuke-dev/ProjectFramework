@@ -13,6 +13,10 @@ AI / Agent:
 Read `PROJECT-BOOTSTRAP.md` before Material Project work.
 <!-- PROJECTFRAMEWORK-BOOTSTRAP:END -->
 
+## READ-ONLY MIRROR / ARCHIVE (post-cutover, 2026-09-20)
+
+Following the governed canonical-source cutover (AI-ControlTower `CHG-123` / `MIG-008`, ACTOR-001 explicit approval, 2026-09-20), the **canonical development source** for ProjectFramework is now `captainhuke-dev/ai-controltower : projectframework/` (frozen baseline `v1.21.0`, tag `3e420ad292042436174cebb02d9914bf4cf20349`, Framework-Source tree `ea6aa84`). This standalone repository is a **read-only mirror / archive**: no further feature development, amendment, or release work happens here. New-project bootstrap from this `main` branch remains valid against the frozen `v1.21.0` content.
+
 ## TL;DR — What this is and how to use it
 
 ProjectFramework is a **documentation-first governance framework** for planning and running Projects with AI agents. It defines where current truth, decisions, requirements, risks, and continuation context live — in a `Project-Source/` folder of numbered Markdown documents (`00–17` mandatory core; `40`, `60`, `91`, `92` conditional). It contains **no software**: rules are written contracts that humans/agents read and follow.
@@ -23,7 +27,7 @@ How to use it:
 2. **Existing Project** — your local pinned Framework never auto-upgrades. Run `[Project Upgrade]` to compare against upstream; actual upgrades stay governed (classification → Preview → explicit approval → verification).
 3. **Day-to-day** — registered commands `[Project Status]`, `[Project Path]`, `[Project Upgrade]`, `[Project Audit]`, `[Session]`, `[Goal]`, and `[Meeting]` cover status, paths, upgrades, integrity audits, bounded/persistent work, and multi-model advisory review. Every governed response ends with `[Next Action]:`, `[Next Goal]:`, `[Reason]:`. Chat lifecycle and Required Read routing remain internal continuation/Handoff state rather than mandatory visible close fields.
 
-`captainhuke-dev/ProjectFramework` is the **canonical public upstream bootstrap source for new Project Source creation**. The `main` branch represents the current approved starting Framework for NEW projects.
+`captainhuke-dev/ProjectFramework` is the **public upstream bootstrap source for new Project Source creation** (read-only mirror/archive after the 2026-09-20 cutover; canonical development source is `captainhuke-dev/ai-controltower : projectframework/`). The `main` branch represents the current approved starting Framework for NEW projects (frozen at `v1.21.0`).
 
 ## Current Release
 
