@@ -2,7 +2,41 @@
 
 Per-release migration guidance for upgrading an initialized Project's Framework pin. These notes are routing/documentation aids, **not** normative authority — Core Governance and the latest amendment win on any conflict. Absence of a section for a transition means no notes exist yet; do not invent them.
 
-## 1.19.0 → 1.20.0 (current)
+## 1.20.0 → 1.21.0 (current)
+
+### Affected distribution surfaces
+
+- Framework identity becomes `1.21.0`; Schema stays `1.0.0`; release format stays `3`; latest amendment is TASK-059 V3 Forward-Port Runtime Control Contract.
+- The **Durable Runtime Control Contract** is added as declarative record semantics: `RUNTIME_CONTRACT` (durable runtime-control binding: control generation, fence epoch, liveness, continuation policy, version pinning), `RUNTIME_EVENT` (Runtime Event Journal; append-only, sequence-ordered, runtime-owned namespace, strict writer isolation), `EXECUTION_CHECKPOINT` (derived recovery accelerator traceable to the journal), `EFFECT_POLICY` (mediation + idempotency/reversibility/reconciliation classes), `EFFECT_PERMIT` (short-lived, single-use, non-transferable, bound; never `AUTH-*`), and `RLM_EXECUTION_PROFILE` (provider-neutral recursion depth + hierarchical budgets) — all `record_version: "1.0"` as new record types.
+- Supervisor/control generation: `Supervisor decision ≠ AUTH`; `Supervisor liveness ≠ Execution Ownership Grant`; `Heartbeat ≠ completion evidence`; a new control generation invalidates prior-generation leases/fences/permits without rewriting the Wave A V2 ownership epoch or canonical Task state; fence identity is the pair `(runtime_generation, fence_epoch).`
+- Runtime liveness projection: lease/heartbeat is subordinate to the Framework 1.20 Execution Ownership Grant; no lease, heartbeat, or fence creates ownership or AUTH.
+- Effect Gateway: mediated Material Effects transit `executor proposal → fresh authority/current-truth/precondition evaluation → Effect Permit → Gateway dispatch → source-native reconciliation`; direct uncontrolled paths for a mediated class are non-conforming; effect-surface closure is the mandated property.
+- Ambiguity: no arbitrary exactly-once claims; `UNKNOWN → reconcile at source-native truth owner → APPLIED | NOT_APPLIED | PARTIAL | STILL_UNKNOWN`; unsafe blind retry is prohibited.
+- Bounded continuation: finite continuation/retry budgets, wake conditions, explicit `WAIT | BLOCKED | MANUAL_RESOLUTION_REQUIRED | BUDGET_EXHAUSTED | WAITING_FOR_REAUTHORIZATION` dispositions; no automatic continuation after authority/state-binding/contract invalidation; exhaustion never implies Task DONE.
+- Cancellation/compensation: `Cancellation ≠ rollback`; `Compensation ≠ history erasure`; compensation is a new governed effect with its own authority, permit, budget, evidence, and reconciliation.
+- Version pinning: `runtime_contract_version` + `event_schema_version`; upgrades classify `BACKWARD_COMPATIBLE | REQUIRES_MIGRATION | INCOMPATIBLE`; incompatible code never silently reinterprets historical runtime events.
+- Security boundary: no raw secret values in journal/checkpoint/evidence (`REFERENCE_ONLY | REDACTED | HASH_ONLY | classified metadata`); model/tool output is untrusted; runtime-owned events use a separate namespace; stale generation/epoch/permit attempts fail closed.
+- AI-ControlTower handoff: the Python 3.14 Supervisor reference runtime is a separate AI-ControlTower Task against this conformance boundary; Prime Agent remains an optional mapping to the RLM/long-horizon Executor Profile; canonical-source cutover starts only after the amendment §18 evidence chain.
+- Five optional TASK-059 starters are maintained under `templates/project-execution/`: `runtime-contract.md`, `runtime-event-journal.md`, `execution-checkpoint.md`, `effect-policy.md`, `rlm-executor-profile.md`.
+- Adoption is additive and applicability-driven. Non-ControlTower Projects remain valid ProjectFramework Projects without adopting any runtime contract.
+- No new Project Source semantic slot, Stable-ID family, Registered Command, Risk level, Task lifecycle value, or release-descriptor format changes.
+- Wave A V2 remains authoritative and is extended compositionally, never replaced. Wave C semantics (Release Transaction, deployment saga) and cryptographic producer authentication remain excluded.
+
+### Upgrade checklist
+
+1. Preserve the initialized Project's local pin, current truth, Stable IDs, Project-specific rules, bindings, and history until governed promotion.
+2. Preserve canonical `R0–R3` and all existing authority/risk/disclosure/secret/publication gates; 1.21 contracts may only compose with them, never weaken them.
+3. Preserve Framework 1.20 Wave A V2 semantics (Compositional State Binding Hub, ownership/fencing, CAS transitions, Result Acceptance, Verification Validity) as authoritative; TASK-059 extends them compositionally.
+4. Adopt TASK-059 runtime contracts only when an execution runtime is applicable; do not materialize empty contract files for completeness.
+5. Do not retrofit historical/Brownfield Tasks or executions with invented journal, checkpoint, permit, or RLM state; unknown mappings remain `UNKNOWN.`
+6. Preserve the distinctness of canonical Task lifecycle, operational execution state, Verification result (`PASS | FAIL | UNKNOWN`), Verification Validity (`CURRENT | STALE | INVALIDATED | UNKNOWN`), and Task DONE.
+7. Preserve the invariants: `Effect Permit ≠ AUTH-*`; `Supervisor decision ≠ AUTH`; `Heartbeat ≠ completion evidence`; `Cancellation ≠ rollback`; `Compensation ≠ history erasure`; `Prime Agent role ≠ ProjectFramework dependency.`
+8. Verify scenarios `591–620` while preserving cumulative scenarios `1–620` contiguous/unique.
+9. For this Framework release, run cumulative affected verification then one final `RELEASE_FULL` on the exact unchanged accepted candidate.
+
+---
+
+## 1.19.0 → 1.20.0 (previous)
 
 ### Affected distribution surfaces
 
