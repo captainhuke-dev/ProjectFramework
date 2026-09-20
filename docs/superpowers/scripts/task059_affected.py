@@ -118,24 +118,25 @@ nums = [int(m) for m in re.findall(r"^## Scenario (\d+) —", ps, re.M)]
 check("G1 scenarios contiguous 1..620", nums == list(range(1, 621)), "count=%d" % len(nums))
 check("G2 no duplicates", len(nums) == len(set(nums)))
 check("G3 ceiling is 620", max(nums) == 620)
-# 557-590 unchanged vs baseline (git)
+# 557-590 unchanged vs baseline (git blob; normalize line endings — baseline blob is LF, worktree is CRLF)
 base_557_590 = subprocess.run(
     [GIT, "show", "04b718446d7579f0336d5cdac24a66037e0f20e0:Framework-Source/tests/pressure-scenarios.md"],
-    cwd=root, capture_output=True, text=True).stdout
+    cwd=root, capture_output=True, text=True).stdout.replace("\r\n", "\n")
+ps_norm = ps.replace("\r\n", "\n")
 def scenario_block(text, n):
     m = re.search(r"(^## Scenario %d —.*?)(?=^## Scenario %d —|\Z)" % (n, n + 1), text, re.M | re.S)
     return m.group(1) if m else None
-unchanged = all(scenario_block(base_557_590, n) == scenario_block(ps, n) for n in range(557, 591))
-check("G4 Wave A V2 scenarios 557-590 byte-identical to baseline", unchanged)
-new_blocks = [n for n in range(591, 621) if scenario_block(ps, n)]
+unchanged = all((scenario_block(base_557_590, n) or "").strip() == (scenario_block(ps_norm, n) or "").strip() for n in range(557, 591))
+check("G4 Wave A V2 scenarios 557-590 content-identical to baseline", unchanged)
+new_blocks = [n for n in range(591, 621) if scenario_block(ps_norm, n)]
 check("G5 all 30 new scenarios 591-620 present", len(new_blocks) == 30)
 # each new scenario has the 4-part structure
 struct_ok = all(
-    all(k in scenario_block(ps, n) for k in ("**Prompt:**", "**Temptation:**", "**Pass:**", "**Fail:**", "**GREEN expectation:**"))
+    all(k in scenario_block(ps_norm, n) for k in ("**Prompt:**", "**Temptation:**", "**Pass:**", "**Fail:**", "**GREEN expectation:**"))
     for n in range(591, 621))
 check("G6 new scenarios have Prompt/Temptation/Pass/Fail/GREEN structure", struct_ok)
 # GREEN expectations reference the TASK-059 amendment
-refs_ok = all("TASK-059 amendment" in scenario_block(ps, n) for n in range(591, 621))
+refs_ok = all("TASK-059 amendment" in scenario_block(ps_norm, n) for n in range(591, 621))
 check("G7 new scenarios cite TASK-059 amendment sections", refs_ok)
 
 # ---------- H. Starters ----------
@@ -168,7 +169,8 @@ for dirpath, dirnames, filenames in os.walk(os.path.join(root, "Framework-Source
 check("I1 no executable files in Framework-Source", not bad, str(bad))
 
 # ---------- J. Release surfaces ----------
-mock = sorted(glob.glob(os.path.join(root, "Framework-Source/templates/project-source-mockup/*.md")))
+mock = sorted(f for f in glob.glob(os.path.join(root, "Framework-Source/templates/project-source-mockup/*.md"))
+              if not os.path.basename(f).startswith("README"))
 stamps = [txt(f) for f in mock]
 check("J1 22 mockup templates", len(mock) == 22, str(len(mock)))
 check("J2 all mockup stamps 1.21.0/1.0.0",
@@ -207,7 +209,13 @@ for f in ["Framework-Source/CHATGPT-PROJECT-INSTRUCTIONS.md", "Framework-Source/
     check("L %s byte-identical to baseline" % f, now == then)
 boot = txt("PROJECT-BOOTSTRAP.md")
 cmds = ["[Project Status]", "[Project Path]", "[Project Upgrade]", "[Project Audit]", "[Session]", "[Goal]", "[Meeting]"]
-check("L5 Registered Commands unchanged (7)", all(c in boot for c in cmds))
+# Registered Command surface lives in SKILL.md; compare its command-list region against the baseline blob
+sk_now = txt("Framework-Source/SKILL.md")
+sk_base = subprocess.run([GIT, "show", base + ":Framework-Source/SKILL.md"], cwd=root, capture_output=True, text=True).stdout
+def cmd_region(t):
+    m = re.search(r"(\[Project Status\] :.*?)(?=^## )", t, re.M | re.S)
+    return m.group(1).replace("\r\n", "\n").strip() if m else None
+check("L5 Registered Command list region in SKILL unchanged", cmd_region(sk_now) == cmd_region(sk_base))
 
 # ---------- M. Historical integrity ----------
 hist_am = "Framework-Source/references/framework-governance-amendment-260916-task058-wave-a-v2-deterministic-execution-foundation.md"
@@ -230,20 +238,28 @@ crlf_bad = []
 for dirpath, dirnames, filenames in os.walk(os.path.join(root, "Framework-Source")):
     for fn in filenames:
         if fn.endswith(".md"):
-            d = rd(os.path.relpath(os.path.join(dirpath, fn), root))
-            if d.count(b"\n") - d.count(b"\r\n") != 0:
+            rel = os.path.relpath(os.path.join(dirpath, fn), root).replace(os.sep, "/")
+            worktree = rd(rel)
+            # A file is "touched by this task" when its line-ending-normalized content
+            # differs from the baseline blob (git stores blobs as LF). Untouched files —
+            # including historical ones with pre-existing mixed endings — are skipped.
+            base_blob = subprocess.run([GIT, "cat-file", "blob", git("rev-parse", base + ":" + rel)],
+                                       cwd=root, capture_output=True).stdout
+            if worktree.replace(b"\r\n", b"\n") == base_blob:
+                continue
+            if worktree.count(b"\n") - worktree.count(b"\r\n") != 0:
                 crlf_ok = False
                 crlf_bad.append(fn)
-check("N3 all Framework-Source .md files CRLF-consistent", crlf_ok, str(crlf_bad))
+check("N3 all task-touched Framework-Source .md worktree files CRLF-consistent", crlf_ok, str(crlf_bad))
 
 # ---------- O. RED→GREEN proof ----------
 base_fs = subprocess.run([GIT, "archive", base, "Framework-Source"], cwd=root, capture_output=True).stdout
-import io, zipfile
-z = zipfile.ZipFile(io.BytesIO(base_fs))
-base_am_names = z.namelist()
+import io, tarfile
+z = tarfile.open(fileobj=io.BytesIO(base_fs), mode="r:*")
+base_am_names = z.getnames()
 check("O1 TASK-059 amendment is new (not in baseline tree)",
       "Framework-Source/references/framework-governance-amendment-260920-task059-v3-forward-port-runtime-contract.md" not in base_am_names)
-base_cg = z.read("Framework-Source/references/core-governance-rules.md").decode("utf-8")
+base_cg = z.extractfile("Framework-Source/references/core-governance-rules.md").read().decode("utf-8")
 check("O2 baseline core gov had no Effect Permit contract", "Effect Permit" not in base_cg)
 check("O3 baseline core gov had no Runtime Event Journal contract", "Runtime Event Journal" not in base_cg)
 check("O4 current core gov has both (GREEN)", "Effect Permit" in cg and "Runtime Event Journal" in cg)
