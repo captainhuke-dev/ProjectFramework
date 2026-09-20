@@ -2,7 +2,7 @@
 
 Date: `2026-09-20` (Asia/Bangkok)
 Task: `TASK-059`
-Design state: `USER_APPROVED_DIRECTION / WRITTEN_SPEC_SELF_REVIEWED / EXPLICIT_WRITTEN_SPEC_APPROVAL_PENDING`
+Design state: `USER_APPROVED_DIRECTION / WRITTEN_SPEC_SELF_REVIEWED / WRITTEN_SPEC_USER_APPROVED`
 Depends on: `TASK-058`
 Baseline: ProjectFramework `1.20.0` / Project Source Schema `1.0.0` / release format `3`
 Candidate target: ProjectFramework `1.21.0` / Project Source Schema `1.0.0` / release format `3`
@@ -347,4 +347,4 @@ TASK-059 does not authorize:
 
 ## 14. Exact next design step
 
-Obtain explicit written-spec approval for this self-reviewed TASK-059 spec before implementation-plane mutation.
+Written spec is explicitly approved. Next: resolve an eligible declared Executor and Task Ready Gate before any implementation-plane mutation.

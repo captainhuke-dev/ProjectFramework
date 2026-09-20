@@ -1,7 +1,7 @@
 # TASK-059 V3 Forward-Port Runtime Contract Implementation Plan
 
 Date: `2026-09-20` (Asia/Bangkok)
-State: `DRAFT / SELF_REVIEWED / EXECUTION_NOT_AUTHORIZED_UNTIL_WRITTEN_SPEC_APPROVAL`
+State: `WRITTEN / SELF_REVIEWED / WRITTEN_SPEC_USER_APPROVED / EXECUTION_HANDOFF_REQUIRED`
 Spec: `docs/superpowers/specs/2026-09-20-task059-v3-forward-port-runtime-contract-design.md`
 
 ## Goal
