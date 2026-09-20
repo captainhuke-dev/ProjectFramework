@@ -347,4 +347,4 @@ TASK-059 does not authorize:
 
 ## 14. Exact next design step
 
-Written spec is explicitly approved. Next: resolve an eligible declared Executor and Task Ready Gate before any implementation-plane mutation.
+Written spec is explicitly approved. Hermes is the designated LOCAL_LLM_ENGINEER Executor. Next: fresh-resolve Hermes runtime/tool/workspace binding and the Task Ready Gate; only PASS may start implementation-plane mutation.

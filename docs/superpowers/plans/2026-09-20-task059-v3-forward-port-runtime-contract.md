@@ -11,7 +11,9 @@ Produce the final standalone ProjectFramework runtime-control contract release b
 ## Execution boundary
 
 - `GPT = PLANNER`.
-- ProjectFramework implementation requires an eligible declared Executor after Task Ready Gate evaluation.
+- `LOCAL_LLM_ENGINEER = designated TASK Executor profile`; `Hermes = selected Executor implementation` by ACTOR-001 on 2026-09-20.
+- Hermes may execute only after fresh Task Ready Gate plus exact runtime/workspace/tool binding, applicable AUTH/R4_CTX and executor/trust eligibility all PASS.
+- If Hermes is unavailable, stale-bound or cannot prove the exact target binding, return `NO_ELIGIBLE_EXECUTOR / FAIL_CLOSED`; do not substitute GPT, Codex, generic shell automation or another undeclared Executor.
 - Independent Verifier remains separate.
 - No AI-ControlTower runtime mutation occurs in this plan.
 - No canonical-source cutover occurs in this plan.
